@@ -49,7 +49,7 @@ const tenant = {
       stylePreset: "modern-minimal-v1",
       description: {
         cs: "Keramické studio pro klidnou tvorbu.",
-        en: "A calm place to make with clay.",
+        en: "A welcoming place to work and create.",
       },
     },
     pages: {},
@@ -79,8 +79,8 @@ const tenant = {
         en: "Welcome back to your studio.",
       },
       supportingText: {
-        cs: "Rezervace, výrobky a kredity na jednom klidném místě.",
-        en: "Bookings, pottery pieces and credits in one calm place.",
+        cs: "Rezervace, členství a kredity na jednom klidném místě.",
+        en: "Bookings, memberships and credits in one calm place.",
       },
       helpText: {
         cs: "Potřebujete pomoc? Ozvěte se svému studiu.",
@@ -112,14 +112,14 @@ const longCopyTenant = {
       headline: {
         ...tenant.publicSite.login.headline,
         en: repeatToLength(
-          "A welcoming studio account for every maker and every carefully finished piece. ",
+          "A welcoming account for every member and every shared creative session. ",
           160,
         ),
       },
       supportingText: {
         ...tenant.publicSite.login.supportingText,
         en: repeatToLength(
-          "Keep upcoming bookings, pottery pieces, course details and studio credits together in one calm customer space. ",
+          "Keep upcoming bookings, memberships, course details and credits together in one calm customer space. ",
           800,
         ),
       },

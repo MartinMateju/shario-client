@@ -10,7 +10,7 @@ const SECONDARY_LOCATION_ID = "64b000000000000000000022";
 const PRODUCT_ID = "64b000000000000000000031";
 const SECONDARY_PRODUCT_ID = "64b000000000000000000032";
 const PRAGUE_OPEN_STUDIO_PRODUCT_ID = "64b000000000000000000034";
-const BRNO_GLAZING_PRODUCT_ID = "64b000000000000000000035";
+const BRNO_REHEARSAL_PRODUCT_ID = "64b000000000000000000035";
 const BOOKING_ID = "64b000000000000000000041";
 const SECONDARY_BOOKING_ID = "64b000000000000000000042";
 const CALENDAR_BOOKING_ID = "64b000000000000000000043";
@@ -79,7 +79,7 @@ const tenant = {
     bookings: true,
     courses: true,
     credits: true,
-    firing: true,
+
     invoices: true,
     memberships: true,
     payments: true,
@@ -105,7 +105,7 @@ const tenant = {
       backgroundColor: "#F5F1EA",
       description: {
         cs: "Keramické studio pro klidnou tvorbu.",
-        en: "A calm place to make with clay.",
+        en: "A welcoming place to work and create.",
       },
       displayName: "Atelier Nami",
       logoUrl: "https://visual-assets.example.test/customer-portal-logo.svg",
@@ -381,9 +381,9 @@ const secondaryProduct = {
   _id: SECONDARY_PRODUCT_ID,
   id: SECONDARY_PRODUCT_ID,
   locationId: SECONDARY_LOCATION_ID,
-  name: { cs: "Glazovací dílna", en: "Glazing Lab" },
+  name: { cs: "Zkušebna", en: "Rehearsal Room" },
   price: 590,
-  title: "Glazing Lab",
+  title: "Rehearsal Room",
 };
 
 const courseProduct = {
@@ -402,17 +402,17 @@ const pragueOpenStudioProduct = {
   id: PRAGUE_OPEN_STUDIO_PRODUCT_ID,
   locationId: SECONDARY_LOCATION_ID,
 };
-const brnoGlazingProduct = {
+const brnoRehearsalProduct = {
   ...secondaryProduct,
-  _id: BRNO_GLAZING_PRODUCT_ID,
-  id: BRNO_GLAZING_PRODUCT_ID,
+  _id: BRNO_REHEARSAL_PRODUCT_ID,
+  id: BRNO_REHEARSAL_PRODUCT_ID,
   locationId: LOCATION_ID,
 };
 const catalogProducts = [
   product,
   pragueOpenStudioProduct,
   secondaryProduct,
-  brnoGlazingProduct,
+  brnoRehearsalProduct,
   courseProduct,
 ];
 
@@ -454,7 +454,7 @@ const secondaryUpcomingBooking = {
   plannedActivity: "SHARED_TABLE",
   productId: SECONDARY_PRODUCT_ID,
   start: secondaryVisitStart.toISOString(),
-  title: "Glazing Lab",
+  title: "Rehearsal Room",
 };
 
 // The visual browser clock is fixed to 11 August 2026. Five earlier visits
@@ -705,7 +705,7 @@ export const handleCustomerPortalFixtureRequest = async (request, response) => {
       products: [
         {
           id: "64b000000000000000000036",
-          name: { CZ: "Tvoření jako dárek", EN: "Gift of clay" },
+          name: { CZ: "Tvoření jako dárek", EN: "Gift of creativity" },
           description: {
             CZ: "Kredit na tvoření v ateliéru.",
             EN: "Studio credit for a creative visit.",
@@ -909,11 +909,6 @@ export const handleCustomerPortalFixtureRequest = async (request, response) => {
 
   if (method === "GET" && pathname === "/credits/mine/balance") {
     sendJson(request, response, 200, { balance: 400, currency: "CZK" });
-    return;
-  }
-
-  if (method === "GET" && pathname === "/pottery-pieces/my") {
-    sendJson(request, response, 200, { pieces: [] });
     return;
   }
 

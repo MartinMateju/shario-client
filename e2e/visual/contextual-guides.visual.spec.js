@@ -103,17 +103,7 @@ const mobileGuideCases = [
       ],
     ],
   },
-  {
-    id: "studio_flow",
-    path: "/en/app/firings?guide=studio_flow",
-    steps: [
-      ["register_piece", ["#studio-flow-sections-tab-items"]],
-      ["bisque_firing", ["#studio-flow-sections-tab-operations"]],
-      ["glazing", ["#studio-flow-sections-tab-items"]],
-      ["final_firing", ["#studio-flow-sections-tab-operations"]],
-      ["customer_notification", ["#studio-flow-sections-tab-operations"]],
-    ],
-  },
+
   {
     id: "memberships",
     path: "/en/app/products?category=memberships&guide=memberships",

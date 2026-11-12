@@ -34,7 +34,7 @@ const localeScenarios = [
       submit: "Sign in",
       workspace: "Workspace URL",
       workspaceHelpDescription:
-        "It’s the unique address you use to open your studio, for example clay-house.shario.io. You’ll find it in your welcome or invitation email. If you’re unsure, ask your studio owner or administrator.",
+        "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email.",
       workspaceHelpOpen: "What is a workspace URL?",
       workspaceHelpTitle: "Your studio’s shario.io address",
     },
@@ -261,7 +261,7 @@ async function expectStudioAuthTheme(authPage, authCard) {
   expect(
     await authPage.getAttribute("data-skab-public-surface"),
   ).not.toBeNull();
-  await expect(authPage).toHaveCSS("font-family", /^"?Switzer"?,/);
+  await expect(authPage).toHaveCSS("font-family", /^"?Manrope"?,/);
   await expect(authPage).toHaveCSS("background-color", "rgb(245, 241, 233)");
   await expect(authCard).toHaveCSS("border-radius", "4px");
   await expect(authCard).toHaveCSS("background-color", "rgb(255, 254, 251)");

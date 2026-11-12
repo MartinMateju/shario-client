@@ -72,7 +72,7 @@ test("registers, onboards, logs in and verifies managed email delivery", async (
     isTenantRoute(url, WORKSPACE.slug, "/app/onboarding"),
   );
 
-  await page.getByRole("button", { name: "Pottery studio" }).click();
+  await page.getByRole("button", { name: "Coworking space" }).click();
   await page.getByLabel("Country").selectOption("Czech Republic");
   await page.getByLabel("Currency").selectOption("CZK");
   await page.getByLabel("Timezone").selectOption("Europe/Prague");

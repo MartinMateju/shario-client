@@ -16,10 +16,7 @@ export const VISUAL_IDS = Object.freeze({
   tenant: "64a000000000000000000001",
   owner: "64a000000000000000000002",
   location: "64b000000000000000000001",
-  kiln: "64c000000000000000000001",
-  runningFiring: "64d000000000000000000001",
-  pendingFiring: "64d000000000000000000002",
-  completedFiring: "64d000000000000000000003",
+
   conversation: "64f000000000000000000001",
 });
 
@@ -59,7 +56,7 @@ const visualTenant = {
     vouchers: true,
     automations: true,
     newsletter: true,
-    firing: true,
+
     inventory: true,
     staff_tasks: true,
     communications: true,
@@ -77,7 +74,7 @@ const visualTenant = {
   },
   onboarding: {
     completed: true,
-    businessType: "pottery",
+    businessType: "coworking_space",
   },
 };
 
@@ -129,7 +126,7 @@ const visualPublicSite = {
     headline: { en: "Welcome back.", cs: "Vítejte zpět." },
     supportingText: {
       en: "Your bookings and pieces in one calm place.",
-      cs: "Rezervace a výrobky na jednom klidném místě.",
+      cs: "Rezervace a členství na jednom klidném místě.",
     },
     helpText: { en: "We are here if you need help.", cs: "Rádi vám pomůžeme." },
     labelColor: "",
@@ -143,7 +140,7 @@ const visualPublicSite = {
     },
     supportingText: {
       en: "Create an account for bookings, classes and pieces.",
-      cs: "Vytvořte si účet pro rezervace, kurzy a výrobky.",
+      cs: "Vytvořte si účet pro rezervace, kurzy a členství.",
     },
     helpText: { en: "It only takes a minute.", cs: "Zabere to jen chvilku." },
     labelColor: "",
@@ -229,12 +226,7 @@ const completedContextualGuides = Object.freeze({
     lastStep: "customer_portal",
     updatedAt: VISUAL_FIXED_TIME,
   },
-  studio_flow: {
-    version: 2,
-    status: "completed",
-    lastStep: "customer_notification",
-    updatedAt: VISUAL_FIXED_TIME,
-  },
+
   memberships: {
     version: 2,
     status: "completed",
@@ -843,8 +835,8 @@ const visualCustomers = [
     phone: "+420 777 123 456",
     customId: "SK-1024",
     activeMembership: {
-      name: "Clay Club",
-      slug: "clay-club",
+      name: "Creative Club",
+      slug: "creative-club",
     },
     moneyCredits: 1250,
     totalSpent: 12600,
@@ -926,8 +918,8 @@ const visualCustomers = [
     phone: "+44 7700 900123",
     customId: "SK-1029",
     activeMembership: {
-      name: "Clay Club",
-      slug: "clay-club",
+      name: "Creative Club",
+      slug: "creative-club",
     },
     moneyCredits: 900,
     totalSpent: 9200,
@@ -937,110 +929,10 @@ const visualCustomers = [
   },
 ];
 
-const visualKiln = {
-  _id: VISUAL_IDS.kiln,
-  id: VISUAL_IDS.kiln,
-  name: "Rohde Ecotop 80",
-  brand: "Rohde",
-  model: "Ecotop 80",
-  serialNumber: "ROHDE-2026-041",
-  status: "RUNNING",
-  capacityLitres: 80,
-  isActive: true,
-  location: {
-    _id: VISUAL_IDS.location,
-    id: VISUAL_IDS.location,
-    name: visualLocation.name,
-  },
-};
-
-const firingLocation = {
-  _id: VISUAL_IDS.location,
-  id: VISUAL_IDS.location,
-  name: visualLocation.name,
-};
-
-const firingKiln = {
-  _id: VISUAL_IDS.kiln,
-  id: VISUAL_IDS.kiln,
-  name: visualKiln.name,
-};
-
-const firingsByStatus = {
-  COOLING: [],
-  UNLOADED: [],
-  RUNNING: [
-    {
-      _id: VISUAL_IDS.runningFiring,
-      id: VISUAL_IDS.runningFiring,
-      firingNumber: "F-2026-041",
-      firingType: "BISQUE",
-      status: "RUNNING",
-      startedAt: "2026-07-30T07:20:00.000Z",
-      registeredAt: "2026-07-29T15:10:00.000Z",
-      updatedAt: "2026-07-30T07:20:00.000Z",
-      location: firingLocation,
-      kiln: firingKiln,
-      itemCount: 18,
-      customerCount: 7,
-    },
-  ],
-  PENDING: [
-    {
-      _id: VISUAL_IDS.pendingFiring,
-      id: VISUAL_IDS.pendingFiring,
-      firingNumber: "F-2026-042",
-      firingType: "GLAZE",
-      status: "PENDING",
-      registeredAt: "2026-07-30T06:45:00.000Z",
-      updatedAt: "2026-07-30T06:45:00.000Z",
-      location: firingLocation,
-      kiln: {
-        ...firingKiln,
-        name: "Rohde Toploader 190",
-      },
-      itemCount: 11,
-      customerCount: 5,
-    },
-  ],
-  COMPLETED: [
-    {
-      _id: VISUAL_IDS.completedFiring,
-      id: VISUAL_IDS.completedFiring,
-      firingNumber: "F-2026-040",
-      firingType: "BISQUE",
-      status: "COMPLETED",
-      startedAt: "2026-07-28T07:00:00.000Z",
-      finishedAt: "2026-07-29T16:30:00.000Z",
-      unloadedAt: "2026-07-30T06:00:00.000Z",
-      readyAt: "2026-07-30T06:30:00.000Z",
-      collectionDeadlineAt: "2026-08-23T21:59:59.999Z",
-      collectionDeadlineDays: 24,
-      collectionTimezone: "Europe/Prague",
-      registeredAt: "2026-07-27T12:00:00.000Z",
-      updatedAt: "2026-07-30T06:30:00.000Z",
-      location: firingLocation,
-      kiln: firingKiln,
-      itemCount: 9,
-      customerCount: 4,
-    },
-  ],
-};
-
-const firingSummary = {
-  pending: 1,
-  running: 1,
-  cooling: 0,
-  unloaded: 0,
-  completed: 1,
-  activePieces: 38,
-  pendingWithoutManifest: 0,
-};
-
 const visualConversation = {
   _id: VISUAL_IDS.conversation,
   id: VISUAL_IDS.conversation,
-  subject: "Glazing question",
+  subject: "Booking question",
   status: "open",
   priority: "normal",
   channel: "email",
@@ -1059,12 +951,12 @@ const visualConversation = {
   },
   lastMessage: {
     channel: "email",
-    preview: "Can I collect my pieces tomorrow?",
+    preview: "Can I book a room tomorrow?",
     createdAt: "2026-07-30T07:30:00.000Z",
   },
   analysis: {
     category: "pickup_request",
-    summary: "Anna would like to confirm when her glazed pieces are ready.",
+    summary: "Anna would like to confirm her next booking.",
     confidence: 0.96,
     suggestedActions: [],
   },
@@ -1078,7 +970,7 @@ const visualMessages = [
     conversationId: visualConversation.id,
     channel: "email",
     direction: "incoming",
-    body: "Hello, can I collect my glazed pieces tomorrow afternoon?",
+    body: "Hello, can I book a room tomorrow afternoon?",
     createdAt: "2026-07-30T07:30:00.000Z",
     sender: visualConversation.customer,
   },
@@ -1088,7 +980,7 @@ const visualMessages = [
     conversationId: visualConversation.id,
     channel: "email",
     direction: "outgoing",
-    body: "Yes—your pieces will be ready for collection after 15:00.",
+    body: "Yes—the room is available after 15:00.",
     createdAt: "2026-07-30T07:42:00.000Z",
     sender: visualOwner,
     delivery: {
@@ -1119,7 +1011,6 @@ const buildDashboardOverview = (url, overviewScenario) => {
         "bookings",
         "customers",
         "communications",
-        "firings",
         "inventory",
         "reports",
         "staffTasks",
@@ -1153,7 +1044,7 @@ const buildDashboardOverview = (url, overviewScenario) => {
         },
         {
           id: "booking-3",
-          title: "Clay play",
+          title: "Creative workshop",
           productType: "workshop",
           start: "2026-07-30T12:00:00.000Z",
           end: "2026-07-30T14:00:00.000Z",
@@ -1163,7 +1054,7 @@ const buildDashboardOverview = (url, overviewScenario) => {
         },
         {
           id: "booking-4",
-          title: "Private pottery session",
+          title: "Private creative session",
           productType: "private-session",
           start: "2026-07-30T14:30:00.000Z",
           end: "2026-07-30T16:00:00.000Z",
@@ -1195,27 +1086,6 @@ const buildDashboardOverview = (url, overviewScenario) => {
         available: true,
         href: "/app/calendar",
       },
-      {
-        key: "readyToFire",
-        value: 12,
-        unit: "pieces",
-        available: true,
-        href: "/app/firings?section=items",
-      },
-      {
-        key: "inKiln",
-        value: 18,
-        unit: "pieces",
-        available: true,
-        href: "/app/firings",
-      },
-      {
-        key: "readyForPickup",
-        value: 7,
-        unit: "pieces",
-        available: true,
-        href: "/app/firings?section=items",
-      },
     ],
     attention: [
       {
@@ -1226,11 +1096,11 @@ const buildDashboardOverview = (url, overviewScenario) => {
         href: "/app/bookings",
       },
       {
-        key: "completedFiringsAwaitingNotification",
-        count: 1,
+        key: "overdueTasks",
+        count: denseOverview ? 7 : 1,
         available: true,
         severity: "info",
-        href: "/app/firings",
+        href: "/app/staff",
       },
       {
         key: "lowStock",
@@ -1239,17 +1109,7 @@ const buildDashboardOverview = (url, overviewScenario) => {
         severity: "warning",
         href: "/app/operations?section=inventory",
       },
-      ...(denseOverview
-        ? [
-            {
-              key: "readyForPickup",
-              count: 7,
-              available: true,
-              severity: "info",
-              href: "/app/firings?section=items",
-            },
-          ]
-        : []),
+      ...(denseOverview ? [] : []),
     ],
     businessPulse: {
       occupancy: {
@@ -1291,9 +1151,9 @@ const buildDashboardOverview = (url, overviewScenario) => {
         items: [
           {
             id: "conversation-1",
-            subject: "Glazing question",
+            subject: "Booking question",
             contactName: "Anna",
-            preview: "Can I collect my pieces tomorrow?",
+            preview: "Can I book a room tomorrow?",
             lastMessageAt: "2026-07-30T07:30:00.000Z",
             unreadCount: 1,
           },
@@ -1313,36 +1173,17 @@ const buildDashboardOverview = (url, overviewScenario) => {
         items: [
           {
             id: "task-1",
-            title: "Unload bisque kiln",
+            title: "Prepare the meeting room",
             assigneeName: "Martin",
             priority: "urgent",
             dueDate: "2026-07-30T09:00:00.000Z",
           },
           {
             id: "task-2",
-            title: "Prepare clay for evening class",
+            title: "Prepare equipment for the evening class",
             assigneeName: "Emilie",
             priority: "normal",
             dueDate: "2026-07-30T14:00:00.000Z",
-          },
-        ],
-      },
-      kilns: {
-        available: true,
-        totalCount: 2,
-        attentionCount: 0,
-        items: [
-          {
-            id: VISUAL_IDS.kiln,
-            name: visualKiln.name,
-            locationName: visualLocation.name,
-            status: "RUNNING",
-          },
-          {
-            id: "64c000000000000000000002",
-            name: "Rohde Toploader 190",
-            locationName: visualLocation.name,
-            status: "AVAILABLE",
           },
         ],
       },
@@ -1377,7 +1218,7 @@ const visualWorkspaceNotifications = [
       cs: "Rezervace byla zrušena",
     },
     message: {
-      en: "Anna Nováková cancelled her wheel session for this afternoon.",
+      en: "Anna Nováková cancelled her workstation booking for this afternoon.",
       cs: "Anna Nováková zrušila dnešní odpolední lekci na kruhu.",
     },
     actionUrl: "/app/bookings",
@@ -1397,12 +1238,12 @@ const visualWorkspaceNotifications = [
     category: "inventory",
     severity: "critical",
     title: {
-      en: "Clay stock needs attention",
-      cs: "Zásoba hlíny vyžaduje pozornost",
+      en: "Supplies need attention",
+      cs: "Zásoby vyžadují pozornost",
     },
     message: {
-      en: "Porcelain clay has fallen below its reorder threshold.",
-      cs: "Porcelánová hlína klesla pod hranici pro doobjednání.",
+      en: "Workshop supplies have fallen below their reorder threshold.",
+      cs: "Zásoby pro workshopy klesly pod hranici pro doobjednání.",
     },
     actionUrl: "/app/operations?section=inventory",
     locationId: visualLocation.id,
@@ -1428,7 +1269,7 @@ const visualReportsOverview = {
     locationId: VISUAL_IDS.location,
   },
   coverage: {
-    available: ["sales", "bookings", "customers", "firings", "inventory"],
+    available: ["sales", "bookings", "customers", "inventory"],
     unavailable: [],
     limitations: [],
     complete: true,
@@ -1560,7 +1401,7 @@ export const responseForRequest = ({
       bookings: 0,
       payments: 0,
       waitlist: 0,
-      studio_flow: 0,
+
       tasks: 0,
       inventory: 0,
       migration: 0,
@@ -1791,7 +1632,6 @@ export const responseForRequest = ({
         assistant: true,
         communicationsCopilot: true,
         dailyBriefing: true,
-        firingIntelligence: true,
       },
       usage: {
         exhausted: false,
@@ -1839,12 +1679,12 @@ export const responseForRequest = ({
             ? "Three verified priorities before the studio opens this morning"
             : "Daily Studio Briefing — 30 July 2026",
         summary: czech
-          ? "Sedm ověřených zdrojů je dostupných a pokrytí je úplné. Studio funguje hladce a jeden výpal čeká na upozornění zákazníků."
+          ? "Šest ověřených zdrojů je dostupných a pokrytí je úplné. Zkontrolujte rezervace, úkoly týmu a zásoby."
           : denseLaptopBriefing
-            ? "Start with the customer conversation, review the firing queue, and restore low-stock materials before the first booked session begins."
-            : "Seven verified sources are available and coverage is complete. The studio is running smoothly, with one firing ready for customer notifications.",
+            ? "Start with the customer conversation, review staff tasks, and restore supplies before the first booked session begins."
+            : "Six verified sources are available and coverage is complete. Review bookings, staff tasks and supplies.",
         generatedAt: "2026-07-30T08:01:00.000Z",
-        sourceCount: 7,
+        sourceCount: 6,
         freshness: {
           state: "fresh",
         },
@@ -1852,16 +1692,14 @@ export const responseForRequest = ({
           snapshotHash: "visual-overview-2026-07-30",
         },
         priorities: czech
-          ? ["Upozorněte zákazníky, jejichž výrobky prošly přežahem."]
+          ? ["Zkontrolujte úkoly týmu před začátkem rezervací."]
           : denseLaptopBriefing
             ? [
                 "Review the urgent customer conversation before opening.",
-                "Confirm the next firing queue and customer notifications.",
+                "Confirm staff tasks and customer notifications.",
                 "Restore the low-stock materials needed for today's sessions.",
               ]
-            : [
-                "Notify customers whose pieces have completed the bisque firing.",
-              ],
+            : ["Review staff tasks before the next booked session."],
       },
     };
   }
@@ -1907,108 +1745,6 @@ export const responseForRequest = ({
         needsAttention: 2,
       },
       totalCount: 48,
-    };
-  }
-
-  if (method === "GET" && pathname === "/firings") {
-    const status = String(url.searchParams.get("status") || "").toUpperCase();
-    const statuses = status.split(",").filter(Boolean);
-    const records = Object.values(firingsByStatus)
-      .flat()
-      .filter((firing) => !statuses.length || statuses.includes(firing.status))
-      .sort(
-        (first, second) =>
-          Date.parse(second.updatedAt) - Date.parse(first.updatedAt),
-      );
-    const page = Math.max(1, Number(url.searchParams.get("page") || 1));
-    const limit = Math.max(1, Number(url.searchParams.get("limit") || 6));
-    const firings = records
-      .slice((page - 1) * limit, page * limit)
-      .map((firing) => ({
-        ...firing,
-        manifestLoaded: false,
-      }));
-
-    return {
-      firings,
-      total: records.length,
-      page,
-      limit,
-      summary: firingSummary,
-    };
-  }
-
-  if (method === "GET" && /^\/firings\/[a-f0-9]{24}$/.test(pathname)) {
-    const firing = Object.values(firingsByStatus)
-      .flat()
-      .find((record) => record._id === pathname.split("/").at(-1));
-    if (!firing) return null;
-
-    const customers = [...visualCustomers, visualOwner].slice(
-      0,
-      firing.customerCount,
-    );
-    return {
-      ...firing,
-      manifestLoaded: true,
-      userItems: customers.map((customer, index) => ({
-        _id: `${firing._id}-${index}`,
-        user: customer._id,
-        userCustomId: customer.customId || "SK-1000",
-        firstname: customer.firstname,
-        lastname: customer.lastname,
-        email: customer.email,
-        emailStatus: "PENDING",
-        itemCount:
-          Math.floor(firing.itemCount / customers.length) +
-          (index < firing.itemCount % customers.length ? 1 : 0),
-      })),
-    };
-  }
-
-  if (method === "GET" && pathname === "/kilns") {
-    return {
-      kilns: [visualKiln],
-      total: 1,
-      page: 1,
-      limit: 100,
-    };
-  }
-
-  if (method === "GET" && pathname === "/ai/firings/overview") {
-    return {
-      overview: {
-        summary:
-          "The active bisque firing is progressing normally and the next glaze batch is ready to be scheduled.",
-        alerts: [
-          {
-            text: "One completed firing is waiting for customer notifications.",
-            severity: "warning",
-          },
-        ],
-        recommendations: [
-          {
-            text: "Review the pending glaze manifest before starting the next batch.",
-          },
-          {
-            text: "Allow the running kiln to cool fully before unloading.",
-          },
-        ],
-      },
-    };
-  }
-
-  if (
-    method === "GET" &&
-    /^\/ai\/firings\/[a-f0-9]{24}\/insight$/.test(pathname)
-  ) {
-    return {
-      insight: {
-        summary: "The batch manifest is ready for review.",
-        riskLevel: "low",
-        recommendations: [],
-        cautions: [],
-      },
     };
   }
 

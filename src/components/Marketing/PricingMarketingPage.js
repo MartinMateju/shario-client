@@ -192,10 +192,10 @@ export default function PricingMarketingPage() {
       title: home("pricing.eyebrow"),
     },
     {
-      description: home("howItWorks.description"),
+      description: t("pricing.onboardingDescription"),
       icon: "layers",
       key: "launch",
-      title: home("howItWorks.title"),
+      title: t("pricing.onboardingTitle"),
     },
     {
       description: home("trust.control.description"),
@@ -317,7 +317,7 @@ export default function PricingMarketingPage() {
       <FinalCta
         description={t("pricing.closingDescription")}
         secondaryHref="/product"
-        secondaryLabel={home("finalCta.secondaryCta")}
+        secondaryLabel={t("common.exploreProduct")}
         title={t("pricing.closingTitle")}
       />
     </MarketingPageShell>

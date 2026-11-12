@@ -4,7 +4,6 @@ import {
   LAUNCH_MODULE_SCENARIOS,
   LAUNCH_TENANT_ORIGIN,
   bookingLaunchSnapshot,
-  firingOnlyLaunchSnapshot,
   installLaunchAppMocks,
   inventoryOnlyLaunchSnapshot,
   mockLaunchCenter,
@@ -201,7 +200,6 @@ test.describe("adaptive tenant launch journeys", () => {
       bookings: true,
       courses: true,
       payments: true,
-      firing: false,
       inventory: false,
     });
 
@@ -545,91 +543,6 @@ test.describe("adaptive tenant launch journeys", () => {
     await expectNoUnexpectedRequests(launch);
   });
 
-  test("firing-only studio completes its kiln journey without billing profiles", async ({
-    page,
-  }) => {
-    const kilnMissing = firingOnlyLaunchSnapshot({
-      kilnsComplete: false,
-    });
-    const operationsReady = firingOnlyLaunchSnapshot();
-    const launch = await openLaunchCenter(
-      page,
-      kilnMissing,
-      LAUNCH_MODULE_SCENARIOS.firingOnly,
-    );
-
-    expect(launch.modules).toMatchObject({
-      bookings: false,
-      courses: false,
-      payments: false,
-      firing: true,
-      inventory: false,
-    });
-
-    await expectLaunchSections(page);
-    await expect(
-      page.getByRole("heading", {
-        level: 2,
-        name: "Are your kilns ready for daily operations?",
-      }),
-    ).toBeVisible();
-
-    await mockSuccessfulWrite(page, {
-      pathname: "/kilns",
-      onSuccess: () => launch.setSnapshot(operationsReady),
-      response: {
-        kiln: {
-          id: "64d100000000000000000001",
-          name: "Launch kiln",
-          brand: "Rohde",
-          location: "64b000000000000000000001",
-          volumeLiters: 80,
-          maxTemperature: 1300,
-          supportedFirings: ["BISQUE", "GLAZE"],
-          status: "AVAILABLE",
-        },
-      },
-    });
-    await page.getByRole("link", { name: "Add a kiln", exact: true }).click();
-
-    const kilnEditor = page.locator("#kiln-form");
-    await expect(kilnEditor).toBeVisible();
-    await kilnEditor.getByLabel("Kiln name").fill("Launch kiln");
-    await kilnEditor.getByLabel("Brand").fill("Rohde");
-    await kilnEditor.getByLabel("Volume").fill("80");
-    await page
-      .getByRole("button", { name: "Save and continue", exact: true })
-      .click();
-
-    await expect(page).toHaveURL((url) => url.pathname === SETUP_PATH);
-    await expectStepCompleted(launch, "kilns");
-    await expect(finalReview(page)).toContainText(
-      "Your studio is ready to operate",
-    );
-    const completedTasks = await expandLaunchSection(page, "all-tasks");
-    await expect(completedTasks).toContainText(
-      "Your kilns are ready for daily operations",
-    );
-    await expect(completedTasks).toContainText(/external firing/i);
-    await expect(page.locator("[data-launch-public-url]")).toHaveCount(0);
-    await expect(page.locator("[data-launch-test-booking]")).toHaveCount(0);
-    await expect(
-      page.getByRole("link", { name: "Launch studio", exact: true }),
-    ).toHaveCount(0);
-    expect(
-      launch.events.filter(
-        ({ event, stepId }) =>
-          event === "step_completed" && ["firing", "kilns"].includes(stepId),
-      ),
-    ).toEqual([
-      expect.objectContaining({
-        stepId: "kilns",
-        source: "guided_form",
-      }),
-    ]);
-    await expectNoUnexpectedRequests(launch);
-  });
-
   test("inventory-only studio saves its first item and reaches final review", async ({
     page,
   }) => {
@@ -647,7 +560,6 @@ test.describe("adaptive tenant launch journeys", () => {
       bookings: false,
       courses: false,
       payments: false,
-      firing: false,
       inventory: true,
     });
 
@@ -665,9 +577,9 @@ test.describe("adaptive tenant launch journeys", () => {
       response: {
         item: {
           id: "64e000000000000000000001",
-          name: "Stoneware clay",
-          category: "clay",
-          unit: "kg",
+          name: "Cleaning supplies",
+          category: "cleaning",
+          unit: "l",
           isActive: true,
         },
       },
@@ -691,7 +603,7 @@ test.describe("adaptive tenant launch journeys", () => {
     await expect(
       inventoryEditor.locator('[data-guided-form="inventory"]'),
     ).toBeVisible();
-    await inventoryEditor.getByLabel("Name").fill("Stoneware clay");
+    await inventoryEditor.getByLabel("Name").fill("Cleaning supplies");
     const stockLocation = inventoryEditor.getByRole("checkbox", {
       name: "Studio Alpha",
     });

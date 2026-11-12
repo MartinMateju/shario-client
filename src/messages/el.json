@@ -1183,7 +1183,9 @@
       "sectionTitle": "Συγκρίνετε χωρητικότητα, ροές και πιστώσεις AI.",
       "sectionDescription": "Επιλέξτε με βάση τον αριθμό τοποθεσιών, λογαριασμών ομάδας και το λειτουργικό βάθος που χρειάζεται το στούντιό σας.",
       "closingTitle": "Δεν είστε βέβαιοι ποιο πρόγραμμα ταιριάζει;",
-      "closingDescription": "Ξεκινήστε τη δοκιμή χωρίς κάρτα ή μιλήστε μαζί μας για προσαρμοσμένη υλοποίηση."
+      "closingDescription": "Ξεκινήστε τη δοκιμή χωρίς κάρτα ή μιλήστε μαζί μας για προσαρμοσμένη υλοποίηση.",
+      "onboardingTitle": "Set up at your pace.",
+      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
     }
   },
   "MarketingHome": {

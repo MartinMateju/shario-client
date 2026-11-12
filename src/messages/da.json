@@ -371,7 +371,9 @@
       "sectionTitle": "Sammenlign kapacitet, arbejdsgange og AI-kreditter.",
       "sectionDescription": "Vælg ud fra antallet af lokationer, teamkonti og den driftsdybde, dit studio har brug for.",
       "closingTitle": "I tvivl om, hvilken plan der passer?",
-      "closingDescription": "Start prøveperioden uden betalingskort, eller tal med os om en skræddersyet implementering."
+      "closingDescription": "Start prøveperioden uden betalingskort, eller tal med os om en skræddersyet implementering.",
+      "onboardingTitle": "Set up at your pace.",
+      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
     }
   },
   "MarketingHome": {

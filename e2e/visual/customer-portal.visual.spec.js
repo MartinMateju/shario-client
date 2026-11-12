@@ -10,7 +10,7 @@ const REPRESENTATIVE_PRESET_SCENARIOS = [
     origin: "http://studio-classic.shario.localhost:4310",
     name: "Atelier Classic",
     logoRedirectUrl: "https://studio.example.test/",
-    font: /Switzer/i,
+    font: /Manrope/i,
     panelRadius: "2rem",
     buttonHeight: "3rem",
   },
@@ -19,7 +19,7 @@ const REPRESENTATIVE_PRESET_SCENARIOS = [
     origin: "http://studio-warm.shario.localhost:4310",
     name: "Atelier Warm",
     logoRedirectUrl: "/about?source=logo",
-    font: /Switzer/i,
+    font: /Manrope/i,
     panelRadius: "2.75rem 1.5rem 2.75rem 1.5rem",
     buttonHeight: "3.125rem",
   },
@@ -109,10 +109,10 @@ const localeScenarios = [
       guests: /^Guests$/i,
       newBooking: /^New booking$/i,
       primaryProduct: "Open Studio",
-      secondaryProduct: "Glazing Lab",
+      secondaryProduct: "Rehearsal Room",
       sessionType: /^Session type$/i,
       brnoBookingTitle: /Open Studio/i,
-      pragueBookingTitle: /Glazing Lab/i,
+      pragueBookingTitle: /Rehearsal Room/i,
     },
   },
   {
@@ -132,10 +132,10 @@ const localeScenarios = [
       guests: /^Počet osob$/i,
       newBooking: /^Nová rezervace$/i,
       primaryProduct: "Otevřený ateliér",
-      secondaryProduct: "Glazovací dílna",
+      secondaryProduct: "Zkušebna",
       sessionType: /^Typ rezervace$/i,
       brnoBookingTitle: /Otevřený ateliér/i,
-      pragueBookingTitle: /Glazovací dílna/i,
+      pragueBookingTitle: /Zkušebna/i,
     },
   },
 ];
@@ -587,7 +587,7 @@ for (const viewport of [
     await expectCompactViewportBounds(page, drawer, "Booking drawer");
     await drawer
       .getByRole("combobox", { name: "Typ rezervace", exact: true })
-      .selectOption({ label: "Glazovací dílna" });
+      .selectOption({ label: "Zkušebna" });
     await drawer
       .getByRole("combobox", { name: "Počet osob", exact: true })
       .selectOption("2");
@@ -1491,7 +1491,7 @@ for (const { copy, locale, oppositeLegacyLanguage } of localeScenarios) {
       panelRadius: "8px",
       panelShadow: "none",
     });
-    expect(theme.displayFont).toMatch(/Switzer/i);
+    expect(theme.displayFont).toMatch(/Manrope/i);
     expect(theme.displayTracking).toBeLessThan(0);
 
     if (await activeNavigation.isVisible()) {
@@ -2905,7 +2905,7 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
         );
         await expect(
           pageContent.getByRole("button", {
-            name: locale === "cs" ? /Tvoření jako dárek/ : /Gift of clay/,
+            name: locale === "cs" ? /Tvoření jako dárek/ : /Gift of creativity/,
           }),
         ).toHaveAttribute("aria-pressed", "true");
         await expect(pageContent.locator('input[type="email"]')).toHaveValue(
@@ -2964,7 +2964,7 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
       expect(modernPageStyles.pageInline).toBe("clamp(1rem, 3vw, 2rem)");
       expect(modernPageStyles.pagePaddingLeft).toBeGreaterThanOrEqual(16);
       expect(modernPageStyles.pagePaddingLeft).toBeLessThanOrEqual(32);
-      expect(modernPageStyles.displayFont).toMatch(/Switzer/i);
+      expect(modernPageStyles.displayFont).toMatch(/Manrope/i);
       expect(modernPageStyles.displayTransform).toBe("none");
       expect(modernPageStyles.surfaceRadius).toBe("8px");
       expect(modernPageStyles.surfaceShadow).toBe("none");
@@ -3079,7 +3079,7 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
       buttonShadow: "none",
       cardShadow: "none",
     });
-    expect(tenantTheme.displayFont).toMatch(/Switzer/i);
+    expect(tenantTheme.displayFont).toMatch(/Manrope/i);
     const { headerSurface, profileSurface, ...baseTenantTheme } = tenantTheme;
 
     if (desktop) {

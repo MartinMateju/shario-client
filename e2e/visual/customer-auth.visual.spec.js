@@ -8,7 +8,7 @@ const REPRESENTATIVE_PRESET_SCENARIOS = [
   {
     id: "classic-editorial-v1",
     origin: "http://studio-classic.shario.localhost:4310",
-    font: /Switzer/i,
+    font: /Manrope/i,
     cardRadius: "1.5rem",
     panelRadius: "2rem",
     minimumButtonHeight: 48,
@@ -17,7 +17,7 @@ const REPRESENTATIVE_PRESET_SCENARIOS = [
   {
     id: "warm-organic-v1",
     origin: "http://studio-warm.shario.localhost:4310",
-    font: /Switzer/i,
+    font: /Manrope/i,
     cardRadius: "2rem 1rem 2rem 1rem",
     panelRadius: "2.75rem 1.5rem 2.75rem 1.5rem",
     minimumButtonHeight: 50,
@@ -37,11 +37,11 @@ const repeatToLength = (value, length) =>
 
 const longCopy = {
   headline: repeatToLength(
-    "A welcoming studio account for every maker and every carefully finished piece. ",
+    "A welcoming account for every member and every shared creative session. ",
     160,
   ),
   supportingText: repeatToLength(
-    "Keep upcoming bookings, pottery pieces, course details and studio credits together in one calm customer space. ",
+    "Keep upcoming bookings, memberships, course details and credits together in one calm customer space. ",
     800,
   ),
   helpText: repeatToLength(
@@ -55,8 +55,7 @@ const localeScenarios = [
     locale: "en",
     copy: {
       formTitle: "Sign in",
-      heroDescription:
-        "Bookings, pottery pieces and credits in one calm place.",
+      heroDescription: "Bookings, memberships and credits in one calm place.",
       heroTitle: "Welcome back to your studio.",
       registerFormTitle: "Create account",
       registerHeroTitle: "Everything you create, kept together.",
@@ -68,7 +67,7 @@ const localeScenarios = [
     locale: "cs",
     copy: {
       formTitle: "Přihlášení",
-      heroDescription: "Rezervace, výrobky a kredity na jednom klidném místě.",
+      heroDescription: "Rezervace, členství a kredity na jednom klidném místě.",
       heroTitle: "Vítejte zpět v ateliéru.",
       registerFormTitle: "Vytvořit účet",
       registerHeroTitle: "Vše, co tvoříte, přehledně spolu.",
@@ -86,7 +85,7 @@ const heroSvg = `
         <stop offset="0.52" stop-color="#8fa89b"/>
         <stop offset="1" stop-color="#6d8278"/>
       </linearGradient>
-      <linearGradient id="clay" x1="0" y1="0" x2="1" y2="1">
+      <linearGradient id="coral" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#f0b09a"/>
         <stop offset="1" stop-color="#c85f48"/>
       </linearGradient>
@@ -94,9 +93,10 @@ const heroSvg = `
     <rect width="1200" height="1400" fill="url(#bg)"/>
     <circle cx="870" cy="290" r="270" fill="#f1ddd0" opacity="0.45"/>
     <ellipse cx="560" cy="900" rx="360" ry="170" fill="#263b33" opacity="0.18"/>
-    <path d="M330 410h530l-72 590c-18 145-116 226-194 226s-176-81-194-226z" fill="url(#clay)"/>
-    <path d="M340 410c0-88 114-160 255-160s255 72 255 160-114 160-255 160-255-72-255-160z" fill="#efbea9"/>
-    <ellipse cx="595" cy="410" rx="165" ry="90" fill="#875247"/>
+    <rect x="245" y="425" width="710" height="460" rx="48" fill="url(#coral)"/>
+    <rect x="335" y="520" width="530" height="60" rx="18" fill="#fff7ef" opacity="0.8"/>
+    <rect x="335" y="625" width="355" height="45" rx="14" fill="#fff7ef" opacity="0.6"/>
+    <circle cx="820" cy="900" r="140" fill="#dae9df"/>
   </svg>`;
 
 const logoSvg = `
@@ -261,7 +261,7 @@ for (const { locale } of localeScenarios) {
 
     expect(modernStyles).not.toBeNull();
     expect(modernStyles.preset).toBe("modern-minimal-v1");
-    expect(modernStyles.displayFont).toMatch(/Switzer/i);
+    expect(modernStyles.displayFont).toMatch(/Manrope/i);
     expect(modernStyles.displayTracking).toBeLessThan(0);
     expect(modernStyles.displayTransform).toBe("none");
     expect(modernStyles.pageInline).toBe("clamp(1rem, 3vw, 2rem)");
@@ -581,7 +581,7 @@ for (const { copy, locale } of localeScenarios) {
 
     expect(modernAuthStyles).not.toBeNull();
     expect(modernAuthStyles.preset).toBe("modern-minimal-v1");
-    expect(modernAuthStyles.displayFont).toMatch(/Switzer/i);
+    expect(modernAuthStyles.displayFont).toMatch(/Manrope/i);
     expect(modernAuthStyles.displayTransform).toBe("none");
     expect(modernAuthStyles.layoutRadius).toBe("0px");
     // Tailwind's shadow-none can serialize as transparent zero-size layers.

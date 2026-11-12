@@ -53,8 +53,8 @@ const initialDraft = merge(baseEditor.draft, {
     courses: {
       title: { en: "Courses", cs: "Kurzy" },
       description: {
-        en: "Learn pottery with us.",
-        cs: "Naučte se s námi keramiku.",
+        en: "Learn something new with us.",
+        cs: "Naučte se s námi něco nového.",
       },
     },
     memberships: {

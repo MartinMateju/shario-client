@@ -1183,7 +1183,9 @@
       "sectionTitle": "Sammenlign kapasitet, arbeidsflyter og AI-kreditter.",
       "sectionDescription": "Velg etter antall lokasjoner, teamkontoer og driftsnivået studioet ditt trenger.",
       "closingTitle": "Usikker på hvilken plan som passer?",
-      "closingDescription": "Start prøveperioden uten betalingskort, eller snakk med oss om en tilpasset innføring."
+      "closingDescription": "Start prøveperioden uten betalingskort, eller snakk med oss om en tilpasset innføring.",
+      "onboardingTitle": "Set up at your pace.",
+      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
     }
   },
   "MarketingHome": {

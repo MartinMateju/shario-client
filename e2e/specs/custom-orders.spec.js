@@ -11,7 +11,7 @@ import { E2E, tenantUrl } from "../helpers/urls.js";
 test.setTimeout(300_000);
 
 const image = {
-  name: "cup-design.png",
+  name: "sign-design.png",
   mimeType: "image/png",
   buffer: Buffer.from(
     "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAGUlEQVQokWMwSjtDEmIY1ZA2GkpGwzVpAACo8GQQpVJ5AAAAAABJRU5ErkJggg==",
@@ -53,16 +53,18 @@ test("custom orders persist specifications, private attachments and an immutable
     page.getByRole("alert").filter({ hasText: "Please check" }),
   ).toContainText("Please check the highlighted fields");
   await expect(page.getByLabel(/^Order\ name(?:\s*\*)?$/)).toBeFocused();
-  await page.getByLabel(/^Order\ name(?:\s*\*)?$/).fill("Six blue coffee cups");
+  await page
+    .getByLabel(/^Order\ name(?:\s*\*)?$/)
+    .fill("Six blue meeting-room signs");
   await page
     .getByLabel(/^Detailed\ description(?:\s*\*)?$/)
     .fill(
-      "Six matching hand-thrown coffee cups, 250 ml each, with comfortable handles.",
+      "Six matching wooden meeting-room signs, each with a room name and blue finish.",
     );
   await page.getByLabel(/^Number\ of\ pieces(?:\s*\*)?$/).fill("6");
   await page
     .getByLabel(/^Materials(?:\s*\*)?$/)
-    .fill("Stoneware clay with food-safe blue glaze");
+    .fill("Painted wooden signs with a blue finish");
   await page.getByLabel(/^Start\ date(?:\s*\*)?$/).fill("2030-11-01");
   await page.getByLabel(/^Deadline(?:\s*\*)?$/).fill("2030-11-20");
   await page
@@ -84,7 +86,10 @@ test("custom orders persist specifications, private attachments and an immutable
     return result.json();
   };
   await expect(
-    page.getByRole("heading", { level: 1, name: "Six blue coffee cups" }),
+    page.getByRole("heading", {
+      level: 1,
+      name: "Six blue meeting-room signs",
+    }),
   ).toBeVisible();
   await expect(
     page.getByRole("status").filter({ hasText: "The order has been saved." }),
@@ -103,18 +108,20 @@ test("custom orders persist specifications, private attachments and an immutable
   expect(downloaded.ok()).toBe(true);
   expect(downloaded.headers()["content-disposition"]).toContain("attachment");
   expect((await downloaded.body()).subarray(0, 5).toString()).toBe("%PDF-");
-  await expect(page.getByRole("img", { name: "cup-design.png" })).toBeVisible();
+  await expect(
+    page.getByRole("img", { name: "sign-design.png" }),
+  ).toBeVisible();
   await expect
     .poll(() =>
       page
-        .getByRole("img", { name: "cup-design.png" })
+        .getByRole("img", { name: "sign-design.png" })
         .evaluate((element) => element.naturalWidth),
     )
     .toBeGreaterThan(0);
 
   await page
     .getByLabel(/^Progress\ comment(?:\s*\*)?$/)
-    .fill("Handles attached; drying before the first firing.");
+    .fill("Assembly complete; waiting for final inspection.");
   await page.getByRole("button", { name: "Add comment", exact: true }).click();
   await expect(
     page.getByRole("status").filter({ hasText: "Comment added." }),
@@ -141,7 +148,10 @@ test("custom orders persist specifications, private attachments and an immutable
   ).toBeVisible();
   await page.getByRole("button", { name: "Save changes", exact: true }).click();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Six blue coffee cups" }),
+    page.getByRole("heading", {
+      level: 1,
+      name: "Six blue meeting-room signs",
+    }),
   ).toBeVisible();
   const edited = await read();
   expect(edited.pieceCount).toBe(8);
@@ -149,7 +159,7 @@ test("custom orders persist specifications, private attachments and an immutable
   expect(edited.quotedAmount).toBe(2400);
   await page.reload();
   await expect(
-    page.getByText("Handles attached; drying before the first firing.", {
+    page.getByText("Assembly complete; waiting for final inspection.", {
       exact: true,
     }),
   ).toBeVisible();
@@ -217,7 +227,10 @@ test("custom orders persist specifications, private attachments and an immutable
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload();
   await expect(
-    page.getByRole("heading", { level: 1, name: "Six blue coffee cups" }),
+    page.getByRole("heading", {
+      level: 1,
+      name: "Six blue meeting-room signs",
+    }),
   ).toBeVisible();
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await expect
@@ -242,7 +255,7 @@ test("custom orders persist specifications, private attachments and an immutable
     .selectOption(locationId);
   await expect(
     page
-      .getByRole("link", { name: "Six blue coffee cups", exact: true })
+      .getByRole("link", { name: "Six blue meeting-room signs", exact: true })
       .filter({ visible: true }),
   ).toBeVisible();
   await page.screenshot({

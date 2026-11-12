@@ -43,6 +43,26 @@ describe("public Plan V3 pricing contract", () => {
     );
   });
 
+  it("resolves every static pricing-page translation in each shipped catalog", () => {
+    const source = readSource(
+      "src/components/Marketing/PricingMarketingPage.js",
+    );
+    const calls = [...source.matchAll(/\b(home|t)\("([^"\n]+)"\)/g)];
+    for (const locale of locales) {
+      const catalog = JSON.parse(readSource(`src/messages/${locale}.json`));
+      for (const [, translator, key] of calls) {
+        const namespace =
+          translator === "home" ? "MarketingHome" : "MarketingPages";
+        const value = key
+          .split(".")
+          .reduce((node, part) => node?.[part], catalog[namespace]);
+        expect(value, `${locale}:${namespace}.${key}`).toEqual(
+          expect.any(String),
+        );
+      }
+    }
+  });
+
   it("publishes V3 scale, email, automation and AI limits in every locale", () => {
     for (const locale of locales) {
       const pricing = readPricing(locale);

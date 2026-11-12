@@ -1183,7 +1183,9 @@
       "sectionTitle": "Vertaa kapasiteettia, työnkulkuja ja AI-krediittejä.",
       "sectionDescription": "Valitse toimipisteiden, tiimitilien ja studiosi tarvitseman toiminnallisen laajuuden perusteella.",
       "closingTitle": "Etkö tiedä, mikä paketti sopii?",
-      "closingDescription": "Aloita kokeilu ilman maksukorttia tai keskustele kanssamme räätälöidystä käyttöönotosta."
+      "closingDescription": "Aloita kokeilu ilman maksukorttia tai keskustele kanssamme räätälöidystä käyttöönotosta.",
+      "onboardingTitle": "Set up at your pace.",
+      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
     }
   },
   "MarketingHome": {

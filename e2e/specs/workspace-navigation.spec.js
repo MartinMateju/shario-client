@@ -48,15 +48,17 @@ test("keeps the workspace header visible and resets scroll between views", async
   await page
     .getByRole("button", { name: "Expand Studio", exact: true })
     .click();
-  await page.getByRole("link", { name: "Operations", exact: true }).click();
+  await page.getByRole("link", { name: "Inventory", exact: true }).click();
 
-  await expect(page).toHaveURL((url) =>
-    isTenantRoute(url, E2E.alphaSlug, "/app/firings"),
+  await expect(page).toHaveURL(
+    (url) =>
+      isTenantRoute(url, E2E.alphaSlug, "/app/operations") &&
+      url.searchParams.get("section") === "inventory",
   );
 
   const destinationHeading = page.getByRole("heading", {
     level: 1,
-    name: "Operations",
+    name: "Inventory",
   });
   await expect(destinationHeading).toBeVisible();
   await expect(page.locator("h1")).toHaveCount(1);
@@ -71,15 +73,20 @@ test("keeps the workspace header visible and resets scroll between views", async
   );
 
   await workspaceTransition.evaluate((element) => {
-    element.dataset.routeInstanceProbe = "studio-flow";
+    element.dataset.routeInstanceProbe = "inventory";
   });
-  await page.getByRole("tab", { name: "Items", exact: true }).click();
+  const suppliersTab = page.getByRole("tab", {
+    name: "Suppliers",
+    exact: true,
+  });
+  await suppliersTab.click();
+  await expect(suppliersTab).toHaveAttribute("aria-selected", "true");
   await expect(page).toHaveURL(
-    (url) => url.searchParams.get("section") === "items",
+    (url) => url.searchParams.get("section") === "inventory",
   );
   await expect(workspaceTransition).toHaveAttribute(
     "data-route-instance-probe",
-    "studio-flow",
+    "inventory",
   );
 
   const headingBox = await destinationHeading.boundingBox();

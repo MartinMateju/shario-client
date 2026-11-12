@@ -1183,7 +1183,9 @@
       "sectionTitle": "Kapasiteyi, iş akışlarını ve yapay zekâ kredilerini karşılaştırın.",
       "sectionDescription": "Stüdyonuzun ihtiyaç duyduğu konum, ekip hesabı ve operasyonel derinliğe göre seçim yapın.",
       "closingTitle": "Hangi planın uygun olduğundan emin değil misiniz?",
-      "closingDescription": "Kart olmadan denemeyi başlatın veya size özel kurulum için bizimle görüşün."
+      "closingDescription": "Kart olmadan denemeyi başlatın veya size özel kurulum için bizimle görüşün.",
+      "onboardingTitle": "Set up at your pace.",
+      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
     }
   },
   "MarketingHome": {

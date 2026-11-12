@@ -44,7 +44,6 @@ const launchModules = Object.freeze({
   vouchers: true,
   automations: true,
   newsletter: true,
-  firing: true,
   inventory: true,
   staff_tasks: true,
   communications: true,
@@ -55,18 +54,6 @@ export const LAUNCH_MODULE_SCENARIOS = Object.freeze({
   booking: Object.freeze({
     ...launchModules,
     memberships: false,
-    firing: false,
-    inventory: false,
-  }),
-  firingOnly: Object.freeze({
-    ...launchModules,
-    bookings: false,
-    payments: false,
-    courses: false,
-    memberships: false,
-    credits: false,
-    vouchers: false,
-    firing: true,
     inventory: false,
   }),
   inventoryOnly: Object.freeze({
@@ -77,7 +64,6 @@ export const LAUNCH_MODULE_SCENARIOS = Object.freeze({
     memberships: false,
     credits: false,
     vouchers: false,
-    firing: false,
     inventory: true,
   }),
 });
@@ -97,7 +83,7 @@ const launchTenant = Object.freeze({
   },
   onboarding: {
     completed: true,
-    businessType: "pottery",
+    businessType: "coworking_space",
   },
 });
 
@@ -272,14 +258,6 @@ const ACTIONS = Object.freeze({
     "/app/settings/public-site?setupStep=public_site",
   ],
   practice_booking: ["practice_booking", "/app/setup?step=practice_booking"],
-  firing: [
-    "configure_firing",
-    "/app/firings?section=profiles&profile=firing&action=create&setupStep=firing",
-  ],
-  kilns: [
-    "configure_kilns",
-    "/app/firings?section=kilns&action=create&setupStep=kilns",
-  ],
   inventory: [
     "configure_inventory",
     "/app/operations?section=inventory&action=create&setupStep=inventory",
@@ -294,10 +272,6 @@ const ACTIONS = Object.freeze({
     "create_membership",
     "/app/memberships?action=create&setupStep=membership",
   ],
-  piece_pricing: [
-    "configure_piece_pricing",
-    "/app/firings?section=profiles&profile=piece_pricing&action=create&setupStep=piece_pricing",
-  ],
 });
 
 const reasonFor = (id) =>
@@ -308,14 +282,11 @@ const reasonFor = (id) =>
     payments: "payments_not_ready",
     public_site: "public_site_review_required",
     practice_booking: "practice_booking_incomplete",
-    firing: "firing_profile_missing",
-    kilns: "kiln_missing",
     inventory: "inventory_item_missing",
     communications: "communications_incomplete",
     team: "team_member_missing",
     publish: "not_published",
     membership: "membership_missing",
-    piece_pricing: "piece_pricing_profile_missing",
   })[id] || "setup_incomplete";
 
 const checkIdFor = (id) =>
@@ -326,14 +297,11 @@ const checkIdFor = (id) =>
     payments: "charges_enabled",
     public_site: "public_site_reviewed",
     practice_booking: "practice_run",
-    firing: "active_firing_profile",
-    kilns: "active_kiln",
     inventory: "active_inventory_item",
     communications: "sender_verified",
     team: "team_member",
     publish: "published",
     membership: "published_membership",
-    piece_pricing: "active_piece_pricing_profile",
   })[id] || id;
 
 const setupStep = ({
@@ -676,11 +644,8 @@ export const bookingLaunchSnapshot = ({
       }),
     ],
     availableLater: [
-      disabledStep("firing", "firing_module_disabled"),
-      disabledStep("kilns", "firing_module_disabled"),
       disabledStep("inventory", "inventory_module_disabled"),
       disabledStep("membership", "memberships_module_disabled"),
-      disabledStep("piece_pricing", "piece_pricing_not_required"),
       setupStep({
         id: "communications",
         requirement: "recommended",
@@ -696,49 +661,6 @@ export const bookingLaunchSnapshot = ({
     published,
     bookingApplicable: true,
     bookingComplete: practiceComplete,
-  });
-};
-
-export const firingOnlyLaunchSnapshot = ({ kilnsComplete = true } = {}) => {
-  const kilnsStatus = kilnsComplete ? COMPLETE : INCOMPLETE;
-
-  return buildSnapshot({
-    paymentPrerequisites: [
-      setupStep({ id: "studio", requirement: "required" }),
-    ],
-    launchChecklist: [
-      setupStep({ id: "location", requirement: "recommended" }),
-      setupStep({
-        id: "kilns",
-        requirement: "recommended",
-        status: kilnsStatus,
-        actionEnabled: !kilnsComplete,
-      }),
-    ],
-    availableLater: [
-      setupStep({
-        id: "communications",
-        requirement: "recommended",
-        status: INCOMPLETE,
-      }),
-      disabledStep("bookable_offer", "booking_workflow_disabled"),
-      disabledStep("payments", "payments_not_applicable"),
-      disabledStep("practice_booking", "booking_workflow_disabled"),
-      disabledStep("firing", "piece_pricing_not_required"),
-      disabledStep("membership", "memberships_module_disabled"),
-      disabledStep("piece_pricing", "piece_pricing_not_required"),
-      disabledStep("public_site", "public_site_not_applicable"),
-      disabledStep("publish", "public_site_not_applicable"),
-      disabledStep("inventory", "inventory_module_disabled"),
-      setupStep({
-        id: "team",
-        requirement: "optional",
-        status: INCOMPLETE,
-      }),
-    ],
-    publicSiteApplicable: false,
-    published: false,
-    bookingApplicable: false,
   });
 };
 
@@ -766,10 +688,7 @@ export const inventoryOnlyLaunchSnapshot = ({
       disabledStep("bookable_offer", "booking_workflow_disabled"),
       disabledStep("payments", "payments_not_applicable"),
       disabledStep("practice_booking", "booking_workflow_disabled"),
-      disabledStep("firing", "firing_module_disabled"),
-      disabledStep("kilns", "firing_module_disabled"),
       disabledStep("membership", "memberships_module_disabled"),
-      disabledStep("piece_pricing", "piece_pricing_not_required"),
       disabledStep("public_site", "public_site_not_applicable"),
       disabledStep("publish", "public_site_not_applicable"),
       setupStep({
@@ -927,22 +846,6 @@ const responseForLaunchAppRequest = ({ method, modules, tenant, url }) => {
 
   if (method === "GET" && pathname === "/products") {
     return emptyPage("products");
-  }
-
-  if (method === "GET" && pathname === "/kilns") {
-    return emptyPage("kilns");
-  }
-
-  if (
-    method === "GET" &&
-    [
-      "/piece-pricing-profiles",
-      "/piece-pricing-profiles/available",
-      "/firing-profiles",
-      "/firing-profiles/available",
-    ].includes(pathname)
-  ) {
-    return emptyPage("profiles");
   }
 
   const inventoryPages = {

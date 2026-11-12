@@ -1183,7 +1183,9 @@
       "sectionTitle": "Comparez capacité, flux de travail et crédits IA.",
       "sectionDescription": "Choisissez selon le nombre de sites, de comptes d’équipe et la profondeur opérationnelle nécessaire à votre studio.",
       "closingTitle": "Vous hésitez entre les forfaits ?",
-      "closingDescription": "Commencez l’essai sans carte bancaire ou échangez avec nous sur un déploiement sur mesure."
+      "closingDescription": "Commencez l’essai sans carte bancaire ou échangez avec nous sur un déploiement sur mesure.",
+      "onboardingTitle": "Set up at your pace.",
+      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
     }
   },
   "MarketingHome": {

@@ -4,7 +4,6 @@ import { expect, test } from "@playwright/test";
 import {
   ADMIN_OVERVIEW_SCENARIOS,
   VISUAL_FIXED_TIME,
-  VISUAL_IDS,
   VISUAL_TENANT_ORIGIN,
   getVisualSidebarStorageKey,
   installAdminApiMocks,
@@ -67,23 +66,7 @@ const scenarios = [
       page.locator("[data-workspace-notification-badge]"),
     ],
   },
-  {
-    id: "studio-flow",
-    pathname: "/en/app/firings",
-    heading: "Kilns & Firings",
-    requiredApiRequests: ["GET /firings", "GET /kilns"],
-    ready: (page) => [
-      page.getByRole("tab", {
-        name: "Firings",
-        exact: true,
-        selected: true,
-      }),
-      page
-        .getByText("F-2026-041", { exact: true })
-        .filter({ visible: true })
-        .first(),
-    ],
-  },
+
   {
     id: "settings",
     pathname: "/en/app/settings",
@@ -763,9 +746,7 @@ test("completed Czech Overview stays ordered and locale-safe on a narrow viewpor
         }),
       ).toBeVisible();
       await expect(
-        page.getByText(
-          "Upozorněte zákazníky, jejichž výrobky prošly přežahem.",
-        ),
+        page.getByText("Zkontrolujte úkoly týmu před začátkem rezervací."),
       ).toBeVisible();
       await expectNoSeriousAccessibilityViolations(page, overviewHeroSelector);
       await attachPageScreenshot(page, testInfo, "overview-complete-czech");
@@ -958,7 +939,7 @@ test("guided Overview reveals Studio Flow on a short laptop viewport", async ({
         hero.getByText("unpaid bookings", { exact: true }),
       ).toBeVisible();
       await expect(
-        hero.getByText("firings awaiting customer notification", {
+        hero.getByText("overdue staff tasks", {
           exact: true,
         }),
       ).toBeVisible();
@@ -984,69 +965,6 @@ test("guided Overview reveals Studio Flow on a short laptop viewport", async ({
         ),
       ).toBe(true);
       await attachPageScreenshot(page, testInfo, "overview-short-laptop");
-    },
-  );
-});
-
-test("dense Overview preserves every priority on laptop and tablet viewports", async ({
-  context,
-}, testInfo) => {
-  const viewport =
-    testInfo.project.name === "tablet-1024"
-      ? { width: 1024, height: 768 }
-      : { width: 1280, height: 900 };
-
-  test.skip(
-    !["desktop-1280", "tablet-1024"].includes(testInfo.project.name),
-    "The dense content contract runs only on the laptop and tablet projects.",
-  );
-
-  await withAdaptiveOverviewState(
-    {
-      context,
-      overviewScenario: ADMIN_OVERVIEW_SCENARIOS.DENSE_GUIDED,
-      viewport,
-    },
-    async (page) => {
-      const hero = page.locator(overviewHeroSelector);
-      const flow = page.locator(studioFlowSelector);
-
-      await expect(hero).toBeVisible();
-      await expect(flow).toBeVisible();
-      await expect(
-        hero.getByRole("heading", {
-          level: 2,
-          name: "Three verified priorities before the studio opens this morning",
-        }),
-      ).toBeVisible();
-      await expect(
-        hero
-          .getByRole("list", { name: "Today’s verified priorities" })
-          .getByRole("listitem"),
-      ).toHaveCount(3);
-      await expect(
-        hero.getByText("unpaid bookings", { exact: true }),
-      ).toBeVisible();
-      await expect(
-        hero.getByText("firings awaiting customer notification", {
-          exact: true,
-        }),
-      ).toBeVisible();
-      await expect(
-        hero.getByText("low-stock items", { exact: true }),
-      ).toBeVisible();
-      await expect(
-        hero.getByText("pieces ready for pickup", { exact: true }),
-      ).toBeVisible();
-      expect(
-        await page.evaluate(
-          () =>
-            document.documentElement.scrollWidth <=
-            document.documentElement.clientWidth,
-        ),
-      ).toBe(true);
-      await expectNoSeriousAccessibilityViolations(page, overviewHeroSelector);
-      await attachPageScreenshot(page, testInfo, "overview-dense-priorities");
     },
   );
 });
@@ -1534,25 +1452,6 @@ test.describe("admin workspace visual QA", () => {
 
       const viewport = page.viewportSize();
       let initialScreenshotState = "default";
-
-      if (scenario.id === "studio-flow") {
-        const detailRequest = `GET /firings/${VISUAL_IDS.runningFiring}`;
-        expect(handledRequests.has(detailRequest)).toBe(false);
-        await page
-          .getByText("F-2026-041", { exact: true })
-          .filter({ visible: true })
-          .first()
-          .click();
-        const detail = page.getByRole("dialog");
-        await expect(
-          detail.getByText("Anna Nováková", { exact: true }),
-        ).toBeVisible();
-        await expect(detail.getByText("7 customers · 18 pieces")).toBeVisible();
-        expect(handledRequests.has(detailRequest)).toBe(true);
-        expect([...unexpectedRequests]).toEqual([]);
-        await page.keyboard.press("Escape");
-        await expect(detail).toBeHidden();
-      }
 
       if (scenario.id === "overview" && viewport?.width >= 1280) {
         initialScreenshotState = "expanded";

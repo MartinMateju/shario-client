@@ -157,7 +157,7 @@ async function installOnboardingMocks(page, locale) {
       body: JSON.stringify({
         onboarding: {
           businessDetails: { country: "Czech Republic" },
-          businessType: "pottery_studio",
+          businessType: "coworking_space",
           completed: onboardingCompleted,
         },
         tenant: {
@@ -492,7 +492,7 @@ for (const {
     await expect(page.getByRole("combobox")).toHaveCount(3);
     await expect(
       card.getByRole("button", {
-        name: copy.studio.types.pottery_studio,
+        name: copy.studio.types.coworking_space,
       }),
     ).toHaveAttribute("aria-pressed", "true");
 
