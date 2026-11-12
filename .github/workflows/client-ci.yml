@@ -1,0 +1,99 @@
+name: Client CI
+
+on:
+  pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
+  push:
+    branches: [main]
+    # Every production commit needs a result for Vercel's required check.
+  workflow_dispatch:
+    inputs:
+      server_ref:
+        description: Server commit, tag or branch to validate with this client
+        required: false
+        default: main
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: client-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Build and critical tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CI: "true"
+      TZ: Europe/Prague
+      NODE_OPTIONS: --max-old-space-size=4096
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: http://shario.localhost:4310
+      NEXT_PUBLIC_ROOT_DOMAIN: shario.localhost
+      NEXT_PUBLIC_API_URL: http://api.shario.localhost:4311
+      NEXT_PUBLIC_ENABLED_LOCALES: de,pl,sk,da,fr,es,it,pt-PT,sv,nb,fi,hu,el,tr,nl,ro
+      NEXT_PUBLIC_ENABLE_PREVIEW_LOCALES: "true"
+      NEXT_PUBLIC_DEFAULT_TIME_ZONE: Europe/Prague
+      TENANT_ROOT_DOMAIN: shario.localhost
+      PLATFORM_HOSTNAMES: ""
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Check lint and localization catalogs
+        run: |
+          npm run lint
+          npm run i18n:check
+
+      - name: Run production-critical unit and contract tests
+        run: |
+          npm run test:critical
+          npm run test:products
+
+      - name: Build production application
+        run: npm run build
+
+  release-smoke:
+    name: Full-stack release smoke
+    needs: quality
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    uses: ./.github/workflows/e2e-smoke.yml
+    with:
+      server_ref: ${{ inputs.server_ref || 'main' }}
+
+  release-ready:
+    # Keep this name stable: Vercel can require it before promoting production.
+    name: Release ready
+    needs: [quality, release-smoke]
+    if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require successful quality and full-stack smoke checks
+        env:
+          QUALITY_RESULT: ${{ needs.quality.result }}
+          SMOKE_RESULT: ${{ needs.release-smoke.result }}
+        run: |
+          if [ "$QUALITY_RESULT" != "success" ] || [ "$SMOKE_RESULT" != "success" ]; then
+            echo "::error::Release blocked: quality=$QUALITY_RESULT, release-smoke=$SMOKE_RESULT"
+            exit 1
+          fi
+          echo "Production build, critical tests and full-stack smoke passed." >> "$GITHUB_STEP_SUMMARY"

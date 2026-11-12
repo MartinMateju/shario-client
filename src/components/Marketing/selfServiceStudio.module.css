@@ -1,0 +1,147 @@
+.section {
+  container-type: inline-size;
+  display: grid;
+  gap: 36px;
+  min-width: 0;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid var(--studio-rule);
+  border-top: 4px solid var(--studio-blue);
+  border-radius: var(--studio-radius);
+  background: var(--studio-white);
+  color: var(--studio-ink);
+  scroll-margin-top: calc(var(--header-height, 64px) + 24px);
+}
+
+.introduction {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: end;
+  gap: 24px 48px;
+}
+
+.heading {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  color: var(--studio-blue);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--studio-clay);
+}
+
+.heading h2 {
+  max-width: 23ch;
+  font-size: clamp(1.875rem, 3.2vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 55ch;
+  color: var(--studio-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  border-top: 1px solid var(--studio-rule);
+  padding-top: 20px;
+}
+
+.number {
+  color: var(--studio-clay);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.step h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+
+.step p {
+  color: var(--studio-muted);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  border-top: 1px solid var(--studio-rule);
+  padding-top: 20px;
+  color: var(--studio-muted);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+.footer p {
+  flex: 1 1 340px;
+  max-width: 76ch;
+}
+
+.footer .link,
+:global(#skab-homepage) .footer .link {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 44px;
+  color: var(--studio-blue);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.link:focus-visible {
+  outline: 3px solid var(--studio-clay);
+  outline-offset: 5px;
+}
+
+@container (max-width: 760px) {
+  .introduction {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (max-width: 440px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer p {
+    flex-basis: 100%;
+  }
+}

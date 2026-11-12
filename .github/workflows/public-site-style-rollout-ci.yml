@@ -1,0 +1,245 @@
+name: Public site style rollout CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      backend_ref:
+        description: Exact shario-server commit SHA to test with the companion frontend
+        required: true
+        type: string
+      run_companion_backend:
+        description: Run real publication E2E; automatic for deployed phases
+        required: true
+        type: boolean
+        default: false
+      rollout_phase:
+        description: Optional deployed-environment verification phase
+        required: true
+        type: choice
+        options: [tests, backend, frontend]
+        default: tests
+      api_url:
+        description: Deployed backend origin used by the rollout smoke check
+        required: false
+        type: string
+        default: "https://api.shario.io"
+      site_url:
+        description: Deployed frontend tenant origin used by the rollout smoke check
+        required: false
+        type: string
+        default: "https://studio-olivie.shario.io"
+      tenant_slug:
+        description: Dedicated rollout tenant slug
+        required: false
+        type: string
+        default: "studio-olivie"
+      expected_preset:
+        description: Required for backend/frontend; exact published preset ID
+        required: false
+        type: string
+        default: ""
+      expected_palette:
+        description: Required for deployed phases; JSON with the four exact published colors
+        required: false
+        type: string
+        default: ""
+      locale:
+        description: Locale used for public, login and portal smoke checks
+        required: false
+        type: string
+        default: "en"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-site-style-rollout-${{ github.workflow }}-${{ github.ref }}-${{ github.event_name == 'workflow_dispatch' && inputs.rollout_phase || 'ci' }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
+
+jobs:
+  quality:
+    name: Unit, build and desktop/mobile browser verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      CI: true
+      TZ: Europe/Prague
+      NEXT_PUBLIC_SITE_URL: http://shario.localhost:4310
+      NEXT_PUBLIC_ROOT_DOMAIN: shario.localhost
+      NEXT_PUBLIC_API_URL: http://api.shario.localhost:4311
+      TENANT_ROOT_DOMAIN: shario.localhost
+      PLATFORM_HOSTNAMES: ""
+      CUSTOM_DOMAIN_TENANTS: "{}"
+      LEGACY_TENANT_SLUGS: ""
+
+    steps:
+      - name: Check out frontend
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint rollout verification
+        run: |
+          npx eslint --max-warnings=0 \
+            tests/unit/public-site-style-rollout.test.js \
+            e2e/visual/public-site-style-rollout-fixture.mjs \
+            e2e/visual/public-site-style-rollout.visual.spec.js \
+            playwright.public-site-style-rollout.config.js \
+            playwright.customer-portal-rollout.config.js \
+            scripts/verify-public-site-style-rollout.mjs
+
+      - name: Check rollout formatting
+        run: |
+          npx prettier --check \
+            .github/workflows/public-site-style-rollout-ci.yml \
+            docs/runbooks/public-site-style-presets-rollout.md \
+            tests/unit/public-site-style-rollout.test.js \
+            e2e/visual/public-site-style-rollout-fixture.mjs \
+            e2e/visual/public-site-style-rollout.visual.spec.js \
+            playwright.public-site-style-rollout.config.js \
+            playwright.customer-portal-rollout.config.js \
+            scripts/verify-public-site-style-rollout.mjs
+
+      - name: Run preset selection, persistence, fallback and palette tests
+        run: |
+          npm run test:unit -- \
+            tests/unit/public-site-style-rollout.test.js \
+            tests/unit/public-site-editor.test.js \
+            tests/unit/public-site-editor-page.test.jsx \
+            tests/unit/public-site-style-selector.test.jsx \
+            tests/unit/public-site-live-preview-responsive.test.jsx \
+            tests/unit/public-tenant-style-presets.test.js \
+            tests/unit/public-tenant-auth-chrome.test.jsx \
+            tests/unit/customer-portal-menus.test.jsx \
+            tests/unit/customer-portal-overlay-style-presets.test.js
+
+      - name: Exercise deployed-smoke success and rejection paths
+        run: bash scripts/test-public-site-style-rollout-contract.sh
+
+      - name: Build production frontend
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser-owned preview, save, publish and public-site journey
+        run: npx playwright test --config=playwright.public-site-style-rollout.config.js
+
+      - name: Verify public website and login at desktop and mobile sizes
+        run: |
+          npx playwright test \
+            --config=playwright.customer-auth.config.js \
+            --project=desktop-1440 \
+            --project=mobile-390 \
+            e2e/visual/customer-auth.visual.spec.js
+
+      - name: Verify customer workspace at desktop and mobile sizes
+        run: |
+          npx playwright test \
+            --config=playwright.customer-portal-rollout.config.js \
+            e2e/visual/customer-portal.visual.spec.js
+
+      - name: Upload rollout QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: public-site-style-rollout-${{ github.run_id }}
+          path: |
+            test-results/public-site-style-rollout-artifacts
+            test-results/customer-auth-artifacts
+            test-results/customer-portal-artifacts
+            playwright-report/public-site-style-rollout
+            playwright-report/customer-auth
+            playwright-report/customer-portal
+          if-no-files-found: ignore
+          retention-days: 14
+
+  companion-backend:
+    name: Real backend publication E2E
+    needs: quality
+    if: ${{ github.event_name == 'workflow_dispatch' && (inputs.run_companion_backend || inputs.rollout_phase != 'tests') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out frontend
+        uses: actions/checkout@v7
+        with:
+          path: client
+          persist-credentials: false
+
+      - name: Validate the pinned backend candidate
+        env:
+          BACKEND_REF: ${{ inputs.backend_ref }}
+        run: |
+          if [[ ! "$BACKEND_REF" =~ ^[0-9a-fA-F]{40}$ ]]; then
+            echo 'backend_ref must be an exact 40-character commit SHA.' >&2
+            exit 1
+          fi
+
+      - name: Check out companion backend
+        uses: actions/checkout@v7
+        with:
+          repository: MartinMateju/shario-server
+          ref: ${{ inputs.backend_ref }}
+          path: shario-server
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install backend dependencies
+        working-directory: shario-server
+        run: npm ci --no-audit --no-fund
+
+      - name: Install frontend dependencies and Chromium
+        working-directory: client
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Run real preview, save, publish and public-site E2E
+        working-directory: client
+        env:
+          CI: true
+          TZ: Europe/Prague
+        run: npx playwright test e2e/specs/public-site-editor.spec.js
+
+  deployed-smoke:
+    name: Verify deployed backend-first rollout
+    needs: [quality, companion-backend]
+    if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.rollout_phase != 'tests' && needs.quality.result == 'success' && needs.companion-backend.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out frontend
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Verify deployed contract and surfaces
+        env:
+          SHARIO_ROLLOUT_PHASE: ${{ inputs.rollout_phase }}
+          SHARIO_ROLLOUT_API_URL: ${{ inputs.api_url }}
+          SHARIO_ROLLOUT_SITE_URL: ${{ inputs.site_url }}
+          SHARIO_ROLLOUT_TENANT_SLUG: ${{ inputs.tenant_slug }}
+          SHARIO_ROLLOUT_LOCALE: ${{ inputs.locale }}
+          SHARIO_ROLLOUT_EXPECTED_PRESET: ${{ inputs.expected_preset }}
+          SHARIO_ROLLOUT_EXPECTED_PALETTE: ${{ inputs.expected_palette }}
+        run: node scripts/verify-public-site-style-rollout.mjs

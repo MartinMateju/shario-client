@@ -1,0 +1,172 @@
+.studio-marketing {
+  overflow-x: clip;
+}
+
+.studio-marketing :is(h1, h2, h3) {
+  font-family: inherit;
+  font-weight: 700;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.studio-marketing h2 {
+  line-height: 1.12;
+  letter-spacing: -0.026em;
+}
+
+.studio-marketing h3 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.studio-marketing :is(p, li, a, button) {
+  overflow-wrap: anywhere;
+}
+
+.studio-marketing :is(a, button) {
+  min-height: 44px;
+}
+
+.studio-marketing [data-studio-action] {
+  border-radius: var(--studio-action-radius);
+  box-shadow: none;
+}
+
+.studio-marketing [data-studio-action="primary"] {
+  box-shadow: var(--studio-action-shadow);
+}
+
+.studio-marketing :is(a, button):focus-visible {
+  outline: 3px solid var(--studio-clay);
+  outline-offset: 4px;
+}
+
+.studio-marketing button {
+  cursor: pointer;
+}
+
+.studio-marketing-eyebrow {
+  color: var(--studio-clay);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.studio-marketing .studio-marketing-title {
+  margin-top: 20px;
+  font-size: clamp(2.65rem, 5.25vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.047em;
+}
+
+.studio-marketing-hero-copy {
+  position: relative;
+}
+
+.studio-marketing .studio-marketing-hero-brush {
+  position: relative;
+  display: block;
+  width: 150px;
+  margin-top: 18px;
+  transform: rotate(-3deg);
+  opacity: 0.8;
+}
+
+.studio-marketing .studio-marketing-section-title {
+  margin-top: 20px;
+  font-size: clamp(2.1rem, 4.1vw, 3.5rem);
+}
+
+.studio-marketing-feature {
+  box-shadow: none;
+}
+
+.studio-marketing-feature :is(h3, p) {
+  max-width: 42ch;
+}
+
+.studio-marketing-signal {
+  border-top: 3px solid var(--studio-clay);
+}
+
+.studio-marketing-closing :is(.studio-marketing-closing-title, p) {
+  color: var(--studio-white);
+}
+
+.studio-marketing-closing .studio-marketing-closing-title {
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.studio-marketing-closing a {
+  color: var(--studio-white);
+}
+
+.studio-marketing .studio-marketing-closing :is(a, button):focus-visible {
+  outline-color: var(--studio-white);
+}
+
+.studio-marketing-closing .studio-marketing-closing-trial {
+  color: var(--studio-blue);
+  background: var(--studio-white);
+}
+
+.studio-marketing-footer [data-skab-logo] {
+  color: var(--studio-ink);
+  font-family: inherit;
+}
+
+.studio-marketing-footer [data-skab-logo-dot] {
+  color: var(--studio-clay);
+}
+
+.studio-marketing-footer nav a {
+  display: flex;
+  align-items: center;
+}
+
+.studio-marketing-footer nav h2 {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 639px) {
+  .studio-marketing-hero .studio-marketing-primary,
+  .studio-marketing-hero .studio-marketing-secondary {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .studio-marketing .studio-marketing-title {
+    font-size: clamp(2.3rem, 9.5vw, 3.7rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-marketing *,
+  .studio-marketing *::before,
+  .studio-marketing *::after {
+    animation: none;
+    transition: none;
+    scroll-behavior: auto;
+  }
+}
+
+.studio-marketing :is(a, button) > svg {
+  flex-shrink: 0;
+}
+
+.studio-marketing-plan-head {
+  display: flex;
+  min-height: 44px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.studio-marketing-plan-badge {
+  max-width: 100%;
+}

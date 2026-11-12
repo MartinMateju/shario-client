@@ -1,0 +1,135 @@
+name: Release smoke
+
+on:
+  workflow_call:
+    inputs:
+      server_ref:
+        description: Server commit, tag or branch to validate with this client
+        required: false
+        default: main
+        type: string
+  workflow_dispatch:
+    inputs:
+      server_ref:
+        description: Server branch, tag or commit to test
+        required: false
+        default: main
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-smoke-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Invitations, registration, isolation, booking, payment and cancellation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CI: "true"
+      TZ: Europe/Prague
+      NODE_OPTIONS: --max-old-space-size=4096
+      NEXT_TELEMETRY_DISABLED: "1"
+      E2E_TEST_KEY: shario-e2e-ci-loopback-key
+      MONGOMS_DOWNLOAD_DIR: ${{ github.workspace }}/.cache/mongodb-binaries
+
+    services:
+      mailpit:
+        image: axllent/mailpit:v1.31.6
+        ports:
+          - 127.0.0.1:1025:1025
+          - 127.0.0.1:8025:8025
+        env:
+          MP_SMTP_AUTH: mail@shario-e2e.test:e2e-no-smtp
+          MP_SMTP_AUTH_ALLOW_INSECURE: "true"
+        options: >-
+          --health-cmd "/mailpit readyz"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6381:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out client under frontend
+        uses: actions/checkout@v7
+        with:
+          path: frontend
+          persist-credentials: false
+
+      - name: Check out Shario server
+        uses: actions/checkout@v7
+        with:
+          repository: MartinMateju/shario-server
+          ref: ${{ inputs.server_ref }}
+          path: shario-server
+          persist-credentials: false
+
+      - name: Record the exact tested client and server revisions
+        shell: bash
+        run: |
+          client_sha=$(git -C frontend rev-parse HEAD)
+          server_sha=$(git -C shario-server rev-parse HEAD)
+          printf 'Client: %s\nServer: %s\n' "$client_sha" "$server_sha" > release-smoke-revisions.txt
+          cat release-smoke-revisions.txt
+          {
+            printf '### Release smoke revisions\n\n'
+            printf '| Repository | Tested commit |\n| --- | --- |\n'
+            printf '| shario-client | `%s` |\n' "$client_sha"
+            printf '| shario-server | `%s` |\n' "$server_sha"
+            printf '\nExternal payment and email providers use local test services in this suite.\n'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            shario-server/package-lock.json
+
+      - name: Restore MongoDB binary cache
+        uses: actions/cache@v6
+        with:
+          path: .cache/mongodb-binaries
+          key: ${{ runner.os }}-mongodb-memory-${{ hashFiles('shario-server/package-lock.json') }}
+
+      - name: Install server dependencies
+        working-directory: shario-server
+        run: npm ci --no-audit --no-fund
+
+      - name: Install client dependencies
+        working-directory: frontend
+        run: npm ci --no-audit --no-fund
+
+      - name: Install Chromium and runner libraries
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+
+      - name: Run the canonical backend-first release smoke
+        working-directory: frontend
+        run: npx playwright test --config=playwright.smoke.config.js
+
+      - name: Upload release-smoke results and revision evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-smoke-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            release-smoke-revisions.txt
+            frontend/test-results/critical-smoke-artifacts
+            frontend/test-results/critical-smoke-results.xml
+            frontend/playwright-report/critical-smoke
+          if-no-files-found: ignore
+          retention-days: 14

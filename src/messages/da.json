@@ -1,0 +1,2539 @@
+{
+  "Bookings": {
+    "filters": {
+      "futureOnly": "Vis kun igangværende og kommende bookinger"
+    },
+    "columns": {
+      "dateTime": "Dato og tid",
+      "status": "Status",
+      "payment": "Betaling"
+    },
+    "status": {
+      "confirmed": "Bekræftet",
+      "pending": "Afventer",
+      "awaitingPayment": "Afventer betaling",
+      "processed": "Afventer levering",
+      "delivered": "Leveret",
+      "completed": "Afsluttet",
+      "cancelled": "Annulleret"
+    },
+    "payment": {
+      "paid": "Betalt",
+      "pending": "Afventer",
+      "failed": "Mislykket",
+      "expired": "Udløbet",
+      "refunded": "Refunderet"
+    }
+  },
+  "CustomerBookingDetails": {
+    "title": "Bookingoplysninger",
+    "loading": "Indlæser bookingoplysninger…",
+    "error": "Vi kunne ikke indlæse denne booking. Prøv venligst igen."
+  },
+  "Calendar": {
+    "filters": {
+      "filterActivities": "Filtrer aktiviteter",
+      "openLegend": "Åbn signaturforklaring",
+      "closeLegend": "Luk signaturforklaring",
+      "activity": "Aktivitet",
+      "allActivities": "Alle aktiviteter"
+    },
+    "events": {
+      "myBooking": "Min reservation",
+      "bookingPrivate": "Privat",
+      "bookingPublic": "Offentlig",
+      "full": "Fuldt booket",
+      "people": "{count, plural, one {# person} other {# personer}}",
+      "customerId": "Kunde #{id}",
+      "customerIds": "Kunder {ids}",
+      "unknownCustomer": "Kunde-ID ikke tilgængeligt",
+      "booking": "Booking",
+      "availability": "{remaining, plural, =0 {Fuldt booket} one {# ledig plads} other {# ledige pladser}}",
+      "closed": "Lukket",
+      "unavailable": "Studiet er ikke tilgængeligt"
+    },
+    "week": {
+      "privacyNote": "Lilla markerer private bookinger, og turkis markerer offentlige bookinger. Dine bookinger har en blå mærkat."
+    },
+    "legend": {
+      "blocked": "Studiet er blokeret"
+    },
+    "availability": {
+      "available": "Ledigt",
+      "limited": "Få pladser",
+      "select": "Vælg dette tidspunkt",
+      "insufficientTime": "Der er ikke nok sammenhængende tid til en booking på {minutes} minutter."
+    },
+    "month": {
+      "selectedDay": "Reservationer den {date}",
+      "ownBookingCount": "Dine reservationer: {count}",
+      "noBookings": "Ingen reservationer denne dag.",
+      "findTime": "Find et tidspunkt",
+      "viewDay": "Vis dag",
+      "past": "Fortid",
+      "bookingCount": "{count, plural, one {# reservation} other {# reservationer}}"
+    },
+    "day": {
+      "places": "{count} pladser"
+    },
+    "toolbar": {
+      "newBooking": "Ny reservation"
+    },
+    "activities": {
+      "WORKSTATION": "Arbejdspladser",
+      "SHARED_TABLE": "Fællesborde",
+      "GENERAL": "Generel kapacitet"
+    }
+  },
+  "Metadata": {
+    "homeTitle": "Your space. More possibilities.",
+    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+  },
+  "Common": {
+    "skipToContent": "Gå til indhold",
+    "learnMore": "Læs mere",
+    "viewAll": "Se alle",
+    "back": "Tilbage",
+    "next": "Næste",
+    "close": "Luk",
+    "optional": "Valgfrit"
+  },
+  "Header": {
+    "mobile": {
+      "navigation": "Mobilnavigation",
+      "publicEyebrow": "Operativsystemet til kreative studier.",
+      "publicTitle": "Driv dit studio. Træf bedre beslutninger hver dag.",
+      "adminEyebrow": "Studioadministration",
+      "adminTitle": "Alt, der sker i dit studio. Helt overskueligt.",
+      "moduleOverview": "Moduloversigt",
+      "bookingSite": "Bookingside",
+      "admin": "Administration",
+      "myAccount": "Min konto",
+      "language": "Sprog",
+      "tagline": "Mere tid til at skabe. Mindre tid på administration."
+    },
+    "booking": "Booking",
+    "cart": {
+      "open": "Åbn kurv",
+      "items": "{count, plural, one {# vare i kurven} other {# varer i kurven}}"
+    },
+    "account": {
+      "menu": "Brugermenu",
+      "eyebrow": "Din konto",
+      "studioManagement": "Studioadministration",
+      "closeMenu": "Luk brugermenu",
+      "fallbackName": "Din konto",
+      "roles": {
+        "owner": "Studieejer",
+        "admin": "Studioadministrator",
+        "manager": "Studioleder",
+        "staff": "Studiomedarbejder",
+        "accountant": "Bogholder",
+        "viewer": "Observatør",
+        "custom": "Tilpasset rolle",
+        "customer": "Kunde"
+      },
+      "sections": {
+        "customer": "Din konto",
+        "activity": "Studioaktivitet",
+        "payments": "Konto og betalinger",
+        "personal": "Personligt",
+        "workspace": "Arbejdsområde"
+      },
+      "customerLinks": {
+        "bookings": "Mine bookinger",
+        "services": "Tilbud",
+        "work": "Mine værker",
+        "waitlists": "Ventelister",
+        "knowledge": "Videnscenter",
+        "credits": "Tilgodehavende",
+        "membership": "Medlemskab",
+        "invoices": "Mine fakturaer",
+        "account": "Kontoindstillinger",
+        "lostFound": "Hittegods"
+      },
+      "tenantLinks": {
+        "dashboard": "Studiodashboard",
+        "account": "Kontoindstillinger",
+        "preferences": "Personlige præferencer",
+        "setupCenter": "Launch Center",
+        "settings": "Indstillinger for arbejdsområdet",
+        "bookingSite": "Se offentlig side",
+        "bookingSiteNewTab": "Åbn det offentlige website i en ny fane"
+      },
+      "language": "Sprog",
+      "logout": "Log ud"
+    },
+    "product": {
+      "label": "Produkt",
+      "bookingScheduling": "Bookinger, kunder og betalinger",
+      "customers": "Kunder",
+      "payments": "Betalinger",
+      "memberships": "Medlemskaber",
+      "automatedCommunication": "Automatiseret kommunikation",
+      "studioOperations": "Studiodrift og produktion",
+      "analytics": "AI, analyse og beslutninger",
+      "viewAll": "Udforsk hele produktet"
+    },
+    "solutions": {
+      "label": "Løsninger",
+      "artStudios": "Kunststudier",
+      "makerspaces": "Makerspaces",
+      "workshopsClasses": "Åbent værksted og hold",
+      "multiLocationStudios": "Studier med flere lokationer",
+      "viewAll": "Udforsk alle løsninger"
+    },
+    "forStudios": "Til studier",
+    "pricing": "Priser",
+    "membershipCatalog": "Medlemskaber",
+    "resources": {
+      "label": "Ressourcer",
+      "helpCenter": "Hjælpecenter",
+      "guides": "Guides",
+      "customerStories": "Kundehistorier",
+      "about": "Om Shario"
+    },
+    "login": "Log ind",
+    "getStarted": "Prøv gratis",
+    "openWorkspace": "Åbn arbejdsområde",
+    "openMenu": "Åbn menu",
+    "closeMenu": "Luk menu",
+    "changeLanguage": "Skift sprog"
+  },
+  "PlatformAuth": {
+    "login": {
+      "header": {
+        "newToSkab": "Ny hos Shario?",
+        "createWorkspace": "Opret arbejdsområde",
+        "switchLanguage": "Skift til {language}",
+        "languages": {
+          "en": "Engelsk",
+          "cs": "Tjekkisk"
+        }
+      },
+      "form": {
+        "eyebrow": "For studieejere og teammedlemmer",
+        "title": "Log ind på dit arbejdsområde",
+        "description": "Brug din studioadresse og dine kontooplysninger for at fortsætte.",
+        "workspaceLabel": "Arbejdsområdets URL",
+        "workspacePlaceholder": "common-ground",
+        "workspaceHint": "Dit studios adresse på Shario",
+        "workspaceHelp": {
+          "open": "Hvad er en arbejdsområde-URL?",
+          "title": "Dit studios Shario-adresse",
+          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+        },
+        "findWorkspace": "Find dit arbejdsområde",
+        "emailLabel": "E-mailadresse",
+        "emailPlaceholder": "dig@ditstudio.dk",
+        "passwordLabel": "Adgangskode",
+        "passwordPlaceholder": "Indtast din adgangskode",
+        "showPassword": "Vis adgangskode",
+        "hidePassword": "Skjul adgangskode",
+        "rememberWorkspace": "Husk arbejdsområde",
+        "forgotPassword": "Glemt adgangskode?",
+        "submit": "Log ind",
+        "submitting": "Logger ind…",
+        "secure": "Sikker adgang til dit studios arbejdsområde"
+      },
+      "story": {
+        "eyebrow": "Dit studio, smukt organiseret",
+        "titleBefore": "Dit studio er klar, når",
+        "titleAccent": "du er.",
+        "description": "Bookinger, kunder, hold og dit team hænger sammen i ét roligt arbejdsområde.",
+        "pulseLabel": "Studiopuls",
+        "pulse": "Alt samlet ét roligt sted",
+        "bookings": "Bookinger koordineret",
+        "team": "Teamet afstemt",
+        "operations": "Studiodriften synlig"
+      },
+      "errors": {
+        "server": "Serveren svarer ikke. Prøv igen.",
+        "invalidResponse": "Serveren returnerede et ugyldigt svar.",
+        "checkInformation": "Kontrollér de indsendte oplysninger.",
+        "incorrectCredentials": "E-mailadressen eller adgangskoden er forkert.",
+        "disabled": "Adgangen til dette arbejdsområde er blevet deaktiveret.",
+        "workspaceNotFound": "Vi kunne ikke finde dette arbejdsområde.",
+        "rateLimited": "For mange loginforsøg. Vent et øjeblik, og prøv igen.",
+        "signInFailed": "Vi kunne ikke logge dig ind."
+      },
+      "guidance": {
+        "workspaceRequired": "Indtast først URL'en til dit arbejdsområde.",
+        "workspaceCleared": "Indtast navnet på arbejdsområdet, som dit studio har oplyst."
+      }
+    },
+    "register": {
+      "header": {
+        "alreadyHaveWorkspace": "Har du allerede et arbejdsområde?",
+        "signIn": "Log ind",
+        "switchLanguage": "Skift til {language}",
+        "languages": {
+          "en": "Engelsk",
+          "cs": "Tjekkisk"
+        }
+      },
+      "form": {
+        "eyebrow": "Start din 14-dages prøveperiode",
+        "title": "Opret dit studios arbejdsområde",
+        "description": "Fortæl os det vigtigste. Du kan tilpasse tilbud, arbejdsgange og studioindstillinger bagefter.",
+        "trial": "14 dage gratis",
+        "noCard": "Intet betalingskort",
+        "firstNameLabel": "Fornavn",
+        "firstNamePlaceholder": "Dit fornavn",
+        "lastNameLabel": "Efternavn",
+        "lastNamePlaceholder": "Dit efternavn",
+        "studioNameLabel": "Studionavn",
+        "studioNamePlaceholder": "Navnet på dit studio",
+        "workspaceLabel": "Arbejdsområdets adresse",
+        "workspacePlaceholder": "dit-studio",
+        "workspaceExample": "dit-studio",
+        "workspaceHint": "Dit studio bliver tilgængeligt på {slug}.shario.io",
+        "emailLabel": "E-mailadresse",
+        "emailPlaceholder": "dig@ditstudio.dk",
+        "passwordLabel": "Adgangskode",
+        "passwordPlaceholder": "Opret en adgangskode",
+        "passwordHint": "Brug mindst 8 tegn og ét tal.",
+        "passwordConfirmLabel": "Bekræft adgangskode",
+        "passwordConfirmPlaceholder": "Indtast den igen",
+        "showPassword": "Vis adgangskode",
+        "hidePassword": "Skjul adgangskode",
+        "showPasswordConfirm": "Vis bekræftelse af adgangskode",
+        "hidePasswordConfirm": "Skjul bekræftelse af adgangskode",
+        "legalPrefix": "Jeg accepterer",
+        "terms": "servicevilkårene",
+        "legalAnd": "og",
+        "privacy": "privatlivspolitikken",
+        "legalSuffix": ".",
+        "submit": "Opret mit studio",
+        "submitting": "Opretter dit arbejdsområde…",
+        "alreadyRegistered": "Har du allerede et arbejdsområde?",
+        "signIn": "Log ind",
+        "secure": "Dine kontooplysninger overføres sikkert"
+      },
+      "validation": {
+        "firstNameRequired": "Indtast dit fornavn.",
+        "lastNameRequired": "Indtast dit efternavn.",
+        "studioNameRequired": "Indtast navnet på dit studio.",
+        "workspaceInvalid": "Brug kun små bogstaver, tal og enkelte bindestreger.",
+        "emailInvalid": "Indtast en gyldig e-mailadresse.",
+        "passwordInvalid": "Brug mindst 8 tegn og mindst ét tal.",
+        "passwordMismatch": "Adgangskoderne er ikke ens.",
+        "legalRequired": "Acceptér servicevilkårene og privatlivspolitikken for at fortsætte.",
+        "completeRequired": "Udfyld alle obligatoriske felter."
+      },
+      "errors": {
+        "createFailed": "Vi kunne ikke oprette din konto. Prøv igen."
+      },
+      "story": {
+        "eyebrow": "Dit studio, smukt organiseret",
+        "titleBefore": "Skab plads til det, du",
+        "titleAccent": "holder af.",
+        "description": "Begynd med det vigtigste, og form derefter Shario efter den måde, dit kreative studio faktisk arbejder på.",
+        "cardLabel": "Din vej til lancering",
+        "cardTitle": "Fra idé til åbent studio",
+        "workspace": "Opret dit sikre arbejdsområde",
+        "setup": "Vælg de arbejdsgange, du har brug for",
+        "launch": "Udgiv, når dit studio er klar"
+      }
+    }
+  },
+  "MarketingPages": {
+    "common": {
+      "backHome": "Tilbage til forsiden",
+      "startTrial": "Start din 14-dages prøveperiode",
+      "noCreditCard": "Intet betalingskort påkrævet",
+      "exploreProduct": "Udforsk produktet",
+      "exploreAi": "Udforsk Shario AI",
+      "exploreStudios": "Udforsk løsninger til studier",
+      "explorePricing": "Se priser",
+      "builtWithStudios": "Udviklet sammen med aktive kreative studier",
+      "currencyLabel": "Vælg en valuta"
+    },
+    "product": {
+      "metaTitle": "Everything your space needs, working together.",
+      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+    },
+    "studioAi": {
+      "metaTitle": "A helping hand for everyday work.",
+      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+    },
+    "forStudios": {
+      "metaTitle": "Different spaces. Shared possibilities.",
+      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+    },
+    "pricing": {
+      "metaTitle": "Planer og priser til kreative studier",
+      "metaDescription": "Sammenlign Shario-planer, studiokapacitet og AI-kreditter, og start en 14-dages prøveperiode uden betalingskort.",
+      "eyebrow": "Planer til studier i vækst",
+      "title": "Start med det, du har brug for i dag.",
+      "description": "Alle planer starter med en 14-dages Professional-prøveperiode, så du kan teste den centrale studiorejse, før du vælger.",
+      "sectionEyebrow": "Tydelige forskelle mellem planerne",
+      "sectionTitle": "Sammenlign kapacitet, arbejdsgange og AI-kreditter.",
+      "sectionDescription": "Vælg ud fra antallet af lokationer, teamkonti og den driftsdybde, dit studio har brug for.",
+      "closingTitle": "I tvivl om, hvilken plan der passer?",
+      "closingDescription": "Start prøveperioden uden betalingskort, eller tal med os om en skræddersyet implementering."
+    }
+  },
+  "MarketingHome": {
+    "hero": {
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    },
+    "pricing": {
+      "eyebrow": "Gennemsigtige priser",
+      "title": "Vælg planen, der passer til den måde, dit studie arbejder på.",
+      "description": "Start med kurser, gå videre til komplet studiedrift, og tilføj derefter avanceret automatisering og værktøjer til flere lokationer. Alle planer starter med en 14-dages Professional-prøveperiode — uden kort.",
+      "billingIntervalLabel": "Vælg faktureringsperiode",
+      "monthly": "Månedligt",
+      "yearly": "Årligt",
+      "annualSavings": "2 måneder gratis",
+      "perMonth": "pr. måned",
+      "perYear": "pr. år",
+      "from": "fra",
+      "customAnnual": "Tilpasset årsabonnement",
+      "mostPopular": "Mest populær",
+      "starter": {
+        "name": "Starter",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "feature1": "1 studielokation · 1 teamkonto",
+        "feature2": "Kurser, private arrangementer og gavekort",
+        "feature3": "500 inkluderede e-mails pr. måned",
+        "feature4": "Begrænset Shario AI · 200 credits pr. måned",
+        "cta": "Start gratis prøveperiode"
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature1": "1 studielokation · 3 teamkonti",
+        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature3": "3 aktive automatiseringer · 2.500 e-mails pr. måned",
+        "feature4": "Fuld Shario AI · 2.000 credits pr. måned",
+        "cta": "Start gratis prøveperiode"
+      },
+      "studioPlus": {
+        "name": "Space Plus",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "feature1": "Op til 2 studielokationer · 6 teamkonti",
+        "feature2": "Adgangskoder og eget domæne",
+        "feature3": "Avancerede automatiseringer · 5.000 e-mails pr. måned",
+        "feature4": "Fuld AI-pakke · 10.000 credits pr. måned",
+        "cta": "Start gratis prøveperiode"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Driv din organisation med tilpasset kapacitet, styring og support.",
+        "feature1": "Ubegrænsede lokationer og teamkonti",
+        "feature2": "Tilpassede kvoter for automatisering, e-mail og AI",
+        "feature3": "SSO/SCIM, API, webhooks og revisionslogge",
+        "feature4": "Dedikeret onboarding, migrering og SLA",
+        "cta": "Start free trial"
+      },
+      "note": "Priser er eksklusive gældende skatter. Årlige selvbetjeningsplaner inkluderer to gratis måneder. Nødvendige system-e-mails tæller ikke med i e-mailkvoten, og AI-forbruget stopper ved den inkluderede grænse — uden automatiske ekstraomkostninger.",
+      "loading": "Indlæser priser…",
+      "unavailable": "Prisen er ikke tilgængelig i denne valuta",
+      "loadError": "Priserne er midlertidigt utilgængelige"
+    },
+    "trust": {
+      "eyebrow": "Skabt til ansvarlig drift",
+      "title": "Et pålideligt hjem til arbejdet bag dit studio.",
+      "description": "Tydelig adgang, sammenhængende data og menneskelig kontrol er en del af produktet – ikke en eftertanke.",
+      "workspaces": {
+        "title": "Separate arbejdsområder til hvert studio",
+        "description": "Hvert studio arbejder i sit eget arbejdsområde med sin egen konfiguration."
+      },
+      "access": {
+        "title": "Rollebaseret adgang",
+        "description": "Giv ejere og teammedlemmer det adgangsniveau, deres arbejde kræver."
+      },
+      "payments": {
+        "title": "Betalinger via Stripe",
+        "description": "Forbind onlinebetalinger via Stripes veletablerede infrastruktur."
+      },
+      "control": {
+        "title": "Menneskestyret AI",
+        "description": "AI bidrager med kontekst og hjælp, mens dit team fortsat har ansvaret for beslutningerne."
+      }
+    }
+  },
+  "CustomerAuth": {
+    "social": {
+      "label": "Socialt kundelogin",
+      "customerAccess": "Fortsæt som kunde",
+      "teamPasswordNote": "Studiomedarbejdere bruger e-mail og adgangskode.",
+      "or": "eller brug e-mail",
+      "continueWith": {
+        "google": "Fortsæt med Google",
+        "apple": "Fortsæt med Apple"
+      }
+    },
+    "complete": {
+      "metadataTitle": "Fuldfører kundelogin",
+      "title": "Dit login fuldføres",
+      "description": "Vi gendanner din kundesession på sikker vis.",
+      "errorTitle": "Kundelogin kunne ikke fuldføres",
+      "providerError": "Udbyderen af socialt login returnerede en fejl. Prøv igen.",
+      "accessDenied": "Du annullerede eller afviste loginanmodningen.",
+      "accountConflict": "Denne sociale konto kan ikke tilknyttes automatisk. Log ind med e-mail, eller kontakt studiet.",
+      "authenticationFailed": "Udbyderen kunne ikke bekræfte din konto. Prøv igen.",
+      "providerUnavailable": "Denne loginudbyder er midlertidigt utilgængelig.",
+      "sessionError": "Din kundesession kunne ikke gendannes. Prøv igen.",
+      "customerOnly": "Socialt login er kun til kundekonti. Studiomedarbejdere skal bruge e-mail og adgangskode.",
+      "retry": "Prøv igen",
+      "backToLogin": "Tilbage til login"
+    }
+  },
+  "CustomerShell": {
+    "portalNav": {
+      "overview": "Oversigt",
+      "bookings": "Bookinger",
+      "work": "Mine værker",
+      "knowledge": "Viden",
+      "membership": "Medlemskab",
+      "credits": "Tilgodehavende",
+      "invoices": "Fakturaer",
+      "bookSession": "Book en tid",
+      "memberships": "Medlemskaber",
+      "giftVouchers": "Gavekort",
+      "studioGuide": "Studioguide",
+      "courses": "Kurser"
+    },
+    "actions": {
+      "backToStudio": "Tilbage til studiet",
+      "openPortal": "Kundeportal",
+      "openDashboard": "Studiodashboard"
+    },
+    "mobile": {
+      "portalEyebrow": "Kundeportal",
+      "portalTitle": "Din konto hos {studio}",
+      "authEyebrow": "Studiokonto",
+      "authTitle": "Log ind hos {studio}",
+      "transactionEyebrow": "Sikker betaling",
+      "transactionTitle": "Gør dit besøg hos {studio} færdigt"
+    },
+    "status": {
+      "loadingTitle": "Dit studio gøres klar",
+      "loadingDescription": "Vi henter de seneste studiooplysninger.",
+      "errorTitle": "Siden kunne ikke indlæses",
+      "errorDescription": "Prøv igen. Dine konto- og betalingsoplysninger er i sikkerhed.",
+      "retry": "Prøv igen",
+      "preparingAccount": "Din konto gøres klar…",
+      "redirecting": "Du sendes videre til det rigtige studio…"
+    },
+    "locationChooser": {
+      "eyebrow": "Kundeportal",
+      "title": "Hvilket studio vil du besøge?",
+      "description": "Vælg et studio for at se ledige tider, tilbud og bookingmuligheder.",
+      "unavailable": "Studiet fra dette link er ikke tilgængeligt i øjeblikket.",
+      "unavailableHint": "Det kan være inaktivt eller ikke længere modtage onlinebookinger. Vælg et andet studio nedenfor.",
+      "open": "Åbn {studio}"
+    }
+  },
+  "PublicTenantHome": {
+    "eyebrow": "Velkommen til",
+    "description": "Udforsk studiet, administrér dine bookinger, og saml alt om din konto ét sted.",
+    "openPortal": "Åbn kundeportal",
+    "signIn": "Log ind"
+  },
+  "PublicSiteNotFound": {
+    "brandLabel": "Make room for more.",
+    "checking": "Kontrollerer hjemmesidens status…",
+    "owner": {
+      "eyebrow": "Offentlig hjemmeside",
+      "badge": "Privat kladde",
+      "title": "Din offentlige hjemmeside er stadig privat",
+      "description": "Du ser den adresse, dine kunder kommer til at bruge. Din kladde er gemt sikkert, og intet bliver offentligt, før du udgiver fra Launch Center.",
+      "primaryAction": "Gennemgå og udgiv",
+      "secondaryAction": "Redigér hjemmeside",
+      "reassurance": "Kunderne kan endnu ikke se din hjemmeside.",
+      "previewBadge": "Ikke udgivet",
+      "previewLabel": "Din vej til lancering",
+      "steps": {
+        "draft": {
+          "title": "Kladde gemt",
+          "description": "Dine ændringer er gemt sikkert."
+        },
+        "review": {
+          "title": "Gennemgå din hjemmeside",
+          "description": "Kontrollér indholdet og kundeoplevelsen."
+        },
+        "publish": {
+          "title": "Udgiv, når du er klar",
+          "description": "Gør siden tilgængelig fra Launch Center."
+        }
+      }
+    },
+    "visitor": {
+      "eyebrow": "Siden er ikke tilgængelig",
+      "badge": "Ikke tilgængelig",
+      "title": "Denne studioside er ikke tilgængelig",
+      "description": "Adressen kan være forkert, eller studiet har måske ikke udgivet sin hjemmeside endnu.",
+      "primaryAction": "Besøg Shario",
+      "hint": "Hvis du administrerer dette studio, skal du logge ind på dit arbejdsområde og åbne den offentlige hjemmeside igen."
+    }
+  },
+  "BookingConfirmation": {
+    "membershipPayment": {
+      "bookingValue": "Bookingens værdi",
+      "coveredByMembership": "Dækket af medlemskab",
+      "additionalPayment": "Betalt ud over medlemskab"
+    },
+    "back": "Skift valg",
+    "eyebrow": "Sikker booking",
+    "title": "Gennemgå og bekræft",
+    "description": "Tilgængelighed, fordele og pris nedenfor er bekræftet af studiets server.",
+    "summary": {
+      "time": "Tidspunkt",
+      "until": "Til",
+      "location": "Lokation",
+      "locationFallback": "Studiolokation",
+      "people": "Personer",
+      "product": "Booking",
+      "productFallback": "Studiobooking",
+      "bookingMode": "Bookingtype",
+      "bookingModes": {
+        "public": "Offentlig",
+        "private": "Privat"
+      }
+    },
+    "available": {
+      "title": "Dit valg er tilgængeligt",
+      "description": "Det kontrolleres én gang til, når du bekræfter."
+    },
+    "conflict": {
+      "title": "Dit valg er ikke længere tilgængeligt",
+      "description": "Vælg et andet tidspunkt for at fortsætte.",
+      "chooseAnother": "Vælg et andet tidspunkt"
+    },
+    "payment": {
+      "title": "Betaling",
+      "methods": {
+        "card": "Betal med kort",
+        "money_credits": "Brug studiokredit",
+        "membership_credits": "Brug medlemsfordel"
+      },
+      "descriptions": {
+        "card": "Fortsæt til studiets sikre betalingsside.",
+        "money_credits": "Betal hele bookingen med din tilgængelige studiokredit.",
+        "membership_credits": "Brug et gyldigt medlemsbesøg eller din tidskvote."
+      },
+      "notEnough": "Denne mulighed kan ikke dække hele bookingen.",
+      "unavailable": "Der er ingen gyldig betalingsmetode tilgængelig i øjeblikket.",
+      "processing": "Bekræfter…",
+      "continueToCard": "Fortsæt til betaling",
+      "confirm": "Bekræft booking",
+      "privateSurchargeRequiresMoney": "Tillæg for private bookinger skal betales med kort eller pengekreditter.",
+      "membershipHours": "Brug medlemstimer",
+      "hoursSummary": "Brug {required} af {available} til rådighed. Kun din egen plads.",
+      "membership_open_studio_only": "Timer gælder kun fælles Open Studio, ikke kurser eller private bookinger.",
+      "membership_member_only": "Timer gælder kun ét medlem. Book ledsagere separat eller betal normalt for alle.",
+      "membership_insufficient_hours": "Ikke nok medlemstimer. Vælg en anden betalingsmetode.",
+      "membership_outside_paid_period": "Medlemstimer kan kun bruges til besøg i den aktuelle betalte periode."
+    },
+    "price": {
+      "subtotal": "Subtotal",
+      "membershipDiscount": "Medlemsrabat",
+      "total": "I alt",
+      "serverVerified": "Serveren beregner den endelige pris og kontrollerer din berettigelse ved bekræftelsen.",
+      "privateBookingSurcharge": "Tillæg for privat booking (inkluderet, én gang pr. booking)"
+    },
+    "terms": {
+      "title": "Bookingvilkår",
+      "accept": "Jeg har læst og accepterer bookingvilkårene."
+    },
+    "errors": {
+      "changed": "Tilgængeligheden eller prisen er ændret. Gennemgå de opdaterede oplysninger, før du prøver igen.",
+      "expired": "Dette bookingvalg er udløbet. Vælg et nyt tidspunkt.",
+      "generic": "Bookingen kunne ikke bekræftes. Prøv igen."
+    },
+    "invalid": {
+      "title": "Ugyldigt bookinglink",
+      "description": "Dette link indeholder ikke et gyldigt bookingvalg.",
+      "action": "Start en ny booking"
+    },
+    "loading": {
+      "title": "Din booking kontrolleres",
+      "description": "Vi bekræfter tilgængelighed, pris og medlemsfordele."
+    },
+    "expired": {
+      "title": "Bookingvalget er udløbet",
+      "description": "Af hensyn til din sikkerhed reserveres et bookingvalg kun i begrænset tid.",
+      "action": "Vælg et andet tidspunkt"
+    },
+    "loadError": {
+      "title": "Bookingen kunne ikke indlæses",
+      "description": "Vi kunne ikke bekræfte dette bookingvalg.",
+      "action": "Start forfra",
+      "retry": "Prøv igen"
+    },
+    "verificationRequired": {
+      "title": "Bekræft din e-mail for at fortsætte",
+      "description": "Dit bookingvalg er gemt sikkert. Bekræft din e-mail, og vend derefter tilbage hertil for at godkende det.",
+      "action": "Bekræft e-mail"
+    }
+  },
+  "EmailVerification": {
+    "verifying": {
+      "title": "Din e-mail bekræftes",
+      "description": "Vent et øjeblik, mens vi bekræfter din e-mailadresse på sikker vis."
+    },
+    "verified": {
+      "title": "E-mail bekræftet",
+      "description": "Din konto er klar. Log ind for at fortsætte din booking.",
+      "signIn": "Log ind og fortsæt",
+      "continue": "Fortsæt booking"
+    },
+    "sent": {
+      "title": "Tjek din e-mail",
+      "description": "Vi har sendt et bekræftelseslink til din e-mailadresse. Åbn det i denne browser for at aktivere din konto.",
+      "again": "En ny bekræftelsesmail er blevet sendt."
+    },
+    "error": {
+      "title": "Bekræftelseslinket er ugyldigt",
+      "description": "Dette bekræftelseslink er ugyldigt eller udløbet.",
+      "back": "Tilbage til login"
+    },
+    "resend": {
+      "action": "Send en ny bekræftelsesmail",
+      "sending": "Sender…",
+      "wait": "Send igen om {seconds} sek.",
+      "error": "Bekræftelsesmailen kunne ikke sendes. Prøv igen."
+    }
+  },
+  "CreditPurchaseStatus": {
+    "loading": "Kontrollerer din betaling…",
+    "checking": "Kontrollerer den seneste betalingsstatus…",
+    "waiting": "Venter på betalingsbekræftelse…",
+    "orderReference": "Ordre {orderId}",
+    "pending": {
+      "badge": "Behandles",
+      "title": "Vi bekræfter din betaling",
+      "description": "Stripe behandler betalingen, og serveren føjer kreditten til din studiokonto. Du kan roligt lade siden være åben."
+    },
+    "success": {
+      "badge": "Betalt",
+      "title": "Din kredit er klar",
+      "description": "Serveren har bekræftet betalingen og føjet den købte kredit til din studiokonto."
+    },
+    "failed": {
+      "badge": "Ikke gennemført",
+      "title": "Købet af kredit blev ikke gennemført",
+      "description": "Der blev ikke tilføjet kredit. Kontrollér din betalingsmetode, eller gå tilbage til kreditsiden, og prøv igen."
+    },
+    "invalid": {
+      "title": "Vi kan ikke bekræfte dette køb",
+      "description": "Den sikre ordrereference mangler eller kunne ikke indlæses. Åbn din kreditside for at se din aktuelle saldo."
+    },
+    "actions": {
+      "retry": "Kontrollér igen",
+      "viewCredits": "Se kredit",
+      "portal": "Kundeportal"
+    }
+  },
+  "CustomerNotifications": {
+    "trigger": "Åbn notifikationer",
+    "triggerUnread": "Åbn notifikationer, {count, plural, one {# ulæst notifikation} other {# ulæste notifikationer}}",
+    "panel": {
+      "label": "Notifikationer i kundeportalen",
+      "title": "Notifikationer",
+      "unread": "{count, plural, one {# ulæst notifikation} other {# ulæste notifikationer}}",
+      "caughtUp": "Du er helt ajour",
+      "summaryLoading": "Søger efter opdateringer…",
+      "summaryUnavailable": "Status for ulæste notifikationer er midlertidigt utilgængelig"
+    },
+    "page": {
+      "eyebrow": "Dine opdateringer",
+      "title": "Notifikationer",
+      "description": "Bookingbekræftelser, betalinger, studionyt og kontobeskeder samlet ét sted.",
+      "unreadSummary": "{count, plural, one {# ulæst notifikation på din studiokonto} other {# ulæste notifikationer på din studiokonto}}",
+      "caughtUp": "Du har læst alle notifikationer",
+      "summaryLoading": "Kontrollerer dine ulæste notifikationer…",
+      "summaryUnavailable": "Status for ulæste notifikationer er midlertidigt utilgængelig",
+      "loading": "Indlæser dine notifikationer…"
+    },
+    "actions": {
+      "markAllRead": "Markér alle som læst",
+      "retry": "Prøv igen",
+      "viewAll": "Se alle notifikationer"
+    },
+    "filters": {
+      "label": "Filtre for notifikationer",
+      "status": "Status",
+      "category": "Kategori"
+    },
+    "statuses": {
+      "all": "Alle",
+      "unread": "Ulæste",
+      "read": "Læste"
+    },
+    "categories": {
+      "all": "Alle kategorier",
+      "bookings": "Bookinger",
+      "payments": "Betalinger",
+      "waitlist": "Venteliste",
+      "memberships": "Medlemskaber",
+      "credits_vouchers": "Kredit og gavekort",
+      "account": "Konto"
+    },
+    "item": {
+      "untitled": "Studionyt",
+      "open": "Åbn notifikation: {title}",
+      "markRead": "Markér notifikation som læst: {title}",
+      "groupedCount": "{count, plural, one {# opdatering} other {# opdateringer}}"
+    },
+    "empty": {
+      "title": "Ingen notifikationer endnu",
+      "description": "Bookingbekræftelser og vigtige studioopdateringer vises her.",
+      "unreadTitle": "Du er helt ajour",
+      "unreadDescription": "Der er ingen ulæste notifikationer i denne visning."
+    },
+    "errors": {
+      "loadTitle": "Dine notifikationer kunne ikke indlæses",
+      "load": "Kontrollér din forbindelse, og prøv igen.",
+      "refresh": "Dine seneste opdateringer vises. Det er midlertidigt ikke muligt at opdatere.",
+      "markRead": "Notifikationen kunne ikke markeres som læst.",
+      "markAllRead": "Notifikationerne kunne ikke markeres som læst."
+    },
+    "pagination": {
+      "label": "Notifikationssider",
+      "previous": "Forrige side",
+      "next": "Næste side",
+      "summary": "{total, plural, one {# notifikation} other {# notifikationer}} · side {page} af {pages}"
+    }
+  },
+  "WorkspaceNotifications": {
+    "trigger": "Åbn notifikationer",
+    "triggerUnread": "Åbn notifikationer, {count, plural, one {# ulæst notifikation} other {# ulæste notifikationer}}",
+    "panel": {
+      "label": "Notifikationer for arbejdsområdet",
+      "title": "Notifikationer",
+      "unread": "{count, plural, one {# ulæst notifikation} other {# ulæste notifikationer}}",
+      "caughtUp": "Du er ajour",
+      "summaryLoading": "Søger efter opdateringer…",
+      "summaryUnavailable": "Status for ulæste notifikationer er midlertidigt utilgængelig"
+    },
+    "page": {
+      "title": "Notifikationer",
+      "heading": "Dine driftsopdateringer",
+      "unreadSummary": "{count, plural, one {# ulæst notifikation i dit arbejdsområde} other {# ulæste notifikationer i dit arbejdsområde}}",
+      "caughtUp": "Du har læst alle notifikationer",
+      "summaryLoading": "Kontrollerer dine ulæste notifikationer…",
+      "summaryUnavailable": "Status for ulæste notifikationer er midlertidigt utilgængelig"
+    },
+    "actions": {
+      "markAllRead": "Markér alle som læst",
+      "preferences": "Indstillinger for notifikationer",
+      "retry": "Prøv igen",
+      "viewAll": "Se alle notifikationer"
+    },
+    "filters": {
+      "label": "Filtre for notifikationer",
+      "status": "Status",
+      "category": "Kategori",
+      "location": "Studiolokation"
+    },
+    "statuses": {
+      "all": "Alle",
+      "unread": "Ulæste",
+      "read": "Læste"
+    },
+    "categories": {
+      "all": "Alle kategorier",
+      "bookings": "Bookinger",
+      "payments": "Betalinger",
+      "waitlist": "Venteliste",
+      "tasks": "Opgaver",
+      "inventory": "Lager",
+      "migration": "Migrering",
+      "communications": "Kommunikation",
+      "account": "Konto"
+    },
+    "locations": {
+      "all": "Alle lokationer"
+    },
+    "item": {
+      "untitled": "Studionyt",
+      "open": "Åbn notifikation: {title}",
+      "markRead": "Markér notifikation som læst: {title}",
+      "groupedCount": "{count, plural, one {# hændelse} other {# hændelser}}"
+    },
+    "empty": {
+      "title": "Ingen notifikationer endnu",
+      "description": "Vigtige driftsopdateringer vises her.",
+      "unreadTitle": "Du er ajour",
+      "unreadDescription": "Der er ingen ulæste notifikationer i denne visning."
+    },
+    "errors": {
+      "load": "Notifikationerne kunne ikke indlæses.",
+      "markRead": "Notifikationen kunne ikke markeres som læst.",
+      "markAllRead": "Notifikationerne kunne ikke markeres som læst."
+    },
+    "pagination": {
+      "label": "Notifikationssider",
+      "previous": "Forrige",
+      "next": "Næste",
+      "summary": "{total, plural, one {# notifikation} other {# notifikationer}} · side {page} af {pages}"
+    }
+  },
+  "PublicTenant": {
+    "nav": {
+      "home": "Studio",
+      "portal": "Kundeportal",
+      "book": "Åbent værksted",
+      "courses": "Hold",
+      "memberships": "Medlemskaber",
+      "vouchers": "Gavekort",
+      "help": "Studioguide"
+    },
+    "actions": {
+      "signIn": "Log ind",
+      "book": "Book en tid",
+      "courses": "Se hold",
+      "memberships": "Se medlemskaber",
+      "vouchers": "Udforsk gavekort",
+      "register": "Opret konto"
+    },
+    "mobile": {
+      "eyebrow": "Studionavigation",
+      "title": "Udforsk {studio}",
+      "poweredBy": "Leveret af Shario"
+    },
+    "home": {
+      "eyebrow": "Velkommen til",
+      "defaultDescription": "Oplev {studio}, se mulighederne for at besøge os, og find alt, du skal bruge før din næste studiodag.",
+      "exploreEyebrow": "Dit studio",
+      "exploreTitle": "Måder at besøge os på",
+      "explore": "Udforsk",
+      "cards": {
+        "book": "Vælg en studiotid, og find et tidspunkt, der passer dig.",
+        "courses": "Se kommende hold og kreative oplevelser.",
+        "memberships": "Sammenlign abonnementer med fast studioadgang og medlemsfordele.",
+        "vouchers": "Giv en anden tid og plads til at skabe i studiet.",
+        "help": "Forbered dit besøg med studiovejledning og praktiske svar."
+      },
+      "highlights": {
+        "viewAll": "Se alle",
+        "open": "Se detaljer",
+        "coursesTitle": "Udvalgte hold",
+        "coursesDescription": "Vælg blandt studiets aktuelt udgivne hold.",
+        "membershipsTitle": "Muligheder for medlemskab",
+        "membershipsDescription": "Abonnementer til kunder, der gerne vil komme og skabe regelmæssigt.",
+        "helpTitle": "Fra studiets videnscenter",
+        "helpDescription": "Nyttig offentlig vejledning udvalgt af studiet.",
+        "resourceTypes": {
+          "video": "Video",
+          "guide": "Guide",
+          "faq": "FAQ",
+          "link": "Link",
+          "file": "Fil"
+        }
+      }
+    },
+    "footer": {
+      "explore": "Udforsk",
+      "contact": "Kontakt",
+      "information": "Information",
+      "defaultCopyright": "© {year} {studio}",
+      "poweredBy": "Leveret af Shario"
+    },
+    "legal": {
+      "studioRules": "Studioregler",
+      "terms": "Vilkår og betingelser",
+      "privacy": "Privatlivspolitik",
+      "cancellation": "Afbestillingspolitik"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "website": "Hjemmeside"
+    },
+    "unavailable": {
+      "title": "Denne mulighed er ikke tilgængelig",
+      "description": "Studiet tilbyder ikke denne mulighed offentligt i øjeblikket.",
+      "back": "Tilbage til studiet"
+    },
+    "book": {
+      "metadataTitle": "Book åbent værksted",
+      "title": "Åbent værksted hos {studio}",
+      "description": "Vælg et studio, og se de aktuelt optagede tidsrum, før du logger ind.",
+      "eyebrow": "Planlæg dit besøg",
+      "studioLabel": "Studiolokation",
+      "studioRequired": "Intet studio valgt",
+      "priceFrom": "Bookingpriser fra",
+      "priceLabel": "Bookingpris",
+      "priceUnavailable": "Spørg studiet",
+      "priceUnit": "pr. 30-minutters blok pr. gæst",
+      "retry": "Prøv igen",
+      "calendar": {
+        "title": "Studiobelægning",
+        "readOnly": "Kun visning",
+        "description": "Se optagede tider i studiets lokale tidszone. Personlige bookingoplysninger vises aldrig.",
+        "legend": "Kalenderforklaring",
+        "occupied": "Optaget",
+        "loadingStudios": "Indlæser studiolokationer…",
+        "locationError": "Studiolokationerne kunne ikke indlæses.",
+        "noLocations": "Der er endnu intet studio tilgængeligt",
+        "noLocationsDescription": "Dette studio har endnu ikke udgivet en lokation, der kan bookes.",
+        "invalidLocation": "Denne studiolokation er ikke tilgængelig",
+        "invalidLocationDescription": "Vælg en af de udgivne studiolokationer for at fortsætte.",
+        "loading": "Indlæser aktuel belægning…",
+        "error": "Den aktuelle belægning kunne ikke indlæses.",
+        "empty": "Der blev ikke fundet optagede tidsrum i denne periode. Det er ikke en garanti for ledighed.",
+        "occupiedSummary": "{count, plural, one {# optaget tidsrum vises.} other {# optagede tidsrum vises.}}"
+      }
+    },
+    "courses": {
+      "metadataTitle": "Studiohold",
+      "title": "Hold hos {studio}",
+      "description": "Udforsk offentliggjorte hold. Log ind for at se ledige datoer.",
+      "filters": {
+        "label": "Holdkategorier",
+        "all": "Alle",
+        "searchLabel": "Søg i hold",
+        "searchPlaceholder": "Søg efter hold…",
+        "clearSearch": "Ryd søgning",
+        "resultCount": "{visible} / {total} hold",
+        "noResults": "Ingen hold matcher din søgning eller valgte kategori.",
+        "reset": "Vis alle hold"
+      }
+    },
+    "vouchers": {
+      "metadataTitle": "Gavekort",
+      "title": "En betænksom gave fra studiet",
+      "description": "Vælg et offentliggjort gavekort, og giv en anden friheden til at skabe hos {studio}.",
+      "checkout": {
+        "eyebrow": "Sikker betaling",
+        "title": "Vælg dit gavekort",
+        "description": "Vælg et beløb, indtast din e-mail, og fortsæt til studiets sikre betalingsside.",
+        "email": "E-mailadresse",
+        "quantity": "Antal",
+        "missing": "Vælg et gavekort, og indtast en gyldig e-mailadresse.",
+        "error": "Betalingen kunne ikke startes. Prøv igen.",
+        "starting": "Forbereder betaling…",
+        "continue": "Fortsæt til betaling",
+        "secure": "Gavekortets tilgængelighed og pris bekræftes sikkert før betaling.",
+        "giftMessage": "Gavehilsen (valgfri)",
+        "giftMessageHelp": "Op til 240 tegn. Hilsenen tilføjes til alle PDF-filer i denne ordre og til din e-mail. Vi sender gavekortene til e-mailadressen ovenfor.",
+        "giftMessageLegacyHelp": "Op til 240 tegn. Hilsenen medtages i din e-mail. Dette gavekort bruger en fast PDF-skabelon, så hilsenen vises ikke i PDF-filen.",
+        "giftMessageError": "Der er ikke plads til din gavehilsen på dette gavekort. Prøv at forkorte den, bruge færre linjeskift eller fjerne emoji og specialtegn.",
+        "total": "I alt",
+        "validity": "Gyldighed",
+        "noExpiry": "Ingen udløbsdato",
+        "validUntil": "Gyldig til {date}",
+        "validMonths": "{months, plural, one {# måned efter købet} other {# måneder efter købet}}"
+      },
+      "postal": {
+        "title": "Levering",
+        "digital": "Digitalt gavekort",
+        "physical": "Trykt gavekort med posten",
+        "digitalHelp": "Sendes til din e-mail.",
+        "postage": "Porto: {amount} pr. ordre",
+        "backup": "Studiet udskriver og sender dit gavekort med posten. Du modtager også en kopi via e-mail med den samme kode. Begge kopier deler én saldo.",
+        "firstname": "Fornavn",
+        "lastname": "Efternavn",
+        "street": "Vejnavn og husnummer",
+        "city": "By",
+        "postalCode": "Postnummer",
+        "country": "Land",
+        "chooseCountry": "Vælg et land",
+        "addressError": "Indtast den fulde postadresse, inklusive land.",
+        "unavailable": "Postforsendelse er ikke længere tilgængelig for dette gavekort. Vælg digital levering, eller genindlæs siden.",
+        "subtotal": "Gavekortets værdi",
+        "fee": "Porto"
+      }
+    },
+    "catalog": {
+      "loading": "Indlæser aktuelle tilbud…",
+      "error": "De aktuelle tilbud kunne ikke indlæses.",
+      "retry": "Prøv igen",
+      "empty": "Der er endnu ingen offentliggjorte tilbud her.",
+      "book": "Log ind for at booke",
+      "viewDates": "Se ledige datoer",
+      "viewDetails": "Vælg en dato",
+      "continue": "Fortsæt til booking",
+      "availability": {
+        "fullWaitlistOpen": "Fuldt booket · venteliste åben"
+      }
+    },
+    "details": {
+      "bookingMetadataTitle": "Vælg et studiobesøg",
+      "bookingMetadataDescription": "Vælg en mulighed for åbent værksted, lokation, dato og tidspunkt.",
+      "courseMetadataTitle": "Holddatoer",
+      "courseMetadataDescription": "Se offentliggjorte holddatoer, og vælg din plads.",
+      "loading": "Indlæser aktuel tilgængelighed…",
+      "error": "Den aktuelle tilgængelighed kunne ikke indlæses.",
+      "retry": "Prøv igen",
+      "notFound": "Dette offentlige tilbud er ikke længere tilgængeligt.",
+      "backToBook": "Tilbage til studiobooking",
+      "backToCourses": "Tilbage til hold",
+      "bookingEyebrow": "Åbent værksted",
+      "courseEyebrow": "Hold",
+      "chooseVisit": "Vælg dit besøg",
+      "chooseVisitDescription": "Vælg lokation og dato. Tilgængeligheden kontrolleres igen før betaling.",
+      "chooseCourseSession": "Vælg en holddato",
+      "chooseCourseSessionDescription": "Vælg en offentliggjort holdgang og antal deltagere.",
+      "location": "Lokation",
+      "locationFallback": "Lokation {number}",
+      "date": "Dato",
+      "activity": "Planlagt aktivitet",
+      "activityChoose": "Vælg en aktivitet",
+      "activityNotSpecified": "Ingen bestemt aktivitet",
+      "activityRequiredHint": "På denne lokation skal du vælge en aktivitet, før du vælger et tidspunkt.",
+      "activityOptionalHint": "Du kan vælge en aktivitet eller fortsætte uden at angive en.",
+      "activityUnavailable": "Der er endnu ikke konfigureret nogen kundeaktivitet for denne lokation.",
+      "chooseTime": "Vælg et tidspunkt",
+      "noSlots": "Der er ingen ledige tider på denne dato.",
+      "noCourseSessions": "Der er ingen kommende offentliggjorte datoer for dette hold.",
+      "remaining": "{count, plural, =0 {Fuldt booket} one {# plads tilbage} other {# pladser tilbage}}",
+      "continueInPortal": "Fortsæt i kundeportalen",
+      "signInToContinue": "Log ind for at fortsætte",
+      "bookWithAccount": "Book med min konto",
+      "openWorkspace": "Åbn studiodashboard",
+      "preparingIntent": "Sikrer dit valg…",
+      "selectionChanged": "Dette tidspunkt er ikke længere tilgængeligt. Vi har opdateret de ledige muligheder.",
+      "intentError": "Din booking kunne ikke forberedes. Prøv igen.",
+      "orGuestCheckout": "eller fortsæt som gæst",
+      "customerChoice": {
+        "mode": "Privatindstillinger",
+        "public": "Delt",
+        "private": "Privat",
+        "publicFixedHelp": "Op til {count} personer i alt kan dele dette tidspunkt, inklusive din gruppe. Studiets og aktivitetens kapacitetsgrænser gælder stadig.",
+        "publicActivityHelp": "Andre kunder kan deltage, indtil aktivitetens og studiets kapacitet er nået.",
+        "privateHelp": "Reservér hele studiet til din gruppe. Der tilføjes et engangstillæg på {amount} pr. booking.",
+        "surcharge": "Tillæg for privat booking",
+        "people": "Personer i din gruppe"
+      },
+      "activityWorkstation": "Arbejdspladser",
+      "activitySharedTable": "Fællesborde"
+    },
+    "guestCheckout": {
+      "title": "Fortsæt som gæst",
+      "description": "Indtast dine kontaktoplysninger til denne holdbooking.",
+      "people": "Antal deltagere",
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "email": "E-mail",
+      "phone": "Telefon (valgfrit)",
+      "terms": "Vilkår for holdet",
+      "acceptTerms": "Jeg har læst og accepterer vilkårene for dette hold.",
+      "termsRequired": "Acceptér vilkårene for holdet, før du fortsætter.",
+      "validationError": "Kontrollér dine kontaktoplysninger.",
+      "checkoutError": "Betalingen kunne ikke startes. Tilgængeligheden kan have ændret sig; prøv igen.",
+      "signInRequired": "Log ind med denne e-mailadresse for at fortsætte sikkert.",
+      "signIn": "Log ind og fortsæt",
+      "starting": "Starter sikker betaling…",
+      "continue": "Fortsæt til sikker betaling",
+      "serverValidation": "Pris, kapacitet og holdets tilgængelighed bekræftes sikkert før betaling.",
+      "totalLabel": "I alt for {count} deltagere",
+      "attemptExpired": "Denne betaling er udløbet. Fortsæt igen for at kontrollere ledige pladser og starte en ny betaling.",
+      "voucherCode": "Gavekortkode (valgfrit)",
+      "checkVoucher": "Kontrollér gavekort",
+      "checkingVoucher": "Kontrollerer…",
+      "voucherHelp": "Kontrollér rabatten før bekræftelse. Kontrollen bruger ikke dit gavekort.",
+      "voucherDiscount": "Gavekortrabat",
+      "remainingToPay": "Resterende betaling",
+      "voucherCoversAll": "Gavekortet dækker hele prisen. Bekræft for at indløse det og booke dine pladser.",
+      "voucherPartial": "Bekræft for at reservere gavekortet og betale restbeløbet med kort.",
+      "confirmWithVoucher": "Bekræft booking med gavekort",
+      "voucherError": "Dette gavekort kan ikke bruges til denne booking. Kontrollér koden, eller kontakt studiet.",
+      "voucherReviewRequired": "Kontrollér gavekortet og prisen før bekræftelse.",
+      "voucherRateLimited": "For mange forsøg. Vent et øjeblik, og prøv igen.",
+      "voucherChanged": "Prisen eller gavekortets saldo er ændret. Kontrollér gavekortet igen før bekræftelse."
+    },
+    "guestCheckoutResult": {
+      "verifyingLabel": "Kontrollerer betaling",
+      "confirmedLabel": "Betaling bekræftet",
+      "unconfirmedLabel": "Betalingen kunne ikke bekræftes",
+      "verifyingTitle": "Vi færdiggør din booking",
+      "confirmedTitle": "Tak for din booking",
+      "unconfirmedTitle": "Din booking er endnu ikke bekræftet",
+      "verifyingDescription": "Vi venter på bekræftelse fra betalingsudbyderen. Du kan lade denne side være åben.",
+      "confirmedDescription": "Din betaling og booking er bekræftet. Vi sender bookingoplysningerne via e-mail.",
+      "unconfirmedDescription": "Vi kunne ikke verificere denne booking. Tjek din e-mail, eller kontakt studiet med ordrenummeret nedenfor, før du forsøger at betale igen.",
+      "emailPending": "Vi sender dig en e-mail, når bookingen er bekræftet.",
+      "emailConfirmed": "Tjek også din spammappe.",
+      "orderReference": "Ordrenummer",
+      "backToStudio": "Tilbage til studiet",
+      "backToCourse": "Tilbage til kurset",
+      "retry": "Kontroller igen",
+      "cancelledTitle": "Betalingssiden blev lukket",
+      "cancelledDescription": "Denne side bekræfter hverken en betaling eller en booking. Tjek din e-mail, før du starter en ny betaling."
+    }
+  },
+  "Dashboard": {
+    "sidebarLabel": "Studioadministration",
+    "settingsNavigationLabel": "Arbejdsrumsindstillinger",
+    "utilityNavigationLabel": "Opsætning og indstillinger for studio",
+    "expandGroup": "Udvid {group}",
+    "collapseGroup": "Skjul {group}",
+    "expandSidebar": "Udvid studionavigation",
+    "collapseSidebar": "Skjul studionavigation",
+    "skipToContent": "Gå til studioindhold",
+    "changeStudio": "Skift studio",
+    "plan": "Abonnementet {plan}",
+    "plans": {
+      "starter": "Starter",
+      "professional": "Professional",
+      "studio_plus": "Space Plus",
+      "enterprise": "Enterprise"
+    },
+    "mobileStudioHint": "Skift studio, eller administrér arbejdsområdet under Indstillinger.",
+    "openNavigation": "Åbn dashboardnavigation",
+    "closeNavigation": "Luk dashboardnavigation",
+    "greeting": "Velkommen tilbage, {name}",
+    "greetingMorning": "Godmorgen, {name}",
+    "greetingAfternoon": "Goddag, {name}",
+    "greetingEvening": "Godaften, {name}",
+    "subheading": "Her kan du se, hvad der sker i dit studio i dag.",
+    "setupCenter": "Launch Center",
+    "openSetupCenter": "Åbn Launch Center",
+    "launchCenterRequiredProgress": "{completed} af {total} punkter på lanceringslisten er fuldført",
+    "continueSetup": "Fortsæt lanceringen · {percentage}%",
+    "continueSetupLabel": "Fortsæt lanceringen af dit studio, {percentage}% fuldført",
+    "notifications": "Åbn notifikationer",
+    "notificationsUnread": "Åbn notifikationer, {count, plural, one {# ulæst notifikation} other {# ulæste notifikationer}}",
+    "openAccount": "Åbn kontomenu",
+    "newBooking": "Ny booking",
+    "openAiAssistant": "Åbn Studio Assistant",
+    "aiAssistant": "Spørg AI",
+    "fallbackFirstName": "ven",
+    "fallbackStudioName": "Dit studio",
+    "statsLabel": "Dagens studiooversigt",
+    "studioSwitcher": {
+      "switchStudio": "Skift studio",
+      "upgradeRequired": "Dit nuværende abonnement kræver en opgradering",
+      "yourStudios": "Dine studier",
+      "selected": "Valgt studio",
+      "unnamedStudio": "Studio uden navn",
+      "noStudios": "Ingen studier",
+      "noStudiosAvailable": "Der er ingen studier tilgængelige for denne konto",
+      "addStudio": "Tilføj dit første studio",
+      "addNewStudio": "Tilføj nyt studio",
+      "addFirstStudioDescription": "Opret din første studiolokation",
+      "addNewStudioDescription": "Opret endnu en studiolokation",
+      "upgradeToAddStudio": "Tilføj endnu et studio",
+      "studioLimitReached": "Din plan omfatter op til {count} studier",
+      "loadingTitle": "Indlæser dine studier",
+      "loadingDescription": "Vi klargør dine studiolokationer.",
+      "loadError": "Vi kunne ikke indlæse dine studier",
+      "loadErrorDescription": "Tjek din forbindelse og prøv igen.",
+      "retry": "Prøv igen"
+    },
+    "nav": {
+      "overview": "Oversigt",
+      "setup": "Launch Center",
+      "calendar": "Kalender",
+      "bookings": "Bookinger",
+      "allBookings": "Alle bookinger",
+      "customers": "Kunder",
+      "studio": "Studio",
+      "products": "Produkter og hold",
+      "productsPricing": "Produkter og priser",
+      "sales": "Salg",
+      "salesOverview": "Salgsoversigt",
+      "finance": "Økonomi",
+      "transactions": "Transaktioner",
+      "invoices": "Fakturaer",
+      "coursesEvents": "Hold",
+      "memberships": "Medlemskaber",
+      "inventory": "Lager",
+      "staffPlanning": "Personaleplanlægning",
+      "messages": "Beskeder",
+      "inbox": "Indbakke",
+      "automations": "Automatiseringer",
+      "templates": "Skabeloner",
+      "knowledge": "Knowledge Hub",
+      "reports": "Rapporter",
+      "ai": "Shario AI",
+      "settings": "Indstillinger",
+      "lostFound": "Hittegods",
+      "customOrders": "Specialbestillinger"
+    },
+    "routeTitles": {
+      "workspace": "Arbejdsområde",
+      "setup": "Launch Center",
+      "ai": "Shario AI",
+      "calendar": "Kalender",
+      "bookings": "Bookinger",
+      "coursesEvents": "Hold",
+      "customers": "Kunder",
+      "products": "Produkter og hold",
+      "productsPricing": "Produkter og priser",
+      "orders": "Salg og ordrer",
+      "salesOverview": "Salgsoversigt",
+      "transactions": "Transaktioner",
+      "invoices": "Fakturaer",
+      "memberships": "Medlemskaber",
+      "communications": "Kommunikation",
+      "messages": "Beskeder",
+      "knowledge": "Knowledge Hub",
+      "reports": "Rapporter",
+      "finance": "Økonomi",
+      "settings": "Indstillinger",
+      "modules": "Moduler og navigation",
+      "publicSite": "Hjemmeside & branding",
+      "locations": "Studiolokationer",
+      "team": "Teammedlemmer",
+      "roles": "Roller og tilladelser",
+      "payments": "Betalinger fra kunder",
+      "billing": "Abonnement og fakturering",
+      "invoicing": "Kundefakturering",
+      "aiSettings": "AI-indstillinger",
+      "account": "Kontoindstillinger",
+      "preferences": "Arbejdsrumspræferencer",
+      "commerce": "Handel",
+      "operations": "Drift",
+      "automations": "Automatiseringer",
+      "inventory": "Lager",
+      "suppliers": "Leverandører",
+      "tasks": "Personaleplanlægning",
+      "generalSettings": "Generelle indstillinger",
+      "migration": "Migration Center",
+      "notifications": "Notifikationer",
+      "events": "Begivenheder",
+      "lostFound": "Hittegods",
+      "customOrders": "Specialbestillinger"
+    },
+    "stats": {
+      "bookings": "Bookinger i dag",
+      "occupancy": "Belægning",
+      "revenue": "Indtægter i denne måned",
+      "customers": "Nye kunder"
+    },
+    "quickActions": {
+      "title": "Hurtige handlinger",
+      "newBooking": "Ny booking",
+      "addCustomer": "Tilføj kunde",
+      "createClass": "Opret hold",
+      "sendMessage": "Send besked"
+    },
+    "revenueChart": {
+      "title": "Indtægter og bookinger",
+      "revenue": "Indtægter",
+      "bookings": "Bookinger",
+      "chartLabel": "Omsætning og bookinger de seneste 30 dage",
+      "ranges": {
+        "7days": "7 dage",
+        "30days": "30 dage",
+        "12months": "12 måneder"
+      }
+    },
+    "overview": {
+      "eyebrow": "Aktuel studiooversigt",
+      "context": "{date} · Det vigtigste fra dit studio.",
+      "dateLabel": "Oversigtsdato",
+      "dateNavigation": {
+        "previousDay": "Forrige dag",
+        "nextDay": "Næste dag",
+        "today": "I dag",
+        "backToToday": "Tilbage til i dag",
+        "chooseDate": "Vælg dato"
+      },
+      "partialCoverage": "{count, plural, one {Én datakilde er ikke tilgængelig. Dens værdier vises som utilgængelige, ikke som nul.} other {# datakilder er ikke tilgængelige. Deres værdier vises som utilgængelige, ikke som nul.}}",
+      "briefing": {
+        "verifiedEyebrow": "Verificeret studiosammendrag",
+        "operationalEyebrow": "Studiosammendrag",
+        "aiEyebrow": "AI-studiosammendrag",
+        "calmHeadline": "Dit studio kører problemfrit.",
+        "attentionHeadline": "Et par ting har brug for din opmærksomhed.",
+        "partialHeadline": "Her er hvad vi kan bekræfte lige nu.",
+        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
+        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "partialSummary": "Sammendraget har i øjeblikket {count, plural, one {# tilgængelig kilde} other {# tilgængelige kilder}}. Utilgængelige værdier forbliver ukendte i stedet for at blive vist som nul.",
+        "coverageComplete": "Baseret på {count, plural, one {# studiosignal} other {# studiosignaler}}",
+        "coveragePartial": "Baseret på {count, plural, one {# tilgængeligt studiosignal} other {# tilgængelige studiosignaler}} · delvis dækning",
+        "updated": "Opdateret {time}",
+        "sources": "Baseret på {count, plural, one {# studiosignal} other {# studiosignaler}}",
+        "refresh": "Opdatér sammendrag",
+        "preparing": "Klargør dagens databaserede sammendrag…",
+        "checkingFreshness": "Søger efter nyere studiodata…",
+        "prioritiesLabel": "Dagens verificerede prioriteter",
+        "fresh": "Aktuel",
+        "stale": "Opdatering anbefales",
+        "review": "Gennemgå prioriteter",
+        "viewTodaySchedule": "Se dagens program",
+        "viewSchedule": "Se program",
+        "openOperations": "Åbn drift",
+        "reviewPrompt": "Gennemgå dagens studioprioriteter, forklar, hvorfor de er vigtige, henvis til de bagvedliggende poster, og foreslå de sikreste næste handlinger.",
+        "open": "Åbn sammendrag",
+        "generate": "Generér AI-sammendrag",
+        "loading": "Indlæser det seneste studiosammendrag…",
+        "refreshError": "Sammendraget kunne ikke opdateres. Den verificerede driftsoversigt er stadig tilgængelig."
+      },
+      "attention": {
+        "title": "Kræver din opmærksomhed",
+        "clearHeading": "Alt ser fint ud",
+        "partialHeading": "Dækning af prioriteter",
+        "items": {
+          "unpaidBookings": "Ubetalte bookinger",
+          "lowStock": "varer med lav lagerbeholdning",
+          "overdueTasks": "forsinkede personaleopgaver"
+        },
+        "viewAll": "Vis alle prioriteter",
+        "clearTitle": "Ingen presserende prioriteter",
+        "clearDescription": "Intet kræver øjeblikkelig handling lige nu.",
+        "partialTitle": "Nogle prioriteter kan være utilgængelige",
+        "partialDescription": "De tilgængelige kilder viser ingen hastende punkter, men dækningen er ufuldstændig."
+      },
+      "flow": {
+        "title": "Studiodrift",
+        "description": "Planlægning for den valgte dag og live studiostatus.",
+        "emptyTitle": "Der er endnu ikke planlagt nogen studioaktivitet",
+        "emptyDescriptionAll": "På tværs af alle studier er der ingen bookinger eller emner at behandle den {date}.",
+        "emptyDescriptionSelected": "For det valgte studio er der ingen bookinger eller emner at behandle den {date}.",
+        "openCalendar": "Åbn kalender",
+        "dateUnavailable": "Valgt dato",
+        "allLocations": "Alle studier",
+        "selectedLocation": "Valgt studio",
+        "groups": {
+          "visits": {
+            "title": "Bookinger og fremmøde",
+            "description": "Dagsplan og aktuelt fremmøde"
+          }
+        },
+        "stageCount": "{stage}: {count}",
+        "stageUnavailable": "{stage}: data ikke tilgængelige",
+        "stages": {
+          "booked": "Booket",
+          "arriving": "Ankommer",
+          "inStudio": "I studio",
+          "readyToFire": "Klar til brænding"
+        }
+      },
+      "rhythm": {
+        "title": "Dagens rytme",
+        "subtitle": "Sessioner planlagt til den valgte dato og det valgte studioområde.",
+        "openCalendar": "Åbn kalender",
+        "unavailable": "Programdata er ikke tilgængelige med din nuværende adgang.",
+        "emptyTitle": "En stille dag i studiet",
+        "emptyDescription": "Ingen sessioner er planlagt til denne dato.",
+        "untitled": "Studiosession",
+        "locationFallback": "Studio",
+        "guests": "{count, plural, one {# gæst} other {# gæster}}"
+      },
+      "pulse": {
+        "title": "Forretningspuls",
+        "openReports": "Åbn rapporter",
+        "occupancy": "belægning",
+        "revenue": "indtægter",
+        "bookings": "bookinger",
+        "newCustomers": "nye kunder",
+        "chartLabel": "Udvikling i studioudnyttelse",
+        "noTrend": "Trenddata er ikke tilgængelige for denne periode."
+      },
+      "signals": {
+        "open": "Åbn",
+        "unavailable": "Denne information er ikke tilgængelig for dine nuværende moduler eller tilladelser.",
+        "messages": {
+          "title": "Seneste beskeder",
+          "count": "{count, plural, =0 {Ingen ulæste samtaler} one {# ulæst samtale} other {# ulæste samtaler}}",
+          "empty": "Ingen nylige kundemeddelelser behøver et svar.",
+          "untitled": "Kundesamtale",
+          "noPreview": "Åbn samtalen for at se den seneste besked."
+        },
+        "tasks": {
+          "title": "Kommende opgaver",
+          "count": "{count, plural, =0 {Ingen åbne opgaver} one {# åben opgave} other {# åbne opgaver}}",
+          "empty": "Der er ingen kommende personaleopgaver med deadline.",
+          "untitled": "Studioopgave",
+          "unassigned": "Ikke tildelt",
+          "priorities": {
+            "low": "Lav",
+            "normal": "Normal",
+            "high": "Høj",
+            "urgent": "Hastende"
+          }
+        }
+      },
+      "opportunity": {
+        "eyebrow": "Business Advisor",
+        "none": "Der blev ikke fundet nogen umiddelbar driftsmulighed.",
+        "guidance": "Jeg fremhæver nyttige muligheder her, efterhånden som nye studiodata bliver tilgængelige.",
+        "openAdvisor": "Åbn rådgiver",
+        "courseFallback": "Dette kursus",
+        "evidence": "Baseret på {sessions} sessioner med høj belægning de seneste 8 uger · ingen automatiske ændringer.",
+        "weekdays": {
+          "monday": "Mandag",
+          "tuesday": "Tirsdag",
+          "wednesday": "Onsdag",
+          "thursday": "Torsdag",
+          "friday": "Fredag",
+          "saturday": "Lørdag",
+          "sunday": "Søndag",
+          "unknown": "tilbagevendende"
+        },
+        "items": {
+          "lowOccupancy": "Belægningen er kun {value}% i den kommende periode.",
+          "noBookings": "Ingen kommende bookinger endnu.",
+          "inventoryReorder": "{value, plural, one {# lagervare skal muligvis genbestilles.} other {# lagervarer skal muligvis genbestilles.}}",
+          "repeatedCourseSaturation": "{course} har en gennemsnitlig belægning på {value}% for de seneste {day}-sessioner kl. {time}. Undersøg, om kapaciteten kan øges på en forsvarlig måde."
+        },
+        "actions": {
+          "createOffer": "Opret et tilbud",
+          "reviewInventory": "Gennemgå lager",
+          "reviewCourseCapacity": "Gennemgå kapacitet"
+        }
+      },
+      "error": {
+        "title": "Studieoversigten kunne ikke indlæses",
+        "description": "Dine data er ikke blevet ændret. Tjek forbindelsen og prøv igen.",
+        "retry": "Prøv igen"
+      },
+      "firstBooking": {
+        "title": "Din første booking er her",
+        "description": "Din Oversigt begynder nu at vise faktisk studioaktivitet og indsigt.",
+        "dismiss": "Luk fejringen af den første booking"
+      },
+      "snapshot": {
+        "title": "Overblik",
+        "bookings": "Bookinger",
+        "expectedVisitors": "Forventede besøgende",
+        "actionablePieces": "Emner, der kræver handling",
+        "unreadMessages": "Ulæste beskeder",
+        "revenue": "Omsætning",
+        "date": "Valgt dato",
+        "currentState": "Nuværende",
+        "live": "Live",
+        "unavailable": "Ikke tilgængelig"
+      }
+    },
+    "help": {
+      "open": "Hjælp",
+      "menuLabel": "Hjælpemenu",
+      "title": "Hjælp & guider",
+      "close": "Luk hjælp",
+      "productTour": "Produkttur",
+      "productTourDescription": "Lær det vigtigste om arbejdsområdet i en kort guidet rundvisning.",
+      "productTourSection": "Det vigtigste om arbejdsområdet",
+      "startProductTour": "Start rundvisning",
+      "replayProductTour": "Gentag rundvisning"
+    },
+    "guides": {
+      "centerTitle": "Guider",
+      "centerDescription": "Korte, valgfrie gennemgange af de opgaver, du udfører oftest.",
+      "duration": "Cirka 60 sekunder",
+      "completed": "Fuldført",
+      "startGuide": "Start guide",
+      "replayGuide": "Gentag guide",
+      "availableTitle": "Guider, du kan udforske",
+      "completedTitle": "Færdige guider",
+      "summary": "{completed} af {total} fuldført",
+      "noneAvailable": "Der er ingen guider tilgængelige for din nuværende rolle.",
+      "promptEyebrow": "Ny her?",
+      "promptTitle": "Prøv guiden {guide}",
+      "start": "Start guide",
+      "notNow": "Ikke nu",
+      "progress": "{current} af {total}",
+      "skip": "Spring guiden over",
+      "close": "Luk guide",
+      "back": "Tilbage",
+      "next": "Næste",
+      "finish": "Afslut guide",
+      "finishedTitle": "Du er klar",
+      "finishedDescription": "Du kender nu det vigtigste om {guide}. Du kan altid gentage guiden fra Hjælp.",
+      "items": {
+        "studio_location_setup": {
+          "title": "Set up a studio location",
+          "description": "Understand the address, customer choices, capacity and booking rules before opening a location.",
+          "steps": {
+            "identity": {
+              "title": "Name the location clearly",
+              "description": "Use the customer-facing name your team will also recognize in calendars, reports and studio switching."
+            },
+            "address": {
+              "title": "Set the local context",
+              "description": "The address helps customers arrive, while the timezone keeps every displayed booking time accurate."
+            },
+            "contact": {
+              "title": "Add a reliable contact",
+              "description": "The calling code and local number are saved together so customers can use the phone number internationally."
+            },
+            "activity_choice": {
+              "title": "Choose the customer experience",
+              "description": "Require an activity, make it optional, or hide the question completely when every visit works the same way."
+            },
+            "activity_capacity": {
+              "title": "Protect limited resources",
+              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+            },
+            "overall_capacity": {
+              "title": "Set the shared safety limit",
+              "description": "Overall capacity counts every person across all overlapping bookings and activities at this location."
+            },
+            "timing": {
+              "title": "Make available times predictable",
+              "description": "The start interval controls when bookings may begin; minimum and maximum duration control how long they may run."
+            },
+            "review": {
+              "title": "Review it as a customer",
+              "description": "This live summary explains the resulting booking rules in plain language before you create the location."
+            }
+          }
+        },
+        "first_booking": {
+          "title": "Opret din første booking",
+          "description": "Lær kalenderforløbet fra at finde et tidspunkt til at bekræfte en kunde.",
+          "steps": {
+            "calendar": {
+              "title": "Din bookingkalender",
+              "description": "Kalenderen samler studiets tilgængelighed, sessioner og kundebookinger. Skift mellem dags-, uge- og månedsvisning uden at miste konteksten."
+            },
+            "create_action": {
+              "title": "Start en booking",
+              "description": "Brug Ny booking, når en kunde booker via telefon, ved receptionen eller gennem en anden kanal. Den fremhævede knap forbliver inaktiv, mens guiden er åben."
+            },
+            "booking_details": {
+              "title": "Vælg den rigtige kontekst",
+              "description": "Brug filtre for studio, aktivitet og team til at finde den rigtige tilgængelighed, før du opretter eller gennemgår en booking."
+            },
+            "confirmation": {
+              "title": "Gennemgå resultatet",
+              "description": "Bekræftede bookinger vises i kalenderen. Åbn en booking for at gennemgå kunden, betalingen og sessionens oplysninger."
+            }
+          }
+        },
+        "website_builder": {
+          "title": "Tilpas din hjemmeside",
+          "description": "Udform din offentlige side, se den i forhåndsvisning, og lær, hvordan udgivelse fungerer.",
+          "steps": {
+            "editor_sections": {
+              "title": "Byg med sektioner",
+              "description": "Redigér branding, indhold, bookingmuligheder og kundeoplysninger fra sektionsfanerne."
+            },
+            "live_preview": {
+              "title": "Forhåndsvisning som kunde",
+              "description": "Liveforhåndsvisningen viser, hvordan dit offentlige website tilpasser sig på tværs af sider, sprog og skærmstørrelser."
+            },
+            "branding": {
+              "title": "Gør udtrykket til dit eget",
+              "description": "Indstil farver, typografi og visuelle detaljer, samtidig med at du bevarer tilgængelig kontrast og en ensartet studioidentitet."
+            },
+            "publish": {
+              "title": "Gem, og udgiv derefter",
+              "description": "Når du gemmer, bevares et udkast. Når du udgiver, bliver den gennemgåede version synlig for kunderne, mens adgangsbeskyttelsen bevares."
+            }
+          }
+        },
+        "memberships": {
+          "title": "Sælg medlemskaber, kredit og gavekort",
+          "description": "Få overblik over abonnementer, aktive medlemmer, kundekredit og fleksible gavekort.",
+          "steps": {
+            "plans": {
+              "title": "Design et medlemsabonnement",
+              "description": "Abonnementer definerer pris, gyldighed, lokationer og inkluderede fordele. Udgivelses- og salgshandlinger forbliver beskyttet af tilladelser."
+            },
+            "customers": {
+              "title": "Se aktive medlemmer",
+              "description": "Fanen Kunder viser, hvem der har et abonnement, den aktuelle periode og de fordele, der stadig er tilgængelige."
+            },
+            "credits": {
+              "title": "Forstå kundekredit",
+              "description": "Saldoen for medlemsfordele hører til et abonnement. Selvstændig kundekredit administreres på kundeprofilen og kan bruges uafhængigt, hvor det er aktiveret."
+            },
+            "vouchers": {
+              "title": "Tilbyd fleksible gaver",
+              "description": "Gavekortstilbud findes sammen med resten af kataloget og er klar til kundernes køb og indløsning."
+            }
+          }
+        },
+        "ai_reports": {
+          "title": "Brug AI og rapporter",
+          "description": "Omsæt studioaktivitet til spørgsmål, anbefalinger og målbare tendenser.",
+          "steps": {
+            "assistant": {
+              "title": "Spørg Studio Assistant",
+              "description": "Åbn assistenten for spørgsmål og forklaringer, der tager højde for arbejdsområdet. Den respekterer de samme adgangsgrænser som resten af dashboardet."
+            },
+            "advisor": {
+              "title": "Start med overblikket",
+              "description": "Rapportoversigten samler de vigtigste studiosignaler, før du udforsker de mere detaljerede sektioner."
+            },
+            "report_filters": {
+              "title": "Angiv rapportens kontekst",
+              "description": "Vælg datoer, lokation, sammenligning og detaljeniveau, så alle nøgletal besvarer det samme forretningsspørgsmål."
+            },
+            "report_insights": {
+              "title": "Gå fra målinger til indsigt",
+              "description": "Brug rapportfanerne og AI-sammendraget, hvor det er tilgængeligt, til at forklare ændringer og finde den næste nyttige handling."
+            }
+          }
+        },
+        "team_management": {
+          "title": "Administrer dit team",
+          "description": "Lær, hvordan roller og lokationsadgang gør ansvaret i arbejdsområdet tydeligt.",
+          "steps": {
+            "members": {
+              "title": "Dit arbejdsrumsteam",
+              "description": "Hvert medlem har en rolle, status, profil og et lokationsområde, der afgør, hvad vedkommende kan se og gøre."
+            },
+            "invite": {
+              "title": "Tilføj den rigtige person",
+              "description": "Teamadministratorer kan tilføje en eksisterende bruger i arbejdsområdet og tildele ansvar i ét kontrolleret forløb."
+            },
+            "roles": {
+              "title": "Brug roller bevidst",
+              "description": "Indbyggede og tilpassede roller samler tilladelser, så adgangen forbliver overskuelig, efterhånden som studiet vokser."
+            },
+            "location_access": {
+              "title": "Afgræns adgang efter lokation",
+              "description": "Begræns et teammedlem til udvalgte studier, når arbejdet ikke skal omfatte alle lokationer."
+            }
+          }
+        },
+        "door_access_codes": {
+          "title": "Administrer adgangskoder til døren",
+          "description": "Lær at organisere indgange, overvåge beholdningen, tilføje koder og revidere ændringer.",
+          "steps": {
+            "scope": {
+              "title": "Forstå, hvad Shario styrer",
+              "description": "Dette er en sikker oversigt over koder i fysiske låse. Shario programmerer ikke låsen og sender ikke koder via e-mail i denne fase."
+            },
+            "entrances": {
+              "title": "Vælg lokation og indgang",
+              "description": "Hver kodepulje tilhører én studiolokation og én fysisk indgang eller lås. Hold forskellige låse i separate puljer."
+            },
+            "stock": {
+              "title": "Hold øje med tilgængelige koder",
+              "description": "Oversigten viser tilgængelige, genanvendelige, udløbende og ekstra koder. Grænsen for lav beholdning advarer dig i tide."
+            },
+            "add_codes": {
+              "title": "Tilføj koder sikkert",
+              "description": "Opret én kode direkte, eller importer en CSV-fil. Bekræft, at koden er programmeret og testet, før den gøres tilgængelig."
+            },
+            "lifecycle": {
+              "title": "Administrer kodens livscyklus",
+              "description": "Vis kun en kode ved behov, rediger dens gyldighed, eller udfas den permanent, når den ikke må bruges igen."
+            },
+            "audit": {
+              "title": "Gør følsomme handlinger sporbare",
+              "description": "Revisionshistorikken registrerer oprettelse, ændringer, visninger, importer og udfasning uden at vise hele koder."
+            }
+          }
+        },
+        "first_offer": {
+          "title": "Udgiv dit første tilbud",
+          "description": "Gør et Open Studio eller hold til et tilbud, der er klar til kunderne.",
+          "cta": "Åbn Launch Center",
+          "steps": {
+            "offer_types": {
+              "title": "Vælg, hvad kunderne kan bestille",
+              "description": "Brug Open Studio til fleksibel studioadgang og Hold til planlagt undervisning. Kataloget viser kun de tilbudstyper, der er aktiveret for arbejdsområdet."
+            },
+            "create_offer": {
+              "title": "Start fra kataloget",
+              "description": "Opret tilbuddet her, når guiden er færdig. Launch Center holder den første opsætning fokuseret og fører dig videre til det næste relevante trin."
+            },
+            "price_capacity": {
+              "title": "Angiv de vigtigste bookingoplysninger",
+              "description": "Giv tilbuddet et klart navn, pris, kapacitet, placering og tilgængelighed, så kunderne ved præcis, hvad de reserverer."
+            },
+            "publish": {
+              "title": "Gennemgå før udgivelse",
+              "description": "Gem tilbuddet, gennemgå, hvordan det vises for kunderne, og udgiv det først, når programmet og bookingreglerne er klar."
+            }
+          }
+        },
+        "test_customer_journey": {
+          "title": "Gennemfør en test af kunderejsen",
+          "description": "Brug den sikre Practice Mode til at forhåndsvise booking, bekræftelse og kundeadgang.",
+          "cta": "Åbn Practice Mode",
+          "steps": {
+            "public_site": {
+              "title": "Start fra kundens visning",
+              "description": "På dit udgivne offentlige website opdager kunderne tilbud og starter en booking. Practice Mode bruger det samme forløb uden at ændre liveposter i studiet."
+            },
+            "test_booking": {
+              "title": "Prøv en sikker booking",
+              "description": "Practice Mode fører dig gennem en simuleret booking. Der oprettes hverken en rigtig kundebooking eller en rigtig betaling."
+            },
+            "confirmation_email": {
+              "title": "Eksempel på bekræftelse",
+              "description": "Gennemgå, hvilke oplysninger kunden modtager efter booking. Practice Mode sender ingen rigtig e-mail, så du kan kontrollere oplevelsen sikkert."
+            },
+            "customer_portal": {
+              "title": "Eksempel på kundeadgang",
+              "description": "Se, hvordan kunden finder sin booking og sine studiooplysninger. Practice Mode bruger midlertidige forhåndsvisningselementer i stedet for en rigtig kundekonto."
+            }
+          }
+        },
+        "payments_setup": {
+          "title": "Konfigurér betalinger",
+          "description": "Forbind Stripe, og få overblik over, hvornår kundebetalinger er klar.",
+          "cta": "Fortsæt betalingsopsætning",
+          "steps": {
+            "connection_status": {
+              "title": "Se den verificerede forbindelsesstatus",
+              "description": "Statussen kommer fra serveren og viser, om Stripe-kontoen ikke er påbegyndt, afventer, er begrænset eller er aktiv."
+            },
+            "stripe_onboarding": {
+              "title": "Fortsæt sikkert i Stripe",
+              "description": "Den egentlige onboarding foregår hos Stripe. Når du vender tilbage, opdaterer Shario status fra serveren i stedet for at antage, at kontoen er klar."
+            },
+            "payment_capabilities": {
+              "title": "Bekræft betalinger og udbetalinger",
+              "description": "En aktiv forbindelse skal kunne modtage betalinger og udbetalinger. Stripe rapporterer disse funktioner direkte."
+            },
+            "verify_payment": {
+              "title": "Verificer kundeoplevelsen",
+              "description": "Når Stripe melder kontoen aktiv, skal du bruge den sikre Practice Mode for kunder, før du accepterer en rigtig booking. Practice Mode gennemfører ingen rigtig betaling."
+            }
+          }
+        },
+        "data_import": {
+          "title": "Importér dit eksisterende studie",
+          "description": "Flyt data med validering, rapporter og et revisionsspor, der kan rulles tilbage.",
+          "cta": "Åbn Migration Center",
+          "steps": {
+            "choose_importer": {
+              "title": "Vælg datatype",
+              "description": "Importér kunder, tilbud, bookinger, medlemskaber, kredit eller gavekort i en hensigtsmæssig rækkefølge. Kun områder, der er aktiveret i arbejdsområdet, vises."
+            },
+            "template_upload": {
+              "title": "Brug skabelonen eller din eksport",
+              "description": "Download en skabelon, eller upload en CSV- eller Excel-eksport. I kortlægningstrinnet kan du matche eksisterende kolonner uden først at omarrangere kildefilen."
+            },
+            "validation": {
+              "title": "Validér før ændring af data",
+              "description": "Testkørslen fremhæver ugyldige rækker, dubletter og foreslåede ændringer. Intet importeres, før du gennemgår og bekræfter resultatet."
+            },
+            "history_rollback": {
+              "title": "Bevar et revisionsspor",
+              "description": "Historikken gemmer rapporter for hver import. Hvor poster stadig opfylder betingelserne, kan autoriserede brugere forhåndsvise og sikkert rulle registrerede ændringer tilbage."
+            }
+          }
+        },
+        "customer_communications": {
+          "title": "Konfigurér kundekommunikation",
+          "description": "Gennemgå skabeloner, påmindelser, testlevering og e-mailhistorik.",
+          "cta": "Fortsæt kommunikationsopsætning",
+          "steps": {
+            "templates": {
+              "title": "Gennemgå kundeskabelonerne",
+              "description": "Skabeloner holder bekræftelser og driftsbeskeder ensartede. Kontrollér formulering og studioidentitet, før du aktiverer automatisering."
+            },
+            "reminders": {
+              "title": "Indstil nyttige påmindelser",
+              "description": "Automatiseringer bestemmer, hvornår booking- og studiobeskeder klargøres. Vælg relevante tidspunkter, og undgå unødvendige beskeder."
+            },
+            "test_email": {
+              "title": "Send en rigtig opsætningstest",
+              "description": "Bekræft først afsenderens identitet, og brug derefter Send test-e-mail i opsætningen. Testen bekræfter levering uden at kontakte en kunde."
+            },
+            "delivery_history": {
+              "title": "Kontrollér leveringshistorik",
+              "description": "Historikken viser, hvad der blev sendt, og om leveringen kræver opmærksomhed, så teamet har ét sted at undersøge kommunikationsproblemer."
+            }
+          }
+        }
+      }
+    },
+    "productTour": {
+      "progress": "{current} af {total}",
+      "skip": "Spring rundvisningen over",
+      "close": "Luk rundvisning",
+      "back": "Tilbage",
+      "next": "Næste",
+      "openLaunchCenter": "Åbn Launch Center",
+      "welcome": {
+        "eyebrow": "Grundlæggende om arbejdsområdet",
+        "title": "Er du ny her?",
+        "description": "Tag en hurtig rundvisning på 60 sekunder i arbejdsområdets vigtigste funktioner. Du kan altid starte den igen under Hjælp.",
+        "duration": "Cirka 60 sekunder",
+        "start": "Start rundvisning",
+        "dismiss": "Nej tak",
+        "close": "Luk introduktion"
+      },
+      "steps": {
+        "overview": {
+          "title": "Velkommen til din oversigt",
+          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+        },
+        "launch_center": {
+          "title": "Konfigurér i Launch Center",
+          "description": "Launch Center styrer opsætningsforløbet. Brug tjeklisten til at konfigurere det vigtigste, forhåndsvise kundeoplevelsen og gøre dit studio klar til lancering."
+        },
+        "studio_switcher": {
+          "title": "Din studioskifter",
+          "description": {
+            "none": "Dit arbejdsområde vises her. Når du tilføjer en studiolokation, administrerer du den fra den samme skifter.",
+            "single": "Dit aktuelle studio vises her. Når du tilføjer flere lokationer, kan du skifte mellem dem fra det samme sted.",
+            "multiple": "Skift mellem studiolokationer her. Oversigten og driftsdataene opdateres, så de matcher den valgte lokation."
+          }
+        },
+        "navigation": {
+          "title": "Alt har et hjem",
+          "description": "Brug hovednavigationen til bookinger, kunder, studiodrift, salg, beskeder og rapporter. Tomme områder udfyldes, efterhånden som teamet begynder at arbejde."
+        },
+        "ai_assistant": {
+          "title": "Spørg AI-assistenten",
+          "description": "Åbn assistenten for at stille spørgsmål om dit studio og få driftsindsigt. Hvis AI ikke er aktiveret for dit abonnement eller din rolle, kan du vende tilbage til dette trin senere."
+        },
+        "settings": {
+          "title": "Indstillinger og tilpasning",
+          "description": "Administrér konfiguration, branding, det offentlige website, betalinger og teamadgang her. I Website Builder former du det, kunderne ser."
+        }
+      },
+      "final": {
+        "title": "Du er klar til at starte",
+        "description": "Fuldfør opsætningen i Launch Center, opret en testbooking, og forhåndsvis det, kunderne kommer til at se."
+      },
+      "mobileMenuDescription": "Denne indstilling er i hovedmenuen, der åbnes med den markerede knap. {description}"
+    },
+    "launchCenterLiveBadge": "Live",
+    "launchCenterReadyBadge": "Klar",
+    "launchCenterIssueBadge": "{count, plural, one {# problem} other {# problemer}}",
+    "launchCenterLiveStatus": "Dit offentlige studio er live, og alle kontroller af lanceringsklarhed er godkendt",
+    "launchCenterReadyStatus": "Din driftsopsætning er klar til lancering",
+    "launchCenterAttentionStatus": "{count, plural, one {# problem med lanceringsklarhed kræver opmærksomhed} other {# problemer med lanceringsklarhed kræver opmærksomhed}}"
+  },
+  "WorkspaceSettingsNav": {
+    "eyebrow": "Arbejdsområde",
+    "title": "Indstillinger",
+    "label": "Arbejdsrumsindstillinger",
+    "items": {
+      "setup": "Launch Center",
+      "general": "Generelt",
+      "modules": "Moduler og navigation",
+      "locations": "Lokationer",
+      "team": "Hold",
+      "teamName": "Holdets navn",
+      "roles": "Roller og tilladelser",
+      "payments": "Betalinger fra kunder",
+      "billing": "Abonnement og fakturering",
+      "invoicing": "Kundefakturering",
+      "ai": "AI & automatisering",
+      "publicSite": "Hjemmeside & branding",
+      "migration": "Migration Center",
+      "accessCodes": "Adgangskoder"
+    },
+    "overview": "Alle indstillinger",
+    "overviewDescription": "Vælg en kategori for at konfigurere arbejdsområdet.",
+    "categoryDescription": "Fokuseret navigation for {category}.",
+    "currentCategory": "Nuværende kategori",
+    "openCategory": "Åbn indstillinger for {category}",
+    "groups": {
+      "workspace": "Arbejdsområde",
+      "features": "Funktioner og navigation",
+      "website": "Hjemmeside & kundeoplevelse",
+      "access": "Team & adgang",
+      "payments": "Betalinger og fakturering",
+      "account": "Shario-konto"
+    }
+  },
+  "WorkspaceSettings": {
+    "eyebrow": "Arbejdsrumsindstillinger",
+    "title": "Generelle indstillinger",
+    "description": "Administrer de delte standardværdier, der bruges i hele dette arbejdsområde.",
+    "loading": "Indlæser arbejdsrumsindstillinger...",
+    "business": {
+      "title": "Arbejdsområdets identitet og standarder",
+      "description": "Disse værdier deles af alle teammedlemmer og kundevendte moduler."
+    },
+    "fields": {
+      "name": "Navn på arbejdsområde",
+      "slug": "Arbejdsområdets adresse",
+      "defaultLanguage": "Standardsprog",
+      "adminLanguage": "Arbejdsområdets sprog",
+      "publicDefaultLanguage": "Primært sprog på det offentlige website",
+      "secondaryPublicLanguage": "Sekundært sprog på det offentlige website",
+      "timezone": "Operationel tidszone",
+      "currency": "Operationel valuta"
+    },
+    "hints": {
+      "slug": "Arbejdsområdets adresse administreres separat, fordi en ændring påvirker links og domæner.",
+      "defaultLanguage": "Bruges, når et medlem eller kunde ikke har valgt deres eget sprog.",
+      "adminLanguage": "Det sprog, der bruges i hele studiets arbejdsområde for alle teammedlemmer.",
+      "publicDefaultLanguage": "Det sprog, kunderne ser først på dit offentlige website og dine kundesider.",
+      "secondaryPublicLanguage": "Du kan vælge at tilbyde kunderne ét ekstra sprog. Kun disse to sprog vises på lejerens offentlige sider.",
+      "timezone": "Bruges til bookinger, tidsplaner og automatiserede meddelelser.",
+      "currency": "Bruges til studioprodukter og kundebetalinger. Det er adskilt fra valutaen for dit Shario-abonnement."
+    },
+    "languageOptions": {
+      "noSecondary": "Intet sekundært sprog"
+    },
+    "currencyNotice": {
+      "title": "Eksisterende finansielle data er beskyttet",
+      "description": "Når der findes finansielle poster, kan serveren forhindre en valutaændring. Det undgår, at historiske beløb får en ny valutaetiket."
+    },
+    "workspaceStatus": {
+      "title": "Arbejdsrumsstatus",
+      "plan": "Plan",
+      "status": "Status",
+      "version": "Planversion"
+    },
+    "actions": {
+      "save": "Gem arbejdsrumsindstillinger",
+      "saving": "Gemmer...",
+      "retry": "Prøv igen"
+    },
+    "messages": {
+      "saved": "Arbejdsrumsindstillingerne blev gemt.",
+      "error": "Indstillingerne for arbejdsområdet kunne ikke gemmes.",
+      "loadError": "Indstillingerne for arbejdsområdet kunne ikke indlæses."
+    }
+  },
+  "VoucherEditor": {
+    "colors": {
+      "mainTitle": "Hovedtitel",
+      "useTextColor": "Brug tekstfarve"
+    },
+    "description": "To lige store halvdele: din tekst og gavekortkode til venstre, dit foto til højre.",
+    "assets": {
+      "image": "Foto i højre halvdel",
+      "imageHelp": "Fotoet fylder den højre halvdel fra top til bund. Fyld feltet beskærer kanterne; Vis hele fotoet bevarer hele billedet med plads omkring det.",
+      "imageFormats": "JPEG, PNG eller WebP · op til 8 MB. Kontrollér beskæringen i livevisningen.",
+      "uploadImage": "Upload foto",
+      "replaceImage": "Skift foto",
+      "cover": "Fyld feltet (beskær kanterne)",
+      "contain": "Vis hele fotoet",
+      "fit": "Fototilpasning"
+    },
+    "preview": {
+      "automatic": "Den unikke kode og udløbsdato tilføjes til venstre. Beløbet udskrives ikke; gavekortets indløsningsværdi er uændret. Denne forhåndsvisning og prøve-PDF’en bruger eksempeloplysninger."
+    }
+  },
+  "WorkspaceModules": {
+    "modules": {
+      "communications": {
+        "description": "E-mailhistorik, automatiseringer, skabeloner og e-mailindstillinger."
+      }
+    }
+  },
+  "PublicSiteEditor": {
+    "customerPortal": {
+      "pageLabels": {
+        "courses": "Kurser"
+      },
+      "navigationLabels": {
+        "courses": "Kurser"
+      },
+      "courses": {
+        "title": "Kurser i hvert værksted",
+        "description": "Tilpas kursussidens overskrift, introduktion og foto for hver adresse.",
+        "location": "Værkstedsadresse",
+        "headline": "Kursussidens overskrift",
+        "intro": "Kursussidens introduktion",
+        "image": "Kursussidens foto",
+        "inherit": "Tomme felter bruger den fælles kursustekst og dit brands forsidefoto.",
+        "noLocations": "Tilføj en værkstedsadresse for at tilpasse dens kursusside.",
+        "guestCheckoutEnabled": "Tillad køb af kurser uden konto",
+        "guestCheckoutDescription": "Gælder alle studier. Gæster kan købe et kursus uden at oprette en konto; kunder kan stadig logge ind for at booke. Kræver synlige kursussider og onlinebetaling, der er klar til brug. Udgiv ændringerne for at anvende indstillingen."
+      }
+    },
+    "preview": {
+      "pages": {
+        "portalCourses": "Kurser i kundeportalen"
+      }
+    },
+    "branding": {
+      "logoRedirectEnabled": "Gør logoet til et link",
+      "logoRedirectHint": "Når funktionen er slået til, åbner et klik på logoet den valgte side. Når den er slået fra, sker der ingenting.",
+      "logoRedirectUrl": "Logoets destinationsadresse",
+      "logoRedirectUrlHint": "Brug en fuld HTTPS-adresse eller en sti, der begynder med /. Siden åbnes i samme fane.",
+      "invalidLogoRedirectUrl": "Indtast en gyldig HTTPS-adresse eller en sti, der begynder med /."
+    },
+    "messages": {
+      "invalidLogoRedirectUrl": "Ret logoets destinationsadresse, før du gemmer eller udgiver."
+    }
+  },
+  "Products": {
+    "form": {
+      "courseContent": {
+        "title": "Kursussidens indhold",
+        "help": "Valgfrie tekster og fotos til kursussiden i kundeportalen. Tomme felter bruger produktets hovedindhold.",
+        "language": "Indholdets sprog",
+        "name": "Kursustitel",
+        "description": "Kort beskrivelse",
+        "details": "Kursusdetaljer",
+        "durationLabel": "Tekst om varighed",
+        "plainTextHelp": "Brug almindelig tekst. Linjeskift bevares.",
+        "gallery": "Kursusgalleri",
+        "galleryHelp": "Tilføj op til 12 HTTPS-billedadresser eller billedstier i forhold til webstedet. Produktbilledet bruges, hvis galleriet er tomt.",
+        "imageUrl": "Adresse til nyt galleribillede",
+        "addImage": "Tilføj billede",
+        "useProductImage": "Brug det nuværende produktbillede",
+        "imageLabel": "Galleribillede {number}",
+        "moveEarlier": "Flyt billede {number} frem",
+        "moveLater": "Flyt billede {number} tilbage",
+        "removeImage": "Fjern billede {number}",
+        "invalidImage": "Indtast en gyldig HTTPS-billedadresse eller en sti i forhold til webstedet (højst 2.000 tegn).",
+        "invalidText": "Kontrollér kursusteksten: Brug almindelig tekst inden for felternes grænser.",
+        "galleryLimit": "Du kan tilføje op til 12 galleribilleder.",
+        "locations": "Tilgængelig i disse værksteder",
+        "locationsHelp": "Lad valget være tomt for at vise kurset i alle værksteder. Datoer vises altid for det valgte værksted."
+      }
+    }
+  },
+  "CustomerCourses": {
+    "eyebrow": "Skab i dit værksted",
+    "title": "Kurser",
+    "description": "Udforsk kurser, vælg en dato, og book din plads.",
+    "location": "Værkstedsadresse",
+    "allCategories": "Alle kurser",
+    "search": "Søg efter kurser",
+    "noResults": "Ingen kurser matcher din søgning.",
+    "noCourses": "Der er endnu ingen kurser i dette værksted.",
+    "loading": "Indlæser kurser…",
+    "error": "Kurserne kunne ikke indlæses.",
+    "retry": "Prøv igen",
+    "details": "Kursusdetaljer",
+    "chooseDate": "Vælg en dato",
+    "upcomingDates": "Kommende datoer",
+    "noDates": "Nye datoer bliver snart offentliggjort.",
+    "pricePerPerson": "Pris pr. person",
+    "duration": "Varighed",
+    "durationMinutes": "{count} min.",
+    "capacity": "Gruppestørrelse",
+    "capacityPeople": "Op til {count} personer",
+    "back": "Tilbage til kurser",
+    "people": "Antal personer",
+    "addToCart": "Læg i kurven",
+    "inCart": "I din kurv",
+    "viewCart": "Se kurv",
+    "unavailable": "Dette kursus er ikke tilgængeligt i det valgte værksted.",
+    "selectDate": "Vælg en ledig dato for at fortsætte.",
+    "giftVoucher": "Giv et gavekort",
+    "previousImage": "Forrige billede",
+    "nextImage": "Næste billede",
+    "openGallery": "Åbn galleri for {name}",
+    "closeGallery": "Luk galleri",
+    "imagePosition": "Billede {current} af {total}",
+    "placesLeft": "Ledige pladser: {count}",
+    "full": "Fuldt booket",
+    "date": "Dato",
+    "added": "Kurset er lagt i din kurv.",
+    "checkoutPaused": "Booking er ikke tilgængelig i øjeblikket. Du kan stadig se kurserne."
+  },
+  "Sales": {
+    "paymentMethods": {
+      "unknown": "Ikke registreret"
+    }
+  },
+  "VoucherShopping": {
+    "buy": "Køb et gavekort",
+    "manage": "Indløs eller se mine gavekort",
+    "chooseTitle": "Vælg din gave",
+    "chooseDescription": "Vælg et gavekort og antal. Du behøver ikke en konto for at købe.",
+    "deliveryTitle": "Modtag dit gavekort",
+    "deliveryDescription": "Efter betalingen sendes dit gavekort som PDF til den e-mailadresse, du angiver.",
+    "redeemTitle": "Planlæg et besøg i studiet",
+    "redeemDescription": "Modtageren vælger en dato og bruger gavekortkoden ved betaling. Køb af et gavekort reserverer ikke en plads på et kursus.",
+    "selection": "Vælg gavekort",
+    "selected": "Valgt"
+  },
+  "BookingActions": {
+    "title": "Rediger booking",
+    "details": "Bookingoplysninger",
+    "chooseAction": "Hvad vil du gerne gøre?",
+    "extend": "Forlæng",
+    "move": "Flyt",
+    "cancel": "Annuller",
+    "extendTitle": "Forlæng booking",
+    "moveTitle": "Flyt booking",
+    "cancelTitle": "Annuller booking",
+    "extendHelp": "Behold din booking, og tilføj tid til sidst. Gæster, aktivitet og privatlivsindstilling forbliver uændrede. Du betaler kun for den ekstra tid.",
+    "extraTime": "Hvor meget længere?",
+    "minutes": "+{minutes} min.",
+    "endsAt": "Slutter kl. {time}",
+    "loading": "Kontrollerer ledige tider…",
+    "retry": "Prøv igen",
+    "quoteError": "Vi kunne ikke kontrollere forlængelserne. Prøv igen.",
+    "paymentMethod": "Betalingsmetode",
+    "card": "Betalingskort",
+    "credits": "Studiekreditter",
+    "payExtend": "Forlæng booking · {amount}",
+    "processing": "Behandler…",
+    "extensionError": "Vi kunne ikke bekræfte denne forlængelse. Kontroller din booking, før du prøver igen.",
+    "quoteChanged": "Bookingen eller prisen er ændret. Gennemgå de opdaterede muligheder, før du bekræfter.",
+    "currentTariff": "Den oprindelige timepris er ikke tilgængelig. Den ekstra tid beregnes efter studiets nuværende pris.",
+    "cardTimeLimit": "Brug studiekreditter, hvis din booking snart slutter. Der er ikke tid nok til at gennemføre kortbetalingen.",
+    "reasons": {
+      "unavailable": "Denne ekstra tid er ikke tilgængelig.",
+      "private": "En anden privat booking starter i dette tidsrum.",
+      "capacity": "Der er ikke nok kapacitet i studiet eller til aktiviteten.",
+      "closed": "Forlængelsen ligger uden for studiets åbningstider.",
+      "duration": "Dette overskrider den maksimale bookinglængde.",
+      "pending": "Der afventer allerede en betaling for en forlængelse. Gennemfør eller annuller betalingen, før du prøver igen."
+    },
+    "moveHelp": "Vælg et nyt starttidspunkt. Varigheden på {minutes} minutter, studiet, aktiviteten og gæsterne forbliver uændrede.",
+    "newDate": "Ny dato",
+    "startTime": "Starttidspunkt",
+    "availableTimes": "Ledige starttidspunkter",
+    "manualTime": "Indtast et starttidspunkt. Tilgængeligheden kontrolleres før bekræftelsen.",
+    "confirmMove": "Bekræft ny tid",
+    "moveInvalid": "Vælg en gyldig dato og et gyldigt tidspunkt.",
+    "moveError": "Dette tidspunkt er ikke længere ledigt. Vælg et andet.",
+    "readonly": "Tidspunktet for denne booking kan ikke længere ændres.",
+    "courseReadonly": "Kurstilmeldinger kan kun vises i portalen, fordi de er knyttet til en planlagt session. Kontakt studiet for at ændre eller annullere en tilmelding.",
+    "accessLocked": "Adgangskoden er udstedt eller ved at blive sendt, så bookingen kan ikke længere flyttes eller annulleres.",
+    "refundHelp": "Annulleringen kan ikke fortrydes. Det betalte beløb returneres som studiekreditter; betaling med medlemskredit gendanner denne kredit. Annullering er kun mulig, før adgangskoden er udstedt.",
+    "cancelQuestion": "Annuller denne booking?",
+    "confirmCancel": "Ja, annuller",
+    "keepBooking": "Behold booking",
+    "cancelling": "Annullerer…",
+    "cancelError": "Bookingen kunne ikke annulleres. Prøv igen.",
+    "cancelledTitle": "Booking annulleret",
+    "cancelledBody": "Din booking er annulleret, og tilbagebetalingen er gennemført.",
+    "movedTitle": "Booking flyttet",
+    "movedBody": "Dit nye bookingtidspunkt er bekræftet.",
+    "extendedTitle": "Booking forlænget",
+    "extendedBody": "Din booking slutter nu kl. {time}. Vi sender dig en bekræftelse via e-mail.",
+    "arrival": "Oplysninger om ankomst",
+    "accessCode": "Din adgangskode sendes via e-mail {minutes} minutter før bookingen.",
+    "cancelPayment": "Annuller betaling for forlængelse"
+  },
+  "EmailAutomations": {
+    "history": {
+      "types": {
+        "afterBookingCreated": "Bookingbekræftelse"
+      },
+      "pagination": {
+        "label": "Sider i e-mailleveringshistorikken",
+        "previous": "Forrige",
+        "next": "Næste",
+        "showing": "Viser {from}–{to} af {total} e-mailleveringer",
+        "newestFirst": "Nyeste først · 20 pr. side"
+      }
+    }
+  },
+  "TeamSettings": {
+    "actions": {
+      "add": "Inviter teammedlem"
+    },
+    "editor": {
+      "addTitle": "Inviter et teammedlem",
+      "email": "E-mailadresse",
+      "existingUserHint": "Personen modtager en invitation via e-mail. Nye medlemmer kan oprette en konto."
+    },
+    "empty": {
+      "description": "Inviter via e-mail, og vælg rolle og lokationer."
+    },
+    "invitations": {
+      "title": "Invitationer",
+      "description": "Adgangen begynder, når modtageren accepterer.",
+      "empty": "Ingen afventende invitationer.",
+      "resend": "Send igen",
+      "revoke": "Tilbagekald",
+      "revokeConfirm": "Tilbagekald invitationen til {email}?",
+      "revoked": "Invitationen er tilbagekaldt.",
+      "expires": "Udløber {date}",
+      "signInLink": "Loginlink",
+      "sendSignIn": "Send loginlink",
+      "send": "Send invitation",
+      "statuses": {
+        "pending": "Afventer",
+        "expired": "Udløbet"
+      },
+      "delivery": {
+        "pending": "E-mail afventer",
+        "sent": "E-mail sendt",
+        "failed": "E-mail mislykkedes"
+      },
+      "notices": {
+        "pending": "Invitationen til {email} er gemt. E-mailen afventer afsendelse.",
+        "sent": "Invitationen er sendt til {email}.",
+        "failed": "Invitationen til {email} er gemt, men e-mailen blev ikke sendt. Send den igen."
+      },
+      "errors": {
+        "resend": "Invitationen kunne ikke sendes igen.",
+        "revoke": "Invitationen kunne ikke tilbagekaldes.",
+        "send": "Loginlinket kunne ikke sendes.",
+        "resendTooSoon": "Vent et minut, før du sender invitationen igen.",
+        "rateLimited": "For mange invitationer. Vent 15 minutter, og prøv igen."
+      }
+    }
+  },
+  "TeamInvitation": {
+    "title": "Deltag i teamet",
+    "signInTitle": "Log ind på arbejdsområdet",
+    "description": "Invitation til {tenant} for {email}.",
+    "newAccount": "Opret din konto for at acceptere invitationen.",
+    "existingAccount": "Indtast din nuværende adgangskode. Den bliver ikke ændret.",
+    "resetRequired": "Opret en adgangskode via kontogendannelse, og vend tilbage til invitationen.",
+    "resetPassword": "Nulstil adgangskode (åbner ny fane)",
+    "accepted": "Invitationen er accepteret. Log ind for at fortsætte.",
+    "loginRetry": "Din adgang er klar, men login mislykkedes. Prøv at logge ind igen.",
+    "accept": "Accepter invitation",
+    "signIn": "Log ind",
+    "working": "Vent venligst…",
+    "unavailableTitle": "Invitationen er ikke tilgængelig",
+    "unavailable": "Invitationen er ugyldig, udløbet, tilbagekaldt eller kunne ikke indlæses. Bed om nødvendigt ejeren om en ny invitation.",
+    "retry": "Prøv igen",
+    "loading": "Indlæser invitation…",
+    "acceptError": "Invitationen kunne ikke accepteres. Kontrollér oplysningerne, eller bed om en ny invitation.",
+    "passwordReady": "Jeg har oprettet min adgangskode"
+  },
+  "Memberships": {
+    "planChange": {
+      "browse": "Se og sammenlign abonnementer",
+      "currentPlan": "Dit nuværende abonnement",
+      "scheduledPlan": "Planlagt abonnement",
+      "choose": "Skift ved næste fornyelse",
+      "title": "Skift dit medlemskab",
+      "description": "Din nuværende pris, dine timer og dine fordele forbliver uændrede indtil {date}.",
+      "renewal": "Fra {date} fornys abonnementet {plan} til {price}.",
+      "confirm": "Planlæg abonnementsskift",
+      "cancel": "Behold nuværende abonnement",
+      "pendingTitle": "Abonnementsskift planlagt",
+      "pendingDescription": "Dit medlemskab skifter til {plan} den {date}. Din nuværende betalte periode forbliver uændret.",
+      "cancelChange": "Annuller abonnementsskift",
+      "cancelConfirm": "Vil du annullere det planlagte abonnementsskift? Dit nuværende abonnement fortsætter med at blive fornyet som før.",
+      "cancelTitle": "Behold dit nuværende medlemskab",
+      "cancelConfirmAction": "Annuller planlagt skift",
+      "success": "Dit abonnementsskift er planlagt.",
+      "cancelled": "Dit planlagte abonnementsskift er annulleret.",
+      "error": "Vi kunne ikke opdatere dit planlagte abonnementsskift. Genindlæs siden, og prøv igen.",
+      "unavailable": "Du kan sammenligne abonnementer her. Du kan skifte abonnement, hvis du har et aktivt månedligt medlemskab uden en allerede planlagt opsigelse eller et abonnementsskift.",
+      "loading": "Kontrollerer dit nuværende medlemskab…",
+      "loadError": "Vi kunne ikke kontrollere dit nuværende medlemskab. Genindlæs siden, før du vælger et abonnement.",
+      "manage": "Administrer dit medlemskab",
+      "noImmediateCharge": "Der trækkes ingen betaling nu. Den nye månedspris gælder fra din næste fornyelse.",
+      "termsRequired": "Acceptér medlemsvilkårene for det nye abonnement, før du planlægger skiftet.",
+      "processing": "Opdaterer dit planlagte abonnementsskift…",
+      "cancelBeforeMembership": "Annuller først dit planlagte abonnementsskift, hvis du vil opsige medlemskabet."
+    },
+    "owner": {
+      "planForm": {
+        "benefitTypes": {
+          "studio_hours": {
+            "title": "Personlige Open Studio-timer",
+            "description": "Forudbetalt Open Studio-tid kun til medlemmet, delt mellem de omfattede steder.",
+            "editorHint": "Forudbetalt Open Studio-tid kun til medlemmet, delt mellem de omfattede steder."
+          },
+          "course_discount": {
+            "title": "Personlig kursusrabat",
+            "description": "Rabat på én kursusplads til medlemmet; andre deltagere betaler normal pris.",
+            "editorHint": "Rabat på én kursusplads til medlemmet; andre deltagere betaler normal pris."
+          }
+        },
+        "benefitDefaults": {
+          "studio_hours": "Personlige Open Studio-timer",
+          "course_discount": "Personlig kursusrabat"
+        },
+        "sharedSelectedLocations": "Fælles saldo på valgte steder",
+        "hourQuantity": "Timer pr. betalt periode",
+        "hoursValidation": "Angiv et positivt timetal svarende til hele minutter (f.eks. 4,5 timer).",
+        "rolloverPercent": "Overførselsgrænse (%)",
+        "rolloverHint": "0–25 % af den normale månedlige tildeling kan kun overføres til næste betalte måned. Vælg 0 for andre betalingsperioder.",
+        "eligibleCourses": "Omfattede kurser",
+        "eligibleCoursesHint": "Uden valg gælder alle kurser; ellers kun de valgte. Rabatten gælder kun medlemmets egen plads.",
+        "oneProductDiscount": "Vælg én produktrabat eller én personlig kursusrabat pr. plan.",
+        "translationsHint": "Skriv medlemskabernes navne, beskrivelser, vilkår og fordelsnavne på studiets sprog. Tomme oversættelser bruger teksten på hovedsproget.",
+        "primaryCurrencyHint": "Kunder betaler i studiets primære valuta ({currency}).",
+        "legacyBenefit": {
+          "preserved": "Fordelens indstillinger bevares; teksten kan redigeres."
+        }
+      }
+    },
+    "benefits": {
+      "benefitValues": {
+        "studioHours": "{duration} Open Studio-tid pr. betalt periode, kun til dig.",
+        "rollover": "Overfør højst {percentage} % af de normale månedlige timer kun til næste betalte måned.",
+        "personalCourseDiscount": "{percentage} % rabat på omfattede kurser kun for din plads. Andre deltagere betaler fuld pris."
+      },
+      "timeTrackingNotice": "Timerne dækker dine egne Open Studio-besøg. Book ledsagere separat eller betal normalt for hele bookingen. Overførte timer bruges først og udløber ved slutningen af næste betalte periode.",
+      "sharedLocations": "Fælles saldo hos: {locations}",
+      "currentPeriod": "Tilbage i denne periode",
+      "carryover": "Resterende overførte timer",
+      "carryoverExpires": "Overførsel udløber",
+      "adjustMinutes": "Justering i minutter"
+    },
+    "catalog": {
+      "recurringMonthDisclosure": "Fornyes automatisk til {amount} hver {count, plural, one {måned} other {# måneder}}, indtil du opsiger. Opsigelsen gælder fra slutningen af den betalte periode.",
+      "recurringYearDisclosure": "Fornyes automatisk til {amount} hver {count, plural, one {år} other {# år}}, indtil du opsiger. Opsigelsen gælder fra slutningen af den betalte periode."
+    }
+  },
+  "SetupCenter": {
+    "practice": {
+      "manual": {
+        "title": "Manuel bekræftelse",
+        "description": "Har du allerede testet en booking? Bekræft resultatet her.",
+        "checkbox": "Jeg bekræfter, at testbookingen blev gennemført korrekt",
+        "confirm": "Bekræft kontrollen",
+        "saving": "Gemmer…",
+        "confirmed": "Manuelt bekræftet den {date}.",
+        "stale": "Indstillingerne er ændret siden din bekræftelse. Test bookingen igen, og bekræft derefter resultatet.",
+        "undo": "Fjern bekræftelse",
+        "error": "Bekræftelsen kunne ikke gemmes. Prøv igen.",
+        "undoError": "Bekræftelsen kunne ikke fjernes. Prøv igen.",
+        "configurationChanged": "Indstillingerne blev ændret under din kontrol. Gennemgå de nyeste indstillinger, og bekræft derefter bookingen igen.",
+        "note": "Dette registrerer din egen kontrol. Det opretter ikke en booking, opkræver ikke betaling og sender ikke en besked."
+      }
+    },
+    "readiness": {
+      "items": {
+        "customerJourney": {
+          "descriptions": {
+            "manual": "Du har manuelt bekræftet, at en testbooking blev gennemført korrekt.",
+            "retest": "Indstillingerne er ændret. Kontrollér en booking igen, og bekræft resultatet.",
+            "action_required": "Kontrollér en booking, og bekræft resultatet.",
+            "waiting": "Gennemfør de tidligere opstartskontroller, før du kontrollerer en booking."
+          }
+        }
+      }
+    }
+  },
+  "SharioMarketing": {
+    "hero": {
+      "eyebrow": "Good spaces bring people together",
+      "title": "Your space.",
+      "highlight": "More possibilities.",
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
+      "cta": "Start free trial",
+      "secondary": "Explore Shario",
+      "note": "14-day trial · No credit card required",
+      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
+      "cardTitle": "A little less admin. A lot more connection.",
+      "cardText": "Make room for the people who make your space."
+    },
+    "features": {
+      "eyebrow": "One place for the everyday",
+      "title": "More time for your people.",
+      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "bookings": {
+        "title": "Bookings made simple",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+      },
+      "memberships": {
+        "title": "Memberships that fit",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+      },
+      "website": {
+        "title": "A website that’s yours",
+        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+      },
+      "payments": {
+        "title": "Payments in one place",
+        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+      },
+      "resources": {
+        "title": "Every space, organized",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+      },
+      "communication": {
+        "title": "Keep everyone connected",
+        "description": "Send updates, booking reminders and useful automated messages to your community."
+      },
+      "team": {
+        "title": "A team in sync",
+        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+      },
+      "insights": {
+        "title": "A clearer view",
+        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+      }
+    },
+    "website": {
+      "eyebrow": "Your space. Your identity.",
+      "title": "Your community starts with a warm welcome.",
+      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
+      "one": "Choose your colors, fonts and page layout",
+      "two": "Connect your offers, calendar and customer account",
+      "three": "Use a custom domain on eligible plans",
+      "cta": "Explore your website tools",
+      "example": "Example space website",
+      "spaceName": "Common Ground",
+      "nav": "Our space   ·   Memberships",
+      "previewEyebrow": "A place to belong",
+      "previewTitle": "Good work. Great company.",
+      "previewCta": "Explore our space",
+      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+    },
+    "spaces": {
+      "eyebrow": "For spaces that bring us together",
+      "title": "Different spaces. Shared possibilities.",
+      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
+      "cta": "Make room for your community",
+      "coworking": {
+        "title": "Coworking spaces",
+        "description": "Desks, meeting rooms and memberships for flexible working days."
+      },
+      "creative": {
+        "title": "Creative studios",
+        "description": "Shared equipment, workshops and room for your next idea."
+      },
+      "rehearsal": {
+        "title": "Rehearsal spaces",
+        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+      },
+      "community": {
+        "title": "Community hubs",
+        "description": "Events, memberships and shared places for local connections."
+      },
+      "workshops": {
+        "title": "Workshops & classes",
+        "description": "Classes, instructors, ticketed events and returning participants."
+      }
+    },
+    "faq": {
+      "eyebrow": "A few good questions",
+      "title": "Let’s make it simple.",
+      "one": {
+        "question": "What can I manage with Shario?",
+        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+      },
+      "two": {
+        "question": "Can I use my own branding?",
+        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+      },
+      "three": {
+        "question": "Can my customers book and manage their memberships?",
+        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+      },
+      "four": {
+        "question": "How do I get started?",
+        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+      }
+    },
+    "closing": {
+      "title": "Make room for more.",
+      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
+      "secondary": "Explore plans"
+    },
+    "product": {
+      "eyebrow": "Meet your everyday toolkit",
+      "title": "Everything your space needs, working together.",
+      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
+      "panelEyebrow": "Your connected workspace",
+      "panelTitle": "One place to bring it all together",
+      "solutions": "Find your kind of space"
+    },
+    "access": {
+      "eyebrow": "More freedom for your members",
+      "title": "Let your space work around your people.",
+      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+    },
+    "ai": {
+      "eyebrow": "Meet Shario AI",
+      "title": "A helping hand for everyday work.",
+      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
+      "panelEyebrow": "Connected to your workspace",
+      "panelTitle": "Helpful context. Clear next steps.",
+      "context": {
+        "title": "Context that counts",
+        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+      },
+      "drafts": {
+        "title": "A useful first draft",
+        "description": "Prepare customer messages, website copy and ideas for your next event."
+      },
+      "control": {
+        "title": "You stay in control",
+        "heading": "Your assistant. Your decisions.",
+        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+      }
+    },
+    "footer": {
+      "tagline": "Make room for more.",
+      "product": "Product",
+      "overview": "Explore Shario",
+      "ai": "Shario AI",
+      "pricing": "Pricing",
+      "spaces": "For your space",
+      "company": "Get started",
+      "about": "How it works",
+      "login": "Log in",
+      "register": "Start free trial",
+      "copyright": "© {year} Shario. All rights reserved."
+    }
+  }
+}

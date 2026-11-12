@@ -1,0 +1,56 @@
+@import "./publicStudioTheme.css";
+
+/* Keep the workspace on the same foundation as Skab's public pages without
+   changing a studio's customer-facing theme or custom booking design. */
+[data-skab-workspace-surface] {
+  --studio-blue-soft: color-mix(
+    in srgb,
+    var(--studio-blue) 5%,
+    var(--studio-white)
+  );
+  --studio-blue-line: color-mix(
+    in srgb,
+    var(--studio-blue) 24%,
+    var(--studio-white)
+  );
+  --studio-clay-soft: color-mix(
+    in srgb,
+    var(--studio-clay) 5%,
+    var(--studio-white)
+  );
+  --studio-label-size: 11px;
+  --studio-label-weight: 500;
+  --studio-label-tracking: 0.1em;
+  --studio-action-size: 14px;
+  --studio-radius: 22px;
+  --studio-control-radius: 14px;
+  --studio-surface-shadow: 0 12px 32px rgb(50 43 33 / 4.5%);
+  --color-canvas: var(--studio-paper);
+  --color-surface: var(--studio-paper);
+  --color-surface-panel: var(--studio-white);
+  --color-surface-raised: var(--studio-white);
+  --color-surface-muted: var(--studio-soft);
+  --color-ink: var(--studio-ink);
+  --color-ink-soft: var(--studio-muted);
+  --color-ink-muted: var(--studio-muted);
+  --color-ink-subtle: var(--studio-muted);
+  --color-line: var(--studio-rule);
+  --color-line-strong: var(--studio-rule);
+  --color-primary: var(--studio-blue);
+  --color-primary-hover: var(--studio-blue-hover);
+  --color-primary-soft: var(--studio-blue-soft);
+  --background: var(--studio-paper);
+  --foreground: var(--studio-ink);
+  --surface: var(--studio-paper);
+  --surface-panel: var(--studio-white);
+  --surface-raised: var(--studio-white);
+  --surface-muted: var(--studio-soft);
+  --border: var(--studio-rule);
+  --border-strong: var(--studio-rule);
+  --primary: var(--studio-blue);
+  --primary-hover: var(--studio-blue-hover);
+  --primary-soft: var(--studio-blue-soft);
+  --text-primary: var(--studio-ink);
+  --text-secondary: var(--studio-muted);
+  --text-subtle: var(--studio-muted);
+}

@@ -1,0 +1,24 @@
+/* Shared foundations for Shario's public pages and studio-owner workspace. */
+:is([data-skab-public-surface], [data-skab-workspace-surface]) {
+  --studio-paper: #ffffff;
+  --studio-white: #ffffff;
+  --studio-ink: #182333;
+  --studio-muted: #536174;
+  --studio-rule: #dce3ed;
+  --studio-blue: #2563eb;
+  --studio-blue-hover: #1d4ed8;
+  --studio-clay: #2563eb;
+  --studio-soft: #edf3ff;
+  --studio-radius: 12px;
+  --studio-action-radius: 12px;
+  --studio-action-shadow: 0 4px 12px rgb(38 60 213 / 10%);
+  color-scheme: light;
+  color: var(--studio-ink);
+  background-color: var(--studio-paper);
+  font-family: var(--font-skab-sans);
+}
+
+:is([data-skab-public-surface], [data-skab-workspace-surface])
+  :is(button, input, select, textarea) {
+  font-family: inherit;
+}

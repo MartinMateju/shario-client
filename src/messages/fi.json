@@ -1,0 +1,2539 @@
+{
+  "Bookings": {
+    "filters": {
+      "futureOnly": "Näytä vain käynnissä olevat ja tulevat varaukset"
+    },
+    "columns": {
+      "dateTime": "Päivämäärä ja aika",
+      "status": "Tila",
+      "payment": "Maksu"
+    },
+    "status": {
+      "confirmed": "Vahvistettu",
+      "pending": "Odottaa",
+      "awaitingPayment": "Odottaa maksua",
+      "processed": "Odottaa toimitusta",
+      "delivered": "Toimitettu",
+      "completed": "Valmis",
+      "cancelled": "Peruttu"
+    },
+    "payment": {
+      "paid": "Maksettu",
+      "pending": "Odottaa",
+      "failed": "Epäonnistui",
+      "expired": "Vanhentunut",
+      "refunded": "Palautettu"
+    }
+  },
+  "CustomerBookingDetails": {
+    "title": "Varauksen tiedot",
+    "loading": "Ladataan varauksen tietoja…",
+    "error": "Emme voineet ladata tätä varausta. Yritä uudelleen."
+  },
+  "Calendar": {
+    "filters": {
+      "filterActivities": "Suodata aktiviteetteja",
+      "openLegend": "Avaa selite",
+      "closeLegend": "Sulje selite",
+      "activity": "Aktiviteetti",
+      "allActivities": "Kaikki aktiviteetit"
+    },
+    "events": {
+      "myBooking": "Oma varaus",
+      "bookingPrivate": "Yksityinen",
+      "bookingPublic": "Julkinen",
+      "full": "Täynnä",
+      "people": "{count, plural, one {# henkilö} other {# henkilöä}}",
+      "customerId": "Asiakas #{id}",
+      "customerIds": "Asiakkaat {ids}",
+      "unknownCustomer": "Asiakastunnus ei ole saatavilla",
+      "booking": "Varaus",
+      "availability": "{remaining, plural, =0 {Täynnä} one {# paikka vapaana} other {# paikkaa vapaana}}",
+      "closed": "Suljettu",
+      "unavailable": "Studio ei ole käytettävissä"
+    },
+    "week": {
+      "privacyNote": "Violetti merkitsee yksityisiä varauksia ja turkoosi julkisia varauksia. Omat varauksesi on merkitty sinisellä tunnisteella."
+    },
+    "legend": {
+      "blocked": "Studio varattu pois käytöstä"
+    },
+    "availability": {
+      "available": "Vapaana",
+      "limited": "Vähän paikkoja",
+      "select": "Valitse tämä aika",
+      "insufficientTime": "Yhtäjaksoista vapaata aikaa ei ole riittävästi {minutes} minuutin varaukselle."
+    },
+    "month": {
+      "selectedDay": "Varaukset: {date}",
+      "ownBookingCount": "Omat varaukset: {count}",
+      "noBookings": "Tälle päivälle ei ole varauksia.",
+      "findTime": "Etsi aika",
+      "viewDay": "Näytä päivä",
+      "past": "Mennyt",
+      "bookingCount": "{count, plural, one {# varaus} other {# varausta}}"
+    },
+    "day": {
+      "places": "{count} paikkaa"
+    },
+    "toolbar": {
+      "newBooking": "Uusi varaus"
+    },
+    "activities": {
+      "WORKSTATION": "Työpisteet",
+      "SHARED_TABLE": "Yhteiset pöydät",
+      "GENERAL": "Yleinen kapasiteetti"
+    }
+  },
+  "Metadata": {
+    "homeTitle": "Your space. More possibilities.",
+    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+  },
+  "Common": {
+    "skipToContent": "Siirry sisältöön",
+    "learnMore": "Lue lisää",
+    "viewAll": "Näytä kaikki",
+    "back": "Takaisin",
+    "next": "Seuraava",
+    "close": "Sulje",
+    "optional": "Valinnainen"
+  },
+  "Dashboard": {
+    "sidebarLabel": "Studion hallinta",
+    "settingsNavigationLabel": "Työtilan asetukset",
+    "utilityNavigationLabel": "Studion määritys ja asetukset",
+    "expandGroup": "Laajenna {group}",
+    "collapseGroup": "Pienennä {group}",
+    "expandSidebar": "Laajenna studion navigointi",
+    "collapseSidebar": "Pienennä studion navigointi",
+    "skipToContent": "Siirry studion sisältöön",
+    "changeStudio": "Vaihda studiota",
+    "plan": "{plan}-paketti",
+    "plans": {
+      "starter": "Starter",
+      "professional": "Professional",
+      "studio_plus": "Space Plus",
+      "enterprise": "Enterprise"
+    },
+    "mobileStudioHint": "Vaihda studiota tai hallitse työtilaa Asetuksissa.",
+    "openNavigation": "Avaa hallintapaneelin navigointi",
+    "closeNavigation": "Sulje hallintapaneelin navigointi",
+    "greeting": "Mukava nähdä taas, {name}",
+    "greetingMorning": "Hyvää huomenta, {name}",
+    "greetingAfternoon": "Hyvää päivää, {name}",
+    "greetingEvening": "Hyvää iltaa, {name}",
+    "subheading": "Tässä studion tämän päivän tärkeimmät tapahtumat.",
+    "setupCenter": "Launch Center",
+    "openSetupCenter": "Avaa Launch Center",
+    "launchCenterRequiredProgress": "{completed}/{total} julkaisun tarkistuslistan kohdasta valmiina",
+    "continueSetup": "Jatka julkaisua · {percentage} %",
+    "continueSetupLabel": "Jatka studion julkaisua, {percentage} % valmiina",
+    "notifications": "Avaa ilmoitukset",
+    "notificationsUnread": "Avaa ilmoitukset, {count, plural, one {# lukematon ilmoitus} other {# lukematonta ilmoitusta}}",
+    "openAccount": "Avaa tilivalikko",
+    "newBooking": "Uusi varaus",
+    "openAiAssistant": "Avaa Studio Assistant",
+    "aiAssistant": "Kysy tekoälyltä",
+    "fallbackFirstName": "ystävä",
+    "fallbackStudioName": "Studiosi",
+    "statsLabel": "Studion yleiskatsaus tänään",
+    "studioSwitcher": {
+      "switchStudio": "Vaihda studiota",
+      "upgradeRequired": "Nykyinen pakettisi edellyttää päivitystä",
+      "yourStudios": "Studiosi",
+      "selected": "Valittu studio",
+      "unnamedStudio": "Nimetön studio",
+      "noStudios": "Ei studioita",
+      "noStudiosAvailable": "Tälle tilille ei ole saatavilla studiota",
+      "addStudio": "Lisää ensimmäinen studiosi",
+      "addNewStudio": "Lisää uusi studio",
+      "addFirstStudioDescription": "Luo studion ensimmäinen toimipiste",
+      "addNewStudioDescription": "Luo studion toinen toimipiste",
+      "upgradeToAddStudio": "Lisää toinen studio",
+      "studioLimitReached": "Pakettiisi sisältyy enintään {count} studiota",
+      "loadingTitle": "Studioita ladataan",
+      "loadingDescription": "Valmistelemme studiosi toimipisteitä.",
+      "loadError": "Studioita ei voitu ladata",
+      "loadErrorDescription": "Tarkista yhteys ja yritä uudelleen.",
+      "retry": "Yritä uudelleen"
+    },
+    "nav": {
+      "overview": "Yleiskatsaus",
+      "setup": "Launch Center",
+      "calendar": "Kalenteri",
+      "bookings": "Varaukset",
+      "allBookings": "Kaikki varaukset",
+      "customers": "Asiakkaat",
+      "studio": "Studio",
+      "products": "Tuotteet ja kurssit",
+      "productsPricing": "Tuotteet ja hinnoittelu",
+      "sales": "Myynti",
+      "salesOverview": "Myynnin yleiskatsaus",
+      "finance": "Talous",
+      "transactions": "Tapahtumat",
+      "invoices": "Laskut",
+      "coursesEvents": "Kurssit",
+      "memberships": "Jäsenyydet",
+      "inventory": "Varasto",
+      "staffPlanning": "Henkilöstösuunnittelu",
+      "messages": "Viestit",
+      "inbox": "Saapuneet",
+      "automations": "Automaatiot",
+      "templates": "Mallit",
+      "knowledge": "Knowledge Hub",
+      "reports": "Raportit",
+      "ai": "Shario AI",
+      "settings": "Asetukset",
+      "lostFound": "Löytötavarat",
+      "customOrders": "Tilaustyöt"
+    },
+    "routeTitles": {
+      "workspace": "Työtila",
+      "setup": "Launch Center",
+      "ai": "Shario AI",
+      "calendar": "Kalenteri",
+      "bookings": "Varaukset",
+      "coursesEvents": "Kurssit",
+      "customers": "Asiakkaat",
+      "products": "Tuotteet ja kurssit",
+      "productsPricing": "Tuotteet ja hinnoittelu",
+      "orders": "Myynti ja tilaukset",
+      "salesOverview": "Myynnin yleiskatsaus",
+      "transactions": "Tapahtumat",
+      "invoices": "Laskut",
+      "memberships": "Jäsenyydet",
+      "communications": "Viestintä",
+      "messages": "Viestit",
+      "knowledge": "Knowledge Hub",
+      "reports": "Raportit",
+      "finance": "Talous",
+      "settings": "Asetukset",
+      "modules": "Moduulit ja navigointi",
+      "publicSite": "Verkkosivusto ja brändi",
+      "locations": "Studion toimipisteet",
+      "team": "Tiimin jäsenet",
+      "roles": "Roolit ja käyttöoikeudet",
+      "payments": "Asiakasmaksut",
+      "billing": "Tilaus ja laskutus",
+      "invoicing": "Asiakaslaskutus",
+      "aiSettings": "Tekoälyasetukset",
+      "account": "Tilin asetukset",
+      "preferences": "Työtilan asetukset",
+      "commerce": "Kaupankäynti",
+      "operations": "Toiminnot",
+      "automations": "Automaatiot",
+      "inventory": "Varasto",
+      "suppliers": "Toimittajat",
+      "tasks": "Henkilöstösuunnittelu",
+      "generalSettings": "Yleiset asetukset",
+      "migration": "Migration Center",
+      "notifications": "Ilmoitukset",
+      "events": "Tapahtumat",
+      "lostFound": "Löytötavarat",
+      "customOrders": "Tilaustyöt"
+    },
+    "stats": {
+      "bookings": "Tämän päivän varaukset",
+      "occupancy": "Käyttöaste",
+      "revenue": "Tämän kuun liikevaihto",
+      "customers": "Uudet asiakkaat"
+    },
+    "quickActions": {
+      "title": "Pikatoiminnot",
+      "newBooking": "Uusi varaus",
+      "addCustomer": "Lisää asiakas",
+      "createClass": "Luo kurssi",
+      "sendMessage": "Lähetä viesti"
+    },
+    "revenueChart": {
+      "title": "Liikevaihto ja varaukset",
+      "revenue": "Liikevaihto",
+      "bookings": "Varaukset",
+      "chartLabel": "Liikevaihto ja varaustoiminta viimeisten 30 päivän ajalta",
+      "ranges": {
+        "7days": "7 päivää",
+        "30days": "30 päivää",
+        "12months": "12 kuukautta"
+      }
+    },
+    "overview": {
+      "eyebrow": "Reaaliaikainen studion yleiskatsaus",
+      "context": "{date} · Studiosi tärkeimmät asiat.",
+      "dateLabel": "Yleiskatsauksen päivämäärä",
+      "dateNavigation": {
+        "previousDay": "Edellinen päivä",
+        "nextDay": "Seuraava päivä",
+        "today": "Tänään",
+        "backToToday": "Palaa tähän päivään",
+        "chooseDate": "Valitse päivämäärä"
+      },
+      "partialCoverage": "{count, plural, one {Yksi tietolähde ei ole saatavilla. Sen arvot näytetään puuttuvina, ei nollina.} other {# tietolähdettä ei ole saatavilla. Niiden arvot näytetään puuttuvina, ei nollina.}}",
+      "briefing": {
+        "verifiedEyebrow": "Vahvistettu studiokatsaus",
+        "operationalEyebrow": "Studiokatsaus",
+        "aiEyebrow": "Tekoälyn studiokatsaus",
+        "calmHeadline": "Studiosi toimii sujuvasti.",
+        "attentionHeadline": "Muutama asia vaatii huomiotasi.",
+        "partialHeadline": "Nämä asiat voimme vahvistaa juuri nyt.",
+        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
+        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "partialSummary": "Katsauksessa on tällä hetkellä {count, plural, one {# käytettävissä oleva lähde} other {# käytettävissä olevaa lähdettä}}. Puuttuvat arvot jätetään tuntemattomiksi sen sijaan, että ne näytettäisiin nollina.",
+        "coverageComplete": "Perustuu {count, plural, one {# studiosignaaliin} other {# studiosignaaliin}}",
+        "coveragePartial": "Perustuu {count, plural, one {# käytettävissä olevaan studiosignaaliin} other {# käytettävissä olevaan studiosignaaliin}} · osittainen kattavuus",
+        "updated": "Päivitetty {time}",
+        "sources": "Perustuu {count, plural, one {# studiosignaaliin} other {# studiosignaaliin}}",
+        "refresh": "Päivitä katsaus",
+        "preparing": "Valmistellaan tämän päivän tietopohjaista katsausta…",
+        "checkingFreshness": "Tarkistetaan uudempia studiotietoja…",
+        "prioritiesLabel": "Tämän päivän vahvistetut painopisteet",
+        "fresh": "Ajan tasalla",
+        "stale": "Päivitystä suositellaan",
+        "review": "Tarkista painopisteet",
+        "viewTodaySchedule": "Näytä tämän päivän aikataulu",
+        "viewSchedule": "Näytä aikataulu",
+        "openOperations": "Avaa toiminnot",
+        "reviewPrompt": "Tarkista studion tämän päivän painopisteet, selitä niiden merkitys, viittaa taustalla oleviin tietueisiin ja ehdota turvallisimpia seuraavia toimia.",
+        "open": "Avaa katsaus",
+        "generate": "Luo tekoälykatsaus",
+        "loading": "Ladataan uusinta studiokatsausta…",
+        "refreshError": "Katsausta ei voitu päivittää. Vahvistettu toiminnallinen yleiskatsaus on edelleen käytettävissä."
+      },
+      "attention": {
+        "title": "Vaatii huomiotasi",
+        "clearHeading": "Kaikki kunnossa",
+        "partialHeading": "Painopisteiden kattavuus",
+        "items": {
+          "unpaidBookings": "maksamattomat varaukset",
+          "lowStock": "vähissä olevat tuotteet",
+          "overdueTasks": "myöhässä olevat henkilöstötehtävät"
+        },
+        "viewAll": "Näytä kaikki painopisteet",
+        "clearTitle": "Ei kiireellisiä painopisteitä",
+        "clearDescription": "Mikään ei vaadi juuri nyt välittömiä toimia.",
+        "partialTitle": "Jotkin painopisteet eivät ehkä ole saatavilla",
+        "partialDescription": "Saatavilla olevissa lähteissä ei ole kiireellisiä kohteita, mutta kattavuus on puutteellinen."
+      },
+      "flow": {
+        "title": "Studion toiminnot",
+        "description": "Valitun päivän suunnitelma ja studion reaaliaikainen tila.",
+        "emptyTitle": "Studiotoimintaa ei ole vielä ajoitettu",
+        "emptyDescriptionAll": "Missään studiossa ei ole käsiteltäviä varauksia tai esineitä {date}.",
+        "emptyDescriptionSelected": "Valitussa studiossa ei ole käsiteltäviä varauksia tai esineitä {date}.",
+        "openCalendar": "Avaa kalenteri",
+        "dateUnavailable": "Valittu päivämäärä",
+        "allLocations": "Kaikki studiot",
+        "selectedLocation": "Valittu studio",
+        "groups": {
+          "visits": {
+            "title": "Varaukset ja läsnäolo",
+            "description": "Päivän suunnitelma ja reaaliaikainen läsnäolo"
+          }
+        },
+        "stageCount": "{stage}: {count}",
+        "stageUnavailable": "{stage}: tietoja ei ole saatavilla",
+        "stages": {
+          "booked": "Varattu",
+          "arriving": "Saapumassa",
+          "inStudio": "Studiossa",
+          "readyToFire": "Polttovalmis"
+        }
+      },
+      "rhythm": {
+        "title": "Tämän päivän rytmi",
+        "subtitle": "Valitulle päivämäärälle ja studioalueelle ajoitetut tapaamiset.",
+        "openCalendar": "Avaa kalenteri",
+        "unavailable": "Aikataulutiedot eivät ole käytettävissä nykyisillä käyttöoikeuksillasi.",
+        "emptyTitle": "Rauhallinen päivä studiolla",
+        "emptyDescription": "Tälle päivälle ei ole ajoitettu tapaamisia.",
+        "untitled": "Studiotapaaminen",
+        "locationFallback": "Studio",
+        "guests": "{count, plural, one {# vieras} other {# vierasta}}"
+      },
+      "pulse": {
+        "title": "Liiketoiminnan tilanne",
+        "openReports": "Avaa raportit",
+        "occupancy": "käyttöaste",
+        "revenue": "liikevaihto",
+        "bookings": "varaukset",
+        "newCustomers": "uudet asiakkaat",
+        "chartLabel": "Studion käyttöasteen kehitys",
+        "noTrend": "Kehitystietoja ei ole saatavilla tältä ajanjaksolta."
+      },
+      "signals": {
+        "open": "Avaa",
+        "unavailable": "Nämä tiedot eivät ole saatavilla nykyisillä moduuleillasi tai käyttöoikeuksillasi.",
+        "messages": {
+          "title": "Viimeisimmät viestit",
+          "count": "{count, plural, =0 {Ei lukemattomia keskusteluja} one {# lukematon keskustelu} other {# lukematonta keskustelua}}",
+          "empty": "Mikään viimeaikainen asiakasviesti ei odota vastausta.",
+          "untitled": "Asiakaskeskustelu",
+          "noPreview": "Avaa keskustelu nähdäksesi uusimman viestin."
+        },
+        "tasks": {
+          "title": "Tulevat tehtävät",
+          "count": "{count, plural, =0 {Ei avoimia tehtäviä} one {# avoin tehtävä} other {# avointa tehtävää}}",
+          "empty": "Erääntyviä henkilöstötehtäviä ei ole.",
+          "untitled": "Studiotehtävä",
+          "unassigned": "Ei määritetty",
+          "priorities": {
+            "low": "Matala",
+            "normal": "Normaali",
+            "high": "Korkea",
+            "urgent": "Kiireellinen"
+          }
+        }
+      },
+      "opportunity": {
+        "eyebrow": "Business Advisor",
+        "none": "Välitöntä toiminnallista mahdollisuutta ei havaittu.",
+        "guidance": "Nostan hyödyllisiä mahdollisuuksia esiin täällä, kun uusia studiotietoja tulee saataville.",
+        "openAdvisor": "Avaa Business Advisor",
+        "courseFallback": "Tämä kurssi",
+        "evidence": "Perustuu {sessions} lähes täyteen tapaamiseen viimeisten 8 viikon aikana · ei automaattisia muutoksia.",
+        "weekdays": {
+          "monday": "Maanantai",
+          "tuesday": "Tiistai",
+          "wednesday": "Keskiviikko",
+          "thursday": "Torstai",
+          "friday": "Perjantai",
+          "saturday": "Lauantai",
+          "sunday": "Sunnuntai",
+          "unknown": "toistuva"
+        },
+        "items": {
+          "lowOccupancy": "Tulevan ajanjakson käyttöaste on vain {value} %.",
+          "noBookings": "Ei vielä tulevia varauksia.",
+          "inventoryReorder": "{value, plural, one {# varastotuote on ehkä tilattava uudelleen.} other {# varastotuotetta on ehkä tilattava uudelleen.}}",
+          "repeatedCourseSaturation": "Kurssin {course} keskimääräinen käyttöaste on {value} % viimeaikaisissa päivän {day} tapaamisissa klo {time}. Tarkista, voidaanko kapasiteettia kasvattaa turvallisesti."
+        },
+        "actions": {
+          "createOffer": "Luo tarjous",
+          "reviewInventory": "Tarkista varasto",
+          "reviewCourseCapacity": "Tarkista kapasiteetti"
+        }
+      },
+      "error": {
+        "title": "Studion yleiskatsausta ei voitu ladata",
+        "description": "Tietojasi ei ole muutettu. Tarkista yhteys ja yritä uudelleen.",
+        "retry": "Yritä uudelleen"
+      },
+      "firstBooking": {
+        "title": "Ensimmäinen varauksesi on täällä",
+        "description": "Yleiskatsauksesi alkaa nyt näyttää todellista studiotoimintaa ja havaintoja.",
+        "dismiss": "Sulje ensimmäisen varauksen juhlistus"
+      },
+      "snapshot": {
+        "title": "Yleiskatsaus",
+        "bookings": "Varaukset",
+        "expectedVisitors": "Odotetut kävijät",
+        "actionablePieces": "Huomiota vaativat esineet",
+        "unreadMessages": "Lukemattomat viestit",
+        "revenue": "Liikevaihto",
+        "date": "Valittu päivämäärä",
+        "currentState": "Nykytila",
+        "live": "Reaaliaikainen",
+        "unavailable": "Ei saatavilla"
+      }
+    },
+    "help": {
+      "open": "Ohje",
+      "menuLabel": "Ohjevalikko",
+      "title": "Ohjeet ja oppaat",
+      "close": "Sulje ohje",
+      "productTour": "Tuote-esittely",
+      "productTourDescription": "Tutustu työtilan perusteisiin lyhyellä opastetulla kierroksella.",
+      "productTourSection": "Työtilan perusteet",
+      "startProductTour": "Aloita kierros",
+      "replayProductTour": "Toista kierros"
+    },
+    "guides": {
+      "centerTitle": "Oppaat",
+      "centerDescription": "Lyhyitä, valinnaisia opastuksia useimmin tekemääsi työhön.",
+      "duration": "Noin 60 sekuntia",
+      "completed": "Valmis",
+      "startGuide": "Aloita opas",
+      "replayGuide": "Toista opas",
+      "availableTitle": "Tutustuttavat oppaat",
+      "completedTitle": "Valmiit oppaat",
+      "summary": "{completed}/{total} valmiina",
+      "noneAvailable": "Nykyiselle roolillesi ei ole saatavilla oppaita.",
+      "promptEyebrow": "Oletko uusi täällä?",
+      "promptTitle": "Tutustu oppaaseen {guide}",
+      "start": "Aloita opas",
+      "notNow": "Ei nyt",
+      "progress": "{current}/{total}",
+      "skip": "Ohita opas",
+      "close": "Sulje opas",
+      "back": "Takaisin",
+      "next": "Seuraava",
+      "finish": "Viimeistele opas",
+      "finishedTitle": "Olet valmis",
+      "finishedDescription": "Tunnet nyt oppaan {guide} perusteet. Voit toistaa oppaan milloin tahansa Ohjeesta.",
+      "items": {
+        "studio_location_setup": {
+          "title": "Set up a studio location",
+          "description": "Understand the address, customer choices, capacity and booking rules before opening a location.",
+          "steps": {
+            "identity": {
+              "title": "Name the location clearly",
+              "description": "Use the customer-facing name your team will also recognize in calendars, reports and studio switching."
+            },
+            "address": {
+              "title": "Set the local context",
+              "description": "The address helps customers arrive, while the timezone keeps every displayed booking time accurate."
+            },
+            "contact": {
+              "title": "Add a reliable contact",
+              "description": "The calling code and local number are saved together so customers can use the phone number internationally."
+            },
+            "activity_choice": {
+              "title": "Choose the customer experience",
+              "description": "Require an activity, make it optional, or hide the question completely when every visit works the same way."
+            },
+            "activity_capacity": {
+              "title": "Protect limited resources",
+              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+            },
+            "overall_capacity": {
+              "title": "Set the shared safety limit",
+              "description": "Overall capacity counts every person across all overlapping bookings and activities at this location."
+            },
+            "timing": {
+              "title": "Make available times predictable",
+              "description": "The start interval controls when bookings may begin; minimum and maximum duration control how long they may run."
+            },
+            "review": {
+              "title": "Review it as a customer",
+              "description": "This live summary explains the resulting booking rules in plain language before you create the location."
+            }
+          }
+        },
+        "first_booking": {
+          "title": "Luo ensimmäinen varauksesi",
+          "description": "Tutustu kalenterin työnkulkuun ajan löytämisestä asiakkaan vahvistamiseen.",
+          "steps": {
+            "calendar": {
+              "title": "Varauskalenterisi",
+              "description": "Kalenteri kokoaa studion saatavuuden, tapaamiset ja asiakasvaraukset yhteen. Vaihda päivä-, viikko- tai kuukausinäkymää menettämättä paikkaasi."
+            },
+            "create_action": {
+              "title": "Aloita varaus",
+              "description": "Käytä Uusi varaus -toimintoa, kun asiakas varaa puhelimitse, paikan päällä tai muussa kanavassa. Korostettu toiminto ei ole käytettävissä oppaan ollessa avoinna."
+            },
+            "booking_details": {
+              "title": "Valitse oikea konteksti",
+              "description": "Etsi oikea saatavuus studion, toiminnan ja tiimin suodattimilla ennen varauksen luomista tai tarkistamista."
+            },
+            "confirmation": {
+              "title": "Tarkista lopputulos",
+              "description": "Vahvistetut varaukset näkyvät kalenterissa. Avaa varaus tarkistaaksesi sen asiakkaan, maksun ja tapaamisen tiedot."
+            }
+          }
+        },
+        "website_builder": {
+          "title": "Mukauta verkkosivustoasi",
+          "description": "Muotoile julkinen sivusi, esikatsele sitä ja tutustu julkaisemiseen.",
+          "steps": {
+            "editor_sections": {
+              "title": "Rakenna osioilla",
+              "description": "Muokkaa brändiä, sisältöä, varausvaihtoehtoja ja asiakkaille näkyviä tietoja osioiden välilehdillä."
+            },
+            "live_preview": {
+              "title": "Esikatsele asiakkaana",
+              "description": "Reaaliaikainen esikatselu näyttää julkisen sivustosi eri sivuilla, kielillä ja laiteko'oissa."
+            },
+            "branding": {
+              "title": "Tee siitä tunnistettavasti omasi",
+              "description": "Määritä värit, typografia ja visuaaliset yksityiskohdat säilyttäen hyvä kontrasti ja yhtenäinen studioidentiteetti."
+            },
+            "publish": {
+              "title": "Tallenna ja julkaise",
+              "description": "Tallentaminen säilyttää luonnoksen. Julkaiseminen näyttää tarkistetun version asiakkaille ja pysyy käyttöoikeuksilla suojattuna."
+            }
+          }
+        },
+        "memberships": {
+          "title": "Myy jäsenyyksiä, saldoa ja lahjakortteja",
+          "description": "Tutustu jäsenyyspaketteihin, aktiivisiin jäseniin, asiakassaldoon ja joustaviin lahjakortteihin.",
+          "steps": {
+            "plans": {
+              "title": "Suunnittele jäsenyyspaketti",
+              "description": "Paketit määrittävät hinnan, voimassaolon, toimipisteet ja edut. Julkaisu- ja myyntitoiminnot pysyvät käyttöoikeuksilla suojattuina."
+            },
+            "customers": {
+              "title": "Näytä aktiiviset jäsenet",
+              "description": "Asiakkaat-välilehti näyttää paketin omistajan, nykyisen kauden ja vielä käytettävissä olevat edut."
+            },
+            "credits": {
+              "title": "Ymmärrä asiakassaldo",
+              "description": "Jäsenyysetujen saldot kuuluvat pakettiin. Erillistä asiakassaldoa hallitaan asiakasprofiilissa, ja sitä voi käyttää itsenäisesti siellä, missä toiminto on käytössä."
+            },
+            "vouchers": {
+              "title": "Tarjoa joustavia lahjoja",
+              "description": "Lahjakorttitarjoukset näkyvät muun valikoiman rinnalla valmiina asiakkaiden ostettaviksi ja lunastettaviksi."
+            }
+          }
+        },
+        "ai_reports": {
+          "title": "Hyödynnä tekoälyä ja raportteja",
+          "description": "Muunna studiotoiminta kysymyksiksi, suosituksiksi ja mitattaviksi kehityssuunniksi.",
+          "steps": {
+            "assistant": {
+              "title": "Kysy Studio Assistantilta",
+              "description": "Avaa avustaja työtilaa koskevia kysymyksiä ja selityksiä varten. Se noudattaa samoja käyttöoikeusrajoja kuin muu hallintapaneeli."
+            },
+            "advisor": {
+              "title": "Aloita yleiskatsauksesta",
+              "description": "Raportin yleiskatsaus kokoaa tärkeimmät studiosignaalit yhteen ennen yksityiskohtaisempiin osioihin tutustumista."
+            },
+            "report_filters": {
+              "title": "Määritä raportoinnin konteksti",
+              "description": "Valitse päivämäärät, sijainti, vertailu ja tarkkuus, jotta jokainen mittari vastaa samaan liiketoimintakysymykseen."
+            },
+            "report_insights": {
+              "title": "Siirry mittareista havaintoihin",
+              "description": "Selitä muutoksia ja tunnista seuraava hyödyllinen toimi raporttivälilehtien ja saatavilla olevan tekoälykatsauksen avulla."
+            }
+          }
+        },
+        "team_management": {
+          "title": "Hallitse tiimiäsi",
+          "description": "Tutustu siihen, miten roolit ja toimipistekohtainen käyttö pitävät työtilan vastuut selkeinä.",
+          "steps": {
+            "members": {
+              "title": "Työtilasi tiimi",
+              "description": "Jokaisella jäsenellä on rooli, tila, profiili ja toimipisterajaus, jotka määrittävät, mitä hän voi nähdä ja tehdä."
+            },
+            "invite": {
+              "title": "Lisää oikea henkilö",
+              "description": "Tiimin hallinnoijat voivat lisätä olemassa olevan työtilan käyttäjän ja määrittää vastuut yhdessä hallitussa työnkulussa."
+            },
+            "roles": {
+              "title": "Käytä rooleja harkitusti",
+              "description": "Sisäänrakennetut ja mukautetut roolit ryhmittelevät käyttöoikeudet, jotta pääsynhallinta pysyy ymmärrettävänä studion kasvaessa."
+            },
+            "location_access": {
+              "title": "Rajaa käyttö toimipisteittäin",
+              "description": "Rajoita tiimin jäsen valittuihin studioihin, kun hänen työnsä ei kata kaikkia toimipisteitä."
+            }
+          }
+        },
+        "door_access_codes": {
+          "title": "Hallinnoi ovien pääsykoodeja",
+          "description": "Opi järjestämään sisäänkäynnit, seuraamaan varastoa, lisäämään koodeja ja tarkastamaan muutokset.",
+          "steps": {
+            "scope": {
+              "title": "Ymmärrä, mitä Shario hallitsee",
+              "description": "Tämä on fyysisten lukkojen koodien turvallinen luettelo. Tässä vaiheessa Shario ei ohjelmoi lukkoa eikä lähetä koodeja sähköpostitse."
+            },
+            "entrances": {
+              "title": "Valitse toimipiste ja sisäänkäynti",
+              "description": "Jokainen koodivaranto kuuluu yhteen toimipisteeseen ja yhteen fyysiseen sisäänkäyntiin tai lukkoon. Pidä eri lukot erillään."
+            },
+            "stock": {
+              "title": "Seuraa koodien saatavuutta",
+              "description": "Yhteenveto näyttää saatavilla olevat, uudelleenkäytettävät, vanhenevat ja varakoodit. Alhaisen varaston raja varoittaa ajoissa."
+            },
+            "add_codes": {
+              "title": "Lisää koodeja turvallisesti",
+              "description": "Luo koodi suoraan tai tuo CSV-tiedosto. Vahvista ennen käyttöönottoa, että koodi on ohjelmoitu ja testattu."
+            },
+            "lifecycle": {
+              "title": "Hallitse koodin elinkaarta",
+              "description": "Näytä koodi vain tarvittaessa, muokkaa sen voimassaoloa tai poista se pysyvästi käytöstä."
+            },
+            "audit": {
+              "title": "Pidä toimet jäljitettävinä",
+              "description": "Tarkastushistoria kirjaa luomiset, muutokset, paljastukset, tuonnit ja poistot näyttämättä kokonaisia koodeja."
+            }
+          }
+        },
+        "first_offer": {
+          "title": "Julkaise ensimmäinen tarjouksesi",
+          "description": "Muuta Open Studio tai kurssi asiakkaille valmiiksi tarjoukseksi.",
+          "cta": "Avaa Launch Center",
+          "steps": {
+            "offer_types": {
+              "title": "Valitse, mitä asiakkaat voivat varata",
+              "description": "Käytä Open Studiota joustavaan studiotyöskentelyyn ja Kursseja ohjattuun opetukseen. Valikoima näyttää vain tässä työtilassa käytössä olevat tarjoustyypit."
+            },
+            "create_offer": {
+              "title": "Aloita valikoimasta",
+              "description": "Luo tarjous tästä oppaan jälkeen. Launch Center pitää alkuasetukset selkeinä ja palauttaa sinut seuraavaan hyödylliseen vaiheeseen."
+            },
+            "price_capacity": {
+              "title": "Määritä varauksen perustiedot",
+              "description": "Anna tarjoukselle selkeä nimi, hinta, kapasiteetti, toimipiste ja saatavuus, jotta asiakkaat tietävät tarkalleen, mitä he varaavat."
+            },
+            "publish": {
+              "title": "Tarkista ennen julkaisua",
+              "description": "Tallenna tarjous, tarkista miltä se näyttää asiakkaille ja julkaise se vasta, kun aikataulu ja varaussäännöt ovat valmiit."
+            }
+          }
+        },
+        "test_customer_journey": {
+          "title": "Suorita asiakkaan testipolku",
+          "description": "Esikatsele varausta, vahvistusta ja asiakkaan pääsyä turvallisessa Practice Modessa.",
+          "cta": "Avaa Practice Mode",
+          "steps": {
+            "public_site": {
+              "title": "Aloita asiakasnäkymästä",
+              "description": "Asiakkaat löytävät tarjoukset ja aloittavat varauksen julkaistulla julkisella sivustollasi. Practice Mode käyttää samaa polkua muuttamatta studion todellisia tietueita."
+            },
+            "test_booking": {
+              "title": "Kokeile turvallista varausta",
+              "description": "Practice Mode opastaa simuloidun varauksen läpi. Se ei luo todellista asiakasvarausta eikä suorita oikeaa maksua."
+            },
+            "confirmation_email": {
+              "title": "Esikatsele vahvistus",
+              "description": "Tarkista, mitä asiakkaalle kerrottaisiin varauksen jälkeen. Practice Mode ei lähetä oikeaa sähköpostia, joten voit tarkistaa kokemuksen turvallisesti."
+            },
+            "customer_portal": {
+              "title": "Esikatsele asiakkaan pääsyä",
+              "description": "Katso, miten asiakas löytää varauksensa ja studion tiedot. Practice Mode käyttää tilapäisiä esikatselutietoja todellisen asiakastilin sijaan."
+            }
+          }
+        },
+        "payments_setup": {
+          "title": "Määritä maksut",
+          "description": "Yhdistä Stripe ja selvitä, milloin asiakasmaksut ovat valmiita.",
+          "cta": "Jatka maksuasetuksia",
+          "steps": {
+            "connection_status": {
+              "title": "Näytä vahvistettu yhteyden tila",
+              "description": "Tämä tila tulee palvelimelta ja kertoo, onko Stripe-tili aloittamatta, odottamassa, rajoitettu vai aktiivinen."
+            },
+            "stripe_onboarding": {
+              "title": "Jatka turvallisesti Stripessä",
+              "description": "Varsinainen käyttöönotto tapahtuu Stripessä. Palatessasi Shario päivittää taustajärjestelmän tilan eikä oleta tilin olevan valmis."
+            },
+            "payment_capabilities": {
+              "title": "Vahvista maksut ja tilitykset",
+              "description": "Aktiivisen yhteyden on voitava vastaanottaa maksuja ja tilityksiä. Stripe ilmoittaa nämä ominaisuudet suoraan."
+            },
+            "verify_payment": {
+              "title": "Vahvista asiakaskokemus",
+              "description": "Kun Stripe ilmoittaa tilin olevan aktiivinen, käytä asiakkaan turvallista Practice Modea ennen oikean varauksen vastaanottamista. Practice Mode ei suorita oikeaa maksua."
+            }
+          }
+        },
+        "data_import": {
+          "title": "Tuo nykyinen studiosi",
+          "description": "Siirrä tiedot validoinnin, raporttien ja palautettavan kirjausketjun avulla.",
+          "cta": "Avaa Migration Center",
+          "steps": {
+            "choose_importer": {
+              "title": "Valitse tietotyyppi",
+              "description": "Tuo asiakkaat, tarjoukset, varaukset, jäsenyydet, saldot tai lahjakortit järkevässä järjestyksessä. Vain työtilassasi käytössä olevat alueet näytetään."
+            },
+            "template_upload": {
+              "title": "Käytä mallia tai vientitiedostoasi",
+              "description": "Lataa malli tai tuo CSV- tai Excel-vientitiedosto. Kohdistusvaiheessa voit yhdistää nykyiset sarakkeet järjestämättä lähdetiedostoa ensin uudelleen."
+            },
+            "validation": {
+              "title": "Validoi ennen tietojen muuttamista",
+              "description": "Testiajo korostaa virheelliset rivit, kaksoiskappaleet ja ehdotetut muutokset. Mitään ei tuoda ennen kuin tarkistat ja vahvistat tuloksen."
+            },
+            "history_rollback": {
+              "title": "Säilytä kirjausketju",
+              "description": "Historia säilyttää jokaisen tuonnin raportit. Valtuutetut käyttäjät voivat esikatsella ja turvallisesti peruuttaa seurattuja muutoksia, jos tietueet ovat edelleen siihen kelvollisia."
+            }
+          }
+        },
+        "customer_communications": {
+          "title": "Määritä asiakasviestintä",
+          "description": "Tarkista mallit, muistutukset, testitoimitus ja sähköpostihistoria.",
+          "cta": "Jatka viestintäasetuksia",
+          "steps": {
+            "templates": {
+              "title": "Tarkista asiakasmallit",
+              "description": "Mallit pitävät vahvistukset ja toiminnalliset viestit yhdenmukaisina. Tarkista sanamuoto ja studion ilme ennen automaation käyttöönottoa."
+            },
+            "reminders": {
+              "title": "Määritä hyödylliset muistutukset",
+              "description": "Automaatiot hallitsevat varaus- ja studioviestien valmisteluaikaa. Pidä ajoitus tarkoituksenmukaisena ja vältä tarpeettomia viestejä."
+            },
+            "test_email": {
+              "title": "Lähetä oikea määritystesti",
+              "description": "Vahvista ensin lähettäjän henkilöllisyys ja käytä sitten määritysten Lähetä testisähköposti -toimintoa. Testi vahvistaa toimituksen ottamatta yhteyttä asiakkaaseen."
+            },
+            "delivery_history": {
+              "title": "Tarkista toimitushistoria",
+              "description": "Historia näyttää lähetetyt viestit ja mahdolliset toimitusongelmat, joten tiimi voi tutkia viestintäongelmia yhdessä paikassa."
+            }
+          }
+        }
+      }
+    },
+    "productTour": {
+      "progress": "{current}/{total}",
+      "skip": "Ohita kierros",
+      "close": "Sulje kierros",
+      "back": "Takaisin",
+      "next": "Seuraava",
+      "openLaunchCenter": "Avaa Launch Center",
+      "welcome": {
+        "eyebrow": "Työtilan perusteet",
+        "title": "Oletko täällä ensimmäistä kertaa?",
+        "description": "Tutustu työtilan tärkeimpiin toimintoihin nopealla 60 sekunnin kierroksella. Voit käynnistää sen milloin tahansa uudelleen Ohje-valikosta.",
+        "duration": "Noin 60 sekuntia",
+        "start": "Aloita kierros",
+        "dismiss": "Ei kiitos",
+        "close": "Sulje esittely"
+      },
+      "steps": {
+        "overview": {
+          "title": "Tervetuloa Yleiskatsaukseen",
+          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+        },
+        "launch_center": {
+          "title": "Määritä Launch Centerissä",
+          "description": "Launch Center ohjaa määrityspolkua. Määritä tarkistuslistalla olennaiset asiat, esikatsele asiakaskokemus ja valmistele studiosi julkaisuun."
+        },
+        "studio_switcher": {
+          "title": "Studion vaihtaja",
+          "description": {
+            "none": "Työtilasi näkyy tässä. Kun lisäät studion toimipisteen, hallitset sitä samalla vaihtajalla.",
+            "single": "Nykyinen studiosi näkyy tässä. Kun lisäät toimipisteitä, voit vaihtaa niiden välillä samasta paikasta.",
+            "multiple": "Vaihda studion toimipisteiden välillä tässä. Yleiskatsaus ja toimintatiedot päivittyvät valitsemasi toimipisteen mukaan."
+          }
+        },
+        "navigation": {
+          "title": "Kaikelle on oma paikkansa",
+          "description": "Käytä päänavigointia varauksiin, asiakkaisiin, studion toimintoihin, myyntiin, viesteihin ja raportteihin. Tyhjät alueet täyttyvät tiimisi aloittaessa työskentelyn."
+        },
+        "ai_assistant": {
+          "title": "Kysy AI Assistantilta",
+          "description": "Avaa avustaja kysyäksesi studiostasi ja saadaksesi toiminnallisia havaintoja. Jos tekoäly ei sisälly pakettiisi tai rooliisi, voit palata tähän vaiheeseen myöhemmin."
+        },
+        "settings": {
+          "title": "Asetukset ja mukautus",
+          "description": "Hallitse määrityksiä, brändiä, julkista sivustoa, maksuja ja tiimin käyttöoikeuksia täällä. Website Builderissa muotoilet asiakkaille näkyvän kokemuksen."
+        }
+      },
+      "final": {
+        "title": "Olet valmis aloittamaan",
+        "description": "Viimeistele Launch Centerin määritykset, luo testivaraus ja esikatsele, mitä asiakkaasi näkevät."
+      },
+      "mobileMenuDescription": "Tämä vaihtoehto on päävalikossa, joka avataan korostetulla painikkeella. {description}"
+    },
+    "launchCenterLiveBadge": "Julkaistu",
+    "launchCenterReadyBadge": "Valmis",
+    "launchCenterIssueBadge": "{count, plural, one {# ongelma} other {# ongelmaa}}",
+    "launchCenterLiveStatus": "Julkinen studiosi on julkaistu ja kaikki julkaisuvalmiuden tarkistukset ovat kunnossa",
+    "launchCenterReadyStatus": "Toiminnalliset julkaisuasetuksesi ovat valmiit",
+    "launchCenterAttentionStatus": "{count, plural, one {# julkaisuvalmiuden ongelma vaatii huomiota} other {# julkaisuvalmiuden ongelmaa vaatii huomiota}}"
+  },
+  "WorkspaceSettingsNav": {
+    "eyebrow": "Työtila",
+    "title": "Asetukset",
+    "label": "Työtilan asetukset",
+    "items": {
+      "setup": "Launch Center",
+      "general": "Yleiset",
+      "modules": "Moduulit ja navigointi",
+      "locations": "Toimipisteet",
+      "team": "Tiimi",
+      "teamName": "Tiimin nimi",
+      "roles": "Roolit ja käyttöoikeudet",
+      "payments": "Asiakasmaksut",
+      "billing": "Tilaus ja laskutus",
+      "invoicing": "Asiakaslaskutus",
+      "ai": "Tekoäly ja automaatio",
+      "publicSite": "Verkkosivusto ja brändi",
+      "migration": "Migration Center",
+      "accessCodes": "Pääsykoodit"
+    },
+    "overview": "Kaikki asetukset",
+    "overviewDescription": "Valitse työtilasi määritettävä luokka.",
+    "categoryDescription": "Kohdistettu navigointi luokalle {category}.",
+    "currentCategory": "Nykyinen luokka",
+    "openCategory": "Avaa luokan {category} asetukset",
+    "groups": {
+      "workspace": "Työtila",
+      "features": "Ominaisuudet ja navigointi",
+      "website": "Verkkosivusto ja asiakaskokemus",
+      "access": "Tiimi ja käyttöoikeudet",
+      "payments": "Maksut ja laskutus",
+      "account": "Shario-tili"
+    }
+  },
+  "WorkspaceSettings": {
+    "eyebrow": "Työtilan asetukset",
+    "title": "Yleiset asetukset",
+    "description": "Hallitse koko työtilassa käytettäviä yhteisiä oletusasetuksia.",
+    "loading": "Työtilan asetuksia ladataan…",
+    "business": {
+      "title": "Työtilan identiteetti ja oletusasetukset",
+      "description": "Nämä arvot ovat yhteisiä kaikille tiimin jäsenille ja asiakkaille näkyville moduuleille."
+    },
+    "fields": {
+      "name": "Työtilan nimi",
+      "slug": "Työtilan osoite",
+      "defaultLanguage": "Oletuskieli",
+      "adminLanguage": "Työtilan kieli",
+      "publicDefaultLanguage": "Julkisen sivuston ensisijainen kieli",
+      "secondaryPublicLanguage": "Julkisen sivuston toissijainen kieli",
+      "timezone": "Toiminnan aikavyöhyke",
+      "currency": "Toiminnan valuutta"
+    },
+    "hints": {
+      "slug": "Työtilan osoitetta hallitaan erikseen, koska sen muuttaminen vaikuttaa linkkeihin ja verkkotunnuksiin.",
+      "defaultLanguage": "Käytetään, kun jäsen tai asiakas ei ole valinnut omaa kieltään.",
+      "adminLanguage": "Kieli, jota kaikki tiimin jäsenet käyttävät koko studion työtilassa.",
+      "publicDefaultLanguage": "Kieli, jonka asiakkaat näkevät ensin julkisella sivustollasi ja asiakasnäkymissä.",
+      "secondaryPublicLanguage": "Voit tarjota asiakkaille yhden lisäkielen. Vain nämä kaksi kieltä näkyvät studion julkisilla sivuilla.",
+      "timezone": "Käytetään varauksissa, aikatauluissa ja automaattisissa viesteissä.",
+      "currency": "Käytetään studiotuotteissa ja asiakasmaksuissa. Se on erillinen Shario-tilauksesi valuutasta."
+    },
+    "languageOptions": {
+      "noSecondary": "Ei toissijaista kieltä"
+    },
+    "currencyNotice": {
+      "title": "Nykyiset taloustiedot on suojattu",
+      "description": "Kun taloustietoja on luotu, palvelin voi estää valuutan vaihtamisen. Näin aiempien summien valuuttamerkinnät eivät muutu."
+    },
+    "workspaceStatus": {
+      "title": "Työtilan tila",
+      "plan": "Paketti",
+      "status": "Tila",
+      "version": "Paketin versio"
+    },
+    "actions": {
+      "save": "Tallenna työtilan asetukset",
+      "saving": "Tallennetaan…",
+      "retry": "Yritä uudelleen"
+    },
+    "messages": {
+      "saved": "Työtilan asetukset tallennettiin.",
+      "error": "Työtilan asetuksia ei voitu tallentaa.",
+      "loadError": "Työtilan asetuksia ei voitu ladata."
+    }
+  },
+  "Header": {
+    "mobile": {
+      "navigation": "Mobiilinavigointi",
+      "publicEyebrow": "Luovien studioiden toiminnanohjausjärjestelmä.",
+      "publicTitle": "Johda studiotasi. Tee parempia päätöksiä joka päivä.",
+      "adminEyebrow": "Studion hallinta",
+      "adminTitle": "Kaikki studiosi tapahtumat selkeästi.",
+      "moduleOverview": "Moduulien yleiskatsaus",
+      "bookingSite": "Varaussivusto",
+      "admin": "Ylläpito",
+      "myAccount": "Oma tili",
+      "language": "Kieli",
+      "tagline": "Enemmän aikaa luomiseen. Vähemmän hallintoa."
+    },
+    "booking": "Varaus",
+    "cart": {
+      "open": "Avaa ostoskori",
+      "items": "{count, plural, one {# tuote ostoskorissa} other {# tuotetta ostoskorissa}}"
+    },
+    "account": {
+      "menu": "Käyttäjävalikko",
+      "eyebrow": "Tilisi",
+      "studioManagement": "Studion hallinta",
+      "closeMenu": "Sulje käyttäjävalikko",
+      "fallbackName": "Tilisi",
+      "roles": {
+        "owner": "Studion omistaja",
+        "admin": "Studion ylläpitäjä",
+        "manager": "Studion johtaja",
+        "staff": "Studion työntekijä",
+        "accountant": "Kirjanpitäjä",
+        "viewer": "Katselija",
+        "custom": "Mukautettu rooli",
+        "customer": "Asiakas"
+      },
+      "sections": {
+        "customer": "Tilisi",
+        "activity": "Studiotoiminta",
+        "payments": "Tili ja maksut",
+        "personal": "Henkilökohtaiset",
+        "workspace": "Työtila"
+      },
+      "customerLinks": {
+        "bookings": "Omat varaukset",
+        "services": "Palvelut",
+        "work": "Omat työt",
+        "waitlists": "Jonotuslistat",
+        "knowledge": "Knowledge Hub",
+        "credits": "Saldo",
+        "membership": "Jäsenyys",
+        "invoices": "Omat laskut",
+        "account": "Tilin asetukset",
+        "lostFound": "Löytötavarat"
+      },
+      "tenantLinks": {
+        "dashboard": "Studion hallintapaneeli",
+        "account": "Tilin asetukset",
+        "preferences": "Henkilökohtaiset asetukset",
+        "setupCenter": "Launch Center",
+        "settings": "Työtilan asetukset",
+        "bookingSite": "Näytä julkinen sivusto",
+        "bookingSiteNewTab": "Avaa julkinen verkkosivusto uudessa välilehdessä"
+      },
+      "language": "Kieli",
+      "logout": "Kirjaudu ulos"
+    },
+    "product": {
+      "label": "Tuote",
+      "bookingScheduling": "Varaukset, asiakkaat ja maksut",
+      "customers": "Asiakkaat",
+      "payments": "Maksut",
+      "memberships": "Jäsenyydet",
+      "automatedCommunication": "Automaattinen viestintä",
+      "studioOperations": "Studion toiminta ja tuotanto",
+      "analytics": "AI, analytiikka ja päätökset",
+      "viewAll": "Tutustu koko tuotteeseen"
+    },
+    "solutions": {
+      "label": "Ratkaisut",
+      "artStudios": "Taidestudiot",
+      "makerspaces": "Tekijätilat",
+      "workshopsClasses": "Open Studio ja kurssit",
+      "multiLocationStudios": "Usean toimipisteen studiot",
+      "viewAll": "Tutustu kaikkiin ratkaisuihin"
+    },
+    "forStudios": "Studioille",
+    "pricing": "Hinnoittelu",
+    "membershipCatalog": "Jäsenyydet",
+    "resources": {
+      "label": "Resurssit",
+      "helpCenter": "Ohjekeskus",
+      "guides": "Oppaat",
+      "customerStories": "Asiakastarinat",
+      "about": "Tietoa Shariosta"
+    },
+    "login": "Kirjaudu sisään",
+    "getStarted": "Aloita maksuton kokeilu",
+    "openWorkspace": "Avaa työtila",
+    "openMenu": "Avaa valikko",
+    "closeMenu": "Sulje valikko",
+    "changeLanguage": "Vaihda kieltä"
+  },
+  "PlatformAuth": {
+    "login": {
+      "header": {
+        "newToSkab": "Oletko uusi Shariossa?",
+        "createWorkspace": "Luo työtila",
+        "switchLanguage": "Vaihda kieleen {language}",
+        "languages": {
+          "en": "Englanti",
+          "cs": "Tšekki"
+        }
+      },
+      "form": {
+        "eyebrow": "Studion omistajille ja tiimin jäsenille",
+        "title": "Kirjaudu työtilaasi",
+        "description": "Jatka käyttämällä studiosi osoitetta ja tilitietojasi.",
+        "workspaceLabel": "Työtilan URL-osoite",
+        "workspacePlaceholder": "common-ground",
+        "workspaceHint": "Studiosi osoite Shariossa",
+        "workspaceHelp": {
+          "open": "Mikä on työtilan osoite?",
+          "title": "Studiosi Shario-osoite",
+          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+        },
+        "findWorkspace": "Etsi työtilasi",
+        "emailLabel": "Sähköpostiosoite",
+        "emailPlaceholder": "sinä@studiosi.fi",
+        "passwordLabel": "Salasana",
+        "passwordPlaceholder": "Anna salasanasi",
+        "showPassword": "Näytä salasana",
+        "hidePassword": "Piilota salasana",
+        "rememberWorkspace": "Muista työtila",
+        "forgotPassword": "Unohditko salasanan?",
+        "submit": "Kirjaudu sisään",
+        "submitting": "Kirjaudutaan sisään…",
+        "secure": "Turvallinen pääsy studiosi työtilaan"
+      },
+      "story": {
+        "eyebrow": "Studiosi kauniisti hallinnassa",
+        "titleBefore": "Studiosi on valmis, kun",
+        "titleAccent": "sinäkin olet.",
+        "description": "Varaukset, asiakkaat, kurssit ja tiimisi pysyvät yhteydessä yhdessä selkeässä työtilassa.",
+        "pulseLabel": "Studion tilanne",
+        "pulse": "Kaikki yhdessä selkeässä paikassa",
+        "bookings": "Varaukset koordinoitu",
+        "team": "Tiimi ajan tasalla",
+        "operations": "Studio Flow näkyvissä"
+      },
+      "errors": {
+        "server": "Palvelin ei vastaa. Yritä uudelleen.",
+        "invalidResponse": "Palvelin palautti virheellisen vastauksen.",
+        "checkInformation": "Tarkista lähettämäsi tiedot.",
+        "incorrectCredentials": "Sähköpostiosoite tai salasana on virheellinen.",
+        "disabled": "Pääsy tähän työtilaan on poistettu käytöstä.",
+        "workspaceNotFound": "Työtilaa ei löytynyt.",
+        "rateLimited": "Liian monta kirjautumisyritystä. Odota hetki ja yritä uudelleen.",
+        "signInFailed": "Sisäänkirjautuminen epäonnistui."
+      },
+      "guidance": {
+        "workspaceRequired": "Anna ensin työtilasi URL-osoite.",
+        "workspaceCleared": "Anna studiosi toimittama työtilan tunniste."
+      }
+    },
+    "register": {
+      "header": {
+        "alreadyHaveWorkspace": "Onko sinulla jo työtila?",
+        "signIn": "Kirjaudu sisään",
+        "switchLanguage": "Vaihda kieleen {language}",
+        "languages": {
+          "en": "Englanti",
+          "cs": "Tšekki"
+        }
+      },
+      "form": {
+        "eyebrow": "Aloita 14 päivän kokeilu",
+        "title": "Luo studiosi työtila",
+        "description": "Kerro olennaiset tiedot. Voit muokata palveluja, työnkulkuja ja studion asetuksia työtilaan saavuttuasi.",
+        "trial": "14 päivää maksutta",
+        "noCard": "Ei luottokorttia",
+        "firstNameLabel": "Etunimi",
+        "firstNamePlaceholder": "Etunimesi",
+        "lastNameLabel": "Sukunimi",
+        "lastNamePlaceholder": "Sukunimesi",
+        "studioNameLabel": "Studion nimi",
+        "studioNamePlaceholder": "Studiosi nimi",
+        "workspaceLabel": "Työtilan osoite",
+        "workspacePlaceholder": "your-studio",
+        "workspaceExample": "your-studio",
+        "workspaceHint": "Studiosi on saatavilla osoitteessa {slug}.shario.io",
+        "emailLabel": "Sähköpostiosoite",
+        "emailPlaceholder": "sinä@studiosi.fi",
+        "passwordLabel": "Salasana",
+        "passwordPlaceholder": "Luo salasana",
+        "passwordHint": "Käytä vähintään 8 merkkiä ja yhtä numeroa.",
+        "passwordConfirmLabel": "Vahvista salasana",
+        "passwordConfirmPlaceholder": "Anna salasana uudelleen",
+        "showPassword": "Näytä salasana",
+        "hidePassword": "Piilota salasana",
+        "showPasswordConfirm": "Näytä salasanan vahvistus",
+        "hidePasswordConfirm": "Piilota salasanan vahvistus",
+        "legalPrefix": "Hyväksyn",
+        "terms": "Käyttöehdot",
+        "legalAnd": "ja",
+        "privacy": "Tietosuojakäytännön",
+        "legalSuffix": ".",
+        "submit": "Luo studioni",
+        "submitting": "Työtilaasi luodaan…",
+        "alreadyRegistered": "Onko sinulla jo työtila?",
+        "signIn": "Kirjaudu sisään",
+        "secure": "Tilitietosi siirretään turvallisesti"
+      },
+      "validation": {
+        "firstNameRequired": "Anna etunimesi.",
+        "lastNameRequired": "Anna sukunimesi.",
+        "studioNameRequired": "Anna studiosi nimi.",
+        "workspaceInvalid": "Käytä vain pieniä kirjaimia, numeroita ja yksittäisiä yhdysmerkkejä.",
+        "emailInvalid": "Anna kelvollinen sähköpostiosoite.",
+        "passwordInvalid": "Käytä vähintään 8 merkkiä ja sisällytä numero.",
+        "passwordMismatch": "Salasanat eivät täsmää.",
+        "legalRequired": "Jatka hyväksymällä Käyttöehdot ja Tietosuojakäytäntö.",
+        "completeRequired": "Täytä kaikki pakolliset kentät."
+      },
+      "errors": {
+        "createFailed": "Tiliäsi ei voitu luoda. Yritä uudelleen."
+      },
+      "story": {
+        "eyebrow": "Studiosi kauniisti hallinnassa",
+        "titleBefore": "Luo tilaa sille, mitä",
+        "titleAccent": "rakastat.",
+        "description": "Aloita olennaisesta ja muotoile sitten Shario luovan studiosi todellisen toimintatavan ympärille.",
+        "cardLabel": "Julkaisupolkusi",
+        "cardTitle": "Ideasta avoimeksi studioksi",
+        "workspace": "Luo turvallinen työtilasi",
+        "setup": "Valitse tarvitsemasi työnkulut",
+        "launch": "Julkaise, kun studiosi on valmis"
+      }
+    }
+  },
+  "MarketingPages": {
+    "common": {
+      "backHome": "Takaisin etusivulle",
+      "startTrial": "Aloita 14 päivän kokeilu",
+      "noCreditCard": "Maksukorttia ei tarvita",
+      "exploreProduct": "Tutustu tuotteeseen",
+      "exploreAi": "Tutustu studion tekoälyyn",
+      "exploreStudios": "Tutustu studioiden ratkaisuihin",
+      "explorePricing": "Katso hinnat",
+      "builtWithStudios": "Kehitetty toimivien luovien studioiden rinnalla",
+      "currencyLabel": "Valitse valuutta"
+    },
+    "product": {
+      "metaTitle": "Everything your space needs, working together.",
+      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+    },
+    "studioAi": {
+      "metaTitle": "A helping hand for everyday work.",
+      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+    },
+    "forStudios": {
+      "metaTitle": "Different spaces. Shared possibilities.",
+      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+    },
+    "pricing": {
+      "metaTitle": "Luovien studioiden paketit ja hinnat",
+      "metaDescription": "Vertaa Shario-paketteja, studiokapasiteettia ja AI-krediittejä ja aloita 14 päivän kokeilu ilman maksukorttia.",
+      "eyebrow": "Paketit kasvaville studioille",
+      "title": "Aloita siitä, mitä tarvitset tänään.",
+      "description": "Jokainen paketti alkaa 14 päivän Professional-kokeilulla, jotta voit testata studion tärkeimmän polun ennen valintaa.",
+      "sectionEyebrow": "Selkeät erot pakettien välillä",
+      "sectionTitle": "Vertaa kapasiteettia, työnkulkuja ja AI-krediittejä.",
+      "sectionDescription": "Valitse toimipisteiden, tiimitilien ja studiosi tarvitseman toiminnallisen laajuuden perusteella.",
+      "closingTitle": "Etkö tiedä, mikä paketti sopii?",
+      "closingDescription": "Aloita kokeilu ilman maksukorttia tai keskustele kanssamme räätälöidystä käyttöönotosta."
+    }
+  },
+  "MarketingHome": {
+    "hero": {
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    },
+    "pricing": {
+      "eyebrow": "Selkeä hinnoittelu",
+      "title": "Valitse studiolle sopiva toimintamalli.",
+      "description": "Aloita kursseista, siirry studion täyteen toimintaan ja lisää sitten edistyneet automaatiot sekä usean toimipisteen työkalut. Jokainen paketti alkaa 14 päivän Professional-kokeilulla ilman korttia.",
+      "billingIntervalLabel": "Valitse laskutusväli",
+      "monthly": "Kuukausittain",
+      "yearly": "Vuosittain",
+      "annualSavings": "2 kuukautta maksutta",
+      "perMonth": "kuukaudessa",
+      "perYear": "vuodessa",
+      "from": "alkaen",
+      "customAnnual": "Mukautettu vuosipaketti",
+      "mostPopular": "Suosituin",
+      "starter": {
+        "name": "Starter",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "feature1": "1 studiotoimipiste · 1 tiimitili",
+        "feature2": "Kurssit, yksityistapahtumat ja lahjakortit",
+        "feature3": "500 sisältyvää sähköpostia kuukaudessa",
+        "feature4": "Rajoitettu Shario AI · 200 krediittiä kuukaudessa",
+        "cta": "Aloita maksuton kokeilu"
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature1": "1 studiotoimipiste · 3 tiimitiliä",
+        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature3": "3 aktiivista automaatiota · 2 500 sähköpostia kuukaudessa",
+        "feature4": "Täysi Shario AI · 2 000 krediittiä kuukaudessa",
+        "cta": "Aloita maksuton kokeilu"
+      },
+      "studioPlus": {
+        "name": "Space Plus",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "feature1": "Enintään 2 studiotoimipistettä · 6 tiimitiliä",
+        "feature2": "Pääsykoodit ja oma verkkotunnus",
+        "feature3": "Edistyneet automaatiot · 5 000 sähköpostia kuukaudessa",
+        "feature4": "Täysi AI-kokonaisuus · 10 000 krediittiä kuukaudessa",
+        "cta": "Aloita maksuton kokeilu"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Johda organisaatiota räätälöidyllä kapasiteetilla, hallinnalla ja tuella.",
+        "feature1": "Rajoittamattomat toimipisteet ja tiimitilit",
+        "feature2": "Räätälöidyt automaatio-, sähköposti- ja AI-kiintiöt",
+        "feature3": "SSO/SCIM, API, webhookit ja auditointilokit",
+        "feature4": "Oma käyttöönotto, siirto ja SLA",
+        "cta": "Start free trial"
+      },
+      "note": "Hinnat eivät sisällä sovellettavia veroja. Vuosittaiset itsepalvelupaketit sisältävät kaksi ilmaista kuukautta. Välttämättömiä järjestelmäviestejä ei lasketa kiintiöön, ja AI-käyttö pysähtyy sisältyvään rajaan ilman automaattisia lisämaksuja.",
+      "loading": "Ladataan hintoja…",
+      "unavailable": "Hintaa ei ole saatavilla tässä valuutassa",
+      "loadError": "Hinnat eivät ole tilapäisesti saatavilla"
+    },
+    "trust": {
+      "eyebrow": "Rakennettu vastuulliseen toimintaan",
+      "title": "Luotettava koti studiosi taustalla tehtävälle työlle.",
+      "description": "Selkeät käyttöoikeudet, yhdistetyt tietueet ja ihmisen hallinta ovat tuotteen ydintä, eivät jälkikäteen lisättyjä ominaisuuksia.",
+      "workspaces": {
+        "title": "Erilliset studiokohtaiset työtilat",
+        "description": "Jokainen studio toimii omassa erillisessä työtilassaan omilla asetuksillaan."
+      },
+      "access": {
+        "title": "Roolipohjainen pääsy",
+        "description": "Anna omistajille ja tiimin jäsenille heidän työnsä edellyttämä käyttöoikeustaso."
+      },
+      "payments": {
+        "title": "Maksut Stripen kautta",
+        "description": "Yhdistä verkkomaksut Stripen vakiintuneen infrastruktuurin kautta."
+      },
+      "control": {
+        "title": "Ihmisen hallitsema tekoäly",
+        "description": "Tekoäly tarjoaa kontekstia ja apua, mutta tiimisi vastaa päätöksistä."
+      }
+    }
+  },
+  "CustomerAuth": {
+    "social": {
+      "label": "Asiakkaan kirjautuminen sosiaalisella tilillä",
+      "customerAccess": "Jatka asiakkaana",
+      "teamPasswordNote": "Studion tiimin jäsenet käyttävät sähköpostia ja salasanaa.",
+      "or": "tai käytä sähköpostia",
+      "continueWith": {
+        "google": "Jatka Googlella",
+        "apple": "Jatka Applella"
+      }
+    },
+    "complete": {
+      "metadataTitle": "Asiakkaan kirjautumista viimeistellään",
+      "title": "Kirjautumistasi viimeistellään",
+      "description": "Palautamme asiakasistuntosi turvallisesti.",
+      "errorTitle": "Asiakkaan kirjautumista ei voitu viimeistellä",
+      "providerError": "Kirjautumispalvelu palautti virheen. Yritä uudelleen.",
+      "accessDenied": "Peruutit tai hylkäsit kirjautumispyynnön.",
+      "accountConflict": "Tätä sosiaalista tiliä ei voi yhdistää automaattisesti. Kirjaudu sähköpostilla tai ota yhteyttä studioon.",
+      "authenticationFailed": "Palveluntarjoaja ei voinut vahvistaa tiliäsi. Yritä uudelleen.",
+      "providerUnavailable": "Tämä kirjautumispalvelu ei ole tällä hetkellä käytettävissä.",
+      "sessionError": "Asiakasistuntoasi ei voitu palauttaa. Yritä uudelleen.",
+      "customerOnly": "Sosiaalinen kirjautuminen on vain asiakastileille. Studion tiimin jäsenten on käytettävä sähköpostia ja salasanaa.",
+      "retry": "Yritä uudelleen",
+      "backToLogin": "Takaisin kirjautumiseen"
+    }
+  },
+  "CustomerShell": {
+    "portalNav": {
+      "overview": "Yleiskatsaus",
+      "bookings": "Varaukset",
+      "work": "Omat työt",
+      "knowledge": "Tiedot",
+      "membership": "Jäsenyys",
+      "credits": "Saldo",
+      "invoices": "Laskut",
+      "bookSession": "Varaa aika",
+      "memberships": "Jäsenyydet",
+      "giftVouchers": "Lahjakortit",
+      "studioGuide": "Studio-opas",
+      "courses": "Kurssit"
+    },
+    "actions": {
+      "backToStudio": "Takaisin studioon",
+      "openPortal": "Asiakasportaali",
+      "openDashboard": "Studion hallintapaneeli"
+    },
+    "mobile": {
+      "portalEyebrow": "Asiakasportaali",
+      "portalTitle": "Tilisi studiossa {studio}",
+      "authEyebrow": "Studiotili",
+      "authTitle": "Kirjaudu studioon {studio}",
+      "transactionEyebrow": "Turvallinen maksu",
+      "transactionTitle": "Viimeistele käyntisi studiossa {studio}"
+    },
+    "status": {
+      "loadingTitle": "Studiotasi valmistellaan",
+      "loadingDescription": "Lataamme studion uusimmat tiedot.",
+      "errorTitle": "Tätä sivua ei voitu ladata",
+      "errorDescription": "Yritä uudelleen. Tili- ja maksutietosi ovat turvassa.",
+      "retry": "Yritä uudelleen",
+      "preparingAccount": "Tiliäsi valmistellaan…",
+      "redirecting": "Siirrytään oikeaan studioon…"
+    },
+    "locationChooser": {
+      "eyebrow": "Asiakasportaali",
+      "title": "Missä studiossa haluaisit vierailla?",
+      "description": "Valitse studio nähdäksesi sen saatavuuden, palvelut ja varausvaihtoehdot.",
+      "unavailable": "Tämän linkin studio ei ole tällä hetkellä käytettävissä.",
+      "unavailableHint": "Studio voi olla poissa käytöstä tai se ei ehkä enää vastaanota verkkovarauksia. Valitse toinen studio alta.",
+      "open": "Avaa {studio}"
+    }
+  },
+  "PublicTenantHome": {
+    "eyebrow": "Tervetuloa studioon",
+    "description": "Tutustu studioon, hallitse varauksiasi ja pidä kaikki tiliisi liittyvät asiat yhdessä paikassa.",
+    "openPortal": "Avaa asiakasportaali",
+    "signIn": "Kirjaudu sisään"
+  },
+  "PublicSiteNotFound": {
+    "brandLabel": "Make room for more.",
+    "checking": "Verkkosivuston tilaa tarkistetaan…",
+    "owner": {
+      "eyebrow": "Julkinen verkkosivusto",
+      "badge": "Yksityinen luonnos",
+      "title": "Julkinen verkkosivustosi on vielä yksityinen",
+      "description": "Katselet osoitetta, jota asiakkaasi käyttävät. Luonnoksesi on tallennettu turvallisesti, eikä mitään julkaista ennen kuin julkaiset sen Launch Centeristä.",
+      "primaryAction": "Tarkista ja julkaise",
+      "secondaryAction": "Muokkaa verkkosivustoa",
+      "reassurance": "Asiakkaat eivät vielä näe verkkosivustoasi.",
+      "previewBadge": "Ei julkaistu",
+      "previewLabel": "Polkusi julkaisuun",
+      "steps": {
+        "draft": {
+          "title": "Luonnos tallennettu",
+          "description": "Muutoksesi on tallennettu turvallisesti."
+        },
+        "review": {
+          "title": "Tarkista verkkosivustosi",
+          "description": "Tarkista sisältö ja asiakaskokemus."
+        },
+        "publish": {
+          "title": "Julkaise, kun olet valmis",
+          "description": "Aseta sivusto saataville Launch Centeristä."
+        }
+      }
+    },
+    "visitor": {
+      "eyebrow": "Sivu ei ole käytettävissä",
+      "badge": "Ei saatavilla",
+      "title": "Tämä studiosivu ei ole käytettävissä",
+      "description": "Osoite voi olla virheellinen tai studio ei ole vielä julkaissut verkkosivustoaan.",
+      "primaryAction": "Siirry Sharioon",
+      "hint": "Jos hallitset tätä studiota, kirjaudu työtilaasi ja avaa julkinen verkkosivusto uudelleen."
+    }
+  },
+  "BookingConfirmation": {
+    "membershipPayment": {
+      "bookingValue": "Varauksen arvo",
+      "coveredByMembership": "Jäsenyyden kattama osuus",
+      "additionalPayment": "Lisämaksu"
+    },
+    "back": "Muuta valintaa",
+    "eyebrow": "Turvallinen varaus",
+    "title": "Tarkista ja vahvista",
+    "description": "Studion palvelin vahvisti alla näkyvän saatavuuden, edut ja hinnan.",
+    "summary": {
+      "time": "Aika",
+      "until": "Päättyy",
+      "location": "Toimipiste",
+      "locationFallback": "Studion toimipiste",
+      "people": "Henkilömäärä",
+      "product": "Varaus",
+      "productFallback": "Studiovaraus",
+      "bookingMode": "Varaustyyppi",
+      "bookingModes": {
+        "public": "Julkinen",
+        "private": "Yksityinen"
+      }
+    },
+    "available": {
+      "title": "Valintasi on saatavilla",
+      "description": "Se tarkistetaan vielä kerran vahvistamisen yhteydessä."
+    },
+    "conflict": {
+      "title": "Tämä valinta ei ole enää saatavilla",
+      "description": "Jatka valitsemalla toinen aika.",
+      "chooseAnother": "Valitse toinen aika"
+    },
+    "payment": {
+      "title": "Maksu",
+      "methods": {
+        "card": "Maksa kortilla",
+        "money_credits": "Käytä studiosaldoa",
+        "membership_credits": "Käytä jäsenyysetua"
+      },
+      "descriptions": {
+        "card": "Jatka studion turvalliselle maksusivulle.",
+        "money_credits": "Maksa koko varaus käytettävissä olevalla rahasaldollasi.",
+        "membership_credits": "Käytä kelvollista jäsenyyskäyntiä tai aikakiintiötä."
+      },
+      "notEnough": "Tämä vaihtoehto ei riitä koko varauksen maksamiseen.",
+      "unavailable": "Soveltuvaa maksutapaa ei ole tällä hetkellä saatavilla.",
+      "processing": "Vahvistetaan…",
+      "continueToCard": "Jatka maksuun",
+      "confirm": "Vahvista varaus",
+      "privateSurchargeRequiresMoney": "Yksityisvarauksen lisämaksut maksetaan kortilla tai rahasaldolla.",
+      "membershipHours": "Käytä jäsentunteja",
+      "hoursSummary": "Käytä {required}, käytettävissä {available}. Vain oma paikkasi.",
+      "membership_open_studio_only": "Tunnit kattavat vain yhteisen Open Studion, eivät kursseja tai yksityisvarauksia.",
+      "membership_member_only": "Tunnit kattavat vain yhden jäsenen. Varaa seuralaiset erikseen tai maksa kaikkien puolesta normaalisti.",
+      "membership_insufficient_hours": "Jäsentunteja ei ole riittävästi. Valitse toinen maksutapa.",
+      "membership_outside_paid_period": "Jäsentunteja voi käyttää vain nykyisen maksetun jakson käynteihin."
+    },
+    "price": {
+      "subtotal": "Välisumma",
+      "membershipDiscount": "Jäsenalennus",
+      "total": "Yhteensä",
+      "serverVerified": "Palvelin laskee lopullisen hinnan ja tarkistaa kelpoisuuden vahvistamisen yhteydessä.",
+      "privateBookingSurcharge": "Yksityisvarauksen lisämaksu (sisältyy hintaan, kerran varausta kohden)"
+    },
+    "terms": {
+      "title": "Varausehdot",
+      "accept": "Olen lukenut ja hyväksyn varausehdot."
+    },
+    "errors": {
+      "changed": "Saatavuus tai hinnoittelu muuttui. Tarkista päivitetyt tiedot ennen uutta yritystä.",
+      "expired": "Tämä varausvalinta on vanhentunut. Valitse uusi aika.",
+      "generic": "Varausta ei voitu vahvistaa. Yritä uudelleen."
+    },
+    "invalid": {
+      "title": "Virheellinen varauslinkki",
+      "description": "Tämä linkki ei sisällä kelvollista varausvalintaa.",
+      "action": "Aloita uusi varaus"
+    },
+    "loading": {
+      "title": "Varaustasi tarkistetaan",
+      "description": "Vahvistamme saatavuuden, hinnan ja jäsenedut."
+    },
+    "expired": {
+      "title": "Varausvalinta vanhentui",
+      "description": "Turvallisuutesi vuoksi varausvalintoja säilytetään vain rajoitetun ajan.",
+      "action": "Valitse toinen aika"
+    },
+    "loadError": {
+      "title": "Varausta ei voitu ladata",
+      "description": "Tätä varausvalintaa ei voitu vahvistaa.",
+      "action": "Aloita alusta",
+      "retry": "Yritä uudelleen"
+    },
+    "verificationRequired": {
+      "title": "Jatka vahvistamalla sähköpostiosoitteesi",
+      "description": "Varausvalintasi on turvassa. Vahvista sähköpostiosoitteesi ja palaa sitten tänne vahvistamaan varaus.",
+      "action": "Vahvista sähköposti"
+    }
+  },
+  "EmailVerification": {
+    "verifying": {
+      "title": "Sähköpostiosoitettasi vahvistetaan",
+      "description": "Odota hetki, kun vahvistamme sähköpostiosoitteesi turvallisesti."
+    },
+    "verified": {
+      "title": "Sähköpostiosoite vahvistettu",
+      "description": "Tilisi on valmis. Jatka varausta kirjautumalla sisään.",
+      "signIn": "Kirjaudu sisään ja jatka",
+      "continue": "Jatka varausta"
+    },
+    "sent": {
+      "title": "Tarkista sähköpostisi",
+      "description": "Lähetimme vahvistuslinkin sähköpostiosoitteeseesi. Aktivoi tilisi avaamalla linkki tässä selaimessa.",
+      "again": "Uusi vahvistussähköposti on lähetetty."
+    },
+    "error": {
+      "title": "Vahvistuslinkki on virheellinen",
+      "description": "Tämä vahvistuslinkki on virheellinen tai vanhentunut.",
+      "back": "Takaisin kirjautumiseen"
+    },
+    "resend": {
+      "action": "Lähetä uusi vahvistussähköposti",
+      "sending": "Lähetetään…",
+      "wait": "Lähetä uudelleen {seconds} s kuluttua",
+      "error": "Vahvistussähköpostia ei voitu lähettää. Yritä uudelleen."
+    }
+  },
+  "CreditPurchaseStatus": {
+    "loading": "Maksuasi tarkistetaan…",
+    "checking": "Maksun uusinta tilaa tarkistetaan…",
+    "waiting": "Odotetaan maksun vahvistusta…",
+    "orderReference": "Tilaus {orderId}",
+    "pending": {
+      "badge": "Käsitellään",
+      "title": "Vahvistamme maksuasi",
+      "description": "Stripe käsittelee maksua ja palvelin lisää studiosaldosi. Voit turvallisesti pitää tämän sivun avoinna."
+    },
+    "success": {
+      "badge": "Maksettu",
+      "title": "Saldosi on valmis",
+      "description": "Palvelin vahvisti maksun ja lisäsi ostetun saldon studiotilillesi."
+    },
+    "failed": {
+      "badge": "Ei valmis",
+      "title": "Saldo-ostosta ei viimeistelty",
+      "description": "Saldoa ei lisätty. Tarkista maksutapasi tai palaa saldosivulle ja yritä uudelleen."
+    },
+    "invalid": {
+      "title": "Ostosta ei voida vahvistaa",
+      "description": "Turvallinen tilaustunniste puuttuu tai sitä ei voitu ladata. Tarkista nykyinen saldosi avaamalla saldosivu."
+    },
+    "actions": {
+      "retry": "Tarkista uudelleen",
+      "viewCredits": "Näytä saldo",
+      "portal": "Asiakasportaali"
+    }
+  },
+  "CustomerNotifications": {
+    "trigger": "Avaa ilmoitukset",
+    "triggerUnread": "Avaa ilmoitukset, {count, plural, one {# lukematon ilmoitus} other {# lukematonta ilmoitusta}}",
+    "panel": {
+      "label": "Asiakasportaalin ilmoitukset",
+      "title": "Ilmoitukset",
+      "unread": "{count, plural, one {# lukematon ilmoitus} other {# lukematonta ilmoitusta}}",
+      "caughtUp": "Kaikki on ajan tasalla",
+      "summaryLoading": "Päivityksiä tarkistetaan…",
+      "summaryUnavailable": "Lukemattomien ilmoitusten tila ei ole tällä hetkellä saatavilla"
+    },
+    "page": {
+      "eyebrow": "Päivityksesi",
+      "title": "Ilmoitukset",
+      "description": "Varausvahvistukset, maksut, studiopäivitykset ja tiliviestit yhdessä paikassa.",
+      "unreadSummary": "{count, plural, one {# lukematon ilmoitus studiotililläsi} other {# lukematonta ilmoitusta studiotililläsi}}",
+      "caughtUp": "Olet lukenut kaikki ilmoitukset",
+      "summaryLoading": "Lukemattomia ilmoituksia tarkistetaan…",
+      "summaryUnavailable": "Lukemattomien ilmoitusten tila ei ole tällä hetkellä saatavilla",
+      "loading": "Ilmoituksiasi ladataan…"
+    },
+    "actions": {
+      "markAllRead": "Merkitse kaikki luetuiksi",
+      "retry": "Yritä uudelleen",
+      "viewAll": "Näytä kaikki ilmoitukset"
+    },
+    "filters": {
+      "label": "Ilmoitussuodattimet",
+      "status": "Tila",
+      "category": "Luokka"
+    },
+    "statuses": {
+      "all": "Kaikki",
+      "unread": "Lukemattomat",
+      "read": "Luetut"
+    },
+    "categories": {
+      "all": "Kaikki luokat",
+      "bookings": "Varaukset",
+      "payments": "Maksut",
+      "waitlist": "Jonotuslista",
+      "memberships": "Jäsenyydet",
+      "credits_vouchers": "Saldo ja lahjakortit",
+      "account": "Tili"
+    },
+    "item": {
+      "untitled": "Studiopäivitys",
+      "open": "Avaa ilmoitus: {title}",
+      "markRead": "Merkitse ilmoitus luetuksi: {title}",
+      "groupedCount": "{count, plural, one {# päivitys} other {# päivitystä}}"
+    },
+    "empty": {
+      "title": "Ei vielä ilmoituksia",
+      "description": "Varausvahvistukset ja tärkeät studiopäivitykset näkyvät täällä.",
+      "unreadTitle": "Kaikki on ajan tasalla",
+      "unreadDescription": "Tässä näkymässä ei ole lukemattomia ilmoituksia."
+    },
+    "errors": {
+      "loadTitle": "Ilmoituksiasi ei voitu ladata",
+      "load": "Tarkista yhteys ja yritä uudelleen.",
+      "refresh": "Viimeisimmät päivityksesi näytetään. Päivittäminen ei ole tällä hetkellä käytettävissä.",
+      "markRead": "Ilmoitusta ei voitu merkitä luetuksi.",
+      "markAllRead": "Ilmoituksia ei voitu merkitä luetuiksi."
+    },
+    "pagination": {
+      "label": "Ilmoitussivut",
+      "previous": "Edellinen sivu",
+      "next": "Seuraava sivu",
+      "summary": "{total, plural, one {# ilmoitus} other {# ilmoitusta}} · sivu {page}/{pages}"
+    }
+  },
+  "WorkspaceNotifications": {
+    "trigger": "Avaa ilmoitukset",
+    "triggerUnread": "Avaa ilmoitukset, {count, plural, one {# lukematon ilmoitus} other {# lukematonta ilmoitusta}}",
+    "panel": {
+      "label": "Työtilan ilmoitukset",
+      "title": "Ilmoitukset",
+      "unread": "{count, plural, one {# lukematon ilmoitus} other {# lukematonta ilmoitusta}}",
+      "caughtUp": "Kaikki on ajan tasalla",
+      "summaryLoading": "Päivityksiä tarkistetaan…",
+      "summaryUnavailable": "Lukemattomien ilmoitusten tila ei ole tällä hetkellä saatavilla"
+    },
+    "page": {
+      "title": "Ilmoitukset",
+      "heading": "Toiminnalliset päivityksesi",
+      "unreadSummary": "{count, plural, one {# lukematon ilmoitus työtilassasi} other {# lukematonta ilmoitusta työtilassasi}}",
+      "caughtUp": "Olet lukenut kaikki ilmoitukset",
+      "summaryLoading": "Lukemattomia ilmoituksia tarkistetaan…",
+      "summaryUnavailable": "Lukemattomien ilmoitusten tila ei ole tällä hetkellä saatavilla"
+    },
+    "actions": {
+      "markAllRead": "Merkitse kaikki luetuiksi",
+      "preferences": "Ilmoitusasetukset",
+      "retry": "Yritä uudelleen",
+      "viewAll": "Näytä kaikki ilmoitukset"
+    },
+    "filters": {
+      "label": "Ilmoitussuodattimet",
+      "status": "Tila",
+      "category": "Luokka",
+      "location": "Studion toimipiste"
+    },
+    "statuses": {
+      "all": "Kaikki",
+      "unread": "Lukemattomat",
+      "read": "Luetut"
+    },
+    "categories": {
+      "all": "Kaikki luokat",
+      "bookings": "Varaukset",
+      "payments": "Maksut",
+      "waitlist": "Jonotuslista",
+      "tasks": "Tehtävät",
+      "inventory": "Varasto",
+      "migration": "Tietojen siirto",
+      "communications": "Viestintä",
+      "account": "Tili"
+    },
+    "locations": {
+      "all": "Kaikki toimipisteet"
+    },
+    "item": {
+      "untitled": "Studiopäivitys",
+      "open": "Avaa ilmoitus: {title}",
+      "markRead": "Merkitse ilmoitus luetuksi: {title}",
+      "groupedCount": "{count, plural, one {# tapahtuma} other {# tapahtumaa}}"
+    },
+    "empty": {
+      "title": "Ei vielä ilmoituksia",
+      "description": "Tärkeät toiminnalliset päivitykset näkyvät täällä.",
+      "unreadTitle": "Kaikki on ajan tasalla",
+      "unreadDescription": "Tässä näkymässä ei ole lukemattomia ilmoituksia."
+    },
+    "errors": {
+      "load": "Ilmoituksia ei voitu ladata.",
+      "markRead": "Ilmoitusta ei voitu merkitä luetuksi.",
+      "markAllRead": "Ilmoituksia ei voitu merkitä luetuiksi."
+    },
+    "pagination": {
+      "label": "Ilmoitussivut",
+      "previous": "Edellinen",
+      "next": "Seuraava",
+      "summary": "{total, plural, one {# ilmoitus} other {# ilmoitusta}} · sivu {page}/{pages}"
+    }
+  },
+  "PublicTenant": {
+    "nav": {
+      "home": "Studio",
+      "portal": "Asiakasportaali",
+      "book": "Open Studio",
+      "courses": "Kurssit",
+      "memberships": "Jäsenyydet",
+      "vouchers": "Lahjakortit",
+      "help": "Studio-opas"
+    },
+    "actions": {
+      "signIn": "Kirjaudu sisään",
+      "book": "Varaa aika",
+      "courses": "Näytä kurssit",
+      "memberships": "Näytä jäsenyydet",
+      "vouchers": "Tutustu lahjakortteihin",
+      "register": "Luo tili"
+    },
+    "mobile": {
+      "eyebrow": "Studion navigointi",
+      "title": "Tutustu studioon {studio}",
+      "poweredBy": "Palvelun tarjoaa Shario"
+    },
+    "home": {
+      "eyebrow": "Tervetuloa studioon",
+      "defaultDescription": "Tutustu studioon {studio}, löydä tavat vierailla ja kaikki tarvitsemasi tiedot ennen seuraavaa studiopäivääsi.",
+      "exploreEyebrow": "Studiosi",
+      "exploreTitle": "Tapoja vierailla",
+      "explore": "Tutustu",
+      "cards": {
+        "book": "Valitse studiotapaaminen ja sinulle sopiva aika.",
+        "courses": "Selaa tulevia kursseja ja luovia elämyksiä.",
+        "memberships": "Vertaile säännölliseen studiokäyttöön ja etuihin tarkoitettuja paketteja.",
+        "vouchers": "Anna jollekulle aikaa ja tilaa luoda studiossa.",
+        "help": "Valmistaudu vierailuusi studion ohjeilla ja käytännön vastauksilla."
+      },
+      "highlights": {
+        "viewAll": "Näytä kaikki",
+        "open": "Näytä tiedot",
+        "coursesTitle": "Nostetut kurssit",
+        "coursesDescription": "Valitse studion tällä hetkellä julkaistuista kursseista.",
+        "membershipsTitle": "Jäsenyysvaihtoehdot",
+        "membershipsDescription": "Paketit asiakkaille, jotka haluavat käydä ja luoda säännöllisesti.",
+        "helpTitle": "Studion Knowledge Hubista",
+        "helpDescription": "Studion valitsemia hyödyllisiä julkisia ohjeita.",
+        "resourceTypes": {
+          "video": "Video",
+          "guide": "Opas",
+          "faq": "UKK",
+          "link": "Linkki",
+          "file": "Tiedosto"
+        }
+      }
+    },
+    "footer": {
+      "explore": "Tutustu",
+      "contact": "Yhteystiedot",
+      "information": "Tiedot",
+      "defaultCopyright": "© {year} {studio}",
+      "poweredBy": "Palvelun tarjoaa Shario"
+    },
+    "legal": {
+      "studioRules": "Studion säännöt",
+      "terms": "Käyttöehdot",
+      "privacy": "Tietosuojakäytäntö",
+      "cancellation": "Peruutusehdot"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "website": "Verkkosivusto"
+    },
+    "unavailable": {
+      "title": "Tämä vaihtoehto ei ole saatavilla",
+      "description": "Studio ei tällä hetkellä tarjoa tätä vaihtoehtoa julkisesti.",
+      "back": "Takaisin studioon"
+    },
+    "book": {
+      "metadataTitle": "Varaa Open Studio",
+      "title": "Open Studio studiossa {studio}",
+      "description": "Valitse studio ja selaa tällä hetkellä näkyviä varattuja ajanjaksoja ennen kirjautumista.",
+      "eyebrow": "Suunnittele vierailusi",
+      "studioLabel": "Studion toimipiste",
+      "studioRequired": "Studiota ei ole valittu",
+      "priceFrom": "Varaushinnat alkaen",
+      "priceLabel": "Varaushinta",
+      "priceUnavailable": "Kysy studiolta",
+      "priceUnit": "30 minuutin jaksoa ja vierasta kohden",
+      "retry": "Yritä uudelleen",
+      "calendar": {
+        "title": "Studion käyttöaste",
+        "readOnly": "Vain luku",
+        "description": "Selaa varattuja aikoja studion paikallisella aikavyöhykkeellä. Henkilökohtaisia varaustietoja ei koskaan näytetä.",
+        "legend": "Kalenterin selite",
+        "occupied": "Varattu",
+        "loadingStudios": "Studion toimipisteitä ladataan…",
+        "locationError": "Studion toimipisteitä ei voitu ladata.",
+        "noLocations": "Studiota ei ole vielä saatavilla",
+        "noLocationsDescription": "Tämä studio ei ole julkaissut varauksia tukevaa toimipistettä.",
+        "invalidLocation": "Tämä studion toimipiste ei ole saatavilla",
+        "invalidLocationDescription": "Jatka valitsemalla yksi julkaistuista studion toimipisteistä.",
+        "loading": "Nykyistä käyttöastetta ladataan…",
+        "error": "Nykyistä käyttöastetta ei voitu ladata.",
+        "empty": "Tälle aikavälille ei palautettu varattuja jaksoja. Tämä ei takaa saatavuutta.",
+        "occupiedSummary": "{count, plural, one {Näytetään # varattu ajanjakso.} other {Näytetään # varattua ajanjaksoa.}}"
+      }
+    },
+    "courses": {
+      "metadataTitle": "Studion kurssit",
+      "title": "Kurssit studiossa {studio}",
+      "description": "Tutustu julkaistuihin kursseihin. Jatka saatavilla oleviin päivämääriin kirjautumalla sisään.",
+      "filters": {
+        "label": "Kurssikategoriat",
+        "all": "Kaikki",
+        "searchLabel": "Hae kursseja",
+        "searchPlaceholder": "Hae kursseja…",
+        "clearSearch": "Tyhjennä haku",
+        "resultCount": "{visible} / {total} kurssia",
+        "noResults": "Mikään kurssi ei vastaa hakuasi tai valittua kategoriaa.",
+        "reset": "Näytä kaikki kurssit"
+      }
+    },
+    "vouchers": {
+      "metadataTitle": "Lahjakortit",
+      "title": "Ajatuksella valittu studiolahja",
+      "description": "Valitse julkaistu lahjakortti ja anna jollekulle vapaus luoda studiossa {studio}.",
+      "checkout": {
+        "eyebrow": "Turvallinen maksu",
+        "title": "Valitse lahjakorttisi",
+        "description": "Valitse arvo, anna sähköpostiosoitteesi ja jatka studion turvalliselle maksusivulle.",
+        "email": "Sähköpostiosoite",
+        "quantity": "Määrä",
+        "missing": "Valitse lahjakortti ja anna kelvollinen sähköpostiosoite.",
+        "error": "Maksua ei voitu aloittaa. Yritä uudelleen.",
+        "starting": "Maksua valmistellaan…",
+        "continue": "Jatka maksuun",
+        "secure": "Lahjakortin saatavuus ja hinta vahvistetaan turvallisesti ennen maksua.",
+        "giftMessage": "Lahjaviesti (valinnainen)",
+        "giftMessageHelp": "Enintään 240 merkkiä. Viesti lisätään tämän tilauksen jokaiseen PDF-tiedostoon ja sähköpostiisi. Lähetämme lahjakortit yllä olevaan sähköpostiosoitteeseen.",
+        "giftMessageLegacyHelp": "Enintään 240 merkkiä. Viesti sisällytetään sähköpostiisi. Tämä lahjakortti käyttää kiinteää PDF-pohjaa, joten viesti ei näy PDF-tiedostossa.",
+        "giftMessageError": "Lahjaviestisi ei mahdu tähän lahjakorttiin. Kokeile lyhentää viestiä, vähentää rivinvaihtoja tai poistaa emojeja ja erikoismerkkejä.",
+        "total": "Yhteensä",
+        "validity": "Voimassaolo",
+        "noExpiry": "Ei vanhenemispäivää",
+        "validUntil": "Voimassa {date} asti",
+        "validMonths": "{months, plural, one {# kuukausi ostosta} other {# kuukautta ostosta}}"
+      },
+      "postal": {
+        "title": "Toimitus",
+        "digital": "Digitaalinen lahjakortti",
+        "physical": "Painettu lahjakortti postitse",
+        "digitalHelp": "Lähetetään sähköpostiisi.",
+        "postage": "Postikulut: {amount} tilausta kohden",
+        "backup": "Studio tulostaa lahjakorttisi ja lähettää sen postitse. Saat myös sähköpostikopion, jossa on sama koodi. Molemmilla kopioilla on yksi yhteinen saldo.",
+        "firstname": "Etunimi",
+        "lastname": "Sukunimi",
+        "street": "Katuosoite ja talonnumero",
+        "city": "Kaupunki",
+        "postalCode": "Postinumero",
+        "country": "Maa",
+        "chooseCountry": "Valitse maa",
+        "addressError": "Anna täydellinen postiosoite, mukaan lukien maa.",
+        "unavailable": "Postitoimitus ei ole enää saatavilla tälle lahjakortille. Valitse digitaalinen toimitus tai päivitä sivu.",
+        "subtotal": "Lahjakortin arvo",
+        "fee": "Postikulut"
+      }
+    },
+    "catalog": {
+      "loading": "Nykyisiä tarjouksia ladataan…",
+      "error": "Nykyisiä tarjouksia ei voitu ladata.",
+      "retry": "Yritä uudelleen",
+      "empty": "Täällä ei ole vielä julkaistuja tarjouksia.",
+      "book": "Kirjaudu sisään varataksesi",
+      "viewDates": "Näytä vapaat päivämäärät",
+      "viewDetails": "Valitse päivämäärä",
+      "continue": "Jatka varaukseen",
+      "availability": {
+        "fullWaitlistOpen": "Täynnä · jonotuslista avoinna"
+      }
+    },
+    "details": {
+      "bookingMetadataTitle": "Valitse studiovierailu",
+      "bookingMetadataDescription": "Valitse Open Studio -vaihtoehto, toimipiste, päivämäärä ja aika.",
+      "courseMetadataTitle": "Kurssipäivät",
+      "courseMetadataDescription": "Näytä julkaistut kurssipäivät ja valitse paikkasi.",
+      "loading": "Nykyistä saatavuutta ladataan…",
+      "error": "Nykyistä saatavuutta ei voitu ladata.",
+      "retry": "Yritä uudelleen",
+      "notFound": "Tämä julkinen tarjous ei ole enää saatavilla.",
+      "backToBook": "Takaisin studiovaraukseen",
+      "backToCourses": "Takaisin kursseihin",
+      "bookingEyebrow": "Open Studio",
+      "courseEyebrow": "Kurssi",
+      "chooseVisit": "Valitse vierailusi",
+      "chooseVisitDescription": "Valitse toimipiste ja päivämäärä. Saatavuus tarkistetaan uudelleen ennen maksua.",
+      "chooseCourseSession": "Valitse kurssipäivä",
+      "chooseCourseSessionDescription": "Valitse julkaistu kurssikerta ja osallistujien määrä.",
+      "location": "Toimipiste",
+      "locationFallback": "Toimipiste {number}",
+      "date": "Päivämäärä",
+      "activity": "Suunniteltu toiminta",
+      "activityChoose": "Valitse toiminta",
+      "activityNotSpecified": "Ei tiettyä toimintaa",
+      "activityRequiredHint": "Tässä toimipisteessä on valittava toiminta ennen ajankohdan valintaa.",
+      "activityOptionalHint": "Voit valita toiminnan tai jatkaa määrittämättä sitä.",
+      "activityUnavailable": "Tälle toimipisteelle ei ole vielä määritetty asiakastoimintaa.",
+      "chooseTime": "Valitse aika",
+      "noSlots": "Tälle päivälle ei ole vapaita aikoja.",
+      "noCourseSessions": "Tälle kurssille ei ole tulevia julkaistuja kurssikertoja.",
+      "remaining": "{count, plural, =0 {Täynnä} one {# paikka jäljellä} other {# paikkaa jäljellä}}",
+      "continueInPortal": "Jatka asiakasportaalissa",
+      "signInToContinue": "Jatka kirjautumalla sisään",
+      "bookWithAccount": "Varaa tililläni",
+      "openWorkspace": "Avaa studion hallintapaneeli",
+      "preparingIntent": "Valintaasi suojataan…",
+      "selectionChanged": "Tämä aika ei ole enää saatavilla. Päivitimme vapaat vaihtoehdot.",
+      "intentError": "Varaustasi ei voitu valmistella. Yritä uudelleen.",
+      "orGuestCheckout": "tai jatka vieraana",
+      "customerChoice": {
+        "mode": "Yksityisyysasetukset",
+        "public": "Jaettu",
+        "private": "Yksityinen",
+        "publicFixedHelp": "Enintään {count} henkilöä voi jakaa tämän ajan, oma ryhmäsi mukaan lukien. Myös studion ja aktiviteetin kapasiteettirajat ovat voimassa.",
+        "publicActivityHelp": "Muut asiakkaat voivat liittyä mukaan studion ja aktiviteetin kapasiteettirajojen puitteissa.",
+        "privateHelp": "Varaa koko studio ryhmällesi. Varaukseen lisätään kertaluonteinen lisämaksu {amount}.",
+        "surcharge": "Yksityisvarauksen lisämaksu",
+        "people": "Ryhmäsi henkilömäärä"
+      },
+      "activityWorkstation": "Työpisteet",
+      "activitySharedTable": "Yhteiset pöydät"
+    },
+    "guestCheckout": {
+      "title": "Jatka vieraana",
+      "description": "Anna yhteystietosi tätä kurssivarausta varten.",
+      "people": "Osallistujien määrä",
+      "firstName": "Etunimi",
+      "lastName": "Sukunimi",
+      "email": "Sähköposti",
+      "phone": "Puhelin (valinnainen)",
+      "terms": "Kurssiehdot",
+      "acceptTerms": "Olen lukenut ja hyväksyn nämä kurssiehdot.",
+      "termsRequired": "Hyväksy kurssiehdot ennen jatkamista.",
+      "validationError": "Tarkista yhteystietosi.",
+      "checkoutError": "Maksua ei voitu aloittaa. Saatavuus on voinut muuttua. Yritä uudelleen.",
+      "signInRequired": "Jatka turvallisesti kirjautumalla tällä sähköpostiosoitteella.",
+      "signIn": "Kirjaudu sisään ja jatka",
+      "starting": "Turvallista maksua aloitetaan…",
+      "continue": "Jatka turvalliseen maksuun",
+      "serverValidation": "Hinta, kapasiteetti ja kurssin saatavuus vahvistetaan turvallisesti ennen maksua.",
+      "totalLabel": "Yhteensä {count} osallistujalle",
+      "attemptExpired": "Tämä maksutapahtuma on vanhentunut. Jatka uudelleen tarkistaaksesi saatavuuden ja aloittaaksesi uuden maksun.",
+      "voucherCode": "Lahjakortin koodi (valinnainen)",
+      "checkVoucher": "Tarkista lahjakortti",
+      "checkingVoucher": "Tarkistetaan…",
+      "voucherHelp": "Tarkista alennus ennen vahvistamista. Tarkistus ei käytä lahjakorttiasi.",
+      "voucherDiscount": "Lahjakortin alennus",
+      "remainingToPay": "Maksettavaa jäljellä",
+      "voucherCoversAll": "Lahjakortti kattaa koko hinnan. Vahvista käyttääksesi sen ja varataksesi paikkasi.",
+      "voucherPartial": "Vahvista varataksesi lahjakortin ja maksaaksesi loppusumman kortilla.",
+      "confirmWithVoucher": "Vahvista varaus lahjakortilla",
+      "voucherError": "Tätä lahjakorttia ei voi käyttää tähän varaukseen. Tarkista koodi tai ota yhteyttä studioon.",
+      "voucherReviewRequired": "Tarkista lahjakortti ja hinta ennen vahvistamista.",
+      "voucherRateLimited": "Liian monta yritystä. Odota hetki ja yritä uudelleen.",
+      "voucherChanged": "Hinta tai lahjakortin saldo on muuttunut. Tarkista lahjakortti uudelleen ennen vahvistamista."
+    },
+    "guestCheckoutResult": {
+      "verifyingLabel": "Maksua tarkistetaan",
+      "confirmedLabel": "Maksu vahvistettu",
+      "unconfirmedLabel": "Maksua ei voitu vahvistaa",
+      "verifyingTitle": "Viimeistelemme varaustasi",
+      "confirmedTitle": "Kiitos varauksestasi",
+      "unconfirmedTitle": "Varaustasi ei ole vielä vahvistettu",
+      "verifyingDescription": "Odotamme vahvistusta maksupalveluntarjoajalta. Voit pitää tämän sivun auki.",
+      "confirmedDescription": "Maksusi ja varauksesi on vahvistettu. Lähetämme varaustiedot sähköpostitse.",
+      "unconfirmedDescription": "Emme voineet todentaa tätä varausta. Tarkista sähköpostisi tai ota yhteyttä studioon alla olevalla tilausnumerolla ennen uutta maksuyritystä.",
+      "emailPending": "Lähetämme sähköpostin, kun varaus on vahvistettu.",
+      "emailConfirmed": "Tarkista myös roskapostikansiosi.",
+      "orderReference": "Tilausnumero",
+      "backToStudio": "Takaisin studioon",
+      "backToCourse": "Takaisin kurssiin",
+      "retry": "Tarkista uudelleen",
+      "cancelledTitle": "Maksusivu suljettiin",
+      "cancelledDescription": "Tämä sivu ei vahvista maksua tai varausta. Tarkista sähköpostisi ennen uuden maksun aloittamista."
+    }
+  },
+  "VoucherEditor": {
+    "colors": {
+      "mainTitle": "Pääotsikko",
+      "useTextColor": "Käytä tekstin väriä"
+    },
+    "description": "Kaksi yhtä suurta puoliskoa: tekstisi ja lahjakortin koodi vasemmalla, kuvasi oikealla.",
+    "assets": {
+      "image": "Oikean puoliskon kuva",
+      "imageHelp": "Kuva täyttää oikean puoliskon ylhäältä alas. Täytä alue rajaa reunoja; Näytä koko kuva säilyttää koko kuvan ja jättää sen ympärille tilaa.",
+      "imageFormats": "JPEG, PNG tai WebP · enintään 8 Mt. Tarkista rajaus esikatselussa.",
+      "uploadImage": "Lataa kuva",
+      "replaceImage": "Vaihda kuva",
+      "cover": "Täytä alue (rajaa reunat)",
+      "contain": "Näytä koko kuva",
+      "fit": "Kuvan sovitus"
+    },
+    "preview": {
+      "automatic": "Yksilöllinen koodi ja voimassaolon päättymispäivä lisätään vasemmalle. Summaa ei tulosteta; lahjakortin käytettävissä oleva arvo pysyy ennallaan. Esikatselu ja malli-PDF käyttävät esimerkkitietoja."
+    }
+  },
+  "WorkspaceModules": {
+    "modules": {
+      "communications": {
+        "description": "Sähköpostihistoria, automaatiot, mallipohjat ja sähköpostiasetukset."
+      }
+    }
+  },
+  "PublicSiteEditor": {
+    "customerPortal": {
+      "pageLabels": {
+        "courses": "Kurssit"
+      },
+      "navigationLabels": {
+        "courses": "Kurssit"
+      },
+      "courses": {
+        "title": "Kunkin studion kurssit",
+        "description": "Muokkaa kurssisivun otsikkoa, esittelyä ja kuvaa erikseen kullekin sijainnille.",
+        "location": "Studion sijainti",
+        "headline": "Kurssisivun otsikko",
+        "intro": "Kurssisivun esittely",
+        "image": "Kurssisivun kuva",
+        "inherit": "Tyhjissä kentissä käytetään yhteistä kurssisivun tekstiä ja brändin kansikuvaa.",
+        "noLocations": "Lisää studion sijainti, jotta voit muokata sen kurssisivua.",
+        "guestCheckoutEnabled": "Salli kurssien ostaminen ilman tiliä",
+        "guestCheckoutDescription": "Koskee kaikkia studioita. Vieraat voivat ostaa kurssin luomatta tiliä; asiakkaat voivat edelleen kirjautua sisään varatakseen. Edellyttää näkyviä kurssisivuja ja toimivia verkkomaksuja. Ota asetus käyttöön julkaisemalla muutokset."
+      }
+    },
+    "preview": {
+      "pages": {
+        "portalCourses": "Asiakasportaalin kurssit"
+      }
+    },
+    "branding": {
+      "logoRedirectEnabled": "Tee logosta linkki",
+      "logoRedirectHint": "Kun asetus on käytössä, logon napsautus avaa valitsemasi sivun. Kun asetus on pois käytöstä, napsautus ei tee mitään.",
+      "logoRedirectUrl": "Logon kohdeosoite",
+      "logoRedirectUrlHint": "Käytä täydellistä HTTPS-osoitetta tai polkua, joka alkaa merkillä /. Sivu avautuu samaan välilehteen.",
+      "invalidLogoRedirectUrl": "Anna kelvollinen HTTPS-osoite tai polku, joka alkaa merkillä /."
+    },
+    "messages": {
+      "invalidLogoRedirectUrl": "Korjaa logon kohdeosoite ennen tallentamista tai julkaisemista."
+    }
+  },
+  "Products": {
+    "form": {
+      "courseContent": {
+        "title": "Kurssisivun sisältö",
+        "help": "Valinnaiset tekstit ja kuvat asiakasportaalin kurssisivulle. Tyhjissä kentissä käytetään tuotteen pääsisältöä.",
+        "language": "Sisällön kieli",
+        "name": "Kurssin nimi",
+        "description": "Lyhyt kuvaus",
+        "details": "Kurssin tiedot",
+        "durationLabel": "Keston kuvaus",
+        "plainTextHelp": "Käytä pelkkää tekstiä. Rivinvaihdot säilytetään.",
+        "gallery": "Kurssin kuvagalleria",
+        "galleryHelp": "Lisää enintään 12 kuvan HTTPS-osoitetta tai sivustoon suhteutettua kuvapolkua. Jos galleria on tyhjä, käytetään tuotteen kuvaa.",
+        "imageUrl": "Uuden galleriakuvan osoite",
+        "addImage": "Lisää kuva",
+        "useProductImage": "Käytä tuotteen nykyistä kuvaa",
+        "imageLabel": "Galleriakuva {number}",
+        "moveEarlier": "Siirrä kuvaa {number} aiemmaksi",
+        "moveLater": "Siirrä kuvaa {number} myöhemmäksi",
+        "removeImage": "Poista kuva {number}",
+        "invalidImage": "Anna kelvollinen kuvan HTTPS-osoite tai sivustoon suhteutettu polku (enintään 2 000 merkkiä).",
+        "invalidText": "Tarkista kurssiteksti: käytä pelkkää tekstiä kenttien merkkirajojen puitteissa.",
+        "galleryLimit": "Voit lisätä galleriaan enintään 12 kuvaa.",
+        "locations": "Saatavilla näissä studioissa",
+        "locationsHelp": "Jätä valinta tyhjäksi, jos haluat näyttää kurssin kaikissa studioissa. Ajankohdat näytetään aina valitun studion mukaan."
+      }
+    }
+  },
+  "CustomerCourses": {
+    "eyebrow": "Luo omalla studiollasi",
+    "title": "Kurssit",
+    "description": "Tutustu kursseihin, valitse ajankohta ja varaa paikkasi.",
+    "location": "Studion sijainti",
+    "allCategories": "Kaikki kurssit",
+    "search": "Hae kursseja",
+    "noResults": "Hakuasi vastaavia kursseja ei löytynyt.",
+    "noCourses": "Tässä studiossa ei ole vielä kursseja saatavilla.",
+    "loading": "Ladataan kursseja…",
+    "error": "Kurssien lataaminen epäonnistui.",
+    "retry": "Yritä uudelleen",
+    "details": "Kurssin tiedot",
+    "chooseDate": "Valitse ajankohta",
+    "upcomingDates": "Tulevat ajankohdat",
+    "noDates": "Uudet ajankohdat julkaistaan pian.",
+    "pricePerPerson": "Hinta henkilöltä",
+    "duration": "Kesto",
+    "durationMinutes": "{count} min",
+    "capacity": "Ryhmän koko",
+    "capacityPeople": "Enintään {count} henkilöä",
+    "back": "Takaisin kursseihin",
+    "people": "Henkilömäärä",
+    "addToCart": "Lisää ostoskoriin",
+    "inCart": "Ostoskorissasi",
+    "viewCart": "Näytä ostoskori",
+    "unavailable": "Tätä kurssia ei ole saatavilla valitussa studiossa.",
+    "selectDate": "Jatka valitsemalla vapaa ajankohta.",
+    "giftVoucher": "Anna lahjakortti",
+    "previousImage": "Edellinen kuva",
+    "nextImage": "Seuraava kuva",
+    "openGallery": "Avaa kurssin {name} galleria",
+    "closeGallery": "Sulje galleria",
+    "imagePosition": "Kuva {current}/{total}",
+    "placesLeft": "Vapaita paikkoja: {count}",
+    "full": "Täynnä",
+    "date": "Päivämäärä",
+    "added": "Kurssi lisättiin ostoskoriisi.",
+    "checkoutPaused": "Varaaminen ei ole juuri nyt käytettävissä. Voit silti tutustua kursseihin."
+  },
+  "Sales": {
+    "paymentMethods": {
+      "unknown": "Ei kirjattu"
+    }
+  },
+  "VoucherShopping": {
+    "buy": "Osta lahjakortti",
+    "manage": "Lunasta tai katso lahjakorttejani",
+    "chooseTitle": "Valitse lahjasi",
+    "chooseDescription": "Valitse lahjakortti ja kappalemäärä. Ostaminen ei vaadi käyttäjätiliä.",
+    "deliveryTitle": "Saat lahjakorttisi",
+    "deliveryDescription": "Maksun jälkeen PDF-lahjakorttisi lähetetään antamaasi sähköpostiosoitteeseen.",
+    "redeemTitle": "Suunnittele käynti studiolla",
+    "redeemDescription": "Lahjansaaja valitsee ajankohdan ja käyttää lahjakortin koodia kassalla. Lahjakortin ostaminen ei varaa kurssipaikkaa.",
+    "selection": "Valitse lahjakortti",
+    "selected": "Valittu"
+  },
+  "BookingActions": {
+    "title": "Muokkaa varausta",
+    "details": "Varauksen tiedot",
+    "chooseAction": "Mitä haluat tehdä?",
+    "extend": "Pidennä",
+    "move": "Siirrä",
+    "cancel": "Peruuta",
+    "extendTitle": "Pidennä varausta",
+    "moveTitle": "Siirrä varausta",
+    "cancelTitle": "Peruuta varaus",
+    "extendHelp": "Säilytä varauksesi ja lisää aikaa sen loppuun. Osallistujat, aktiviteetti ja yksityisyysasetus pysyvät samoina. Maksat vain lisäajasta.",
+    "extraTime": "Kuinka paljon lisää aikaa?",
+    "minutes": "+{minutes} min",
+    "endsAt": "Päättyy klo {time}",
+    "loading": "Tarkistetaan vapaita aikoja…",
+    "retry": "Yritä uudelleen",
+    "quoteError": "Pidennysvaihtoehtoja ei voitu tarkistaa. Yritä uudelleen.",
+    "paymentMethod": "Maksutapa",
+    "card": "Maksukortti",
+    "credits": "Studion krediitit",
+    "payExtend": "Pidennä varausta · {amount}",
+    "processing": "Käsitellään…",
+    "extensionError": "Pidennystä ei voitu vahvistaa. Tarkista varauksesi ennen kuin yrität uudelleen.",
+    "quoteChanged": "Varaus tai hinta on muuttunut. Tarkista päivitetyt vaihtoehdot ennen vahvistamista.",
+    "currentTariff": "Alkuperäistä tuntihintaa ei ole saatavilla. Lisäaika veloitetaan studion nykyisellä hinnalla.",
+    "cardTimeLimit": "Jos varaus päättyy pian, käytä studion krediittejä. Korttimaksun suorittamiseen ei ole riittävästi aikaa.",
+    "reasons": {
+      "unavailable": "Tämä lisäaika ei ole saatavilla.",
+      "private": "Tämän ajanjakson aikana alkaa toinen yksityisvaraus.",
+      "capacity": "Studion tai aktiviteetin kapasiteetti ei riitä.",
+      "closed": "Pidennys ulottuu studion aukioloaikojen ulkopuolelle.",
+      "duration": "Varauksen enimmäiskesto ylittyisi.",
+      "pending": "Pidennyksen maksu on jo kesken. Suorita tai peruuta maksu ennen kuin yrität uudelleen."
+    },
+    "moveHelp": "Valitse uusi aloitusaika. Kesto {minutes} minuuttia, studio, aktiviteetti ja osallistujat pysyvät samoina.",
+    "newDate": "Uusi päivämäärä",
+    "startTime": "Aloitusaika",
+    "availableTimes": "Vapaat aloitusajat",
+    "manualTime": "Syötä aloitusaika. Saatavuus tarkistetaan ennen vahvistamista.",
+    "confirmMove": "Vahvista uusi aika",
+    "moveInvalid": "Valitse kelvollinen päivämäärä ja kellonaika.",
+    "moveError": "Tämä aika ei ole enää saatavilla. Valitse toinen.",
+    "readonly": "Tämän varauksen aikaa ei voi enää muuttaa.",
+    "courseReadonly": "Kurssi-ilmoittautumisia voi vain tarkastella portaalissa, koska ne liittyvät aikataulutettuun kurssikertaan. Ota yhteyttä studioon, jos haluat muuttaa tai peruuttaa ilmoittautumisen.",
+    "accessLocked": "Pääsykoodi on annettu tai sitä lähetetään, joten varausta ei voi enää siirtää tai peruuttaa.",
+    "refundHelp": "Peruutusta ei voi kumota. Maksettu summa palautetaan studion krediitteinä; jäsenkrediitillä maksettaessa kyseinen krediitti palautetaan. Peruutus on mahdollinen vain ennen pääsykoodin antamista.",
+    "cancelQuestion": "Peruutetaanko tämä varaus?",
+    "confirmCancel": "Kyllä, peruuta",
+    "keepBooking": "Säilytä varaus",
+    "cancelling": "Peruutetaan…",
+    "cancelError": "Varausta ei voitu peruuttaa. Yritä uudelleen.",
+    "cancelledTitle": "Varaus peruutettu",
+    "cancelledBody": "Varauksesi on peruutettu ja hyvitys on tehty.",
+    "movedTitle": "Varaus siirretty",
+    "movedBody": "Varauksesi uusi aika on vahvistettu.",
+    "extendedTitle": "Varaus pidennetty",
+    "extendedBody": "Varauksesi päättyy nyt klo {time}. Lähetämme vahvistuksen sähköpostitse.",
+    "arrival": "Saapumisohjeet",
+    "accessCode": "Pääsykoodisi lähetetään sähköpostitse {minutes} minuuttia ennen varausta.",
+    "cancelPayment": "Peru pidennyksen maksu"
+  },
+  "EmailAutomations": {
+    "history": {
+      "types": {
+        "afterBookingCreated": "Varausvahvistus"
+      },
+      "pagination": {
+        "label": "Sähköpostien toimitushistorian sivut",
+        "previous": "Edellinen",
+        "next": "Seuraava",
+        "showing": "Näytetään {from}–{to} / {total} sähköpostitoimitusta",
+        "newestFirst": "Uusimmat ensin · 20 sivulla"
+      }
+    }
+  },
+  "TeamSettings": {
+    "actions": {
+      "add": "Kutsu tiimin jäsen"
+    },
+    "editor": {
+      "addTitle": "Kutsu jäsen tiimiin",
+      "email": "Sähköpostiosoite",
+      "existingUserHint": "Hän saa kutsun sähköpostitse. Uudet jäsenet voivat luoda tilin."
+    },
+    "empty": {
+      "description": "Kutsu henkilö sähköpostitse ja valitse rooli sekä toimipisteet."
+    },
+    "invitations": {
+      "title": "Kutsut",
+      "description": "Käyttöoikeus alkaa, kun vastaanottaja hyväksyy kutsun.",
+      "empty": "Ei odottavia kutsuja.",
+      "resend": "Lähetä uudelleen",
+      "revoke": "Peruuta kutsu",
+      "revokeConfirm": "Peruutetaanko kutsu osoitteeseen {email}?",
+      "revoked": "Kutsu peruutettu.",
+      "expires": "Vanhenee {date}",
+      "signInLink": "Kirjautumislinkki",
+      "sendSignIn": "Lähetä kirjautumislinkki",
+      "send": "Lähetä kutsu",
+      "statuses": {
+        "pending": "Odottaa",
+        "expired": "Vanhentunut"
+      },
+      "delivery": {
+        "pending": "Sähköposti odottaa",
+        "sent": "Sähköposti lähetetty",
+        "failed": "Lähetys epäonnistui"
+      },
+      "notices": {
+        "pending": "Kutsu osoitteeseen {email} tallennettu. Sähköposti odottaa lähetystä.",
+        "sent": "Kutsu lähetetty osoitteeseen {email}.",
+        "failed": "Kutsu osoitteeseen {email} tallennettu, mutta sähköpostia ei lähetetty. Lähetä uudelleen."
+      },
+      "errors": {
+        "resend": "Kutsua ei voitu lähettää uudelleen.",
+        "revoke": "Kutsua ei voitu peruuttaa.",
+        "send": "Kirjautumislinkkiä ei voitu lähettää.",
+        "resendTooSoon": "Odota minuutti ennen kutsun lähettämistä uudelleen.",
+        "rateLimited": "Liikaa kutsuja. Odota 15 minuuttia ja yritä uudelleen."
+      }
+    }
+  },
+  "TeamInvitation": {
+    "title": "Liity tiimiin",
+    "signInTitle": "Kirjaudu työtilaan",
+    "description": "Kutsu työtilaan {tenant} osoitteelle {email}.",
+    "newAccount": "Luo tili hyväksyäksesi kutsun.",
+    "existingAccount": "Anna nykyinen salasanasi. Salasanaa ei muuteta.",
+    "resetRequired": "Aseta salasana tilin palautuksen kautta ja palaa tähän kutsuun.",
+    "resetPassword": "Palauta salasana (avautuu uuteen välilehteen)",
+    "accepted": "Kutsu hyväksytty. Jatka kirjautumalla.",
+    "loginRetry": "Käyttöoikeus on valmis, mutta kirjautuminen epäonnistui. Yritä kirjautua uudelleen.",
+    "accept": "Hyväksy kutsu",
+    "signIn": "Kirjaudu",
+    "working": "Odota…",
+    "unavailableTitle": "Kutsu ei ole saatavilla",
+    "unavailable": "Kutsu on virheellinen, vanhentunut, peruutettu tai sitä ei voitu ladata. Pyydä tarvittaessa omistajalta uusi kutsu.",
+    "retry": "Yritä uudelleen",
+    "loading": "Ladataan kutsua…",
+    "acceptError": "Kutsua ei voitu hyväksyä. Tarkista tietosi tai pyydä uusi kutsu.",
+    "passwordReady": "Olen asettanut salasanani"
+  },
+  "Memberships": {
+    "planChange": {
+      "browse": "Selaa ja vertaile jäsenyyspaketteja",
+      "currentPlan": "Nykyinen jäsenyyspakettisi",
+      "scheduledPlan": "Ajastettu jäsenyyspaketti",
+      "choose": "Vaihda seuraavan uusimisen yhteydessä",
+      "title": "Muuta jäsenyyttäsi",
+      "description": "Nykyinen hintasi, tuntisi ja etusi pysyvät ennallaan päivämäärään {date} asti.",
+      "renewal": "Päivämäärästä {date} alkaen paketti {plan} uusiutuu hintaan {price}.",
+      "confirm": "Ajasta paketin vaihto",
+      "cancel": "Säilytä nykyinen paketti",
+      "pendingTitle": "Paketin vaihto ajastettu",
+      "pendingDescription": "Jäsenyytesi vaihtuu pakettiin {plan} päivämääränä {date}. Nykyinen maksettu jaksosi pysyy ennallaan.",
+      "cancelChange": "Peru paketin vaihto",
+      "cancelConfirm": "Perutaanko ajastettu paketin vaihto? Nykyinen pakettisi uusiutuu edelleen kuten ennenkin.",
+      "cancelTitle": "Säilytä nykyinen jäsenyytesi",
+      "cancelConfirmAction": "Peru ajastettu vaihto",
+      "success": "Pakettisi vaihto on ajastettu.",
+      "cancelled": "Ajastettu pakettisi vaihto on peruttu.",
+      "error": "Ajastettua paketin vaihtoa ei voitu päivittää. Päivitä sivu ja yritä uudelleen.",
+      "unavailable": "Voit vertailla paketteja täällä. Paketin voi vaihtaa, jos sinulla on aktiivinen kuukausijäsenyys, jolle ei ole vielä ajastettu peruutusta tai paketin vaihtoa.",
+      "loading": "Tarkistetaan nykyistä jäsenyyttäsi…",
+      "loadError": "Nykyistä jäsenyyttäsi ei voitu tarkistaa. Päivitä sivu ennen paketin valitsemista.",
+      "manage": "Hallinnoi jäsenyyttäsi",
+      "noImmediateCharge": "Maksua ei veloiteta nyt. Uusi kuukausihinta tulee voimaan seuraavan uusimisen yhteydessä.",
+      "termsRequired": "Hyväksy uuden paketin jäsenyysehdot ennen vaihdon ajastamista.",
+      "processing": "Päivitetään ajastettua paketin vaihtoa…",
+      "cancelBeforeMembership": "Jos haluat päättää jäsenyytesi, peru ensin ajastettu paketin vaihto."
+    },
+    "owner": {
+      "planForm": {
+        "benefitTypes": {
+          "studio_hours": {
+            "title": "Henkilökohtaiset Open Studio -tunnit",
+            "description": "Ennakkoon maksettua Open Studio -aikaa vain jäsenelle, yhteinen saldo mukana olevissa toimipisteissä.",
+            "editorHint": "Ennakkoon maksettua Open Studio -aikaa vain jäsenelle, yhteinen saldo mukana olevissa toimipisteissä."
+          },
+          "course_discount": {
+            "title": "Henkilökohtainen kurssialennus",
+            "description": "Alennus yhdestä jäsenen kurssipaikasta; muut osallistujat maksavat normaalihinnan.",
+            "editorHint": "Alennus yhdestä jäsenen kurssipaikasta; muut osallistujat maksavat normaalihinnan."
+          }
+        },
+        "benefitDefaults": {
+          "studio_hours": "Henkilökohtaiset Open Studio -tunnit",
+          "course_discount": "Henkilökohtainen kurssialennus"
+        },
+        "sharedSelectedLocations": "Yhteinen saldo valituissa toimipisteissä",
+        "hourQuantity": "Tunnit maksettua jaksoa kohden",
+        "hoursValidation": "Anna positiivinen tuntimäärä kokonaisina minuutteina (esimerkiksi 4,5 tuntia).",
+        "rolloverPercent": "Siirtoraja (%)",
+        "rolloverHint": "Tavallisesta kuukausikiintiöstä voi siirtää 0–25 % vain seuraavaan maksettuun kuukauteen. Valitse muille laskutusjaksoille 0.",
+        "eligibleCourses": "Alennukseen kuuluvat kurssit",
+        "eligibleCoursesHint": "Ilman valintaa kaikki kurssit kuuluvat mukaan; muuten vain valitut. Alennus koskee vain jäsenen omaa paikkaa.",
+        "oneProductDiscount": "Valitse yksi tuotealennus tai yksi henkilökohtainen kurssialennus tilausta kohden.",
+        "translationsHint": "Kirjoita jäsenyyksien nimet, kuvaukset, ehdot ja etujen nimet studion kielillä. Tyhjät käännökset käyttävät pääkielen tekstiä.",
+        "primaryCurrencyHint": "Asiakkaat maksavat studion ensisijaisessa valuutassa ({currency}).",
+        "legacyBenefit": {
+          "preserved": "Edun asetukset säilyvät; tekstiä voi muokata."
+        }
+      }
+    },
+    "benefits": {
+      "benefitValues": {
+        "studioHours": "{duration} Open Studio -aikaa maksettua jaksoa kohden, vain sinulle.",
+        "rollover": "Siirrä enintään {percentage} % tavallisista kuukausitunneista vain seuraavaan maksettuun kuukauteen.",
+        "personalCourseDiscount": "{percentage} % alennus mukana olevista kursseista vain omasta paikastasi. Muut osallistujat maksavat täyden hinnan."
+      },
+      "timeTrackingNotice": "Tunnit kattavat omat Open Studio -käyntisi. Varaa seuralaiset erikseen tai maksa koko varaus normaalisti. Siirretyt tunnit käytetään ensin ja vanhenevat seuraavan maksetun jakson lopussa.",
+      "sharedLocations": "Yhteinen saldo: {locations}",
+      "currentPeriod": "Nykyisen jakson saldo",
+      "carryover": "Siirrettyjä tunteja jäljellä",
+      "carryoverExpires": "Siirto vanhenee",
+      "adjustMinutes": "Muutos minuutteina"
+    },
+    "catalog": {
+      "recurringMonthDisclosure": "Uusiutuu automaattisesti hintaan {amount} {count, plural, one {kuukauden} other {# kuukauden}} välein, kunnes peruutat. Peruutus tulee voimaan maksetun jakson lopussa.",
+      "recurringYearDisclosure": "Uusiutuu automaattisesti hintaan {amount} {count, plural, one {vuoden} other {# vuoden}} välein, kunnes peruutat. Peruutus tulee voimaan maksetun jakson lopussa."
+    }
+  },
+  "SetupCenter": {
+    "practice": {
+      "manual": {
+        "title": "Manuaalinen vahvistus",
+        "description": "Oletko jo testannut varausta? Vahvista tulos tässä.",
+        "checkbox": "Vahvistan, että testivaraus onnistui",
+        "confirm": "Vahvista tarkistus",
+        "saving": "Tallennetaan…",
+        "confirmed": "Vahvistettu manuaalisesti {date}.",
+        "stale": "Asetukset ovat muuttuneet vahvistuksesi jälkeen. Testaa varausta uudelleen ja vahvista sitten tulos.",
+        "undo": "Poista vahvistus",
+        "error": "Vahvistusta ei voitu tallentaa. Yritä uudelleen.",
+        "undoError": "Vahvistusta ei voitu poistaa. Yritä uudelleen.",
+        "configurationChanged": "Asetukset muuttuivat tarkistuksesi aikana. Tarkista uusimmat asetukset ja vahvista sitten varaus uudelleen.",
+        "note": "Tämä kirjaa oman tarkistuksesi. Se ei luo varausta, veloita maksua tai lähetä viestiä."
+      }
+    },
+    "readiness": {
+      "items": {
+        "customerJourney": {
+          "descriptions": {
+            "manual": "Vahvistit onnistuneen testivarauksen manuaalisesti.",
+            "retest": "Asetukset ovat muuttuneet. Tarkista varaus uudelleen ja vahvista tulos.",
+            "action_required": "Tarkista varaus ja vahvista tulos.",
+            "waiting": "Suorita aiemmat käyttöönottotarkistukset ennen varauksen tarkistamista."
+          }
+        }
+      }
+    }
+  },
+  "SharioMarketing": {
+    "hero": {
+      "eyebrow": "Good spaces bring people together",
+      "title": "Your space.",
+      "highlight": "More possibilities.",
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
+      "cta": "Start free trial",
+      "secondary": "Explore Shario",
+      "note": "14-day trial · No credit card required",
+      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
+      "cardTitle": "A little less admin. A lot more connection.",
+      "cardText": "Make room for the people who make your space."
+    },
+    "features": {
+      "eyebrow": "One place for the everyday",
+      "title": "More time for your people.",
+      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "bookings": {
+        "title": "Bookings made simple",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+      },
+      "memberships": {
+        "title": "Memberships that fit",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+      },
+      "website": {
+        "title": "A website that’s yours",
+        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+      },
+      "payments": {
+        "title": "Payments in one place",
+        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+      },
+      "resources": {
+        "title": "Every space, organized",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+      },
+      "communication": {
+        "title": "Keep everyone connected",
+        "description": "Send updates, booking reminders and useful automated messages to your community."
+      },
+      "team": {
+        "title": "A team in sync",
+        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+      },
+      "insights": {
+        "title": "A clearer view",
+        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+      }
+    },
+    "website": {
+      "eyebrow": "Your space. Your identity.",
+      "title": "Your community starts with a warm welcome.",
+      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
+      "one": "Choose your colors, fonts and page layout",
+      "two": "Connect your offers, calendar and customer account",
+      "three": "Use a custom domain on eligible plans",
+      "cta": "Explore your website tools",
+      "example": "Example space website",
+      "spaceName": "Common Ground",
+      "nav": "Our space   ·   Memberships",
+      "previewEyebrow": "A place to belong",
+      "previewTitle": "Good work. Great company.",
+      "previewCta": "Explore our space",
+      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+    },
+    "spaces": {
+      "eyebrow": "For spaces that bring us together",
+      "title": "Different spaces. Shared possibilities.",
+      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
+      "cta": "Make room for your community",
+      "coworking": {
+        "title": "Coworking spaces",
+        "description": "Desks, meeting rooms and memberships for flexible working days."
+      },
+      "creative": {
+        "title": "Creative studios",
+        "description": "Shared equipment, workshops and room for your next idea."
+      },
+      "rehearsal": {
+        "title": "Rehearsal spaces",
+        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+      },
+      "community": {
+        "title": "Community hubs",
+        "description": "Events, memberships and shared places for local connections."
+      },
+      "workshops": {
+        "title": "Workshops & classes",
+        "description": "Classes, instructors, ticketed events and returning participants."
+      }
+    },
+    "faq": {
+      "eyebrow": "A few good questions",
+      "title": "Let’s make it simple.",
+      "one": {
+        "question": "What can I manage with Shario?",
+        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+      },
+      "two": {
+        "question": "Can I use my own branding?",
+        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+      },
+      "three": {
+        "question": "Can my customers book and manage their memberships?",
+        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+      },
+      "four": {
+        "question": "How do I get started?",
+        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+      }
+    },
+    "closing": {
+      "title": "Make room for more.",
+      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
+      "secondary": "Explore plans"
+    },
+    "product": {
+      "eyebrow": "Meet your everyday toolkit",
+      "title": "Everything your space needs, working together.",
+      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
+      "panelEyebrow": "Your connected workspace",
+      "panelTitle": "One place to bring it all together",
+      "solutions": "Find your kind of space"
+    },
+    "access": {
+      "eyebrow": "More freedom for your members",
+      "title": "Let your space work around your people.",
+      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+    },
+    "ai": {
+      "eyebrow": "Meet Shario AI",
+      "title": "A helping hand for everyday work.",
+      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
+      "panelEyebrow": "Connected to your workspace",
+      "panelTitle": "Helpful context. Clear next steps.",
+      "context": {
+        "title": "Context that counts",
+        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+      },
+      "drafts": {
+        "title": "A useful first draft",
+        "description": "Prepare customer messages, website copy and ideas for your next event."
+      },
+      "control": {
+        "title": "You stay in control",
+        "heading": "Your assistant. Your decisions.",
+        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+      }
+    },
+    "footer": {
+      "tagline": "Make room for more.",
+      "product": "Product",
+      "overview": "Explore Shario",
+      "ai": "Shario AI",
+      "pricing": "Pricing",
+      "spaces": "For your space",
+      "company": "Get started",
+      "about": "How it works",
+      "login": "Log in",
+      "register": "Start free trial",
+      "copyright": "© {year} Shario. All rights reserved."
+    }
+  }
+}

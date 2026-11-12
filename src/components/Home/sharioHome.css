@@ -1,0 +1,542 @@
+.shario-container {
+  width: min(1320px, 100% - 96px);
+  margin-inline: auto;
+}
+.shario-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 56px;
+  align-items: center;
+  padding-block: 72px 98px;
+}
+.shario-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+.shario-eyebrow > span {
+  width: 8px;
+  height: 8px;
+  background: #4dd7c5;
+  border-radius: 50%;
+}
+.studio-marketing .shario-hero h1 {
+  font-size: clamp(48px, 4.7vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+  font-weight: 750;
+  margin-top: 24px;
+  max-width: 620px;
+}
+.shario-hero h1 > span {
+  color: #2563eb;
+}
+.shario-intro {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #536174;
+  max-width: 510px;
+  margin-top: 24px;
+}
+.shario-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.shario-button {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  background: #2563eb;
+  color: white;
+  padding: 15px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.shario-button:hover {
+  background: #1d4ed8;
+}
+.shario-button-secondary {
+  background: white;
+  color: #182333;
+  border: 1px solid #dce3ed;
+}
+.shario-button-secondary:hover {
+  background: #f5f7fb;
+}
+.shario-footnote {
+  font-size: 12px;
+  color: #536174;
+  margin-top: 17px;
+}
+.shario-hero-visual {
+  position: relative;
+  margin-block: 18px;
+}
+.shario-campaign {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.03;
+  object-fit: cover;
+  border-radius: 24px;
+}
+.shario-welcome-card {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: -28px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 19px 20px;
+  border: 1px solid #e4e9f1;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 14px 45px #18233312;
+}
+.shario-welcome-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #d7f7ef;
+  color: #146958;
+}
+.shario-welcome-card strong {
+  font-size: 14px;
+  font-weight: 750;
+}
+.shario-welcome-card p {
+  margin-top: 3px;
+  color: #536174;
+  font-size: 12px;
+}
+.shario-welcome-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #25a47a;
+  margin-left: auto;
+}
+.shario-audience {
+  padding-block: 26px;
+  border-block: 1px solid #e5eaf1;
+}
+.shario-audience .shario-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.shario-audience p {
+  font-size: 11px;
+  color: #536174;
+  max-width: 160px;
+  line-height: 1.6;
+}
+.shario-audience .shario-container > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex: 1;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 650;
+}
+.shario-features {
+  padding-block: 100px;
+}
+.shario-section-heading {
+  max-width: 740px;
+}
+.studio-marketing .shario-container h2 {
+  font-size: clamp(32px, 3.4vw, 49px);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  margin-top: 16px;
+  line-height: 1.15;
+}
+.shario-description {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #536174;
+  margin-top: 20px;
+  max-width: 680px;
+}
+.shario-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 34px 28px;
+  margin-top: 52px;
+}
+.shario-feature {
+  padding: 26px 20px 22px;
+  border: 1px solid #e4e9f1;
+  border-radius: 16px;
+  background: #fff;
+  scroll-margin-top: 100px;
+}
+.shario-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+.shario-tone-blue {
+  background: #e8efff;
+  color: #2563eb;
+}
+.shario-tone-aqua {
+  background: #d7f7ef;
+  color: #146958;
+}
+.shario-tone-lilac {
+  background: #eee7ff;
+  color: #6240ac;
+}
+.shario-tone-coral {
+  background: #ffe6e0;
+  color: #a63d2d;
+}
+.shario-tone-sunshine {
+  background: #fff3c6;
+  color: #805d06;
+}
+.studio-marketing .shario-feature h3,
+.studio-marketing .shario-space-grid h3 {
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+.shario-feature p,
+.shario-space-grid p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #536174;
+  margin-top: 12px;
+}
+.shario-website-section {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 90px;
+  padding-block: 28px 100px;
+}
+.shario-website-preview {
+  background: #e8efff;
+  border-radius: 24px;
+  padding: 30px 24px 0;
+  overflow: hidden;
+}
+.shario-preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 15px;
+  background: white;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #eceff3;
+}
+.shario-preview-bar > span {
+  width: 6px;
+  height: 6px;
+  background: #d2d9e4;
+  border-radius: 50%;
+}
+.shario-preview-bar p {
+  flex: 1;
+  text-align: center;
+  font-size: 9px;
+  color: #536174;
+}
+.shario-example-site {
+  background: #fffaf3;
+  color: #23433f;
+  padding: 20px;
+}
+.shario-example-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dfe4dc;
+  padding-bottom: 16px;
+}
+.shario-example-nav strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+.shario-example-nav > span {
+  font-size: 8px;
+}
+.shario-example-content {
+  padding-top: 27px;
+}
+.shario-example-content > p {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+.studio-marketing .shario-example-content h3 {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  max-width: 250px;
+  margin-top: 10px;
+}
+.shario-example-content img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 7px;
+  margin-top: 20px;
+}
+.shario-example-cta {
+  display: inline-block;
+  border-radius: 6px;
+  background: #23433f;
+  color: white;
+  font-size: 10px;
+  padding: 10px 15px;
+  margin-top: 16px;
+}
+.shario-checks {
+  display: grid;
+  gap: 15px;
+  margin-top: 26px;
+  font-size: 14px;
+  color: #182333;
+}
+.shario-checks li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.shario-checks span {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #d7f7ef;
+  color: #146958;
+  font-size: 12px;
+}
+.shario-text-link {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 25px;
+  font-size: 14px;
+  font-weight: 750;
+  color: #2563eb;
+}
+.shario-spaces {
+  background: #f6f8fc;
+  padding-block: 80px;
+}
+.shario-space-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+.shario-space-grid article {
+  scroll-margin-top: 110px;
+}
+.shario-space-shape {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px 20px 20px 4px;
+  margin-bottom: 24px;
+}
+.shario-space-shape svg {
+  width: 28px;
+  height: 28px;
+}
+.shario-faq {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 90px;
+  padding-block: 100px;
+}
+.shario-faq details {
+  border-bottom: 1px solid #dce3ed;
+  padding-block: 22px;
+}
+.shario-faq summary {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.shario-faq summary::-webkit-details-marker {
+  display: none;
+}
+.shario-faq summary > span {
+  color: #2563eb;
+  font-size: 20px;
+}
+.shario-faq details[open] summary > span {
+  transform: rotate(45deg);
+}
+.shario-faq details p {
+  font-size: 14px;
+  color: #536174;
+  line-height: 1.9;
+  padding-top: 16px;
+}
+.shario-self-service {
+  padding-block: 30px 100px;
+}
+.shario-spaces-photo {
+  border-radius: 24px;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+}
+@media (min-width: 1600px) {
+  .shario-hero {
+    padding-block: 90px 110px;
+  }
+}
+@media (max-width: 1050px) {
+  .shario-container {
+    width: calc(100% - 56px);
+  }
+  .shario-hero {
+    gap: 30px;
+  }
+  .studio-marketing .shario-hero h1 {
+    font-size: 49px;
+  }
+  .shario-intro {
+    font-size: 16px;
+  }
+  .shario-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .shario-website-section {
+    gap: 40px;
+  }
+  .shario-space-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .shario-audience .shario-container {
+    gap: 20px;
+  }
+  .shario-faq {
+    gap: 40px;
+  }
+}
+@media (max-width: 700px) {
+  .shario-container {
+    width: calc(100% - 40px);
+  }
+  .shario-hero {
+    grid-template-columns: 1fr;
+    padding-block: 36px 65px;
+    gap: 28px;
+  }
+  .studio-marketing .shario-hero h1 {
+    font-size: clamp(41px, 10vw, 58px);
+    max-width: 540px;
+  }
+  .shario-hero-visual {
+    margin-top: 8px;
+  }
+  .shario-campaign {
+    aspect-ratio: 1.18;
+  }
+  .shario-welcome-card {
+    left: 14px;
+    right: 14px;
+    padding: 15px;
+    bottom: -20px;
+  }
+  .shario-audience .shario-container {
+    display: block;
+  }
+  .shario-audience p {
+    max-width: none;
+    margin-bottom: 14px;
+  }
+  .shario-audience .shario-container > div {
+    justify-content: flex-start;
+    gap: 13px 20px;
+    font-size: 11px;
+  }
+  .shario-features {
+    padding-block: 65px;
+  }
+  .shario-feature-grid {
+    gap: 14px;
+    margin-top: 30px;
+  }
+  .shario-feature {
+    padding: 20px 16px;
+  }
+  .shario-feature p {
+    font-size: 12px;
+  }
+  .studio-marketing .shario-feature h3 {
+    font-size: 15px;
+  }
+  .shario-website-section {
+    grid-template-columns: 1fr;
+    padding-bottom: 65px;
+    gap: 35px;
+  }
+  .shario-website-preview {
+    padding: 22px 16px 0;
+  }
+  .shario-space-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 24px;
+  }
+  .shario-spaces {
+    padding-block: 60px;
+  }
+  .shario-faq {
+    grid-template-columns: 1fr;
+    padding-block: 65px;
+    gap: 20px;
+  }
+  .shario-faq details {
+    padding-block: 20px;
+  }
+  .shario-actions {
+    gap: 10px;
+  }
+  .shario-button {
+    padding: 14px 17px;
+    font-size: 13px;
+  }
+  .shario-self-service {
+    padding-bottom: 65px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shario-button {
+    transition: none;
+  }
+}

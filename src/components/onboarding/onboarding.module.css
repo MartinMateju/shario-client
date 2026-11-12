@@ -1,0 +1,330 @@
+.surface {
+  background: var(--studio-paper);
+  color: var(--studio-ink);
+}
+
+.card,
+.stateCard,
+.preview,
+.teamCard {
+  border: 1px solid var(--studio-rule);
+  border-radius: var(--studio-radius);
+  background: var(--studio-white);
+  box-shadow: 0 4px 16px rgb(32 40 36 / 4%);
+}
+
+.eyebrow {
+  color: var(--studio-clay);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.heading,
+.sidebarHeading {
+  color: var(--studio-ink);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+}
+
+.heading {
+  font-size: clamp(30px, 3vw, 42px);
+}
+
+.heading em,
+.sidebarHeading em {
+  color: var(--studio-clay);
+  font: inherit;
+}
+
+.muted,
+.choiceDescription {
+  color: var(--studio-muted);
+}
+
+.rule {
+  border-color: var(--studio-rule);
+}
+
+.field label,
+.legend {
+  color: var(--studio-ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.control {
+  min-height: 48px;
+  border: 1px solid var(--studio-rule);
+  border-radius: var(--studio-radius);
+  background-color: var(--studio-white);
+  color: var(--studio-ink);
+  font-size: 15px;
+  box-shadow: none;
+}
+
+.control::placeholder {
+  color: var(--studio-muted);
+}
+
+.control:hover:not(:disabled) {
+  border-color: var(--studio-muted);
+}
+
+.control:focus {
+  border-color: var(--studio-blue);
+  outline: 2px solid var(--studio-blue);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.control:disabled {
+  background: var(--studio-soft);
+  color: var(--studio-muted);
+}
+
+.control[aria-invalid="true"] {
+  border-color: var(--studio-clay);
+  box-shadow: 0 0 0 1px var(--studio-clay);
+}
+
+.field [data-select-chevron] {
+  color: var(--studio-muted);
+}
+
+.field p[id$="-error"],
+.fieldError {
+  color: var(--studio-clay);
+}
+
+.choice {
+  border: 1px solid var(--studio-rule);
+  border-radius: var(--studio-radius);
+  background: var(--studio-white);
+  color: var(--studio-ink);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.choice:hover {
+  border-color: var(--studio-blue);
+  background: var(--studio-paper);
+}
+
+.choice[aria-pressed="true"] {
+  border-color: var(--studio-blue);
+  background: color-mix(in srgb, var(--studio-blue) 5%, var(--studio-white));
+  box-shadow: 0 0 0 1px var(--studio-blue);
+}
+
+.choice strong {
+  font-weight: 500;
+}
+
+.choiceIcon,
+.benefitIcon,
+.successIcon {
+  border-radius: var(--studio-radius);
+  background: var(--studio-soft);
+  color: var(--studio-ink);
+}
+
+.choice[aria-pressed="true"] .choiceIcon {
+  background: color-mix(in srgb, var(--studio-blue) 10%, var(--studio-white));
+  color: var(--studio-blue);
+}
+
+.choiceCheck,
+.previewIcon {
+  border-radius: var(--studio-radius);
+  background: var(--studio-blue);
+  color: var(--studio-white);
+}
+
+.choiceCheck {
+  box-shadow: 0 0 0 2px var(--studio-white);
+}
+
+.choiceIndicator {
+  border-color: var(--studio-rule);
+  background: var(--studio-white);
+  color: var(--studio-muted);
+}
+
+.choice[aria-pressed="true"] .choiceIndicator {
+  border-color: var(--studio-blue);
+  background: var(--studio-blue);
+  color: var(--studio-white);
+}
+
+.selectedDot {
+  background: var(--studio-white);
+}
+
+.submit,
+.retry,
+.exit {
+  min-height: 48px;
+  border: 1px solid var(--studio-blue);
+  border-radius: var(--studio-action-radius);
+  background: var(--studio-blue);
+  color: var(--studio-white);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  box-shadow: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.submit:not(:disabled) {
+  box-shadow: var(--studio-action-shadow);
+}
+
+.submit:hover {
+  border-color: var(--studio-blue-hover);
+  background: var(--studio-blue-hover);
+}
+
+.retry,
+.exit {
+  border-color: var(--studio-rule);
+  background: var(--studio-white);
+  color: var(--studio-ink);
+}
+
+.exit {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 12px;
+}
+
+.retry:hover,
+.exit:hover {
+  border-color: var(--studio-ink);
+  background: var(--studio-soft);
+}
+
+.submit:disabled,
+.retry:disabled {
+  border-color: var(--studio-rule);
+  background: var(--studio-soft);
+  color: var(--studio-muted);
+  opacity: 1;
+  box-shadow: none;
+}
+
+.choice:focus-visible,
+.submit:focus-visible,
+.retry:focus-visible,
+.exit:focus-visible,
+.header button:focus-visible,
+.header a:focus-visible,
+.error:focus-visible {
+  outline: 2px solid var(--studio-blue);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.notice,
+.error {
+  border: 1px solid var(--studio-rule);
+  border-radius: var(--studio-radius);
+  background: var(--studio-paper);
+  color: var(--studio-ink);
+}
+
+.error {
+  border-color: var(--studio-clay);
+  background: color-mix(in srgb, var(--studio-clay) 5%, var(--studio-white));
+  color: var(--studio-clay);
+}
+
+.header [data-language-selector-trigger] {
+  min-height: 44px;
+  border-radius: var(--studio-radius);
+  color: var(--studio-muted);
+}
+
+.header [data-language-selector-trigger]:hover {
+  background: var(--studio-white);
+  color: var(--studio-ink);
+}
+
+.header [data-language-selector-panel] {
+  border-color: var(--studio-rule);
+  border-radius: var(--studio-radius);
+  background: var(--studio-white);
+  box-shadow: 0 4px 16px rgb(32 40 36 / 8%);
+  backdrop-filter: none;
+}
+
+.header [data-language-selector-panel] button {
+  border-radius: var(--studio-radius);
+  color: var(--studio-ink);
+}
+
+.header [data-language-selector-panel] button[aria-pressed="true"] {
+  background: var(--studio-soft);
+  color: var(--studio-blue);
+}
+
+.header
+  [data-language-selector-panel]
+  button[aria-pressed="true"]
+  :is(span, svg) {
+  color: inherit;
+}
+
+.header [data-language-selector-panel] button[aria-pressed="false"] span {
+  color: var(--studio-muted);
+}
+
+.sidebar {
+  border-color: var(--studio-rule);
+  background: var(--studio-soft);
+}
+
+.sidebarHeading {
+  font-size: clamp(42px, 4vw, 60px);
+}
+
+.preview {
+  width: 100%;
+  max-width: 420px;
+}
+
+.progressTrack {
+  background: var(--studio-rule);
+}
+
+.progressFill {
+  background: var(--studio-blue);
+}
+
+@media (max-height: 800px) {
+  .control,
+  .submit {
+    min-height: 44px;
+  }
+
+  .sidebarHeading {
+    font-size: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice,
+  .submit,
+  .retry,
+  .exit {
+    transition: none;
+  }
+}

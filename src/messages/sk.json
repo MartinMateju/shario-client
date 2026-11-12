@@ -1,0 +1,2539 @@
+{
+  "Bookings": {
+    "filters": {
+      "futureOnly": "Zobraziť iba prebiehajúce a budúce rezervácie"
+    },
+    "columns": {
+      "dateTime": "Dátum a čas",
+      "status": "Stav",
+      "payment": "Platba"
+    },
+    "status": {
+      "confirmed": "Potvrdená",
+      "pending": "Čakajúca",
+      "awaitingPayment": "Čaká na platbu",
+      "processed": "Čaká na odovzdanie",
+      "delivered": "Odovzdaná",
+      "completed": "Dokončená",
+      "cancelled": "Zrušená"
+    },
+    "payment": {
+      "paid": "Zaplatené",
+      "pending": "Čaká na platbu",
+      "failed": "Platba zlyhala",
+      "expired": "Platnosť vypršala",
+      "refunded": "Vrátené"
+    }
+  },
+  "CustomerBookingDetails": {
+    "title": "Detail rezervácie",
+    "loading": "Načítava sa detail rezervácie…",
+    "error": "Túto rezerváciu sa nepodarilo načítať. Skúste to prosím znova."
+  },
+  "Calendar": {
+    "filters": {
+      "filterActivities": "Filtrovať aktivity",
+      "openLegend": "Otvoriť legendu",
+      "closeLegend": "Zavrieť legendu",
+      "activity": "Aktivita",
+      "allActivities": "Všetky aktivity"
+    },
+    "events": {
+      "myBooking": "Moja rezervácia",
+      "bookingPrivate": "Súkromná",
+      "bookingPublic": "Verejná",
+      "full": "Obsadené",
+      "people": "{count, plural, one {# osoba} few {# osoby} other {# osôb}}",
+      "customerId": "Zákazník #{id}",
+      "customerIds": "Zákazníci {ids}",
+      "unknownCustomer": "ID zákazníka nie je k dispozícii",
+      "booking": "Rezervácia",
+      "availability": "{remaining, plural, =0 {Obsadené} one {# voľné miesto} few {# voľné miesta} other {# voľných miest}}",
+      "closed": "Zatvorené",
+      "unavailable": "Štúdio nie je dostupné"
+    },
+    "week": {
+      "privacyNote": "Fialová označuje súkromné rezervácie, tyrkysová verejné. Vaše rezervácie majú modrý štítok."
+    },
+    "legend": {
+      "blocked": "Štúdio blokované"
+    },
+    "availability": {
+      "available": "Voľné",
+      "limited": "Posledné miesta",
+      "select": "Vybrať tento čas",
+      "insufficientTime": "Na rezerváciu v dĺžke {minutes} minút nie je dostatok súvislého voľného času."
+    },
+    "month": {
+      "selectedDay": "Rezervácie na {date}",
+      "ownBookingCount": "Vaše rezervácie: {count}",
+      "noBookings": "Na tento deň nie sú žiadne rezervácie.",
+      "findTime": "Nájsť voľný čas",
+      "viewDay": "Zobraziť deň",
+      "past": "Minulosť",
+      "bookingCount": "{count, plural, one {# rezervácia} few {# rezervácie} other {# rezervácií}}"
+    },
+    "day": {
+      "places": "{count} miest"
+    },
+    "toolbar": {
+      "newBooking": "Nová rezervácia"
+    },
+    "activities": {
+      "WORKSTATION": "Pracovné miesta",
+      "SHARED_TABLE": "Zdieľané stoly",
+      "GENERAL": "Všeobecná kapacita"
+    }
+  },
+  "Metadata": {
+    "homeTitle": "Your space. More possibilities.",
+    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+  },
+  "Common": {
+    "skipToContent": "Prejsť na obsah",
+    "learnMore": "Zistiť viac",
+    "viewAll": "Zobraziť všetko",
+    "back": "Späť",
+    "next": "Ďalej",
+    "close": "Zavrieť",
+    "optional": "Voliteľné"
+  },
+  "Header": {
+    "mobile": {
+      "navigation": "Mobilná navigácia",
+      "publicEyebrow": "Operačný systém pre kreatívne štúdiá.",
+      "publicTitle": "Veďte svoje štúdio. Robte každý deň lepšie rozhodnutia.",
+      "adminEyebrow": "Správa štúdia",
+      "adminTitle": "Všetko, čo sa deje vo vašom štúdiu. Prehľadne.",
+      "moduleOverview": "Prehľad modulov",
+      "bookingSite": "Rezervačná stránka",
+      "admin": "Administrácia",
+      "myAccount": "Môj účet",
+      "language": "Jazyk",
+      "tagline": "Viac času na tvorbu. Menej času na administratívu."
+    },
+    "booking": "Rezervácia",
+    "cart": {
+      "open": "Otvoriť košík",
+      "items": "{count, plural, one {# položka v košíku} few {# položky v košíku} many {# položiek v košíku} other {# položky v košíku}}"
+    },
+    "account": {
+      "menu": "Používateľská ponuka",
+      "eyebrow": "Váš účet",
+      "studioManagement": "Správa štúdia",
+      "closeMenu": "Zavrieť používateľskú ponuku",
+      "fallbackName": "Váš účet",
+      "roles": {
+        "owner": "Majiteľ štúdia",
+        "admin": "Administrátor štúdia",
+        "manager": "Manažér štúdia",
+        "staff": "Člen tímu štúdia",
+        "accountant": "Účtovník",
+        "viewer": "Pozorovateľ",
+        "custom": "Vlastná rola",
+        "customer": "Zákazník"
+      },
+      "sections": {
+        "customer": "Váš účet",
+        "activity": "Aktivita štúdia",
+        "payments": "Účet a platby",
+        "personal": "Osobné",
+        "workspace": "Pracovný priestor"
+      },
+      "customerLinks": {
+        "bookings": "Moje rezervácie",
+        "services": "Služby",
+        "work": "Moja tvorba",
+        "waitlists": "Čakacie listiny",
+        "knowledge": "Centrum znalostí",
+        "credits": "Kredity",
+        "membership": "Členstvo",
+        "invoices": "Moje faktúry",
+        "account": "Nastavenia účtu",
+        "lostFound": "Straty a nálezy"
+      },
+      "tenantLinks": {
+        "dashboard": "Prehľad štúdia",
+        "account": "Nastavenia účtu",
+        "preferences": "Osobné nastavenia",
+        "setupCenter": "Centrum spustenia",
+        "settings": "Nastavenia pracovného priestoru",
+        "bookingSite": "Zobraziť verejnú stránku",
+        "bookingSiteNewTab": "Zobraziť verejný web na novej karte"
+      },
+      "language": "Jazyk",
+      "logout": "Odhlásiť sa"
+    },
+    "product": {
+      "label": "Produkt",
+      "bookingScheduling": "Rezervácie, zákazníci a platby",
+      "customers": "Zákazníci",
+      "payments": "Platby",
+      "memberships": "Členstvá",
+      "automatedCommunication": "Automatizovaná komunikácia",
+      "studioOperations": "Prevádzka štúdia a výroba",
+      "analytics": "AI, analýzy a rozhodnutia",
+      "viewAll": "Preskúmať celý produkt"
+    },
+    "solutions": {
+      "label": "Riešenia",
+      "artStudios": "Umelecké štúdiá",
+      "makerspaces": "Tvorivé dielne",
+      "workshopsClasses": "Otvorené štúdio a kurzy",
+      "multiLocationStudios": "Štúdiá s viacerými prevádzkami",
+      "viewAll": "Preskúmať všetky riešenia"
+    },
+    "forStudios": "Pre štúdiá",
+    "pricing": "Cenník",
+    "membershipCatalog": "Členstvá",
+    "resources": {
+      "label": "Zdroje",
+      "helpCenter": "Centrum pomoci",
+      "guides": "Návody",
+      "customerStories": "Príbehy zákazníkov",
+      "about": "O Shario"
+    },
+    "login": "Prihlásiť sa",
+    "getStarted": "Vyskúšať zadarmo",
+    "openWorkspace": "Otvoriť pracovný priestor",
+    "openMenu": "Otvoriť ponuku",
+    "closeMenu": "Zavrieť ponuku",
+    "changeLanguage": "Zmeniť jazyk"
+  },
+  "PlatformAuth": {
+    "login": {
+      "header": {
+        "newToSkab": "Ste v Shario prvýkrát?",
+        "createWorkspace": "Vytvoriť pracovný priestor",
+        "switchLanguage": "Prepnúť na {language}",
+        "languages": {
+          "en": "angličtinu",
+          "cs": "češtinu"
+        }
+      },
+      "form": {
+        "eyebrow": "Pre majiteľov štúdií a členov tímu",
+        "title": "Prihláste sa do svojho pracovného priestoru",
+        "description": "Ak chcete pokračovať, použite adresu štúdia a údaje účtu.",
+        "workspaceLabel": "URL pracovného priestoru",
+        "workspacePlaceholder": "common-ground",
+        "workspaceHint": "Adresa vášho štúdia na Shario",
+        "workspaceHelp": {
+          "open": "Čo je adresa pracovného priestoru?",
+          "title": "Adresa vášho štúdia na Shario",
+          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+        },
+        "findWorkspace": "Nájsť pracovný priestor",
+        "emailLabel": "E-mailová adresa",
+        "emailPlaceholder": "vy@vasestudio.sk",
+        "passwordLabel": "Heslo",
+        "passwordPlaceholder": "Zadajte heslo",
+        "showPassword": "Zobraziť heslo",
+        "hidePassword": "Skryť heslo",
+        "rememberWorkspace": "Zapamätať pracovný priestor",
+        "forgotPassword": "Zabudli ste heslo?",
+        "submit": "Prihlásiť sa",
+        "submitting": "Prihlasovanie…",
+        "secure": "Bezpečný prístup do pracovného priestoru štúdia"
+      },
+      "story": {
+        "eyebrow": "Vaše štúdio, krásne zorganizované",
+        "titleBefore": "Vaše štúdio je pripravené, keď",
+        "titleAccent": "ste pripravení vy.",
+        "description": "Rezervácie, zákazníci, kurzy a váš tím zostávajú prepojení v jednom pokojnom pracovnom priestore.",
+        "pulseLabel": "Pulz štúdia",
+        "pulse": "Všetko na jednom pokojnom mieste",
+        "bookings": "Rezervácie koordinované",
+        "team": "Tím zosúladený",
+        "operations": "Tok práce v štúdiu na očiach"
+      },
+      "errors": {
+        "server": "Server neodpovedá. Skúste to znova.",
+        "invalidResponse": "Server vrátil neplatnú odpoveď.",
+        "checkInformation": "Skontrolujte odoslané údaje.",
+        "incorrectCredentials": "E-mailová adresa alebo heslo nie sú správne.",
+        "disabled": "Prístup do tohto pracovného priestoru bol deaktivovaný.",
+        "workspaceNotFound": "Tento pracovný priestor sa nepodarilo nájsť.",
+        "rateLimited": "Príliš veľa pokusov o prihlásenie. Chvíľu počkajte a skúste to znova.",
+        "signInFailed": "Nepodarilo sa vás prihlásiť."
+      },
+      "guidance": {
+        "workspaceRequired": "Najprv zadajte URL pracovného priestoru.",
+        "workspaceCleared": "Zadajte identifikátor pracovného priestoru, ktorý vám poskytlo štúdio."
+      }
+    },
+    "register": {
+      "header": {
+        "alreadyHaveWorkspace": "Už máte pracovný priestor?",
+        "signIn": "Prihlásiť sa",
+        "switchLanguage": "Prepnúť na {language}",
+        "languages": {
+          "en": "angličtinu",
+          "cs": "češtinu"
+        }
+      },
+      "form": {
+        "eyebrow": "Začnite 14-dňové skúšobné obdobie",
+        "title": "Vytvorte pracovný priestor svojho štúdia",
+        "description": "Povedzte nám to najdôležitejšie. Služby, postupy a nastavenia štúdia môžete upraviť neskôr.",
+        "trial": "14 dní zadarmo",
+        "noCard": "Bez platobnej karty",
+        "firstNameLabel": "Meno",
+        "firstNamePlaceholder": "Vaše meno",
+        "lastNameLabel": "Priezvisko",
+        "lastNamePlaceholder": "Vaše priezvisko",
+        "studioNameLabel": "Názov štúdia",
+        "studioNamePlaceholder": "Názov vášho štúdia",
+        "workspaceLabel": "Adresa pracovného priestoru",
+        "workspacePlaceholder": "vase-studio",
+        "workspaceExample": "vase-studio",
+        "workspaceHint": "Vaše štúdio bude dostupné na adrese {slug}.shario.io",
+        "emailLabel": "E-mailová adresa",
+        "emailPlaceholder": "vy@vasestudio.sk",
+        "passwordLabel": "Heslo",
+        "passwordPlaceholder": "Vytvorte heslo",
+        "passwordHint": "Použite aspoň 8 znakov a jednu číslicu.",
+        "passwordConfirmLabel": "Potvrďte heslo",
+        "passwordConfirmPlaceholder": "Zadajte ho znova",
+        "showPassword": "Zobraziť heslo",
+        "hidePassword": "Skryť heslo",
+        "showPasswordConfirm": "Zobraziť potvrdenie hesla",
+        "hidePasswordConfirm": "Skryť potvrdenie hesla",
+        "legalPrefix": "Súhlasím s",
+        "terms": "Podmienkami používania",
+        "legalAnd": "a",
+        "privacy": "Zásadami ochrany osobných údajov",
+        "legalSuffix": ".",
+        "submit": "Vytvoriť moje štúdio",
+        "submitting": "Vytváranie pracovného priestoru…",
+        "alreadyRegistered": "Už máte pracovný priestor?",
+        "signIn": "Prihlásiť sa",
+        "secure": "Údaje vášho účtu sa prenášajú bezpečne"
+      },
+      "validation": {
+        "firstNameRequired": "Zadajte svoje meno.",
+        "lastNameRequired": "Zadajte svoje priezvisko.",
+        "studioNameRequired": "Zadajte názov štúdia.",
+        "workspaceInvalid": "Používajte iba malé písmená, číslice a jednotlivé spojovníky.",
+        "emailInvalid": "Zadajte platnú e-mailovú adresu.",
+        "passwordInvalid": "Použite aspoň 8 znakov a jednu číslicu.",
+        "passwordMismatch": "Heslá sa nezhodujú.",
+        "legalRequired": "Ak chcete pokračovať, prijmite Podmienky používania a Zásady ochrany osobných údajov.",
+        "completeRequired": "Vyplňte všetky povinné polia."
+      },
+      "errors": {
+        "createFailed": "Účet sa nepodarilo vytvoriť. Skúste to znova."
+      },
+      "story": {
+        "eyebrow": "Vaše štúdio, krásne zorganizované",
+        "titleBefore": "Vytvorte priestor pre to, čo",
+        "titleAccent": "milujete.",
+        "description": "Začnite tým najdôležitejším a potom prispôsobte Shario tomu, ako vaše kreatívne štúdio naozaj funguje.",
+        "cardLabel": "Vaša cesta k spusteniu",
+        "cardTitle": "Od nápadu k otvorenému štúdiu",
+        "workspace": "Vytvorte bezpečný pracovný priestor",
+        "setup": "Vyberte potrebné postupy",
+        "launch": "Publikujte, keď bude štúdio pripravené"
+      }
+    }
+  },
+  "MarketingPages": {
+    "common": {
+      "backHome": "Späť na domovskú stránku",
+      "startTrial": "Spustiť 14-dňovú skúšobnú verziu",
+      "noCreditCard": "Bez platobnej karty",
+      "exploreProduct": "Preskúmať produkt",
+      "exploreAi": "Preskúmať AI pre štúdio",
+      "exploreStudios": "Preskúmať riešenia pre štúdiá",
+      "explorePricing": "Pozrieť cenník",
+      "builtWithStudios": "Vzniká spolu s fungujúcimi kreatívnymi štúdiami",
+      "currencyLabel": "Vyberte menu"
+    },
+    "product": {
+      "metaTitle": "Everything your space needs, working together.",
+      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+    },
+    "studioAi": {
+      "metaTitle": "A helping hand for everyday work.",
+      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+    },
+    "forStudios": {
+      "metaTitle": "Different spaces. Shared possibilities.",
+      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+    },
+    "pricing": {
+      "metaTitle": "Programy a ceny pre kreatívne štúdiá",
+      "metaDescription": "Porovnajte programy Shario, kapacitu štúdia a AI kredity a začnite 14-dňovou skúšobnou verziou bez platobnej karty.",
+      "eyebrow": "Programy pre rastúce štúdiá",
+      "title": "Začnite s tým, čo potrebujete dnes.",
+      "description": "Každý program začína 14-dňovou skúšobnou verziou Professional, aby ste pred výberom otestovali základnú cestu štúdiom.",
+      "sectionEyebrow": "Jasné rozdiely medzi programami",
+      "sectionTitle": "Porovnajte kapacitu, procesy a AI kredity.",
+      "sectionDescription": "Vyberajte podľa počtu pobočiek, tímových účtov a úrovne prevádzky, ktorú vaše štúdio potrebuje.",
+      "closingTitle": "Nie ste si istí správnym programom?",
+      "closingDescription": "Spustite skúšobnú verziu bez platobnej karty alebo sa s nami poraďte o nasadení na mieru."
+    }
+  },
+  "MarketingHome": {
+    "hero": {
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    },
+    "pricing": {
+      "eyebrow": "Prehľadné ceny",
+      "title": "Vyberte si plán podľa toho, ako funguje vaše štúdio.",
+      "description": "Začnite s kurzami, prejdite na kompletnú prevádzku štúdia a potom pridajte pokročilé automatizácie a nástroje pre viac prevádzok. Každý plán začína 14-dňovým skúšobným obdobím Professional — bez karty.",
+      "billingIntervalLabel": "Vyberte fakturačné obdobie",
+      "monthly": "Mesačne",
+      "yearly": "Ročne",
+      "annualSavings": "2 mesiace zadarmo",
+      "perMonth": "mesačne",
+      "perYear": "ročne",
+      "from": "od",
+      "customAnnual": "Individuálny ročný plán",
+      "mostPopular": "Najobľúbenejší",
+      "starter": {
+        "name": "Starter",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "feature1": "1 prevádzka štúdia · 1 tímový účet",
+        "feature2": "Kurzy, súkromné podujatia a poukazy",
+        "feature3": "500 zahrnutých e-mailov mesačne",
+        "feature4": "Obmedzená Shario AI · 200 kreditov mesačne",
+        "cta": "Vyskúšať zadarmo"
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature1": "1 prevádzka štúdia · 3 tímové účty",
+        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature3": "3 aktívne automatizácie · 2 500 e-mailov mesačne",
+        "feature4": "Plná Shario AI · 2 000 kreditov mesačne",
+        "cta": "Vyskúšať zadarmo"
+      },
+      "studioPlus": {
+        "name": "Space Plus",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "feature1": "Až 2 prevádzky štúdia · 6 tímových účtov",
+        "feature2": "Prístupové kódy a vlastná doména",
+        "feature3": "Pokročilé automatizácie · 5 000 e-mailov mesačne",
+        "feature4": "Kompletná sada AI · 10 000 kreditov mesačne",
+        "cta": "Vyskúšať zadarmo"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Riaďte organizáciu s kapacitou, správou a podporou na mieru.",
+        "feature1": "Neobmedzený počet prevádzok a tímových účtov",
+        "feature2": "Individuálne limity automatizácií, e-mailov a AI",
+        "feature3": "SSO/SCIM, API, webhooky a auditné záznamy",
+        "feature4": "Dedikovaný onboarding, migrácia a SLA",
+        "cta": "Start free trial"
+      },
+      "note": "Ceny nezahŕňajú príslušné dane. Ročné samoobslužné plány zahŕňajú dva mesiace zadarmo. Nevyhnutné systémové e-maily sa do limitu nezapočítavajú a používanie AI sa po vyčerpaní zahrnutých kreditov zastaví — bez automatických doplatkov.",
+      "loading": "Načítanie cien…",
+      "unavailable": "Cena v tejto mene nie je dostupná",
+      "loadError": "Ceny sú dočasne nedostupné"
+    },
+    "trust": {
+      "eyebrow": "Vytvorené pre zodpovednú prevádzku",
+      "title": "Spoľahlivý domov pre prácu v pozadí vášho štúdia.",
+      "description": "Jasný prístup, prepojené záznamy a ľudská kontrola sú súčasťou produktu — nie dodatočným doplnkom.",
+      "workspaces": {
+        "title": "Oddelené pracovné priestory štúdií",
+        "description": "Každé štúdio funguje vo vlastnom pracovnom priestore nájomcu a s vlastnou konfiguráciou."
+      },
+      "access": {
+        "title": "Prístup podľa roly",
+        "description": "Poskytnite majiteľom a členom tímu úroveň prístupu, ktorú ich práca vyžaduje."
+      },
+      "payments": {
+        "title": "Platby cez Stripe",
+        "description": "Pripojte online platby prostredníctvom osvedčenej infraštruktúry Stripe."
+      },
+      "control": {
+        "title": "AI pod kontrolou človeka",
+        "description": "AI poskytuje kontext a pomoc, zatiaľ čo za rozhodnutia zostáva zodpovedný váš tím."
+      }
+    }
+  },
+  "CustomerAuth": {
+    "social": {
+      "label": "Prihlásenie zákazníka cez sociálnu sieť",
+      "customerAccess": "Pokračovať ako zákazník",
+      "teamPasswordNote": "Členovia tímu štúdia používajú e-mail a heslo.",
+      "or": "alebo použite e-mail",
+      "continueWith": {
+        "google": "Pokračovať cez Google",
+        "apple": "Pokračovať cez Apple"
+      }
+    },
+    "complete": {
+      "metadataTitle": "Dokončuje sa prihlásenie zákazníka",
+      "title": "Dokončuje sa vaše prihlásenie",
+      "description": "Bezpečne obnovujeme vašu zákaznícku reláciu.",
+      "errorTitle": "Prihlásenie zákazníka sa nepodarilo dokončiť",
+      "providerError": "Poskytovateľ prihlásenia cez sociálnu sieť vrátil chybu. Skúste to znova.",
+      "accessDenied": "Žiadosť o prihlásenie ste zrušili alebo odmietli.",
+      "accountConflict": "Tento účet sociálnej siete sa nedá prepojiť automaticky. Prihláste sa e-mailom alebo kontaktujte štúdio.",
+      "authenticationFailed": "Poskytovateľ nemohol overiť váš účet. Skúste to znova.",
+      "providerUnavailable": "Tento poskytovateľ prihlásenia je dočasne nedostupný.",
+      "sessionError": "Vašu zákaznícku reláciu sa nepodarilo obnoviť. Skúste to znova.",
+      "customerOnly": "Prihlásenie cez sociálnu sieť je určené iba pre zákaznícke účty. Členovia tímu štúdia musia použiť e-mail a heslo.",
+      "retry": "Skúsiť znova",
+      "backToLogin": "Späť na prihlásenie"
+    }
+  },
+  "CustomerShell": {
+    "portalNav": {
+      "overview": "Prehľad",
+      "bookings": "Rezervácie",
+      "work": "Moja tvorba",
+      "knowledge": "Znalosti",
+      "membership": "Členstvo",
+      "credits": "Kredity",
+      "invoices": "Faktúry",
+      "bookSession": "Rezervovať termín",
+      "memberships": "Členstvá",
+      "giftVouchers": "Darčekové poukazy",
+      "studioGuide": "Sprievodca štúdiom",
+      "courses": "Kurzy"
+    },
+    "actions": {
+      "backToStudio": "Späť do štúdia",
+      "openPortal": "Zákaznícky portál",
+      "openDashboard": "Prehľad štúdia"
+    },
+    "mobile": {
+      "portalEyebrow": "Zákaznícky portál",
+      "portalTitle": "Váš účet v {studio}",
+      "authEyebrow": "Účet štúdia",
+      "authTitle": "Prihlásiť sa do {studio}",
+      "transactionEyebrow": "Bezpečná platba",
+      "transactionTitle": "Dokončite svoju návštevu v {studio}"
+    },
+    "status": {
+      "loadingTitle": "Pripravujeme vaše štúdio",
+      "loadingDescription": "Načítavame najnovšie údaje štúdia.",
+      "errorTitle": "Túto stránku sa nepodarilo načítať",
+      "errorDescription": "Skúste to znova. Údaje vášho účtu a platieb sú v bezpečí.",
+      "retry": "Skúsiť znova",
+      "preparingAccount": "Pripravujeme váš účet…",
+      "redirecting": "Presmerovávame vás do správneho štúdia…"
+    },
+    "locationChooser": {
+      "eyebrow": "Zákaznícky portál",
+      "title": "Ktoré štúdio chcete navštíviť?",
+      "description": "Vyberte štúdio a pozrite si jeho dostupnosť, služby a možnosti rezervácie.",
+      "unavailable": "Štúdio z tohto odkazu momentálne nie je dostupné.",
+      "unavailableHint": "Môže byť neaktívne alebo už neprijímať online rezervácie. Vyberte iné štúdio nižšie.",
+      "open": "Otvoriť {studio}"
+    }
+  },
+  "PublicTenantHome": {
+    "eyebrow": "Vitajte v",
+    "description": "Preskúmajte štúdio, spravujte rezervácie a majte všetko súvisiace s účtom na jednom mieste.",
+    "openPortal": "Otvoriť zákaznícky portál",
+    "signIn": "Prihlásiť sa"
+  },
+  "PublicSiteNotFound": {
+    "brandLabel": "Make room for more.",
+    "checking": "Kontroluje sa stav webovej stránky…",
+    "owner": {
+      "eyebrow": "Verejná webová stránka",
+      "badge": "Súkromný koncept",
+      "title": "Vaša verejná webová stránka je stále súkromná",
+      "description": "Pozeráte sa na adresu, ktorú budú používať vaši zákazníci. Koncept je bezpečne uložený a nič nebude verejné, kým stránku nezverejníte v Centre spustenia.",
+      "primaryAction": "Skontrolovať a zverejniť",
+      "secondaryAction": "Upraviť webovú stránku",
+      "reassurance": "Zákazníci vašu stránku zatiaľ nevidia.",
+      "previewBadge": "Nezverejnené",
+      "previewLabel": "Vaša cesta k spusteniu",
+      "steps": {
+        "draft": {
+          "title": "Koncept uložený",
+          "description": "Vaše zmeny sú bezpečne uložené."
+        },
+        "review": {
+          "title": "Skontrolujte webovú stránku",
+          "description": "Skontrolujte obsah a zákaznícku skúsenosť."
+        },
+        "publish": {
+          "title": "Zverejnite, keď budete pripravení",
+          "description": "Sprístupnite stránku v Centre spustenia."
+        }
+      }
+    },
+    "visitor": {
+      "eyebrow": "Stránka nie je dostupná",
+      "badge": "Nedostupné",
+      "title": "Táto stránka štúdia nie je dostupná",
+      "description": "Adresa môže byť nesprávna alebo štúdio svoju webovú stránku ešte nezverejnilo.",
+      "primaryAction": "Navštíviť Shario",
+      "hint": "Ak spravujete toto štúdio, prihláste sa do pracovného priestoru a znova otvorte verejnú webovú stránku."
+    }
+  },
+  "BookingConfirmation": {
+    "membershipPayment": {
+      "bookingValue": "Hodnota rezervácie",
+      "coveredByMembership": "Hradené členstvom",
+      "additionalPayment": "Zaplatené navyše"
+    },
+    "back": "Zmeniť výber",
+    "eyebrow": "Bezpečná rezervácia",
+    "title": "Skontrolovať a potvrdiť",
+    "description": "Dostupnosť, výhody a cena uvedené nižšie boli overené serverom štúdia.",
+    "summary": {
+      "time": "Čas",
+      "until": "Do",
+      "location": "Prevádzka",
+      "locationFallback": "Prevádzka štúdia",
+      "people": "Počet osôb",
+      "product": "Rezervácia",
+      "productFallback": "Rezervácia štúdia",
+      "bookingMode": "Typ rezervácie",
+      "bookingModes": {
+        "public": "Verejná",
+        "private": "Súkromná"
+      }
+    },
+    "available": {
+      "title": "Váš výber je dostupný",
+      "description": "Pri potvrdení ho ešte raz skontrolujeme."
+    },
+    "conflict": {
+      "title": "Tento výber už nie je dostupný",
+      "description": "Ak chcete pokračovať, vyberte iný čas.",
+      "chooseAnother": "Vybrať iný čas"
+    },
+    "payment": {
+      "title": "Platba",
+      "methods": {
+        "card": "Zaplatiť kartou",
+        "money_credits": "Použiť kredit štúdia",
+        "membership_credits": "Použiť výhodu členstva"
+      },
+      "descriptions": {
+        "card": "Pokračujte na bezpečnú platobnú stránku štúdia.",
+        "money_credits": "Pokryte celú rezerváciu dostupným peňažným kreditom.",
+        "membership_credits": "Využite oprávnenú návštevu v rámci členstva alebo časový kredit."
+      },
+      "notEnough": "Táto možnosť nepokryje celú rezerváciu.",
+      "unavailable": "Momentálne nie je dostupný žiadny vhodný spôsob platby.",
+      "processing": "Potvrdzuje sa…",
+      "continueToCard": "Pokračovať k platbe",
+      "confirm": "Potvrdiť rezerváciu",
+      "privateSurchargeRequiresMoney": "Príplatok za súkromnú rezerváciu je potrebné zaplatiť kartou alebo peňažnými kreditmi.",
+      "membershipHours": "Použiť hodiny členstva",
+      "hoursSummary": "Čerpáte {required} z dostupných {available}. Iba vaše vlastné miesto.",
+      "membership_open_studio_only": "Hodiny platia iba pre zdieľané Open Studio, nie pre kurzy ani súkromné rezervácie.",
+      "membership_member_only": "Hodiny platia iba pre jedného člena. Sprievod rezervujte zvlášť alebo zaplaťte bežne za všetkých.",
+      "membership_insufficient_hours": "Nedostatok hodín členstva. Vyberte iný spôsob platby.",
+      "membership_outside_paid_period": "Hodiny členstva možno využiť iba na návštevy v aktuálnom zaplatenom období."
+    },
+    "price": {
+      "subtotal": "Medzisúčet",
+      "membershipDiscount": "Zľava z členstva",
+      "total": "Celkom",
+      "serverVerified": "Server vypočíta konečnú cenu a pri potvrdení skontroluje oprávnenosť.",
+      "privateBookingSurcharge": "Príplatok za súkromnú rezerváciu (zahrnutý, raz za rezerváciu)"
+    },
+    "terms": {
+      "title": "Podmienky rezervácie",
+      "accept": "Prečítal/-a som si podmienky rezervácie a súhlasím s nimi."
+    },
+    "errors": {
+      "changed": "Dostupnosť alebo cena sa zmenili. Pred ďalším pokusom skontrolujte obnovené údaje.",
+      "expired": "Platnosť tohto výberu rezervácie uplynula. Vyberte nový čas.",
+      "generic": "Rezerváciu sa nepodarilo potvrdiť. Skúste to znova."
+    },
+    "invalid": {
+      "title": "Neplatný odkaz na rezerváciu",
+      "description": "Tento odkaz neobsahuje platný výber rezervácie.",
+      "action": "Začať novú rezerváciu"
+    },
+    "loading": {
+      "title": "Kontrolujeme vašu rezerváciu",
+      "description": "Overujeme dostupnosť, cenu a výhody členstva."
+    },
+    "expired": {
+      "title": "Platnosť výberu rezervácie uplynula",
+      "description": "Z bezpečnostných dôvodov sa výber rezervácie drží iba obmedzený čas.",
+      "action": "Vybrať iný čas"
+    },
+    "loadError": {
+      "title": "Rezerváciu sa nepodarilo načítať",
+      "description": "Tento výber rezervácie sa nepodarilo overiť.",
+      "action": "Začať znova",
+      "retry": "Skúsiť znova"
+    },
+    "verificationRequired": {
+      "title": "Ak chcete pokračovať, overte svoj e-mail",
+      "description": "Váš výber rezervácie je v bezpečí. Overte e-mail a potom sa sem vráťte a potvrďte ho.",
+      "action": "Overiť e-mail"
+    }
+  },
+  "EmailVerification": {
+    "verifying": {
+      "title": "Overuje sa váš e-mail",
+      "description": "Počkajte, kým bezpečne overíme vašu e-mailovú adresu."
+    },
+    "verified": {
+      "title": "E-mail bol overený",
+      "description": "Váš účet je pripravený. Prihláste sa a pokračujte v rezervácii.",
+      "signIn": "Prihlásiť sa a pokračovať",
+      "continue": "Pokračovať v rezervácii"
+    },
+    "sent": {
+      "title": "Skontrolujte si e-mail",
+      "description": "Na vašu e-mailovú adresu sme poslali overovací odkaz. Otvorte ho v tomto prehliadači a aktivujte svoj účet.",
+      "again": "Nový overovací e-mail bol odoslaný."
+    },
+    "error": {
+      "title": "Overovací odkaz je neplatný",
+      "description": "Tento overovací odkaz je neplatný alebo jeho platnosť uplynula.",
+      "back": "Späť na prihlásenie"
+    },
+    "resend": {
+      "action": "Poslať nový overovací e-mail",
+      "sending": "Odosiela sa…",
+      "wait": "Znova odoslať o {seconds} s",
+      "error": "Overovací e-mail sa nepodarilo odoslať. Skúste to znova."
+    }
+  },
+  "CreditPurchaseStatus": {
+    "loading": "Kontrolujeme vašu platbu…",
+    "checking": "Kontrolujeme najnovší stav platby…",
+    "waiting": "Čakáme na potvrdenie platby…",
+    "orderReference": "Objednávka {orderId}",
+    "pending": {
+      "badge": "Spracúva sa",
+      "title": "Potvrdzujeme vašu platbu",
+      "description": "Stripe spracúva platbu a server pripisuje kredity na váš účet v štúdiu. Túto stránku môžete bezpečne nechať otvorenú."
+    },
+    "success": {
+      "badge": "Zaplatené",
+      "title": "Vaše kredity sú pripravené",
+      "description": "Server potvrdil platbu a pridal zakúpené kredity na váš účet v štúdiu."
+    },
+    "failed": {
+      "badge": "Nedokončené",
+      "title": "Nákup kreditov nebol dokončený",
+      "description": "Neboli pridané žiadne kredity. Skontrolujte spôsob platby alebo sa vráťte na stránku kreditov a skúste to znova."
+    },
+    "invalid": {
+      "title": "Tento nákup nemôžeme overiť",
+      "description": "Chýba bezpečný identifikátor objednávky alebo sa ho nepodarilo načítať. Otvorte stránku kreditov a skontrolujte aktuálny zostatok."
+    },
+    "actions": {
+      "retry": "Skontrolovať znova",
+      "viewCredits": "Zobraziť kredity",
+      "portal": "Zákaznícky portál"
+    }
+  },
+  "CustomerNotifications": {
+    "trigger": "Otvoriť upozornenia",
+    "triggerUnread": "Otvoriť upozornenia: {count, plural, one {# neprečítané upozornenie} few {# neprečítané upozornenia} many {# neprečítaných upozornení} other {# neprečítaného upozornenia}}",
+    "panel": {
+      "label": "Upozornenia zákazníckeho portálu",
+      "title": "Upozornenia",
+      "unread": "{count, plural, one {# neprečítané upozornenie} few {# neprečítané upozornenia} many {# neprečítaných upozornení} other {# neprečítaného upozornenia}}",
+      "caughtUp": "Máte všetko prečítané",
+      "summaryLoading": "Kontrolujú sa novinky…",
+      "summaryUnavailable": "Stav neprečítaných upozornení je dočasne nedostupný"
+    },
+    "page": {
+      "eyebrow": "Vaše novinky",
+      "title": "Upozornenia",
+      "description": "Potvrdenia rezervácií, platby, novinky zo štúdia a správy o účte na jednom mieste.",
+      "unreadSummary": "{count, plural, one {# neprečítané upozornenie v účte štúdia} few {# neprečítané upozornenia v účte štúdia} many {# neprečítaných upozornení v účte štúdia} other {# neprečítaného upozornenia v účte štúdia}}",
+      "caughtUp": "Prečítali ste všetky upozornenia",
+      "summaryLoading": "Kontrolujú sa neprečítané upozornenia…",
+      "summaryUnavailable": "Stav neprečítaných upozornení je dočasne nedostupný",
+      "loading": "Načítavajú sa vaše upozornenia…"
+    },
+    "actions": {
+      "markAllRead": "Označiť všetko ako prečítané",
+      "retry": "Skúsiť znova",
+      "viewAll": "Zobraziť všetky upozornenia"
+    },
+    "filters": {
+      "label": "Filtre upozornení",
+      "status": "Stav",
+      "category": "Kategória"
+    },
+    "statuses": {
+      "all": "Všetky",
+      "unread": "Neprečítané",
+      "read": "Prečítané"
+    },
+    "categories": {
+      "all": "Všetky kategórie",
+      "bookings": "Rezervácie",
+      "payments": "Platby",
+      "waitlist": "Čakacia listina",
+      "memberships": "Členstvá",
+      "credits_vouchers": "Kredity a poukazy",
+      "account": "Účet"
+    },
+    "item": {
+      "untitled": "Novinka zo štúdia",
+      "open": "Otvoriť upozornenie: {title}",
+      "markRead": "Označiť upozornenie ako prečítané: {title}",
+      "groupedCount": "{count, plural, one {# novinka} few {# novinky} many {# noviniek} other {# novinky}}"
+    },
+    "empty": {
+      "title": "Zatiaľ žiadne upozornenia",
+      "description": "Tu sa zobrazia potvrdenia rezervácií a dôležité novinky zo štúdia.",
+      "unreadTitle": "Máte všetko prečítané",
+      "unreadDescription": "V tomto zobrazení nie sú žiadne neprečítané upozornenia."
+    },
+    "errors": {
+      "loadTitle": "Vaše upozornenia sa nepodarilo načítať",
+      "load": "Skontrolujte pripojenie a skúste to znova.",
+      "refresh": "Zobrazujú sa vaše posledné novinky. Obnovenie je dočasne nedostupné.",
+      "markRead": "Upozornenie sa nepodarilo označiť ako prečítané.",
+      "markAllRead": "Upozornenia sa nepodarilo označiť ako prečítané."
+    },
+    "pagination": {
+      "label": "Stránky upozornení",
+      "previous": "Predchádzajúca stránka",
+      "next": "Nasledujúca stránka",
+      "summary": "{total, plural, one {# upozornenie} few {# upozornenia} many {# upozornení} other {# upozornenia}} · strana {page} z {pages}"
+    }
+  },
+  "WorkspaceNotifications": {
+    "trigger": "Otvoriť upozornenia",
+    "triggerUnread": "Otvoriť upozornenia: {count, plural, one {# neprečítané upozornenie} few {# neprečítané upozornenia} many {# neprečítaných upozornení} other {# neprečítaného upozornenia}}",
+    "panel": {
+      "label": "Upozornenia pracovného priestoru",
+      "title": "Upozornenia",
+      "unread": "{count, plural, one {# neprečítané upozornenie} few {# neprečítané upozornenia} many {# neprečítaných upozornení} other {# neprečítaného upozornenia}}",
+      "caughtUp": "Máte všetko prečítané",
+      "summaryLoading": "Kontrolujú sa novinky…",
+      "summaryUnavailable": "Stav neprečítaných upozornení je dočasne nedostupný"
+    },
+    "page": {
+      "title": "Upozornenia",
+      "heading": "Vaše prevádzkové novinky",
+      "unreadSummary": "{count, plural, one {# neprečítané upozornenie v pracovnom priestore} few {# neprečítané upozornenia v pracovnom priestore} many {# neprečítaných upozornení v pracovnom priestore} other {# neprečítaného upozornenia v pracovnom priestore}}",
+      "caughtUp": "Prečítali ste všetky upozornenia",
+      "summaryLoading": "Kontrolujú sa neprečítané upozornenia…",
+      "summaryUnavailable": "Stav neprečítaných upozornení je dočasne nedostupný"
+    },
+    "actions": {
+      "markAllRead": "Označiť všetko ako prečítané",
+      "preferences": "Nastavenia upozornení",
+      "retry": "Skúsiť znova",
+      "viewAll": "Zobraziť všetky upozornenia"
+    },
+    "filters": {
+      "label": "Filtre upozornení",
+      "status": "Stav",
+      "category": "Kategória",
+      "location": "Prevádzka štúdia"
+    },
+    "statuses": {
+      "all": "Všetky",
+      "unread": "Neprečítané",
+      "read": "Prečítané"
+    },
+    "categories": {
+      "all": "Všetky kategórie",
+      "bookings": "Rezervácie",
+      "payments": "Platby",
+      "waitlist": "Čakacia listina",
+      "tasks": "Úlohy",
+      "inventory": "Sklad",
+      "migration": "Migrácia",
+      "communications": "Komunikácia",
+      "account": "Účet"
+    },
+    "locations": {
+      "all": "Všetky prevádzky"
+    },
+    "item": {
+      "untitled": "Novinka zo štúdia",
+      "open": "Otvoriť upozornenie: {title}",
+      "markRead": "Označiť upozornenie ako prečítané: {title}",
+      "groupedCount": "{count, plural, one {# udalosť} few {# udalosti} many {# udalostí} other {# udalosti}}"
+    },
+    "empty": {
+      "title": "Zatiaľ žiadne upozornenia",
+      "description": "Tu sa zobrazia dôležité prevádzkové novinky.",
+      "unreadTitle": "Máte všetko prečítané",
+      "unreadDescription": "V tomto zobrazení nie sú žiadne neprečítané upozornenia."
+    },
+    "errors": {
+      "load": "Upozornenia sa nepodarilo načítať.",
+      "markRead": "Upozornenie sa nepodarilo označiť ako prečítané.",
+      "markAllRead": "Upozornenia sa nepodarilo označiť ako prečítané."
+    },
+    "pagination": {
+      "label": "Stránky upozornení",
+      "previous": "Predchádzajúca",
+      "next": "Nasledujúca",
+      "summary": "{total, plural, one {# upozornenie} few {# upozornenia} many {# upozornení} other {# upozornenia}} · strana {page} z {pages}"
+    }
+  },
+  "PublicTenant": {
+    "nav": {
+      "home": "Štúdio",
+      "portal": "Zákaznícky portál",
+      "book": "Otvorené štúdio",
+      "courses": "Kurzy",
+      "memberships": "Členstvá",
+      "vouchers": "Darčekové poukazy",
+      "help": "Sprievodca štúdiom"
+    },
+    "actions": {
+      "signIn": "Prihlásiť sa",
+      "book": "Rezervovať termín",
+      "courses": "Zobraziť kurzy",
+      "memberships": "Zobraziť členstvá",
+      "vouchers": "Preskúmať darčekové poukazy",
+      "register": "Vytvoriť účet"
+    },
+    "mobile": {
+      "eyebrow": "Navigácia štúdia",
+      "title": "Preskúmajte {studio}",
+      "poweredBy": "Používa technológiu Shario"
+    },
+    "home": {
+      "eyebrow": "Vitajte v",
+      "defaultDescription": "Objavte {studio}, preskúmajte možnosti návštevy a nájdite všetko, čo potrebujete pred ďalším dňom v štúdiu.",
+      "exploreEyebrow": "Vaše štúdio",
+      "exploreTitle": "Možnosti návštevy",
+      "explore": "Preskúmať",
+      "cards": {
+        "book": "Vyberte si návštevu štúdia a nájdite čas, ktorý vám vyhovuje.",
+        "courses": "Prezrite si nadchádzajúce kurzy a kreatívne zážitky.",
+        "memberships": "Porovnajte plány pravidelného prístupu do štúdia a ďalšie výhody.",
+        "vouchers": "Darujte niekomu čas a priestor na tvorbu v štúdiu.",
+        "help": "Pripravte sa na návštevu vďaka pokynom štúdia a praktickým odpovediam."
+      },
+      "highlights": {
+        "viewAll": "Zobraziť všetko",
+        "open": "Zobraziť podrobnosti",
+        "coursesTitle": "Odporúčané kurzy",
+        "coursesDescription": "Vyberte si z aktuálne zverejnených kurzov štúdia.",
+        "membershipsTitle": "Možnosti členstva",
+        "membershipsDescription": "Plány pre zákazníkov, ktorí chcú štúdio navštevovať a tvoriť pravidelne.",
+        "helpTitle": "Z Centra znalostí štúdia",
+        "helpDescription": "Užitočné verejné pokyny vybrané štúdiom.",
+        "resourceTypes": {
+          "video": "Video",
+          "guide": "Návod",
+          "faq": "Časté otázky",
+          "link": "Odkaz",
+          "file": "Súbor"
+        }
+      }
+    },
+    "footer": {
+      "explore": "Preskúmať",
+      "contact": "Kontakt",
+      "information": "Informácie",
+      "defaultCopyright": "© {year} {studio}",
+      "poweredBy": "Používa technológiu Shario"
+    },
+    "legal": {
+      "studioRules": "Pravidlá štúdia",
+      "terms": "Obchodné podmienky",
+      "privacy": "Zásady ochrany osobných údajov",
+      "cancellation": "Podmienky zrušenia"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "website": "Webová stránka"
+    },
+    "unavailable": {
+      "title": "Táto možnosť nie je dostupná",
+      "description": "Štúdio momentálne túto možnosť verejne neponúka.",
+      "back": "Späť do štúdia"
+    },
+    "book": {
+      "metadataTitle": "Rezervovať otvorené štúdio",
+      "title": "Otvorené štúdio v {studio}",
+      "description": "Vyberte si štúdio a pred prihlásením si pozrite aktuálne zobrazené obsadené časy.",
+      "eyebrow": "Naplánujte si návštevu",
+      "studioLabel": "Prevádzka štúdia",
+      "studioRequired": "Nie je vybrané žiadne štúdio",
+      "priceFrom": "Ceny rezervácií od",
+      "priceLabel": "Cena rezervácie",
+      "priceUnavailable": "Informujte sa v štúdiu",
+      "priceUnit": "za 30-minútový blok a hosťa",
+      "retry": "Skúsiť znova",
+      "calendar": {
+        "title": "Obsadenosť štúdia",
+        "readOnly": "Iba na čítanie",
+        "description": "Pozrite si obsadené časy v miestnom časovom pásme štúdia. Osobné údaje rezervácií sa nikdy nezobrazujú.",
+        "legend": "Legenda kalendára",
+        "occupied": "Obsadené",
+        "loadingStudios": "Načítavajú sa prevádzky štúdia…",
+        "locationError": "Prevádzky štúdia sa nepodarilo načítať.",
+        "noLocations": "Zatiaľ nie je dostupné žiadne štúdio",
+        "noLocationsDescription": "Toto štúdio nezverejnilo prevádzku s povolenými rezerváciami.",
+        "invalidLocation": "Táto prevádzka štúdia nie je dostupná",
+        "invalidLocationDescription": "Ak chcete pokračovať, vyberte jednu zo zverejnených prevádzok štúdia.",
+        "loading": "Načítava sa aktuálna obsadenosť…",
+        "error": "Aktuálnu obsadenosť sa nepodarilo načítať.",
+        "empty": "Pre toto obdobie neboli vrátené žiadne obsadené časy. Nezaručuje to dostupnosť.",
+        "occupiedSummary": "{count, plural, one {Zobrazuje sa # obsadené obdobie.} few {Zobrazujú sa # obsadené obdobia.} many {Zobrazuje sa # obsadených období.} other {Zobrazuje sa # obsadeného obdobia.}}"
+      }
+    },
+    "courses": {
+      "metadataTitle": "Kurzy v štúdiu",
+      "title": "Kurzy v {studio}",
+      "description": "Objavte zverejnené kurzy. Prihláste sa a prejdite na dostupné termíny.",
+      "filters": {
+        "label": "Kategórie kurzov",
+        "all": "Všetky",
+        "searchLabel": "Hľadať kurzy",
+        "searchPlaceholder": "Hľadať kurzy…",
+        "clearSearch": "Vymazať hľadanie",
+        "resultCount": "{visible} / {total} kurzov",
+        "noResults": "Vášmu hľadaniu ani vybratej kategórii nezodpovedá žiadny kurz.",
+        "reset": "Zobraziť všetky kurzy"
+      }
+    },
+    "vouchers": {
+      "metadataTitle": "Darčekové poukazy",
+      "title": "Premyslený darček zo štúdia",
+      "description": "Vyberte zverejnený darčekový poukaz a darujte niekomu slobodu tvoriť v {studio}.",
+      "checkout": {
+        "eyebrow": "Bezpečná platba",
+        "title": "Vyberte si poukaz",
+        "description": "Vyberte hodnotu, zadajte e-mail a pokračujte na bezpečnú platobnú stránku štúdia.",
+        "email": "E-mailová adresa",
+        "quantity": "Množstvo",
+        "missing": "Vyberte poukaz a zadajte platnú e-mailovú adresu.",
+        "error": "Platbu sa nepodarilo spustiť. Skúste to znova.",
+        "starting": "Pripravuje sa platba…",
+        "continue": "Pokračovať k platbe",
+        "secure": "Dostupnosť a cena poukazu sa pred platbou bezpečne overia.",
+        "giftMessage": "Venovanie (nepovinné)",
+        "giftMessageHelp": "Najviac 240 znakov. Venovanie sa pridá do každého PDF v tejto objednávke aj do vášho e-mailu. Poukazy pošleme na e-mailovú adresu uvedenú vyššie.",
+        "giftMessageLegacyHelp": "Najviac 240 znakov. Venovanie bude súčasťou vášho e-mailu. Tento poukaz používa pevnú PDF šablónu, preto sa venovanie v PDF nezobrazí.",
+        "giftMessageError": "Vaše venovanie sa na tento poukaz nezmestí. Skúste ho skrátiť, znížiť počet zalomení riadkov alebo odstrániť emoji a špeciálne symboly.",
+        "total": "Spolu",
+        "validity": "Platnosť",
+        "noExpiry": "Bez obmedzenia platnosti",
+        "validUntil": "Platí do {date}",
+        "validMonths": "{months, plural, one {# mesiac od nákupu} few {# mesiace od nákupu} many {# mesiaca od nákupu} other {# mesiacov od nákupu}}"
+      },
+      "postal": {
+        "title": "Doručenie",
+        "digital": "Digitálny poukaz",
+        "physical": "Tlačený poukaz poštou",
+        "digitalHelp": "Doručenie e-mailom.",
+        "postage": "Poštovné: {amount} za objednávku",
+        "backup": "Štúdio poukaz vytlačí a odošle. E-mailom dostanete aj záložnú kópiu s rovnakým kódom. Obe kópie majú jeden spoločný zostatok.",
+        "firstname": "Meno",
+        "lastname": "Priezvisko",
+        "street": "Ulica a číslo domu",
+        "city": "Mesto",
+        "postalCode": "PSČ",
+        "country": "Krajina",
+        "chooseCountry": "Vyberte krajinu",
+        "addressError": "Vyplňte celú poštovú adresu vrátane krajiny.",
+        "unavailable": "Doručenie poštou už pri tomto poukaze nie je dostupné. Vyberte digitálne doručenie alebo obnovte stránku.",
+        "subtotal": "Hodnota poukazov",
+        "fee": "Poštovné"
+      }
+    },
+    "catalog": {
+      "loading": "Načítavajú sa aktuálne ponuky…",
+      "error": "Aktuálne ponuky sa nepodarilo načítať.",
+      "retry": "Skúsiť znova",
+      "empty": "Zatiaľ tu nie sú žiadne zverejnené ponuky.",
+      "book": "Prihlásiť sa a rezervovať",
+      "viewDates": "Zobraziť dostupné termíny",
+      "viewDetails": "Vybrať termín",
+      "continue": "Pokračovať k rezervácii",
+      "availability": {
+        "fullWaitlistOpen": "Plné · čakacia listina otvorená"
+      }
+    },
+    "details": {
+      "bookingMetadataTitle": "Vyberte návštevu štúdia",
+      "bookingMetadataDescription": "Vyberte možnosť otvoreného štúdia, prevádzku, dátum a čas.",
+      "courseMetadataTitle": "Termíny kurzov",
+      "courseMetadataDescription": "Pozrite si zverejnené termíny kurzov a vyberte si svoje miesto.",
+      "loading": "Načítava sa aktuálna dostupnosť…",
+      "error": "Aktuálnu dostupnosť sa nepodarilo načítať.",
+      "retry": "Skúsiť znova",
+      "notFound": "Táto verejná ponuka už nie je dostupná.",
+      "backToBook": "Späť na rezerváciu štúdia",
+      "backToCourses": "Späť na kurzy",
+      "bookingEyebrow": "Otvorené štúdio",
+      "courseEyebrow": "Kurz",
+      "chooseVisit": "Vyberte si návštevu",
+      "chooseVisitDescription": "Vyberte prevádzku a dátum. Dostupnosť sa pred platbou znova skontroluje.",
+      "chooseCourseSession": "Vyberte termín kurzu",
+      "chooseCourseSessionDescription": "Vyberte zverejnený termín kurzu a počet účastníkov.",
+      "location": "Prevádzka",
+      "locationFallback": "Prevádzka {number}",
+      "date": "Dátum",
+      "activity": "Plánovaná aktivita",
+      "activityChoose": "Vyberte aktivitu",
+      "activityNotSpecified": "Bez konkrétnej aktivity",
+      "activityRequiredHint": "Na tejto pobočke je potrebné vybrať aktivitu pred výberom času.",
+      "activityOptionalHint": "Aktivitu môžete vybrať alebo pokračovať bez jej určenia.",
+      "activityUnavailable": "Pre túto pobočku zatiaľ nie je nastavená žiadna zákaznícka aktivita.",
+      "chooseTime": "Vyberte čas",
+      "noSlots": "V tento deň nie sú dostupné žiadne časy.",
+      "noCourseSessions": "Pre tento kurz nie sú zverejnené žiadne nadchádzajúce termíny.",
+      "remaining": "{count, plural, =0 {Plné} one {Zostáva # miesto} few {Zostávajú # miesta} many {Zostáva # miest} other {Zostáva # miesta}}",
+      "continueInPortal": "Pokračovať v zákazníckom portáli",
+      "signInToContinue": "Ak chcete pokračovať, prihláste sa",
+      "bookWithAccount": "Rezervovať cez môj účet",
+      "openWorkspace": "Otvoriť prehľad štúdia",
+      "preparingIntent": "Zabezpečuje sa váš výber…",
+      "selectionChanged": "Tento čas už nie je dostupný. Dostupné možnosti sme obnovili.",
+      "intentError": "Vašu rezerváciu sa nepodarilo pripraviť. Skúste to znova.",
+      "orGuestCheckout": "alebo pokračujte ako hosť",
+      "customerChoice": {
+        "mode": "Nastavenie súkromia",
+        "public": "Zdieľaná",
+        "private": "Súkromná",
+        "publicFixedHelp": "V tomto čase môže byť celkovo najviac {count} osôb vrátane vašej skupiny. Naďalej platí kapacita štúdia a aktivity.",
+        "publicActivityHelp": "Ďalší zákazníci sa môžu pridať až do naplnenia kapacity aktivity a štúdia.",
+        "privateHelp": "Rezervujte celé štúdio pre svoju skupinu. Príplatok {amount} sa účtuje raz za rezerváciu.",
+        "surcharge": "Príplatok za súkromnú rezerváciu",
+        "people": "Počet osôb vo vašej skupine"
+      },
+      "activityWorkstation": "Pracovné miesta",
+      "activitySharedTable": "Zdieľané stoly"
+    },
+    "guestCheckout": {
+      "title": "Pokračovať ako hosť",
+      "description": "Zadajte kontaktné údaje pre túto rezerváciu kurzu.",
+      "people": "Počet účastníkov",
+      "firstName": "Meno",
+      "lastName": "Priezvisko",
+      "email": "E-mail",
+      "phone": "Telefón (voliteľné)",
+      "terms": "Podmienky kurzu",
+      "acceptTerms": "Prečítal/-a som si podmienky tohto kurzu a súhlasím s nimi.",
+      "termsRequired": "Ak chcete pokračovať, prijmite podmienky kurzu.",
+      "validationError": "Skontrolujte svoje kontaktné údaje.",
+      "checkoutError": "Platbu sa nepodarilo spustiť. Dostupnosť sa mohla zmeniť; skúste to znova.",
+      "signInRequired": "Ak chcete bezpečne pokračovať, prihláste sa pomocou tohto e-mailu.",
+      "signIn": "Prihlásiť sa a pokračovať",
+      "starting": "Spúšťa sa bezpečná platba…",
+      "continue": "Pokračovať k bezpečnej platbe",
+      "serverValidation": "Cena, kapacita a dostupnosť kurzu sa pred platbou bezpečne overia.",
+      "totalLabel": "Spolu za {count} účastníkov",
+      "attemptExpired": "Platnosť tejto platby vypršala. Pokračujte znova na overenie dostupnosti a začatie novej platby.",
+      "voucherCode": "Kód poukazu (nepovinné)",
+      "checkVoucher": "Overiť poukaz",
+      "checkingVoucher": "Overovanie…",
+      "voucherHelp": "Pred potvrdením si overte zľavu. Overením sa poukaz neuplatní.",
+      "voucherDiscount": "Zľava z poukazu",
+      "remainingToPay": "Zostáva zaplatiť",
+      "voucherCoversAll": "Poukaz pokrýva celú cenu. Potvrdením ho uplatníte a rezervujete svoje miesta.",
+      "voucherPartial": "Potvrdením rezervujete hodnotu poukazu a zvyšnú sumu zaplatíte kartou.",
+      "confirmWithVoucher": "Potvrdiť rezerváciu s poukazom",
+      "voucherError": "Tento poukaz nemožno na rezerváciu použiť. Skontrolujte kód alebo kontaktujte štúdio.",
+      "voucherReviewRequired": "Pred potvrdením overte poukaz a skontrolujte cenu.",
+      "voucherRateLimited": "Príliš veľa pokusov. Chvíľu počkajte a skúste to znova.",
+      "voucherChanged": "Cena alebo zostatok poukazu sa zmenil. Pred potvrdením poukaz znova overte."
+    },
+    "guestCheckoutResult": {
+      "verifyingLabel": "Overovanie platby",
+      "confirmedLabel": "Platba potvrdená",
+      "unconfirmedLabel": "Platbu sa nepodarilo potvrdiť",
+      "verifyingTitle": "Dokončujeme vašu rezerváciu",
+      "confirmedTitle": "Ďakujeme za rezerváciu",
+      "unconfirmedTitle": "Vaša rezervácia zatiaľ nie je potvrdená",
+      "verifyingDescription": "Čakáme na potvrdenie od poskytovateľa platby. Túto stránku môžete nechať otvorenú.",
+      "confirmedDescription": "Vaša platba a rezervácia sú potvrdené. Podrobnosti rezervácie vám pošleme e-mailom.",
+      "unconfirmedDescription": "Túto rezerváciu sa nepodarilo overiť. Pred ďalšou platbou skontrolujte e-mail alebo kontaktujte štúdio s nižšie uvedeným číslom objednávky.",
+      "emailPending": "Keď bude rezervácia potvrdená, pošleme vám e-mail.",
+      "emailConfirmed": "Skontrolujte aj priečinok so spamom.",
+      "orderReference": "Číslo objednávky",
+      "backToStudio": "Späť do štúdia",
+      "backToCourse": "Späť na kurz",
+      "retry": "Skontrolovať znova",
+      "cancelledTitle": "Platobná stránka bola zatvorená",
+      "cancelledDescription": "Táto stránka nepotvrdzuje platbu ani rezerváciu. Pred začatím ďalšej platby skontrolujte svoj e-mail."
+    }
+  },
+  "Dashboard": {
+    "sidebarLabel": "Riadenie štúdia",
+    "settingsNavigationLabel": "Nastavenia pracovného priestoru",
+    "utilityNavigationLabel": "Nastavenie štúdia a pracovného priestoru",
+    "expandGroup": "Rozbaliť {group}",
+    "collapseGroup": "Zbaliť {group}",
+    "expandSidebar": "Rozbaliť navigáciu štúdia",
+    "collapseSidebar": "Zbaliť navigáciu štúdia",
+    "skipToContent": "Preskočiť na obsah štúdia",
+    "changeStudio": "Zmeniť štúdio",
+    "plan": "Program {plan}",
+    "plans": {
+      "starter": "Starter",
+      "professional": "Professional",
+      "studio_plus": "Space Plus",
+      "enterprise": "Enterprise"
+    },
+    "mobileStudioHint": "Prepnite štúdio alebo spravujte pracovný priestor v Nastaveniach.",
+    "openNavigation": "Otvoriť navigáciu prehľadu",
+    "closeNavigation": "Zavrieť navigáciu prehľadu",
+    "greeting": "Vitajte späť, {name}",
+    "greetingMorning": "Dobré ráno, {name}",
+    "greetingAfternoon": "Dobrý deň, {name}",
+    "greetingEvening": "Dobrý večer, {name}",
+    "subheading": "Pozrite si, čo sa dnes deje vo vašom štúdiu.",
+    "setupCenter": "Launch Center",
+    "openSetupCenter": "Otvoriť Launch Center",
+    "launchCenterRequiredProgress": "Dokončené položky kontrolného zoznamu spustenia: {completed} z {total}",
+    "continueSetup": "Pokračovať v spustení · {percentage}%",
+    "continueSetupLabel": "Pokračovať v spustení štúdia, dokončené na {percentage}%",
+    "notifications": "Otvoriť oznámenia",
+    "notificationsUnread": "Otvoriť oznámenia, {count, plural, one {# neprečítané oznámenie} few {# neprečítané oznámenia} many {# neprečítaných oznámení} other {# neprečítaného oznámenia}}",
+    "openAccount": "Otvoriť menu účtu",
+    "newBooking": "Nová rezervácia",
+    "openAiAssistant": "Otvoriť Studio Assistant",
+    "aiAssistant": "Opýtajte sa AI",
+    "fallbackFirstName": "priateľ",
+    "fallbackStudioName": "Vaše štúdio",
+    "statsLabel": "Dnešný prehľad štúdia",
+    "studioSwitcher": {
+      "switchStudio": "Prepnúť štúdio",
+      "upgradeRequired": "Váš aktuálny program vyžaduje vyššiu úroveň",
+      "yourStudios": "Vaše štúdiá",
+      "selected": "Vybrané štúdio",
+      "unnamedStudio": "Nemenované štúdio",
+      "noStudios": "Žiadne štúdiá",
+      "noStudiosAvailable": "Pre tento účet nie je k dispozícii žiadne štúdio",
+      "addStudio": "Pridať svoje prvé štúdio",
+      "addNewStudio": "Pridať nové štúdio",
+      "addFirstStudioDescription": "Vytvorte svoju prvú prevádzku štúdia",
+      "addNewStudioDescription": "Vytvoriť ďalšiu prevádzku štúdia",
+      "upgradeToAddStudio": "Pridať ďalšie štúdio",
+      "studioLimitReached": "Váš program zahŕňa najviac {count} štúdií",
+      "loadingTitle": "Načítavanie štúdií",
+      "loadingDescription": "Pripravujeme vaše prevádzky štúdia.",
+      "loadError": "Vaše štúdiá sa nepodarilo načítať",
+      "loadErrorDescription": "Skontrolujte spojenie a skúste to znova.",
+      "retry": "Skúsiť znova"
+    },
+    "nav": {
+      "overview": "Prehľad",
+      "setup": "Launch Center",
+      "calendar": "Kalendár",
+      "bookings": "Rezervácie",
+      "allBookings": "Všetky rezervácie",
+      "customers": "Zákazníci",
+      "studio": "Štúdio",
+      "products": "Produkty a kurzy",
+      "productsPricing": "Produkty a ceny",
+      "sales": "Predaj",
+      "salesOverview": "Prehľad predaja",
+      "finance": "Financie",
+      "transactions": "Transakcie",
+      "invoices": "Faktúry",
+      "coursesEvents": "Kurzy",
+      "memberships": "Členstvá",
+      "inventory": "Zásoby",
+      "staffPlanning": "Plánovanie tímu",
+      "messages": "Správy",
+      "inbox": "Doručená pošta",
+      "automations": "Automatizácie",
+      "templates": "Šablóny",
+      "knowledge": "Knowledge Hub",
+      "reports": "Prehľady",
+      "ai": "Shario AI",
+      "settings": "Nastavenia",
+      "lostFound": "Straty a nálezy",
+      "customOrders": "Zákazky"
+    },
+    "routeTitles": {
+      "workspace": "Pracovný priestor",
+      "setup": "Launch Center",
+      "ai": "Shario AI",
+      "calendar": "Kalendár",
+      "bookings": "Rezervácie",
+      "coursesEvents": "Kurzy",
+      "customers": "Zákazníci",
+      "products": "Produkty a kurzy",
+      "productsPricing": "Produkty a ceny",
+      "orders": "Predaj a objednávky",
+      "salesOverview": "Prehľad predaja",
+      "transactions": "Transakcie",
+      "invoices": "Faktúry",
+      "memberships": "Členstvá",
+      "communications": "Komunikácia",
+      "messages": "Správy",
+      "knowledge": "Knowledge Hub",
+      "reports": "Prehľady",
+      "finance": "Financie",
+      "settings": "Nastavenia",
+      "modules": "Moduly a navigácia",
+      "publicSite": "Web a značka",
+      "locations": "Prevádzky štúdia",
+      "team": "Členovia tímu",
+      "roles": "Roly a oprávnenia",
+      "payments": "Platby od zákazníkov",
+      "billing": "Predplatné a fakturácia",
+      "invoicing": "Fakturácia zákazníkov",
+      "aiSettings": "Nastavenie AI",
+      "account": "Nastavenie účtu",
+      "preferences": "Predvoľby pracovného priestoru",
+      "commerce": "Obchod",
+      "operations": "Operácie",
+      "automations": "Automatizácie",
+      "inventory": "Zásoby",
+      "suppliers": "Dodávatelia",
+      "tasks": "Plánovanie tímu",
+      "generalSettings": "Všeobecné nastavenia",
+      "migration": "Migration Center",
+      "notifications": "Oznámenia",
+      "events": "Udalosti",
+      "lostFound": "Straty a nálezy",
+      "customOrders": "Zákazky"
+    },
+    "stats": {
+      "bookings": "Rezervácie dnes",
+      "occupancy": "Obsadenosť",
+      "revenue": "Príjmy tento mesiac",
+      "customers": "Noví zákazníci"
+    },
+    "quickActions": {
+      "title": "Rýchle akcie",
+      "newBooking": "Nová rezervácia",
+      "addCustomer": "Pridať zákazníka",
+      "createClass": "Vytvoriť kurz",
+      "sendMessage": "Poslať správu"
+    },
+    "revenueChart": {
+      "title": "Príjmy a rezervácie",
+      "revenue": "Príjmy",
+      "bookings": "Rezervácie",
+      "chartLabel": "Vývoj tržieb a rezervácií za posledných 30 dní",
+      "ranges": {
+        "7days": "7 dní",
+        "30days": "30 dní",
+        "12months": "12 mesiacov"
+      }
+    },
+    "overview": {
+      "eyebrow": "Aktuálny prehľad štúdia",
+      "context": "{date} · To najdôležitejšie z vášho štúdia.",
+      "dateLabel": "Dátum prehľadu",
+      "dateNavigation": {
+        "previousDay": "Predchádzajúci deň",
+        "nextDay": "Nasledujúci deň",
+        "today": "Dnes",
+        "backToToday": "Späť na dnešný deň",
+        "chooseDate": "Vybrať dátum"
+      },
+      "partialCoverage": "{count, plural, one {Jeden zdroj údajov nie je dostupný. Jeho hodnoty sa zobrazujú ako nedostupné, nie ako nula.} few {# zdroje údajov nie sú dostupné. Ich hodnoty sa zobrazujú ako nedostupné, nie ako nula.} many {# zdrojov údajov nie je dostupných. Ich hodnoty sa zobrazujú ako nedostupné, nie ako nula.} other {# zdroja údajov nie je dostupného. Jeho hodnoty sa zobrazujú ako nedostupné, nie ako nula.}}",
+      "briefing": {
+        "verifiedEyebrow": "Overený súhrn štúdia",
+        "operationalEyebrow": "Súhrn štúdia",
+        "aiEyebrow": "AI súhrn štúdia",
+        "calmHeadline": "Vaše štúdio funguje bez problémov.",
+        "attentionHeadline": "Niekoľko vecí vyžaduje vašu pozornosť.",
+        "partialHeadline": "Tu je to, čo môžeme overiť práve teraz.",
+        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
+        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "partialSummary": "Súhrn má momentálne {count, plural, one {# dostupný zdroj} few {# dostupné zdroje} many {# dostupných zdrojov} other {# dostupného zdroja}}. Nedostupné hodnoty zostávajú neznáme a nezobrazujú sa ako nula.",
+        "coverageComplete": "Na základe {count, plural, one {# signálu zo štúdia} few {# signálov zo štúdia} many {# signálov zo štúdia} other {# signálu zo štúdia}}",
+        "coveragePartial": "Na základe {count, plural, one {# dostupného signálu zo štúdia} few {# dostupných signálov zo štúdia} many {# dostupných signálov zo štúdia} other {# dostupného signálu zo štúdia}} · čiastočné pokrytie",
+        "updated": "Aktualizované {time}",
+        "sources": "Na základe {count, plural, one {# signálu zo štúdia} few {# signálov zo štúdia} many {# signálov zo štúdia} other {# signálu zo štúdia}}",
+        "refresh": "Obnoviť súhrn",
+        "preparing": "Pripravuje sa dnešný súhrn podložený údajmi…",
+        "checkingFreshness": "Kontrolujú sa novšie údaje zo štúdia…",
+        "prioritiesLabel": "Dnešné overené priority",
+        "fresh": "Aktuálne",
+        "stale": "Odporúčame obnoviť",
+        "review": "Skontrolovať priority",
+        "viewTodaySchedule": "Zobraziť dnešný program",
+        "viewSchedule": "Zobraziť program",
+        "openOperations": "Otvoriť prevádzku",
+        "reviewPrompt": "Skontroluj dnešné priority štúdia, vysvetli, prečo sú dôležité, uveď súvisiace záznamy a navrhni najbezpečnejšie ďalšie kroky.",
+        "open": "Otvoriť súhrn",
+        "generate": "Vytvoriť AI súhrn",
+        "loading": "Načítava sa najnovší súhrn štúdia…",
+        "refreshError": "Súhrn sa nepodarilo obnoviť. Overený prevádzkový prehľad je naďalej dostupný."
+      },
+      "attention": {
+        "title": "Vyžaduje vašu pozornosť",
+        "clearHeading": "Všetko je v poriadku",
+        "partialHeading": "Pokrytie priorít",
+        "items": {
+          "unpaidBookings": "nezaplatené rezervácie",
+          "lowStock": "položky s nízkym stavom",
+          "overdueTasks": "úlohy tímu po termíne"
+        },
+        "viewAll": "Zobraziť všetky priority",
+        "clearTitle": "Žiadne naliehavé priority",
+        "clearDescription": "Momentálne nie je potrebný žiadny okamžitý zásah.",
+        "partialTitle": "Niektoré priority môžu byť nedostupné",
+        "partialDescription": "Dostupné zdroje nevykazujú žiadne naliehavé položky, ale pokrytie je neúplné."
+      },
+      "flow": {
+        "title": "Prevádzka v štúdiu",
+        "description": "Plán vybraného dňa a živý stav štúdia.",
+        "emptyTitle": "Zatiaľ nie je naplánovaná žiadna činnosť štúdia",
+        "emptyDescriptionAll": "Vo všetkých štúdiách nie sú na {date} žiadne rezervácie ani výrobky na spracovanie.",
+        "emptyDescriptionSelected": "Vo vybranom štúdiu nie sú na {date} žiadne rezervácie ani výrobky na spracovanie.",
+        "openCalendar": "Otvoriť kalendár",
+        "dateUnavailable": "Vybraný dátum",
+        "allLocations": "Všetky štúdiá",
+        "selectedLocation": "Vybrané štúdio",
+        "groups": {
+          "visits": {
+            "title": "Rezervácie a návštevnosť",
+            "description": "Plán dňa a živá návštevnosť"
+          }
+        },
+        "stageCount": "{stage}: {count}",
+        "stageUnavailable": "{stage}: údaje nie sú k dispozícii",
+        "stages": {
+          "booked": "Rezervované",
+          "arriving": "Prichádzajú",
+          "inStudio": "V štúdiu",
+          "readyToFire": "Pripravené na výpal"
+        }
+      },
+      "rhythm": {
+        "title": "Dnešný rytmus",
+        "subtitle": "Lekcie naplánované na vybraný dátum vo vybranom rozsahu štúdií.",
+        "openCalendar": "Otvoriť kalendár",
+        "unavailable": "Údaje programu nie sú pre váš aktuálny prístup dostupné.",
+        "emptyTitle": "Pokojný deň v štúdiu",
+        "emptyDescription": "Na tento dátum nie sú naplánované žiadne lekcie.",
+        "untitled": "Lekcia v štúdiu",
+        "locationFallback": "Štúdio",
+        "guests": "{count, plural, one {# hosť} few {# hostia} many {# hostí} other {# hosťa}}"
+      },
+      "pulse": {
+        "title": "Vývoj podnikania",
+        "openReports": "Otvoriť prehľady",
+        "occupancy": "obsadenie",
+        "revenue": "príjmy",
+        "bookings": "rezervácie",
+        "newCustomers": "noví zákazníci",
+        "chartLabel": "Vývoj využitia štúdia",
+        "noTrend": "Údaje o trendoch za toto obdobie nie sú k dispozícii."
+      },
+      "signals": {
+        "open": "Otvoriť",
+        "unavailable": "Tieto informácie nie sú dostupné pre vaše aktuálne moduly alebo práva.",
+        "messages": {
+          "title": "Posledné správy",
+          "count": "{count, plural, =0 {Žiadne neprečítané konverzácie} one {# neprečítaná konverzácia} few {# neprečítané konverzácie} many {# neprečítaných konverzácií} other {# neprečítanej konverzácie}}",
+          "empty": "Žiadna nedávna správa zákazníka nevyžaduje odpoveď.",
+          "untitled": "Zákaznícky rozhovor",
+          "noPreview": "Otvoriť rozhovor pre zobrazenie najnovšej správy."
+        },
+        "tasks": {
+          "title": "Nadchádzajúce úlohy",
+          "count": "{count, plural, =0 {Žiadne otvorené úlohy} one {# otvorená úloha} few {# otvorené úlohy} many {# otvorených úloh} other {# otvorenej úlohy}}",
+          "empty": "Žiadne blížiace sa úlohy tímu nemajú stanovený termín.",
+          "untitled": "Úloha štúdia",
+          "unassigned": "Nepriradené",
+          "priorities": {
+            "low": "Nízka",
+            "normal": "Normálna",
+            "high": "Vysoká",
+            "urgent": "Naliehavé"
+          }
+        }
+      },
+      "opportunity": {
+        "eyebrow": "Business Advisor",
+        "none": "Nebola zistená žiadna okamžitá prevádzková príležitosť.",
+        "guidance": "Zdôrazním tu užitočné príležitosti, keď budú k dispozícii nové dáta zo štúdia.",
+        "openAdvisor": "Otvoriť poradcu",
+        "courseFallback": "Tento kurz",
+        "evidence": "Na základe {sessions} lekcií s vysokou obsadenosťou za posledných 8 týždňov · bez automatických zmien.",
+        "weekdays": {
+          "monday": "Pondelok",
+          "tuesday": "Utorok",
+          "wednesday": "Streda",
+          "thursday": "Štvrtok",
+          "friday": "Piatok",
+          "saturday": "Sobota",
+          "sunday": "Nedeľa",
+          "unknown": "pravidelne"
+        },
+        "items": {
+          "lowOccupancy": "Obsadenosť je len {value}% v nadchádzajúcom období.",
+          "noBookings": "Zatiaľ žiadne rezervácie.",
+          "inventoryReorder": "{value, plural, one {# položku zásob môže byť potrebné doobjednať.} few {# položky zásob môže byť potrebné doobjednať.} many {# položiek zásob môže byť potrebné doobjednať.} other {# položky zásob môže byť potrebné doobjednať.}}",
+          "repeatedCourseSaturation": "Kurz {course} má pri nedávnych {day} lekciách o {time} priemernú obsadenosť {value} %. Skontrolujte, či možno bezpečne zvýšiť kapacitu."
+        },
+        "actions": {
+          "createOffer": "Vytvoriť ponuku",
+          "reviewInventory": "Skontrolovať zásoby",
+          "reviewCourseCapacity": "Skontrolovať kapacitu"
+        }
+      },
+      "error": {
+        "title": "Prehľad štúdia sa nepodarilo načítať",
+        "description": "Vaše údaje neboli zmenené. Skontrolujte spojenie a skúste to znova.",
+        "retry": "Skúsiť znova"
+      },
+      "firstBooking": {
+        "title": "Vaša prvá rezervácia je tu",
+        "description": "V Prehľade sa teraz začnú zobrazovať skutočné aktivity a poznatky zo štúdia.",
+        "dismiss": "Zavrieť oslavu prvej rezervácie"
+      },
+      "snapshot": {
+        "title": "Prehľad",
+        "bookings": "Rezervácie",
+        "expectedVisitors": "Očakávaní návštevníci",
+        "actionablePieces": "Výrobky vyžadujúce pozornosť",
+        "unreadMessages": "Neprečítané správy",
+        "revenue": "Tržby",
+        "date": "Vybraný dátum",
+        "currentState": "Aktuálne",
+        "live": "Aktuálně",
+        "unavailable": "Nedostupné"
+      }
+    },
+    "help": {
+      "open": "Pomoc",
+      "menuLabel": "Menu pomoci",
+      "title": "Pomoc a sprievodcovia",
+      "close": "Zavrieť pomoc",
+      "productTour": "Prehliadka produktu",
+      "productTourDescription": "Spoznajte základy pracovného priestoru v krátkej prehliadke.",
+      "productTourSection": "Základy pracovného priestoru",
+      "startProductTour": "Spustiť prehliadku",
+      "replayProductTour": "Prehrať prehliadku"
+    },
+    "guides": {
+      "centerTitle": "Sprievodcovia",
+      "centerDescription": "Krátke voliteľné postupy pre činnosti, ktoré robíte najčastejšie.",
+      "duration": "Asi 60 sekúnd",
+      "completed": "Dokončené",
+      "startGuide": "Spustiť sprievodcu",
+      "replayGuide": "Zopakovať sprievodcu",
+      "availableTitle": "Sprievodcovia na vyskúšanie",
+      "completedTitle": "Dokončení sprievodcovia",
+      "summary": "Dokončené: {completed} z {total}",
+      "noneAvailable": "Pre vašu aktuálnu rolu nie sú dostupní žiadni sprievodcovia.",
+      "promptEyebrow": "Ste tu prvýkrát?",
+      "promptTitle": "Vyskúšajte sprievodcu {guide}",
+      "start": "Spustiť sprievodcu",
+      "notNow": "Teraz nie",
+      "progress": "{current} z {total}",
+      "skip": "Preskočiť sprievodcu",
+      "close": "Zavrieť sprievodcu",
+      "back": "Späť",
+      "next": "Ďalej",
+      "finish": "Dokončiť sprievodcu",
+      "finishedTitle": "Všetko je pripravené",
+      "finishedDescription": "Teraz poznáte základy funkcie {guide}. Sprievodcu si môžete kedykoľvek zopakovať v časti Pomoc.",
+      "items": {
+        "studio_location_setup": {
+          "title": "Set up a studio location",
+          "description": "Understand the address, customer choices, capacity and booking rules before opening a location.",
+          "steps": {
+            "identity": {
+              "title": "Name the location clearly",
+              "description": "Use the customer-facing name your team will also recognize in calendars, reports and studio switching."
+            },
+            "address": {
+              "title": "Set the local context",
+              "description": "The address helps customers arrive, while the timezone keeps every displayed booking time accurate."
+            },
+            "contact": {
+              "title": "Add a reliable contact",
+              "description": "The calling code and local number are saved together so customers can use the phone number internationally."
+            },
+            "activity_choice": {
+              "title": "Choose the customer experience",
+              "description": "Require an activity, make it optional, or hide the question completely when every visit works the same way."
+            },
+            "activity_capacity": {
+              "title": "Protect limited resources",
+              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+            },
+            "overall_capacity": {
+              "title": "Set the shared safety limit",
+              "description": "Overall capacity counts every person across all overlapping bookings and activities at this location."
+            },
+            "timing": {
+              "title": "Make available times predictable",
+              "description": "The start interval controls when bookings may begin; minimum and maximum duration control how long they may run."
+            },
+            "review": {
+              "title": "Review it as a customer",
+              "description": "This live summary explains the resulting booking rules in plain language before you create the location."
+            }
+          }
+        },
+        "first_booking": {
+          "title": "Vytvorte si prvú rezerváciu",
+          "description": "Spoznajte celý postup v kalendári – od vyhľadania termínu až po potvrdenie zákazníka.",
+          "steps": {
+            "calendar": {
+              "title": "Váš rezervačný kalendár",
+              "description": "Kalendár spája dostupnosť štúdia, lekcie a rezervácie zákazníkov. Prepínajte denný, týždenný alebo mesačný pohľad bez straty kontextu."
+            },
+            "create_action": {
+              "title": "Spustiť rezerváciu",
+              "description": "Možnosť Nová rezervácia použite, keď si zákazník rezervuje telefonicky, na recepcii alebo cez iný kanál. Zvýraznený ovládací prvok zostane počas tohto sprievodcu neaktívny."
+            },
+            "booking_details": {
+              "title": "Vyberte si správny kontext",
+              "description": "Pred vytvorením alebo kontrolou rezervácie vyhľadajte správnu dostupnosť pomocou filtrov štúdia, aktivity a tímu."
+            },
+            "confirmation": {
+              "title": "Skontrolujte výsledok",
+              "description": "Potvrdené rezervácie sa zobrazia v kalendári. Otvorením rezervácie skontrolujete zákazníka, platbu a podrobnosti lekcie."
+            }
+          }
+        },
+        "website_builder": {
+          "title": "Prispôsobte si webové stránky",
+          "description": "Upravte svoju verejnú stránku, zobrazte jej náhľad a spoznajte postup publikovania.",
+          "steps": {
+            "editor_sections": {
+              "title": "Tvorte pomocou sekcií",
+              "description": "Na kartách sekcií upravte značku, obsah, možnosti rezervácie a informácie pre zákazníkov."
+            },
+            "live_preview": {
+              "title": "Náhľad ako zákazník",
+              "description": "Živý náhľad ukazuje, ako verejný web reaguje na rôznych stránkach, v rôznych jazykoch a veľkostiach zariadenia."
+            },
+            "branding": {
+              "title": "Vytvorte si rozpoznateľný štýl",
+              "description": "Nastavte farby, typografiu a vizuálne detaily pri zachovaní prístupného kontrastu a jednotnej identity štúdia."
+            },
+            "publish": {
+              "title": "Uložiť a potom publikovať",
+              "description": "Uložením zachováte koncept. Publikovaním sa skontrolovaná verzia sprístupní zákazníkom; oprávnenia zostávajú chránené."
+            }
+          }
+        },
+        "memberships": {
+          "title": "Predávajte členstvá, kredity a poukazy",
+          "description": "Spoznajte programy, aktívnych členov, zákaznícky kredit a flexibilné poukazy.",
+          "steps": {
+            "plans": {
+              "title": "Navrhnite program členstva",
+              "description": "Programy určujú cenu, platnosť, prevádzky a zahrnuté výhody. Publikovanie a predajné úkony zostávajú chránené oprávneniami."
+            },
+            "customers": {
+              "title": "Zobrazte aktívnych členov",
+              "description": "Karta Zákazníci zobrazuje vlastníka programu, jeho aktuálne obdobie a zostávajúce výhody."
+            },
+            "credits": {
+              "title": "Spoznajte zákaznícky kredit",
+              "description": "Zostatky výhod členstva patria ku konkrétnemu programu. Samostatný zákaznícky kredit sa spravuje v profile zákazníka a tam, kde je povolený, ho možno používať nezávisle."
+            },
+            "vouchers": {
+              "title": "Ponúknite flexibilné darčeky",
+              "description": "Ponuky poukazov sú súčasťou katalógu a sú pripravené na nákup aj uplatnenie zákazníkom."
+            }
+          }
+        },
+        "ai_reports": {
+          "title": "Používajte AI a prehľady",
+          "description": "Premeňte aktivity štúdia na otázky, odporúčania a merateľné trendy.",
+          "steps": {
+            "assistant": {
+              "title": "Opýtajte sa Studio Assistant",
+              "description": "Otvorte asistenta a položte mu otázky týkajúce sa pracovného priestoru. Rešpektuje rovnaké prístupové hranice ako zvyšok prehľadu."
+            },
+            "advisor": {
+              "title": "Začnite s prehľadom",
+              "description": "Prehľad spája najdôležitejšie signály zo štúdia ešte pred otvorením podrobnejších sekcií."
+            },
+            "report_filters": {
+              "title": "Nastavte kontext prehľadu",
+              "description": "Vyberte dátumy, prevádzku, porovnanie a úroveň podrobnosti, aby všetky metriky odpovedali na rovnakú obchodnú otázku."
+            },
+            "report_insights": {
+              "title": "Prejdite od metrík k poznatkom",
+              "description": "Pomocou kariet prehľadu a AI súhrnu vysvetlite zmeny a určte ďalší užitočný krok."
+            }
+          }
+        },
+        "team_management": {
+          "title": "Spravujte svoj tím",
+          "description": "Zistite, ako roly a prístup k prevádzkam udržiavajú zodpovednosti v pracovnom priestore prehľadné.",
+          "steps": {
+            "members": {
+              "title": "Tím vášho pracovného priestoru",
+              "description": "Každý člen má rolu, stav, profil a rozsah prevádzok, ktoré určujú, čo môže vidieť a robiť."
+            },
+            "invite": {
+              "title": "Pridať správnu osobu",
+              "description": "Správcovia tímu môžu pridať existujúceho používateľa pracovného priestoru a v jednom riadenom postupe mu priradiť zodpovednosti."
+            },
+            "roles": {
+              "title": "Používajte roly zámerne",
+              "description": "Vstavané aj vlastné roly zoskupujú oprávnenia, aby prístup zostal zrozumiteľný aj s rastom štúdia."
+            },
+            "location_access": {
+              "title": "Obmedzte prístup podľa prevádzky",
+              "description": "Ak práca člena tímu nezahŕňa všetky prevádzky, obmedzte jeho prístup len na vybrané štúdiá."
+            }
+          }
+        },
+        "door_access_codes": {
+          "title": "Správa prístupových kódov",
+          "description": "Naučte sa usporiadať vstupy, sledovať zásobu, pridávať kódy a auditovať zmeny.",
+          "steps": {
+            "scope": {
+              "title": "Rozlišujte evidenciu a fyzický zámok",
+              "description": "Toto je zabezpečená evidencia kódov fyzických zámkov. V tejto fáze Shario zámok neprogramuje ani neposiela kódy e-mailom."
+            },
+            "entrances": {
+              "title": "Vyberte pobočku a vstup",
+              "description": "Každá sada kódov patrí k jednej pobočke a jednému fyzickému vstupu alebo zámku. Rôzne zámky uchovávajte oddelene."
+            },
+            "stock": {
+              "title": "Sledujte dostupnosť kódov",
+              "description": "Súhrn ukazuje dostupné, opakovane použiteľné, čoskoro končiace a núdzové kódy. Hranica nízkej zásoby upozorní včas."
+            },
+            "add_codes": {
+              "title": "Pridávajte kódy bezpečne",
+              "description": "Vytvorte kód alebo importujte CSV. Pred sprístupnením potvrďte, že je naprogramovaný a otestovaný."
+            },
+            "lifecycle": {
+              "title": "Spravujte životný cyklus",
+              "description": "Tajnú hodnotu odhaľte len v prípade potreby, upravte jej platnosť alebo kód natrvalo vyraďte."
+            },
+            "audit": {
+              "title": "Majte akcie pod kontrolou",
+              "description": "História auditu zaznamenáva vytvorenie, úpravy, odhalenia, importy aj vyradenie bez zobrazenia celých kódov."
+            }
+          }
+        },
+        "first_offer": {
+          "title": "Publikujte svoju prvú ponuku",
+          "description": "Premeňte Open Studio alebo kurz na ponuku pripravenú pre zákazníkov.",
+          "cta": "Otvoriť Launch Center",
+          "steps": {
+            "offer_types": {
+              "title": "Vyberte si, čo si zákazníci môžu rezervovať",
+              "description": "Open Studio použite na flexibilný prístup do štúdia a Kurzy na plánovanú výučbu. Katalóg zobrazuje len typy ponúk povolené v tomto pracovnom priestore."
+            },
+            "create_offer": {
+              "title": "Začnite z katalógu",
+              "description": "Po skončení sprievodcu vytvorte ponuku priamo tu. Launch Center udržiava prvé nastavenie prehľadné a navedie vás k ďalšiemu užitočnému kroku."
+            },
+            "price_capacity": {
+              "title": "Nastaviť základné požiadavky rezervácie",
+              "description": "Ponuke zadajte jasný názov, cenu, kapacitu, prevádzku a dostupnosť, aby zákazníci presne vedeli, čo si rezervujú."
+            },
+            "publish": {
+              "title": "Pred zverejnením skontrolujte",
+              "description": "Ponuku uložte, skontrolujte jej zobrazenie pre zákazníkov a publikujte ju až vtedy, keď sú program a pravidlá rezervácie pripravené."
+            }
+          }
+        },
+        "test_customer_journey": {
+          "title": "Dokončite testovaciu cestu zákazníka",
+          "description": "Pomocou bezpečného Practice Mode zobrazte náhľad rezervácie, potvrdenia a zákazníckeho prístupu.",
+          "cta": "Otvoriť Practice Mode",
+          "steps": {
+            "public_site": {
+              "title": "Začnite v pohľade zákazníka",
+              "description": "Na publikovanom verejnom webe zákazníci objavujú ponuky a začínajú rezerváciu. Practice Mode používa rovnakú cestu bez zmeny živých záznamov štúdia."
+            },
+            "test_booking": {
+              "title": "Skúste bezpečnú rezerváciu",
+              "description": "Practice Mode vás prevedie simulovanou rezerváciou. Nevytvorí skutočnú rezerváciu zákazníka ani skutočnú platbu."
+            },
+            "confirmation_email": {
+              "title": "Náhľad potvrdenia",
+              "description": "Skontrolujte, aké informácie dostane zákazník po rezervácii. Practice Mode neposiela skutočný e-mail, takže môžete celý zážitok bezpečne overiť."
+            },
+            "customer_portal": {
+              "title": "Náhľad prístupu zákazníka",
+              "description": "Pozrite si, ako zákazník otvorí svoju rezerváciu a informácie o štúdiu. Practice Mode používa namiesto skutočného účtu zákazníka dočasné prvky náhľadu."
+            }
+          }
+        },
+        "payments_setup": {
+          "title": "Nastavenie platieb",
+          "description": "Pripojte Stripe a zistite, kedy sú platby zákazníkov pripravené.",
+          "cta": "Pokračovať v nastavení platby",
+          "steps": {
+            "connection_status": {
+              "title": "Zobrazte overený stav pripojenia",
+              "description": "Tento stav pochádza zo servera a ukazuje, či účet Stripe ešte nebol založený, čaká na dokončenie, je obmedzený alebo aktívny."
+            },
+            "stripe_onboarding": {
+              "title": "Pokračujte bezpečne v Stripe",
+              "description": "Samotné overenie prebieha v Stripe. Po návrate Shario obnoví stav zo servera a nebude predpokladať, že je účet pripravený."
+            },
+            "payment_capabilities": {
+              "title": "Overte platby a výplaty",
+              "description": "Aktívne pripojenie musí umožňovať prijímanie platieb aj výplat. Tieto možnosti hlási priamo Stripe."
+            },
+            "verify_payment": {
+              "title": "Overte zákaznícky zážitok",
+              "description": "Keď Stripe označí účet ako aktívny, pred prijatím skutočnej rezervácie použite bezpečný zákaznícky Practice Mode. Nevytvorí sa žiadna skutočná platba."
+            }
+          }
+        },
+        "data_import": {
+          "title": "Importovať existujúce štúdio",
+          "description": "Presuňte údaje pomocou validácie, prehľadov a obnoviteľnej auditnej stopy.",
+          "cta": "Otvoriť Migration Center",
+          "steps": {
+            "choose_importer": {
+              "title": "Vyberte dátový typ",
+              "description": "Importujte zákazníkov, ponuky, rezervácie, členstvá, kredity alebo poukazy v rozumnom poradí. Zobrazia sa len oblasti povolené v pracovnom priestore."
+            },
+            "template_upload": {
+              "title": "Použiť šablónu alebo export",
+              "description": "Stiahnite šablónu alebo nahrajte export CSV či Excel. V kroku mapovania môžete priradiť existujúce stĺpce bez predchádzajúceho preusporiadania zdrojového súboru."
+            },
+            "validation": {
+              "title": "Overiť pred zmenou údajov",
+              "description": "Skúšobný import zvýrazní neplatné riadky, duplicity a navrhované zmeny. Nič sa neimportuje, kým výsledok neskontrolujete a nepotvrdíte."
+            },
+            "history_rollback": {
+              "title": "Zachovajte auditnú stopu",
+              "description": "História uchováva prehľad každého importu. Ak záznamy stále spĺňajú podmienky, oprávnení používatelia môžu zobraziť náhľad a bezpečne vrátiť sledované zmeny."
+            }
+          }
+        },
+        "customer_communications": {
+          "title": "Nastavenie komunikácie so zákazníkmi",
+          "description": "Skontrolujte šablóny, pripomienky, testovacie doručenie a históriu e-mailov.",
+          "cta": "Pokračovať v nastavení komunikácie",
+          "steps": {
+            "templates": {
+              "title": "Skontrolujte šablóny pre zákazníkov",
+              "description": "Šablóny udržiavajú potvrdenia a prevádzkové správy jednotné. Pred zapnutím automatizácie skontrolujte znenie a identitu štúdia."
+            },
+            "reminders": {
+              "title": "Nastaviť užitočné pripomienky",
+              "description": "Automatizácie určujú, kedy sa pripravia správy o rezerváciách a štúdiu. Nastavte vhodný čas a neposielajte zbytočné správy."
+            },
+            "test_email": {
+              "title": "Odošlite skutočný test nastavenia",
+              "description": "Najprv overte identitu odosielateľa a potom v nastaveniach použite možnosť Odoslať testovací e-mail. Test potvrdí doručenie bez kontaktovania zákazníka."
+            },
+            "delivery_history": {
+              "title": "Skontrolujte históriu doručenia",
+              "description": "História ukazuje, čo bolo odoslané a či doručenie vyžaduje pozornosť. Tím tak môže riešiť problémy s komunikáciou na jednom mieste."
+            }
+          }
+        }
+      }
+    },
+    "productTour": {
+      "progress": "{current} z {total}",
+      "skip": "Preskočiť prehliadku",
+      "close": "Zavrieť prehliadku",
+      "back": "Späť",
+      "next": "Ďalej",
+      "openLaunchCenter": "Otvoriť Launch Center",
+      "welcome": {
+        "eyebrow": "Základy pracovného priestoru",
+        "title": "Ste tu prvýkrát?",
+        "description": "Prejdite si počas 60 sekúnd základy pracovného priestoru. Prehliadku môžete kedykoľvek znova spustiť v Pomocníkovi.",
+        "duration": "Približne 60 sekúnd",
+        "start": "Spustiť prehliadku",
+        "dismiss": "Nie, ďakujem",
+        "close": "Zavrieť úvod"
+      },
+      "steps": {
+        "overview": {
+          "title": "Vitajte vo svojom Prehľade",
+          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+        },
+        "launch_center": {
+          "title": "Nastavenie v Launch Center",
+          "description": "Launch Center vás prevedie nastavením. Pomocou kontrolného zoznamu nastavte základné údaje, zobrazte náhľad zákazníckeho zážitku a pripravte štúdio na spustenie."
+        },
+        "studio_switcher": {
+          "title": "Prepínač štúdií",
+          "description": {
+            "none": "Tu sa zobrazuje váš pracovný priestor. Po pridaní prevádzky ju budete spravovať v rovnakom prepínači.",
+            "single": "Tu sa zobrazuje vaše aktuálne štúdio. Keď pridáte ďalšie prevádzky, budete medzi nimi prepínať na rovnakom mieste.",
+            "multiple": "Tu môžete prepínať medzi prevádzkami štúdia. Prehľad a prevádzkové údaje sa aktualizujú podľa vybranej prevádzky."
+          }
+        },
+        "navigation": {
+          "title": "Všetko má svoje miesto",
+          "description": "Hlavnú navigáciu používajte na rezervácie, zákazníkov, prevádzku štúdia, predaj, správy a prehľady. Prázdne oblasti sa zaplnia, keď váš tím začne pracovať."
+        },
+        "ai_assistant": {
+          "title": "Opýtajte sa AI asistenta",
+          "description": "Otvorte asistenta, pýtajte sa na svoje štúdio a získajte prevádzkové poznatky. Ak AI nie je vo vašom programe alebo pre vašu rolu povolená, k tomuto kroku sa môžete vrátiť neskôr."
+        },
+        "settings": {
+          "title": "Nastavenia a prispôsobenie",
+          "description": "Tu spravujete konfiguráciu, značku, verejný web, platby a prístup tímu. V nástroji Website Builder vytvoríte obsah, ktorý uvidia zákazníci."
+        }
+      },
+      "final": {
+        "title": "Všetko je pripravené",
+        "description": "Dokončite nastavenie v Launch Center, vytvorte testovaciu rezerváciu a zobrazte náhľad toho, čo uvidia zákazníci."
+      },
+      "mobileMenuDescription": "Táto možnosť je v hlavnej ponuke, ktorú otvoríte zvýrazneným tlačidlom. {description}"
+    },
+    "launchCenterLiveBadge": "Aktuálně",
+    "launchCenterReadyBadge": "Pripravené",
+    "launchCenterIssueBadge": "{count, plural, one {# problém} few {# problémy} many {# problémov} other {# problému}}",
+    "launchCenterLiveStatus": "Verejný web štúdia je spustený a všetky kontroly pripravenosti sú splnené",
+    "launchCenterReadyStatus": "Prevádzkové nastavenie na spustenie je pripravené",
+    "launchCenterAttentionStatus": "{count, plural, one {# problém pripravenosti na spustenie vyžaduje pozornosť} few {# problémy pripravenosti na spustenie vyžadujú pozornosť} many {# problémov pripravenosti na spustenie vyžaduje pozornosť} other {# problému pripravenosti na spustenie vyžaduje pozornosť}}"
+  },
+  "WorkspaceSettingsNav": {
+    "eyebrow": "Pracovný priestor",
+    "title": "Nastavenia",
+    "label": "Nastavenia pracovného priestoru",
+    "items": {
+      "setup": "Launch Center",
+      "general": "Všeobecné",
+      "modules": "Moduly a navigácia",
+      "locations": "Prevádzky",
+      "team": "Tím",
+      "teamName": "Názov tímu",
+      "roles": "Roly a oprávnenia",
+      "payments": "Platby od zákazníkov",
+      "billing": "Predplatné a fakturácia",
+      "invoicing": "Fakturácia zákazníkov",
+      "ai": "AI & automatizácia",
+      "publicSite": "Web a značka",
+      "migration": "Migration Center",
+      "accessCodes": "Prístupové kódy"
+    },
+    "overview": "Všetky nastavenia",
+    "overviewDescription": "Vyberte kategóriu, ktorú chcete nastaviť v pracovnom priestore.",
+    "categoryDescription": "Navigácia zameraná na kategóriu {category}.",
+    "currentCategory": "Aktuálna kategória",
+    "openCategory": "Otvoriť nastavenia {category}",
+    "groups": {
+      "workspace": "Pracovný priestor",
+      "features": "Funkcie a navigácia",
+      "website": "Web a zákaznícky zážitok",
+      "access": "Tím a prístup",
+      "payments": "Platby a fakturácia",
+      "account": "Účet Shario"
+    }
+  },
+  "WorkspaceSettings": {
+    "eyebrow": "Nastavenia pracovného priestoru",
+    "title": "Všeobecné nastavenia",
+    "description": "Spravujte spoločné predvolené hodnoty používané v celom pracovnom priestore.",
+    "loading": "Načítavajú sa nastavenia pracovného priestoru…",
+    "business": {
+      "title": "Identita a predvolené hodnoty pracovného priestoru",
+      "description": "Tieto hodnoty zdieľa každý člen tímu a modul orientovaný na zákazníka."
+    },
+    "fields": {
+      "name": "Názov pracovného priestoru",
+      "slug": "Adresa pracovného priestoru",
+      "defaultLanguage": "Predvolený jazyk",
+      "adminLanguage": "Jazyk pracovného priestoru",
+      "publicDefaultLanguage": "Primárny jazyk verejnej stránky",
+      "secondaryPublicLanguage": "Sekundárny jazyk verejnej stránky",
+      "timezone": "Prevádzkové časové pásmo",
+      "currency": "Prevádzková mena"
+    },
+    "hints": {
+      "slug": "Adresa pracovného priestoru je spravovaná samostatne, pretože zmena ovplyvňuje odkazy a domény.",
+      "defaultLanguage": "Používa sa, keď si člen alebo zákazník nevybral vlastný jazyk.",
+      "adminLanguage": "Jazyk používaný v celom pracovnom priestore štúdia pre všetkých členov tímu.",
+      "publicDefaultLanguage": "Jazyk, ktorý zákazníci uvidia ako prvý na verejnom webe a zákazníckych stránkach.",
+      "secondaryPublicLanguage": "Voliteľne môžete zákazníkom ponúknuť jeden ďalší jazyk. Na verejných stránkach nájomcu sa zobrazujú len tieto dva jazyky.",
+      "timezone": "Používa sa na rezervácie, rozvrhy a automatizované správy.",
+      "currency": "Používa sa pre produkty štúdia a platby zákazníkov. Je oddelená od meny vášho predplatného Shario."
+    },
+    "languageOptions": {
+      "noSecondary": "Žiadny sekundárny jazyk"
+    },
+    "currencyNotice": {
+      "title": "Existujúce finančné údaje sú chránené",
+      "description": "Keď už existujú finančné záznamy, server môže zmene meny zabrániť. Historické sumy sa tak neoznačia inou menou."
+    },
+    "workspaceStatus": {
+      "title": "Stav pracovného priestoru",
+      "plan": "Program",
+      "status": "Stav",
+      "version": "Verzia programu"
+    },
+    "actions": {
+      "save": "Uložiť nastavenia pracovného priestoru",
+      "saving": "Ukladá sa…",
+      "retry": "Skúsiť znova"
+    },
+    "messages": {
+      "saved": "Nastavenia pracovného priestoru boli uložené.",
+      "error": "Nastavenia pracovného priestoru sa nepodarilo uložiť.",
+      "loadError": "Nastavenia pracovného priestoru sa nepodarilo načítať."
+    }
+  },
+  "VoucherEditor": {
+    "colors": {
+      "mainTitle": "Hlavný nadpis",
+      "useTextColor": "Použiť farbu textu"
+    },
+    "description": "Dve rovnaké polovice: váš text a kód poukazu vľavo, vaša fotografia vpravo.",
+    "assets": {
+      "image": "Fotografia v pravej polovici",
+      "imageHelp": "Fotografia vyplní pravú polovicu zhora nadol. Vyplniť plochu oreže okraje; Zobraziť celú fotografiu zachová celý obrázok s voľným priestorom okolo.",
+      "imageFormats": "JPEG, PNG alebo WebP · do 8 MB. Orez skontrolujte v živom náhľade.",
+      "uploadImage": "Nahrať fotografiu",
+      "replaceImage": "Zmeniť fotografiu",
+      "cover": "Vyplniť plochu (orezať okraje)",
+      "contain": "Zobraziť celú fotografiu",
+      "fit": "Prispôsobenie fotografie"
+    },
+    "preview": {
+      "automatic": "Jedinečný kód a platnosť sa doplnia vľavo. Suma sa netlačí; hodnota poukazu na uplatnenie zostáva nezmenená. Náhľad aj ukážkové PDF používajú vzorové údaje."
+    }
+  },
+  "WorkspaceModules": {
+    "modules": {
+      "communications": {
+        "description": "História e-mailov, automatizácie, šablóny a nastavenia e-mailu."
+      }
+    }
+  },
+  "PublicSiteEditor": {
+    "customerPortal": {
+      "pageLabels": {
+        "courses": "Kurzy"
+      },
+      "navigationLabels": {
+        "courses": "Kurzy"
+      },
+      "courses": {
+        "title": "Kurzy v jednotlivých štúdiách",
+        "description": "Prispôsobte nadpis, úvod a fotografiu stránky kurzov samostatne pre každú pobočku.",
+        "location": "Pobočka štúdia",
+        "headline": "Nadpis stránky kurzov",
+        "intro": "Úvod stránky kurzov",
+        "image": "Fotografia stránky kurzov",
+        "inherit": "Prázdne polia použijú spoločný text stránky kurzov a titulnú fotografiu značky.",
+        "noLocations": "Pridajte pobočku štúdia, aby ste mohli prispôsobiť jej stránku kurzov.",
+        "guestCheckoutEnabled": "Povoliť nákup kurzov bez účtu",
+        "guestCheckoutDescription": "Platí pre všetky štúdiá. Hostia môžu kúpiť kurz bez vytvorenia účtu; zákazníci sa môžu naďalej prihlásiť. Vyžaduje viditeľné stránky kurzov a pripravené online platby. Nastavenie sa prejaví po publikovaní zmien."
+      }
+    },
+    "preview": {
+      "pages": {
+        "portalCourses": "Kurzy v zákazníckom portáli"
+      }
+    },
+    "branding": {
+      "logoRedirectEnabled": "Zapnúť odkaz na logu",
+      "logoRedirectHint": "Po zapnutí sa kliknutím na logo otvorí zvolená stránka. Po vypnutí kliknutie na logo nič neurobí.",
+      "logoRedirectUrl": "Cieľová adresa loga",
+      "logoRedirectUrlHint": "Použite úplnú adresu HTTPS alebo cestu začínajúcu /. Stránka sa otvorí na rovnakej karte.",
+      "invalidLogoRedirectUrl": "Zadajte platnú adresu HTTPS alebo cestu začínajúcu /."
+    },
+    "messages": {
+      "invalidLogoRedirectUrl": "Pred uložením alebo zverejnením opravte cieľovú adresu loga."
+    }
+  },
+  "Products": {
+    "form": {
+      "courseContent": {
+        "title": "Obsah stránky kurzu",
+        "help": "Voliteľné texty a fotografie pre stránku kurzov v zákazníckom portáli. Prázdne polia použijú hlavný obsah produktu.",
+        "language": "Jazyk obsahu",
+        "name": "Názov kurzu",
+        "description": "Krátky opis",
+        "details": "Podrobnosti kurzu",
+        "durationLabel": "Údaj o trvaní",
+        "plainTextHelp": "Použite obyčajný text. Zlomy riadkov sa zachovajú.",
+        "gallery": "Fotogaléria kurzu",
+        "galleryHelp": "Pridajte najviac 12 HTTPS adries obrázkov alebo ciest relatívnych k webu. Ak je galéria prázdna, použije sa obrázok produktu.",
+        "imageUrl": "Adresa nového obrázka v galérii",
+        "addImage": "Pridať obrázok",
+        "useProductImage": "Použiť aktuálny obrázok produktu",
+        "imageLabel": "Obrázok galérie {number}",
+        "moveEarlier": "Presunúť obrázok {number} dopredu",
+        "moveLater": "Presunúť obrázok {number} dozadu",
+        "removeImage": "Odstrániť obrázok {number}",
+        "invalidImage": "Zadajte platnú HTTPS adresu obrázka alebo cestu relatívnu k webu (najviac 2 000 znakov).",
+        "invalidText": "Skontrolujte text kurzu: použite obyčajný text v rámci limitov polí.",
+        "galleryLimit": "Môžete pridať najviac 12 obrázkov do galérie.",
+        "locations": "Dostupné v týchto štúdiách",
+        "locationsHelp": "Ak nič nevyberiete, kurz sa zobrazí vo všetkých štúdiách. Termíny sa vždy zobrazujú pre vybrané štúdio."
+      }
+    }
+  },
+  "CustomerCourses": {
+    "eyebrow": "Tvorte vo svojom štúdiu",
+    "title": "Kurzy",
+    "description": "Prezrite si kurzy, vyberte termín a rezervujte si miesto.",
+    "location": "Pobočka štúdia",
+    "allCategories": "Všetky kurzy",
+    "search": "Hľadať kurzy",
+    "noResults": "Vášmu vyhľadávaniu nezodpovedajú žiadne kurzy.",
+    "noCourses": "V tomto štúdiu zatiaľ nie sú dostupné žiadne kurzy.",
+    "loading": "Načítavajú sa kurzy…",
+    "error": "Kurzy sa nepodarilo načítať.",
+    "retry": "Skúsiť znova",
+    "details": "Podrobnosti kurzu",
+    "chooseDate": "Vybrať termín",
+    "upcomingDates": "Najbližšie termíny",
+    "noDates": "Nové termíny zverejníme čoskoro.",
+    "pricePerPerson": "Cena za osobu",
+    "duration": "Trvanie",
+    "durationMinutes": "{count} min",
+    "capacity": "Veľkosť skupiny",
+    "capacityPeople": "Najviac {count} osôb",
+    "back": "Späť na kurzy",
+    "people": "Počet osôb",
+    "addToCart": "Pridať do košíka",
+    "inCart": "Vo vašom košíku",
+    "viewCart": "Zobraziť košík",
+    "unavailable": "Tento kurz nie je dostupný vo vybranom štúdiu.",
+    "selectDate": "Ak chcete pokračovať, vyberte dostupný termín.",
+    "giftVoucher": "Darovať darčekový poukaz",
+    "previousImage": "Predchádzajúci obrázok",
+    "nextImage": "Nasledujúci obrázok",
+    "openGallery": "Otvoriť galériu kurzu {name}",
+    "closeGallery": "Zavrieť galériu",
+    "imagePosition": "Obrázok {current} z {total}",
+    "placesLeft": "Voľné miesta: {count}",
+    "full": "Obsadené",
+    "date": "Dátum",
+    "added": "Kurz bol pridaný do košíka.",
+    "checkoutPaused": "Rezervácia momentálne nie je dostupná. Kurzy si môžete ďalej prezerať."
+  },
+  "Sales": {
+    "paymentMethods": {
+      "unknown": "Neuvedené"
+    }
+  },
+  "VoucherShopping": {
+    "buy": "Kúpiť darčekový poukaz",
+    "manage": "Uplatniť alebo zobraziť moje poukazy",
+    "chooseTitle": "Vyberte darček",
+    "chooseDescription": "Vyberte poukaz a počet kusov. Na nákup nepotrebujete účet.",
+    "deliveryTitle": "Dostaňte svoj poukaz",
+    "deliveryDescription": "Po zaplatení vám poukaz vo formáte PDF zašleme na zadaný e-mail.",
+    "redeemTitle": "Naplánujte návštevu štúdia",
+    "redeemDescription": "Obdarovaný si vyberie termín a pri platení zadá kód poukazu. Nákup poukazu nerezervuje miesto na kurze.",
+    "selection": "Vybrať poukaz",
+    "selected": "Vybrané"
+  },
+  "BookingActions": {
+    "title": "Upraviť rezerváciu",
+    "details": "Podrobnosti rezervácie",
+    "chooseAction": "Čo chcete urobiť?",
+    "extend": "Predĺžiť",
+    "move": "Presunúť",
+    "cancel": "Zrušiť",
+    "extendTitle": "Predĺžiť rezerváciu",
+    "moveTitle": "Presunúť rezerváciu",
+    "cancelTitle": "Zrušiť rezerváciu",
+    "extendHelp": "Ponechajte si rezerváciu a pridajte čas na jej konci. Počet osôb, aktivita a nastavenie súkromia zostanú rovnaké. Zaplatíte iba za pridaný čas.",
+    "extraTime": "O koľko dlhšie?",
+    "minutes": "+{minutes} min",
+    "endsAt": "Končí o {time}",
+    "loading": "Overujeme dostupné časy…",
+    "retry": "Skúsiť znova",
+    "quoteError": "Možnosti predĺženia sa nepodarilo overiť. Skúste to znova.",
+    "paymentMethod": "Spôsob platby",
+    "card": "Platobná karta",
+    "credits": "Kredity štúdia",
+    "payExtend": "Predĺžiť rezerváciu · {amount}",
+    "processing": "Spracúvame…",
+    "extensionError": "Toto predĺženie sa nepodarilo potvrdiť. Pred ďalším pokusom skontrolujte svoju rezerváciu.",
+    "quoteChanged": "Rezervácia alebo cena sa zmenila. Pred potvrdením skontrolujte aktualizované možnosti.",
+    "currentTariff": "Pôvodná hodinová sadzba nie je dostupná. Pridaný čas sa účtuje podľa aktuálnej sadzby štúdia.",
+    "cardTimeLimit": "Ak sa rezervácia čoskoro končí, použite kredity štúdia. Na dokončenie platby kartou už nie je dosť času.",
+    "reasons": {
+      "unavailable": "Tento čas navyše nie je dostupný.",
+      "private": "V tomto čase sa začína iná súkromná rezervácia.",
+      "capacity": "Kapacita štúdia alebo aktivity nestačí.",
+      "closed": "Toto predĺženie presahuje otváracie hodiny štúdia.",
+      "duration": "Týmto by sa prekročila maximálna dĺžka rezervácie.",
+      "pending": "Platba za predĺženie už čaká na dokončenie. Pred ďalším pokusom ju dokončite alebo zrušte."
+    },
+    "moveHelp": "Vyberte nový začiatok. Dĺžka {minutes} minút, štúdio, aktivita aj počet osôb zostanú rovnaké.",
+    "newDate": "Nový dátum",
+    "startTime": "Čas začiatku",
+    "availableTimes": "Dostupné časy začiatku",
+    "manualTime": "Zadajte čas začiatku. Dostupnosť overíme pred potvrdením.",
+    "confirmMove": "Potvrdiť nový čas",
+    "moveInvalid": "Vyberte platný dátum a čas.",
+    "moveError": "Tento čas už nie je dostupný. Vyberte iný.",
+    "readonly": "Čas tejto rezervácie už nie je možné zmeniť.",
+    "courseReadonly": "Prihlášky na kurzy možno v portáli iba zobraziť, pretože sú viazané na naplánovaný termín. Ak ich chcete zmeniť alebo zrušiť, kontaktujte štúdio.",
+    "accessLocked": "Prístupový kód už bol vydaný alebo sa odosiela, preto rezerváciu už nie je možné presunúť ani zrušiť.",
+    "refundHelp": "Zrušenie je nezvratné. Zaplatená suma sa vráti ako kredity štúdia; pri platbe členským kreditom sa obnoví tento kredit. Rezerváciu možno zrušiť iba pred vydaním prístupového kódu.",
+    "cancelQuestion": "Zrušiť túto rezerváciu?",
+    "confirmCancel": "Áno, zrušiť",
+    "keepBooking": "Ponechať rezerváciu",
+    "cancelling": "Rušíme…",
+    "cancelError": "Rezerváciu sa nepodarilo zrušiť. Skúste to znova.",
+    "cancelledTitle": "Rezervácia bola zrušená",
+    "cancelledBody": "Vaša rezervácia bola zrušená a platba bola vrátená.",
+    "movedTitle": "Rezervácia bola presunutá",
+    "movedBody": "Nový čas vašej rezervácie je potvrdený.",
+    "extendedTitle": "Rezervácia bola predĺžená",
+    "extendedBody": "Vaša rezervácia sa teraz končí o {time}. Potvrdenie vám pošleme e-mailom.",
+    "arrival": "Informácie k príchodu",
+    "accessCode": "Prístupový kód vám pošleme e-mailom {minutes} minút pred rezerváciou.",
+    "cancelPayment": "Zrušiť platbu za predĺženie"
+  },
+  "EmailAutomations": {
+    "history": {
+      "types": {
+        "afterBookingCreated": "Potvrdenie rezervácie"
+      },
+      "pagination": {
+        "label": "Stránky histórie doručovania e-mailov",
+        "previous": "Predchádzajúca",
+        "next": "Ďalšia",
+        "showing": "Zobrazené {from}–{to} z {total} e-mailových doručení",
+        "newestFirst": "Najnovšie prvé · 20 na stránku"
+      }
+    }
+  },
+  "TeamSettings": {
+    "actions": {
+      "add": "Pozvať člena tímu"
+    },
+    "editor": {
+      "addTitle": "Pozvať člena tímu",
+      "email": "E-mailová adresa",
+      "existingUserHint": "E-mailom dostane pozvánku na prijatie prístupu. Noví členovia si môžu vytvoriť účet."
+    },
+    "empty": {
+      "description": "Pozvite niekoho e-mailom a vyberte jeho rolu a pobočky."
+    },
+    "invitations": {
+      "title": "Pozvánky",
+      "description": "Prístup začne platiť po prijatí pozvánky.",
+      "empty": "Žiadne čakajúce pozvánky.",
+      "resend": "Odoslať znova",
+      "revoke": "Zrušiť pozvánku",
+      "revokeConfirm": "Zrušiť pozvánku pre {email}?",
+      "revoked": "Pozvánka bola zrušená.",
+      "expires": "Platí do {date}",
+      "signInLink": "Odkaz na prihlásenie",
+      "sendSignIn": "Poslať odkaz na prihlásenie",
+      "send": "Odoslať pozvánku",
+      "statuses": {
+        "pending": "Čaká na prijatie",
+        "expired": "Platnosť vypršala"
+      },
+      "delivery": {
+        "pending": "E-mail čaká na odoslanie",
+        "sent": "E-mail odoslaný",
+        "failed": "E-mail sa nepodarilo odoslať"
+      },
+      "notices": {
+        "pending": "Pozvánka pre {email} je uložená. E-mail čaká na odoslanie.",
+        "sent": "Pozvánka bola odoslaná na {email}.",
+        "failed": "Pozvánka pre {email} je uložená, ale e-mail nebol odoslaný. Skúste odoslať znova."
+      },
+      "errors": {
+        "resend": "Pozvánku sa nepodarilo znova odoslať.",
+        "revoke": "Pozvánku sa nepodarilo zrušiť.",
+        "send": "Odkaz na prihlásenie sa nepodarilo odoslať.",
+        "resendTooSoon": "Pred opätovným odoslaním tejto pozvánky počkajte minútu.",
+        "rateLimited": "Príliš veľa pozvánok. Pred ďalším pokusom počkajte 15 minút."
+      }
+    }
+  },
+  "TeamInvitation": {
+    "title": "Pripojiť sa k tímu",
+    "signInTitle": "Prihlásiť sa do pracovného priestoru",
+    "description": "Pozvánka do {tenant} pre {email}.",
+    "newAccount": "Na prijatie pozvánky si vytvorte účet.",
+    "existingAccount": "Zadajte svoje súčasné heslo. Vaše heslo sa nezmení.",
+    "resetRequired": "Nastavte si heslo pomocou obnovy účtu a potom sa vráťte k tejto pozvánke.",
+    "resetPassword": "Obnoviť heslo (otvorí novú kartu)",
+    "accepted": "Pozvánka bola prijatá. Pokračujte prihlásením.",
+    "loginRetry": "Prístup je pripravený, ale prihlásenie sa nepodarilo. Skúste sa prihlásiť znova.",
+    "accept": "Prijať pozvánku",
+    "signIn": "Prihlásiť sa",
+    "working": "Počkajte prosím…",
+    "unavailableTitle": "Pozvánka nie je dostupná",
+    "unavailable": "Pozvánka je neplatná, vypršala, bola zrušená alebo sa ju nepodarilo načítať. V prípade potreby požiadajte vlastníka o novú pozvánku.",
+    "retry": "Skúsiť znova",
+    "loading": "Načítava sa pozvánka…",
+    "acceptError": "Pozvánku sa nepodarilo prijať. Skontrolujte údaje alebo požiadajte o novú pozvánku.",
+    "passwordReady": "Heslo mám nastavené"
+  },
+  "Memberships": {
+    "planChange": {
+      "browse": "Prezrieť a porovnať plány",
+      "currentPlan": "Váš aktuálny plán",
+      "scheduledPlan": "Naplánovaný plán",
+      "choose": "Zmeniť pri ďalšom obnovení",
+      "title": "Zmeniť členstvo",
+      "description": "Vaša aktuálna cena, hodiny a výhody zostávajú bez zmeny do {date}.",
+      "renewal": "Od {date} sa bude plán {plan} obnovovať za {price}.",
+      "confirm": "Naplánovať zmenu plánu",
+      "cancel": "Ponechať aktuálny plán",
+      "pendingTitle": "Zmena plánu je naplánovaná",
+      "pendingDescription": "Vaše členstvo sa zmení na plán {plan} dňa {date}. Aktuálne zaplatené obdobie zostáva bez zmeny.",
+      "cancelChange": "Zrušiť zmenu plánu",
+      "cancelConfirm": "Zrušiť naplánovanú zmenu plánu? Váš aktuálny plán sa bude naďalej obnovovať ako doteraz.",
+      "cancelTitle": "Ponechať aktuálne členstvo",
+      "cancelConfirmAction": "Zrušiť naplánovanú zmenu",
+      "success": "Zmena vášho plánu bola naplánovaná.",
+      "cancelled": "Naplánovaná zmena vášho plánu bola zrušená.",
+      "error": "Naplánovanú zmenu plánu sa nepodarilo aktualizovať. Obnovte stránku a skúste to znova.",
+      "unavailable": "Tu si môžete porovnať plány. Plán možno zmeniť pri aktívnom mesačnom členstve, pri ktorom nie je naplánované zrušenie ani iná zmena plánu.",
+      "loading": "Overujeme vaše aktuálne členstvo…",
+      "loadError": "Vaše aktuálne členstvo sa nepodarilo overiť. Pred výberom plánu obnovte stránku.",
+      "manage": "Spravovať členstvo",
+      "noImmediateCharge": "Teraz sa nič neplatí. Nová mesačná cena začne platiť pri ďalšom obnovení členstva.",
+      "termsRequired": "Pred naplánovaním zmeny prijmite podmienky členstva nového plánu.",
+      "processing": "Aktualizujeme naplánovanú zmenu plánu…",
+      "cancelBeforeMembership": "Ak chcete členstvo ukončiť, najprv zrušte naplánovanú zmenu plánu."
+    },
+    "owner": {
+      "planForm": {
+        "benefitTypes": {
+          "studio_hours": {
+            "title": "Osobné hodiny Open Studio",
+            "description": "Predplatený čas Open Studio iba pre člena, spoločný pre zahrnuté pobočky.",
+            "editorHint": "Predplatený čas Open Studio iba pre člena, spoločný pre zahrnuté pobočky."
+          },
+          "course_discount": {
+            "title": "Osobná zľava na kurzy",
+            "description": "Zľava na jedno miesto člena na kurze; ostatní účastníci platia bežnú cenu.",
+            "editorHint": "Zľava na jedno miesto člena na kurze; ostatní účastníci platia bežnú cenu."
+          }
+        },
+        "benefitDefaults": {
+          "studio_hours": "Osobné hodiny Open Studio",
+          "course_discount": "Osobná zľava na kurzy"
+        },
+        "sharedSelectedLocations": "Spoločný balík pre vybrané pobočky",
+        "hourQuantity": "Hodiny na zaplatené obdobie",
+        "hoursValidation": "Zadajte kladný počet hodín zodpovedajúci celým minútam (napríklad 4,5 hodiny).",
+        "rolloverPercent": "Limit prevodu (%)",
+        "rolloverHint": "Do ďalšieho zaplateného mesiaca možno previesť najviac 0–25 % bežného mesačného prídelu. Pre iné obdobia nastavte 0.",
+        "eligibleCourses": "Kurzy so zľavou",
+        "eligibleCoursesHint": "Bez výberu platí zľava na všetky kurzy. Výberom ju obmedzíte na konkrétne kurzy. Platí iba na vlastné miesto člena.",
+        "oneProductDiscount": "V jednom pláne použite iba jednu zľavu na produkty alebo jednu osobnú zľavu na kurzy.",
+        "translationsHint": "Názvy, popisy, podmienky členstva a popisy výhod môžete vyplniť v jazykoch svojho štúdia. Prázdne preklady použijú text v hlavnom jazyku.",
+        "primaryCurrencyHint": "Zákazníci platia v hlavnej mene vášho štúdia ({currency}).",
+        "legacyBenefit": {
+          "preserved": "Nastavenia výhody zostávajú zachované; jej text môžete upraviť."
+        }
+      }
+    },
+    "benefits": {
+      "benefitValues": {
+        "studioHours": "{duration} času Open Studio na zaplatené obdobie, iba pre vás.",
+        "rollover": "Do ďalšieho zaplateného mesiaca možno previesť najviac {percentage} % bežného mesačného prídelu hodín.",
+        "personalCourseDiscount": "Zľava {percentage} % na zahrnuté kurzy iba pre vaše miesto. Ostatní účastníci platia plnú cenu."
+      },
+      "timeTrackingNotice": "Hodiny platia na vaše návštevy Open Studio. Sprievod rezervujte zvlášť alebo celú rezerváciu zaplaťte bežným spôsobom. Prevedené hodiny sa čerpajú ako prvé a platia do konca ďalšieho zaplateného obdobia.",
+      "sharedLocations": "Spoločný balík pre: {locations}",
+      "currentPeriod": "Zostatok aktuálneho obdobia",
+      "carryover": "Zostatok z prevodu",
+      "carryoverExpires": "Prevedené hodiny platia do",
+      "adjustMinutes": "Úprava v minútach"
+    },
+    "catalog": {
+      "recurringMonthDisclosure": "Automatická platba {amount} {count, plural, one {každý mesiac} few {každé # mesiace} other {každých # mesiacov}} až do zrušenia. Pri zrušení členstvo skončí na konci zaplateného obdobia.",
+      "recurringYearDisclosure": "Automatická platba {amount} {count, plural, one {každý rok} few {každé # roky} other {každých # rokov}} až do zrušenia. Pri zrušení členstvo skončí na konci zaplateného obdobia."
+    }
+  },
+  "SetupCenter": {
+    "practice": {
+      "manual": {
+        "title": "Ručné potvrdenie",
+        "description": "Už ste vyskúšali rezerváciu? Potvrďte tu výsledok.",
+        "checkbox": "Potvrdzujem, že skúšobná rezervácia prebehla úspešne",
+        "confirm": "Potvrdiť kontrolu",
+        "saving": "Ukladanie…",
+        "confirmed": "Ručne potvrdené dňa {date}.",
+        "stale": "Od vášho potvrdenia sa zmenili nastavenia. Znovu vyskúšajte rezerváciu a potom potvrďte výsledok.",
+        "undo": "Odstrániť potvrdenie",
+        "error": "Potvrdenie sa nepodarilo uložiť. Skúste to znova.",
+        "undoError": "Potvrdenie sa nepodarilo odstrániť. Skúste to znova.",
+        "configurationChanged": "Počas kontroly sa zmenili nastavenia. Skontrolujte aktuálne nastavenia a potom znovu potvrďte rezerváciu.",
+        "note": "Týmto zaznamenáte vlastnú kontrolu. Nevytvorí sa rezervácia, nestrhne sa platba ani sa neodošle správa."
+      }
+    },
+    "readiness": {
+      "items": {
+        "customerJourney": {
+          "descriptions": {
+            "manual": "Ručne ste potvrdili úspešnú skúšobnú rezerváciu.",
+            "retest": "Nastavenia sa zmenili. Skúšobnú rezerváciu znovu overte a potvrďte výsledok.",
+            "action_required": "Overte skúšobnú rezerváciu a potvrďte výsledok.",
+            "waiting": "Najprv dokončite predchádzajúce kontroly spustenia."
+          }
+        }
+      }
+    }
+  },
+  "SharioMarketing": {
+    "hero": {
+      "eyebrow": "Good spaces bring people together",
+      "title": "Your space.",
+      "highlight": "More possibilities.",
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
+      "cta": "Start free trial",
+      "secondary": "Explore Shario",
+      "note": "14-day trial · No credit card required",
+      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
+      "cardTitle": "A little less admin. A lot more connection.",
+      "cardText": "Make room for the people who make your space."
+    },
+    "features": {
+      "eyebrow": "One place for the everyday",
+      "title": "More time for your people.",
+      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "bookings": {
+        "title": "Bookings made simple",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+      },
+      "memberships": {
+        "title": "Memberships that fit",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+      },
+      "website": {
+        "title": "A website that’s yours",
+        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+      },
+      "payments": {
+        "title": "Payments in one place",
+        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+      },
+      "resources": {
+        "title": "Every space, organized",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+      },
+      "communication": {
+        "title": "Keep everyone connected",
+        "description": "Send updates, booking reminders and useful automated messages to your community."
+      },
+      "team": {
+        "title": "A team in sync",
+        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+      },
+      "insights": {
+        "title": "A clearer view",
+        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+      }
+    },
+    "website": {
+      "eyebrow": "Your space. Your identity.",
+      "title": "Your community starts with a warm welcome.",
+      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
+      "one": "Choose your colors, fonts and page layout",
+      "two": "Connect your offers, calendar and customer account",
+      "three": "Use a custom domain on eligible plans",
+      "cta": "Explore your website tools",
+      "example": "Example space website",
+      "spaceName": "Common Ground",
+      "nav": "Our space   ·   Memberships",
+      "previewEyebrow": "A place to belong",
+      "previewTitle": "Good work. Great company.",
+      "previewCta": "Explore our space",
+      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+    },
+    "spaces": {
+      "eyebrow": "For spaces that bring us together",
+      "title": "Different spaces. Shared possibilities.",
+      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
+      "cta": "Make room for your community",
+      "coworking": {
+        "title": "Coworking spaces",
+        "description": "Desks, meeting rooms and memberships for flexible working days."
+      },
+      "creative": {
+        "title": "Creative studios",
+        "description": "Shared equipment, workshops and room for your next idea."
+      },
+      "rehearsal": {
+        "title": "Rehearsal spaces",
+        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+      },
+      "community": {
+        "title": "Community hubs",
+        "description": "Events, memberships and shared places for local connections."
+      },
+      "workshops": {
+        "title": "Workshops & classes",
+        "description": "Classes, instructors, ticketed events and returning participants."
+      }
+    },
+    "faq": {
+      "eyebrow": "A few good questions",
+      "title": "Let’s make it simple.",
+      "one": {
+        "question": "What can I manage with Shario?",
+        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+      },
+      "two": {
+        "question": "Can I use my own branding?",
+        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+      },
+      "three": {
+        "question": "Can my customers book and manage their memberships?",
+        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+      },
+      "four": {
+        "question": "How do I get started?",
+        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+      }
+    },
+    "closing": {
+      "title": "Make room for more.",
+      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
+      "secondary": "Explore plans"
+    },
+    "product": {
+      "eyebrow": "Meet your everyday toolkit",
+      "title": "Everything your space needs, working together.",
+      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
+      "panelEyebrow": "Your connected workspace",
+      "panelTitle": "One place to bring it all together",
+      "solutions": "Find your kind of space"
+    },
+    "access": {
+      "eyebrow": "More freedom for your members",
+      "title": "Let your space work around your people.",
+      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+    },
+    "ai": {
+      "eyebrow": "Meet Shario AI",
+      "title": "A helping hand for everyday work.",
+      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
+      "panelEyebrow": "Connected to your workspace",
+      "panelTitle": "Helpful context. Clear next steps.",
+      "context": {
+        "title": "Context that counts",
+        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+      },
+      "drafts": {
+        "title": "A useful first draft",
+        "description": "Prepare customer messages, website copy and ideas for your next event."
+      },
+      "control": {
+        "title": "You stay in control",
+        "heading": "Your assistant. Your decisions.",
+        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+      }
+    },
+    "footer": {
+      "tagline": "Make room for more.",
+      "product": "Product",
+      "overview": "Explore Shario",
+      "ai": "Shario AI",
+      "pricing": "Pricing",
+      "spaces": "For your space",
+      "company": "Get started",
+      "about": "How it works",
+      "login": "Log in",
+      "register": "Start free trial",
+      "copyright": "© {year} Shario. All rights reserved."
+    }
+  }
+}

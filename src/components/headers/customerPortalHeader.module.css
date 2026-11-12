@@ -1,0 +1,7 @@
+.tenantHeader :global([data-customer-portal-entry-action]) {
+  text-transform: var(--tenant-header-text-transform, none);
+}
+
+.tenantNavigation {
+  isolation: isolate;
+}

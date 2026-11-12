@@ -1,0 +1,41 @@
+.root {
+  aspect-ratio: var(--brush-aspect-ratio);
+  display: none;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+@supports (
+  (-webkit-mask-image: url("/images/marketing/brush-loaded-wide.webp")) or
+    (mask-image: url("/images/marketing/brush-loaded-wide.webp"))
+) {
+  .root {
+    display: block;
+  }
+
+  .layer {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--brush-rgb) / 0.03) 0%,
+      rgb(var(--brush-rgb) / 0.18) 22%,
+      rgb(var(--brush-rgb) / 0.62) 60%,
+      rgb(var(--brush-rgb) / 0.92) 100%
+    );
+    -webkit-mask-image: var(--brush-mask-image);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-image: var(--brush-mask-image);
+    mask-mode: alpha;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+  }
+}
+
+.flip {
+  transform: scaleX(-1);
+}

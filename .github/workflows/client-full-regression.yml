@@ -1,0 +1,196 @@
+name: Client full regression
+run-name: Client full regression (${{ inputs.scope || 'all' }})
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "e2e/**"
+      - "playwright*.config.js"
+      - "scripts/**"
+      - "public/**"
+      - "src/**"
+      - "tests/**"
+      - "package.json"
+      - "package-lock.json"
+      - "next.config.*"
+      - "vitest*.config.*"
+      - "postcss.config.*"
+      - "tailwind.config.*"
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: Run everything or diagnose one regression stage independently
+        type: choice
+        default: all
+        options: [all, unit, browser]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: client-full-regression-${{ github.workflow }}-${{ github.ref }}-${{ inputs.scope || 'all' }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    name: Complete unit and coverage suite
+    if: ${{ inputs.scope != 'browser' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      TZ: Europe/Prague
+      NODE_OPTIONS: --max-old-space-size=4096
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: http://shario.localhost:4310
+      NEXT_PUBLIC_ROOT_DOMAIN: shario.localhost
+      NEXT_PUBLIC_API_URL: http://api.shario.localhost:4311
+      TENANT_ROOT_DOMAIN: shario.localhost
+      PLATFORM_HOSTNAMES: ""
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run every unit test with coverage
+        run: npm run test:coverage -- --maxWorkers=2
+
+      - name: Run product and rollout contracts
+        run: |
+          npm run test:products
+          bash scripts/test-public-site-style-rollout-contract.sh
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: client-coverage-${{ github.run_id }}
+          path: coverage
+          if-no-files-found: ignore
+          retention-days: 7
+
+  browser:
+    name: Browser regression (${{ matrix.suite }})
+    if: ${{ github.event_name != 'push' && inputs.scope != 'unit' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          # Start the broadest responsive suite first to shorten feedback time.
+          - suite: workspace-visual
+            config: playwright.visual.config.js
+          - suite: customer-auth
+            config: playwright.customer-auth.config.js
+            spec: e2e/visual/customer-auth.visual.spec.js
+          - suite: customer-portal
+            config: playwright.customer-portal.config.js
+            spec: e2e/visual/customer-portal.visual.spec.js
+          - suite: customer-booking-interactions
+            config: playwright.customer-portal-location.config.js
+            spec: e2e/portal/customer-booking-details.spec.js
+          - suite: tenant-launch
+            config: playwright.launch.config.js
+          - suite: credit-purchase
+            config: playwright.credit-purchase.config.js
+          - suite: membership-ui-contract
+            config: playwright.membership-contract.config.js
+          - suite: marketing-home
+            config: playwright.marketing.config.js
+          - suite: platform-auth
+            config: playwright.platform-auth.config.js
+            spec: e2e/visual/platform-auth.visual.spec.js
+          - suite: public-tenant-not-found
+            config: playwright.public-tenant-not-found.config.js
+            spec: e2e/visual/public-tenant-not-found.visual.spec.js
+          - suite: public-site-style-rollout
+            config: playwright.public-site-style-rollout.config.js
+          - suite: tenant-onboarding
+            config: playwright.onboarding.config.js
+            spec: e2e/visual/onboarding.visual.spec.js
+    env:
+      CI: "true"
+      TZ: Europe/Prague
+      NODE_OPTIONS: --max-old-space-size=4096
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: http://shario.localhost:4310
+      NEXT_PUBLIC_ROOT_DOMAIN: shario.localhost
+      NEXT_PUBLIC_API_URL: http://api.shario.localhost:4311
+      NEXT_PUBLIC_ENABLED_LOCALES: de,pl,sk,da,fr,es,it,pt-PT,sv,nb,fi,hu,el,tr,nl,ro
+      NEXT_PUBLIC_ENABLE_PREVIEW_LOCALES: "true"
+      TENANT_ROOT_DOMAIN: shario.localhost
+      PLATFORM_HOSTNAMES: ""
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Restore Next.js build cache
+        uses: actions/cache@v6
+        with:
+          path: .next/cache
+          key: >-
+            ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-${{
+            hashFiles('src/**/*', 'public/**/*', 'next.config.*') }}
+          restore-keys: |
+            ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build production application
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser regression suite
+        shell: bash
+        env:
+          SUITE: ${{ matrix.suite }}
+          CONFIG: ${{ matrix.config }}
+          SPEC: ${{ matrix.spec }}
+          # Match the public URLs embedded in the production build above.
+          PORTAL_LOCATION_FRONTEND_PORT: "4310"
+          PORTAL_LOCATION_FIXTURE_PORT: "4311"
+        run: |
+          args=("--config=$CONFIG")
+          if [[ -n "$SPEC" ]]; then args+=("$SPEC"); fi
+          node scripts/run-playwright-ci.mjs "$SUITE" "${args[@]}"
+
+      - name: Upload browser results and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-regression-${{ matrix.suite }}-${{ github.run_id }}
+          path: |
+            test-results
+            playwright-report
+          if-no-files-found: ignore
+          retention-days: 7

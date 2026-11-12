@@ -1,0 +1,110 @@
+.topbar {
+  background: var(--studio-white);
+  box-shadow: 0 8px 24px rgb(32 40 36 / 3.5%);
+}
+
+.brandLogo {
+  font-family: inherit;
+}
+
+.brandLogo [data-skab-logo-dot] {
+  color: var(--studio-clay);
+}
+
+.menuSurface[data-skab-workspace-surface] {
+  background: var(--studio-white);
+}
+
+.menuLabel {
+  color: var(--studio-muted);
+  font-size: var(--studio-label-size);
+  font-weight: var(--studio-label-weight);
+  letter-spacing: var(--studio-label-tracking);
+  text-transform: uppercase;
+}
+
+.pickerControl,
+.utilityButton,
+.utilities
+  :is(
+    [data-workspace-help-trigger],
+    [data-workspace-notification-trigger],
+    [data-profile-menu-trigger]
+  ) {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.utilities
+  :is([data-workspace-help-trigger], [data-workspace-notification-trigger])
+  > svg {
+  stroke-width: 1.75;
+}
+
+.utilityButton,
+.utilities
+  :is(
+    [data-workspace-help-trigger],
+    [data-workspace-notification-trigger],
+    [data-profile-menu-trigger]
+  ) {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--studio-rule);
+  border-radius: var(--studio-action-radius);
+  background: var(--studio-white);
+  color: var(--studio-muted);
+  box-shadow: 0 3px 10px rgb(32 40 36 / 4%);
+}
+
+.utilityButton:hover,
+.utilities
+  :is(
+    [data-workspace-help-trigger],
+    [data-workspace-notification-trigger],
+    [data-profile-menu-trigger]
+  ):hover {
+  transform: none;
+  border-color: var(--studio-blue-line);
+  background: var(--studio-blue-soft);
+  color: var(--studio-blue);
+}
+
+.utilityButton:focus-visible,
+.utilities
+  :is(
+    [data-workspace-help-trigger],
+    [data-workspace-notification-trigger],
+    [data-profile-menu-trigger]
+  ):focus-visible {
+  outline: 2px solid var(--studio-blue);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.aiButton {
+  color: var(--studio-blue);
+}
+
+.utilities [data-profile-menu-trigger] > span:not([data-topbar-tooltip]) {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--studio-action-radius);
+  background: var(--studio-blue);
+  color: var(--studio-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pickerControl,
+  .utilityButton,
+  .utilities
+    :is(
+      [data-workspace-help-trigger],
+      [data-workspace-notification-trigger],
+      [data-profile-menu-trigger]
+    ) {
+    transition: none;
+  }
+}

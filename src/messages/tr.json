@@ -1,0 +1,2539 @@
+{
+  "Bookings": {
+    "filters": {
+      "futureOnly": "Yalnızca devam eden ve yaklaşan rezervasyonları göster"
+    },
+    "columns": {
+      "dateTime": "Tarih ve saat",
+      "status": "Durum",
+      "payment": "Ödeme"
+    },
+    "status": {
+      "confirmed": "Onaylandı",
+      "pending": "Beklemede",
+      "awaitingPayment": "Ödeme bekleniyor",
+      "processed": "Teslimat bekleniyor",
+      "delivered": "Teslim edildi",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal edildi"
+    },
+    "payment": {
+      "paid": "Ödendi",
+      "pending": "Beklemede",
+      "failed": "Başarısız",
+      "expired": "Süresi doldu",
+      "refunded": "İade edildi"
+    }
+  },
+  "CustomerBookingDetails": {
+    "title": "Rezervasyon ayrıntıları",
+    "loading": "Rezervasyon ayrıntıları yükleniyor…",
+    "error": "Bu rezervasyonu yükleyemedik. Lütfen tekrar deneyin."
+  },
+  "Calendar": {
+    "filters": {
+      "filterActivities": "Etkinlikleri filtrele",
+      "openLegend": "Lejantı aç",
+      "closeLegend": "Lejantı kapat",
+      "activity": "Etkinlik",
+      "allActivities": "Tüm etkinlikler"
+    },
+    "events": {
+      "myBooking": "Rezervasyonum",
+      "bookingPrivate": "Özel",
+      "bookingPublic": "Herkese açık",
+      "full": "Dolu",
+      "people": "{count, plural, one {# kişi} other {# kişi}}",
+      "customerId": "Müşteri #{id}",
+      "customerIds": "Müşteriler {ids}",
+      "unknownCustomer": "Müşteri kimliği mevcut değil",
+      "booking": "Rezervasyon",
+      "availability": "{remaining, plural, =0 {Dolu} one {# kişilik yer var} other {# kişilik yer var}}",
+      "closed": "Kapalı",
+      "unavailable": "Atölye müsait değil"
+    },
+    "week": {
+      "privacyNote": "Mor özel rezervasyonları, turkuaz ise herkese açık rezervasyonları gösterir. Rezervasyonlarınızda mavi bir rozet bulunur."
+    },
+    "legend": {
+      "blocked": "Stüdyo kullanıma kapalı"
+    },
+    "availability": {
+      "available": "Müsait",
+      "limited": "Az yer kaldı",
+      "select": "Bu saati seç",
+      "insufficientTime": "{minutes} dakikalık bir rezervasyon için yeterli kesintisiz boş süre yok."
+    },
+    "month": {
+      "selectedDay": "{date} tarihindeki rezervasyonlar",
+      "ownBookingCount": "Rezervasyonlarınız: {count}",
+      "noBookings": "Bu gün için rezervasyon yok.",
+      "findTime": "Saat bul",
+      "viewDay": "Günü görüntüle",
+      "past": "Geçmiş",
+      "bookingCount": "{count, plural, one {# rezervasyon} other {# rezervasyon}}"
+    },
+    "day": {
+      "places": "{count} kişilik yer"
+    },
+    "toolbar": {
+      "newBooking": "Yeni rezervasyon"
+    },
+    "activities": {
+      "WORKSTATION": "Çalışma istasyonları",
+      "SHARED_TABLE": "Ortak masalar",
+      "GENERAL": "Genel kapasite"
+    }
+  },
+  "Metadata": {
+    "homeTitle": "Your space. More possibilities.",
+    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+  },
+  "Common": {
+    "skipToContent": "İçeriğe geç",
+    "learnMore": "Daha fazla bilgi",
+    "viewAll": "Tümünü görüntüle",
+    "back": "Geri",
+    "next": "İleri",
+    "close": "Kapat",
+    "optional": "İsteğe bağlı"
+  },
+  "Dashboard": {
+    "sidebarLabel": "Stüdyo yönetimi",
+    "settingsNavigationLabel": "Çalışma alanı ayarları",
+    "utilityNavigationLabel": "Stüdyo kurulumu ve ayarları",
+    "expandGroup": "{group} grubunu genişlet",
+    "collapseGroup": "{group} grubunu daralt",
+    "expandSidebar": "Stüdyo menüsünü genişlet",
+    "collapseSidebar": "Stüdyo menüsünü daralt",
+    "skipToContent": "Stüdyo içeriğine geç",
+    "changeStudio": "Stüdyoyu değiştir",
+    "plan": "{plan} planı",
+    "plans": {
+      "starter": "Starter",
+      "professional": "Professional",
+      "studio_plus": "Space Plus",
+      "enterprise": "Enterprise"
+    },
+    "mobileStudioHint": "Stüdyolar arasında geçiş yapın veya çalışma alanınızı Ayarlar'dan yönetin.",
+    "openNavigation": "Pano menüsünü aç",
+    "closeNavigation": "Pano menüsünü kapat",
+    "greeting": "Tekrar hoş geldiniz, {name}",
+    "greetingMorning": "Günaydın, {name}",
+    "greetingAfternoon": "İyi günler, {name}",
+    "greetingEvening": "İyi akşamlar, {name}",
+    "subheading": "Bugün stüdyonuzda neler olduğuna göz atın.",
+    "setupCenter": "Launch Center",
+    "openSetupCenter": "Launch Center'ı aç",
+    "launchCenterRequiredProgress": "Toplam {total} lansman görevinin {completed} tanesi tamamlandı",
+    "continueSetup": "Lansmana devam et · %{percentage}",
+    "continueSetupLabel": "Stüdyonuzu kullanıma hazırlamaya devam edin; %{percentage} tamamlandı",
+    "notifications": "Bildirimleri aç",
+    "notificationsUnread": "Bildirimleri aç, {count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
+    "openAccount": "Hesap menüsünü aç",
+    "newBooking": "Yeni rezervasyon",
+    "openAiAssistant": "Stüdyo Asistanı'nı aç",
+    "aiAssistant": "Yapay zekâya sor",
+    "fallbackFirstName": "ekip",
+    "fallbackStudioName": "Stüdyonuz",
+    "statsLabel": "Bugünün stüdyo özeti",
+    "studioSwitcher": {
+      "switchStudio": "Stüdyoyu değiştir",
+      "upgradeRequired": "Mevcut planınızı yükseltmeniz gerekiyor",
+      "yourStudios": "Stüdyolarınız",
+      "selected": "Seçili stüdyo",
+      "unnamedStudio": "Adsız stüdyo",
+      "noStudios": "Stüdyo yok",
+      "noStudiosAvailable": "Bu hesap için kullanılabilir stüdyo yok",
+      "addStudio": "İlk stüdyonuzu ekleyin",
+      "addNewStudio": "Yeni stüdyo ekle",
+      "addFirstStudioDescription": "İlk stüdyo konumunuzu oluşturun",
+      "addNewStudioDescription": "Başka bir stüdyo konumu oluşturun",
+      "upgradeToAddStudio": "Başka bir stüdyo ekle",
+      "studioLimitReached": "Planınıza en fazla {count} stüdyo dâhildir",
+      "loadingTitle": "Stüdyolarınız yükleniyor",
+      "loadingDescription": "Stüdyo konumlarınızı hazırlıyoruz.",
+      "loadError": "Stüdyolarınız yüklenemedi",
+      "loadErrorDescription": "Bağlantınızı kontrol edip tekrar deneyin.",
+      "retry": "Tekrar dene"
+    },
+    "nav": {
+      "overview": "Genel bakış",
+      "setup": "Launch Center",
+      "calendar": "Takvim",
+      "bookings": "Rezervasyonlar",
+      "allBookings": "Tüm rezervasyonlar",
+      "customers": "Müşteriler",
+      "studio": "Stüdyo",
+      "products": "Ürünler ve dersler",
+      "productsPricing": "Ürünler ve fiyatlandırma",
+      "sales": "Satışlar",
+      "salesOverview": "Satışlara genel bakış",
+      "finance": "Finans",
+      "transactions": "İşlemler",
+      "invoices": "Faturalar",
+      "coursesEvents": "Dersler",
+      "memberships": "Üyelikler",
+      "inventory": "Envanter",
+      "staffPlanning": "Personel planlaması",
+      "messages": "Mesajlar",
+      "inbox": "Gelen kutusu",
+      "automations": "Otomasyonlar",
+      "templates": "Şablonlar",
+      "knowledge": "Knowledge Hub",
+      "reports": "Raporlar",
+      "ai": "Stüdyo Yapay Zekâsı",
+      "settings": "Ayarlar",
+      "lostFound": "Kayıp eşya",
+      "customOrders": "Özel siparişler"
+    },
+    "routeTitles": {
+      "workspace": "Çalışma alanı",
+      "setup": "Launch Center",
+      "ai": "Stüdyo Yapay Zekâsı",
+      "calendar": "Takvim",
+      "bookings": "Rezervasyonlar",
+      "coursesEvents": "Dersler",
+      "customers": "Müşteriler",
+      "products": "Ürünler ve dersler",
+      "productsPricing": "Ürünler ve fiyatlandırma",
+      "orders": "Satışlar ve siparişler",
+      "salesOverview": "Satışlara genel bakış",
+      "transactions": "İşlemler",
+      "invoices": "Faturalar",
+      "memberships": "Üyelikler",
+      "communications": "İletişim",
+      "messages": "Mesajlar",
+      "knowledge": "Knowledge Hub",
+      "reports": "Raporlar",
+      "finance": "Finans",
+      "settings": "Ayarlar",
+      "modules": "Modüller ve menü",
+      "publicSite": "Web sitesi ve marka",
+      "locations": "Stüdyo konumları",
+      "team": "Ekip üyeleri",
+      "roles": "Roller ve izinler",
+      "payments": "Müşteri ödemeleri",
+      "billing": "Abonelik ve faturalandırma",
+      "invoicing": "Müşteri faturalandırması",
+      "aiSettings": "Yapay zekâ ayarları",
+      "account": "Hesap ayarları",
+      "preferences": "Çalışma alanı tercihleri",
+      "commerce": "Ticaret",
+      "operations": "Operasyonlar",
+      "automations": "Otomasyonlar",
+      "inventory": "Envanter",
+      "suppliers": "Tedarikçiler",
+      "tasks": "Personel planlaması",
+      "generalSettings": "Genel ayarlar",
+      "migration": "Taşıma Merkezi",
+      "notifications": "Bildirimler",
+      "events": "Etkinlikler",
+      "lostFound": "Kayıp eşya",
+      "customOrders": "Özel siparişler"
+    },
+    "stats": {
+      "bookings": "Bugünkü rezervasyonlar",
+      "occupancy": "Doluluk",
+      "revenue": "Bu ayki gelir",
+      "customers": "Yeni müşteriler"
+    },
+    "quickActions": {
+      "title": "Hızlı işlemler",
+      "newBooking": "Yeni rezervasyon",
+      "addCustomer": "Müşteri ekle",
+      "createClass": "Ders oluştur",
+      "sendMessage": "Mesaj gönder"
+    },
+    "revenueChart": {
+      "title": "Gelir ve rezervasyonlar",
+      "revenue": "Gelir",
+      "bookings": "Rezervasyonlar",
+      "chartLabel": "Son 30 gündeki gelir ve rezervasyon hareketleri",
+      "ranges": {
+        "7days": "7 gün",
+        "30days": "30 gün",
+        "12months": "12 ay"
+      }
+    },
+    "overview": {
+      "eyebrow": "Canlı stüdyo özeti",
+      "context": "{date} · Stüdyonuzda önemli olanlara göz atın.",
+      "dateLabel": "Özet tarihi",
+      "dateNavigation": {
+        "previousDay": "Önceki gün",
+        "nextDay": "Sonraki gün",
+        "today": "Bugün",
+        "backToToday": "Bugüne dön",
+        "chooseDate": "Tarih seç"
+      },
+      "partialCoverage": "{count, plural, one {Bir veri kaynağı kullanılamıyor. Değerleri sıfır olarak değil, kullanılamıyor olarak gösteriliyor.} other {# veri kaynağı kullanılamıyor. Değerleri sıfır olarak değil, kullanılamıyor olarak gösteriliyor.}}",
+      "briefing": {
+        "verifiedEyebrow": "Doğrulanmış stüdyo özeti",
+        "operationalEyebrow": "Stüdyo özeti",
+        "aiEyebrow": "Yapay zekâ stüdyo özeti",
+        "calmHeadline": "Stüdyonuz sorunsuz çalışıyor.",
+        "attentionHeadline": "Birkaç konu ilgilenmenizi bekliyor.",
+        "partialHeadline": "Şu anda doğrulayabildiklerimiz bunlar.",
+        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
+        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "partialSummary": "Özet şu anda {count, plural, one {# kullanılabilir kaynak} other {# kullanılabilir kaynak}} içeriyor. Kullanılamayan değerler sıfır olarak gösterilmek yerine bilinmiyor olarak kalır.",
+        "coverageComplete": "{count, plural, one {# stüdyo sinyali} other {# stüdyo sinyali}} temel alınmıştır",
+        "coveragePartial": "{count, plural, one {# kullanılabilir stüdyo sinyali} other {# kullanılabilir stüdyo sinyali}} temel alınmıştır · kısmi kapsam",
+        "updated": "{time} itibarıyla güncellendi",
+        "sources": "{count, plural, one {# stüdyo sinyali} other {# stüdyo sinyali}} temel alınmıştır",
+        "refresh": "Özeti yenile",
+        "preparing": "Bugünün doğrulanmış özeti hazırlanıyor…",
+        "checkingFreshness": "Daha güncel stüdyo verileri kontrol ediliyor…",
+        "prioritiesLabel": "Bugünün doğrulanmış öncelikleri",
+        "fresh": "Güncel",
+        "stale": "Yenileme önerilir",
+        "review": "Öncelikleri incele",
+        "viewTodaySchedule": "Bugünün programını görüntüle",
+        "viewSchedule": "Programı görüntüle",
+        "openOperations": "Operasyonları aç",
+        "reviewPrompt": "Bugünün stüdyo önceliklerini incele, neden önemli olduklarını açıkla, dayandığın kayıtları belirt ve sonraki en güvenli adımları öner.",
+        "open": "Özeti aç",
+        "generate": "Yapay zekâ özeti oluştur",
+        "loading": "En son stüdyo özeti yükleniyor…",
+        "refreshError": "Özet yenilenemedi. Doğrulanmış operasyon özeti hâlâ kullanılabilir."
+      },
+      "attention": {
+        "title": "İlgilenmeniz gerekenler",
+        "clearHeading": "Her şey yolunda",
+        "partialHeading": "Öncelik kapsamı",
+        "items": {
+          "unpaidBookings": "ödenmemiş rezervasyon",
+          "lowStock": "stok seviyesi düşük ürün",
+          "overdueTasks": "gecikmiş personel görevi"
+        },
+        "viewAll": "Tüm öncelikleri görüntüle",
+        "clearTitle": "Acil öncelik yok",
+        "clearDescription": "Şu anda acil işlem gerektiren bir konu yok.",
+        "partialTitle": "Bazı önceliklere erişilemiyor olabilir",
+        "partialDescription": "Kullanılabilir kaynaklarda acil bir konu görünmüyor ancak kapsam eksik."
+      },
+      "flow": {
+        "title": "Stüdyo operasyonları",
+        "description": "Seçili gün planı ve canlı stüdyo durumu.",
+        "emptyTitle": "Henüz planlanmış stüdyo etkinliği yok",
+        "emptyDescriptionAll": "{date} tarihinde hiçbir stüdyoda işlenecek rezervasyon veya parça yok.",
+        "emptyDescriptionSelected": "{date} tarihinde seçili stüdyoda işlenecek rezervasyon veya parça yok.",
+        "openCalendar": "Takvimi aç",
+        "dateUnavailable": "Seçili tarih",
+        "allLocations": "Tüm stüdyolar",
+        "selectedLocation": "Seçili stüdyo",
+        "groups": {
+          "visits": {
+            "title": "Rezervasyonlar ve katılım",
+            "description": "Günlük plan ve canlı katılım"
+          }
+        },
+        "stageCount": "{stage}: {count}",
+        "stageUnavailable": "{stage}: veri kullanılamıyor",
+        "stages": {
+          "booked": "Rezerve edildi",
+          "arriving": "Geliyor",
+          "inStudio": "Stüdyoda",
+          "readyToFire": "Pişirime hazır"
+        }
+      },
+      "rhythm": {
+        "title": "Bugünün akışı",
+        "subtitle": "Seçili tarih ve stüdyo kapsamı için planlanan seanslar.",
+        "openCalendar": "Takvimi aç",
+        "unavailable": "Mevcut erişiminizle program verilerine ulaşılamıyor.",
+        "emptyTitle": "Stüdyoda sakin bir gün",
+        "emptyDescription": "Bu tarih için planlanmış seans yok.",
+        "untitled": "Stüdyo seansı",
+        "locationFallback": "Stüdyo",
+        "guests": "{count, plural, one {# misafir} other {# misafir}}"
+      },
+      "pulse": {
+        "title": "İşletme nabzı",
+        "openReports": "Raporları aç",
+        "occupancy": "doluluk",
+        "revenue": "gelir",
+        "bookings": "rezervasyonlar",
+        "newCustomers": "yeni müşteriler",
+        "chartLabel": "Stüdyo kullanım eğilimi",
+        "noTrend": "Bu dönem için eğilim verileri kullanılamıyor."
+      },
+      "signals": {
+        "open": "Aç",
+        "unavailable": "Bu bilgilere mevcut modülleriniz veya izinlerinizle ulaşılamıyor.",
+        "messages": {
+          "title": "Son mesajlar",
+          "count": "{count, plural, =0 {Okunmamış konuşma yok} one {# okunmamış konuşma} other {# okunmamış konuşma}}",
+          "empty": "Yanıt bekleyen yeni müşteri mesajı yok.",
+          "untitled": "Müşteri konuşması",
+          "noPreview": "Son mesajı görüntülemek için konuşmayı açın."
+        },
+        "tasks": {
+          "title": "Yaklaşan görevler",
+          "count": "{count, plural, =0 {Açık görev yok} one {# açık görev} other {# açık görev}}",
+          "empty": "Yaklaşan personel görevi yok.",
+          "untitled": "Stüdyo görevi",
+          "unassigned": "Atanmamış",
+          "priorities": {
+            "low": "Düşük",
+            "normal": "Normal",
+            "high": "Yüksek",
+            "urgent": "Acil"
+          }
+        }
+      },
+      "opportunity": {
+        "eyebrow": "İş Danışmanı",
+        "none": "Şu anda acil bir operasyon fırsatı tespit edilmedi.",
+        "guidance": "Yeni stüdyo verileri geldikçe faydalı fırsatları burada göstereceğim.",
+        "openAdvisor": "Danışmanı aç",
+        "courseFallback": "Bu ders",
+        "evidence": "Son 8 haftadaki {sessions} yüksek doluluklu seans temel alınmıştır · otomatik değişiklik yapılmaz.",
+        "weekdays": {
+          "monday": "Pazartesi",
+          "tuesday": "Salı",
+          "wednesday": "Çarşamba",
+          "thursday": "Perşembe",
+          "friday": "Cuma",
+          "saturday": "Cumartesi",
+          "sunday": "Pazar",
+          "unknown": "tekrarlanan"
+        },
+        "items": {
+          "lowOccupancy": "Yaklaşan dönemde doluluk yalnızca %{value}.",
+          "noBookings": "Henüz yaklaşan rezervasyon yok.",
+          "inventoryReorder": "{value, plural, one {# envanter ürününün yeniden sipariş edilmesi gerekebilir.} other {# envanter ürününün yeniden sipariş edilmesi gerekebilir.}}",
+          "repeatedCourseSaturation": "{course}, son {day} seanslarında saat {time} için ortalama %{value} doluluğa ulaşıyor. Kapasitenin güvenli biçimde artırılıp artırılamayacağını inceleyin."
+        },
+        "actions": {
+          "createOffer": "Teklif oluştur",
+          "reviewInventory": "Envanteri incele",
+          "reviewCourseCapacity": "Kapasiteyi incele"
+        }
+      },
+      "error": {
+        "title": "Stüdyo özeti yüklenemedi",
+        "description": "Verileriniz değiştirilmedi. Bağlantınızı kontrol edip tekrar deneyin.",
+        "retry": "Tekrar dene"
+      },
+      "firstBooking": {
+        "title": "İlk rezervasyonunuz geldi",
+        "description": "Genel Bakış artık gerçek stüdyo etkinliğini ve içgörüleri göstermeye başlayacak.",
+        "dismiss": "İlk rezervasyon kutlamasını kapat"
+      },
+      "snapshot": {
+        "title": "Özet",
+        "bookings": "Rezervasyonlar",
+        "expectedVisitors": "Beklenen ziyaretçiler",
+        "actionablePieces": "İşlem gerektiren parçalar",
+        "unreadMessages": "Okunmamış mesajlar",
+        "revenue": "Gelir",
+        "date": "Seçili tarih",
+        "currentState": "Güncel",
+        "live": "Canlı",
+        "unavailable": "Kullanılamıyor"
+      }
+    },
+    "help": {
+      "open": "Yardım",
+      "menuLabel": "Yardım menüsü",
+      "title": "Yardım ve rehberler",
+      "close": "Yardımı kapat",
+      "productTour": "Ürün turu",
+      "productTourDescription": "Kısa bir rehberli turla çalışma alanının temel özelliklerini öğrenin.",
+      "productTourSection": "Çalışma alanının temelleri",
+      "startProductTour": "Turu başlat",
+      "replayProductTour": "Turu yeniden oynat"
+    },
+    "guides": {
+      "centerTitle": "Rehberler",
+      "centerDescription": "En sık yaptığınız işlemler için kısa ve isteğe bağlı yönlendirmeler.",
+      "duration": "Yaklaşık 60 saniye",
+      "completed": "Tamamlandı",
+      "startGuide": "Rehberi başlat",
+      "replayGuide": "Rehberi yeniden oynat",
+      "availableTitle": "Keşfedilecek rehberler",
+      "completedTitle": "Tamamlanan rehberler",
+      "summary": "{total} rehberin {completed} tanesi tamamlandı",
+      "noneAvailable": "Mevcut rolünüz için kullanılabilir rehber yok.",
+      "promptEyebrow": "Burada yeni misiniz?",
+      "promptTitle": "{guide} rehberini inceleyin",
+      "start": "Rehberi başlat",
+      "notNow": "Şimdi değil",
+      "progress": "{current} / {total}",
+      "skip": "Rehberi atla",
+      "close": "Rehberi kapat",
+      "back": "Geri",
+      "next": "İleri",
+      "finish": "Rehberi bitir",
+      "finishedTitle": "Hazırsınız",
+      "finishedDescription": "Artık {guide} rehberinin temel konularını biliyorsunuz. Bu rehberi istediğiniz zaman Yardım bölümünden yeniden oynatabilirsiniz.",
+      "items": {
+        "studio_location_setup": {
+          "title": "Set up a studio location",
+          "description": "Understand the address, customer choices, capacity and booking rules before opening a location.",
+          "steps": {
+            "identity": {
+              "title": "Name the location clearly",
+              "description": "Use the customer-facing name your team will also recognize in calendars, reports and studio switching."
+            },
+            "address": {
+              "title": "Set the local context",
+              "description": "The address helps customers arrive, while the timezone keeps every displayed booking time accurate."
+            },
+            "contact": {
+              "title": "Add a reliable contact",
+              "description": "The calling code and local number are saved together so customers can use the phone number internationally."
+            },
+            "activity_choice": {
+              "title": "Choose the customer experience",
+              "description": "Require an activity, make it optional, or hide the question completely when every visit works the same way."
+            },
+            "activity_capacity": {
+              "title": "Protect limited resources",
+              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+            },
+            "overall_capacity": {
+              "title": "Set the shared safety limit",
+              "description": "Overall capacity counts every person across all overlapping bookings and activities at this location."
+            },
+            "timing": {
+              "title": "Make available times predictable",
+              "description": "The start interval controls when bookings may begin; minimum and maximum duration control how long they may run."
+            },
+            "review": {
+              "title": "Review it as a customer",
+              "description": "This live summary explains the resulting booking rules in plain language before you create the location."
+            }
+          }
+        },
+        "first_booking": {
+          "title": "İlk rezervasyonunuzu oluşturun",
+          "description": "Uygun bir saat bulmaktan müşteri onayına kadar takvim akışını öğrenin.",
+          "steps": {
+            "calendar": {
+              "title": "Rezervasyon takviminiz",
+              "description": "Takvim; stüdyo uygunluğunu, seansları ve müşteri rezervasyonlarını bir arada tutar. Bulunduğunuz yeri kaybetmeden gün, hafta veya ay görünümüne geçin."
+            },
+            "create_action": {
+              "title": "Rezervasyon başlatın",
+              "description": "Bir müşteri telefonla, resepsiyonda veya başka bir kanaldan rezervasyon yaptığında Yeni rezervasyon seçeneğini kullanın. Bu rehber açıkken vurgulanan denetim etkin olmaz."
+            },
+            "booking_details": {
+              "title": "Doğru bağlamı seçin",
+              "description": "Rezervasyon oluşturmadan veya incelemeden önce doğru uygunluğu bulmak için stüdyo, etkinlik ve ekip filtrelerini kullanın."
+            },
+            "confirmation": {
+              "title": "Sonucu inceleyin",
+              "description": "Onaylanmış rezervasyonlar takvimde görünür. Müşteri, ödeme ve seans ayrıntılarını incelemek için rezervasyonu açın."
+            }
+          }
+        },
+        "website_builder": {
+          "title": "Web sitenizi özelleştirin",
+          "description": "Herkese açık sayfanızı şekillendirin, önizleyin ve yayınlama sürecini öğrenin.",
+          "steps": {
+            "editor_sections": {
+              "title": "Bölümlerle oluşturun",
+              "description": "Bölüm sekmelerinden markanızı, içeriği, rezervasyon seçeneklerini ve müşterilere gösterilen bilgileri düzenleyin."
+            },
+            "live_preview": {
+              "title": "Müşteri gözüyle önizleyin",
+              "description": "Canlı önizleme, herkese açık sitenizin farklı sayfalarda, dillerde ve ekran boyutlarında nasıl göründüğünü gösterir."
+            },
+            "branding": {
+              "title": "Markanızı yansıtın",
+              "description": "Erişilebilir kontrastı ve tutarlı stüdyo kimliğini korurken renkleri, tipografiyi ve görsel ayrıntıları ayarlayın."
+            },
+            "publish": {
+              "title": "Kaydedin, ardından yayınlayın",
+              "description": "Kaydetme işlemi bir taslak oluşturur. Yayınlama, incelenen sürümü müşterilere görünür hâle getirir ve izinlerle korunur."
+            }
+          }
+        },
+        "memberships": {
+          "title": "Üyelik, kredi ve hediye çeki satın",
+          "description": "Planları, etkin üyeleri, müşteri kredisini ve esnek hediye çeklerini tanıyın.",
+          "steps": {
+            "plans": {
+              "title": "Üyelik planı tasarlayın",
+              "description": "Planlar fiyatı, geçerlilik süresini, konumları ve dâhil olan avantajları belirler. Yayınlama ve satış işlemleri izinlerle korunur."
+            },
+            "customers": {
+              "title": "Etkin üyeleri görüntüleyin",
+              "description": "Müşteriler sekmesi plan sahibini, mevcut dönemini ve kullanılabilir avantajlarını gösterir."
+            },
+            "credits": {
+              "title": "Müşteri kredisini anlayın",
+              "description": "Üyelik avantaj bakiyeleri bir plana aittir. Bağımsız müşteri kredisi müşteri profilinden yönetilir ve etkinleştirildiği yerlerde ayrıca kullanılabilir."
+            },
+            "vouchers": {
+              "title": "Esnek hediyeler sunun",
+              "description": "Hediye çeki teklifleri kataloğun geri kalanıyla birlikte bulunur ve müşteriler tarafından satın alınıp kullanılabilir."
+            }
+          }
+        },
+        "ai_reports": {
+          "title": "Yapay zekâyı ve raporları kullanın",
+          "description": "Stüdyo etkinliğini sorulara, önerilere ve ölçülebilir eğilimlere dönüştürün.",
+          "steps": {
+            "assistant": {
+              "title": "Stüdyo Asistanı'na sorun",
+              "description": "Çalışma alanınızdaki verileri bilen asistana sorular sorun ve açıklamalar alın. Asistan, panonun geri kalanıyla aynı erişim sınırlarına uyar."
+            },
+            "advisor": {
+              "title": "Genel bakışla başlayın",
+              "description": "Rapor özeti, daha ayrıntılı bölümlere geçmeden önce en önemli stüdyo sinyallerini bir araya getirir."
+            },
+            "report_filters": {
+              "title": "Rapor bağlamını ayarlayın",
+              "description": "Her ölçümün aynı işletme sorusuna yanıt vermesi için tarihleri, konumu, karşılaştırmayı ve ayrıntı düzeyini seçin."
+            },
+            "report_insights": {
+              "title": "Ölçümlerden içgörüye geçin",
+              "description": "Değişiklikleri açıklamak ve sonraki faydalı adımı belirlemek için rapor sekmelerini ve varsa yapay zekâ özetini kullanın."
+            }
+          }
+        },
+        "team_management": {
+          "title": "Ekibinizi yönetin",
+          "description": "Rollerin ve konum erişiminin çalışma alanındaki sorumlulukları nasıl netleştirdiğini öğrenin.",
+          "steps": {
+            "members": {
+              "title": "Çalışma alanı ekibiniz",
+              "description": "Her üyenin neleri görebileceğini ve yapabileceğini belirleyen bir rolü, durumu, profili ve konum kapsamı vardır."
+            },
+            "invite": {
+              "title": "Doğru kişiyi ekleyin",
+              "description": "Ekip yöneticileri mevcut bir çalışma alanı kullanıcısını ekleyebilir ve tek bir kontrollü akışta sorumluluk atayabilir."
+            },
+            "roles": {
+              "title": "Rolleri bilinçli kullanın",
+              "description": "Yerleşik ve özel roller izinleri gruplandırır; böylece stüdyo büyürken erişim anlaşılır kalır."
+            },
+            "location_access": {
+              "title": "Erişimi konuma göre sınırlandırın",
+              "description": "Çalışmaları tüm konumları kapsamıyorsa ekip üyesinin erişimini seçili stüdyolarla sınırlandırın."
+            }
+          }
+        },
+        "door_access_codes": {
+          "title": "Kapı erişim kodlarını yönetin",
+          "description": "Girişleri düzenlemeyi, kod stokunu izlemeyi, kod eklemeyi ve değişiklikleri denetlemeyi öğrenin.",
+          "steps": {
+            "scope": {
+              "title": "Shario’nun neyi yönettiğini anlayın",
+              "description": "Bu, fiziksel kilit kodlarının güvenli envanteridir. Bu aşamada Shario kilidi programlamaz ve kodları e-postayla göndermez."
+            },
+            "entrances": {
+              "title": "Konum ve giriş seçin",
+              "description": "Her kod havuzu bir konuma ve bir fiziksel girişe veya kilide aittir. Farklı kilitleri ayrı tutun."
+            },
+            "stock": {
+              "title": "Kod kullanılabilirliğini izleyin",
+              "description": "Özet; kullanılabilir, yeniden kullanılabilir, süresi dolacak ve acil durum kodlarını gösterir. Düşük stok eşiği zamanında uyarır."
+            },
+            "add_codes": {
+              "title": "Kodları güvenle ekleyin",
+              "description": "Bir kod oluşturun veya CSV içe aktarın. Kodu kullanılabilir yapmadan önce programlandığını ve test edildiğini doğrulayın."
+            },
+            "lifecycle": {
+              "title": "Kodun yaşam döngüsünü yönetin",
+              "description": "Kodu yalnızca gerektiğinde gösterin, geçerliliğini düzenleyin veya kalıcı olarak kullanım dışı bırakın."
+            },
+            "audit": {
+              "title": "İşlemleri denetlenebilir tutun",
+              "description": "Denetim geçmişi oluşturma, değişiklik, gösterme, içe aktarma ve kullanım dışı bırakma işlemlerini tam kodları göstermeden kaydeder."
+            }
+          }
+        },
+        "first_offer": {
+          "title": "İlk teklifinizi yayınlayın",
+          "description": "Bir Açık Stüdyo veya dersi müşterilerin rezervasyon yapabileceği bir teklife dönüştürün.",
+          "cta": "Launch Center'ı aç",
+          "steps": {
+            "offer_types": {
+              "title": "Müşterilerin neleri rezerve edebileceğini seçin",
+              "description": "Esnek stüdyo erişimi için Açık Stüdyo'yu, programlı eğitim için Dersler'i kullanın. Katalog yalnızca bu çalışma alanında etkin olan teklif türlerini gösterir."
+            },
+            "create_offer": {
+              "title": "Katalogdan başlayın",
+              "description": "Rehberden sonra teklifi buradan oluşturun. Launch Center ilk kurulumu odaklı tutar ve sizi sonraki faydalı adıma yönlendirir."
+            },
+            "price_capacity": {
+              "title": "Temel rezervasyon bilgilerini ayarlayın",
+              "description": "Müşterilerin tam olarak neyi rezerve ettiğini bilmesi için teklife net bir ad, fiyat, kapasite, konum ve uygunluk ekleyin."
+            },
+            "publish": {
+              "title": "Yayınlamadan önce inceleyin",
+              "description": "Teklifi kaydedin, müşterilere nasıl görüneceğini inceleyin ve yalnızca program ile rezervasyon kuralları hazır olduğunda yayınlayın."
+            }
+          }
+        },
+        "test_customer_journey": {
+          "title": "Test müşteri yolculuğunu tamamlayın",
+          "description": "Rezervasyonu, onayı ve müşteri erişimini güvenli Uygulama Modu'nda önizleyin.",
+          "cta": "Uygulama Modu'nu aç",
+          "steps": {
+            "public_site": {
+              "title": "Müşteri görünümünden başlayın",
+              "description": "Müşteriler tekliflerinizi yayınlanmış herkese açık sitenizde keşfeder ve rezervasyona başlar. Uygulama Modu, canlı stüdyo kayıtlarını değiştirmeden aynı yolculuğu kullanır."
+            },
+            "test_booking": {
+              "title": "Güvenli bir rezervasyon deneyin",
+              "description": "Uygulama Modu sizi simüle edilmiş bir rezervasyondan geçirir. Gerçek müşteri rezervasyonu oluşturmaz ve gerçek ödeme yapmaz."
+            },
+            "confirmation_email": {
+              "title": "Onayı önizleyin",
+              "description": "Rezervasyondan sonra müşteriye hangi bilgilerin verileceğini inceleyin. Uygulama Modu gerçek e-posta göndermez; böylece deneyimi güvenle kontrol edebilirsiniz."
+            },
+            "customer_portal": {
+              "title": "Müşteri erişimini önizleyin",
+              "description": "Müşterinin rezervasyonuna ve stüdyo bilgilerine nasıl ulaştığını görün. Uygulama Modu gerçek bir müşteri hesabı yerine geçici önizleme verileri kullanır."
+            }
+          }
+        },
+        "payments_setup": {
+          "title": "Ödemeleri ayarlayın",
+          "description": "Stripe'ı bağlayın ve müşteri ödemelerinin ne zaman hazır olduğunu öğrenin.",
+          "cta": "Ödeme kurulumuna devam et",
+          "steps": {
+            "connection_status": {
+              "title": "Doğrulanmış bağlantı durumunu görüntüleyin",
+              "description": "Bu durum sunucudan gelir ve Stripe hesabının başlatılmadığını, beklemede, kısıtlanmış veya etkin olduğunu gösterir."
+            },
+            "stripe_onboarding": {
+              "title": "Stripe'da güvenle devam edin",
+              "description": "Gerçek katılım süreci Stripe'da gerçekleşir. Geri döndüğünüzde Shario, hesabın hazır olduğunu varsaymak yerine arka uç durumunu yeniler."
+            },
+            "payment_capabilities": {
+              "title": "Tahsilatları ve ödemeleri doğrulayın",
+              "description": "Etkin bir bağlantı tahsilat kabul edebilmeli ve ödeme alabilmelidir. Bu özellikler doğrudan Stripe tarafından bildirilir."
+            },
+            "verify_payment": {
+              "title": "Müşteri deneyimini doğrulayın",
+              "description": "Stripe hesabı etkin olarak bildirdikten sonra gerçek rezervasyon kabul etmeden önce güvenli müşteri Uygulama Modu'nu kullanın. Uygulama Modu gerçek ödeme yapmaz."
+            }
+          }
+        },
+        "data_import": {
+          "title": "Mevcut stüdyo verilerinizi içe aktarın",
+          "description": "Verileri doğrulama, raporlar ve geri alınabilir bir denetim iziyle taşıyın.",
+          "cta": "Taşıma Merkezi'ni aç",
+          "steps": {
+            "choose_importer": {
+              "title": "Veri türünü seçin",
+              "description": "Müşterileri, teklifleri, rezervasyonları, üyelikleri, kredileri veya hediye çeklerini mantıklı bir sırayla içe aktarın. Yalnızca çalışma alanınızda etkin olan bölümler görünür."
+            },
+            "template_upload": {
+              "title": "Şablonu veya dışa aktardığınız dosyayı kullanın",
+              "description": "Bir şablon indirin ya da CSV veya Excel dışa aktarımını yükleyin. Eşleme adımında, önce kaynak dosyayı yeniden düzenlemeden mevcut sütunları eşleştirebilirsiniz."
+            },
+            "validation": {
+              "title": "Verileri değiştirmeden önce doğrulayın",
+              "description": "Deneme çalıştırması geçersiz satırları, yinelenen kayıtları ve önerilen değişiklikleri vurgular. Sonucu inceleyip onaylamadan hiçbir veri içe aktarılmaz."
+            },
+            "history_rollback": {
+              "title": "Denetim izini koruyun",
+              "description": "Geçmiş, her içe aktarma işleminin raporlarını saklar. Kayıtlar hâlâ uygunsa yetkili kullanıcılar izlenen değişiklikleri önizleyebilir ve güvenle geri alabilir."
+            }
+          }
+        },
+        "customer_communications": {
+          "title": "Müşteri iletişimini ayarlayın",
+          "description": "Şablonları, hatırlatıcıları, test gönderimini ve e-posta geçmişini inceleyin.",
+          "cta": "İletişim kurulumuna devam et",
+          "steps": {
+            "templates": {
+              "title": "Müşteri şablonlarını inceleyin",
+              "description": "Şablonlar onayları ve operasyon mesajlarını tutarlı tutar. Otomasyonu etkinleştirmeden önce metni ve stüdyo kimliğini kontrol edin."
+            },
+            "reminders": {
+              "title": "Faydalı hatırlatıcılar yapılandırın",
+              "description": "Otomasyonlar rezervasyon ve stüdyo mesajlarının ne zaman hazırlanacağını belirler. Zamanlamayı uygun tutun ve gereksiz mesajlar göndermekten kaçının."
+            },
+            "test_email": {
+              "title": "Gerçek bir kurulum testi gönderin",
+              "description": "Önce gönderen kimliğini doğrulayın, ardından kurulumdaki Test e-postası gönder seçeneğini kullanın. Test, bir müşteriyle iletişim kurmadan teslimatı doğrular."
+            },
+            "delivery_history": {
+              "title": "Teslimat geçmişini kontrol edin",
+              "description": "Geçmiş, nelerin gönderildiğini ve teslimatın ilgilenilmesi gerekip gerekmediğini gösterir; böylece ekip iletişim sorunlarını tek bir yerden inceleyebilir."
+            }
+          }
+        }
+      }
+    },
+    "productTour": {
+      "progress": "{current} / {total}",
+      "skip": "Turu atla",
+      "close": "Turu kapat",
+      "back": "Geri",
+      "next": "İleri",
+      "openLaunchCenter": "Launch Center'ı aç",
+      "welcome": {
+        "eyebrow": "Çalışma alanı temelleri",
+        "title": "Buraya ilk kez mi geldiniz?",
+        "description": "Çalışma alanının temel özelliklerini 60 saniyelik kısa bir turla keşfedin. Turu dilediğiniz zaman Yardım menüsünden yeniden başlatabilirsiniz.",
+        "duration": "Yaklaşık 60 saniye",
+        "start": "Turu başlat",
+        "dismiss": "Hayır, teşekkürler",
+        "close": "Tanıtımı kapat"
+      },
+      "steps": {
+        "overview": {
+          "title": "Genel Bakış'a hoş geldiniz",
+          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+        },
+        "launch_center": {
+          "title": "Launch Center'da kurulum yapın",
+          "description": "Kurulum sürecinizi Launch Center yönetir. Temel ayarları yapılandırmak, müşteri deneyimini önizlemek ve stüdyonuzu lansmana hazırlamak için kontrol listesini kullanın."
+        },
+        "studio_switcher": {
+          "title": "Stüdyo seçiciniz",
+          "description": {
+            "none": "Çalışma alanınız burada görünür. Bir stüdyo konumu ekledikten sonra onu aynı seçiciden yöneteceksiniz.",
+            "single": "Mevcut stüdyonuz burada görünür. Yeni konumlar eklediğinizde aynı yerden aralarında geçiş yapabilirsiniz.",
+            "multiple": "Stüdyo konumları arasında buradan geçiş yapın. Genel Bakış ve operasyon verileri seçtiğiniz konuma göre güncellenir."
+          }
+        },
+        "navigation": {
+          "title": "Her şey kendi yerinde",
+          "description": "Rezervasyonlar, müşteriler, stüdyo operasyonları, satışlar, mesajlar ve raporlar için ana menüyü kullanın. Ekibiniz çalışmaya başladıkça boş alanlar dolacaktır."
+        },
+        "ai_assistant": {
+          "title": "Yapay Zekâ Asistanı'na sorun",
+          "description": "Stüdyonuz hakkında sorular sormak ve operasyonel içgörüler almak için asistanı açın. Planınızda veya rolünüzde yapay zekâ etkin değilse bu adıma daha sonra dönebilirsiniz."
+        },
+        "settings": {
+          "title": "Ayarlar ve özelleştirme",
+          "description": "Yapılandırmayı, markanızı, herkese açık sitenizi, ödemeleri ve ekip erişimini buradan yönetin. Müşterilerin göreceği deneyimi Web Sitesi Oluşturucu'da şekillendirin."
+        }
+      },
+      "final": {
+        "title": "Başlamaya hazırsınız",
+        "description": "Launch Center kurulumunu tamamlayın, bir test rezervasyonu oluşturun ve müşterilerinizin göreceği deneyimi önizleyin."
+      },
+      "mobileMenuDescription": "Bu seçenek, vurgulanan düğmeyle açılan ana menüdedir. {description}"
+    },
+    "launchCenterLiveBadge": "Yayında",
+    "launchCenterReadyBadge": "Hazır",
+    "launchCenterIssueBadge": "{count, plural, one {# sorun} other {# sorun}}",
+    "launchCenterLiveStatus": "Herkese açık stüdyo sayfanız yayında ve tüm lansman kontrolleri tamamlandı",
+    "launchCenterReadyStatus": "Operasyonel lansman kurulumunuz hazır",
+    "launchCenterAttentionStatus": "{count, plural, one {# lansman hazırlığı sorunu ilgilenmenizi bekliyor} other {# lansman hazırlığı sorunu ilgilenmenizi bekliyor}}"
+  },
+  "WorkspaceSettingsNav": {
+    "eyebrow": "Çalışma alanı",
+    "title": "Ayarlar",
+    "label": "Çalışma alanı ayarları",
+    "items": {
+      "setup": "Launch Center",
+      "general": "Genel",
+      "modules": "Modüller ve menü",
+      "locations": "Konumlar",
+      "team": "Ekip",
+      "teamName": "Ekip adı",
+      "roles": "Roller ve izinler",
+      "payments": "Müşteri ödemeleri",
+      "billing": "Abonelik ve faturalandırma",
+      "invoicing": "Müşteri faturalandırması",
+      "ai": "Yapay zekâ ve otomasyon",
+      "publicSite": "Web sitesi ve marka",
+      "migration": "Taşıma Merkezi",
+      "accessCodes": "Erişim kodları"
+    },
+    "overview": "Tüm ayarlar",
+    "overviewDescription": "Çalışma alanınızı yapılandırmak için bir kategori seçin.",
+    "categoryDescription": "{category} için odaklanmış menü.",
+    "currentCategory": "Geçerli kategori",
+    "openCategory": "{category} ayarlarını aç",
+    "groups": {
+      "workspace": "Çalışma alanı",
+      "features": "Özellikler ve menü",
+      "website": "Web sitesi ve müşteri deneyimi",
+      "access": "Ekip ve erişim",
+      "payments": "Ödemeler ve faturalandırma",
+      "account": "Shario hesabı"
+    }
+  },
+  "WorkspaceSettings": {
+    "eyebrow": "Çalışma alanı ayarları",
+    "title": "Genel ayarlar",
+    "description": "Bu çalışma alanında kullanılan ortak varsayılanları yönetin.",
+    "loading": "Çalışma alanı ayarları yükleniyor…",
+    "business": {
+      "title": "Çalışma alanı kimliği ve varsayılanlar",
+      "description": "Bu değerler tüm ekip üyeleri ve müşterilere yönelik modüller tarafından paylaşılır."
+    },
+    "fields": {
+      "name": "Çalışma alanı adı",
+      "slug": "Çalışma alanı adresi",
+      "defaultLanguage": "Varsayılan dil",
+      "adminLanguage": "Çalışma alanı dili",
+      "publicDefaultLanguage": "Herkese açık sitenin ana dili",
+      "secondaryPublicLanguage": "Herkese açık sitenin ikinci dili",
+      "timezone": "Operasyon saat dilimi",
+      "currency": "Operasyon para birimi"
+    },
+    "hints": {
+      "slug": "Çalışma alanı adresi ayrıca yönetilir; çünkü değiştirilmesi bağlantıları ve alan adlarını etkiler.",
+      "defaultLanguage": "Bir ekip üyesi veya müşteri kendi dilini seçmediyse kullanılır.",
+      "adminLanguage": "Stüdyo çalışma alanının tamamında tüm ekip üyeleri tarafından kullanılan dil.",
+      "publicDefaultLanguage": "Müşterilerin herkese açık sitenizde ve müşteri ekranlarında ilk gördüğü dil.",
+      "secondaryPublicLanguage": "İsterseniz müşterilere bir ek dil sunun. Müşterilere açık stüdyo sayfalarında yalnızca bu iki dil görünür.",
+      "timezone": "Rezervasyonlar, programlar ve otomatik mesajlar için kullanılır.",
+      "currency": "Stüdyo ürünleri ve müşteri ödemeleri için kullanılır. Shario aboneliğinizin para biriminden ayrıdır."
+    },
+    "languageOptions": {
+      "noSecondary": "İkinci dil yok"
+    },
+    "currencyNotice": {
+      "title": "Mevcut finansal veriler korunur",
+      "description": "Finansal kayıtlar oluştuktan sonra sunucu para birimi değişikliğini engelleyebilir. Böylece geçmiş tutarların para birimi etiketi yanlışlıkla değiştirilmez."
+    },
+    "workspaceStatus": {
+      "title": "Çalışma alanı durumu",
+      "plan": "Plan",
+      "status": "Durum",
+      "version": "Plan sürümü"
+    },
+    "actions": {
+      "save": "Çalışma alanı ayarlarını kaydet",
+      "saving": "Kaydediliyor…",
+      "retry": "Tekrar dene"
+    },
+    "messages": {
+      "saved": "Çalışma alanı ayarları kaydedildi.",
+      "error": "Çalışma alanı ayarları kaydedilemedi.",
+      "loadError": "Çalışma alanı ayarları yüklenemedi."
+    }
+  },
+  "Header": {
+    "mobile": {
+      "navigation": "Mobil menü",
+      "publicEyebrow": "Yaratıcı stüdyolar için işletim sistemi.",
+      "publicTitle": "Stüdyonuzu yönetin. Her gün daha iyi kararlar alın.",
+      "adminEyebrow": "Stüdyo yönetimi",
+      "adminTitle": "Stüdyonuzda olup biten her şey. Net bir şekilde.",
+      "moduleOverview": "Modüle genel bakış",
+      "bookingSite": "Rezervasyon sitesi",
+      "admin": "Yönetim",
+      "myAccount": "Hesabım",
+      "language": "Dil",
+      "tagline": "Üretmeye daha çok, yönetime daha az zaman."
+    },
+    "booking": "Rezervasyon",
+    "cart": {
+      "open": "Sepeti aç",
+      "items": "{count, plural, one {Sepette # ürün} other {Sepette # ürün}}"
+    },
+    "account": {
+      "menu": "Kullanıcı menüsü",
+      "eyebrow": "Hesabınız",
+      "studioManagement": "Stüdyo yönetimi",
+      "closeMenu": "Kullanıcı menüsünü kapat",
+      "fallbackName": "Hesabınız",
+      "roles": {
+        "owner": "Stüdyo sahibi",
+        "admin": "Stüdyo yöneticisi",
+        "manager": "Stüdyo müdürü",
+        "staff": "Stüdyo personeli",
+        "accountant": "Muhasebeci",
+        "viewer": "Görüntüleyici",
+        "custom": "Özel rol",
+        "customer": "Müşteri"
+      },
+      "sections": {
+        "customer": "Hesabınız",
+        "activity": "Stüdyo etkinliği",
+        "payments": "Hesap ve ödemeler",
+        "personal": "Kişisel",
+        "workspace": "Çalışma alanı"
+      },
+      "customerLinks": {
+        "bookings": "Rezervasyonlarım",
+        "services": "Hizmetler",
+        "work": "Çalışmalarım",
+        "waitlists": "Bekleme listeleri",
+        "knowledge": "Knowledge Hub",
+        "credits": "Krediler",
+        "membership": "Üyelik",
+        "invoices": "Faturalarım",
+        "account": "Hesap ayarları",
+        "lostFound": "Kayıp eşya"
+      },
+      "tenantLinks": {
+        "dashboard": "Stüdyo panosu",
+        "account": "Hesap ayarları",
+        "preferences": "Kişisel tercihler",
+        "setupCenter": "Launch Center",
+        "settings": "Çalışma alanı ayarları",
+        "bookingSite": "Herkese açık siteyi görüntüle",
+        "bookingSiteNewTab": "Herkese açık siteyi yeni sekmede aç"
+      },
+      "language": "Dil",
+      "logout": "Çıkış yap"
+    },
+    "product": {
+      "label": "Ürün",
+      "bookingScheduling": "Rezervasyonlar, müşteriler ve ödemeler",
+      "customers": "Müşteriler",
+      "payments": "Ödemeler",
+      "memberships": "Üyelikler",
+      "automatedCommunication": "Otomatik iletişim",
+      "studioOperations": "Stüdyo operasyonları ve üretim",
+      "analytics": "Yapay zekâ, analizler ve kararlar",
+      "viewAll": "Ürünün tamamını keşfedin"
+    },
+    "solutions": {
+      "label": "Çözümler",
+      "artStudios": "Sanat stüdyoları",
+      "makerspaces": "Üretim atölyeleri",
+      "workshopsClasses": "Açık Stüdyo ve dersler",
+      "multiLocationStudios": "Çok konumlu stüdyolar",
+      "viewAll": "Tüm çözümleri keşfedin"
+    },
+    "forStudios": "Stüdyolar için",
+    "pricing": "Fiyatlandırma",
+    "membershipCatalog": "Üyelikler",
+    "resources": {
+      "label": "Kaynaklar",
+      "helpCenter": "Yardım merkezi",
+      "guides": "Rehberler",
+      "customerStories": "Müşteri hikâyeleri",
+      "about": "Shario hakkında"
+    },
+    "login": "Giriş yap",
+    "getStarted": "Ücretsiz denemeyi başlat",
+    "openWorkspace": "Çalışma alanını aç",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "changeLanguage": "Dili değiştir"
+  },
+  "PlatformAuth": {
+    "login": {
+      "header": {
+        "newToSkab": "Shario'da yeni misiniz?",
+        "createWorkspace": "Çalışma alanı oluştur",
+        "switchLanguage": "{language} diline geç",
+        "languages": {
+          "en": "İngilizce",
+          "cs": "Çekçe"
+        }
+      },
+      "form": {
+        "eyebrow": "Stüdyo sahipleri ve ekip üyeleri için",
+        "title": "Çalışma alanınıza giriş yapın",
+        "description": "Devam etmek için stüdyo adresinizi ve hesap bilgilerinizi girin.",
+        "workspaceLabel": "Çalışma alanı URL'si",
+        "workspacePlaceholder": "common-ground",
+        "workspaceHint": "Shario'daki stüdyo adresiniz",
+        "workspaceHelp": {
+          "open": "Çalışma alanı URL'si nedir?",
+          "title": "Stüdyonuzun Shario adresi",
+          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+        },
+        "findWorkspace": "Çalışma alanınızı bulun",
+        "emailLabel": "E-posta adresi",
+        "emailPlaceholder": "siz@studyonuz.com",
+        "passwordLabel": "Şifre",
+        "passwordPlaceholder": "Şifrenizi girin",
+        "showPassword": "Şifreyi göster",
+        "hidePassword": "Şifreyi gizle",
+        "rememberWorkspace": "Çalışma alanını hatırla",
+        "forgotPassword": "Şifrenizi mi unuttunuz?",
+        "submit": "Giriş yap",
+        "submitting": "Giriş yapılıyor…",
+        "secure": "Stüdyo çalışma alanınıza güvenli erişim"
+      },
+      "story": {
+        "eyebrow": "Kusursuz yönetilen stüdyonuz",
+        "titleBefore": "Stüdyonuz her zaman",
+        "titleAccent": "hazır.",
+        "description": "Rezervasyonlar, müşteriler, dersler ve ekibiniz sakin bir çalışma alanında birbirine bağlı kalır.",
+        "pulseLabel": "Stüdyo nabzı",
+        "pulse": "Her şey sakin ve düzenli bir yerde",
+        "bookings": "Rezervasyonlar koordine edildi",
+        "team": "Ekip uyum içinde",
+        "operations": "Stüdyo akışı görünür"
+      },
+      "errors": {
+        "server": "Sunucu yanıt vermiyor. Lütfen tekrar deneyin.",
+        "invalidResponse": "Sunucu geçersiz bir yanıt döndürdü.",
+        "checkInformation": "Lütfen gönderdiğiniz bilgileri kontrol edin.",
+        "incorrectCredentials": "E-posta adresi veya şifre yanlış.",
+        "disabled": "Bu çalışma alanına erişim devre dışı bırakıldı.",
+        "workspaceNotFound": "Bu çalışma alanını bulamadık.",
+        "rateLimited": "Çok fazla giriş denemesi yapıldı. Lütfen biraz bekleyip tekrar deneyin.",
+        "signInFailed": "Giriş yapılamadı."
+      },
+      "guidance": {
+        "workspaceRequired": "Önce çalışma alanı URL'nizi girin.",
+        "workspaceCleared": "Stüdyonuzun verdiği çalışma alanı kısa adını girin."
+      }
+    },
+    "register": {
+      "header": {
+        "alreadyHaveWorkspace": "Zaten bir çalışma alanınız var mı?",
+        "signIn": "Giriş yap",
+        "switchLanguage": "{language} diline geç",
+        "languages": {
+          "en": "İngilizce",
+          "cs": "Çekçe"
+        }
+      },
+      "form": {
+        "eyebrow": "14 günlük deneme sürenizi başlatın",
+        "title": "Stüdyo çalışma alanınızı oluşturun",
+        "description": "Temel bilgileri paylaşın. Hizmetlerinizi, iş akışlarınızı ve stüdyo ayarlarınızı daha sonra şekillendirebilirsiniz.",
+        "trial": "14 gün ücretsiz",
+        "noCard": "Kredi kartı gerekmez",
+        "firstNameLabel": "Ad",
+        "firstNamePlaceholder": "Adınız",
+        "lastNameLabel": "Soyad",
+        "lastNamePlaceholder": "Soyadınız",
+        "studioNameLabel": "Stüdyo adı",
+        "studioNamePlaceholder": "Stüdyonuzun adı",
+        "workspaceLabel": "Çalışma alanı adresi",
+        "workspacePlaceholder": "studyonuz",
+        "workspaceExample": "studyonuz",
+        "workspaceHint": "Stüdyonuza {slug}.shario.io adresinden erişilebilecek",
+        "emailLabel": "E-posta adresi",
+        "emailPlaceholder": "siz@studyonuz.com",
+        "passwordLabel": "Şifre",
+        "passwordPlaceholder": "Bir şifre oluşturun",
+        "passwordHint": "En az 8 karakter ve bir rakam kullanın.",
+        "passwordConfirmLabel": "Şifreyi doğrulayın",
+        "passwordConfirmPlaceholder": "Şifreyi tekrar girin",
+        "showPassword": "Şifreyi göster",
+        "hidePassword": "Şifreyi gizle",
+        "showPasswordConfirm": "Şifre doğrulamasını göster",
+        "hidePasswordConfirm": "Şifre doğrulamasını gizle",
+        "legalPrefix": "Şunları kabul ediyorum:",
+        "terms": "Hizmet Şartları",
+        "legalAnd": "ve",
+        "privacy": "Gizlilik Politikası",
+        "legalSuffix": ".",
+        "submit": "Stüdyomu oluştur",
+        "submitting": "Çalışma alanınız oluşturuluyor…",
+        "alreadyRegistered": "Zaten bir çalışma alanınız var mı?",
+        "signIn": "Giriş yap",
+        "secure": "Hesap bilgileriniz güvenli biçimde aktarılır"
+      },
+      "validation": {
+        "firstNameRequired": "Adınızı girin.",
+        "lastNameRequired": "Soyadınızı girin.",
+        "studioNameRequired": "Stüdyo adını girin.",
+        "workspaceInvalid": "Yalnızca küçük harf, rakam ve tek kısa çizgi kullanın.",
+        "emailInvalid": "Geçerli bir e-posta adresi girin.",
+        "passwordInvalid": "En az 8 karakter ve bir rakam kullanın.",
+        "passwordMismatch": "Şifreler eşleşmiyor.",
+        "legalRequired": "Devam etmek için Hizmet Şartları'nı ve Gizlilik Politikası'nı kabul edin.",
+        "completeRequired": "Lütfen tüm zorunlu alanları doldurun."
+      },
+      "errors": {
+        "createFailed": "Hesabınız oluşturulamadı. Lütfen tekrar deneyin."
+      },
+      "story": {
+        "eyebrow": "Kusursuz yönetilen stüdyonuz",
+        "titleBefore": "Sevdiğiniz şeylere",
+        "titleAccent": "yer açın.",
+        "description": "Temel özelliklerle başlayın, ardından Shario'yu yaratıcı stüdyonuzun gerçek çalışma biçimine göre şekillendirin.",
+        "cardLabel": "Lansman yolunuz",
+        "cardTitle": "Fikirden açık bir stüdyoya",
+        "workspace": "Güvenli çalışma alanınızı oluşturun",
+        "setup": "İhtiyacınız olan iş akışlarını seçin",
+        "launch": "Stüdyonuz hazır olduğunda yayınlayın"
+      }
+    }
+  },
+  "MarketingPages": {
+    "common": {
+      "backHome": "Ana sayfaya dön",
+      "startTrial": "14 günlük denemeyi başlat",
+      "noCreditCard": "Kart gerekmez",
+      "exploreProduct": "Ürünü keşfet",
+      "exploreAi": "Stüdyo yapay zekâsını keşfedin",
+      "exploreStudios": "Stüdyo çözümlerini keşfet",
+      "explorePricing": "Fiyatları incele",
+      "builtWithStudios": "Faaliyet gösteren yaratıcı stüdyolarla birlikte geliştirildi",
+      "currencyLabel": "Para birimi seçin"
+    },
+    "product": {
+      "metaTitle": "Everything your space needs, working together.",
+      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+    },
+    "studioAi": {
+      "metaTitle": "A helping hand for everyday work.",
+      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+    },
+    "forStudios": {
+      "metaTitle": "Different spaces. Shared possibilities.",
+      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+    },
+    "pricing": {
+      "metaTitle": "Yaratıcı stüdyolar için planlar ve fiyatlar",
+      "metaDescription": "Shario planlarını, stüdyo kapasitesini ve yapay zekâ kredilerini karşılaştırın; kart olmadan 14 günlük denemeye başlayın.",
+      "eyebrow": "Büyüyen stüdyolar için planlar",
+      "title": "Bugün ihtiyacınız olanla başlayın.",
+      "description": "Her plan, seçim yapmadan önce temel stüdyo yolculuğunuzu deneyebilmeniz için 14 günlük Professional denemesiyle başlar.",
+      "sectionEyebrow": "Planlar arasında net farklar",
+      "sectionTitle": "Kapasiteyi, iş akışlarını ve yapay zekâ kredilerini karşılaştırın.",
+      "sectionDescription": "Stüdyonuzun ihtiyaç duyduğu konum, ekip hesabı ve operasyonel derinliğe göre seçim yapın.",
+      "closingTitle": "Hangi planın uygun olduğundan emin değil misiniz?",
+      "closingDescription": "Kart olmadan denemeyi başlatın veya size özel kurulum için bizimle görüşün."
+    }
+  },
+  "MarketingHome": {
+    "hero": {
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    },
+    "pricing": {
+      "eyebrow": "Şeffaf fiyatlandırma",
+      "title": "Stüdyonuzun çalışma biçimine uygun planı seçin.",
+      "description": "Kurslarla başlayın, tam stüdyo operasyonlarına geçin ve ardından gelişmiş otomasyon ile çok lokasyonlu araçları ekleyin. Her plan, kart gerektirmeyen 14 günlük Professional denemesiyle başlar.",
+      "billingIntervalLabel": "Faturalandırma dönemini seçin",
+      "monthly": "Aylık",
+      "yearly": "Yıllık",
+      "annualSavings": "2 ay ücretsiz",
+      "perMonth": "aylık",
+      "perYear": "yıllık",
+      "from": "başlangıç",
+      "customAnnual": "Özel yıllık plan",
+      "mostPopular": "En popüler",
+      "starter": {
+        "name": "Starter",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "feature1": "1 stüdyo lokasyonu · 1 ekip hesabı",
+        "feature2": "Kurslar, özel etkinlikler ve hediye çekleri",
+        "feature3": "Ayda 500 e-posta dahil",
+        "feature4": "Sınırlı Shario AI · ayda 200 kredi",
+        "cta": "Ücretsiz denemeyi başlat"
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature1": "1 stüdyo lokasyonu · 3 ekip hesabı",
+        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature3": "3 aktif otomasyon · ayda 2.500 e-posta",
+        "feature4": "Tam Shario AI · ayda 2.000 kredi",
+        "cta": "Ücretsiz denemeyi başlat"
+      },
+      "studioPlus": {
+        "name": "Space Plus",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "feature1": "En fazla 2 stüdyo lokasyonu · 6 ekip hesabı",
+        "feature2": "Erişim kodları ve özel alan adı",
+        "feature3": "Gelişmiş otomasyonlar · ayda 5.000 e-posta",
+        "feature4": "Tam AI paketi · ayda 10.000 kredi",
+        "cta": "Ücretsiz denemeyi başlat"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Kuruluşunuzu özel kapasite, yönetişim ve destekle yönetin.",
+        "feature1": "Sınırsız lokasyon ve ekip hesabı",
+        "feature2": "Özel otomasyon, e-posta ve AI limitleri",
+        "feature3": "SSO/SCIM, API, webhook'lar ve denetim kayıtları",
+        "feature4": "Özel onboarding, taşıma ve SLA",
+        "cta": "Start free trial"
+      },
+      "note": "Fiyatlara geçerli vergiler dahil değildir. Yıllık self servis planlara iki ücretsiz ay dahildir. Gerekli sistem e-postaları limite dahil edilmez ve AI kullanımı dahil olan sınırda durur; otomatik ek ücret uygulanmaz.",
+      "loading": "Fiyatlar yükleniyor…",
+      "unavailable": "Bu para biriminde fiyat mevcut değil",
+      "loadError": "Fiyatlar geçici olarak kullanılamıyor"
+    },
+    "trust": {
+      "eyebrow": "Sorumlu operasyonlar için geliştirildi",
+      "title": "Stüdyonuzun arkasındaki işler için güvenilir bir merkez.",
+      "description": "Net erişim, bağlantılı kayıtlar ve insan denetimi sonradan eklenen ayrıntılar değil, ürünün temel parçalarıdır.",
+      "workspaces": {
+        "title": "Ayrı stüdyo çalışma alanları",
+        "description": "Her stüdyo kendine ait çalışma alanında ve yapılandırmayla çalışır."
+      },
+      "access": {
+        "title": "Rol tabanlı erişim",
+        "description": "Stüdyo sahiplerine ve ekip üyelerine işlerinin gerektirdiği erişim düzeyini verin."
+      },
+      "payments": {
+        "title": "Stripe üzerinden ödemeler",
+        "description": "Yerleşik Stripe altyapısıyla çevrimiçi ödemeleri bağlayın."
+      },
+      "control": {
+        "title": "İnsan denetimindeki yapay zekâ",
+        "description": "Yapay zekâ bağlam ve destek sağlar; kararların sorumluluğu ekibinizde kalır."
+      }
+    }
+  },
+  "CustomerAuth": {
+    "social": {
+      "label": "Müşteriler için sosyal hesapla giriş",
+      "customerAccess": "Müşteri olarak devam et",
+      "teamPasswordNote": "Stüdyo ekip üyeleri e-posta adresi ve şifre kullanır.",
+      "or": "veya e-posta kullanın",
+      "continueWith": {
+        "google": "Google ile devam et",
+        "apple": "Apple ile devam et"
+      }
+    },
+    "complete": {
+      "metadataTitle": "Müşteri girişi tamamlanıyor",
+      "title": "Girişiniz tamamlanıyor",
+      "description": "Müşteri oturumunuzu güvenle geri yüklüyoruz.",
+      "errorTitle": "Müşteri girişi tamamlanamadı",
+      "providerError": "Sosyal giriş sağlayıcısı bir hata döndürdü. Lütfen tekrar deneyin.",
+      "accessDenied": "Giriş isteğini iptal ettiniz veya reddettiniz.",
+      "accountConflict": "Bu sosyal hesap otomatik olarak bağlanamıyor. E-posta ile giriş yapın veya stüdyoyla iletişime geçin.",
+      "authenticationFailed": "Sağlayıcı hesabınızı doğrulayamadı. Lütfen tekrar deneyin.",
+      "providerUnavailable": "Bu giriş sağlayıcısı geçici olarak kullanılamıyor.",
+      "sessionError": "Müşteri oturumunuz geri yüklenemedi. Lütfen tekrar deneyin.",
+      "customerOnly": "Sosyal hesapla giriş yalnızca müşteri hesapları içindir. Stüdyo ekip üyeleri e-posta adresi ve şifre kullanmalıdır.",
+      "retry": "Tekrar dene",
+      "backToLogin": "Girişe dön"
+    }
+  },
+  "CustomerShell": {
+    "portalNav": {
+      "overview": "Genel bakış",
+      "bookings": "Rezervasyonlar",
+      "work": "Çalışmalarım",
+      "knowledge": "Bilgiler",
+      "membership": "Üyelik",
+      "credits": "Krediler",
+      "invoices": "Faturalar",
+      "bookSession": "Seans rezervasyonu yap",
+      "memberships": "Üyelikler",
+      "giftVouchers": "Hediye çekleri",
+      "studioGuide": "Stüdyo rehberi",
+      "courses": "Kurslar"
+    },
+    "actions": {
+      "backToStudio": "Stüdyoya dön",
+      "openPortal": "Müşteri portalı",
+      "openDashboard": "Stüdyo panosu"
+    },
+    "mobile": {
+      "portalEyebrow": "Müşteri portalı",
+      "portalTitle": "{studio} hesabınız",
+      "authEyebrow": "Stüdyo hesabı",
+      "authTitle": "{studio} hesabınıza giriş yapın",
+      "transactionEyebrow": "Güvenli ödeme",
+      "transactionTitle": "{studio} ziyaretinizi tamamlayın"
+    },
+    "status": {
+      "loadingTitle": "Stüdyonuz hazırlanıyor",
+      "loadingDescription": "En güncel stüdyo bilgileri yükleniyor.",
+      "errorTitle": "Bu sayfa yüklenemedi",
+      "errorDescription": "Lütfen tekrar deneyin. Hesap ve ödeme bilgileriniz güvende.",
+      "retry": "Tekrar dene",
+      "preparingAccount": "Hesabınız hazırlanıyor…",
+      "redirecting": "Doğru stüdyoya yönlendiriliyorsunuz…"
+    },
+    "locationChooser": {
+      "eyebrow": "Müşteri portalı",
+      "title": "Hangi stüdyoyu ziyaret etmek istersiniz?",
+      "description": "Uygunluk durumunu, hizmetleri ve rezervasyon seçeneklerini görmek için bir stüdyo seçin.",
+      "unavailable": "Bu bağlantıdaki stüdyo şu anda kullanılamıyor.",
+      "unavailableHint": "Stüdyo etkin olmayabilir veya artık çevrimiçi rezervasyon kabul etmiyor olabilir. Aşağıdan başka bir stüdyo seçin.",
+      "open": "{studio} stüdyosunu aç"
+    }
+  },
+  "PublicTenantHome": {
+    "eyebrow": "Hoş geldiniz",
+    "description": "Stüdyoyu keşfedin, rezervasyonlarınızı yönetin ve hesabınızla ilgili her şeyi tek bir yerde tutun.",
+    "openPortal": "Müşteri portalını aç",
+    "signIn": "Giriş yap"
+  },
+  "PublicSiteNotFound": {
+    "brandLabel": "Make room for more.",
+    "checking": "Web sitesi durumu kontrol ediliyor…",
+    "owner": {
+      "eyebrow": "Herkese açık web sitesi",
+      "badge": "Gizli taslak",
+      "title": "Herkese açık web siteniz hâlâ gizli",
+      "description": "Müşterilerinizin kullanacağı adresi görüntülüyorsunuz. Taslağınız güvenle kaydedildi; Launch Center'dan yayınlayana kadar hiçbir şey herkese açılmaz.",
+      "primaryAction": "İncele ve yayınla",
+      "secondaryAction": "Web sitesini düzenle",
+      "reassurance": "Müşteriler web sitenizi henüz göremez.",
+      "previewBadge": "Yayınlanmadı",
+      "previewLabel": "Lansman yolunuz",
+      "steps": {
+        "draft": {
+          "title": "Taslak kaydedildi",
+          "description": "Değişiklikleriniz güvenle saklanıyor."
+        },
+        "review": {
+          "title": "Web sitenizi inceleyin",
+          "description": "İçeriği ve müşteri deneyimini kontrol edin."
+        },
+        "publish": {
+          "title": "Hazır olduğunuzda yayınlayın",
+          "description": "Siteyi Launch Center'dan erişilebilir hâle getirin."
+        }
+      }
+    },
+    "visitor": {
+      "eyebrow": "Sayfa kullanılamıyor",
+      "badge": "Kullanılamıyor",
+      "title": "Bu stüdyo sayfası kullanılamıyor",
+      "description": "Adres yanlış olabilir veya stüdyo web sitesini henüz yayınlamamış olabilir.",
+      "primaryAction": "Shario'yu ziyaret et",
+      "hint": "Bu stüdyoyu yönetiyorsanız çalışma alanınıza giriş yapın ve herkese açık web sitesini yeniden açın."
+    }
+  },
+  "BookingConfirmation": {
+    "membershipPayment": {
+      "bookingValue": "Rezervasyon değeri",
+      "coveredByMembership": "Üyelik kapsamında karşılanan",
+      "additionalPayment": "Ek ödeme"
+    },
+    "back": "Seçimi değiştir",
+    "eyebrow": "Güvenli rezervasyon",
+    "title": "İnceleyin ve onaylayın",
+    "description": "Aşağıdaki uygunluk, avantajlar ve fiyat stüdyo sunucusu tarafından doğrulandı.",
+    "summary": {
+      "time": "Saat",
+      "until": "Bitiş",
+      "location": "Konum",
+      "locationFallback": "Stüdyo konumu",
+      "people": "Katılımcılar",
+      "product": "Rezervasyon",
+      "productFallback": "Stüdyo rezervasyonu",
+      "bookingMode": "Rezervasyon türü",
+      "bookingModes": {
+        "public": "Herkese açık",
+        "private": "Özel"
+      }
+    },
+    "available": {
+      "title": "Seçiminiz uygun",
+      "description": "Onayladığınızda bir kez daha kontrol edilecek."
+    },
+    "conflict": {
+      "title": "Bu seçim artık uygun değil",
+      "description": "Devam etmek için başka bir saat seçin.",
+      "chooseAnother": "Başka bir saat seç"
+    },
+    "payment": {
+      "title": "Ödeme",
+      "methods": {
+        "card": "Kartla öde",
+        "money_credits": "Stüdyo kredisi kullan",
+        "membership_credits": "Üyelik hakkı kullan"
+      },
+      "descriptions": {
+        "card": "Stüdyonun güvenli ödeme sayfasına devam edin.",
+        "money_credits": "Rezervasyonun tamamını kullanılabilir stüdyo kredinizle karşılayın.",
+        "membership_credits": "Uygun bir üyelik ziyareti veya süre hakkı kullanın."
+      },
+      "notEnough": "Bu seçenek rezervasyonun tamamını karşılamıyor.",
+      "unavailable": "Şu anda uygun bir ödeme yöntemi yok.",
+      "processing": "Onaylanıyor…",
+      "continueToCard": "Ödemeye devam et",
+      "confirm": "Rezervasyonu onayla",
+      "privateSurchargeRequiresMoney": "Özel rezervasyon ek ücretleri kart veya para bakiyesi ile ödenmelidir.",
+      "membershipHours": "Üyelik saatlerini kullan",
+      "hoursSummary": "Kullanılabilir {available} içinden {required} kullanın. Yalnızca kendi yeriniz.",
+      "membership_open_studio_only": "Saatler yalnızca paylaşımlı Open Studio için geçerlidir; kurslar veya özel rezervasyonlar için değildir.",
+      "membership_member_only": "Saatler yalnızca bir üyeyi kapsar. Refakatçileri ayrı ayırtın veya herkes için normal ödeme yapın.",
+      "membership_insufficient_hours": "Üyelik saati yetersiz. Başka bir ödeme yöntemi seçin.",
+      "membership_outside_paid_period": "Üyelik saatleri yalnızca mevcut ödenen dönem içindeki ziyaretlerde kullanılabilir."
+    },
+    "price": {
+      "subtotal": "Ara toplam",
+      "membershipDiscount": "Üyelik indirimi",
+      "total": "Toplam",
+      "serverVerified": "Sunucu son fiyatı hesaplar ve onay sırasında uygunluğu kontrol eder.",
+      "privateBookingSurcharge": "Özel rezervasyon ek ücreti (dahil, rezervasyon başına bir kez)"
+    },
+    "terms": {
+      "title": "Rezervasyon koşulları",
+      "accept": "Rezervasyon koşullarını okudum ve kabul ediyorum."
+    },
+    "errors": {
+      "changed": "Uygunluk veya fiyat değişti. Tekrar denemeden önce yenilenen bilgileri inceleyin.",
+      "expired": "Bu rezervasyon seçiminin süresi doldu. Lütfen yeni bir saat seçin.",
+      "generic": "Rezervasyon onaylanamadı. Lütfen tekrar deneyin."
+    },
+    "invalid": {
+      "title": "Geçersiz rezervasyon bağlantısı",
+      "description": "Bu bağlantı geçerli bir rezervasyon seçimi içermiyor.",
+      "action": "Yeni rezervasyon başlat"
+    },
+    "loading": {
+      "title": "Rezervasyonunuz kontrol ediliyor",
+      "description": "Uygunluğu, fiyatı ve üyelik avantajlarını doğruluyoruz."
+    },
+    "expired": {
+      "title": "Rezervasyon seçiminin süresi doldu",
+      "description": "Güvenliğiniz için rezervasyon seçimleri yalnızca sınırlı bir süre tutulur.",
+      "action": "Başka bir saat seç"
+    },
+    "loadError": {
+      "title": "Rezervasyon yüklenemedi",
+      "description": "Bu rezervasyon seçimini doğrulayamadık.",
+      "action": "Yeniden başla",
+      "retry": "Tekrar dene"
+    },
+    "verificationRequired": {
+      "title": "Devam etmek için e-posta adresinizi doğrulayın",
+      "description": "Rezervasyon seçiminiz güvende. E-posta adresinizi doğruladıktan sonra onaylamak için buraya dönün.",
+      "action": "E-postayı doğrula"
+    }
+  },
+  "EmailVerification": {
+    "verifying": {
+      "title": "E-posta adresiniz doğrulanıyor",
+      "description": "E-posta adresinizi güvenle doğrularken lütfen bekleyin."
+    },
+    "verified": {
+      "title": "E-posta doğrulandı",
+      "description": "Hesabınız hazır. Rezervasyonunuza devam etmek için giriş yapın.",
+      "signIn": "Giriş yap ve devam et",
+      "continue": "Rezervasyona devam et"
+    },
+    "sent": {
+      "title": "E-postanızı kontrol edin",
+      "description": "E-posta adresinize bir doğrulama bağlantısı gönderdik. Hesabınızı etkinleştirmek için bağlantıyı bu tarayıcıda açın.",
+      "again": "Yeni bir doğrulama e-postası gönderildi."
+    },
+    "error": {
+      "title": "Doğrulama bağlantısı geçersiz",
+      "description": "Bu doğrulama bağlantısı geçersiz veya süresi dolmuş.",
+      "back": "Girişe dön"
+    },
+    "resend": {
+      "action": "Yeni doğrulama e-postası gönder",
+      "sending": "Gönderiliyor…",
+      "wait": "{seconds} sn. sonra tekrar gönder",
+      "error": "Doğrulama e-postası gönderilemedi. Lütfen tekrar deneyin."
+    }
+  },
+  "CreditPurchaseStatus": {
+    "loading": "Ödemeniz kontrol ediliyor…",
+    "checking": "En güncel ödeme durumu kontrol ediliyor…",
+    "waiting": "Ödeme onayı bekleniyor…",
+    "orderReference": "Sipariş {orderId}",
+    "pending": {
+      "badge": "İşleniyor",
+      "title": "Ödemenizi onaylıyoruz",
+      "description": "Stripe ödemeyi işliyor ve sunucu stüdyo kredilerinizi hesabınıza ekliyor. Bu sayfayı güvenle açık bırakabilirsiniz."
+    },
+    "success": {
+      "badge": "Ödendi",
+      "title": "Kredileriniz hazır",
+      "description": "Sunucu ödemeyi onayladı ve satın aldığınız kredileri stüdyo hesabınıza ekledi."
+    },
+    "failed": {
+      "badge": "Tamamlanmadı",
+      "title": "Kredi satın alma işlemi tamamlanmadı",
+      "description": "Kredi eklenmedi. Ödeme yönteminizi kontrol edin veya kredi sayfanıza dönüp tekrar deneyin."
+    },
+    "invalid": {
+      "title": "Bu satın alma işlemini doğrulayamıyoruz",
+      "description": "Güvenli sipariş referansı eksik veya yüklenemedi. Güncel bakiyenizi kontrol etmek için kredi sayfanızı açın."
+    },
+    "actions": {
+      "retry": "Tekrar kontrol et",
+      "viewCredits": "Kredileri görüntüle",
+      "portal": "Müşteri portalı"
+    }
+  },
+  "CustomerNotifications": {
+    "trigger": "Bildirimleri aç",
+    "triggerUnread": "Bildirimleri aç, {count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
+    "panel": {
+      "label": "Müşteri portalı bildirimleri",
+      "title": "Bildirimler",
+      "unread": "{count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
+      "caughtUp": "Tüm bildirimleri okudunuz",
+      "summaryLoading": "Güncellemeler kontrol ediliyor…",
+      "summaryUnavailable": "Okunmamış durumu geçici olarak kullanılamıyor"
+    },
+    "page": {
+      "eyebrow": "Güncellemeleriniz",
+      "title": "Bildirimler",
+      "description": "Rezervasyon onayları, ödemeler, stüdyo güncellemeleri ve hesap mesajları tek bir yerde.",
+      "unreadSummary": "Stüdyo hesabınızda {count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
+      "caughtUp": "Tüm bildirimleri okudunuz",
+      "summaryLoading": "Okunmamış bildirimleriniz kontrol ediliyor…",
+      "summaryUnavailable": "Okunmamış durumu geçici olarak kullanılamıyor",
+      "loading": "Bildirimleriniz yükleniyor…"
+    },
+    "actions": {
+      "markAllRead": "Tümünü okundu olarak işaretle",
+      "retry": "Tekrar dene",
+      "viewAll": "Tüm bildirimleri görüntüle"
+    },
+    "filters": {
+      "label": "Bildirim filtreleri",
+      "status": "Durum",
+      "category": "Kategori"
+    },
+    "statuses": {
+      "all": "Tümü",
+      "unread": "Okunmamış",
+      "read": "Okunmuş"
+    },
+    "categories": {
+      "all": "Tüm kategoriler",
+      "bookings": "Rezervasyonlar",
+      "payments": "Ödemeler",
+      "waitlist": "Bekleme listesi",
+      "memberships": "Üyelikler",
+      "credits_vouchers": "Krediler ve hediye çekleri",
+      "account": "Hesap"
+    },
+    "item": {
+      "untitled": "Stüdyo güncellemesi",
+      "open": "Bildirimi aç: {title}",
+      "markRead": "Bildirimi okundu olarak işaretle: {title}",
+      "groupedCount": "{count, plural, one {# güncelleme} other {# güncelleme}}"
+    },
+    "empty": {
+      "title": "Henüz bildirim yok",
+      "description": "Rezervasyon onayları ve önemli stüdyo güncellemeleri burada görünecek.",
+      "unreadTitle": "Tüm bildirimleri okudunuz",
+      "unreadDescription": "Bu görünümde okunmamış bildirim yok."
+    },
+    "errors": {
+      "loadTitle": "Bildirimleriniz yüklenemedi",
+      "load": "Bağlantınızı kontrol edip tekrar deneyin.",
+      "refresh": "Son güncellemeleriniz gösteriliyor. Yenileme geçici olarak kullanılamıyor.",
+      "markRead": "Bildirim okundu olarak işaretlenemedi.",
+      "markAllRead": "Bildirimler okundu olarak işaretlenemedi."
+    },
+    "pagination": {
+      "label": "Bildirim sayfaları",
+      "previous": "Önceki sayfa",
+      "next": "Sonraki sayfa",
+      "summary": "{total, plural, one {# bildirim} other {# bildirim}} · {pages} sayfanın {page}. sayfası"
+    }
+  },
+  "WorkspaceNotifications": {
+    "trigger": "Bildirimleri aç",
+    "triggerUnread": "Bildirimleri aç, {count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
+    "panel": {
+      "label": "Çalışma alanı bildirimleri",
+      "title": "Bildirimler",
+      "unread": "{count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
+      "caughtUp": "Tüm bildirimleri okudunuz",
+      "summaryLoading": "Güncellemeler kontrol ediliyor…",
+      "summaryUnavailable": "Okunmamış durumu geçici olarak kullanılamıyor"
+    },
+    "page": {
+      "title": "Bildirimler",
+      "heading": "Operasyon güncellemeleriniz",
+      "unreadSummary": "Çalışma alanınızda {count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
+      "caughtUp": "Tüm bildirimleri okudunuz",
+      "summaryLoading": "Okunmamış bildirimleriniz kontrol ediliyor…",
+      "summaryUnavailable": "Okunmamış durumu geçici olarak kullanılamıyor"
+    },
+    "actions": {
+      "markAllRead": "Tümünü okundu olarak işaretle",
+      "preferences": "Bildirim tercihleri",
+      "retry": "Tekrar dene",
+      "viewAll": "Tüm bildirimleri görüntüle"
+    },
+    "filters": {
+      "label": "Bildirim filtreleri",
+      "status": "Durum",
+      "category": "Kategori",
+      "location": "Stüdyo konumu"
+    },
+    "statuses": {
+      "all": "Tümü",
+      "unread": "Okunmamış",
+      "read": "Okunmuş"
+    },
+    "categories": {
+      "all": "Tüm kategoriler",
+      "bookings": "Rezervasyonlar",
+      "payments": "Ödemeler",
+      "waitlist": "Bekleme listesi",
+      "tasks": "Görevler",
+      "inventory": "Envanter",
+      "migration": "Taşıma",
+      "communications": "İletişim",
+      "account": "Hesap"
+    },
+    "locations": {
+      "all": "Tüm konumlar"
+    },
+    "item": {
+      "untitled": "Stüdyo güncellemesi",
+      "open": "Bildirimi aç: {title}",
+      "markRead": "Bildirimi okundu olarak işaretle: {title}",
+      "groupedCount": "{count, plural, one {# etkinlik} other {# etkinlik}}"
+    },
+    "empty": {
+      "title": "Henüz bildirim yok",
+      "description": "Önemli operasyon güncellemeleri burada görünecek.",
+      "unreadTitle": "Tüm bildirimleri okudunuz",
+      "unreadDescription": "Bu görünümde okunmamış bildirim yok."
+    },
+    "errors": {
+      "load": "Bildirimler yüklenemedi.",
+      "markRead": "Bildirim okundu olarak işaretlenemedi.",
+      "markAllRead": "Bildirimler okundu olarak işaretlenemedi."
+    },
+    "pagination": {
+      "label": "Bildirim sayfaları",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "summary": "{total, plural, one {# bildirim} other {# bildirim}} · {pages} sayfanın {page}. sayfası"
+    }
+  },
+  "PublicTenant": {
+    "nav": {
+      "home": "Stüdyo",
+      "portal": "Müşteri portalı",
+      "book": "Açık Stüdyo",
+      "courses": "Dersler",
+      "memberships": "Üyelikler",
+      "vouchers": "Hediye çekleri",
+      "help": "Stüdyo rehberi"
+    },
+    "actions": {
+      "signIn": "Giriş yap",
+      "book": "Seans rezervasyonu yap",
+      "courses": "Dersleri görüntüle",
+      "memberships": "Üyelikleri görüntüle",
+      "vouchers": "Hediye çeklerini keşfet",
+      "register": "Hesap oluştur"
+    },
+    "mobile": {
+      "eyebrow": "Stüdyo menüsü",
+      "title": "{studio} stüdyosunu keşfedin",
+      "poweredBy": "Shario altyapısıyla"
+    },
+    "home": {
+      "eyebrow": "Hoş geldiniz",
+      "defaultDescription": "{studio} stüdyosunu keşfedin, ziyaret seçeneklerini inceleyin ve bir sonraki stüdyo gününüzden önce ihtiyacınız olan her şeyi bulun.",
+      "exploreEyebrow": "Stüdyonuz",
+      "exploreTitle": "Ziyaret seçenekleri",
+      "explore": "Keşfet",
+      "cards": {
+        "book": "Bir stüdyo seansı seçin ve size uygun bir saat bulun.",
+        "courses": "Yaklaşan derslere ve yaratıcı deneyimlere göz atın.",
+        "memberships": "Düzenli stüdyo erişimi ve avantajlar sunan planları karşılaştırın.",
+        "vouchers": "Birine stüdyoda üretmek için zaman ve alan hediye edin.",
+        "help": "Stüdyo rehberi ve pratik yanıtlarla ziyaretinize hazırlanın."
+      },
+      "highlights": {
+        "viewAll": "Tümünü görüntüle",
+        "open": "Ayrıntıları görüntüle",
+        "coursesTitle": "Öne çıkan dersler",
+        "coursesDescription": "Stüdyonun şu anda yayınladığı dersler arasından seçim yapın.",
+        "membershipsTitle": "Üyelik seçenekleri",
+        "membershipsDescription": "Düzenli olarak stüdyoyu ziyaret etmek ve üretmek isteyen müşteriler için planlar.",
+        "helpTitle": "Stüdyonun Knowledge Hub bölümünden",
+        "helpDescription": "Stüdyo tarafından seçilmiş faydalı ve herkese açık rehberler.",
+        "resourceTypes": {
+          "video": "Video",
+          "guide": "Rehber",
+          "faq": "SSS",
+          "link": "Bağlantı",
+          "file": "Dosya"
+        }
+      }
+    },
+    "footer": {
+      "explore": "Keşfet",
+      "contact": "İletişim",
+      "information": "Bilgiler",
+      "defaultCopyright": "© {year} {studio}",
+      "poweredBy": "Shario altyapısıyla"
+    },
+    "legal": {
+      "studioRules": "Stüdyo kuralları",
+      "terms": "Hüküm ve koşullar",
+      "privacy": "Gizlilik politikası",
+      "cancellation": "İptal politikası"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "website": "Web sitesi"
+    },
+    "unavailable": {
+      "title": "Bu seçenek kullanılamıyor",
+      "description": "Stüdyo şu anda bu seçeneği herkese açık olarak sunmuyor.",
+      "back": "Stüdyoya dön"
+    },
+    "book": {
+      "metadataTitle": "Açık Stüdyo rezervasyonu",
+      "title": "{studio} stüdyosunda Açık Stüdyo",
+      "description": "Bir stüdyo seçin ve giriş yapmadan önce şu anda gösterilen dolu zaman aralıklarına göz atın.",
+      "eyebrow": "Ziyaretinizi planlayın",
+      "studioLabel": "Stüdyo konumu",
+      "studioRequired": "Stüdyo seçilmedi",
+      "priceFrom": "Başlangıç rezervasyon ücreti",
+      "priceLabel": "Rezervasyon ücreti",
+      "priceUnavailable": "Stüdyoya sorun",
+      "priceUnit": "misafir başına, her 30 dakikalık blok için",
+      "retry": "Tekrar dene",
+      "calendar": {
+        "title": "Stüdyo doluluğu",
+        "readOnly": "Salt okunur",
+        "description": "Dolu saatleri stüdyonun yerel saat diliminde görüntüleyin. Kişisel rezervasyon bilgileri hiçbir zaman gösterilmez.",
+        "legend": "Takvim açıklaması",
+        "occupied": "Dolu",
+        "loadingStudios": "Stüdyo konumları yükleniyor…",
+        "locationError": "Stüdyo konumları yüklenemedi.",
+        "noLocations": "Henüz kullanılabilir stüdyo yok",
+        "noLocationsDescription": "Bu stüdyo rezervasyona açık bir konum yayınlamadı.",
+        "invalidLocation": "Bu stüdyo konumu kullanılamıyor",
+        "invalidLocationDescription": "Devam etmek için yayınlanmış stüdyo konumlarından birini seçin.",
+        "loading": "Güncel doluluk yükleniyor…",
+        "error": "Güncel doluluk yüklenemedi.",
+        "empty": "Bu aralıkta dolu zaman dilimi bulunamadı. Bu, uygunluk garantisi vermez.",
+        "occupiedSummary": "{count, plural, one {# dolu zaman dilimi gösteriliyor.} other {# dolu zaman dilimi gösteriliyor.}}"
+      }
+    },
+    "courses": {
+      "metadataTitle": "Stüdyo dersleri",
+      "title": "{studio} stüdyosundaki dersler",
+      "description": "Yayınlanmış dersleri keşfedin. Uygun tarihlere devam etmek için giriş yapın.",
+      "filters": {
+        "label": "Ders kategorileri",
+        "all": "Tümü",
+        "searchLabel": "Derslerde ara",
+        "searchPlaceholder": "Ders ara…",
+        "clearSearch": "Aramayı temizle",
+        "resultCount": "{visible} / {total} ders",
+        "noResults": "Aramanızla veya seçili kategoriyle eşleşen ders yok.",
+        "reset": "Tüm dersleri göster"
+      }
+    },
+    "vouchers": {
+      "metadataTitle": "Hediye çekleri",
+      "title": "Özenle seçilmiş bir stüdyo hediyesi",
+      "description": "Yayınlanmış bir hediye çeki seçin ve birine {studio} stüdyosunda üretme özgürlüğü hediye edin.",
+      "checkout": {
+        "eyebrow": "Güvenli ödeme",
+        "title": "Hediye çekinizi seçin",
+        "description": "Bir tutar seçin, e-posta adresinizi girin ve stüdyonun güvenli ödeme sayfasına devam edin.",
+        "email": "E-posta adresi",
+        "quantity": "Adet",
+        "missing": "Bir hediye çeki seçin ve geçerli bir e-posta adresi girin.",
+        "error": "Ödeme başlatılamadı. Lütfen tekrar deneyin.",
+        "starting": "Ödeme hazırlanıyor…",
+        "continue": "Ödemeye devam et",
+        "secure": "Hediye çekinin kullanılabilirliği ve fiyatı ödeme öncesinde güvenle doğrulanır.",
+        "giftMessage": "Hediye mesajı (isteğe bağlı)",
+        "giftMessageHelp": "En fazla 240 karakter. Mesaj, bu siparişteki her PDF dosyasına ve e-postanıza eklenir. Hediye çeklerini yukarıdaki e-posta adresine göndeririz.",
+        "giftMessageLegacyHelp": "En fazla 240 karakter. Mesaj e-postanıza eklenir. Bu hediye çeki sabit bir PDF şablonu kullandığından mesaj PDF dosyasında görünmez.",
+        "giftMessageError": "Hediye mesajınız bu çeke sığmıyor. Mesajı kısaltmayı, satır sonlarını azaltmayı veya emojileri ve özel simgeleri kaldırmayı deneyin.",
+        "total": "Toplam",
+        "validity": "Geçerlilik",
+        "noExpiry": "Son kullanma tarihi yok",
+        "validUntil": "{date} tarihine kadar geçerli",
+        "validMonths": "{months, plural, one {Satın alma tarihinden itibaren # ay} other {Satın alma tarihinden itibaren # ay}}"
+      },
+      "postal": {
+        "title": "Teslimat",
+        "digital": "Dijital hediye çeki",
+        "physical": "Postayla basılı hediye çeki",
+        "digitalHelp": "E-posta adresinize gönderilir.",
+        "postage": "Posta ücreti: sipariş başına {amount}",
+        "backup": "Stüdyo hediye çekinizi basıp postalar. Aynı kodu içeren bir yedek kopyayı e-postayla da alırsınız. İki kopya tek bir ortak bakiye kullanır.",
+        "firstname": "Ad",
+        "lastname": "Soyad",
+        "street": "Sokak ve kapı numarası",
+        "city": "Şehir",
+        "postalCode": "Posta kodu",
+        "country": "Ülke",
+        "chooseCountry": "Ülke seçin",
+        "addressError": "Ülke dahil tam posta adresini girin.",
+        "unavailable": "Bu hediye çeki için posta teslimatı artık sunulmuyor. Dijital teslimatı seçin veya sayfayı yenileyin.",
+        "subtotal": "Hediye çeklerinin değeri",
+        "fee": "Posta ücreti"
+      }
+    },
+    "catalog": {
+      "loading": "Güncel teklifler yükleniyor…",
+      "error": "Güncel teklifler yüklenemedi.",
+      "retry": "Tekrar dene",
+      "empty": "Burada henüz yayınlanmış teklif yok.",
+      "book": "Rezervasyon için giriş yap",
+      "viewDates": "Uygun tarihleri görüntüle",
+      "viewDetails": "Bir tarih seç",
+      "continue": "Rezervasyona devam et",
+      "availability": {
+        "fullWaitlistOpen": "Dolu · bekleme listesi açık"
+      }
+    },
+    "details": {
+      "bookingMetadataTitle": "Bir stüdyo ziyareti seçin",
+      "bookingMetadataDescription": "Bir Açık Stüdyo seçeneği, konum, tarih ve saat seçin.",
+      "courseMetadataTitle": "Ders tarihleri",
+      "courseMetadataDescription": "Yayınlanmış ders tarihlerini görüntüleyin ve yerinizi seçin.",
+      "loading": "Güncel uygunluk yükleniyor…",
+      "error": "Güncel uygunluk yüklenemedi.",
+      "retry": "Tekrar dene",
+      "notFound": "Bu herkese açık teklif artık kullanılamıyor.",
+      "backToBook": "Stüdyo rezervasyonuna dön",
+      "backToCourses": "Derslere dön",
+      "bookingEyebrow": "Açık Stüdyo",
+      "courseEyebrow": "Ders",
+      "chooseVisit": "Ziyaretinizi seçin",
+      "chooseVisitDescription": "Bir konum ve tarih seçin. Uygunluk, ödeme öncesinde yeniden kontrol edilir.",
+      "chooseCourseSession": "Bir ders tarihi seçin",
+      "chooseCourseSessionDescription": "Yayınlanmış bir ders seansı ve katılacak kişi sayısını seçin.",
+      "location": "Konum",
+      "locationFallback": "Konum {number}",
+      "date": "Tarih",
+      "activity": "Planlanan etkinlik",
+      "activityChoose": "Bir etkinlik seçin",
+      "activityNotSpecified": "Belirli bir etkinlik yok",
+      "activityRequiredHint": "Bu konumda saat seçmeden önce bir etkinlik seçmeniz gerekir.",
+      "activityOptionalHint": "Bir etkinlik seçebilir veya belirtmeden devam edebilirsiniz.",
+      "activityUnavailable": "Bu konum için henüz bir müşteri etkinliği yapılandırılmadı.",
+      "chooseTime": "Bir saat seçin",
+      "noSlots": "Bu tarihte uygun saat yok.",
+      "noCourseSessions": "Bu ders için yayınlanmış yaklaşan seans yok.",
+      "remaining": "{count, plural, =0 {Dolu} one {# yer kaldı} other {# yer kaldı}}",
+      "continueInPortal": "Müşteri portalında devam et",
+      "signInToContinue": "Devam etmek için giriş yap",
+      "bookWithAccount": "Hesabımla rezervasyon yap",
+      "openWorkspace": "Stüdyo panosunu aç",
+      "preparingIntent": "Seçiminiz güvenceye alınıyor…",
+      "selectionChanged": "Bu saat artık uygun değil. Kullanılabilir seçenekleri yeniledik.",
+      "intentError": "Rezervasyonunuz hazırlanamadı. Lütfen tekrar deneyin.",
+      "orGuestCheckout": "veya misafir olarak devam edin",
+      "customerChoice": {
+        "mode": "Gizlilik ayarları",
+        "public": "Paylaşımlı",
+        "private": "Özel",
+        "publicFixedHelp": "Bu zaman dilimini grubunuz dahil toplam en fazla {count} kişi paylaşabilir. Stüdyo ve etkinlik kapasite sınırları geçerlidir.",
+        "publicActivityHelp": "Diğer müşteriler, etkinlik ve stüdyo kapasitesi dolana kadar katılabilir.",
+        "privateHelp": "Grubunuz için stüdyonun tamamını ayırtın. Rezervasyon başına bir defaya mahsus {amount} ek ücret uygulanır.",
+        "surcharge": "Özel rezervasyon ek ücreti",
+        "people": "Grubunuzdaki kişi sayısı"
+      },
+      "activityWorkstation": "Çalışma istasyonları",
+      "activitySharedTable": "Ortak masalar"
+    },
+    "guestCheckout": {
+      "title": "Misafir olarak devam edin",
+      "description": "Bu ders rezervasyonu için iletişim bilgilerinizi girin.",
+      "people": "Katılımcı sayısı",
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "E-posta",
+      "phone": "Telefon (isteğe bağlı)",
+      "terms": "Ders koşulları",
+      "acceptTerms": "Bu ders koşullarını okudum ve kabul ediyorum.",
+      "termsRequired": "Devam etmeden önce ders koşullarını kabul edin.",
+      "validationError": "İletişim bilgilerinizi kontrol edin.",
+      "checkoutError": "Ödeme başlatılamadı. Uygunluk değişmiş olabilir; lütfen tekrar deneyin.",
+      "signInRequired": "Güvenle devam etmek için lütfen bu e-posta adresiyle giriş yapın.",
+      "signIn": "Giriş yap ve devam et",
+      "starting": "Güvenli ödeme başlatılıyor…",
+      "continue": "Güvenli ödemeye devam et",
+      "serverValidation": "Fiyat, kapasite ve ders uygunluğu ödeme öncesinde güvenle doğrulanır.",
+      "totalLabel": "{count} katılımcı için toplam",
+      "attemptExpired": "Bu ödeme oturumunun süresi doldu. Müsaitliği kontrol etmek ve yeni bir ödeme başlatmak için tekrar devam edin.",
+      "voucherCode": "Hediye çeki kodu (isteğe bağlı)",
+      "checkVoucher": "Çeki kontrol et",
+      "checkingVoucher": "Kontrol ediliyor…",
+      "voucherHelp": "Onaylamadan önce indirimi kontrol edin. Kontrol işlemi hediye çekinizi harcamaz.",
+      "voucherDiscount": "Hediye çeki indirimi",
+      "remainingToPay": "Kalan ödeme",
+      "voucherCoversAll": "Hediye çeki ücretin tamamını karşılıyor. Çeki kullanmak ve yerlerinizi ayırtmak için onaylayın.",
+      "voucherPartial": "Hediye çekini ayırmak ve kalan tutarı kartla ödemek için onaylayın.",
+      "confirmWithVoucher": "Hediye çekiyle rezervasyonu onayla",
+      "voucherError": "Bu hediye çeki bu rezervasyon için kullanılamıyor. Kodu kontrol edin veya stüdyoyla iletişime geçin.",
+      "voucherReviewRequired": "Onaylamadan önce hediye çekini ve fiyatı kontrol edin.",
+      "voucherRateLimited": "Çok fazla deneme yapıldı. Biraz bekleyip tekrar deneyin.",
+      "voucherChanged": "Fiyat veya hediye çeki bakiyesi değişti. Onaylamadan önce çeki yeniden kontrol edin."
+    },
+    "guestCheckoutResult": {
+      "verifyingLabel": "Ödeme doğrulanıyor",
+      "confirmedLabel": "Ödeme onaylandı",
+      "unconfirmedLabel": "Ödeme onaylanamadı",
+      "verifyingTitle": "Rezervasyonunuzu tamamlıyoruz",
+      "confirmedTitle": "Rezervasyonunuz için teşekkürler",
+      "unconfirmedTitle": "Rezervasyonunuz henüz onaylanmadı",
+      "verifyingDescription": "Ödeme sağlayıcısından onay bekliyoruz. Bu sayfayı açık bırakabilirsiniz.",
+      "confirmedDescription": "Ödemeniz ve rezervasyonunuz onaylandı. Rezervasyon ayrıntılarını e-postayla göndereceğiz.",
+      "unconfirmedDescription": "Bu rezervasyonu doğrulayamadık. Başka bir ödeme denemeden önce e-postanızı kontrol edin veya aşağıdaki sipariş referansıyla stüdyoya başvurun.",
+      "emailPending": "Rezervasyon onaylandığında size e-posta göndereceğiz.",
+      "emailConfirmed": "Lütfen spam klasörünüzü de kontrol edin.",
+      "orderReference": "Sipariş referansı",
+      "backToStudio": "Stüdyoya dön",
+      "backToCourse": "Kursa dön",
+      "retry": "Tekrar kontrol et",
+      "cancelledTitle": "Ödeme sayfası kapatıldı",
+      "cancelledDescription": "Bu sayfa ödeme veya rezervasyon onayı değildir. Başka bir ödeme başlatmadan önce e-postanızı kontrol edin."
+    }
+  },
+  "VoucherEditor": {
+    "colors": {
+      "mainTitle": "Ana başlık",
+      "useTextColor": "Metin rengini kullan"
+    },
+    "description": "İki eşit yarı: solda metniniz ve hediye çeki kodu, sağda fotoğrafınız.",
+    "assets": {
+      "image": "Sağ yarıdaki fotoğraf",
+      "imageHelp": "Fotoğrafınız sağ yarıyı yukarıdan aşağıya doldurur. Paneli doldur kenarları kırpar; Fotoğrafın tamamını göster tüm görüntüyü çevresinde boşluk bırakarak korur.",
+      "imageFormats": "JPEG, PNG veya WebP · en fazla 8 MB. Kırpmayı canlı önizlemede kontrol edin.",
+      "uploadImage": "Fotoğraf yükle",
+      "replaceImage": "Fotoğrafı değiştir",
+      "cover": "Paneli doldur (kenarları kırp)",
+      "contain": "Fotoğrafın tamamını göster",
+      "fit": "Fotoğraf yerleşimi"
+    },
+    "preview": {
+      "automatic": "Benzersiz kod ve son kullanma tarihi sola eklenir. Tutar basılmaz; hediye çekinin kullanılabilir değeri değişmez. Bu önizleme ve örnek PDF, örnek bilgiler kullanır."
+    }
+  },
+  "WorkspaceModules": {
+    "modules": {
+      "communications": {
+        "description": "E-posta geçmişi, otomasyonlar, şablonlar ve e-posta ayarları."
+      }
+    }
+  },
+  "PublicSiteEditor": {
+    "customerPortal": {
+      "pageLabels": {
+        "courses": "Kurslar"
+      },
+      "navigationLabels": {
+        "courses": "Kurslar"
+      },
+      "courses": {
+        "title": "Her atölyedeki kurslar",
+        "description": "Her konum için kurs sayfasının başlığını, giriş metnini ve fotoğrafını ayrı ayrı özelleştir.",
+        "location": "Atölye konumu",
+        "headline": "Kurs sayfası başlığı",
+        "intro": "Kurs sayfası giriş metni",
+        "image": "Kurs sayfası fotoğrafı",
+        "inherit": "Boş alanlarda ortak kurs sayfası metni ve markanın kapak fotoğrafı kullanılır.",
+        "noLocations": "Kurs sayfasını özelleştirmek için bir atölye konumu ekle.",
+        "guestCheckoutEnabled": "Hesap olmadan kurs satın almaya izin ver",
+        "guestCheckoutDescription": "Tüm stüdyolar için geçerlidir. Misafirler hesap oluşturmadan kurs satın alabilir; müşteriler rezervasyon için giriş yapmaya devam edebilir. Kurs sayfalarının görünür ve çevrimiçi ödemelerin hazır olması gerekir. Bu ayarı uygulamak için değişiklikleri yayımlayın."
+      }
+    },
+    "preview": {
+      "pages": {
+        "portalCourses": "Müşteri portalı kursları"
+      }
+    },
+    "branding": {
+      "logoRedirectEnabled": "Logoyu bağlantı olarak kullan",
+      "logoRedirectHint": "Etkinleştirildiğinde logoya tıklamak seçtiğiniz sayfayı açar. Devre dışıyken tıklamanın bir etkisi olmaz.",
+      "logoRedirectUrl": "Logonun hedef adresi",
+      "logoRedirectUrlHint": "Tam bir HTTPS adresi veya / ile başlayan bir yol kullanın. Sayfa aynı sekmede açılır.",
+      "invalidLogoRedirectUrl": "Geçerli bir HTTPS adresi veya / ile başlayan bir yol girin."
+    },
+    "messages": {
+      "invalidLogoRedirectUrl": "Kaydetmeden veya yayımlamadan önce logonun hedef adresini düzeltin."
+    }
+  },
+  "Products": {
+    "form": {
+      "courseContent": {
+        "title": "Kurs sayfası içeriği",
+        "help": "Müşteri portalının kurs sayfası için isteğe bağlı metin ve fotoğraflar. Boş alanlarda ürünün ana içeriği kullanılır.",
+        "language": "İçerik dili",
+        "name": "Kurs başlığı",
+        "description": "Kısa açıklama",
+        "details": "Kurs ayrıntıları",
+        "durationLabel": "Süre açıklaması",
+        "plainTextHelp": "Düz metin kullan. Satır sonları korunur.",
+        "gallery": "Kurs fotoğraf galerisi",
+        "galleryHelp": "En fazla 12 HTTPS görsel adresi veya siteye göreli görsel yolu ekle. Galeri boşsa ürün görseli kullanılır.",
+        "imageUrl": "Yeni galeri görselinin adresi",
+        "addImage": "Görsel ekle",
+        "useProductImage": "Mevcut ürün görselini kullan",
+        "imageLabel": "Galeri görseli {number}",
+        "moveEarlier": "{number}. görseli öne taşı",
+        "moveLater": "{number}. görseli arkaya taşı",
+        "removeImage": "{number}. görseli kaldır",
+        "invalidImage": "Geçerli bir HTTPS görsel adresi veya siteye göreli yol gir (en fazla 2.000 karakter).",
+        "invalidText": "Kurs metnini kontrol et: alan sınırları içinde düz metin kullan.",
+        "galleryLimit": "Galeriye en fazla 12 görsel ekleyebilirsin.",
+        "locations": "Bu atölyelerde mevcut",
+        "locationsHelp": "Kursu tüm atölyelerde göstermek için seçimi boş bırak. Tarihler her zaman seçilen atölyeye göre gösterilir."
+      }
+    }
+  },
+  "CustomerCourses": {
+    "eyebrow": "Atölyende üret",
+    "title": "Kurslar",
+    "description": "Kursları keşfet, bir tarih seç ve yerini ayırt.",
+    "location": "Atölye konumu",
+    "allCategories": "Tüm kurslar",
+    "search": "Kurs ara",
+    "noResults": "Aramana uygun kurs bulunamadı.",
+    "noCourses": "Bu atölyede henüz kurs bulunmuyor.",
+    "loading": "Kurslar yükleniyor…",
+    "error": "Kurslar yüklenemedi.",
+    "retry": "Tekrar dene",
+    "details": "Kurs ayrıntıları",
+    "chooseDate": "Tarih seç",
+    "upcomingDates": "Yaklaşan tarihler",
+    "noDates": "Yeni tarihler yakında duyurulacak.",
+    "pricePerPerson": "Kişi başı fiyat",
+    "duration": "Süre",
+    "durationMinutes": "{count} dk.",
+    "capacity": "Grup büyüklüğü",
+    "capacityPeople": "En fazla {count} kişi",
+    "back": "Kurslara dön",
+    "people": "Kişi sayısı",
+    "addToCart": "Sepete ekle",
+    "inCart": "Sepetinde",
+    "viewCart": "Sepeti görüntüle",
+    "unavailable": "Bu kurs seçilen atölyede mevcut değil.",
+    "selectDate": "Devam etmek için uygun bir tarih seç.",
+    "giftVoucher": "Hediye çeki ver",
+    "previousImage": "Önceki görsel",
+    "nextImage": "Sonraki görsel",
+    "openGallery": "{name} için galeriyi aç",
+    "closeGallery": "Galeriyi kapat",
+    "imagePosition": "Görsel {current} / {total}",
+    "placesLeft": "Kalan yer: {count}",
+    "full": "Kontenjan dolu",
+    "date": "Tarih",
+    "added": "Kurs sepetine eklendi.",
+    "checkoutPaused": "Rezervasyon şu anda kullanılamıyor. Kursları incelemeye devam edebilirsin."
+  },
+  "Sales": {
+    "paymentMethods": {
+      "unknown": "Kaydedilmemiş"
+    }
+  },
+  "VoucherShopping": {
+    "buy": "Hediye çeki satın al",
+    "manage": "Hediye çeklerimi kullan veya görüntüle",
+    "chooseTitle": "Hediyenizi seçin",
+    "chooseDescription": "Bir hediye çeki ve adet seçin. Satın almak için hesap gerekmez.",
+    "deliveryTitle": "Hediye çekinizi alın",
+    "deliveryDescription": "Ödeme sonrasında PDF hediye çekiniz belirttiğiniz e-posta adresine gönderilir.",
+    "redeemTitle": "Atölye ziyaretinizi planlayın",
+    "redeemDescription": "Hediye alan kişi bir tarih seçer ve ödeme sırasında hediye çeki kodunu kullanır. Hediye çeki satın almak kursta yer ayırtmaz.",
+    "selection": "Hediye çeki seç",
+    "selected": "Seçildi"
+  },
+  "BookingActions": {
+    "title": "Rezervasyonu düzenle",
+    "details": "Rezervasyon ayrıntıları",
+    "chooseAction": "Ne yapmak istersiniz?",
+    "extend": "Uzat",
+    "move": "Taşı",
+    "cancel": "İptal et",
+    "extendTitle": "Rezervasyonu uzat",
+    "moveTitle": "Rezervasyonu taşı",
+    "cancelTitle": "Rezervasyonu iptal et",
+    "extendHelp": "Rezervasyonunuzu koruyup sonuna süre ekleyin. Katılımcılar, etkinlik ve gizlilik ayarı aynı kalır. Yalnızca eklenen süre için ödeme yaparsınız.",
+    "extraTime": "Ne kadar daha uzun?",
+    "minutes": "+{minutes} dk",
+    "endsAt": "Bitiş saati: {time}",
+    "loading": "Uygun saatler kontrol ediliyor…",
+    "retry": "Tekrar dene",
+    "quoteError": "Uzatma seçeneklerini kontrol edemedik. Lütfen tekrar deneyin.",
+    "paymentMethod": "Ödeme yöntemi",
+    "card": "Ödeme kartı",
+    "credits": "Stüdyo kredileri",
+    "payExtend": "Rezervasyonu uzat · {amount}",
+    "processing": "İşleniyor…",
+    "extensionError": "Bu uzatmayı onaylayamadık. Tekrar denemeden önce rezervasyonunuzu kontrol edin.",
+    "quoteChanged": "Rezervasyon veya fiyat değişti. Onaylamadan önce güncellenen seçenekleri inceleyin.",
+    "currentTariff": "Orijinal saatlik ücret mevcut değil. Eklenen süre için stüdyonun güncel ücreti uygulanır.",
+    "cardTimeLimit": "Rezervasyonunuz yakında bitiyorsa stüdyo kredilerini kullanın. Kartla ödemeyi tamamlamak için yeterli süre yok.",
+    "reasons": {
+      "unavailable": "Bu ek süre uygun değil.",
+      "private": "Bu zaman aralığında başka bir özel rezervasyon başlıyor.",
+      "capacity": "Stüdyoda veya etkinlikte yeterli kapasite yok.",
+      "closed": "Bu uzatma stüdyonun çalışma saatlerini aşıyor.",
+      "duration": "Bu, izin verilen en uzun rezervasyon süresini aşıyor.",
+      "pending": "Zaten bekleyen bir uzatma ödemesi var. Tekrar denemeden önce bu ödemeyi tamamlayın veya iptal edin."
+    },
+    "moveHelp": "Yeni bir başlangıç saati seçin. {minutes} dakikalık süre, stüdyo, etkinlik ve katılımcılar aynı kalır.",
+    "newDate": "Yeni tarih",
+    "startTime": "Başlangıç saati",
+    "availableTimes": "Uygun başlangıç saatleri",
+    "manualTime": "Bir başlangıç saati girin. Uygunluk, onaydan önce kontrol edilir.",
+    "confirmMove": "Yeni saati onayla",
+    "moveInvalid": "Lütfen geçerli bir tarih ve saat seçin.",
+    "moveError": "Bu saat artık uygun değil. Lütfen başka bir saat seçin.",
+    "readonly": "Bu rezervasyonun saati artık değiştirilemez.",
+    "courseReadonly": "Kurs kayıtları planlanmış bir derse bağlı olduğundan portalda yalnızca görüntülenebilir. Değişiklik veya iptal için stüdyoyla iletişime geçin.",
+    "accessLocked": "Giriş kodu oluşturulmuş veya gönderiliyor olduğundan taşıma ve iptal artık mümkün değil.",
+    "refundHelp": "İptal geri alınamaz. Ödenen tutar stüdyo kredisi olarak iade edilir; üyelik kredisiyle ödeme yapıldıysa bu kredi geri yüklenir. İptal yalnızca giriş kodu oluşturulmadan önce yapılabilir.",
+    "cancelQuestion": "Bu rezervasyon iptal edilsin mi?",
+    "confirmCancel": "Evet, iptal et",
+    "keepBooking": "Rezervasyonu koru",
+    "cancelling": "İptal ediliyor…",
+    "cancelError": "Rezervasyon iptal edilemedi. Lütfen tekrar deneyin.",
+    "cancelledTitle": "Rezervasyon iptal edildi",
+    "cancelledBody": "Rezervasyonunuz iptal edildi ve iadeniz yapıldı.",
+    "movedTitle": "Rezervasyon taşındı",
+    "movedBody": "Yeni rezervasyon saatiniz onaylandı.",
+    "extendedTitle": "Rezervasyon uzatıldı",
+    "extendedBody": "Rezervasyonunuz artık saat {time} itibarıyla bitiyor. Size e-postayla onay göndereceğiz.",
+    "arrival": "Varış bilgileri",
+    "accessCode": "Giriş kodunuz rezervasyondan {minutes} dakika önce e-postayla gönderilir.",
+    "cancelPayment": "Uzatma ödemesini iptal et"
+  },
+  "EmailAutomations": {
+    "history": {
+      "types": {
+        "afterBookingCreated": "Rezervasyon onayı"
+      },
+      "pagination": {
+        "label": "E-posta teslimat geçmişi sayfaları",
+        "previous": "Önceki",
+        "next": "Sonraki",
+        "showing": "{total} e-posta teslimatından {from}–{to} arası gösteriliyor",
+        "newestFirst": "En yeniler önce · Sayfa başına 20"
+      }
+    }
+  },
+  "TeamSettings": {
+    "actions": {
+      "add": "Ekip üyesi davet et"
+    },
+    "editor": {
+      "addTitle": "Ekip üyesi davet et",
+      "email": "E-posta adresi",
+      "existingUserHint": "E-posta ile davet alacak. Yeni üyeler hesap oluşturabilir."
+    },
+    "empty": {
+      "description": "E-posta ile davet edin, rolünü ve konumlarını seçin."
+    },
+    "invitations": {
+      "title": "Davetler",
+      "description": "Erişim, alıcı daveti kabul ettikten sonra başlar.",
+      "empty": "Bekleyen davet yok.",
+      "resend": "Yeniden gönder",
+      "revoke": "İptal et",
+      "revokeConfirm": "{email} daveti iptal edilsin mi?",
+      "revoked": "Davet iptal edildi.",
+      "expires": "Son geçerlilik: {date}",
+      "signInLink": "Giriş bağlantısı",
+      "sendSignIn": "Giriş bağlantısı gönder",
+      "send": "Davet gönder",
+      "statuses": {
+        "pending": "Bekliyor",
+        "expired": "Süresi doldu"
+      },
+      "delivery": {
+        "pending": "E-posta bekliyor",
+        "sent": "E-posta gönderildi",
+        "failed": "Gönderim başarısız"
+      },
+      "notices": {
+        "pending": "{email} için davet kaydedildi. E-posta gönderilmeyi bekliyor.",
+        "sent": "Davet {email} adresine gönderildi.",
+        "failed": "{email} için davet kaydedildi, ancak e-posta gönderilmedi. Yeniden gönderin."
+      },
+      "errors": {
+        "resend": "Davet yeniden gönderilemedi.",
+        "revoke": "Davet iptal edilemedi.",
+        "send": "Giriş bağlantısı gönderilemedi.",
+        "resendTooSoon": "Bu daveti yeniden göndermeden önce bir dakika bekleyin.",
+        "rateLimited": "Çok fazla davet. Tekrar denemeden önce 15 dakika bekleyin."
+      }
+    }
+  },
+  "TeamInvitation": {
+    "title": "Ekibe katıl",
+    "signInTitle": "Çalışma alanına giriş yap",
+    "description": "{email} için {tenant} daveti.",
+    "newAccount": "Daveti kabul etmek için hesabınızı oluşturun.",
+    "existingAccount": "Mevcut hesap şifrenizi girin. Şifreniz değiştirilmeyecek.",
+    "resetRequired": "Hesap kurtarma ile şifre belirleyin, ardından bu davete dönün.",
+    "resetPassword": "Şifreyi sıfırla (yeni sekmede açılır)",
+    "accepted": "Davet kabul edildi. Devam etmek için giriş yapın.",
+    "loginRetry": "Erişiminiz hazır, ancak giriş başarısız oldu. Tekrar giriş yapmayı deneyin.",
+    "accept": "Daveti kabul et",
+    "signIn": "Giriş yap",
+    "working": "Lütfen bekleyin…",
+    "unavailableTitle": "Davet kullanılamıyor",
+    "unavailable": "Davet geçersiz, süresi dolmuş, iptal edilmiş veya yüklenememiş olabilir. Gerekirse sahibinden yeni bir davet isteyin.",
+    "retry": "Tekrar dene",
+    "loading": "Davet yükleniyor…",
+    "acceptError": "Davet kabul edilemedi. Bilgilerinizi kontrol edin veya yeni bir davet isteyin.",
+    "passwordReady": "Şifremi belirledim"
+  },
+  "Memberships": {
+    "planChange": {
+      "browse": "Planları inceleyin ve karşılaştırın",
+      "currentPlan": "Mevcut planınız",
+      "scheduledPlan": "Geçiş yapılacak plan",
+      "choose": "Bir sonraki yenilemede değiştir",
+      "title": "Üyeliğinizi değiştirin",
+      "description": "Mevcut fiyatınız, saatleriniz ve avantajlarınız {date} tarihine kadar değişmeden kalır.",
+      "renewal": "{date} tarihinden itibaren {plan} planı {price} fiyatıyla yenilenecektir.",
+      "confirm": "Plan değişikliğini zamanla",
+      "cancel": "Mevcut planı koru",
+      "pendingTitle": "Plan değişikliği zamanlandı",
+      "pendingDescription": "Üyeliğiniz {date} tarihinde {plan} planına geçecektir. Mevcut ödenmiş döneminiz değişmeden kalır.",
+      "cancelChange": "Plan değişikliğini iptal et",
+      "cancelConfirm": "Zamanlanan plan değişikliği iptal edilsin mi? Mevcut planınız eskisi gibi yenilenmeye devam edecektir.",
+      "cancelTitle": "Mevcut üyeliğinizi koruyun",
+      "cancelConfirmAction": "Zamanlanan değişikliği iptal et",
+      "success": "Plan değişikliğiniz zamanlandı.",
+      "cancelled": "Zamanlanan plan değişikliğiniz iptal edildi.",
+      "error": "Zamanlanan plan değişikliğinizi güncelleyemedik. Sayfayı yenileyip tekrar deneyin.",
+      "unavailable": "Planları burada karşılaştırabilirsiniz. Plan değişikliği, iptal veya plan değişikliği henüz zamanlanmamış aktif aylık üyelikler için kullanılabilir.",
+      "loading": "Mevcut üyeliğiniz kontrol ediliyor…",
+      "loadError": "Mevcut üyeliğinizi kontrol edemedik. Plan seçmeden önce sayfayı yenileyin.",
+      "manage": "Üyeliğinizi yönetin",
+      "noImmediateCharge": "Şimdi ödeme alınmaz. Yeni aylık fiyat bir sonraki yenilemenizde geçerli olur.",
+      "termsRequired": "Değişikliği zamanlamadan önce yeni planın üyelik koşullarını kabul edin.",
+      "processing": "Zamanlanan plan değişikliğiniz güncelleniyor…",
+      "cancelBeforeMembership": "Üyeliğinizi sonlandırmak istiyorsanız önce zamanlanan plan değişikliğini iptal edin."
+    },
+    "owner": {
+      "planForm": {
+        "benefitTypes": {
+          "studio_hours": {
+            "title": "Kişisel Open Studio saatleri",
+            "description": "Yalnızca üye için ön ödemeli Open Studio süresi; uygun stüdyolarda ortak kullanılır.",
+            "editorHint": "Yalnızca üye için ön ödemeli Open Studio süresi; uygun stüdyolarda ortak kullanılır."
+          },
+          "course_discount": {
+            "title": "Kişisel kurs indirimi",
+            "description": "Üyenin bir kurs yeri için indirim; diğer katılımcılar normal fiyat öder.",
+            "editorHint": "Üyenin bir kurs yeri için indirim; diğer katılımcılar normal fiyat öder."
+          }
+        },
+        "benefitDefaults": {
+          "studio_hours": "Kişisel Open Studio saatleri",
+          "course_discount": "Kişisel kurs indirimi"
+        },
+        "sharedSelectedLocations": "Seçili konumlarda ortak bakiye",
+        "hourQuantity": "Ödenen dönem başına saat",
+        "hoursValidation": "Tam dakikalara karşılık gelen pozitif saat girin (örneğin 4,5 saat).",
+        "rolloverPercent": "Devir sınırı (%)",
+        "rolloverHint": "Normal aylık hakkın %0–25’i yalnızca sonraki ödenen aya devredilebilir. Diğer dönemler için 0 seçin.",
+        "eligibleCourses": "Uygun kurslar",
+        "eligibleCoursesHint": "Seçim yapılmazsa tüm kurslar, aksi hâlde yalnızca seçilenler dahildir. İndirim yalnızca üyenin kendi yeri için geçerlidir.",
+        "oneProductDiscount": "Her plan için tek bir ürün indirimi veya kişisel kurs indirimi seçin.",
+        "translationsHint": "Üyelik adlarını, açıklamalarını, koşullarını ve avantaj etiketlerini stüdyonuzun dillerinde yazın. Boş çeviriler için birincil dildeki metin kullanılır.",
+        "primaryCurrencyHint": "Müşteriler stüdyonuzun birincil para birimiyle ödeme yapar ({currency}).",
+        "legacyBenefit": {
+          "preserved": "Avantaj ayarları korunur; metni düzenlenebilir."
+        }
+      }
+    },
+    "benefits": {
+      "benefitValues": {
+        "studioHours": "Ödenen dönem başına {duration} Open Studio süresi, yalnızca sizin için.",
+        "rollover": "Normal aylık saatlerin en fazla %{percentage} kadarı yalnızca sonraki ödenen aya devredilebilir.",
+        "personalCourseDiscount": "Uygun kurslarda yalnızca sizin yeriniz için %{percentage} indirim. Diğer katılımcılar tam fiyat öder."
+      },
+      "timeTrackingNotice": "Saatler kendi Open Studio ziyaretlerinizi karşılar. Refakatçiler için ayrı rezervasyon yapın veya tüm rezervasyonu normal şekilde ödeyin. Devredilen saatler önce kullanılır ve sonraki ödenen dönemin sonunda sona erer.",
+      "sharedLocations": "Ortak bakiye: {locations}",
+      "currentPeriod": "Mevcut dönemden kalan",
+      "carryover": "Devredilen saatlerden kalan",
+      "carryoverExpires": "Devir son kullanma tarihi",
+      "adjustMinutes": "Dakika cinsinden düzeltme"
+    },
+    "catalog": {
+      "recurringMonthDisclosure": "İptal edene kadar her {count, plural, one {ay} other {# ay}} {amount} tutarında otomatik yenilenir. İptal, ödenen dönemin sonunda geçerli olur.",
+      "recurringYearDisclosure": "İptal edene kadar her {count, plural, one {yıl} other {# yıl}} {amount} tutarında otomatik yenilenir. İptal, ödenen dönemin sonunda geçerli olur."
+    }
+  },
+  "SetupCenter": {
+    "practice": {
+      "manual": {
+        "title": "Manuel onay",
+        "description": "Bir rezervasyonu zaten test ettiniz mi? Sonucu buradan onaylayın.",
+        "checkbox": "Test rezervasyonunun başarılı olduğunu onaylıyorum",
+        "confirm": "Kontrolü onayla",
+        "saving": "Kaydediliyor…",
+        "confirmed": "{date} tarihinde manuel olarak onaylandı.",
+        "stale": "Onayınızdan bu yana ayarlar değişti. Rezervasyonu yeniden test edin, ardından sonucu onaylayın.",
+        "undo": "Onayı kaldır",
+        "error": "Onay kaydedilemedi. Tekrar deneyin.",
+        "undoError": "Onay kaldırılamadı. Tekrar deneyin.",
+        "configurationChanged": "Kontrolünüz sırasında ayarlar değişti. Güncel ayarları inceleyin, ardından rezervasyonu yeniden onaylayın.",
+        "note": "Bu işlem kendi kontrolünüzü kaydeder. Rezervasyon oluşturmaz, ödeme almaz veya mesaj göndermez."
+      }
+    },
+    "readiness": {
+      "items": {
+        "customerJourney": {
+          "descriptions": {
+            "manual": "Başarılı bir test rezervasyonunu manuel olarak onayladınız.",
+            "retest": "Ayarlar değişti. Bir rezervasyonu yeniden kontrol edin ve sonucu onaylayın.",
+            "action_required": "Bir rezervasyonu kontrol edin ve sonucu onaylayın.",
+            "waiting": "Bir rezervasyonu kontrol etmeden önce önceki kullanıma alma kontrollerini tamamlayın."
+          }
+        }
+      }
+    }
+  },
+  "SharioMarketing": {
+    "hero": {
+      "eyebrow": "Good spaces bring people together",
+      "title": "Your space.",
+      "highlight": "More possibilities.",
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
+      "cta": "Start free trial",
+      "secondary": "Explore Shario",
+      "note": "14-day trial · No credit card required",
+      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
+      "cardTitle": "A little less admin. A lot more connection.",
+      "cardText": "Make room for the people who make your space."
+    },
+    "features": {
+      "eyebrow": "One place for the everyday",
+      "title": "More time for your people.",
+      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "bookings": {
+        "title": "Bookings made simple",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+      },
+      "memberships": {
+        "title": "Memberships that fit",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+      },
+      "website": {
+        "title": "A website that’s yours",
+        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+      },
+      "payments": {
+        "title": "Payments in one place",
+        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+      },
+      "resources": {
+        "title": "Every space, organized",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+      },
+      "communication": {
+        "title": "Keep everyone connected",
+        "description": "Send updates, booking reminders and useful automated messages to your community."
+      },
+      "team": {
+        "title": "A team in sync",
+        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+      },
+      "insights": {
+        "title": "A clearer view",
+        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+      }
+    },
+    "website": {
+      "eyebrow": "Your space. Your identity.",
+      "title": "Your community starts with a warm welcome.",
+      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
+      "one": "Choose your colors, fonts and page layout",
+      "two": "Connect your offers, calendar and customer account",
+      "three": "Use a custom domain on eligible plans",
+      "cta": "Explore your website tools",
+      "example": "Example space website",
+      "spaceName": "Common Ground",
+      "nav": "Our space   ·   Memberships",
+      "previewEyebrow": "A place to belong",
+      "previewTitle": "Good work. Great company.",
+      "previewCta": "Explore our space",
+      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+    },
+    "spaces": {
+      "eyebrow": "For spaces that bring us together",
+      "title": "Different spaces. Shared possibilities.",
+      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
+      "cta": "Make room for your community",
+      "coworking": {
+        "title": "Coworking spaces",
+        "description": "Desks, meeting rooms and memberships for flexible working days."
+      },
+      "creative": {
+        "title": "Creative studios",
+        "description": "Shared equipment, workshops and room for your next idea."
+      },
+      "rehearsal": {
+        "title": "Rehearsal spaces",
+        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+      },
+      "community": {
+        "title": "Community hubs",
+        "description": "Events, memberships and shared places for local connections."
+      },
+      "workshops": {
+        "title": "Workshops & classes",
+        "description": "Classes, instructors, ticketed events and returning participants."
+      }
+    },
+    "faq": {
+      "eyebrow": "A few good questions",
+      "title": "Let’s make it simple.",
+      "one": {
+        "question": "What can I manage with Shario?",
+        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+      },
+      "two": {
+        "question": "Can I use my own branding?",
+        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+      },
+      "three": {
+        "question": "Can my customers book and manage their memberships?",
+        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+      },
+      "four": {
+        "question": "How do I get started?",
+        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+      }
+    },
+    "closing": {
+      "title": "Make room for more.",
+      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
+      "secondary": "Explore plans"
+    },
+    "product": {
+      "eyebrow": "Meet your everyday toolkit",
+      "title": "Everything your space needs, working together.",
+      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
+      "panelEyebrow": "Your connected workspace",
+      "panelTitle": "One place to bring it all together",
+      "solutions": "Find your kind of space"
+    },
+    "access": {
+      "eyebrow": "More freedom for your members",
+      "title": "Let your space work around your people.",
+      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+    },
+    "ai": {
+      "eyebrow": "Meet Shario AI",
+      "title": "A helping hand for everyday work.",
+      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
+      "panelEyebrow": "Connected to your workspace",
+      "panelTitle": "Helpful context. Clear next steps.",
+      "context": {
+        "title": "Context that counts",
+        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+      },
+      "drafts": {
+        "title": "A useful first draft",
+        "description": "Prepare customer messages, website copy and ideas for your next event."
+      },
+      "control": {
+        "title": "You stay in control",
+        "heading": "Your assistant. Your decisions.",
+        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+      }
+    },
+    "footer": {
+      "tagline": "Make room for more.",
+      "product": "Product",
+      "overview": "Explore Shario",
+      "ai": "Shario AI",
+      "pricing": "Pricing",
+      "spaces": "For your space",
+      "company": "Get started",
+      "about": "How it works",
+      "login": "Log in",
+      "register": "Start free trial",
+      "copyright": "© {year} Shario. All rights reserved."
+    }
+  }
+}

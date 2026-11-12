@@ -1,0 +1,2539 @@
+{
+  "Bookings": {
+    "filters": {
+      "futureOnly": "Mostrar apenas reservas em curso e futuras"
+    },
+    "columns": {
+      "dateTime": "Data e hora",
+      "status": "Estado",
+      "payment": "Pagamento"
+    },
+    "status": {
+      "confirmed": "Confirmada",
+      "pending": "Pendente",
+      "awaitingPayment": "A aguardar pagamento",
+      "processed": "A aguardar entrega",
+      "delivered": "Entregue",
+      "completed": "Concluída",
+      "cancelled": "Cancelada"
+    },
+    "payment": {
+      "paid": "Pago",
+      "pending": "Pendente",
+      "failed": "Falhou",
+      "expired": "Expirado",
+      "refunded": "Reembolsado"
+    }
+  },
+  "CustomerBookingDetails": {
+    "title": "Detalhes da reserva",
+    "loading": "A carregar os detalhes da reserva…",
+    "error": "Não foi possível carregar esta reserva. Por favor, tenta novamente."
+  },
+  "Calendar": {
+    "filters": {
+      "filterActivities": "Filtrar atividades",
+      "openLegend": "Abrir legenda",
+      "closeLegend": "Fechar legenda",
+      "activity": "Atividade",
+      "allActivities": "Todas as atividades"
+    },
+    "events": {
+      "myBooking": "A minha reserva",
+      "bookingPrivate": "Privada",
+      "bookingPublic": "Pública",
+      "full": "Esgotado",
+      "people": "{count, plural, one {# pessoa} other {# pessoas}}",
+      "customerId": "Cliente #{id}",
+      "customerIds": "Clientes {ids}",
+      "unknownCustomer": "ID de cliente indisponível",
+      "booking": "Reserva",
+      "availability": "{remaining, plural, =0 {Esgotado} one {# lugar disponível} other {# lugares disponíveis}}",
+      "closed": "Fechado",
+      "unavailable": "Ateliê indisponível"
+    },
+    "week": {
+      "privacyNote": "O roxo assinala as reservas privadas e o turquesa as públicas. As suas reservas têm uma etiqueta azul."
+    },
+    "legend": {
+      "blocked": "Estúdio bloqueado"
+    },
+    "availability": {
+      "available": "Disponível",
+      "limited": "Poucos lugares",
+      "select": "Selecionar esta hora",
+      "insufficientTime": "Não há tempo consecutivo suficiente para uma reserva de {minutes} minutos."
+    },
+    "month": {
+      "selectedDay": "Reservas para {date}",
+      "ownBookingCount": "As suas reservas: {count}",
+      "noBookings": "Não há reservas para este dia.",
+      "findTime": "Encontrar uma hora",
+      "viewDay": "Ver dia",
+      "past": "Passado",
+      "bookingCount": "{count, plural, one {# reserva} other {# reservas}}"
+    },
+    "day": {
+      "places": "{count} lugares"
+    },
+    "toolbar": {
+      "newBooking": "Nova reserva"
+    },
+    "activities": {
+      "WORKSTATION": "Postos de trabalho",
+      "SHARED_TABLE": "Mesas partilhadas",
+      "GENERAL": "Capacidade geral"
+    }
+  },
+  "Metadata": {
+    "homeTitle": "Your space. More possibilities.",
+    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+  },
+  "Common": {
+    "skipToContent": "Saltar para o conteúdo",
+    "learnMore": "Saber mais",
+    "viewAll": "Ver tudo",
+    "back": "Voltar",
+    "next": "Seguinte",
+    "close": "Fechar",
+    "optional": "Opcional"
+  },
+  "Dashboard": {
+    "sidebarLabel": "Gestão do estúdio",
+    "settingsNavigationLabel": "Definições do espaço de trabalho",
+    "utilityNavigationLabel": "Configuração e definições do estúdio",
+    "expandGroup": "Expandir {group}",
+    "collapseGroup": "Recolher {group}",
+    "expandSidebar": "Expandir navegação do estúdio",
+    "collapseSidebar": "Recolher navegação do estúdio",
+    "skipToContent": "Saltar para o conteúdo do estúdio",
+    "changeStudio": "Mudar de estúdio",
+    "plan": "Plano {plan}",
+    "plans": {
+      "starter": "Starter",
+      "professional": "Professional",
+      "studio_plus": "Space Plus",
+      "enterprise": "Enterprise"
+    },
+    "mobileStudioHint": "Mude de estúdio ou gira o espaço de trabalho nas Definições.",
+    "openNavigation": "Abrir navegação do painel",
+    "closeNavigation": "Fechar navegação do painel",
+    "greeting": "Olá, {name}",
+    "greetingMorning": "Bom dia, {name}",
+    "greetingAfternoon": "Boa tarde, {name}",
+    "greetingEvening": "Boa noite, {name}",
+    "subheading": "Veja o que está a acontecer hoje no seu estúdio.",
+    "setupCenter": "Launch Center",
+    "openSetupCenter": "Abrir Launch Center",
+    "launchCenterRequiredProgress": "{completed} de {total} itens da lista de lançamento concluídos",
+    "continueSetup": "Continuar lançamento · {percentage}%",
+    "continueSetupLabel": "Continuar o lançamento do estúdio, {percentage}% concluído",
+    "notifications": "Abrir notificações",
+    "notificationsUnread": "Abrir notificações, {count, plural, one {# notificação não lida} other {# notificações não lidas}}",
+    "openAccount": "Abrir menu da conta",
+    "newBooking": "Nova reserva",
+    "openAiAssistant": "Abrir Studio Assistant",
+    "aiAssistant": "Perguntar à IA",
+    "fallbackFirstName": "equipa",
+    "fallbackStudioName": "O seu estúdio",
+    "statsLabel": "Visão geral do estúdio de hoje",
+    "studioSwitcher": {
+      "switchStudio": "Mudar de estúdio",
+      "upgradeRequired": "O seu plano atual requer uma atualização",
+      "yourStudios": "Os seus estúdios",
+      "selected": "Estúdio selecionado",
+      "unnamedStudio": "Estúdio sem nome",
+      "noStudios": "Sem estúdios",
+      "noStudiosAvailable": "Não está disponível nenhum estúdio para esta conta",
+      "addStudio": "Adicionar o primeiro estúdio",
+      "addNewStudio": "Adicionar novo estúdio",
+      "addFirstStudioDescription": "Crie a primeira localização do seu estúdio",
+      "addNewStudioDescription": "Crie outra localização do estúdio",
+      "upgradeToAddStudio": "Adicionar outro estúdio",
+      "studioLimitReached": "O seu plano inclui até {count} estúdios",
+      "loadingTitle": "A carregar os seus estúdios",
+      "loadingDescription": "Estamos a preparar as localizações do seu estúdio.",
+      "loadError": "Não foi possível carregar os seus estúdios",
+      "loadErrorDescription": "Verifique a ligação e tente novamente.",
+      "retry": "Tentar novamente"
+    },
+    "nav": {
+      "overview": "Visão geral",
+      "setup": "Launch Center",
+      "calendar": "Calendário",
+      "bookings": "Reservas",
+      "allBookings": "Todas as reservas",
+      "customers": "Clientes",
+      "studio": "Estúdio",
+      "products": "Produtos e aulas",
+      "productsPricing": "Produtos e preços",
+      "sales": "Vendas",
+      "salesOverview": "Visão geral das vendas",
+      "finance": "Finanças",
+      "transactions": "Transações",
+      "invoices": "Faturas",
+      "coursesEvents": "Aulas",
+      "memberships": "Subscrições",
+      "inventory": "Inventário",
+      "staffPlanning": "Planeamento da equipa",
+      "messages": "Mensagens",
+      "inbox": "Caixa de entrada",
+      "automations": "Automações",
+      "templates": "Modelos",
+      "knowledge": "Knowledge Hub",
+      "reports": "Relatórios",
+      "ai": "Shario AI",
+      "settings": "Definições",
+      "lostFound": "Perdidos e achados",
+      "customOrders": "Encomendas personalizadas"
+    },
+    "routeTitles": {
+      "workspace": "Espaço de trabalho",
+      "setup": "Launch Center",
+      "ai": "Shario AI",
+      "calendar": "Calendário",
+      "bookings": "Reservas",
+      "coursesEvents": "Aulas",
+      "customers": "Clientes",
+      "products": "Produtos e aulas",
+      "productsPricing": "Produtos e preços",
+      "orders": "Vendas e encomendas",
+      "salesOverview": "Visão geral das vendas",
+      "transactions": "Transações",
+      "invoices": "Faturas",
+      "memberships": "Subscrições",
+      "communications": "Comunicações",
+      "messages": "Mensagens",
+      "knowledge": "Knowledge Hub",
+      "reports": "Relatórios",
+      "finance": "Finanças",
+      "settings": "Definições",
+      "modules": "Módulos e navegação",
+      "publicSite": "Site e identidade visual",
+      "locations": "Localizações do estúdio",
+      "team": "Membros da equipa",
+      "roles": "Funções e permissões",
+      "payments": "Pagamentos de clientes",
+      "billing": "Subscrição e faturação",
+      "invoicing": "Faturação de clientes",
+      "aiSettings": "Definições da IA",
+      "account": "Definições da conta",
+      "preferences": "Preferências do espaço de trabalho",
+      "commerce": "Comércio",
+      "operations": "Operações",
+      "automations": "Automações",
+      "inventory": "Inventário",
+      "suppliers": "Fornecedores",
+      "tasks": "Planeamento da equipa",
+      "generalSettings": "Definições gerais",
+      "migration": "Centro de migração",
+      "notifications": "Notificações",
+      "events": "Eventos",
+      "lostFound": "Perdidos e achados",
+      "customOrders": "Encomendas personalizadas"
+    },
+    "stats": {
+      "bookings": "Reservas de hoje",
+      "occupancy": "Ocupação",
+      "revenue": "Receita deste mês",
+      "customers": "Novos clientes"
+    },
+    "quickActions": {
+      "title": "Ações rápidas",
+      "newBooking": "Nova reserva",
+      "addCustomer": "Adicionar cliente",
+      "createClass": "Criar aula",
+      "sendMessage": "Enviar mensagem"
+    },
+    "revenueChart": {
+      "title": "Receita e reservas",
+      "revenue": "Receita",
+      "bookings": "Reservas",
+      "chartLabel": "Atividade de receita e reservas nos últimos 30 dias",
+      "ranges": {
+        "7days": "7 dias",
+        "30days": "30 dias",
+        "12months": "12 meses"
+      }
+    },
+    "overview": {
+      "eyebrow": "Visão geral em tempo real do estúdio",
+      "context": "{date} · O que importa no seu estúdio.",
+      "dateLabel": "Data da visão geral",
+      "dateNavigation": {
+        "previousDay": "Dia anterior",
+        "nextDay": "Dia seguinte",
+        "today": "Hoje",
+        "backToToday": "Voltar a hoje",
+        "chooseDate": "Escolher data"
+      },
+      "partialCoverage": "{count, plural, one {Uma fonte de dados não está disponível. Os respetivos valores são apresentados como indisponíveis, e não como zero.} other {# fontes de dados não estão disponíveis. Os respetivos valores são apresentados como indisponíveis, e não como zero.}}",
+      "briefing": {
+        "verifiedEyebrow": "Resumo verificado do estúdio",
+        "operationalEyebrow": "Resumo do estúdio",
+        "aiEyebrow": "Resumo de IA do estúdio",
+        "calmHeadline": "O seu estúdio está a funcionar sem problemas.",
+        "attentionHeadline": "Há alguns pontos que requerem a sua atenção.",
+        "partialHeadline": "Eis o que podemos verificar neste momento.",
+        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
+        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "partialSummary": "O resumo tem atualmente {count, plural, one {# fonte disponível} other {# fontes disponíveis}}. Os valores indisponíveis permanecem desconhecidos em vez de serem apresentados como zero.",
+        "coverageComplete": "Com base em {count, plural, one {# sinal do estúdio} other {# sinais do estúdio}}",
+        "coveragePartial": "Com base em {count, plural, one {# sinal disponível do estúdio} other {# sinais disponíveis do estúdio}} · cobertura parcial",
+        "updated": "Atualizado às {time}",
+        "sources": "Com base em {count, plural, one {# sinal do estúdio} other {# sinais do estúdio}}",
+        "refresh": "Atualizar resumo",
+        "preparing": "A preparar o resumo fundamentado de hoje…",
+        "checkingFreshness": "A verificar dados mais recentes do estúdio…",
+        "prioritiesLabel": "Prioridades verificadas de hoje",
+        "fresh": "Atual",
+        "stale": "Atualização recomendada",
+        "review": "Rever prioridades",
+        "viewTodaySchedule": "Ver a agenda de hoje",
+        "viewSchedule": "Ver agenda",
+        "openOperations": "Abrir operações",
+        "reviewPrompt": "Reveja as prioridades do estúdio de hoje, explique por que são importantes, cite os registos de origem e sugira as ações seguintes mais seguras.",
+        "open": "Abrir resumo",
+        "generate": "Gerar resumo com IA",
+        "loading": "A carregar o resumo mais recente do estúdio…",
+        "refreshError": "Não foi possível atualizar o resumo. A visão geral operacional verificada continua disponível."
+      },
+      "attention": {
+        "title": "Requer a sua atenção",
+        "clearHeading": "Tudo em ordem",
+        "partialHeading": "Cobertura das prioridades",
+        "items": {
+          "unpaidBookings": "reservas não pagas",
+          "lowStock": "artigos com poucas existências",
+          "overdueTasks": "tarefas da equipa em atraso"
+        },
+        "viewAll": "Ver todas as prioridades",
+        "clearTitle": "Sem prioridades urgentes",
+        "clearDescription": "Neste momento, nada requer uma ação imediata.",
+        "partialTitle": "Algumas prioridades podem não estar disponíveis",
+        "partialDescription": "As fontes disponíveis não indicam itens urgentes, mas a cobertura está incompleta."
+      },
+      "flow": {
+        "title": "Operações do estúdio",
+        "description": "Planeamento do dia selecionado e estado do estúdio em direto.",
+        "emptyTitle": "Ainda não há atividade agendada no estúdio",
+        "emptyDescriptionAll": "Não há reservas nem peças para processar em nenhum estúdio no dia {date}.",
+        "emptyDescriptionSelected": "Não há reservas nem peças para processar no estúdio selecionado no dia {date}.",
+        "openCalendar": "Abrir calendário",
+        "dateUnavailable": "Data selecionada",
+        "allLocations": "Todos os estúdios",
+        "selectedLocation": "Estúdio selecionado",
+        "groups": {
+          "visits": {
+            "title": "Reservas e presenças",
+            "description": "Plano do dia e presença em direto"
+          }
+        },
+        "stageCount": "{stage}: {count}",
+        "stageUnavailable": "{stage}: dados indisponíveis",
+        "stages": {
+          "booked": "Reservado",
+          "arriving": "A chegar",
+          "inStudio": "No estúdio",
+          "readyToFire": "Pronto para cozer"
+        }
+      },
+      "rhythm": {
+        "title": "Ritmo de hoje",
+        "subtitle": "Sessões agendadas para a data e o âmbito de estúdio selecionados.",
+        "openCalendar": "Abrir calendário",
+        "unavailable": "Os dados da agenda não estão disponíveis com o seu acesso atual.",
+        "emptyTitle": "Um dia tranquilo no estúdio",
+        "emptyDescription": "Não há sessões agendadas para esta data.",
+        "untitled": "Sessão do estúdio",
+        "locationFallback": "Estúdio",
+        "guests": "{count, plural, one {# participante} other {# participantes}}"
+      },
+      "pulse": {
+        "title": "Pulso do negócio",
+        "openReports": "Abrir relatórios",
+        "occupancy": "ocupação",
+        "revenue": "receita",
+        "bookings": "reservas",
+        "newCustomers": "novos clientes",
+        "chartLabel": "Tendência de utilização do estúdio",
+        "noTrend": "Os dados de tendência não estão disponíveis para este período."
+      },
+      "signals": {
+        "open": "Abrir",
+        "unavailable": "Estas informações não estão disponíveis para os seus módulos ou permissões atuais.",
+        "messages": {
+          "title": "Mensagens recentes",
+          "count": "{count, plural, =0 {Nenhuma conversa não lida} one {# conversa não lida} other {# conversas não lidas}}",
+          "empty": "Nenhuma mensagem recente de clientes requer resposta.",
+          "untitled": "Conversa com cliente",
+          "noPreview": "Abra a conversa para ver a mensagem mais recente."
+        },
+        "tasks": {
+          "title": "Próximas tarefas",
+          "count": "{count, plural, =0 {Nenhuma tarefa em aberto} one {# tarefa em aberto} other {# tarefas em aberto}}",
+          "empty": "Não há próximas tarefas da equipa a vencer.",
+          "untitled": "Tarefa do estúdio",
+          "unassigned": "Não atribuída",
+          "priorities": {
+            "low": "Baixa",
+            "normal": "Normal",
+            "high": "Alta",
+            "urgent": "Urgente"
+          }
+        }
+      },
+      "opportunity": {
+        "eyebrow": "Business Advisor",
+        "none": "Não foi assinalada nenhuma oportunidade operacional imediata.",
+        "guidance": "Destacarei aqui oportunidades úteis à medida que forem disponibilizados novos dados do estúdio.",
+        "openAdvisor": "Abrir Business Advisor",
+        "courseFallback": "Esta aula",
+        "evidence": "Com base em {sessions} sessões com elevada ocupação nas últimas 8 semanas · sem alterações automáticas.",
+        "weekdays": {
+          "monday": "segundas-feiras",
+          "tuesday": "terças-feiras",
+          "wednesday": "quartas-feiras",
+          "thursday": "quintas-feiras",
+          "friday": "sextas-feiras",
+          "saturday": "sábados",
+          "sunday": "domingos",
+          "unknown": "programação recorrente"
+        },
+        "items": {
+          "lowOccupancy": "A ocupação no próximo período é de apenas {value}%.",
+          "noBookings": "Ainda não há próximas reservas.",
+          "inventoryReorder": "{value, plural, one {Poderá ser necessário repor # artigo do inventário.} other {Poderá ser necessário repor # artigos do inventário.}}",
+          "repeatedCourseSaturation": "{course} atinge em média {value}% da lotação nas sessões recentes de {day} às {time}. Verifique se é possível aumentar a lotação em segurança."
+        },
+        "actions": {
+          "createOffer": "Criar uma oferta",
+          "reviewInventory": "Rever inventário",
+          "reviewCourseCapacity": "Rever lotação"
+        }
+      },
+      "error": {
+        "title": "Não foi possível carregar a visão geral do estúdio",
+        "description": "Os seus dados não foram alterados. Verifique a ligação e tente novamente.",
+        "retry": "Tentar novamente"
+      },
+      "firstBooking": {
+        "title": "Chegou a sua primeira reserva",
+        "description": "A Visão geral começará agora a apresentar a atividade e os dados reais do estúdio.",
+        "dismiss": "Fechar celebração da primeira reserva"
+      },
+      "snapshot": {
+        "title": "Resumo",
+        "bookings": "Reservas",
+        "expectedVisitors": "Visitantes esperados",
+        "actionablePieces": "Peças que requerem atenção",
+        "unreadMessages": "Mensagens não lidas",
+        "revenue": "Receita",
+        "date": "Data selecionada",
+        "currentState": "Atual",
+        "live": "Em direto",
+        "unavailable": "Indisponível"
+      }
+    },
+    "help": {
+      "open": "Ajuda",
+      "menuLabel": "Menu de ajuda",
+      "title": "Ajuda e guias",
+      "close": "Fechar Ajuda",
+      "productTour": "Visita guiada do produto",
+      "productTourDescription": "Conheça o essencial do espaço de trabalho numa breve visita guiada.",
+      "productTourSection": "Aspetos essenciais do espaço de trabalho",
+      "startProductTour": "Iniciar visita",
+      "replayProductTour": "Repetir visita"
+    },
+    "guides": {
+      "centerTitle": "Guias",
+      "centerDescription": "Percursos breves e opcionais para as tarefas que realiza com mais frequência.",
+      "duration": "Cerca de 60 segundos",
+      "completed": "Concluído",
+      "startGuide": "Iniciar guia",
+      "replayGuide": "Repetir guia",
+      "availableTitle": "Guias para explorar",
+      "completedTitle": "Guias concluídos",
+      "summary": "{completed} de {total} concluídos",
+      "noneAvailable": "Não há guias disponíveis para a sua função atual.",
+      "promptEyebrow": "É novo por aqui?",
+      "promptTitle": "Faça o guia {guide}",
+      "start": "Iniciar guia",
+      "notNow": "Agora não",
+      "progress": "{current} de {total}",
+      "skip": "Ignorar guia",
+      "close": "Fechar guia",
+      "back": "Voltar",
+      "next": "Seguinte",
+      "finish": "Concluir guia",
+      "finishedTitle": "Está pronto",
+      "finishedDescription": "Agora conhece os aspetos essenciais de {guide}. Pode repetir este guia a qualquer momento a partir da Ajuda.",
+      "items": {
+        "studio_location_setup": {
+          "title": "Set up a studio location",
+          "description": "Understand the address, customer choices, capacity and booking rules before opening a location.",
+          "steps": {
+            "identity": {
+              "title": "Name the location clearly",
+              "description": "Use the customer-facing name your team will also recognize in calendars, reports and studio switching."
+            },
+            "address": {
+              "title": "Set the local context",
+              "description": "The address helps customers arrive, while the timezone keeps every displayed booking time accurate."
+            },
+            "contact": {
+              "title": "Add a reliable contact",
+              "description": "The calling code and local number are saved together so customers can use the phone number internationally."
+            },
+            "activity_choice": {
+              "title": "Choose the customer experience",
+              "description": "Require an activity, make it optional, or hide the question completely when every visit works the same way."
+            },
+            "activity_capacity": {
+              "title": "Protect limited resources",
+              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+            },
+            "overall_capacity": {
+              "title": "Set the shared safety limit",
+              "description": "Overall capacity counts every person across all overlapping bookings and activities at this location."
+            },
+            "timing": {
+              "title": "Make available times predictable",
+              "description": "The start interval controls when bookings may begin; minimum and maximum duration control how long they may run."
+            },
+            "review": {
+              "title": "Review it as a customer",
+              "description": "This live summary explains the resulting booking rules in plain language before you create the location."
+            }
+          }
+        },
+        "first_booking": {
+          "title": "Crie a sua primeira reserva",
+          "description": "Conheça o fluxo do calendário, desde encontrar um horário até confirmar um cliente.",
+          "steps": {
+            "calendar": {
+              "title": "O seu calendário de reservas",
+              "description": "O calendário reúne disponibilidade do estúdio, sessões e reservas de clientes. Alterne entre as vistas de dia, semana ou mês sem perder o contexto."
+            },
+            "create_action": {
+              "title": "Iniciar uma reserva",
+              "description": "Utilize Nova reserva quando um cliente reservar por telefone, na receção ou através de outro canal. O controlo realçado permanece inativo enquanto este guia estiver aberto."
+            },
+            "booking_details": {
+              "title": "Escolher o contexto correto",
+              "description": "Utilize os filtros de estúdio, atividade e equipa para encontrar a disponibilidade correta antes de criar ou rever uma reserva."
+            },
+            "confirmation": {
+              "title": "Rever o resultado",
+              "description": "As reservas confirmadas aparecem no calendário. Abra uma para rever o cliente, o pagamento e os detalhes da sessão."
+            }
+          }
+        },
+        "website_builder": {
+          "title": "Personalize o seu site",
+          "description": "Dê forma à página pública, pré-visualize-a e compreenda a publicação.",
+          "steps": {
+            "editor_sections": {
+              "title": "Criar com secções",
+              "description": "Edite a identidade visual, o conteúdo, as opções de reserva e as informações para clientes nos separadores de secções."
+            },
+            "live_preview": {
+              "title": "Pré-visualizar como cliente",
+              "description": "A pré-visualização em direto mostra como o site público se adapta entre páginas, idiomas e tamanhos de dispositivo."
+            },
+            "branding": {
+              "title": "Torne-o reconhecidamente seu",
+              "description": "Defina cores, tipografia e detalhes visuais, mantendo um contraste acessível e uma identidade de estúdio coerente."
+            },
+            "publish": {
+              "title": "Guardar e depois publicar",
+              "description": "Guardar mantém um rascunho. Publicar torna a versão revista visível para os clientes e mantém-na protegida por permissões."
+            }
+          }
+        },
+        "memberships": {
+          "title": "Venda subscrições, créditos e vales",
+          "description": "Compreenda os planos, membros ativos, créditos de clientes e vales flexíveis.",
+          "steps": {
+            "plans": {
+              "title": "Criar um plano de subscrição",
+              "description": "Os planos definem o preço, a validade, as localizações e os benefícios incluídos. A publicação e as ações de venda continuam protegidas por permissões."
+            },
+            "customers": {
+              "title": "Ver membros ativos",
+              "description": "O separador Clientes mostra quem tem um plano, o período atual e os benefícios ainda disponíveis."
+            },
+            "credits": {
+              "title": "Compreender o crédito dos clientes",
+              "description": "Os saldos de benefícios da subscrição pertencem a um plano. O crédito independente do cliente é gerido no respetivo perfil e pode ser usado separadamente quando estiver ativo."
+            },
+            "vouchers": {
+              "title": "Oferecer presentes flexíveis",
+              "description": "As ofertas de vales encontram-se junto do restante catálogo, prontas para compra e utilização pelos clientes."
+            }
+          }
+        },
+        "ai_reports": {
+          "title": "Utilize a IA e os relatórios",
+          "description": "Transforme a atividade do estúdio em perguntas, recomendações e tendências mensuráveis.",
+          "steps": {
+            "assistant": {
+              "title": "Pergunte ao Studio Assistant",
+              "description": "Abra o assistente para perguntas e explicações com contexto do espaço de trabalho. Respeita os mesmos limites de acesso que o resto do painel."
+            },
+            "advisor": {
+              "title": "Comece pela visão geral",
+              "description": "A visão geral dos relatórios reúne os sinais mais importantes do estúdio antes de explorar secções mais detalhadas."
+            },
+            "report_filters": {
+              "title": "Defina o contexto do relatório",
+              "description": "Escolha datas, localização, comparação e granularidade para que cada métrica responda à mesma questão de negócio."
+            },
+            "report_insights": {
+              "title": "Passe das métricas às informações",
+              "description": "Utilize os separadores de relatórios e o resumo de IA, quando disponível, para explicar alterações e identificar a próxima ação útil."
+            }
+          }
+        },
+        "team_management": {
+          "title": "Gira a sua equipa",
+          "description": "Saiba como as funções e o acesso às localizações mantêm claras as responsabilidades no espaço de trabalho.",
+          "steps": {
+            "members": {
+              "title": "A equipa do seu espaço de trabalho",
+              "description": "Cada membro tem uma função, um estado, um perfil e um âmbito de localizações que determinam o que pode ver e fazer."
+            },
+            "invite": {
+              "title": "Adicione a pessoa certa",
+              "description": "Os gestores de equipa podem adicionar um utilizador existente do espaço de trabalho e atribuir responsabilidades num único fluxo controlado."
+            },
+            "roles": {
+              "title": "Utilize as funções de forma consciente",
+              "description": "As funções integradas e personalizadas agrupam permissões para que o acesso permaneça compreensível à medida que o estúdio cresce."
+            },
+            "location_access": {
+              "title": "Limite o acesso por localização",
+              "description": "Limite um membro da equipa a determinados estúdios quando o trabalho não deva abranger todas as localizações."
+            }
+          }
+        },
+        "door_access_codes": {
+          "title": "Gerir códigos de acesso às portas",
+          "description": "Saiba como organizar entradas, acompanhar o stock, adicionar códigos e auditar alterações.",
+          "steps": {
+            "scope": {
+              "title": "Compreenda o que o Shario controla",
+              "description": "Este é um inventário seguro dos códigos das fechaduras físicas. Nesta fase, o Shario não programa a fechadura nem envia códigos por e-mail."
+            },
+            "entrances": {
+              "title": "Escolha um local e uma entrada",
+              "description": "Cada grupo de códigos pertence a um local e a uma entrada ou fechadura física. Mantenha fechaduras diferentes separadas."
+            },
+            "stock": {
+              "title": "Acompanhe a disponibilidade",
+              "description": "O resumo mostra códigos disponíveis, reutilizáveis, a expirar e de emergência. O limite de stock baixo avisa atempadamente."
+            },
+            "add_codes": {
+              "title": "Adicione códigos em segurança",
+              "description": "Crie um código ou importe um CSV. Confirme que está programado e testado antes de o disponibilizar."
+            },
+            "lifecycle": {
+              "title": "Faça a gestão do ciclo de vida",
+              "description": "Revele um código apenas quando necessário, edite a validade ou retire-o permanentemente."
+            },
+            "audit": {
+              "title": "Mantenha as ações auditáveis",
+              "description": "O histórico de auditoria regista criações, alterações, revelações, importações e retiradas sem apresentar os códigos completos."
+            }
+          }
+        },
+        "first_offer": {
+          "title": "Publique a sua primeira oferta",
+          "description": "Transforme um Estúdio aberto ou uma aula numa oferta pronta para os clientes.",
+          "cta": "Abrir Launch Center",
+          "steps": {
+            "offer_types": {
+              "title": "Escolha o que os clientes podem reservar",
+              "description": "Utilize Estúdio aberto para acesso flexível ao estúdio e Aulas para ensino agendado. O catálogo mostra apenas os tipos de oferta ativos neste espaço de trabalho."
+            },
+            "create_offer": {
+              "title": "Comece pelo catálogo",
+              "description": "Crie aqui a oferta após o guia. O Launch Center mantém a primeira configuração focada e encaminha-o para o próximo passo útil."
+            },
+            "price_capacity": {
+              "title": "Defina o essencial da reserva",
+              "description": "Dê à oferta um nome, preço, lotação, localização e disponibilidade claros, para que os clientes saibam exatamente o que estão a reservar."
+            },
+            "publish": {
+              "title": "Reveja antes de publicar",
+              "description": "Guarde a oferta, reveja como será apresentada aos clientes e publique-a apenas quando a agenda e as regras de reserva estiverem prontas."
+            }
+          }
+        },
+        "test_customer_journey": {
+          "title": "Conclua um percurso de teste do cliente",
+          "description": "Utilize o Modo de prática seguro para pré-visualizar a reserva, a confirmação e o acesso do cliente.",
+          "cta": "Abrir Modo de prática",
+          "steps": {
+            "public_site": {
+              "title": "Comece pela vista do cliente",
+              "description": "O site público publicado é onde os clientes descobrem ofertas e começam a reservar. O Modo de prática segue o mesmo percurso sem alterar os registos reais do estúdio."
+            },
+            "test_booking": {
+              "title": "Experimente uma reserva segura",
+              "description": "O Modo de prática percorre uma reserva simulada. Não cria reservas reais de clientes nem efetua pagamentos reais."
+            },
+            "confirmation_email": {
+              "title": "Pré-visualize a confirmação",
+              "description": "Reveja o que seria comunicado ao cliente após a reserva. O Modo de prática não envia e-mails reais, para poder verificar a experiência em segurança."
+            },
+            "customer_portal": {
+              "title": "Pré-visualize o acesso do cliente",
+              "description": "Veja como o cliente acede à reserva e às informações do estúdio. O Modo de prática utiliza elementos temporários de pré-visualização em vez de uma conta de cliente real."
+            }
+          }
+        },
+        "payments_setup": {
+          "title": "Configure os pagamentos",
+          "description": "Ligue o Stripe e saiba quando os pagamentos de clientes estão prontos.",
+          "cta": "Continuar configuração de pagamentos",
+          "steps": {
+            "connection_status": {
+              "title": "Veja o estado verificado da ligação",
+              "description": "Este estado vem do servidor e mostra se a conta Stripe não foi iniciada, está pendente, limitada ou ativa."
+            },
+            "stripe_onboarding": {
+              "title": "Continue em segurança no Stripe",
+              "description": "A integração real acontece no Stripe. Quando regressar, a Shario atualiza o estado do backend em vez de assumir que a conta está pronta."
+            },
+            "payment_capabilities": {
+              "title": "Confirme cobranças e pagamentos",
+              "description": "Uma ligação ativa tem de poder aceitar cobranças e receber pagamentos. Estas capacidades são comunicadas diretamente pelo Stripe."
+            },
+            "verify_payment": {
+              "title": "Verifique a experiência do cliente",
+              "description": "Depois de o Stripe indicar que a conta está ativa, utilize o Modo de prática seguro antes de aceitar uma reserva real. O Modo de prática não efetua pagamentos reais."
+            }
+          }
+        },
+        "data_import": {
+          "title": "Importe o seu estúdio atual",
+          "description": "Transfira dados com validação, relatórios e um histórico de auditoria recuperável.",
+          "cta": "Abrir Centro de migração",
+          "steps": {
+            "choose_importer": {
+              "title": "Escolha o tipo de dados",
+              "description": "Importe clientes, ofertas, reservas, subscrições, créditos ou vales numa ordem lógica. Apenas são apresentadas as áreas ativas no seu espaço de trabalho."
+            },
+            "template_upload": {
+              "title": "Utilize o modelo ou a sua exportação",
+              "description": "Descarregue um modelo ou carregue uma exportação CSV ou Excel. O passo de mapeamento permite-lhe associar colunas existentes sem reorganizar primeiro o ficheiro de origem."
+            },
+            "validation": {
+              "title": "Valide antes de alterar dados",
+              "description": "A simulação destaca linhas inválidas, duplicados e alterações propostas. Nada é importado até rever e confirmar o resultado."
+            },
+            "history_rollback": {
+              "title": "Mantenha um histórico de auditoria",
+              "description": "O histórico preserva relatórios de cada importação. Quando os registos ainda são elegíveis, os utilizadores autorizados podem pré-visualizar e reverter em segurança as alterações registadas."
+            }
+          }
+        },
+        "customer_communications": {
+          "title": "Configure a comunicação com clientes",
+          "description": "Reveja modelos, lembretes, envio de teste e histórico de e-mails.",
+          "cta": "Continuar configuração da comunicação",
+          "steps": {
+            "templates": {
+              "title": "Reveja os modelos para clientes",
+              "description": "Os modelos mantêm as confirmações e mensagens operacionais coerentes. Verifique o texto e a identidade do estúdio antes de ativar a automatização."
+            },
+            "reminders": {
+              "title": "Configure lembretes úteis",
+              "description": "As automações controlam quando são preparadas as mensagens de reservas e do estúdio. Mantenha horários relevantes e evite mensagens desnecessárias."
+            },
+            "test_email": {
+              "title": "Envie um teste de configuração real",
+              "description": "Verifique primeiro a identidade do remetente e depois utilize Enviar e-mail de teste na configuração. O teste confirma a entrega sem contactar um cliente."
+            },
+            "delivery_history": {
+              "title": "Consulte o histórico de entregas",
+              "description": "O histórico mostra o que foi enviado e se a entrega requer atenção, oferecendo à equipa um único local para investigar problemas de comunicação."
+            }
+          }
+        }
+      }
+    },
+    "productTour": {
+      "progress": "{current} de {total}",
+      "skip": "Ignorar visita",
+      "close": "Fechar visita",
+      "back": "Voltar",
+      "next": "Seguinte",
+      "openLaunchCenter": "Abrir Launch Center",
+      "welcome": {
+        "eyebrow": "Essenciais do espaço de trabalho",
+        "title": "É a primeira vez aqui?",
+        "description": "Faça uma visita rápida de 60 segundos às funcionalidades essenciais do espaço de trabalho. Pode repeti-la a qualquer momento na Ajuda.",
+        "duration": "Cerca de 60 segundos",
+        "start": "Iniciar visita",
+        "dismiss": "Não, obrigado",
+        "close": "Fechar introdução"
+      },
+      "steps": {
+        "overview": {
+          "title": "Bem-vindo à sua Visão geral",
+          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+        },
+        "launch_center": {
+          "title": "Configure tudo no Launch Center",
+          "description": "O Launch Center gere o percurso de configuração. Utilize a lista para definir o essencial, pré-visualizar a experiência do cliente e preparar o estúdio para o lançamento."
+        },
+        "studio_switcher": {
+          "title": "O seu seletor de estúdio",
+          "description": {
+            "none": "O seu espaço de trabalho aparece aqui. Depois de adicionar uma localização do estúdio, irá geri-la neste mesmo seletor.",
+            "single": "O estúdio atual aparece aqui. Quando adicionar mais localizações, poderá alternar entre elas no mesmo local.",
+            "multiple": "Alterne aqui entre localizações do estúdio. A Visão geral e os dados operacionais são atualizados para corresponder à localização escolhida."
+          }
+        },
+        "navigation": {
+          "title": "Tudo tem o seu lugar",
+          "description": "Utilize a navegação principal para reservas, clientes, operações do estúdio, vendas, mensagens e relatórios. As áreas vazias serão preenchidas quando a equipa começar a trabalhar."
+        },
+        "ai_assistant": {
+          "title": "Pergunte ao Studio Assistant",
+          "description": "Abra o assistente para fazer perguntas sobre o estúdio e obter informações operacionais. Se a IA não estiver ativa no seu plano ou função, pode voltar a este passo mais tarde."
+        },
+        "settings": {
+          "title": "Definições e personalização",
+          "description": "Gira aqui a configuração, a identidade visual, o site público, os pagamentos e o acesso da equipa. O Editor do site é onde define o que os clientes veem."
+        }
+      },
+      "final": {
+        "title": "Está pronto para começar",
+        "description": "Conclua a configuração do Launch Center, crie uma reserva de teste e pré-visualize o que os clientes verão."
+      },
+      "mobileMenuDescription": "Esta opção encontra-se no menu principal, aberto com o botão realçado. {description}"
+    },
+    "launchCenterLiveBadge": "Em direto",
+    "launchCenterReadyBadge": "Pronto",
+    "launchCenterIssueBadge": "{count, plural, one {# problema} other {# problemas}}",
+    "launchCenterLiveStatus": "O seu estúdio público está em direto e todas as verificações de preparação para o lançamento estão concluídas",
+    "launchCenterReadyStatus": "A sua configuração operacional de lançamento está pronta",
+    "launchCenterAttentionStatus": "{count, plural, one {# problema de preparação para o lançamento requer atenção} other {# problemas de preparação para o lançamento requerem atenção}}"
+  },
+  "WorkspaceSettingsNav": {
+    "eyebrow": "Espaço de trabalho",
+    "title": "Definições",
+    "label": "Definições do espaço de trabalho",
+    "items": {
+      "setup": "Launch Center",
+      "general": "Geral",
+      "modules": "Módulos e navegação",
+      "locations": "Localizações",
+      "team": "Equipa",
+      "teamName": "Nome da equipa",
+      "roles": "Funções e permissões",
+      "payments": "Pagamentos de clientes",
+      "billing": "Subscrição e faturação",
+      "invoicing": "Faturação de clientes",
+      "ai": "IA e automatização",
+      "publicSite": "Site e identidade visual",
+      "migration": "Centro de migração",
+      "accessCodes": "Códigos de acesso"
+    },
+    "overview": "Todas as definições",
+    "overviewDescription": "Escolha uma categoria para configurar o espaço de trabalho.",
+    "categoryDescription": "Navegação focada em {category}.",
+    "currentCategory": "Categoria atual",
+    "openCategory": "Abrir definições de {category}",
+    "groups": {
+      "workspace": "Espaço de trabalho",
+      "features": "Funcionalidades e navegação",
+      "website": "Site e experiência do cliente",
+      "access": "Equipa e acesso",
+      "payments": "Pagamentos e faturação",
+      "account": "Conta Shario"
+    }
+  },
+  "WorkspaceSettings": {
+    "eyebrow": "Definições do espaço de trabalho",
+    "title": "Definições gerais",
+    "description": "Gira os valores predefinidos partilhados neste espaço de trabalho.",
+    "loading": "A carregar as definições do espaço de trabalho…",
+    "business": {
+      "title": "Identidade e predefinições do espaço de trabalho",
+      "description": "Estes valores são partilhados por todos os membros da equipa e por todos os módulos destinados aos clientes."
+    },
+    "fields": {
+      "name": "Nome do espaço de trabalho",
+      "slug": "Endereço do espaço de trabalho",
+      "defaultLanguage": "Idioma predefinido",
+      "adminLanguage": "Idioma do espaço de trabalho",
+      "publicDefaultLanguage": "Idioma principal do site público",
+      "secondaryPublicLanguage": "Idioma secundário do site público",
+      "timezone": "Fuso horário operacional",
+      "currency": "Moeda operacional"
+    },
+    "hints": {
+      "slug": "O endereço do espaço de trabalho é gerido separadamente porque a sua alteração afeta ligações e domínios.",
+      "defaultLanguage": "Utilizado quando um membro ou cliente não selecionou o seu próprio idioma.",
+      "adminLanguage": "O idioma utilizado em todo o espaço de trabalho do estúdio por todos os membros da equipa.",
+      "publicDefaultLanguage": "O primeiro idioma que os clientes veem no site público e nas interfaces destinadas aos clientes.",
+      "secondaryPublicLanguage": "Opcionalmente, disponibilize aos clientes um idioma adicional. Apenas estes dois idiomas aparecem nas páginas públicas associadas ao espaço de trabalho.",
+      "timezone": "Utilizado para reservas, agendas e mensagens automatizadas.",
+      "currency": "Utilizada para os produtos do estúdio e pagamentos de clientes. É independente da moeda da sua subscrição Shario."
+    },
+    "languageOptions": {
+      "noSecondary": "Sem idioma secundário"
+    },
+    "currencyNotice": {
+      "title": "Os dados financeiros existentes estão protegidos",
+      "description": "Quando já existem registos financeiros, o servidor pode impedir uma alteração da moeda. Isto evita voltar a identificar montantes históricos com outra moeda."
+    },
+    "workspaceStatus": {
+      "title": "Estado do espaço de trabalho",
+      "plan": "Plano",
+      "status": "Estado",
+      "version": "Versão do plano"
+    },
+    "actions": {
+      "save": "Guardar definições do espaço de trabalho",
+      "saving": "A guardar…",
+      "retry": "Tentar novamente"
+    },
+    "messages": {
+      "saved": "As definições do espaço de trabalho foram guardadas.",
+      "error": "Não foi possível guardar as definições do espaço de trabalho.",
+      "loadError": "Não foi possível carregar as definições do espaço de trabalho."
+    }
+  },
+  "Header": {
+    "mobile": {
+      "navigation": "Navegação móvel",
+      "publicEyebrow": "O sistema operativo para estúdios criativos.",
+      "publicTitle": "Gira o seu estúdio. Tome melhores decisões todos os dias.",
+      "adminEyebrow": "Gestão do estúdio",
+      "adminTitle": "Tudo o que acontece no seu estúdio. Com clareza.",
+      "moduleOverview": "Visão geral dos módulos",
+      "bookingSite": "Site de reservas",
+      "admin": "Administração",
+      "myAccount": "A minha conta",
+      "language": "Idioma",
+      "tagline": "Mais tempo para criar. Menos tempo em tarefas administrativas."
+    },
+    "booking": "Reserva",
+    "cart": {
+      "open": "Abrir carrinho",
+      "items": "{count, plural, one {# artigo no carrinho} other {# artigos no carrinho}}"
+    },
+    "account": {
+      "menu": "Menu do utilizador",
+      "eyebrow": "A sua conta",
+      "studioManagement": "Gestão do estúdio",
+      "closeMenu": "Fechar menu do utilizador",
+      "fallbackName": "A sua conta",
+      "roles": {
+        "owner": "Proprietário do estúdio",
+        "admin": "Administrador do estúdio",
+        "manager": "Gestor do estúdio",
+        "staff": "Equipa do estúdio",
+        "accountant": "Contabilista",
+        "viewer": "Leitor",
+        "custom": "Função personalizada",
+        "customer": "Cliente"
+      },
+      "sections": {
+        "customer": "A sua conta",
+        "activity": "Atividade do estúdio",
+        "payments": "Conta e pagamentos",
+        "personal": "Pessoal",
+        "workspace": "Espaço de trabalho"
+      },
+      "customerLinks": {
+        "bookings": "As minhas reservas",
+        "services": "Serviços",
+        "work": "Os meus trabalhos",
+        "waitlists": "Listas de espera",
+        "knowledge": "Knowledge Hub",
+        "credits": "Créditos",
+        "membership": "Subscrição",
+        "invoices": "As minhas faturas",
+        "account": "Definições da conta",
+        "lostFound": "Perdidos e achados"
+      },
+      "tenantLinks": {
+        "dashboard": "Painel do estúdio",
+        "account": "Definições da conta",
+        "preferences": "Preferências pessoais",
+        "setupCenter": "Launch Center",
+        "settings": "Definições do espaço de trabalho",
+        "bookingSite": "Ver site público",
+        "bookingSiteNewTab": "Abrir o site público num novo separador"
+      },
+      "language": "Idioma",
+      "logout": "Terminar sessão"
+    },
+    "product": {
+      "label": "Produto",
+      "bookingScheduling": "Reservas, clientes e pagamentos",
+      "customers": "Clientes",
+      "payments": "Pagamentos",
+      "memberships": "Subscrições",
+      "automatedCommunication": "Comunicação automatizada",
+      "studioOperations": "Operações do estúdio e produção",
+      "analytics": "IA, análises e decisões",
+      "viewAll": "Explorar o produto completo"
+    },
+    "solutions": {
+      "label": "Soluções",
+      "artStudios": "Estúdios de arte",
+      "makerspaces": "Makerspaces",
+      "workshopsClasses": "Estúdio aberto e aulas",
+      "multiLocationStudios": "Estúdios com vários locais",
+      "viewAll": "Explorar todas as soluções"
+    },
+    "forStudios": "Para estúdios",
+    "pricing": "Preços",
+    "membershipCatalog": "Subscrições",
+    "resources": {
+      "label": "Recursos",
+      "helpCenter": "Centro de ajuda",
+      "guides": "Guias",
+      "customerStories": "Histórias de clientes",
+      "about": "Sobre a Shario"
+    },
+    "login": "Iniciar sessão",
+    "getStarted": "Começar teste gratuito",
+    "openWorkspace": "Abrir espaço de trabalho",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "changeLanguage": "Alterar idioma"
+  },
+  "PlatformAuth": {
+    "login": {
+      "header": {
+        "newToSkab": "Ainda não utiliza a Shario?",
+        "createWorkspace": "Criar espaço de trabalho",
+        "switchLanguage": "Mudar para {language}",
+        "languages": {
+          "en": "Inglês",
+          "cs": "Checo"
+        }
+      },
+      "form": {
+        "eyebrow": "Para proprietários de estúdios e membros da equipa",
+        "title": "Inicie sessão no seu espaço de trabalho",
+        "description": "Utilize o endereço do estúdio e os dados da sua conta para continuar.",
+        "workspaceLabel": "URL do espaço de trabalho",
+        "workspacePlaceholder": "common-ground",
+        "workspaceHint": "O endereço do seu estúdio na Shario",
+        "workspaceHelp": {
+          "open": "O que é um URL de espaço de trabalho?",
+          "title": "O endereço Shario do seu estúdio",
+          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+        },
+        "findWorkspace": "Encontrar o seu espaço de trabalho",
+        "emailLabel": "Endereço de email",
+        "emailPlaceholder": "voce@oseuestudio.pt",
+        "passwordLabel": "Palavra-passe",
+        "passwordPlaceholder": "Introduza a sua palavra-passe",
+        "showPassword": "Mostrar palavra-passe",
+        "hidePassword": "Ocultar palavra-passe",
+        "rememberWorkspace": "Memorizar espaço de trabalho",
+        "forgotPassword": "Esqueceu-se da palavra-passe?",
+        "submit": "Iniciar sessão",
+        "submitting": "A iniciar sessão…",
+        "secure": "Acesso seguro ao espaço de trabalho do seu estúdio"
+      },
+      "story": {
+        "eyebrow": "O seu estúdio, gerido com elegância",
+        "titleBefore": "O seu estúdio está pronto quando",
+        "titleAccent": "decidir avançar.",
+        "description": "Reservas, clientes, aulas e equipa permanecem ligados num único espaço de trabalho tranquilo.",
+        "pulseLabel": "Ritmo do estúdio",
+        "pulse": "Tudo num só lugar, sem complicações",
+        "bookings": "Reservas coordenadas",
+        "team": "Equipa alinhada",
+        "operations": "Fluxo do estúdio visível"
+      },
+      "errors": {
+        "server": "O servidor não está a responder. Tente novamente.",
+        "invalidResponse": "O servidor devolveu uma resposta inválida.",
+        "checkInformation": "Verifique as informações enviadas.",
+        "incorrectCredentials": "O endereço de email ou a palavra-passe estão incorretos.",
+        "disabled": "O acesso a este espaço de trabalho foi desativado.",
+        "workspaceNotFound": "Não foi possível encontrar este espaço de trabalho.",
+        "rateLimited": "Demasiadas tentativas de início de sessão. Aguarde um momento e tente novamente.",
+        "signInFailed": "Não foi possível iniciar sessão."
+      },
+      "guidance": {
+        "workspaceRequired": "Introduza primeiro o URL do seu espaço de trabalho.",
+        "workspaceCleared": "Introduza o identificador do espaço de trabalho fornecido pelo seu estúdio."
+      }
+    },
+    "register": {
+      "header": {
+        "alreadyHaveWorkspace": "Já tem um espaço de trabalho?",
+        "signIn": "Iniciar sessão",
+        "switchLanguage": "Mudar para {language}",
+        "languages": {
+          "en": "Inglês",
+          "cs": "Checo"
+        }
+      },
+      "form": {
+        "eyebrow": "Comece a sua avaliação de 14 dias",
+        "title": "Crie o espaço de trabalho do seu estúdio",
+        "description": "Indique-nos os dados essenciais. Poderá configurar os serviços, fluxos de trabalho e definições do estúdio depois de entrar.",
+        "trial": "14 dias grátis",
+        "noCard": "Sem cartão de crédito",
+        "firstNameLabel": "Nome",
+        "firstNamePlaceholder": "O seu nome",
+        "lastNameLabel": "Apelido",
+        "lastNamePlaceholder": "O seu apelido",
+        "studioNameLabel": "Nome do estúdio",
+        "studioNamePlaceholder": "O nome do seu estúdio",
+        "workspaceLabel": "Endereço do espaço de trabalho",
+        "workspacePlaceholder": "o-seu-estudio",
+        "workspaceExample": "o-seu-estudio",
+        "workspaceHint": "O seu estúdio estará disponível em {slug}.shario.io",
+        "emailLabel": "Endereço de email",
+        "emailPlaceholder": "voce@oseuestudio.pt",
+        "passwordLabel": "Palavra-passe",
+        "passwordPlaceholder": "Crie uma palavra-passe",
+        "passwordHint": "Utilize pelo menos 8 caracteres e um número.",
+        "passwordConfirmLabel": "Confirmar palavra-passe",
+        "passwordConfirmPlaceholder": "Introduza-a novamente",
+        "showPassword": "Mostrar palavra-passe",
+        "hidePassword": "Ocultar palavra-passe",
+        "showPasswordConfirm": "Mostrar confirmação da palavra-passe",
+        "hidePasswordConfirm": "Ocultar confirmação da palavra-passe",
+        "legalPrefix": "Aceito os",
+        "terms": "Termos de Serviço",
+        "legalAnd": "e a",
+        "privacy": "Política de Privacidade",
+        "legalSuffix": ".",
+        "submit": "Criar o meu estúdio",
+        "submitting": "A criar o seu espaço de trabalho…",
+        "alreadyRegistered": "Já tem um espaço de trabalho?",
+        "signIn": "Iniciar sessão",
+        "secure": "Os dados da sua conta são transmitidos em segurança"
+      },
+      "validation": {
+        "firstNameRequired": "Introduza o seu nome.",
+        "lastNameRequired": "Introduza o seu apelido.",
+        "studioNameRequired": "Introduza o nome do seu estúdio.",
+        "workspaceInvalid": "Utilize apenas letras minúsculas, números e hífenes simples.",
+        "emailInvalid": "Introduza um endereço de email válido.",
+        "passwordInvalid": "Utilize pelo menos 8 caracteres e inclua um número.",
+        "passwordMismatch": "As palavras-passe não coincidem.",
+        "legalRequired": "Aceite os Termos de Serviço e a Política de Privacidade para continuar.",
+        "completeRequired": "Preencha todos os campos obrigatórios."
+      },
+      "errors": {
+        "createFailed": "Não foi possível criar a sua conta. Tente novamente."
+      },
+      "story": {
+        "eyebrow": "O seu estúdio, gerido com elegância",
+        "titleBefore": "Crie espaço para aquilo que",
+        "titleAccent": "adora.",
+        "description": "Comece pelo essencial e adapte depois a Shario à forma como o seu estúdio criativo realmente funciona.",
+        "cardLabel": "O seu percurso até ao lançamento",
+        "cardTitle": "Da ideia à abertura do estúdio",
+        "workspace": "Crie o seu espaço de trabalho seguro",
+        "setup": "Escolha os fluxos de trabalho de que necessita",
+        "launch": "Publique quando o seu estúdio estiver pronto"
+      }
+    }
+  },
+  "MarketingPages": {
+    "common": {
+      "backHome": "Voltar ao início",
+      "startTrial": "Iniciar o período experimental de 14 dias",
+      "noCreditCard": "Não é necessário cartão",
+      "exploreProduct": "Explorar o produto",
+      "exploreAi": "Explorar a IA para estúdios",
+      "exploreStudios": "Explorar soluções para estúdios",
+      "explorePricing": "Ver preços",
+      "builtWithStudios": "Desenvolvido com estúdios criativos em atividade",
+      "currencyLabel": "Escolher uma moeda"
+    },
+    "product": {
+      "metaTitle": "Everything your space needs, working together.",
+      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+    },
+    "studioAi": {
+      "metaTitle": "A helping hand for everyday work.",
+      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+    },
+    "forStudios": {
+      "metaTitle": "Different spaces. Shared possibilities.",
+      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+    },
+    "pricing": {
+      "metaTitle": "Planos e preços para estúdios criativos",
+      "metaDescription": "Compare planos Shario, capacidade do estúdio e créditos de IA e inicie um período experimental de 14 dias sem cartão.",
+      "eyebrow": "Planos para estúdios em crescimento",
+      "title": "Comece com o que precisa hoje.",
+      "description": "Cada plano começa com um período experimental Professional de 14 dias, para testar o percurso essencial do estúdio antes de escolher.",
+      "sectionEyebrow": "Diferenças claras entre planos",
+      "sectionTitle": "Compare capacidade, fluxos e créditos de IA.",
+      "sectionDescription": "Escolha pelo número de localizações, contas de equipa e profundidade operacional de que o seu estúdio precisa.",
+      "closingTitle": "Não sabe qual é o plano certo?",
+      "closingDescription": "Inicie o período experimental sem cartão ou fale connosco sobre uma implementação à medida."
+    }
+  },
+  "MarketingHome": {
+    "hero": {
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    },
+    "pricing": {
+      "eyebrow": "Preços transparentes",
+      "title": "Escolha o plano que corresponde à forma como o seu estúdio trabalha.",
+      "description": "Comece com cursos, avance para a operação completa do estúdio e adicione depois automações avançadas e ferramentas para vários espaços. Todos os planos começam com 14 dias de teste Professional, sem cartão.",
+      "billingIntervalLabel": "Escolha um período de faturação",
+      "monthly": "Mensal",
+      "yearly": "Anual",
+      "annualSavings": "2 meses grátis",
+      "perMonth": "por mês",
+      "perYear": "por ano",
+      "from": "desde",
+      "customAnnual": "Plano anual personalizado",
+      "mostPopular": "Mais popular",
+      "starter": {
+        "name": "Starter",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "feature1": "1 espaço de estúdio · 1 conta de equipa",
+        "feature2": "Cursos, eventos privados e vales",
+        "feature3": "500 e-mails incluídos por mês",
+        "feature4": "Shario AI limitada · 200 créditos por mês",
+        "cta": "Começar avaliação gratuita"
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature1": "1 espaço de estúdio · 3 contas de equipa",
+        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature3": "3 automações ativas · 2 500 e-mails por mês",
+        "feature4": "Shario AI completa · 2 000 créditos por mês",
+        "cta": "Começar avaliação gratuita"
+      },
+      "studioPlus": {
+        "name": "Space Plus",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "feature1": "Até 2 espaços de estúdio · 6 contas de equipa",
+        "feature2": "Códigos de acesso e domínio personalizado",
+        "feature3": "Automações avançadas · 5 000 e-mails por mês",
+        "feature4": "Conjunto completo de IA · 10 000 créditos por mês",
+        "cta": "Começar avaliação gratuita"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Gira a sua organização com capacidade, governação e apoio personalizados.",
+        "feature1": "Espaços e contas de equipa ilimitados",
+        "feature2": "Limites personalizados de automação, e-mail e IA",
+        "feature3": "SSO/SCIM, API, webhooks e registos de auditoria",
+        "feature4": "Onboarding, migração e SLA dedicados",
+        "cta": "Start free trial"
+      },
+      "note": "Os preços não incluem os impostos aplicáveis. Os planos anuais self-service incluem dois meses grátis. Os e-mails essenciais do sistema não contam para o limite, e a utilização de IA para ao atingir a franquia incluída, sem cobranças automáticas.",
+      "loading": "A carregar preços…",
+      "unavailable": "Preço indisponível nesta moeda",
+      "loadError": "Preços temporariamente indisponíveis"
+    },
+    "trust": {
+      "eyebrow": "Criada para operações responsáveis",
+      "title": "Um espaço fiável para o trabalho que sustenta o seu estúdio.",
+      "description": "Acessos claros, registos interligados e controlo humano fazem parte do produto — não são elementos acrescentados mais tarde.",
+      "workspaces": {
+        "title": "Espaços de trabalho separados por estúdio",
+        "description": "Cada estúdio opera no seu próprio espaço de trabalho e com a sua própria configuração."
+      },
+      "access": {
+        "title": "Acesso adaptado às funções",
+        "description": "Dê aos proprietários e membros da equipa o nível de acesso exigido pelo respetivo trabalho."
+      },
+      "payments": {
+        "title": "Pagamentos através da Stripe",
+        "description": "Ligue pagamentos online através da infraestrutura consolidada da Stripe."
+      },
+      "control": {
+        "title": "IA sob controlo humano",
+        "description": "A IA fornece contexto e assistência, enquanto a sua equipa continua responsável pelas decisões."
+      }
+    }
+  },
+  "CustomerAuth": {
+    "social": {
+      "label": "Início de sessão social para clientes",
+      "customerAccess": "Continuar como cliente",
+      "teamPasswordNote": "Os membros da equipa do estúdio utilizam email e palavra-passe.",
+      "or": "ou utilize o email",
+      "continueWith": {
+        "google": "Continuar com o Google",
+        "apple": "Continuar com a Apple"
+      }
+    },
+    "complete": {
+      "metadataTitle": "A concluir o início de sessão do cliente",
+      "title": "A concluir o seu início de sessão",
+      "description": "Estamos a repor a sua sessão de cliente em segurança.",
+      "errorTitle": "Não foi possível concluir o início de sessão do cliente",
+      "providerError": "O fornecedor de início de sessão social devolveu um erro. Tente novamente.",
+      "accessDenied": "Cancelou ou recusou o pedido de início de sessão.",
+      "accountConflict": "Esta conta social não pode ser associada automaticamente. Inicie sessão com o email ou contacte o estúdio.",
+      "authenticationFailed": "O fornecedor não conseguiu verificar a sua conta. Tente novamente.",
+      "providerUnavailable": "Este fornecedor de início de sessão está temporariamente indisponível.",
+      "sessionError": "Não foi possível repor a sua sessão de cliente. Tente novamente.",
+      "customerOnly": "O início de sessão social destina-se apenas a contas de clientes. Os membros da equipa do estúdio têm de utilizar email e palavra-passe.",
+      "retry": "Tentar novamente",
+      "backToLogin": "Voltar ao início de sessão"
+    }
+  },
+  "CustomerShell": {
+    "portalNav": {
+      "overview": "Visão geral",
+      "bookings": "Reservas",
+      "work": "Os meus trabalhos",
+      "knowledge": "Conhecimento",
+      "membership": "Subscrição",
+      "credits": "Créditos",
+      "invoices": "Faturas",
+      "bookSession": "Reservar uma sessão",
+      "memberships": "Subscrições",
+      "giftVouchers": "Vales-oferta",
+      "studioGuide": "Guia do estúdio",
+      "courses": "Cursos"
+    },
+    "actions": {
+      "backToStudio": "Voltar ao estúdio",
+      "openPortal": "Portal do cliente",
+      "openDashboard": "Painel do estúdio"
+    },
+    "mobile": {
+      "portalEyebrow": "Portal do cliente",
+      "portalTitle": "A sua conta em {studio}",
+      "authEyebrow": "Conta do estúdio",
+      "authTitle": "Iniciar sessão em {studio}",
+      "transactionEyebrow": "Pagamento seguro",
+      "transactionTitle": "Conclua a sua visita a {studio}"
+    },
+    "status": {
+      "loadingTitle": "A preparar o seu estúdio",
+      "loadingDescription": "Estamos a carregar os dados mais recentes do estúdio.",
+      "errorTitle": "Não foi possível carregar esta página",
+      "errorDescription": "Tente novamente. Os dados da sua conta e dos pagamentos estão seguros.",
+      "retry": "Tentar novamente",
+      "preparingAccount": "A preparar a sua conta…",
+      "redirecting": "A encaminhar para o estúdio certo…"
+    },
+    "locationChooser": {
+      "eyebrow": "Portal do cliente",
+      "title": "Que estúdio gostaria de visitar?",
+      "description": "Escolha um estúdio para ver a disponibilidade, os serviços e as opções de reserva.",
+      "unavailable": "O estúdio desta ligação não está disponível neste momento.",
+      "unavailableHint": "Poderá estar inativo ou já não aceitar reservas online. Escolha outro estúdio abaixo.",
+      "open": "Abrir {studio}"
+    }
+  },
+  "PublicTenantHome": {
+    "eyebrow": "Boas-vindas a",
+    "description": "Explore o estúdio, gira as suas reservas e mantenha tudo o que diz respeito à sua conta num único lugar.",
+    "openPortal": "Abrir portal do cliente",
+    "signIn": "Iniciar sessão"
+  },
+  "PublicSiteNotFound": {
+    "brandLabel": "Make room for more.",
+    "checking": "A verificar o estado do site…",
+    "owner": {
+      "eyebrow": "Site público",
+      "badge": "Rascunho privado",
+      "title": "O seu site público ainda é privado",
+      "description": "Está a ver o endereço que os seus clientes irão utilizar. O rascunho está guardado em segurança e nada se torna público até publicar a partir do Launch Center.",
+      "primaryAction": "Rever e publicar",
+      "secondaryAction": "Editar site",
+      "reassurance": "Os clientes ainda não conseguem ver o seu site.",
+      "previewBadge": "Não publicado",
+      "previewLabel": "O seu percurso até ao lançamento",
+      "steps": {
+        "draft": {
+          "title": "Rascunho guardado",
+          "description": "As suas alterações estão guardadas em segurança."
+        },
+        "review": {
+          "title": "Reveja o seu site",
+          "description": "Verifique o conteúdo e a experiência dos clientes."
+        },
+        "publish": {
+          "title": "Publique quando estiver pronto",
+          "description": "Disponibilize o site a partir do Launch Center."
+        }
+      }
+    },
+    "visitor": {
+      "eyebrow": "Página indisponível",
+      "badge": "Indisponível",
+      "title": "Esta página do estúdio não está disponível",
+      "description": "O endereço poderá estar incorreto ou o estúdio poderá ainda não ter publicado o site.",
+      "primaryAction": "Visitar Shario",
+      "hint": "Se é responsável por este estúdio, inicie sessão no espaço de trabalho e volte a abrir o site público."
+    }
+  },
+  "BookingConfirmation": {
+    "membershipPayment": {
+      "bookingValue": "Valor da reserva",
+      "coveredByMembership": "Coberto pela subscrição",
+      "additionalPayment": "Pagamento adicional"
+    },
+    "back": "Alterar seleção",
+    "eyebrow": "Reserva segura",
+    "title": "Rever e confirmar",
+    "description": "A disponibilidade, os benefícios e o preço abaixo foram verificados pelo servidor do estúdio.",
+    "summary": {
+      "time": "Hora",
+      "until": "Até",
+      "location": "Local",
+      "locationFallback": "Local do estúdio",
+      "people": "Pessoas",
+      "product": "Reserva",
+      "productFallback": "Reserva do estúdio",
+      "bookingMode": "Tipo de reserva",
+      "bookingModes": {
+        "public": "Pública",
+        "private": "Privada"
+      }
+    },
+    "available": {
+      "title": "A sua seleção está disponível",
+      "description": "Será verificada mais uma vez quando confirmar."
+    },
+    "conflict": {
+      "title": "Esta seleção já não está disponível",
+      "description": "Escolha outro horário para continuar.",
+      "chooseAnother": "Escolher outro horário"
+    },
+    "payment": {
+      "title": "Pagamento",
+      "methods": {
+        "card": "Pagar com cartão",
+        "money_credits": "Utilizar crédito do estúdio",
+        "membership_credits": "Utilizar benefício da subscrição"
+      },
+      "descriptions": {
+        "card": "Continue para a página de pagamento seguro do estúdio.",
+        "money_credits": "Pague a totalidade da reserva com o seu crédito disponível.",
+        "membership_credits": "Utilize uma visita elegível ou um período de tempo incluído na subscrição."
+      },
+      "notEnough": "Esta opção não permite pagar a totalidade da reserva.",
+      "unavailable": "Não está disponível qualquer método de pagamento elegível neste momento.",
+      "processing": "A confirmar…",
+      "continueToCard": "Continuar para pagamento",
+      "confirm": "Confirmar reserva",
+      "privateSurchargeRequiresMoney": "Os suplementos das reservas privadas devem ser pagos com cartão ou saldo monetário.",
+      "membershipHours": "Utilizar horas da adesão",
+      "hoursSummary": "Utilizar {required} das {available} disponíveis. Apenas o seu lugar.",
+      "membership_open_studio_only": "As horas abrangem apenas Open Studio partilhado, não cursos nem reservas privadas.",
+      "membership_member_only": "As horas abrangem um único membro. Reserve os acompanhantes separadamente ou pague normalmente por todos.",
+      "membership_insufficient_hours": "Horas de adesão insuficientes. Escolha outro método de pagamento.",
+      "membership_outside_paid_period": "As horas de adesão só podem ser utilizadas em visitas durante o período pago atual."
+    },
+    "price": {
+      "subtotal": "Subtotal",
+      "membershipDiscount": "Desconto da subscrição",
+      "total": "Total",
+      "serverVerified": "O servidor calcula o preço final e verifica a elegibilidade no momento da confirmação.",
+      "privateBookingSurcharge": "Suplemento de reserva privada (incluído, uma vez por reserva)"
+    },
+    "terms": {
+      "title": "Condições da reserva",
+      "accept": "Li e aceito as condições da reserva."
+    },
+    "errors": {
+      "changed": "A disponibilidade ou o preço mudou. Reveja os dados atualizados antes de tentar novamente.",
+      "expired": "Esta seleção de reserva expirou. Escolha um novo horário.",
+      "generic": "Não foi possível confirmar a reserva. Tente novamente."
+    },
+    "invalid": {
+      "title": "Ligação de reserva inválida",
+      "description": "Esta ligação não contém uma seleção de reserva válida.",
+      "action": "Iniciar uma nova reserva"
+    },
+    "loading": {
+      "title": "A verificar a sua reserva",
+      "description": "Estamos a verificar a disponibilidade, o preço e os benefícios da subscrição."
+    },
+    "expired": {
+      "title": "Seleção de reserva expirada",
+      "description": "Para sua segurança, as seleções de reserva são guardadas apenas durante um período limitado.",
+      "action": "Escolher outro horário"
+    },
+    "loadError": {
+      "title": "Não foi possível carregar a reserva",
+      "description": "Não foi possível verificar esta seleção de reserva.",
+      "action": "Recomeçar",
+      "retry": "Tentar novamente"
+    },
+    "verificationRequired": {
+      "title": "Verifique o seu email para continuar",
+      "description": "A sua seleção de reserva está segura. Verifique o email e volte aqui para a confirmar.",
+      "action": "Verificar email"
+    }
+  },
+  "EmailVerification": {
+    "verifying": {
+      "title": "A verificar o seu email",
+      "description": "Aguarde enquanto verificamos o seu endereço de email em segurança."
+    },
+    "verified": {
+      "title": "Email verificado",
+      "description": "A sua conta está pronta. Inicie sessão para continuar a reserva.",
+      "signIn": "Iniciar sessão e continuar",
+      "continue": "Continuar reserva"
+    },
+    "sent": {
+      "title": "Consulte o seu email",
+      "description": "Enviámos uma ligação de verificação para o seu endereço de email. Abra-a neste navegador para ativar a conta.",
+      "again": "Foi enviado um novo email de verificação."
+    },
+    "error": {
+      "title": "A ligação de verificação é inválida",
+      "description": "Esta ligação de verificação é inválida ou expirou.",
+      "back": "Voltar ao início de sessão"
+    },
+    "resend": {
+      "action": "Enviar um novo email de verificação",
+      "sending": "A enviar…",
+      "wait": "Enviar novamente dentro de {seconds} s",
+      "error": "Não foi possível enviar o email de verificação. Tente novamente."
+    }
+  },
+  "CreditPurchaseStatus": {
+    "loading": "A verificar o seu pagamento…",
+    "checking": "A verificar o estado mais recente do pagamento…",
+    "waiting": "A aguardar confirmação do pagamento…",
+    "orderReference": "Encomenda {orderId}",
+    "pending": {
+      "badge": "Em processamento",
+      "title": "Estamos a confirmar o seu pagamento",
+      "description": "A Stripe está a processar o pagamento e o servidor está a adicionar os seus créditos do estúdio. Pode manter esta página aberta em segurança."
+    },
+    "success": {
+      "badge": "Pago",
+      "title": "Os seus créditos estão prontos",
+      "description": "O servidor confirmou o pagamento e adicionou os créditos adquiridos à sua conta do estúdio."
+    },
+    "failed": {
+      "badge": "Não concluído",
+      "title": "A compra de créditos não foi concluída",
+      "description": "Não foram adicionados créditos. Verifique o seu método de pagamento ou volte à página de créditos e tente novamente."
+    },
+    "invalid": {
+      "title": "Não é possível verificar esta compra",
+      "description": "A referência segura da encomenda está em falta ou não foi possível carregá-la. Abra a página de créditos para consultar o seu saldo atual."
+    },
+    "actions": {
+      "retry": "Verificar novamente",
+      "viewCredits": "Ver créditos",
+      "portal": "Portal do cliente"
+    }
+  },
+  "CustomerNotifications": {
+    "trigger": "Abrir notificações",
+    "triggerUnread": "Abrir notificações, {count, plural, one {# notificação não lida} other {# notificações não lidas}}",
+    "panel": {
+      "label": "Notificações do portal do cliente",
+      "title": "Notificações",
+      "unread": "{count, plural, one {# notificação não lida} other {# notificações não lidas}}",
+      "caughtUp": "Está tudo em dia",
+      "summaryLoading": "A procurar atualizações…",
+      "summaryUnavailable": "O estado de leitura está temporariamente indisponível"
+    },
+    "page": {
+      "eyebrow": "As suas atualizações",
+      "title": "Notificações",
+      "description": "Confirmações de reservas, pagamentos, atualizações do estúdio e mensagens da conta num único lugar.",
+      "unreadSummary": "{count, plural, one {# notificação não lida na sua conta do estúdio} other {# notificações não lidas na sua conta do estúdio}}",
+      "caughtUp": "Leu todas as notificações",
+      "summaryLoading": "A verificar as suas notificações não lidas…",
+      "summaryUnavailable": "O estado de leitura está temporariamente indisponível",
+      "loading": "A carregar as suas notificações…"
+    },
+    "actions": {
+      "markAllRead": "Marcar todas como lidas",
+      "retry": "Tentar novamente",
+      "viewAll": "Ver todas as notificações"
+    },
+    "filters": {
+      "label": "Filtros de notificações",
+      "status": "Estado",
+      "category": "Categoria"
+    },
+    "statuses": {
+      "all": "Todas",
+      "unread": "Não lidas",
+      "read": "Lidas"
+    },
+    "categories": {
+      "all": "Todas as categorias",
+      "bookings": "Reservas",
+      "payments": "Pagamentos",
+      "waitlist": "Lista de espera",
+      "memberships": "Subscrições",
+      "credits_vouchers": "Créditos e vales",
+      "account": "Conta"
+    },
+    "item": {
+      "untitled": "Atualização do estúdio",
+      "open": "Abrir notificação: {title}",
+      "markRead": "Marcar notificação como lida: {title}",
+      "groupedCount": "{count, plural, one {# atualização} other {# atualizações}}"
+    },
+    "empty": {
+      "title": "Ainda não há notificações",
+      "description": "As confirmações de reservas e as atualizações importantes do estúdio serão apresentadas aqui.",
+      "unreadTitle": "Está tudo em dia",
+      "unreadDescription": "Não há notificações não lidas nesta vista."
+    },
+    "errors": {
+      "loadTitle": "Não foi possível carregar as suas notificações",
+      "load": "Verifique a sua ligação e tente novamente.",
+      "refresh": "A apresentar as suas últimas atualizações. A atualização está temporariamente indisponível.",
+      "markRead": "Não foi possível marcar a notificação como lida.",
+      "markAllRead": "Não foi possível marcar as notificações como lidas."
+    },
+    "pagination": {
+      "label": "Páginas de notificações",
+      "previous": "Página anterior",
+      "next": "Página seguinte",
+      "summary": "{total, plural, one {# notificação} other {# notificações}} · página {page} de {pages}"
+    }
+  },
+  "WorkspaceNotifications": {
+    "trigger": "Abrir notificações",
+    "triggerUnread": "Abrir notificações, {count, plural, one {# notificação não lida} other {# notificações não lidas}}",
+    "panel": {
+      "label": "Notificações do espaço de trabalho",
+      "title": "Notificações",
+      "unread": "{count, plural, one {# notificação não lida} other {# notificações não lidas}}",
+      "caughtUp": "Está tudo em dia",
+      "summaryLoading": "A procurar atualizações…",
+      "summaryUnavailable": "O estado de leitura está temporariamente indisponível"
+    },
+    "page": {
+      "title": "Notificações",
+      "heading": "As suas atualizações operacionais",
+      "unreadSummary": "{count, plural, one {# notificação não lida no seu espaço de trabalho} other {# notificações não lidas no seu espaço de trabalho}}",
+      "caughtUp": "Leu todas as notificações",
+      "summaryLoading": "A verificar as suas notificações não lidas…",
+      "summaryUnavailable": "O estado de leitura está temporariamente indisponível"
+    },
+    "actions": {
+      "markAllRead": "Marcar todas como lidas",
+      "preferences": "Preferências de notificações",
+      "retry": "Tentar novamente",
+      "viewAll": "Ver todas as notificações"
+    },
+    "filters": {
+      "label": "Filtros de notificações",
+      "status": "Estado",
+      "category": "Categoria",
+      "location": "Local do estúdio"
+    },
+    "statuses": {
+      "all": "Todas",
+      "unread": "Não lidas",
+      "read": "Lidas"
+    },
+    "categories": {
+      "all": "Todas as categorias",
+      "bookings": "Reservas",
+      "payments": "Pagamentos",
+      "waitlist": "Lista de espera",
+      "tasks": "Tarefas",
+      "inventory": "Inventário",
+      "migration": "Migração",
+      "communications": "Comunicações",
+      "account": "Conta"
+    },
+    "locations": {
+      "all": "Todos os locais"
+    },
+    "item": {
+      "untitled": "Atualização do estúdio",
+      "open": "Abrir notificação: {title}",
+      "markRead": "Marcar notificação como lida: {title}",
+      "groupedCount": "{count, plural, one {# evento} other {# eventos}}"
+    },
+    "empty": {
+      "title": "Ainda não há notificações",
+      "description": "As atualizações operacionais importantes serão apresentadas aqui.",
+      "unreadTitle": "Está tudo em dia",
+      "unreadDescription": "Não há notificações não lidas nesta vista."
+    },
+    "errors": {
+      "load": "Não foi possível carregar as notificações.",
+      "markRead": "Não foi possível marcar a notificação como lida.",
+      "markAllRead": "Não foi possível marcar as notificações como lidas."
+    },
+    "pagination": {
+      "label": "Páginas de notificações",
+      "previous": "Anterior",
+      "next": "Seguinte",
+      "summary": "{total, plural, one {# notificação} other {# notificações}} · página {page} de {pages}"
+    }
+  },
+  "PublicTenant": {
+    "nav": {
+      "home": "Estúdio",
+      "portal": "Portal do cliente",
+      "book": "Estúdio aberto",
+      "courses": "Aulas",
+      "memberships": "Subscrições",
+      "vouchers": "Vales-oferta",
+      "help": "Guia do estúdio"
+    },
+    "actions": {
+      "signIn": "Iniciar sessão",
+      "book": "Reservar uma sessão",
+      "courses": "Ver aulas",
+      "memberships": "Ver subscrições",
+      "vouchers": "Explorar vales-oferta",
+      "register": "Criar conta"
+    },
+    "mobile": {
+      "eyebrow": "Navegação do estúdio",
+      "title": "Explore {studio}",
+      "poweredBy": "Tecnologia Shario"
+    },
+    "home": {
+      "eyebrow": "Boas-vindas a",
+      "defaultDescription": "Descubra {studio}, explore as formas de visitar o espaço e encontre tudo o que precisa antes do próximo dia no estúdio.",
+      "exploreEyebrow": "O seu estúdio",
+      "exploreTitle": "Formas de visitar",
+      "explore": "Explorar",
+      "cards": {
+        "book": "Escolha uma sessão no estúdio e encontre o horário mais conveniente.",
+        "courses": "Consulte as próximas aulas e experiências criativas.",
+        "memberships": "Compare planos para acesso regular ao estúdio e respetivos benefícios.",
+        "vouchers": "Ofereça a alguém tempo e espaço para criar no estúdio.",
+        "help": "Prepare a sua visita com orientações do estúdio e respostas práticas."
+      },
+      "highlights": {
+        "viewAll": "Ver tudo",
+        "open": "Ver detalhes",
+        "coursesTitle": "Aulas em destaque",
+        "coursesDescription": "Escolha entre as aulas atualmente publicadas pelo estúdio.",
+        "membershipsTitle": "Opções de subscrição",
+        "membershipsDescription": "Planos para clientes que querem visitar e criar regularmente.",
+        "helpTitle": "Do Knowledge Hub do estúdio",
+        "helpDescription": "Orientações públicas úteis selecionadas pelo estúdio.",
+        "resourceTypes": {
+          "video": "Vídeo",
+          "guide": "Guia",
+          "faq": "Perguntas frequentes",
+          "link": "Ligação",
+          "file": "Ficheiro"
+        }
+      }
+    },
+    "footer": {
+      "explore": "Explorar",
+      "contact": "Contacto",
+      "information": "Informação",
+      "defaultCopyright": "© {year} {studio}",
+      "poweredBy": "Tecnologia Shario"
+    },
+    "legal": {
+      "studioRules": "Regras do estúdio",
+      "terms": "Termos e condições",
+      "privacy": "Política de privacidade",
+      "cancellation": "Política de cancelamento"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "website": "Site"
+    },
+    "unavailable": {
+      "title": "Esta opção não está disponível",
+      "description": "O estúdio não disponibiliza esta opção ao público neste momento.",
+      "back": "Voltar ao estúdio"
+    },
+    "book": {
+      "metadataTitle": "Reservar Estúdio aberto",
+      "title": "Estúdio aberto em {studio}",
+      "description": "Escolha um estúdio e consulte os períodos ocupados apresentados antes de iniciar sessão.",
+      "eyebrow": "Planeie a sua visita",
+      "studioLabel": "Local do estúdio",
+      "studioRequired": "Nenhum estúdio selecionado",
+      "priceFrom": "Preços de reserva desde",
+      "priceLabel": "Preço da reserva",
+      "priceUnavailable": "Perguntar ao estúdio",
+      "priceUnit": "por bloco de 30 minutos, por participante",
+      "retry": "Tentar novamente",
+      "calendar": {
+        "title": "Ocupação do estúdio",
+        "readOnly": "Só de leitura",
+        "description": "Consulte os horários ocupados no fuso horário local do estúdio. Os dados pessoais das reservas nunca são apresentados.",
+        "legend": "Legenda do calendário",
+        "occupied": "Ocupado",
+        "loadingStudios": "A carregar locais do estúdio…",
+        "locationError": "Não foi possível carregar os locais do estúdio.",
+        "noLocations": "Ainda não há nenhum estúdio disponível",
+        "noLocationsDescription": "Este estúdio não publicou um local com reservas ativas.",
+        "invalidLocation": "Este local do estúdio não está disponível",
+        "invalidLocationDescription": "Escolha um dos locais publicados para continuar.",
+        "loading": "A carregar a ocupação atual…",
+        "error": "Não foi possível carregar a ocupação atual.",
+        "empty": "Não foram encontrados períodos ocupados neste intervalo. Isto não garante disponibilidade.",
+        "occupiedSummary": "{count, plural, one {É apresentado # período ocupado.} other {São apresentados # períodos ocupados.}}"
+      }
+    },
+    "courses": {
+      "metadataTitle": "Aulas do estúdio",
+      "title": "Aulas em {studio}",
+      "description": "Descubra as aulas publicadas. Inicie sessão para consultar as datas disponíveis.",
+      "filters": {
+        "label": "Categorias de aulas",
+        "all": "Todas",
+        "searchLabel": "Pesquisar aulas",
+        "searchPlaceholder": "Pesquisar aulas…",
+        "clearSearch": "Limpar pesquisa",
+        "resultCount": "{visible} / {total} aulas",
+        "noResults": "Nenhuma aula corresponde à pesquisa ou à categoria selecionada.",
+        "reset": "Mostrar todas as aulas"
+      }
+    },
+    "vouchers": {
+      "metadataTitle": "Vales-oferta",
+      "title": "Um presente especial para quem gosta de criar",
+      "description": "Escolha um vale-oferta publicado e dê a alguém a liberdade de criar em {studio}.",
+      "checkout": {
+        "eyebrow": "Pagamento seguro",
+        "title": "Escolha o seu vale",
+        "description": "Selecione um valor, introduza o seu email e continue para a página de pagamento seguro do estúdio.",
+        "email": "Endereço de email",
+        "quantity": "Quantidade",
+        "missing": "Escolha um vale e introduza um endereço de email válido.",
+        "error": "Não foi possível iniciar o pagamento. Tente novamente.",
+        "starting": "A preparar o pagamento…",
+        "continue": "Continuar para pagamento",
+        "secure": "A disponibilidade e o preço do vale são verificados em segurança antes do pagamento.",
+        "giftMessage": "Dedicatória (opcional)",
+        "giftMessageHelp": "Até 240 caracteres. A dedicatória é adicionada a todos os PDF desta encomenda e ao seu e-mail. Enviamos os vales para o endereço de e-mail indicado acima.",
+        "giftMessageLegacyHelp": "Até 240 caracteres. A dedicatória é incluída no seu e-mail. Este vale utiliza um modelo PDF fixo, pelo que a dedicatória não aparecerá no PDF.",
+        "giftMessageError": "A sua dedicatória não cabe neste vale. Experimente encurtá-la, reduzir as quebras de linha ou remover emojis e símbolos especiais.",
+        "total": "Total",
+        "validity": "Validade",
+        "noExpiry": "Sem data de validade",
+        "validUntil": "Válido até {date}",
+        "validMonths": "{months, plural, one {# mês após a compra} other {# meses após a compra}}"
+      },
+      "postal": {
+        "title": "Entrega",
+        "digital": "Vale digital",
+        "physical": "Vale impresso por correio",
+        "digitalHelp": "Enviado para o seu e-mail.",
+        "postage": "Portes: {amount} por encomenda",
+        "backup": "O estúdio imprime e envia o seu vale. Receberá também uma cópia de segurança por e-mail com o mesmo código. Ambas as cópias partilham um único saldo.",
+        "firstname": "Nome próprio",
+        "lastname": "Apelido",
+        "street": "Rua e número de porta",
+        "city": "Localidade",
+        "postalCode": "Código postal",
+        "country": "País",
+        "chooseCountry": "Escolha um país",
+        "addressError": "Introduza a morada postal completa, incluindo o país.",
+        "unavailable": "A entrega por correio já não está disponível para este vale. Escolha a entrega digital ou atualize a página.",
+        "subtotal": "Valor dos vales",
+        "fee": "Portes"
+      }
+    },
+    "catalog": {
+      "loading": "A carregar as ofertas atuais…",
+      "error": "Não foi possível carregar as ofertas atuais.",
+      "retry": "Tentar novamente",
+      "empty": "Ainda não há ofertas publicadas aqui.",
+      "book": "Iniciar sessão para reservar",
+      "viewDates": "Ver datas disponíveis",
+      "viewDetails": "Escolher uma data",
+      "continue": "Continuar para reserva",
+      "availability": {
+        "fullWaitlistOpen": "Esgotado · lista de espera aberta"
+      }
+    },
+    "details": {
+      "bookingMetadataTitle": "Escolher uma visita ao estúdio",
+      "bookingMetadataDescription": "Escolha uma opção de Estúdio aberto, um local, uma data e uma hora.",
+      "courseMetadataTitle": "Datas das aulas",
+      "courseMetadataDescription": "Veja as datas publicadas da aula e escolha o seu lugar.",
+      "loading": "A carregar a disponibilidade atual…",
+      "error": "Não foi possível carregar a disponibilidade atual.",
+      "retry": "Tentar novamente",
+      "notFound": "Esta oferta pública já não está disponível.",
+      "backToBook": "Voltar às reservas do estúdio",
+      "backToCourses": "Voltar às aulas",
+      "bookingEyebrow": "Estúdio aberto",
+      "courseEyebrow": "Aula",
+      "chooseVisit": "Escolha a sua visita",
+      "chooseVisitDescription": "Selecione um local e uma data. A disponibilidade será verificada novamente antes do pagamento.",
+      "chooseCourseSession": "Escolha uma data da aula",
+      "chooseCourseSessionDescription": "Selecione uma sessão publicada e o número de participantes.",
+      "location": "Local",
+      "locationFallback": "Local {number}",
+      "date": "Data",
+      "activity": "Atividade planeada",
+      "activityChoose": "Escolha uma atividade",
+      "activityNotSpecified": "Sem atividade específica",
+      "activityRequiredHint": "Neste local, é necessário escolher uma atividade antes de selecionar um horário.",
+      "activityOptionalHint": "Pode escolher uma atividade ou continuar sem a especificar.",
+      "activityUnavailable": "Ainda não foi configurada nenhuma atividade para clientes neste local.",
+      "chooseTime": "Escolher um horário",
+      "noSlots": "Não há horários disponíveis nesta data.",
+      "noCourseSessions": "Não há próximas sessões publicadas para esta aula.",
+      "remaining": "{count, plural, =0 {Esgotado} one {Resta # lugar} other {Restam # lugares}}",
+      "continueInPortal": "Continuar no portal do cliente",
+      "signInToContinue": "Iniciar sessão para continuar",
+      "bookWithAccount": "Reservar com a minha conta",
+      "openWorkspace": "Abrir painel do estúdio",
+      "preparingIntent": "A garantir a sua seleção…",
+      "selectionChanged": "Este horário já não está disponível. Atualizámos as opções disponíveis.",
+      "intentError": "Não foi possível preparar a sua reserva. Tente novamente.",
+      "orGuestCheckout": "ou continuar como convidado",
+      "customerChoice": {
+        "mode": "Definições de privacidade",
+        "public": "Partilhada",
+        "private": "Privada",
+        "publicFixedHelp": "Até {count} pessoas no total podem partilhar este horário, incluindo o seu grupo. Continuam a aplicar-se os limites de capacidade do estúdio e da atividade.",
+        "publicActivityHelp": "Outros clientes podem participar até ser atingida a capacidade da atividade e do estúdio.",
+        "privateHelp": "Reserve todo o estúdio para o seu grupo. Aplica-se um suplemento de {amount} uma única vez por reserva.",
+        "surcharge": "Suplemento por reserva privada",
+        "people": "Pessoas no seu grupo"
+      },
+      "activityWorkstation": "Postos de trabalho",
+      "activitySharedTable": "Mesas partilhadas"
+    },
+    "guestCheckout": {
+      "title": "Continuar como convidado",
+      "description": "Introduza os seus dados de contacto para reservar esta aula.",
+      "people": "Número de participantes",
+      "firstName": "Nome",
+      "lastName": "Apelido",
+      "email": "Email",
+      "phone": "Telefone (opcional)",
+      "terms": "Condições da aula",
+      "acceptTerms": "Li e aceito estas condições da aula.",
+      "termsRequired": "Aceite as condições da aula antes de continuar.",
+      "validationError": "Verifique os seus dados de contacto.",
+      "checkoutError": "Não foi possível iniciar o pagamento. A disponibilidade poderá ter mudado; tente novamente.",
+      "signInRequired": "Inicie sessão com este email para continuar em segurança.",
+      "signIn": "Iniciar sessão e continuar",
+      "starting": "A iniciar pagamento seguro…",
+      "continue": "Continuar para pagamento seguro",
+      "serverValidation": "O preço, a lotação e a disponibilidade da aula são verificados em segurança antes do pagamento.",
+      "totalLabel": "Total para {count} participantes",
+      "attemptExpired": "Esta sessão de pagamento expirou. Continue novamente para verificar a disponibilidade e iniciar um novo pagamento.",
+      "voucherCode": "Código do vale (opcional)",
+      "checkVoucher": "Verificar vale",
+      "checkingVoucher": "A verificar…",
+      "voucherHelp": "Verifique o desconto antes de confirmar. A verificação não utiliza o seu vale.",
+      "voucherDiscount": "Desconto do vale",
+      "remainingToPay": "Valor por pagar",
+      "voucherCoversAll": "O vale cobre o preço total. Confirme para o utilizar e reservar os seus lugares.",
+      "voucherPartial": "Confirme para reservar o vale e pagar o valor restante com cartão.",
+      "confirmWithVoucher": "Confirmar reserva com vale",
+      "voucherError": "Este vale não pode ser utilizado nesta reserva. Verifique o código ou contacte o estúdio.",
+      "voucherReviewRequired": "Verifique o vale e o preço antes de confirmar.",
+      "voucherRateLimited": "Demasiadas tentativas. Aguarde um momento e tente novamente.",
+      "voucherChanged": "O preço ou o saldo do vale foi alterado. Verifique novamente o vale antes de confirmar."
+    },
+    "guestCheckoutResult": {
+      "verifyingLabel": "A verificar o pagamento",
+      "confirmedLabel": "Pagamento confirmado",
+      "unconfirmedLabel": "Não foi possível confirmar o pagamento",
+      "verifyingTitle": "Estamos a finalizar a sua reserva",
+      "confirmedTitle": "Obrigado pela sua reserva",
+      "unconfirmedTitle": "A sua reserva ainda não está confirmada",
+      "verifyingDescription": "Aguardamos a confirmação do prestador de pagamentos. Pode manter esta página aberta.",
+      "confirmedDescription": "O pagamento e a reserva estão confirmados. Enviaremos os detalhes da reserva por e-mail.",
+      "unconfirmedDescription": "Não foi possível verificar esta reserva. Consulte o seu e-mail ou contacte o estúdio com a referência abaixo antes de tentar outro pagamento.",
+      "emailPending": "Enviaremos um e-mail quando a reserva estiver confirmada.",
+      "emailConfirmed": "Verifique também a pasta de spam.",
+      "orderReference": "Referência da encomenda",
+      "backToStudio": "Voltar ao estúdio",
+      "backToCourse": "Voltar ao curso",
+      "retry": "Verificar novamente",
+      "cancelledTitle": "A página de pagamento foi fechada",
+      "cancelledDescription": "Esta página não confirma um pagamento nem uma reserva. Consulte o seu e-mail antes de iniciar outro pagamento."
+    }
+  },
+  "VoucherEditor": {
+    "colors": {
+      "mainTitle": "Título principal",
+      "useTextColor": "Usar a cor do texto"
+    },
+    "description": "Duas metades iguais: o seu texto e o código do vale à esquerda, a sua fotografia à direita.",
+    "assets": {
+      "image": "Fotografia da metade direita",
+      "imageHelp": "A fotografia preenche a metade direita de cima a baixo. Preencher o painel recorta as margens; Mostrar a fotografia inteira preserva toda a imagem com espaço à volta.",
+      "imageFormats": "JPEG, PNG ou WebP · até 8 MB. Verifique o recorte na pré-visualização.",
+      "uploadImage": "Carregar fotografia",
+      "replaceImage": "Alterar fotografia",
+      "cover": "Preencher o painel (recortar margens)",
+      "contain": "Mostrar a fotografia inteira",
+      "fit": "Ajuste da fotografia"
+    },
+    "preview": {
+      "automatic": "O código único e a data de validade são adicionados à esquerda. O montante não é impresso; o valor resgatável do vale mantém-se inalterado. Esta pré-visualização e o PDF de exemplo utilizam dados demonstrativos."
+    }
+  },
+  "WorkspaceModules": {
+    "modules": {
+      "communications": {
+        "description": "Histórico de e-mails, automatizações, modelos e definições de e-mail."
+      }
+    }
+  },
+  "PublicSiteEditor": {
+    "customerPortal": {
+      "pageLabels": {
+        "courses": "Cursos"
+      },
+      "navigationLabels": {
+        "courses": "Cursos"
+      },
+      "courses": {
+        "title": "Cursos em cada atelier",
+        "description": "Personalize o título, a introdução e a fotografia da página de cursos para cada localização.",
+        "location": "Localização do atelier",
+        "headline": "Título da página de cursos",
+        "intro": "Introdução da página de cursos",
+        "image": "Fotografia da página de cursos",
+        "inherit": "Os campos vazios usam o texto partilhado da página de cursos e a fotografia de capa da marca.",
+        "noLocations": "Adicione uma localização de atelier para personalizar a respetiva página de cursos.",
+        "guestCheckoutEnabled": "Permitir a compra de cursos sem conta",
+        "guestCheckoutDescription": "Aplica-se a todos os estúdios. Os visitantes podem comprar um curso sem criar conta; os clientes podem continuar a iniciar sessão para reservar. Requer páginas de cursos visíveis e pagamentos online operacionais. Publique as alterações para aplicar esta opção."
+      }
+    },
+    "preview": {
+      "pages": {
+        "portalCourses": "Cursos do portal do cliente"
+      }
+    },
+    "branding": {
+      "logoRedirectEnabled": "Usar o logótipo como ligação",
+      "logoRedirectHint": "Quando ativado, clicar no logótipo abre a página escolhida. Quando desativado, o clique não tem efeito.",
+      "logoRedirectUrl": "Endereço de destino do logótipo",
+      "logoRedirectUrlHint": "Use um endereço HTTPS completo ou um caminho que comece por /. A página abre no mesmo separador.",
+      "invalidLogoRedirectUrl": "Introduza um endereço HTTPS válido ou um caminho que comece por /."
+    },
+    "messages": {
+      "invalidLogoRedirectUrl": "Corrija o destino do logótipo antes de guardar ou publicar."
+    }
+  },
+  "Products": {
+    "form": {
+      "courseContent": {
+        "title": "Conteúdo da página do curso",
+        "help": "Textos e fotografias opcionais para a página de cursos do portal do cliente. Os campos vazios usam o conteúdo principal do produto.",
+        "language": "Idioma do conteúdo",
+        "name": "Título do curso",
+        "description": "Descrição curta",
+        "details": "Detalhes do curso",
+        "durationLabel": "Texto da duração",
+        "plainTextHelp": "Use texto simples. As quebras de linha são mantidas.",
+        "gallery": "Galeria de fotografias do curso",
+        "galleryHelp": "Adicione até 12 endereços HTTPS de imagens ou caminhos relativos ao site. Se a galeria estiver vazia, é usada a imagem do produto.",
+        "imageUrl": "Endereço da nova imagem da galeria",
+        "addImage": "Adicionar imagem",
+        "useProductImage": "Usar a imagem atual do produto",
+        "imageLabel": "Imagem da galeria {number}",
+        "moveEarlier": "Mover a imagem {number} para antes",
+        "moveLater": "Mover a imagem {number} para depois",
+        "removeImage": "Remover a imagem {number}",
+        "invalidImage": "Introduza um endereço HTTPS de imagem válido ou um caminho relativo ao site (até 2000 carateres).",
+        "invalidText": "Verifique o texto do curso: use texto simples dentro dos limites dos campos.",
+        "galleryLimit": "Pode adicionar até 12 imagens à galeria.",
+        "locations": "Disponível nestes ateliers",
+        "locationsHelp": "Deixe a seleção vazia para apresentar o curso em todos os ateliers. As datas correspondem sempre ao atelier selecionado."
+      }
+    }
+  },
+  "CustomerCourses": {
+    "eyebrow": "Crie no seu atelier",
+    "title": "Cursos",
+    "description": "Explore os cursos, escolha uma data e reserve o seu lugar.",
+    "location": "Localização do atelier",
+    "allCategories": "Todos os cursos",
+    "search": "Pesquisar cursos",
+    "noResults": "Nenhum curso corresponde à sua pesquisa.",
+    "noCourses": "Ainda não há cursos disponíveis neste atelier.",
+    "loading": "A carregar cursos…",
+    "error": "Não foi possível carregar os cursos.",
+    "retry": "Tentar novamente",
+    "details": "Detalhes do curso",
+    "chooseDate": "Escolher uma data",
+    "upcomingDates": "Próximas datas",
+    "noDates": "Serão anunciadas novas datas em breve.",
+    "pricePerPerson": "Preço por pessoa",
+    "duration": "Duração",
+    "durationMinutes": "{count} min",
+    "capacity": "Dimensão do grupo",
+    "capacityPeople": "Até {count} pessoas",
+    "back": "Voltar aos cursos",
+    "people": "Número de pessoas",
+    "addToCart": "Adicionar ao carrinho",
+    "inCart": "No seu carrinho",
+    "viewCart": "Ver carrinho",
+    "unavailable": "Este curso não está disponível no atelier selecionado.",
+    "selectDate": "Selecione uma data disponível para continuar.",
+    "giftVoucher": "Oferecer um vale-presente",
+    "previousImage": "Imagem anterior",
+    "nextImage": "Imagem seguinte",
+    "openGallery": "Abrir galeria de {name}",
+    "closeGallery": "Fechar galeria",
+    "imagePosition": "Imagem {current} de {total}",
+    "placesLeft": "Lugares disponíveis: {count}",
+    "full": "Esgotado",
+    "date": "Data",
+    "added": "Curso adicionado ao seu carrinho.",
+    "checkoutPaused": "As reservas não estão disponíveis de momento. Pode continuar a explorar os cursos."
+  },
+  "Sales": {
+    "paymentMethods": {
+      "unknown": "Não registado"
+    }
+  },
+  "VoucherShopping": {
+    "buy": "Comprar um vale de oferta",
+    "manage": "Utilizar ou consultar os meus vales",
+    "chooseTitle": "Escolha o seu presente",
+    "chooseDescription": "Escolha um vale e a quantidade. Não precisa de uma conta para comprar.",
+    "deliveryTitle": "Receba o seu vale",
+    "deliveryDescription": "Após o pagamento, o vale em PDF é enviado para o endereço de e-mail indicado.",
+    "redeemTitle": "Planeie uma visita ao estúdio",
+    "redeemDescription": "Quem recebe o presente escolhe uma data e utiliza o código do vale no pagamento. A compra de um vale não reserva uma vaga num curso.",
+    "selection": "Selecionar vale",
+    "selected": "Selecionado"
+  },
+  "BookingActions": {
+    "title": "Editar reserva",
+    "details": "Detalhes da reserva",
+    "chooseAction": "O que pretende fazer?",
+    "extend": "Prolongar",
+    "move": "Alterar",
+    "cancel": "Cancelar",
+    "extendTitle": "Prolongar reserva",
+    "moveTitle": "Alterar reserva",
+    "cancelTitle": "Cancelar reserva",
+    "extendHelp": "Mantenha a reserva e acrescente tempo no final. Os participantes, a atividade e a definição de privacidade mantêm-se. Paga apenas pelo tempo adicional.",
+    "extraTime": "Quanto tempo mais?",
+    "minutes": "+{minutes} min",
+    "endsAt": "Termina às {time}",
+    "loading": "A verificar horários disponíveis…",
+    "retry": "Tentar novamente",
+    "quoteError": "Não foi possível verificar os prolongamentos. Tente novamente.",
+    "paymentMethod": "Método de pagamento",
+    "card": "Cartão de pagamento",
+    "credits": "Créditos do estúdio",
+    "payExtend": "Prolongar reserva · {amount}",
+    "processing": "A processar…",
+    "extensionError": "Não foi possível confirmar este prolongamento. Verifique a reserva antes de tentar novamente.",
+    "quoteChanged": "A reserva ou o preço foi alterado. Reveja as opções atualizadas antes de confirmar.",
+    "currentTariff": "A tarifa horária original não está disponível. O tempo adicional é cobrado à tarifa atual do estúdio.",
+    "cardTimeLimit": "Se a sua reserva terminar em breve, utilize créditos do estúdio. Não há tempo suficiente para concluir o pagamento por cartão.",
+    "reasons": {
+      "unavailable": "Este tempo adicional não está disponível.",
+      "private": "Outra reserva privada começa durante este período.",
+      "capacity": "Não há capacidade suficiente no estúdio ou para a atividade.",
+      "closed": "Este prolongamento fica fora do horário de funcionamento do estúdio.",
+      "duration": "Isto excede a duração máxima da reserva.",
+      "pending": "Já existe um pagamento de prolongamento pendente. Conclua ou cancele esse pagamento antes de tentar novamente."
+    },
+    "moveHelp": "Escolha uma nova hora de início. A duração de {minutes} minutos, o estúdio, a atividade e os participantes mantêm-se.",
+    "newDate": "Nova data",
+    "startTime": "Hora de início",
+    "availableTimes": "Horas de início disponíveis",
+    "manualTime": "Introduza uma hora de início. A disponibilidade será verificada antes da confirmação.",
+    "confirmMove": "Confirmar novo horário",
+    "moveInvalid": "Escolha uma data e uma hora válidas.",
+    "moveError": "Esse horário já não está disponível. Escolha outro.",
+    "readonly": "Já não é possível alterar o horário desta reserva.",
+    "courseReadonly": "As inscrições nos cursos só podem ser consultadas no portal, pois estão associadas a uma sessão agendada. Contacte o estúdio para as alterar ou cancelar.",
+    "accessLocked": "O código de acesso foi emitido ou está a ser enviado, pelo que já não é possível alterar ou cancelar a reserva.",
+    "refundHelp": "O cancelamento é irreversível. O valor pago é devolvido em créditos do estúdio; se o pagamento foi feito com créditos da adesão, esses créditos são repostos. Só é possível cancelar antes da emissão do código de acesso.",
+    "cancelQuestion": "Cancelar esta reserva?",
+    "confirmCancel": "Sim, cancelar",
+    "keepBooking": "Manter reserva",
+    "cancelling": "A cancelar…",
+    "cancelError": "Não foi possível cancelar esta reserva. Tente novamente.",
+    "cancelledTitle": "Reserva cancelada",
+    "cancelledBody": "A sua reserva foi cancelada e o reembolso foi efetuado.",
+    "movedTitle": "Reserva alterada",
+    "movedBody": "O novo horário da sua reserva está confirmado.",
+    "extendedTitle": "Reserva prolongada",
+    "extendedBody": "A sua reserva termina agora às {time}. Enviaremos uma confirmação por e-mail.",
+    "arrival": "Informações de chegada",
+    "accessCode": "O seu código de acesso será enviado por e-mail {minutes} minutos antes da reserva.",
+    "cancelPayment": "Cancelar pagamento do prolongamento"
+  },
+  "EmailAutomations": {
+    "history": {
+      "types": {
+        "afterBookingCreated": "Confirmação da reserva"
+      },
+      "pagination": {
+        "label": "Páginas do histórico de entrega de e-mails",
+        "previous": "Anterior",
+        "next": "Seguinte",
+        "showing": "A mostrar {from}–{to} de {total} entregas de e-mails",
+        "newestFirst": "Mais recentes primeiro · 20 por página"
+      }
+    }
+  },
+  "TeamSettings": {
+    "actions": {
+      "add": "Convidar membro"
+    },
+    "editor": {
+      "addTitle": "Convidar um membro da equipa",
+      "email": "Endereço de e-mail",
+      "existingUserHint": "A pessoa receberá um convite por e-mail. Novos membros poderão criar uma conta."
+    },
+    "empty": {
+      "description": "Convide alguém por e-mail e escolha a função e os locais."
+    },
+    "invitations": {
+      "title": "Convites",
+      "description": "O acesso começa após a aceitação do convite.",
+      "empty": "Não há convites pendentes.",
+      "resend": "Reenviar",
+      "revoke": "Revogar",
+      "revokeConfirm": "Revogar o convite para {email}?",
+      "revoked": "Convite revogado.",
+      "expires": "Expira em {date}",
+      "signInLink": "Ligação para iniciar sessão",
+      "sendSignIn": "Enviar ligação de início de sessão",
+      "send": "Enviar convite",
+      "statuses": {
+        "pending": "Pendente",
+        "expired": "Expirado"
+      },
+      "delivery": {
+        "pending": "E-mail pendente",
+        "sent": "E-mail enviado",
+        "failed": "Falha no envio"
+      },
+      "notices": {
+        "pending": "Convite guardado para {email}. O envio do e-mail está pendente.",
+        "sent": "Convite enviado para {email}.",
+        "failed": "Convite guardado para {email}, mas o e-mail não foi enviado. Volte a enviar."
+      },
+      "errors": {
+        "resend": "Não foi possível reenviar o convite.",
+        "revoke": "Não foi possível revogar o convite.",
+        "send": "Não foi possível enviar a ligação de início de sessão.",
+        "resendTooSoon": "Aguarde um minuto antes de reenviar este convite.",
+        "rateLimited": "Demasiados convites. Aguarde 15 minutos antes de tentar novamente."
+      }
+    }
+  },
+  "TeamInvitation": {
+    "title": "Juntar-se à equipa",
+    "signInTitle": "Iniciar sessão no espaço de trabalho",
+    "description": "Convite para {tenant} destinado a {email}.",
+    "newAccount": "Crie a sua conta para aceitar este convite.",
+    "existingAccount": "Introduza a palavra-passe atual da conta. Não será alterada.",
+    "resetRequired": "Defina uma palavra-passe através da recuperação da conta e volte a este convite.",
+    "resetPassword": "Repor palavra-passe (abre novo separador)",
+    "accepted": "Convite aceite. Inicie sessão para continuar.",
+    "loginRetry": "O acesso está pronto, mas o início de sessão falhou. Tente iniciar sessão novamente.",
+    "accept": "Aceitar convite",
+    "signIn": "Iniciar sessão",
+    "working": "Aguarde…",
+    "unavailableTitle": "Convite indisponível",
+    "unavailable": "Este convite é inválido, expirou, foi revogado ou não foi possível carregá-lo. Se necessário, peça um novo convite ao proprietário.",
+    "retry": "Tentar novamente",
+    "loading": "A carregar convite…",
+    "acceptError": "Não foi possível aceitar o convite. Verifique os seus dados ou peça um novo convite.",
+    "passwordReady": "Já defini a minha palavra-passe"
+  },
+  "Memberships": {
+    "planChange": {
+      "browse": "Explorar e comparar planos",
+      "currentPlan": "O seu plano atual",
+      "scheduledPlan": "Plano agendado",
+      "choose": "Alterar na próxima renovação",
+      "title": "Alterar a sua adesão",
+      "description": "O preço, as horas e os benefícios atuais mantêm-se até {date}.",
+      "renewal": "A partir de {date}, o plano {plan} será renovado por {price}.",
+      "confirm": "Agendar alteração de plano",
+      "cancel": "Manter o plano atual",
+      "pendingTitle": "Alteração de plano agendada",
+      "pendingDescription": "A sua adesão passa para o plano {plan} em {date}. O período já pago mantém-se inalterado.",
+      "cancelChange": "Cancelar alteração de plano",
+      "cancelConfirm": "Cancelar a alteração de plano agendada? O seu plano atual continuará a renovar-se como antes.",
+      "cancelTitle": "Manter a sua adesão atual",
+      "cancelConfirmAction": "Cancelar alteração agendada",
+      "success": "A alteração do seu plano foi agendada.",
+      "cancelled": "A alteração de plano agendada foi cancelada.",
+      "error": "Não foi possível atualizar a alteração de plano agendada. Atualize a página e tente novamente.",
+      "unavailable": "Pode comparar os planos aqui. A alteração de plano está disponível para adesões mensais ativas sem cancelamento ou alteração de plano já agendados.",
+      "loading": "A verificar a sua adesão atual…",
+      "loadError": "Não foi possível verificar a sua adesão atual. Atualize a página antes de escolher um plano.",
+      "manage": "Gerir a sua adesão",
+      "noImmediateCharge": "Não é cobrado qualquer pagamento agora. O novo preço mensal será aplicado na próxima renovação.",
+      "termsRequired": "Aceite as condições de adesão do novo plano antes de agendar a alteração.",
+      "processing": "A atualizar a alteração de plano agendada…",
+      "cancelBeforeMembership": "Se pretende terminar a adesão, cancele primeiro a alteração de plano agendada."
+    },
+    "owner": {
+      "planForm": {
+        "benefitTypes": {
+          "studio_hours": {
+            "title": "Horas pessoais de Open Studio",
+            "description": "Tempo pré-pago de Open Studio só para o membro, partilhado entre os locais abrangidos.",
+            "editorHint": "Tempo pré-pago de Open Studio só para o membro, partilhado entre os locais abrangidos."
+          },
+          "course_discount": {
+            "title": "Desconto pessoal em cursos",
+            "description": "Desconto num lugar do membro; os restantes participantes pagam o preço normal.",
+            "editorHint": "Desconto num lugar do membro; os restantes participantes pagam o preço normal."
+          }
+        },
+        "benefitDefaults": {
+          "studio_hours": "Horas pessoais de Open Studio",
+          "course_discount": "Desconto pessoal em cursos"
+        },
+        "sharedSelectedLocations": "Saldo partilhado entre os locais selecionados",
+        "hourQuantity": "Horas por período pago",
+        "hoursValidation": "Introduza horas positivas equivalentes a minutos inteiros (por exemplo, 4,5 horas).",
+        "rolloverPercent": "Limite de transferência (%)",
+        "rolloverHint": "Só é possível transferir 0–25% da quota mensal normal para o mês pago seguinte. Defina 0 para outras periodicidades.",
+        "eligibleCourses": "Cursos abrangidos",
+        "eligibleCoursesHint": "Sem seleção, todos os cursos estão incluídos; caso contrário, apenas os escolhidos. O desconto abrange apenas o lugar do membro.",
+        "oneProductDiscount": "Escolha um único desconto em produtos ou um desconto pessoal em cursos por plano.",
+        "translationsHint": "Escreva os nomes, descrições, condições e designações dos benefícios nas línguas do seu estúdio. As traduções vazias utilizam o texto da língua principal.",
+        "primaryCurrencyHint": "Os clientes pagam na moeda principal do seu estúdio ({currency}).",
+        "legacyBenefit": {
+          "preserved": "As definições do benefício são preservadas; o texto pode ser editado."
+        }
+      }
+    },
+    "benefits": {
+      "benefitValues": {
+        "studioHours": "{duration} de Open Studio por período pago, só para si.",
+        "rollover": "Transfira até {percentage}% das horas mensais normais apenas para o mês pago seguinte.",
+        "personalCourseDiscount": "{percentage}% de desconto nos cursos abrangidos apenas para o seu lugar. Os restantes participantes pagam o preço total."
+      },
+      "timeTrackingNotice": "As horas abrangem as suas visitas a Open Studio. Reserve os acompanhantes separadamente ou pague normalmente toda a reserva. As horas transferidas são utilizadas primeiro e expiram no fim do período pago seguinte.",
+      "sharedLocations": "Saldo partilhado em: {locations}",
+      "currentPeriod": "Restante do período atual",
+      "carryover": "Horas transferidas restantes",
+      "carryoverExpires": "A transferência expira em",
+      "adjustMinutes": "Ajuste em minutos"
+    },
+    "catalog": {
+      "recurringMonthDisclosure": "Renova automaticamente por {amount} a cada {count, plural, one {mês} other {# meses}} até cancelar. O cancelamento tem efeito no fim do período pago.",
+      "recurringYearDisclosure": "Renova automaticamente por {amount} a cada {count, plural, one {ano} other {# anos}} até cancelar. O cancelamento tem efeito no fim do período pago."
+    }
+  },
+  "SetupCenter": {
+    "practice": {
+      "manual": {
+        "title": "Confirmação manual",
+        "description": "Já testou uma reserva? Confirme o resultado aqui.",
+        "checkbox": "Confirmo que a reserva de teste foi concluída com sucesso",
+        "confirm": "Confirmar verificação",
+        "saving": "A guardar…",
+        "confirmed": "Confirmado manualmente em {date}.",
+        "stale": "As definições foram alteradas desde a sua confirmação. Teste novamente a reserva e confirme o resultado.",
+        "undo": "Remover confirmação",
+        "error": "Não foi possível guardar a confirmação. Tente novamente.",
+        "undoError": "Não foi possível remover a confirmação. Tente novamente.",
+        "configurationChanged": "As definições foram alteradas durante a verificação. Reveja as definições atuais e confirme novamente a reserva.",
+        "note": "Isto regista a sua própria verificação. Não cria uma reserva, não cobra um pagamento nem envia uma mensagem."
+      }
+    },
+    "readiness": {
+      "items": {
+        "customerJourney": {
+          "descriptions": {
+            "manual": "Confirmou manualmente uma reserva de teste bem-sucedida.",
+            "retest": "As definições foram alteradas. Verifique novamente uma reserva e confirme o resultado.",
+            "action_required": "Verifique uma reserva e confirme o resultado.",
+            "waiting": "Conclua as verificações de lançamento anteriores antes de verificar uma reserva."
+          }
+        }
+      }
+    }
+  },
+  "SharioMarketing": {
+    "hero": {
+      "eyebrow": "Good spaces bring people together",
+      "title": "Your space.",
+      "highlight": "More possibilities.",
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
+      "cta": "Start free trial",
+      "secondary": "Explore Shario",
+      "note": "14-day trial · No credit card required",
+      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
+      "cardTitle": "A little less admin. A lot more connection.",
+      "cardText": "Make room for the people who make your space."
+    },
+    "features": {
+      "eyebrow": "One place for the everyday",
+      "title": "More time for your people.",
+      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "bookings": {
+        "title": "Bookings made simple",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+      },
+      "memberships": {
+        "title": "Memberships that fit",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+      },
+      "website": {
+        "title": "A website that’s yours",
+        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+      },
+      "payments": {
+        "title": "Payments in one place",
+        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+      },
+      "resources": {
+        "title": "Every space, organized",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+      },
+      "communication": {
+        "title": "Keep everyone connected",
+        "description": "Send updates, booking reminders and useful automated messages to your community."
+      },
+      "team": {
+        "title": "A team in sync",
+        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+      },
+      "insights": {
+        "title": "A clearer view",
+        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+      }
+    },
+    "website": {
+      "eyebrow": "Your space. Your identity.",
+      "title": "Your community starts with a warm welcome.",
+      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
+      "one": "Choose your colors, fonts and page layout",
+      "two": "Connect your offers, calendar and customer account",
+      "three": "Use a custom domain on eligible plans",
+      "cta": "Explore your website tools",
+      "example": "Example space website",
+      "spaceName": "Common Ground",
+      "nav": "Our space   ·   Memberships",
+      "previewEyebrow": "A place to belong",
+      "previewTitle": "Good work. Great company.",
+      "previewCta": "Explore our space",
+      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+    },
+    "spaces": {
+      "eyebrow": "For spaces that bring us together",
+      "title": "Different spaces. Shared possibilities.",
+      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
+      "cta": "Make room for your community",
+      "coworking": {
+        "title": "Coworking spaces",
+        "description": "Desks, meeting rooms and memberships for flexible working days."
+      },
+      "creative": {
+        "title": "Creative studios",
+        "description": "Shared equipment, workshops and room for your next idea."
+      },
+      "rehearsal": {
+        "title": "Rehearsal spaces",
+        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+      },
+      "community": {
+        "title": "Community hubs",
+        "description": "Events, memberships and shared places for local connections."
+      },
+      "workshops": {
+        "title": "Workshops & classes",
+        "description": "Classes, instructors, ticketed events and returning participants."
+      }
+    },
+    "faq": {
+      "eyebrow": "A few good questions",
+      "title": "Let’s make it simple.",
+      "one": {
+        "question": "What can I manage with Shario?",
+        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+      },
+      "two": {
+        "question": "Can I use my own branding?",
+        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+      },
+      "three": {
+        "question": "Can my customers book and manage their memberships?",
+        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+      },
+      "four": {
+        "question": "How do I get started?",
+        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+      }
+    },
+    "closing": {
+      "title": "Make room for more.",
+      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
+      "secondary": "Explore plans"
+    },
+    "product": {
+      "eyebrow": "Meet your everyday toolkit",
+      "title": "Everything your space needs, working together.",
+      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
+      "panelEyebrow": "Your connected workspace",
+      "panelTitle": "One place to bring it all together",
+      "solutions": "Find your kind of space"
+    },
+    "access": {
+      "eyebrow": "More freedom for your members",
+      "title": "Let your space work around your people.",
+      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+    },
+    "ai": {
+      "eyebrow": "Meet Shario AI",
+      "title": "A helping hand for everyday work.",
+      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
+      "panelEyebrow": "Connected to your workspace",
+      "panelTitle": "Helpful context. Clear next steps.",
+      "context": {
+        "title": "Context that counts",
+        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+      },
+      "drafts": {
+        "title": "A useful first draft",
+        "description": "Prepare customer messages, website copy and ideas for your next event."
+      },
+      "control": {
+        "title": "You stay in control",
+        "heading": "Your assistant. Your decisions.",
+        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+      }
+    },
+    "footer": {
+      "tagline": "Make room for more.",
+      "product": "Product",
+      "overview": "Explore Shario",
+      "ai": "Shario AI",
+      "pricing": "Pricing",
+      "spaces": "For your space",
+      "company": "Get started",
+      "about": "How it works",
+      "login": "Log in",
+      "register": "Start free trial",
+      "copyright": "© {year} Shario. All rights reserved."
+    }
+  }
+}

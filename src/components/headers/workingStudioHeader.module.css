@@ -1,0 +1,178 @@
+.header[data-skab-public-surface] {
+  background: var(--studio-paper);
+  border-color: var(--studio-rule);
+  color: var(--studio-ink);
+  box-shadow: none;
+  backdrop-filter: none;
+  font-family: var(--font-skab-sans);
+}
+
+.header [data-studio-home-inner] {
+  max-width: none;
+  padding-inline: max(4%, calc((100% - 1320px) / 2));
+}
+
+.header [data-skab-logo] {
+  font-family: var(--font-skab-sans);
+  color: var(--studio-ink);
+  font-size: 2.25rem;
+}
+
+.header [data-skab-logo-dot] {
+  color: var(--studio-clay);
+}
+
+.header [data-marketing-nav-trigger] {
+  font-size: 0.875rem;
+  border-radius: 8px;
+}
+
+.header [data-marketing-nav-panel] {
+  border: 1px solid var(--studio-rule);
+  border-radius: 12px;
+  background: var(--studio-white);
+  box-shadow: 0 10px 28px rgb(32 40 36 / 8%);
+}
+
+.header [data-marketing-nav-intro] {
+  border-color: var(--studio-rule);
+}
+
+.header [data-marketing-nav-link] {
+  border-radius: 8px;
+}
+
+.header [data-marketing-nav-link="overview"] {
+  background: var(--studio-paper);
+  color: var(--studio-ink);
+}
+
+.header [data-marketing-nav-link]:is(:hover, :focus-visible) {
+  background: var(--studio-soft);
+  color: var(--studio-blue);
+}
+
+.header
+  [data-marketing-nav-link]:is(:hover, :focus-visible)
+  :is([data-marketing-nav-label], svg) {
+  color: var(--studio-blue);
+}
+
+.header :is([data-skab-trial-action], [data-skab-workspace-action]) {
+  border: 1px solid transparent;
+  border-radius: var(--studio-action-radius);
+  background: var(--studio-blue);
+  color: var(--studio-white);
+  box-shadow: var(--studio-action-shadow);
+  padding-inline: 22px;
+  font-size: 0.875rem;
+  transform: none;
+  translate: none;
+}
+
+.header :is([data-skab-trial-action], [data-skab-workspace-action]):hover {
+  background: var(--studio-blue-hover);
+  box-shadow: var(--studio-action-shadow);
+  transform: none;
+}
+
+.header :is(a, button):focus-visible {
+  outline: 3px solid var(--studio-clay);
+  outline-offset: 4px;
+}
+
+.header [data-marketing-nav-link]:focus-visible {
+  outline: 2px solid var(--studio-clay);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+@media (max-width: 380px) {
+  .header [data-skab-logo] {
+    font-size: 1.8125rem;
+  }
+}
+
+.header
+  :is(
+    [data-marketing-nav-trigger],
+    [data-marketing-nav-link],
+    [data-skab-trial-action],
+    [data-skab-workspace-action]
+  ) {
+  min-height: 44px;
+}
+
+.mobileMenu[data-skab-public-surface] {
+  border-color: var(--studio-rule);
+  background: var(--studio-paper);
+  color: var(--studio-ink);
+  box-shadow: -10px 0 28px rgb(32 40 36 / 8%);
+}
+
+.mobileMenu [data-public-menu-top] {
+  border-color: var(--studio-rule);
+  background: var(--studio-paper);
+  backdrop-filter: none;
+}
+
+.mobileMenu [data-skab-logo] {
+  font-family: inherit;
+  color: var(--studio-ink);
+}
+
+.mobileMenu [data-skab-logo-dot] {
+  color: var(--studio-clay);
+}
+
+.mobileMenu :is(a, button, [data-marketing-mobile-panel]) {
+  border-radius: var(--studio-radius);
+}
+
+.mobileMenu :is(a, button) {
+  min-height: 44px;
+}
+
+.mobileMenu [data-tenant-button] {
+  border-radius: var(--studio-action-radius);
+  padding-inline: 22px;
+  box-shadow: none;
+}
+
+.mobileMenu [data-tenant-button="primary"] {
+  box-shadow: var(--studio-action-shadow);
+}
+
+.mobileMenu :is([data-marketing-mobile-trigger], [data-marketing-mobile-link]) {
+  border-color: var(--studio-rule);
+  background: var(--studio-white);
+  color: var(--studio-ink);
+}
+
+.mobileMenu [data-marketing-mobile-panel] {
+  border-color: var(--studio-rule);
+  background: var(--studio-white);
+}
+
+.mobileMenu
+  :is([data-marketing-mobile-trigger], [data-marketing-mobile-link]):is(
+    :hover,
+    :focus-visible,
+    [aria-current="page"]
+  ) {
+  color: var(--studio-blue);
+  background: var(--studio-soft);
+}
+
+.mobileMenu :is(a, button):focus-visible {
+  outline: 3px solid var(--studio-clay);
+  outline-offset: 2px;
+}
+
+/* Both language labels and short codes need contrast on the public menu surface. */
+:is(.header, .mobileMenu)
+  [data-language-selector-panel]
+  button[aria-pressed="false"]
+  span {
+  color: var(--studio-muted);
+}

@@ -1,0 +1,178 @@
+.header {
+  height: var(--platform-auth-header-height, 4.5rem);
+  min-height: var(--platform-auth-header-height, 4.5rem);
+}
+
+.header[data-platform-auth-header] ~ :global(#page-content) {
+  padding-top: 0;
+}
+
+.viewport {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.fullHeightPanel {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Scoped to Skab account pages; customer-auth keeps each studio's own theme. */
+.authPage {
+  overflow-wrap: anywhere;
+}
+
+.authPage :global([data-platform-auth-card]) {
+  border-top: 3px solid var(--studio-clay);
+  box-shadow: 0 8px 28px rgb(32 40 36 / 4%);
+}
+
+.authPage :global([data-platform-auth-story-card]) {
+  border-top: 3px solid var(--studio-blue);
+  box-shadow: 0 6px 22px rgb(32 40 36 / 4%);
+}
+
+.authPage :global([data-platform-workspace-help-panel]) {
+  box-shadow: 0 8px 24px rgb(32 40 36 / 9%);
+}
+
+.authPage :is(button, a) {
+  border-radius: var(--studio-radius);
+}
+
+.authPage :is(button, a, input):focus-visible {
+  outline: 2px solid var(--studio-blue);
+  outline-offset: 3px;
+}
+
+.authPage :global([data-platform-workspace-control]) {
+  /* Keep a 44px input target inside the control's two 1px borders. */
+  min-height: 46px;
+}
+
+.authPage :global([data-platform-workspace-control]) input:focus-visible {
+  outline: none;
+}
+
+.authPage :global([data-platform-workspace-control]):focus-within {
+  outline: 2px solid var(--studio-blue);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.authPage :global([data-platform-auth-submit]) {
+  border-radius: var(--studio-action-radius);
+  padding-inline: 3rem;
+  line-height: 1.5;
+}
+
+.authPage :global([data-platform-auth-submit]):not(:disabled) {
+  box-shadow: var(--studio-action-shadow);
+}
+
+.header[data-platform-auth-header][data-skab-public-surface] {
+  background: transparent;
+}
+
+.header[data-platform-auth-header] :global([data-language-selector-trigger]) {
+  min-height: 44px;
+  border-radius: var(--studio-radius);
+  color: var(--studio-muted);
+  border-color: transparent;
+  background: transparent;
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-trigger]):not(:disabled):is(
+    :hover,
+    [aria-expanded="true"]
+  ) {
+  color: var(--studio-blue);
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-trigger]):focus-visible {
+  outline: 2px solid var(--studio-blue);
+  outline-offset: 3px;
+}
+
+.header[data-platform-auth-header] :global([data-platform-auth-brand]) a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--studio-radius);
+}
+
+.header[data-platform-auth-header] :global([data-skab-logo]) {
+  color: var(--studio-ink);
+  font-family: inherit;
+}
+
+.header[data-platform-auth-header] :global([data-skab-logo-dot]) {
+  color: var(--studio-clay);
+}
+
+.header[data-platform-auth-header] :global([data-language-selector-panel]) {
+  border-color: var(--studio-rule);
+  border-radius: var(--studio-radius);
+  background: var(--studio-white);
+  box-shadow: 0 8px 24px rgb(32 40 36 / 9%);
+  backdrop-filter: none;
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-panel])
+  > div {
+  border-color: var(--studio-rule);
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-panel])
+  button {
+  border-radius: var(--studio-radius);
+  color: var(--studio-ink);
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-panel])
+  button:hover {
+  background: var(--studio-soft);
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-panel])
+  button[aria-pressed="false"]
+  span {
+  color: inherit;
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-panel])
+  button[aria-pressed="true"] {
+  color: var(--studio-white);
+  background: var(--studio-blue);
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-panel])
+  button[aria-pressed="true"]
+  :is(span, svg) {
+  color: inherit;
+}
+
+.header[data-platform-auth-header]
+  :global([data-language-selector-panel])
+  button:focus-visible,
+.header[data-platform-auth-header]
+  :global([data-platform-auth-brand])
+  a:focus-visible {
+  outline: 2px solid var(--studio-blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .authPage *,
+  .header[data-platform-auth-header] * {
+    transition-duration: 0.01ms;
+  }
+}

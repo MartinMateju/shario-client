@@ -1,0 +1,2539 @@
+{
+  "Bookings": {
+    "filters": {
+      "futureOnly": "Csak a folyamatban lévő és jövőbeli foglalások megjelenítése"
+    },
+    "columns": {
+      "dateTime": "Dátum és időpont",
+      "status": "Állapot",
+      "payment": "Fizetés"
+    },
+    "status": {
+      "confirmed": "Visszaigazolva",
+      "pending": "Függőben",
+      "awaitingPayment": "Fizetésre vár",
+      "processed": "Átadásra vár",
+      "delivered": "Átadva",
+      "completed": "Befejezve",
+      "cancelled": "Lemondva"
+    },
+    "payment": {
+      "paid": "Kifizetve",
+      "pending": "Függőben",
+      "failed": "Sikertelen",
+      "expired": "Lejárt",
+      "refunded": "Visszatérítve"
+    }
+  },
+  "CustomerBookingDetails": {
+    "title": "Foglalás részletei",
+    "loading": "Foglalás részleteinek betöltése…",
+    "error": "Nem sikerült betölteni ezt a foglalást. Kérjük, próbálja újra."
+  },
+  "Calendar": {
+    "filters": {
+      "filterActivities": "Tevékenységek szűrése",
+      "openLegend": "Jelmagyarázat megnyitása",
+      "closeLegend": "Jelmagyarázat bezárása",
+      "activity": "Tevékenység",
+      "allActivities": "Minden tevékenység"
+    },
+    "events": {
+      "myBooking": "Saját foglalás",
+      "bookingPrivate": "Privát",
+      "bookingPublic": "Nyilvános",
+      "full": "Betelt",
+      "people": "{count, plural, one {# fő} other {# fő}}",
+      "customerId": "Ügyfél #{id}",
+      "customerIds": "Ügyfelek {ids}",
+      "unknownCustomer": "Az ügyfélazonosító nem érhető el",
+      "booking": "Foglalás",
+      "availability": "{remaining, plural, =0 {Betelt} one {# szabad hely} other {# szabad hely}}",
+      "closed": "Zárva",
+      "unavailable": "A műhely nem elérhető"
+    },
+    "week": {
+      "privacyNote": "A lila a privát foglalásokat, a türkiz a nyilvános foglalásokat jelöli. Saját foglalásaid kék jelvényt kapnak."
+    },
+    "legend": {
+      "blocked": "A stúdió zárolva"
+    },
+    "availability": {
+      "available": "Szabad",
+      "limited": "Kevés hely",
+      "select": "Időpont kiválasztása",
+      "insufficientTime": "Nincs elegendő összefüggő szabad idő egy {minutes} perces foglaláshoz."
+    },
+    "month": {
+      "selectedDay": "Foglalások: {date}",
+      "ownBookingCount": "Saját foglalások: {count}",
+      "noBookings": "Erre a napra nincs foglalás.",
+      "findTime": "Időpont keresése",
+      "viewDay": "Nap megtekintése",
+      "past": "Elmúlt",
+      "bookingCount": "{count, plural, one {# foglalás} other {# foglalás}}"
+    },
+    "day": {
+      "places": "{count} hely"
+    },
+    "toolbar": {
+      "newBooking": "Új foglalás"
+    },
+    "activities": {
+      "WORKSTATION": "Munkaállomások",
+      "SHARED_TABLE": "Közös asztalok",
+      "GENERAL": "Általános kapacitás"
+    }
+  },
+  "Metadata": {
+    "homeTitle": "Your space. More possibilities.",
+    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+  },
+  "Common": {
+    "skipToContent": "A tartalomra lépés",
+    "learnMore": "További információ",
+    "viewAll": "Összes megtekintése",
+    "back": "Vissza",
+    "next": "Tovább",
+    "close": "Bezárás",
+    "optional": "Opcionális"
+  },
+  "Dashboard": {
+    "sidebarLabel": "Stúdiókezelés",
+    "settingsNavigationLabel": "Munkaterület-beállítások",
+    "utilityNavigationLabel": "Stúdióbeállítások",
+    "expandGroup": "Csoport kibontása: {group}",
+    "collapseGroup": "Csoport összecsukása: {group}",
+    "expandSidebar": "Stúdiónavigáció kibontása",
+    "collapseSidebar": "Stúdiónavigáció összecsukása",
+    "skipToContent": "Ugrás a stúdió tartalmára",
+    "changeStudio": "Stúdióváltás",
+    "plan": "{plan} csomag",
+    "plans": {
+      "starter": "Starter",
+      "professional": "Professional",
+      "studio_plus": "Space Plus",
+      "enterprise": "Enterprise"
+    },
+    "mobileStudioHint": "Stúdiót válthat, illetve a Beállításokban kezelheti munkaterületét.",
+    "openNavigation": "Vezérlőpult-navigáció megnyitása",
+    "closeNavigation": "Vezérlőpult-navigáció bezárása",
+    "greeting": "Üdv újra, {name}!",
+    "greetingMorning": "Jó reggelt, {name}!",
+    "greetingAfternoon": "Jó napot, {name}!",
+    "greetingEvening": "Jó estét, {name}!",
+    "subheading": "Íme, mi történik ma a stúdióban.",
+    "setupCenter": "Launch Center",
+    "openSetupCenter": "Launch Center megnyitása",
+    "launchCenterRequiredProgress": "{completed}/{total} indítási feladat kész",
+    "continueSetup": "Indítás folytatása · {percentage}%",
+    "continueSetupLabel": "A stúdió indításának folytatása, {percentage}% kész",
+    "notifications": "Értesítések megnyitása",
+    "notificationsUnread": "Értesítések megnyitása, {count, plural, one {# olvasatlan értesítés} other {# olvasatlan értesítés}}",
+    "openAccount": "Fiókmenü megnyitása",
+    "newBooking": "Új foglalás",
+    "openAiAssistant": "Stúdióasszisztens megnyitása",
+    "aiAssistant": "AI megkérdezése",
+    "fallbackFirstName": "Ön",
+    "fallbackStudioName": "Az Ön stúdiója",
+    "statsLabel": "A mai stúdió áttekintése",
+    "studioSwitcher": {
+      "switchStudio": "Stúdióváltás",
+      "upgradeRequired": "A jelenlegi csomag frissítése szükséges",
+      "yourStudios": "Az Ön stúdiói",
+      "selected": "Kiválasztott stúdió",
+      "unnamedStudio": "Névtelen stúdió",
+      "noStudios": "Nincsenek stúdiók",
+      "noStudiosAvailable": "Ehhez a fiókhoz nem érhető el stúdió",
+      "addStudio": "Első stúdió hozzáadása",
+      "addNewStudio": "Új stúdió hozzáadása",
+      "addFirstStudioDescription": "Hozza létre első stúdióhelyszínét",
+      "addNewStudioDescription": "Hozzon létre egy újabb stúdióhelyszínt",
+      "upgradeToAddStudio": "További stúdió hozzáadása",
+      "studioLimitReached": "A csomag legfeljebb {count} stúdiót tartalmaz",
+      "loadingTitle": "Stúdiók betöltése",
+      "loadingDescription": "Előkészítjük a stúdióhelyszíneket.",
+      "loadError": "Nem sikerült betölteni a stúdiókat",
+      "loadErrorDescription": "Ellenőrizze a kapcsolatot, majd próbálja újra.",
+      "retry": "Próbálja újra"
+    },
+    "nav": {
+      "overview": "Áttekintés",
+      "setup": "Launch Center",
+      "calendar": "Naptár",
+      "bookings": "Foglalások",
+      "allBookings": "Összes foglalás",
+      "customers": "Ügyfelek",
+      "studio": "Stúdió",
+      "products": "Termékek és tanfolyamok",
+      "productsPricing": "Termékek és árak",
+      "sales": "Értékesítés",
+      "salesOverview": "Értékesítési áttekintés",
+      "finance": "Pénzügyek",
+      "transactions": "Tranzakciók",
+      "invoices": "Számlák",
+      "coursesEvents": "Tanfolyamok",
+      "memberships": "Tagságok",
+      "inventory": "Készlet",
+      "staffPlanning": "Személyzeti tervezés",
+      "messages": "Üzenetek",
+      "inbox": "Beérkezett üzenetek",
+      "automations": "Automatizálások",
+      "templates": "Sablonok",
+      "knowledge": "Knowledge Hub",
+      "reports": "Jelentések",
+      "ai": "Stúdió-AI",
+      "settings": "Beállítások",
+      "lostFound": "Talált tárgyak",
+      "customOrders": "Egyedi megrendelések"
+    },
+    "routeTitles": {
+      "workspace": "Munkaterület",
+      "setup": "Launch Center",
+      "ai": "Stúdió-AI",
+      "calendar": "Naptár",
+      "bookings": "Foglalások",
+      "coursesEvents": "Tanfolyamok",
+      "customers": "Ügyfelek",
+      "products": "Termékek és tanfolyamok",
+      "productsPricing": "Termékek és árak",
+      "orders": "Értékesítés és rendelések",
+      "salesOverview": "Értékesítési áttekintés",
+      "transactions": "Tranzakciók",
+      "invoices": "Számlák",
+      "memberships": "Tagságok",
+      "communications": "Kommunikáció",
+      "messages": "Üzenetek",
+      "knowledge": "Knowledge Hub",
+      "reports": "Jelentések",
+      "finance": "Pénzügyek",
+      "settings": "Beállítások",
+      "modules": "Modulok és navigáció",
+      "publicSite": "Weboldal és arculat",
+      "locations": "Stúdióhelyszínek",
+      "team": "Csapattagok",
+      "roles": "Szerepkörök és jogosultságok",
+      "payments": "Ügyfélfizetések",
+      "billing": "Előfizetés és számlázás",
+      "invoicing": "Ügyfélszámlázás",
+      "aiSettings": "AI-beállítások",
+      "account": "Fiókbeállítások",
+      "preferences": "Munkaterület-beállítások",
+      "commerce": "Kereskedelem",
+      "operations": "Működés",
+      "automations": "Automatizálások",
+      "inventory": "Készlet",
+      "suppliers": "Szállítók",
+      "tasks": "Személyzeti tervezés",
+      "generalSettings": "Általános beállítások",
+      "migration": "Migrációs központ",
+      "notifications": "Értesítések",
+      "events": "Események",
+      "lostFound": "Talált tárgyak",
+      "customOrders": "Egyedi megrendelések"
+    },
+    "stats": {
+      "bookings": "Mai foglalások",
+      "occupancy": "Kihasználtság",
+      "revenue": "E havi bevétel",
+      "customers": "Új ügyfelek"
+    },
+    "quickActions": {
+      "title": "Gyorsműveletek",
+      "newBooking": "Új foglalás",
+      "addCustomer": "Ügyfél hozzáadása",
+      "createClass": "Tanfolyam létrehozása",
+      "sendMessage": "Üzenet küldése"
+    },
+    "revenueChart": {
+      "title": "Bevételek és foglalások",
+      "revenue": "Bevétel",
+      "bookings": "Foglalások",
+      "chartLabel": "Bevételi és foglalási aktivitás az elmúlt 30 napban",
+      "ranges": {
+        "7days": "7 nap",
+        "30days": "30 nap",
+        "12months": "12 hónap"
+      }
+    },
+    "overview": {
+      "eyebrow": "Élő stúdióáttekintés",
+      "context": "{date} · Ez a legfontosabb most a stúdiójában.",
+      "dateLabel": "Áttekintés dátuma",
+      "dateNavigation": {
+        "previousDay": "Előző nap",
+        "nextDay": "Következő nap",
+        "today": "Ma",
+        "backToToday": "Vissza a mai naphoz",
+        "chooseDate": "Dátum kiválasztása"
+      },
+      "partialCoverage": "{count, plural, one {Egy adatforrás nem érhető el. Az értékei nem elérhetőként, nem pedig nullaként jelennek meg.} other {# adatforrás nem érhető el. Az értékeik nem elérhetőként, nem pedig nullaként jelennek meg.}}",
+      "briefing": {
+        "verifiedEyebrow": "Ellenőrzött stúdió-összefoglaló",
+        "operationalEyebrow": "Stúdió-összefoglaló",
+        "aiEyebrow": "AI stúdió-összefoglaló",
+        "calmHeadline": "Stúdiója zökkenőmentesen működik.",
+        "attentionHeadline": "Néhány dolog figyelmet igényel.",
+        "partialHeadline": "Ezt tudjuk most ellenőrizni.",
+        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
+        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "partialSummary": "Az összefoglaló jelenleg {count, plural, one {# elérhető forrásból} other {# elérhető forrásból}} dolgozik. A nem elérhető értékek nullák helyett ismeretlenek maradnak.",
+        "coverageComplete": "{count, plural, one {# stúdiójel} other {# stúdiójel}} alapján",
+        "coveragePartial": "{count, plural, one {# elérhető stúdiójel} other {# elérhető stúdiójel}} alapján · részleges lefedettség",
+        "updated": "Frissítve: {time}",
+        "sources": "{count, plural, one {# stúdiójel} other {# stúdiójel}} alapján",
+        "refresh": "Összefoglaló frissítése",
+        "preparing": "A mai ellenőrzött összefoglaló előkészítése…",
+        "checkingFreshness": "Újabb stúdióadatok keresése…",
+        "prioritiesLabel": "Mai ellenőrzött prioritások",
+        "fresh": "Aktuális",
+        "stale": "Frissítés javasolt",
+        "review": "Prioritások áttekintése",
+        "viewTodaySchedule": "Mai program megtekintése",
+        "viewSchedule": "Program megtekintése",
+        "openOperations": "Működés megnyitása",
+        "reviewPrompt": "Tekintse át a mai stúdióprioritásokat, magyarázza el jelentőségüket, hivatkozzon az alapul szolgáló adatokra, és javasolja a legbiztonságosabb következő lépéseket.",
+        "open": "Összefoglaló megnyitása",
+        "generate": "AI-összefoglaló készítése",
+        "loading": "A legújabb stúdió-összefoglaló betöltése…",
+        "refreshError": "Nem sikerült frissíteni az összefoglalót. Az ellenőrzött működési áttekintés továbbra is elérhető."
+      },
+      "attention": {
+        "title": "Figyelmet igényel",
+        "clearHeading": "Minden rendben",
+        "partialHeading": "Prioritások lefedettsége",
+        "items": {
+          "unpaidBookings": "kifizetetlen foglalások",
+          "lowStock": "alacsony készletű tételek",
+          "overdueTasks": "lejárt személyzeti feladatok"
+        },
+        "viewAll": "Összes prioritás megtekintése",
+        "clearTitle": "Nincs sürgős prioritás",
+        "clearDescription": "Jelenleg semmi nem igényel azonnali intézkedést.",
+        "partialTitle": "Egyes prioritások nem érhetők el",
+        "partialDescription": "Az elérhető források nem jeleznek sürgős tételt, de a lefedettség nem teljes."
+      },
+      "flow": {
+        "title": "Stúdióműködés",
+        "description": "A kiválasztott nap terve és a stúdió élő állapota.",
+        "emptyTitle": "Még nincs ütemezett stúdiótevékenység",
+        "emptyDescriptionAll": "{date} napján egyik stúdióban sincs feldolgozandó foglalás vagy darab.",
+        "emptyDescriptionSelected": "{date} napján a kiválasztott stúdióban nincs feldolgozandó foglalás vagy darab.",
+        "openCalendar": "Naptár megnyitása",
+        "dateUnavailable": "Választott dátum",
+        "allLocations": "Minden stúdió",
+        "selectedLocation": "Kiválasztott stúdió",
+        "groups": {
+          "visits": {
+            "title": "Foglalások és jelenlét",
+            "description": "Napi terv és élő jelenlét"
+          }
+        },
+        "stageCount": "{stage}: {count}",
+        "stageUnavailable": "{stage}: az adatok nem érhetők el",
+        "stages": {
+          "booked": "Foglalt",
+          "arriving": "Érkezik",
+          "inStudio": "A stúdióban",
+          "readyToFire": "Égetésre kész"
+        }
+      },
+      "rhythm": {
+        "title": "A mai ritmus",
+        "subtitle": "A kiválasztott dátumra és stúdiókörre ütemezett alkalmak.",
+        "openCalendar": "Naptár megnyitása",
+        "unavailable": "A program adatai a jelenlegi jogosultságaival nem érhetők el.",
+        "emptyTitle": "Csendes nap a stúdióban",
+        "emptyDescription": "Erre a dátumra nincs ütemezett alkalom.",
+        "untitled": "Stúdióalkalom",
+        "locationFallback": "Stúdió",
+        "guests": "{count, plural, one {# vendég} other {# vendég}}"
+      },
+      "pulse": {
+        "title": "Üzleti impulzus",
+        "openReports": "Nyitott jelentések",
+        "occupancy": "kihasználtság",
+        "revenue": "bevétel",
+        "bookings": "foglalások",
+        "newCustomers": "új ügyfelek",
+        "chartLabel": "A stúdió kihasználtsági trendje",
+        "noTrend": "Erre az időszakra nem áll rendelkezésre trendadat."
+      },
+      "signals": {
+        "open": "Megnyitás",
+        "unavailable": "Ez az információ nem áll rendelkezésre a jelenlegi modulok vagy jogosultságok esetében.",
+        "messages": {
+          "title": "Legutóbbi üzenetek",
+          "count": "{count, plural, =0 {Nincs olvasatlan beszélgetés} one {# olvasatlan beszélgetés} other {# olvasatlan beszélgetés}}",
+          "empty": "Nincs válaszra váró új ügyfélüzenet.",
+          "untitled": "Ügyfélbeszélgetés",
+          "noPreview": "Nyissa meg a beszélgetést a legújabb üzenet megtekintéséhez."
+        },
+        "tasks": {
+          "title": "Közelgő feladatok",
+          "count": "{count, plural, =0 {Nincs nyitott feladat} one {# nyitott feladat} other {# nyitott feladat}}",
+          "empty": "Nincs esedékes személyzeti feladat.",
+          "untitled": "Stúdiófeladat",
+          "unassigned": "Nincs hozzárendelve",
+          "priorities": {
+            "low": "Alacsony",
+            "normal": "Normál",
+            "high": "Magas",
+            "urgent": "Sürgős"
+          }
+        }
+      },
+      "opportunity": {
+        "eyebrow": "Üzleti tanácsadó",
+        "none": "Nem észleltünk azonnali működési lehetőséget.",
+        "guidance": "Itt jelenítjük meg a hasznos lehetőségeket, amint új stúdióadatok válnak elérhetővé.",
+        "openAdvisor": "Tanácsadó megnyitása",
+        "courseFallback": "Ez a tanfolyam",
+        "evidence": "Az elmúlt 8 hét {sessions} magas kihasználtságú alkalma alapján · automatikus módosítások nélkül.",
+        "weekdays": {
+          "monday": "Hétfő",
+          "tuesday": "Kedd",
+          "wednesday": "Szerda",
+          "thursday": "Csütörtök",
+          "friday": "Péntek",
+          "saturday": "Szombat",
+          "sunday": "Vasárnap",
+          "unknown": "ismétlődő"
+        },
+        "items": {
+          "lowOccupancy": "A következő időszak kihasználtsága mindössze {value}%.",
+          "noBookings": "Még nincs közelgő foglalás.",
+          "inventoryReorder": "{value, plural, one {# készletelem újrarendelésére lehet szükség.} other {# készletelem újrarendelésére lehet szükség.}}",
+          "repeatedCourseSaturation": "A(z) {course} átlagosan {value}%-os kapacitással működik az utóbbi {day} napokon, {time} időpontban tartott alkalmakon. Ellenőrizze, biztonságosan növelhető-e a kapacitás."
+        },
+        "actions": {
+          "createOffer": "Ajánlat létrehozása",
+          "reviewInventory": "Készlet áttekintése",
+          "reviewCourseCapacity": "Kapacitás áttekintése"
+        }
+      },
+      "error": {
+        "title": "Nem sikerült betölteni a stúdióáttekintést",
+        "description": "Az adatok nem változtak. Ellenőrizze a kapcsolatot, majd próbálja újra.",
+        "retry": "Próbálja újra"
+      },
+      "firstBooking": {
+        "title": "Megérkezett az első foglalása",
+        "description": "Az Áttekintés mostantól valós stúdiótevékenységet és betekintéseket jelenít meg.",
+        "dismiss": "Első foglalás ünneplésének bezárása"
+      },
+      "snapshot": {
+        "title": "Áttekintés",
+        "bookings": "Foglalások",
+        "expectedVisitors": "Várható látogatók",
+        "actionablePieces": "Beavatkozást igénylő tárgyak",
+        "unreadMessages": "Olvasatlan üzenetek",
+        "revenue": "Bevétel",
+        "date": "Kiválasztott dátum",
+        "currentState": "Aktuális",
+        "live": "Élő",
+        "unavailable": "Nem érhető el"
+      }
+    },
+    "help": {
+      "open": "Súgó",
+      "menuLabel": "Súgómenü",
+      "title": "Súgó és útmutatók",
+      "close": "Súgó bezárása",
+      "productTour": "Termékbemutató",
+      "productTourDescription": "Ismerje meg a munkaterület alapjait egy rövid, vezetett bemutatóban.",
+      "productTourSection": "A munkaterület alapjai",
+      "startProductTour": "Bemutató indítása",
+      "replayProductTour": "Bemutató újraindítása"
+    },
+    "guides": {
+      "centerTitle": "Útmutatók",
+      "centerDescription": "Rövid, választható bemutatók a leggyakoribb feladatokhoz.",
+      "duration": "Körülbelül 60 másodperc.",
+      "completed": "Befejezve",
+      "startGuide": "Útmutató indítása",
+      "replayGuide": "Útmutató újraindítása",
+      "availableTitle": "Felfedezhető útmutatók",
+      "completedTitle": "Befejezett útmutatók",
+      "summary": "{completed}/{total} kész",
+      "noneAvailable": "A jelenlegi szerepköréhez nem érhető el útmutató.",
+      "promptEyebrow": "Új itt?",
+      "promptTitle": "A(z) {guide} útmutató megnyitása",
+      "start": "Kezdő útmutató",
+      "notNow": "Most nem.",
+      "progress": "{current}/{total}",
+      "skip": "Útmutató kihagyása",
+      "close": "Útmutató bezárása",
+      "back": "Vissza",
+      "next": "Tovább",
+      "finish": "Útmutató befejezése",
+      "finishedTitle": "Készen áll",
+      "finishedDescription": "Most már ismeri a(z) {guide} legfontosabb elemeit. Az útmutatót bármikor újraindíthatja a Súgóból.",
+      "items": {
+        "studio_location_setup": {
+          "title": "Set up a studio location",
+          "description": "Understand the address, customer choices, capacity and booking rules before opening a location.",
+          "steps": {
+            "identity": {
+              "title": "Name the location clearly",
+              "description": "Use the customer-facing name your team will also recognize in calendars, reports and studio switching."
+            },
+            "address": {
+              "title": "Set the local context",
+              "description": "The address helps customers arrive, while the timezone keeps every displayed booking time accurate."
+            },
+            "contact": {
+              "title": "Add a reliable contact",
+              "description": "The calling code and local number are saved together so customers can use the phone number internationally."
+            },
+            "activity_choice": {
+              "title": "Choose the customer experience",
+              "description": "Require an activity, make it optional, or hide the question completely when every visit works the same way."
+            },
+            "activity_capacity": {
+              "title": "Protect limited resources",
+              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+            },
+            "overall_capacity": {
+              "title": "Set the shared safety limit",
+              "description": "Overall capacity counts every person across all overlapping bookings and activities at this location."
+            },
+            "timing": {
+              "title": "Make available times predictable",
+              "description": "The start interval controls when bookings may begin; minimum and maximum duration control how long they may run."
+            },
+            "review": {
+              "title": "Review it as a customer",
+              "description": "This live summary explains the resulting booking rules in plain language before you create the location."
+            }
+          }
+        },
+        "first_booking": {
+          "title": "Első foglalás létrehozása",
+          "description": "Ismerje meg a naptári folyamatot az időpont keresésétől az ügyfél megerősítéséig.",
+          "steps": {
+            "calendar": {
+              "title": "Foglalási naptár",
+              "description": "A naptár egy helyen kezeli a stúdió elérhetőségét, az alkalmakat és az ügyfélfoglalásokat. Válthat napi, heti vagy havi nézetre anélkül, hogy elveszítené a helyét."
+            },
+            "create_action": {
+              "title": "Foglalás indítása",
+              "description": "Az Új foglalás funkciót használja, ha az ügyfél telefonon, a recepción vagy más csatornán foglal. A kiemelt vezérlő az útmutató alatt inaktív marad."
+            },
+            "booking_details": {
+              "title": "Válassza ki a megfelelő kontextust",
+              "description": "A megfelelő elérhetőség megtalálásához foglalás létrehozása vagy áttekintése előtt használja a stúdió-, tevékenység- és csapatszűrőket."
+            },
+            "confirmation": {
+              "title": "Eredmény áttekintése",
+              "description": "A megerősített foglalások megjelennek a naptárban. Nyisson meg egyet az ügyfél-, fizetési és alkalomadatok áttekintéséhez."
+            }
+          }
+        },
+        "website_builder": {
+          "title": "Weboldal testreszabása",
+          "description": "Alakítsa ki nyilvános oldalát, tekintse meg előnézetben, és ismerje meg a közzétételt.",
+          "steps": {
+            "editor_sections": {
+              "title": "Építkezés szakaszokból",
+              "description": "A szakaszfüleken szerkesztheti az arculatot, a tartalmat, a foglalási lehetőségeket és az ügyfeleknek szóló információkat."
+            },
+            "live_preview": {
+              "title": "Előnézet ügyfélként",
+              "description": "Az élő előnézet megmutatja, hogyan jelenik meg a nyilvános webhely különböző oldalakon, nyelveken és képernyőméreteken."
+            },
+            "branding": {
+              "title": "Tegye egyedivé és felismerhetővé",
+              "description": "Állítsa be a színeket, tipográfiát és vizuális részleteket úgy, hogy megmaradjon az akadálymentes kontraszt és az egységes stúdióarculat."
+            },
+            "publish": {
+              "title": "Mentés, majd közzététel",
+              "description": "A mentés megőrzi a piszkozatot. A közzététel az ellenőrzött verziót láthatóvá teszi az ügyfelek számára, és továbbra is jogosultsághoz kötött."
+            }
+          }
+        },
+        "memberships": {
+          "title": "Tagságok, jóváírások és utalványok értékesítése",
+          "description": "Ismerje meg a csomagokat, az aktív tagokat, az ügyféljóváírásokat és a rugalmas utalványokat.",
+          "steps": {
+            "plans": {
+              "title": "Tagsági csomag kialakítása",
+              "description": "A csomagok határozzák meg az árat, az érvényességet, a helyszíneket és a tartalmazott előnyöket. A közzétételi és értékesítési műveletek jogosultsághoz kötöttek."
+            },
+            "customers": {
+              "title": "Aktív tagok megtekintése",
+              "description": "Az Ügyfelek lap megmutatja, ki rendelkezik csomaggal, mi az aktuális időszaka, és mely előnyök érhetők még el."
+            },
+            "credits": {
+              "title": "Ügyféljóváírások megismerése",
+              "description": "A tagsági előnyök egyenlegei egy csomaghoz tartoznak. Az önálló ügyféljóváírás az ügyfélprofilban kezelhető, és ahol engedélyezett, önállóan is felhasználható."
+            },
+            "vouchers": {
+              "title": "Rugalmas ajándékozási lehetőségek",
+              "description": "Az utalványajánlatok a katalógus többi eleme mellett jelennek meg, és készen állnak a megvásárlásra, illetve beváltásra."
+            }
+          }
+        },
+        "ai_reports": {
+          "title": "AI és jelentések használata",
+          "description": "Alakítsa a stúdiótevékenységet kérdésekké, javaslatokká és mérhető trendekké.",
+          "steps": {
+            "assistant": {
+              "title": "Stúdióasszisztens megkérdezése",
+              "description": "Nyissa meg az asszisztenst a munkaterületet figyelembe vevő kérdésekhez és magyarázatokhoz. Ugyanazokat a hozzáférési korlátokat tartja tiszteletben, mint a vezérlőpult többi része."
+            },
+            "advisor": {
+              "title": "Kezdje az áttekintéssel",
+              "description": "A jelentés áttekintése egy helyre gyűjti a legfontosabb stúdiójeleket, mielőtt részletesebben továbbhaladna."
+            },
+            "report_filters": {
+              "title": "Jelentési környezet beállítása",
+              "description": "Válassza ki a dátumokat, helyszínt, összehasonlítást és részletességet, hogy minden mutató ugyanarra az üzleti kérdésre válaszoljon."
+            },
+            "report_insights": {
+              "title": "A mutatóktól a felismerésekig",
+              "description": "A jelentéslapok és az elérhető AI-összefoglaló segítségével magyarázza el a változásokat, és azonosítsa a következő hasznos lépést."
+            }
+          }
+        },
+        "team_management": {
+          "title": "Csapat kezelése",
+          "description": "Ismerje meg, hogyan teszik egyértelművé a munkaterület felelősségeit a szerepkörök és a helyszín-hozzáférések.",
+          "steps": {
+            "members": {
+              "title": "A munkaterület csapata",
+              "description": "Minden tagnak van szerepköre, állapota, profilja és helyszínköre, amelyek meghatározzák, mit láthat és tehet."
+            },
+            "invite": {
+              "title": "Megfelelő személy hozzáadása",
+              "description": "A csapatmenedzserek egyetlen ellenőrzött folyamatban adhatnak hozzá meglévő munkaterület-felhasználót és rendelhetnek hozzá felelősségeket."
+            },
+            "roles": {
+              "title": "Szándékosan használja a szerepeket.",
+              "description": "A beépített és egyéni szerepkörök jogosultságokat csoportosítanak, hogy a hozzáférés a stúdió növekedésével is átlátható maradjon."
+            },
+            "location_access": {
+              "title": "Hozzáférés korlátozása helyszín szerint",
+              "description": "Korlátozza a csapattagot a kiválasztott stúdiókra, ha munkája nem terjed ki minden helyszínre."
+            }
+          }
+        },
+        "door_access_codes": {
+          "title": "Ajtóbelépési kódok kezelése",
+          "description": "Ismerje meg a bejáratok rendszerezését, a készlet figyelését, a kódok hozzáadását és a változások naplózását.",
+          "steps": {
+            "scope": {
+              "title": "Értse meg, mit kezel a Shario",
+              "description": "Ez a fizikai zárak kódjainak biztonságos nyilvántartása. Ebben a fázisban a Shario nem programozza a zárat, és nem küld kódokat e-mailben."
+            },
+            "entrances": {
+              "title": "Válasszon helyszínt és bejáratot",
+              "description": "Minden kódkészlet egy helyszínhez és egy fizikai bejárathoz vagy zárhoz tartozik. A különböző zárakat kezelje külön."
+            },
+            "stock": {
+              "title": "Figyelje a kódok elérhetőségét",
+              "description": "Az összegzés az elérhető, újrahasználható, lejáró és vésztartalék kódokat mutatja. Az alacsony készletszint időben figyelmeztet."
+            },
+            "add_codes": {
+              "title": "Adjon hozzá kódokat biztonságosan",
+              "description": "Hozzon létre egy kódot vagy importáljon CSV-fájlt. Elérhetővé tétel előtt erősítse meg, hogy programozott és tesztelt."
+            },
+            "lifecycle": {
+              "title": "Kezelje a kód életciklusát",
+              "description": "Csak szükség esetén fedje fel, módosítsa az érvényességét, vagy végleg vonja ki a kódot."
+            },
+            "audit": {
+              "title": "Tartsa nyomon a műveleteket",
+              "description": "Az auditnapló rögzíti a létrehozást, módosítást, felfedést, importálást és kivonást a teljes kódok megjelenítése nélkül."
+            }
+          }
+        },
+        "first_offer": {
+          "title": "Első ajánlat közzététele",
+          "description": "Alakítson egy Nyitott stúdió alkalmat vagy tanfolyamot ügyfelek számára foglalható ajánlattá.",
+          "cta": "Launch Center megnyitása",
+          "steps": {
+            "offer_types": {
+              "title": "Válassza ki, mit foglalhatnak az ügyfelek",
+              "description": "A Nyitott stúdió rugalmas stúdióhozzáférést, a Tanfolyamok pedig ütemezett oktatást kínálnak. A katalógus csak a munkaterületen engedélyezett ajánlattípusokat mutatja."
+            },
+            "create_offer": {
+              "title": "Indulás a katalógusból",
+              "description": "Az útmutató után innen hozza létre az ajánlatot. A Launch Center az első beállításra összpontosít, majd visszavezeti a következő hasznos lépéshez."
+            },
+            "price_capacity": {
+              "title": "Foglalási alapadatok beállítása",
+              "description": "Adjon az ajánlatnak egyértelmű nevet, árat, kapacitást, helyszínt és elérhetőséget, hogy az ügyfelek pontosan tudják, mit foglalnak."
+            },
+            "publish": {
+              "title": "Ellenőrzés közzététel előtt",
+              "description": "Mentse az ajánlatot, ellenőrizze az ügyfélnézetet, és csak akkor tegye közzé, ha az ütemezés és a foglalási szabályok készen állnak."
+            }
+          }
+        },
+        "test_customer_journey": {
+          "title": "Teszt ügyfélút befejezése",
+          "description": "A biztonságos Gyakorló módban előnézetben ellenőrizheti a foglalást, a visszaigazolást és az ügyfél-hozzáférést.",
+          "cta": "Gyakorló mód megnyitása",
+          "steps": {
+            "public_site": {
+              "title": "Kezdje az ügyfélnézettel",
+              "description": "A közzétett nyilvános webhelyen fedezik fel az ügyfelek az ajánlatokat, és itt kezdik meg a foglalást. A Gyakorló mód ugyanezt az utat használja az élő stúdióadatok módosítása nélkül."
+            },
+            "test_booking": {
+              "title": "Biztonságos próbafoglalás",
+              "description": "A Gyakorló mód egy szimulált foglaláson vezeti végig. Nem hoz létre valódi ügyfélfoglalást, és nem indít valódi fizetést."
+            },
+            "confirmation_email": {
+              "title": "Visszaigazolás előnézete",
+              "description": "Tekintse át, mit kapna az ügyfél foglalás után. A Gyakorló mód nem küld valódi e-mailt, így biztonságosan ellenőrizheti az élményt."
+            },
+            "customer_portal": {
+              "title": "Ügyfél-hozzáférés előnézete",
+              "description": "Nézze meg, hogyan éri el az ügyfél a foglalását és a stúdióinformációkat. A Gyakorló mód valós ügyfélfiók helyett ideiglenes előnézeti adatokat használ."
+            }
+          }
+        },
+        "payments_setup": {
+          "title": "Fizetések beállítása",
+          "description": "Csatlakoztassa a Stripe-ot, és ellenőrizze, mikor állnak készen az ügyfélfizetések.",
+          "cta": "Fizetési beállítás folytatása",
+          "steps": {
+            "connection_status": {
+              "title": "Ellenőrzött kapcsolatállapot megtekintése",
+              "description": "Ez az állapot a szerverről érkezik, és megmutatja, hogy a Stripe-fiók beállítása még nem kezdődött el, függőben van, korlátozott vagy aktív."
+            },
+            "stripe_onboarding": {
+              "title": "Biztonságos folytatás a Stripe-ban",
+              "description": "A valódi regisztráció a Stripe felületén történik. Visszatéréskor a Shario frissíti a háttérrendszer állapotát, ahelyett, hogy késznek feltételezné a fiókot."
+            },
+            "payment_capabilities": {
+              "title": "A díjak és kifizetések megerősítése",
+              "description": "Az aktív kapcsolatnak képesnek kell lennie díjak fogadására és kifizetések teljesítésére. Ezeket a képességeket közvetlenül a Stripe jelzi."
+            },
+            "verify_payment": {
+              "title": "Az ügyfél élményének ellenőrzése",
+              "description": "Miután a Stripe aktívnak jelzi a fiókot, valódi foglalás elfogadása előtt használja a biztonságos ügyfél-Gyakorló módot. A Gyakorló mód nem végez valódi fizetést."
+            }
+          }
+        },
+        "data_import": {
+          "title": "Meglévő stúdió importálása",
+          "description": "Hozza át adatait ellenőrzéssel, jelentésekkel és visszaállítható auditnaplóval.",
+          "cta": "Migrációs központ megnyitása",
+          "steps": {
+            "choose_importer": {
+              "title": "Válassza ki az adattípust",
+              "description": "Importálja az ügyfeleket, ajánlatokat, foglalásokat, tagságokat, jóváírásokat vagy utalványokat célszerű sorrendben. Csak a munkaterülethez engedélyezett területek jelennek meg."
+            },
+            "template_upload": {
+              "title": "Sablon vagy saját export használata",
+              "description": "Töltsön le sablont, vagy töltsön fel CSV- vagy Excel-exportot. A megfeleltetési lépésben a forrásfájl előzetes átrendezése nélkül párosíthatja a meglévő oszlopokat."
+            },
+            "validation": {
+              "title": "Ellenőrzés az adatok módosítása előtt",
+              "description": "A próbafuttatás kiemeli az érvénytelen sorokat, az ismétlődéseket és a javasolt módosításokat. Az importálás csak az eredmény áttekintése és megerősítése után történik meg."
+            },
+            "history_rollback": {
+              "title": "Auditnapló megőrzése",
+              "description": "Az előzmények minden importálás jelentését megőrzik. A jogosult rekordoknál az engedéllyel rendelkező felhasználók előnézetben ellenőrizhetik és biztonságosan visszaállíthatják a követett módosításokat."
+            }
+          }
+        },
+        "customer_communications": {
+          "title": "Ügyfélkommunikáció beállítása",
+          "description": "Tekintse át a sablonokat, emlékeztetőket, tesztküldést és e-mail-előzményeket.",
+          "cta": "Kommunikációs beállítás folytatása",
+          "steps": {
+            "templates": {
+              "title": "Ügyfélsablonok áttekintése",
+              "description": "A sablonok egységesen tartják a visszaigazolásokat és a működési üzeneteket. Automatizálás engedélyezése előtt ellenőrizze a megfogalmazást és a stúdió arculatát."
+            },
+            "reminders": {
+              "title": "Hasznos emlékeztetők beállítása",
+              "description": "Az automatizálások szabályozzák, mikor készülnek el a foglalási és stúdióüzenetek. Használjon releváns időzítést, és kerülje a felesleges üzeneteket."
+            },
+            "test_email": {
+              "title": "Valódi beállítási teszt küldése",
+              "description": "Először ellenőrizze a feladó azonosságát, majd használja a beállítások Teszt e-mail küldése funkcióját. A teszt ügyfél megkeresése nélkül igazolja a kézbesítést."
+            },
+            "delivery_history": {
+              "title": "Kézbesítési előzmények ellenőrzése",
+              "description": "Az előzmények megmutatják, mit küldtek el, és igényel-e figyelmet a kézbesítés, így a csapat egy helyen vizsgálhatja ki a kommunikációs problémákat."
+            }
+          }
+        }
+      }
+    },
+    "productTour": {
+      "progress": "{current}/{total}",
+      "skip": "Bemutató kihagyása",
+      "close": "Bemutató bezárása",
+      "back": "Vissza",
+      "next": "Tovább",
+      "openLaunchCenter": "Launch Center megnyitása",
+      "welcome": {
+        "eyebrow": "A munkaterület alapjai",
+        "title": "Először jár itt?",
+        "description": "Ismerje meg a munkaterület alapjait egy gyors, 60 másodperces bemutatóban. A Súgóból bármikor újraindíthatja.",
+        "duration": "Körülbelül 60 másodperc",
+        "start": "Bemutató indítása",
+        "dismiss": "Nem, köszönöm",
+        "close": "Bevezető bezárása"
+      },
+      "steps": {
+        "overview": {
+          "title": "Üdvözöljük az Áttekintésben",
+          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+        },
+        "launch_center": {
+          "title": "Beállítás a Launch Centerben",
+          "description": "A Launch Center vezeti végig a beállítási folyamaton. Ellenőrzőlistájával konfigurálhatja az alapokat, előnézetben ellenőrizheti az ügyfélélményt, és felkészítheti stúdióját az indulásra."
+        },
+        "studio_switcher": {
+          "title": "Stúdióváltó",
+          "description": {
+            "none": "Itt jelenik meg a munkaterülete. Stúdióhelyszín hozzáadása után ugyanebből a váltóból kezelheti.",
+            "single": "Itt jelenik meg az aktuális stúdió. További helyszínek hozzáadása után ugyanitt válthat közöttük.",
+            "multiple": "Itt válthat a stúdióhelyszínek között. Az Áttekintés és a működési adatok a kiválasztott helyszínhez igazodnak."
+          }
+        },
+        "navigation": {
+          "title": "Mindennek megvan a helye",
+          "description": "A fő navigációban érheti el a foglalásokat, ügyfeleket, stúdióműködést, értékesítést, üzeneteket és jelentéseket. Az üres területek a csapat munkájának megkezdésével töltődnek fel."
+        },
+        "ai_assistant": {
+          "title": "AI-asszisztens megkérdezése",
+          "description": "Nyissa meg az asszisztenst, kérdezzen a stúdiójáról, és kapjon működési betekintéseket. Ha az AI nem engedélyezett a csomagjához vagy szerepköréhez, később visszatérhet ehhez a lépéshez."
+        },
+        "settings": {
+          "title": "Beállítások és személyre szabás",
+          "description": "Itt kezelheti a konfigurációt, az arculatot, a nyilvános oldalt, a fizetéseket és a csapat hozzáférését. A Weboldalkészítőben alakíthatja ki, mit látnak az ügyfelek."
+        }
+      },
+      "final": {
+        "title": "Készen áll az indulásra",
+        "description": "Fejezze be a Launch Center beállítását, hozzon létre egy próbafoglalást, és tekintse meg előnézetben, mit látnak majd ügyfelei."
+      },
+      "mobileMenuDescription": "Ez a lehetőség a kiemelt gombbal megnyitható főmenüben található. {description}"
+    },
+    "launchCenterLiveBadge": "Élő",
+    "launchCenterReadyBadge": "Kész",
+    "launchCenterIssueBadge": "{count, plural, one {# probléma} other {# probléma}}",
+    "launchCenterLiveStatus": "Nyilvános stúdiója élő, és minden indulási ellenőrzés rendben van",
+    "launchCenterReadyStatus": "A működési indulási beállítás készen áll",
+    "launchCenterAttentionStatus": "{count, plural, one {# indítási probléma igényel figyelmet} other {# indítási probléma igényel figyelmet}}"
+  },
+  "WorkspaceSettingsNav": {
+    "eyebrow": "Munkaterület",
+    "title": "Beállítások",
+    "label": "Munkaterület-beállítások",
+    "items": {
+      "setup": "Launch Center",
+      "general": "Általános",
+      "modules": "Modulok és navigáció",
+      "locations": "Helyek",
+      "team": "Csapat",
+      "teamName": "Csapat neve",
+      "roles": "Szerepkörök és jogosultságok",
+      "payments": "Ügyfélfizetések",
+      "billing": "Előfizetés és számlázás",
+      "invoicing": "Ügyfélszámlázás",
+      "ai": "AI és automatizálás",
+      "publicSite": "Weboldal és arculat",
+      "migration": "Migrációs központ",
+      "accessCodes": "Belépési kódok"
+    },
+    "overview": "Minden beállítás",
+    "overviewDescription": "Válasszon kategóriát a munkaterület konfigurálásához.",
+    "categoryDescription": "Célzott navigáció ehhez a kategóriához: {category}.",
+    "currentCategory": "Aktuális kategória",
+    "openCategory": "A(z) {category} beállításainak megnyitása",
+    "groups": {
+      "workspace": "Munkaterület",
+      "features": "Funkciók és navigáció",
+      "website": "Weboldal és ügyfélélmény",
+      "access": "Csapat és hozzáférés",
+      "payments": "Fizetések és számlázás",
+      "account": "Shario-fiók"
+    }
+  },
+  "WorkspaceSettings": {
+    "eyebrow": "Munkaterület-beállítások",
+    "title": "Általános beállítások",
+    "description": "Kezelje a munkaterület egészében használt közös alapértelmezéseket.",
+    "loading": "Munkaterület-beállítások betöltése…",
+    "business": {
+      "title": "Munkaterület-azonosító és alapértelmezések",
+      "description": "Ezeket az értékeket minden csapattag és ügyfeleknek szóló modul használja."
+    },
+    "fields": {
+      "name": "Munkaterület neve",
+      "slug": "Munkaterület címe",
+      "defaultLanguage": "Alapértelmezett nyelv",
+      "adminLanguage": "Munkaterület nyelve",
+      "publicDefaultLanguage": "Nyilvános webhely elsődleges nyelve",
+      "secondaryPublicLanguage": "Nyilvános webhely másodlagos nyelve",
+      "timezone": "Működési időzóna",
+      "currency": "Működési pénznem"
+    },
+    "hints": {
+      "slug": "A munkahely címét külön kezeljük, mivel a módosítás a linkeket és a domaineket befolyásolja.",
+      "defaultLanguage": "Akkor használjuk, ha a tag vagy ügyfél nem választott saját nyelvet.",
+      "adminLanguage": "A stúdió teljes munkaterületén, minden csapattag által használt nyelv.",
+      "publicDefaultLanguage": "Ezt a nyelvet látják először az ügyfelek a nyilvános webhelyen és az ügyfélfelületeken.",
+      "secondaryPublicLanguage": "Opcionálisan egy további nyelvet kínálhat az ügyfeleknek. A bérlő nyilvános oldalain csak ez a két nyelv jelenik meg.",
+      "timezone": "Foglalásokhoz, programokhoz és automatikus üzenetekhez használjuk.",
+      "currency": "Stúdiótermékekhez és ügyfélfizetésekhez használjuk. Ez elkülönül a Shario-előfizetés pénznemétől."
+    },
+    "languageOptions": {
+      "noSecondary": "Nincs másodlagos nyelv"
+    },
+    "currencyNotice": {
+      "title": "Meglévő pénzügyi adatok védelme",
+      "description": "Pénzügyi rekordok létrejötte után a szerver megakadályozhatja a pénznem módosítását. Így a korábbi összegek nem kapnak téves új címkét."
+    },
+    "workspaceStatus": {
+      "title": "Munkaterület állapota",
+      "plan": "Csomag",
+      "status": "Állapot",
+      "version": "Csomagverzió"
+    },
+    "actions": {
+      "save": "Munkaterület-beállítások mentése",
+      "saving": "Mentés…",
+      "retry": "Próbálja újra"
+    },
+    "messages": {
+      "saved": "A munkaterület beállításait mentettük.",
+      "error": "Nem sikerült menteni a munkaterület beállításait.",
+      "loadError": "Nem sikerült betölteni a munkaterület beállításait."
+    }
+  },
+  "Header": {
+    "mobile": {
+      "navigation": "Mobil navigáció",
+      "publicEyebrow": "Kreatív stúdiók operációs rendszere.",
+      "publicTitle": "Működtesse stúdióját. Hozzon jobb döntéseket minden nap.",
+      "adminEyebrow": "Stúdiókezelés",
+      "adminTitle": "Minden, ami a stúdióban történik.",
+      "moduleOverview": "Moduláttekintés",
+      "bookingSite": "Foglalási oldal",
+      "admin": "Admin",
+      "myAccount": "Saját fiók",
+      "language": "Nyelv",
+      "tagline": "Több idő az alkotásra. Kevesebb az adminisztrációra."
+    },
+    "booking": "Foglalás",
+    "cart": {
+      "open": "Kosár megnyitása",
+      "items": "{count, plural, one {# tétel a kosárban} other {# tétel a kosárban}}"
+    },
+    "account": {
+      "menu": "Felhasználói menü",
+      "eyebrow": "Az Ön fiókja",
+      "studioManagement": "Stúdiókezelés",
+      "closeMenu": "Felhasználói menü bezárása",
+      "fallbackName": "Az Ön fiókja",
+      "roles": {
+        "owner": "Stúdiótulajdonos",
+        "admin": "Stúdióadminisztrátor",
+        "manager": "Stúdióvezető",
+        "staff": "Stúdiómunkatárs",
+        "accountant": "Könyvelő",
+        "viewer": "Megtekintő",
+        "custom": "Egyéni szerepkör",
+        "customer": "Ügyfél"
+      },
+      "sections": {
+        "customer": "Az Ön fiókja",
+        "activity": "Stúdiótevékenység",
+        "payments": "Fiók és fizetések",
+        "personal": "Személyes",
+        "workspace": "Munkaterület"
+      },
+      "customerLinks": {
+        "bookings": "A foglalásaim",
+        "services": "Szolgáltatások",
+        "work": "Saját munkáim",
+        "waitlists": "Várólisták",
+        "knowledge": "Knowledge Hub",
+        "credits": "Jóváírások",
+        "membership": "Tagság",
+        "invoices": "A számláim.",
+        "account": "Fiókbeállítások",
+        "lostFound": "Talált tárgyak"
+      },
+      "tenantLinks": {
+        "dashboard": "Stúdió-vezérlőpult",
+        "account": "Fiókbeállítások",
+        "preferences": "Személyes beállítások",
+        "setupCenter": "Launch Center",
+        "settings": "Munkaterület-beállítások",
+        "bookingSite": "Nyilvános webhely megtekintése",
+        "bookingSiteNewTab": "Nyilvános webhely megnyitása új lapon"
+      },
+      "language": "Nyelv",
+      "logout": "Kijelentkezés"
+    },
+    "product": {
+      "label": "Termék",
+      "bookingScheduling": "Foglalások, ügyfelek és fizetések",
+      "customers": "Ügyfelek",
+      "payments": "Fizetések",
+      "memberships": "Tagságok",
+      "automatedCommunication": "Automatikus kommunikáció",
+      "studioOperations": "Stúdióműködés és gyártás",
+      "analytics": "AI, elemzések és döntések",
+      "viewAll": "A teljes termék felfedezése"
+    },
+    "solutions": {
+      "label": "Megoldások",
+      "artStudios": "Művészeti stúdiók",
+      "makerspaces": "Alkotóműhelyek",
+      "workshopsClasses": "Nyitott stúdió és tanfolyamok",
+      "multiLocationStudios": "Több helyszínes stúdiók",
+      "viewAll": "Fedezze fel az összes megoldást"
+    },
+    "forStudios": "Stúdióknak",
+    "pricing": "Árak",
+    "membershipCatalog": "Tagságok",
+    "resources": {
+      "label": "Források",
+      "helpCenter": "Súgóközpont",
+      "guides": "Útmutatók",
+      "customerStories": "Ügyféltörténetek",
+      "about": "A Shario-ról"
+    },
+    "login": "Bejelentkezés",
+    "getStarted": "Ingyenes próba indítása",
+    "openWorkspace": "Munkaterület megnyitása",
+    "openMenu": "Menü megnyitása",
+    "closeMenu": "Menü bezárása",
+    "changeLanguage": "Nyelvváltás"
+  },
+  "PlatformAuth": {
+    "login": {
+      "header": {
+        "newToSkab": "Új a Shario-n?",
+        "createWorkspace": "Munkaterület létrehozása",
+        "switchLanguage": "Váltás erre a nyelvre: {language}",
+        "languages": {
+          "en": "Angol",
+          "cs": "Cseh"
+        }
+      },
+      "form": {
+        "eyebrow": "Stúdiótulajdonosoknak és csapattagoknak",
+        "title": "Bejelentkezés a munkaterületre",
+        "description": "A folytatáshoz adja meg stúdiója címét és fiókadatait.",
+        "workspaceLabel": "Munkaterület URL-je",
+        "workspacePlaceholder": "common-ground",
+        "workspaceHint": "Stúdiója címe a Shario-n",
+        "workspaceHelp": {
+          "open": "Mi az a munkaterület URL?",
+          "title": "Stúdiója Shario címe",
+          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+        },
+        "findWorkspace": "Munkaterület megkeresése",
+        "emailLabel": "E-mail cím",
+        "emailPlaceholder": "you@yourstudio.com",
+        "passwordLabel": "Jelszó",
+        "passwordPlaceholder": "Adja meg jelszavát",
+        "showPassword": "A jelszó megjelenítése",
+        "hidePassword": "A jelszó elrejtése",
+        "rememberWorkspace": "Munkaterület megjegyzése",
+        "forgotPassword": "Elfelejtette a jelszavát?",
+        "submit": "Bejelentkezés",
+        "submitting": "Bejelentkezés…",
+        "secure": "Biztonságos hozzáférés stúdiója munkaterületéhez"
+      },
+      "story": {
+        "eyebrow": "Gyönyörűen működő stúdió",
+        "titleBefore": "Stúdiója készen áll, amikor",
+        "titleAccent": "Ön is.",
+        "description": "Foglalásai, ügyfelei, tanfolyamai és csapata egy nyugodt munkaterületen kapcsolódnak össze.",
+        "pulseLabel": "Stúdiópulzus",
+        "pulse": "Minden egy nyugodt helyen",
+        "bookings": "Összhangolt foglalások",
+        "team": "Összehangolt csapat",
+        "operations": "Átlátható stúdiófolyamat"
+      },
+      "errors": {
+        "server": "A szerver nem válaszol. Próbálja újra.",
+        "invalidResponse": "A szerver érvénytelen választ adott.",
+        "checkInformation": "Kérjük, ellenőrizze a benyújtott információkat.",
+        "incorrectCredentials": "Az e-mail-cím vagy a jelszó helytelen.",
+        "disabled": "A munkaterülethez való hozzáférést letiltották.",
+        "workspaceNotFound": "Nem található ez a munkaterület.",
+        "rateLimited": "Túl sok bejelentkezési kísérlet. Várjon egy pillanatot, majd próbálja újra.",
+        "signInFailed": "Nem sikerült bejelentkezni."
+      },
+      "guidance": {
+        "workspaceRequired": "Először adja meg a munkaterület URL-jét.",
+        "workspaceCleared": "Adja meg a stúdiójától kapott munkaterület-azonosítót."
+      }
+    },
+    "register": {
+      "header": {
+        "alreadyHaveWorkspace": "Már van munkaterülete?",
+        "signIn": "Bejelentkezés",
+        "switchLanguage": "Váltás erre a nyelvre: {language}",
+        "languages": {
+          "en": "Angol",
+          "cs": "Cseh"
+        }
+      },
+      "form": {
+        "eyebrow": "Indítsa el 14 napos próbaidőszakát",
+        "title": "Stúdió-munkaterület létrehozása",
+        "description": "Adja meg az alapvető adatokat. Érkezés után alakíthatja szolgáltatásait, munkafolyamatait és stúdióbeállításait.",
+        "trial": "14 nap ingyen",
+        "noCard": "Bankkártya nélkül",
+        "firstNameLabel": "Keresztnév",
+        "firstNamePlaceholder": "Az Ön keresztneve",
+        "lastNameLabel": "Vezetéknév",
+        "lastNamePlaceholder": "Az Ön vezetékneve",
+        "studioNameLabel": "Stúdió neve",
+        "studioNamePlaceholder": "Az Ön stúdiójának neve",
+        "workspaceLabel": "Munkaterület címe",
+        "workspacePlaceholder": "your-studio",
+        "workspaceExample": "your-studio",
+        "workspaceHint": "A stúdió a {slug}.shario.io címen lesz elérhető",
+        "emailLabel": "E-mail cím",
+        "emailPlaceholder": "you@yourstudio.com",
+        "passwordLabel": "Jelszó",
+        "passwordPlaceholder": "Jelszó létrehozása",
+        "passwordHint": "Legalább 8 karaktert és egy számot használjon.",
+        "passwordConfirmLabel": "Jelszó megerősítése",
+        "passwordConfirmPlaceholder": "Adja meg újra",
+        "showPassword": "A jelszó megjelenítése",
+        "hidePassword": "A jelszó elrejtése",
+        "showPasswordConfirm": "Jelszó megerősítésének megjelenítése",
+        "hidePasswordConfirm": "Jelszó megerősítésének elrejtése",
+        "legalPrefix": "Elfogadom a",
+        "terms": "Szolgáltatási feltételek",
+        "legalAnd": "és",
+        "privacy": "Az adatvédelmi szabályzat",
+        "legalSuffix": ".",
+        "submit": "Stúdióm létrehozása",
+        "submitting": "Munkaterület létrehozása…",
+        "alreadyRegistered": "Már van munkaterülete?",
+        "signIn": "Bejelentkezés",
+        "secure": "Fiókadatait biztonságosan továbbítjuk"
+      },
+      "validation": {
+        "firstNameRequired": "Adja meg keresztnevét.",
+        "lastNameRequired": "Adja meg vezetéknevét.",
+        "studioNameRequired": "Adja meg stúdiója nevét.",
+        "workspaceInvalid": "Csak kisbetűket, számokat és egyszeres kötőjeleket használjon.",
+        "emailInvalid": "Adjon meg érvényes e-mail-címet.",
+        "passwordInvalid": "Legalább 8 karaktert használjon, és adjon meg egy számot.",
+        "passwordMismatch": "A jelszavak nem egyeznek.",
+        "legalRequired": "A folytatáshoz fogadja el a Szolgáltatási feltételeket és az Adatvédelmi szabályzatot.",
+        "completeRequired": "Töltse ki az összes kötelező mezőt."
+      },
+      "errors": {
+        "createFailed": "Nem sikerült létrehozni a fiókot. Próbálja újra."
+      },
+      "story": {
+        "eyebrow": "Gyönyörűen működő stúdió",
+        "titleBefore": "Teremtsen helyet annak, amit",
+        "titleAccent": "szeret.",
+        "description": "Kezdje az alapokkal, majd alakítsa a Shario-t kreatív stúdiója tényleges működéséhez.",
+        "cardLabel": "Az indulás útvonala",
+        "cardTitle": "Az ötlettől a megnyitott stúdióig",
+        "workspace": "Biztonságos munkaterület létrehozása",
+        "setup": "Szükséges munkafolyamatok kiválasztása",
+        "launch": "Tegye közzé, amikor a stúdiója készen áll"
+      }
+    }
+  },
+  "MarketingPages": {
+    "common": {
+      "backHome": "Vissza a főoldalra",
+      "startTrial": "A 14 napos próbaidőszak indítása",
+      "noCreditCard": "Bankkártya nem szükséges",
+      "exploreProduct": "A termék felfedezése",
+      "exploreAi": "A Shario AI felfedezése",
+      "exploreStudios": "Stúdiómegoldások felfedezése",
+      "explorePricing": "Árak megtekintése",
+      "builtWithStudios": "Működő kreatív stúdiókkal közösen fejlesztve",
+      "currencyLabel": "Válasszon pénznemet"
+    },
+    "product": {
+      "metaTitle": "Everything your space needs, working together.",
+      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+    },
+    "studioAi": {
+      "metaTitle": "A helping hand for everyday work.",
+      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+    },
+    "forStudios": {
+      "metaTitle": "Different spaces. Shared possibilities.",
+      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+    },
+    "pricing": {
+      "metaTitle": "Csomagok és árak kreatív stúdióknak",
+      "metaDescription": "Hasonlítsa össze a Shario csomagjait, stúdiókapacitását és AI-kreditjeit, majd kezdje el a 14 napos próbát bankkártya nélkül.",
+      "eyebrow": "Csomagok növekvő stúdióknak",
+      "title": "Kezdje azzal, amire ma szüksége van.",
+      "description": "Minden csomag 14 napos Professional próbaidőszakkal indul, hogy választás előtt tesztelhesse a stúdió alapvető útját.",
+      "sectionEyebrow": "Egyértelmű csomagkülönbségek",
+      "sectionTitle": "Hasonlítsa össze a kapacitást, munkafolyamatokat és AI-krediteket.",
+      "sectionDescription": "Válasszon a helyszínek, csapatfiókok és a stúdió által igényelt működési mélység alapján.",
+      "closingTitle": "Nem biztos benne, melyik csomag illik Önhöz?",
+      "closingDescription": "Indítsa el a próbát bankkártya nélkül, vagy beszéljen velünk az egyedi bevezetésről."
+    }
+  },
+  "MarketingHome": {
+    "hero": {
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    },
+    "pricing": {
+      "eyebrow": "Átlátható árak",
+      "title": "Válassza a stúdió működéséhez illő csomagot.",
+      "description": "Kezdje a kurzusokkal, lépjen tovább a teljes stúdióműködésre, majd adjon hozzá fejlett automatizálást és több helyszínes eszközöket. Minden csomag 14 napos Professional próbaidőszakkal indul, bankkártya nélkül.",
+      "billingIntervalLabel": "Számlázási időszak választása",
+      "monthly": "Havonta",
+      "yearly": "Évente",
+      "annualSavings": "2 hónap ingyen",
+      "perMonth": "havonta",
+      "perYear": "évente",
+      "from": "ettől:",
+      "customAnnual": "Egyedi éves csomag",
+      "mostPopular": "Legnépszerűbb",
+      "starter": {
+        "name": "Starter",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "feature1": "1 stúdióhelyszín · 1 csapatfiók",
+        "feature2": "Kurzusok, privát események és utalványok",
+        "feature3": "Havi 500 e-mail a csomagban",
+        "feature4": "Korlátozott Shario AI · havi 200 kredit",
+        "cta": "Ingyenes próba indítása"
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature1": "1 stúdióhelyszín · 3 csapatfiók",
+        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature3": "3 aktív automatizálás · havi 2 500 e-mail",
+        "feature4": "Teljes Shario AI · havi 2 000 kredit",
+        "cta": "Ingyenes próba indítása"
+      },
+      "studioPlus": {
+        "name": "Space Plus",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "feature1": "Legfeljebb 2 stúdióhelyszín · 6 csapatfiók",
+        "feature2": "Hozzáférési kódok és saját domain",
+        "feature3": "Fejlett automatizálás · havi 5 000 e-mail",
+        "feature4": "Teljes AI-csomag · havi 10 000 kredit",
+        "cta": "Ingyenes próba indítása"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Működtesse szervezetét egyedi kapacitással, irányítással és támogatással.",
+        "feature1": "Korlátlan helyszín és csapatfiók",
+        "feature2": "Egyedi automatizálási, e-mail- és AI-keretek",
+        "feature3": "SSO/SCIM, API, webhookok és auditnaplók",
+        "feature4": "Dedikált bevezetés, migráció és SLA",
+        "cta": "Start free trial"
+      },
+      "note": "Az árak nem tartalmazzák az alkalmazandó adókat. Az éves önkiszolgáló csomagok két ingyenes hónapot tartalmaznak. A szükséges rendszerüzenetek nem számítanak bele az e-mail-keretbe, az AI-használat pedig a keretnél leáll — automatikus többletdíj nélkül.",
+      "loading": "Árak betöltése…",
+      "unavailable": "Az ár ebben a pénznemben nem érhető el",
+      "loadError": "Az árak átmenetileg nem érhetők el"
+    },
+    "trust": {
+      "eyebrow": "Felelős működésre építve",
+      "title": "Megbízható otthon a stúdiója mögött végzett munkának.",
+      "description": "Az egyértelmű hozzáférés, az összekapcsolt nyilvántartások és az emberi felügyelet a termék szerves részei.",
+      "workspaces": {
+        "title": "Elkülönített stúdió-munkaterületek",
+        "description": "Minden stúdió saját bérlői munkaterületén és konfigurációjával működik."
+      },
+      "access": {
+        "title": "Szerepköralapú hozzáférés",
+        "description": "Adjon a tulajdonosoknak és csapattagoknak a munkájukhoz szükséges hozzáférési szintet."
+      },
+      "payments": {
+        "title": "Fizetések Stripe-on keresztül",
+        "description": "Kapcsolja össze az online fizetéseket a Stripe bevált infrastruktúráján keresztül."
+      },
+      "control": {
+        "title": "Emberi felügyeletű AI",
+        "description": "Az AI környezetet és segítséget biztosít, miközben a döntésekért továbbra is a csapata felel."
+      }
+    }
+  },
+  "CustomerAuth": {
+    "social": {
+      "label": "Ügyfél-bejelentkezés közösségi fiókkal",
+      "customerAccess": "Folytatás ügyfélként",
+      "teamPasswordNote": "A stúdió csapattagjai e-mail-címmel és jelszóval jelentkeznek be.",
+      "or": "vagy használjon e-mail-címet",
+      "continueWith": {
+        "google": "Folytatás a Google-lel",
+        "apple": "Folytatás az Apple-lel"
+      }
+    },
+    "complete": {
+      "metadataTitle": "Ügyfél-bejelentkezés befejezése",
+      "title": "Bejelentkezés befejezése",
+      "description": "Biztonságosan visszaállítjuk ügyfélmunkamenetét.",
+      "errorTitle": "Nem sikerült befejezni az ügyfél-bejelentkezést",
+      "providerError": "A közösségi bejelentkezési szolgáltató hibát jelzett. Próbálja újra.",
+      "accessDenied": "Megszakította vagy elutasította a bejelentkezési kérelmet.",
+      "accountConflict": "Ez a közösségi fiók nem kapcsolható össze automatikusan. Jelentkezzen be e-mail-címmel, vagy vegye fel a kapcsolatot a stúdióval.",
+      "authenticationFailed": "A szolgáltató nem tudta ellenőrizni fiókját. Próbálja újra.",
+      "providerUnavailable": "Ez a bejelentkezési szolgáltató átmenetileg nem érhető el.",
+      "sessionError": "Nem sikerült visszaállítani ügyfélmunkamenetét. Próbálja újra.",
+      "customerOnly": "A közösségi bejelentkezés csak ügyfélfiókokhoz használható. A stúdió csapattagjainak e-mail-címmel és jelszóval kell bejelentkezniük.",
+      "retry": "Próbálja újra",
+      "backToLogin": "Vissza a bejelentkezéshez"
+    }
+  },
+  "CustomerShell": {
+    "portalNav": {
+      "overview": "Áttekintés",
+      "bookings": "Foglalások",
+      "work": "Saját munkáim",
+      "knowledge": "Tudás",
+      "membership": "Tagság",
+      "credits": "Jóváírások",
+      "invoices": "Számlák",
+      "bookSession": "Alkalom foglalása",
+      "memberships": "Tagságok",
+      "giftVouchers": "Ajándékutalványok",
+      "studioGuide": "Stúdióútmutató",
+      "courses": "Tanfolyamok"
+    },
+    "actions": {
+      "backToStudio": "Vissza a stúdióhoz",
+      "openPortal": "Ügyfélportál",
+      "openDashboard": "Stúdió-vezérlőpult"
+    },
+    "mobile": {
+      "portalEyebrow": "Ügyfélportál",
+      "portalTitle": "Az Ön fiókja itt: {studio}",
+      "authEyebrow": "Stúdiófiók",
+      "authTitle": "Bejelentkezés ide: {studio}",
+      "transactionEyebrow": "Biztonságos fizetés",
+      "transactionTitle": "A látogatás befejezése itt: {studio}"
+    },
+    "status": {
+      "loadingTitle": "Stúdió előkészítése",
+      "loadingDescription": "A stúdió legújabb részleteit töltjük be.",
+      "errorTitle": "Nem sikerült betölteni az oldalt",
+      "errorDescription": "Próbálja újra. Fiók- és fizetési adatai biztonságban vannak.",
+      "retry": "Próbálja újra",
+      "preparingAccount": "Fiók előkészítése…",
+      "redirecting": "Átirányítás a megfelelő stúdióhoz…"
+    },
+    "locationChooser": {
+      "eyebrow": "Ügyfélportál",
+      "title": "Melyik stúdiót szeretné meglátogatni?",
+      "description": "Válasszon stúdiót az elérhetőségek, szolgáltatások és foglalási lehetőségek megtekintéséhez.",
+      "unavailable": "A hivatkozásban szereplő stúdió jelenleg nem érhető el.",
+      "unavailableHint": "Lehet, hogy inaktív, vagy már nem fogad online foglalásokat. Válasszon másik stúdiót alább.",
+      "open": "{studio} megnyitása"
+    }
+  },
+  "PublicTenantHome": {
+    "eyebrow": "Üdvözöljük itt:",
+    "description": "Fedezze fel a stúdiót, kezelje foglalásait, és intézzen minden fiókjával kapcsolatos ügyet egy helyen.",
+    "openPortal": "Ügyfélportál megnyitása",
+    "signIn": "Bejelentkezés"
+  },
+  "PublicSiteNotFound": {
+    "brandLabel": "Make room for more.",
+    "checking": "Webhely állapotának ellenőrzése…",
+    "owner": {
+      "eyebrow": "Nyilvános webhely",
+      "badge": "Privát piszkozat",
+      "title": "Nyilvános webhelye még privát",
+      "description": "Most azt a címet látja, amelyet ügyfelei fognak használni. Piszkozatát biztonságosan mentettük, és semmi sem válik nyilvánossá, amíg közzé nem teszi a Launch Centerből.",
+      "primaryAction": "Áttekintés és közzététel",
+      "secondaryAction": "Webhely szerkesztése",
+      "reassurance": "Az ügyfelek még nem láthatják webhelyét.",
+      "previewBadge": "Nincs közzétéve",
+      "previewLabel": "Út a közzétételig",
+      "steps": {
+        "draft": {
+          "title": "Piszkozat mentve",
+          "description": "Módosításait biztonságosan tároljuk."
+        },
+        "review": {
+          "title": "Webhely áttekintése",
+          "description": "Ellenőrizze a tartalmat és az ügyfélélményt."
+        },
+        "publish": {
+          "title": "Közzététel, amikor elkészült",
+          "description": "Tegye elérhetővé a webhelyet a Launch Centerből."
+        }
+      }
+    },
+    "visitor": {
+      "eyebrow": "Az oldal nem érhető el",
+      "badge": "Nem érhető el",
+      "title": "Ez a stúdióoldal nem érhető el",
+      "description": "Lehet, hogy a cím hibás, vagy a stúdió még nem tette közzé webhelyét.",
+      "primaryAction": "A Shario felkeresése",
+      "hint": "Ha Ön kezeli ezt a stúdiót, jelentkezzen be munkaterületére, majd nyissa meg újra a nyilvános webhelyet."
+    }
+  },
+  "BookingConfirmation": {
+    "membershipPayment": {
+      "bookingValue": "Foglalás értéke",
+      "coveredByMembership": "Tagsággal fedezve",
+      "additionalPayment": "További fizetés"
+    },
+    "back": "Kiválasztás módosítása",
+    "eyebrow": "Biztonságos foglalás",
+    "title": "Áttekintés és megerősítés",
+    "description": "Az alábbi elérhetőséget, kedvezményeket és árat a stúdió szervere ellenőrizte.",
+    "summary": {
+      "time": "Időpont",
+      "until": "Eddig",
+      "location": "Helyszín",
+      "locationFallback": "Stúdió helyszíne",
+      "people": "Résztvevők",
+      "product": "Foglalás",
+      "productFallback": "Stúdiófoglalás",
+      "bookingMode": "Foglalás típusa",
+      "bookingModes": {
+        "public": "Nyilvános",
+        "private": "Privát"
+      }
+    },
+    "available": {
+      "title": "A kiválasztott időpont elérhető",
+      "description": "Megerősítéskor még egyszer ellenőrizzük."
+    },
+    "conflict": {
+      "title": "A kiválasztott időpont már nem elérhető",
+      "description": "A folytatáshoz válasszon másik időpontot.",
+      "chooseAnother": "Másik időpont választása"
+    },
+    "payment": {
+      "title": "Fizetés",
+      "methods": {
+        "card": "Fizetés bankkártyával",
+        "money_credits": "Stúdiójóváírás használata",
+        "membership_credits": "Tagsági kedvezmény használata"
+      },
+      "descriptions": {
+        "card": "Tovább a stúdió biztonságos fizetési oldalára.",
+        "money_credits": "Fizesse ki a teljes foglalást rendelkezésre álló pénzbeli jóváírásával.",
+        "membership_credits": "Használjon fel egy jogosult tagsági látogatást vagy időkeretet."
+      },
+      "notEnough": "Ez a lehetőség nem fedezi a foglalás teljes összegét.",
+      "unavailable": "Jelenleg nem érhető el használható fizetési mód.",
+      "processing": "Megerősítés…",
+      "continueToCard": "Tovább a fizetéshez",
+      "confirm": "Foglalás megerősítése",
+      "privateSurchargeRequiresMoney": "A privát foglalás felára kártyával vagy pénzegyenlegből fizethető.",
+      "membershipHours": "Tagsági órák használata",
+      "hoursSummary": "{required} felhasználása a rendelkezésre álló {available} keretből. Csak a saját helye.",
+      "membership_open_studio_only": "Az órák csak közös Open Studio használatra érvényesek, tanfolyamra vagy privát foglalásra nem.",
+      "membership_member_only": "Az órák egyetlen tagra érvényesek. Kísérőit külön foglalja, vagy fizessen normál módon mindenkiért.",
+      "membership_insufficient_hours": "Nincs elegendő tagsági óra. Válasszon másik fizetési módot.",
+      "membership_outside_paid_period": "A tagsági órák csak az aktuális fizetett időszakon belüli látogatásokra használhatók."
+    },
+    "price": {
+      "subtotal": "Részösszeg",
+      "membershipDiscount": "Tagsági kedvezmény",
+      "total": "Összesen",
+      "serverVerified": "A szerver megerősítéskor kiszámítja a végleges árat, és ellenőrzi a jogosultságot.",
+      "privateBookingSurcharge": "Privát foglalás felára (az ár tartalmazza, foglalásonként egyszer)"
+    },
+    "terms": {
+      "title": "Foglalási feltételek",
+      "accept": "Elolvastam és elfogadom a foglalási feltételeket."
+    },
+    "errors": {
+      "changed": "Az elérhetőség vagy az ár megváltozott. Újrapróbálkozás előtt tekintse át a frissített adatokat.",
+      "expired": "Ez a foglalási választás lejárt. Válasszon új időpontot.",
+      "generic": "Nem sikerült megerősíteni a foglalást. Próbálja újra."
+    },
+    "invalid": {
+      "title": "Érvénytelen foglalási hivatkozás",
+      "description": "Ez a hivatkozás nem tartalmaz érvényes foglalási választást.",
+      "action": "Új foglalás indítása"
+    },
+    "loading": {
+      "title": "Foglalás ellenőrzése",
+      "description": "Ellenőrizzük az elérhetőséget, az árat és a tagsági kedvezményeket."
+    },
+    "expired": {
+      "title": "A foglalási választás lejárt",
+      "description": "Biztonsági okokból a foglalási választásokat csak korlátozott ideig tartjuk fenn.",
+      "action": "Másik időpont választása"
+    },
+    "loadError": {
+      "title": "Nem sikerült betölteni a foglalást",
+      "description": "Nem tudtuk ellenőrizni ezt a foglalási választást.",
+      "action": "Újrakezdés",
+      "retry": "Próbálja újra"
+    },
+    "verificationRequired": {
+      "title": "A folytatáshoz igazolja e-mail-címét",
+      "description": "Foglalási választása biztonságban van. Igazolja e-mail-címét, majd térjen vissza ide a megerősítéshez.",
+      "action": "E-mail-cím igazolása"
+    }
+  },
+  "EmailVerification": {
+    "verifying": {
+      "title": "E-mail-cím igazolása",
+      "description": "Kérjük, várjon, amíg biztonságosan igazoljuk e-mail-címét."
+    },
+    "verified": {
+      "title": "E-mail-cím igazolva",
+      "description": "Fiókja elkészült. A foglalás folytatásához jelentkezzen be.",
+      "signIn": "Bejelentkezés és folytatás",
+      "continue": "Foglalás folytatása"
+    },
+    "sent": {
+      "title": "Ellenőrizze e-mail-fiókját",
+      "description": "Igazoló hivatkozást küldtünk e-mail-címére. Fiókja aktiválásához nyissa meg ebben a böngészőben.",
+      "again": "Új igazoló e-mailt küldtünk."
+    },
+    "error": {
+      "title": "Az igazoló hivatkozás érvénytelen",
+      "description": "Ez az igazoló hivatkozás érvénytelen vagy lejárt.",
+      "back": "Vissza a bejelentkezéshez"
+    },
+    "resend": {
+      "action": "Új igazoló e-mail küldése",
+      "sending": "Küldés…",
+      "wait": "Újraküldés {seconds} másodperc múlva",
+      "error": "Nem sikerült elküldeni az igazoló e-mailt. Próbálja újra."
+    }
+  },
+  "CreditPurchaseStatus": {
+    "loading": "Fizetés ellenőrzése…",
+    "checking": "Legfrissebb fizetési állapot ellenőrzése…",
+    "waiting": "Várakozás a fizetés megerősítésére…",
+    "orderReference": "Rendelés: {orderId}",
+    "pending": {
+      "badge": "Feldolgozás",
+      "title": "Fizetésének megerősítése folyamatban",
+      "description": "A Stripe feldolgozza a fizetést, a szerver pedig jóváírja stúdiójóváírásait. Az oldalt nyugodtan nyitva hagyhatja."
+    },
+    "success": {
+      "badge": "Fizetve",
+      "title": "Jóváírásai rendelkezésre állnak",
+      "description": "A szerver megerősítette a fizetést, és hozzáadta a megvásárolt jóváírásokat stúdiófiókjához."
+    },
+    "failed": {
+      "badge": "Nem fejeződött be",
+      "title": "A jóváírás vásárlása nem fejeződött be",
+      "description": "Nem adtunk hozzá jóváírást. Ellenőrizze fizetési módját, vagy térjen vissza a jóváírások oldalára, és próbálja újra."
+    },
+    "invalid": {
+      "title": "Nem tudjuk ellenőrizni ezt a vásárlást",
+      "description": "A biztonságos rendelési hivatkozás hiányzik, vagy nem tölthető be. Aktuális egyenlege ellenőrzéséhez nyissa meg a jóváírások oldalát."
+    },
+    "actions": {
+      "retry": "Újraellenőrzés",
+      "viewCredits": "Jóváírások megtekintése",
+      "portal": "Ügyfélportál"
+    }
+  },
+  "CustomerNotifications": {
+    "trigger": "Értesítések megnyitása",
+    "triggerUnread": "Értesítések megnyitása, {count, plural, one {# olvasatlan értesítés} other {# olvasatlan értesítés}}",
+    "panel": {
+      "label": "Ügyfélportál értesítései",
+      "title": "Értesítések",
+      "unread": "{count, plural, one {# olvasatlan értesítés} other {# olvasatlan értesítés}}",
+      "caughtUp": "Nincs új értesítés",
+      "summaryLoading": "Frissítések keresése…",
+      "summaryUnavailable": "Az olvasatlan értesítések állapota átmenetileg nem érhető el"
+    },
+    "page": {
+      "eyebrow": "Saját frissítései",
+      "title": "Értesítések",
+      "description": "Foglalási visszaigazolások, fizetések, stúdiófrissítések és fióküzenetek egy helyen.",
+      "unreadSummary": "{count, plural, one {# olvasatlan értesítés stúdiófiókjában} other {# olvasatlan értesítés stúdiófiókjában}}",
+      "caughtUp": "Minden értesítést elolvasott",
+      "summaryLoading": "Olvasatlan értesítések ellenőrzése…",
+      "summaryUnavailable": "Az olvasatlan értesítések állapota átmenetileg nem érhető el",
+      "loading": "Értesítések betöltése…"
+    },
+    "actions": {
+      "markAllRead": "Összes megjelölése olvasottként",
+      "retry": "Próbálja újra",
+      "viewAll": "Összes értesítés megtekintése"
+    },
+    "filters": {
+      "label": "Értesítésszűrők",
+      "status": "Állapot",
+      "category": "Kategória"
+    },
+    "statuses": {
+      "all": "Összes",
+      "unread": "Olvasatlan",
+      "read": "Olvasott"
+    },
+    "categories": {
+      "all": "Összes kategória",
+      "bookings": "Foglalások",
+      "payments": "Fizetések",
+      "waitlist": "Várólista",
+      "memberships": "Tagságok",
+      "credits_vouchers": "Jóváírások és utalványok",
+      "account": "Fiók"
+    },
+    "item": {
+      "untitled": "Stúdiófrissítés",
+      "open": "Értesítés megnyitása: {title}",
+      "markRead": "Értesítés megjelölése olvasottként: {title}",
+      "groupedCount": "{count, plural, one {# frissítés} other {# frissítés}}"
+    },
+    "empty": {
+      "title": "Még nincsenek értesítések",
+      "description": "Itt jelennek majd meg a foglalási visszaigazolások és a fontos stúdiófrissítések.",
+      "unreadTitle": "Nincs új értesítés",
+      "unreadDescription": "Ebben a nézetben nincs olvasatlan értesítés."
+    },
+    "errors": {
+      "loadTitle": "Nem sikerült betölteni az értesítéseket",
+      "load": "Ellenőrizze internetkapcsolatát, majd próbálja újra.",
+      "refresh": "A legutóbbi frissítéseket látja. A frissítés átmenetileg nem érhető el.",
+      "markRead": "Nem sikerült olvasottként megjelölni az értesítést.",
+      "markAllRead": "Nem sikerült olvasottként megjelölni az értesítéseket."
+    },
+    "pagination": {
+      "label": "Értesítési oldalak",
+      "previous": "Előző oldal",
+      "next": "Következő oldal",
+      "summary": "{total, plural, one {# értesítés} other {# értesítés}} · {page}/{pages}. oldal"
+    }
+  },
+  "WorkspaceNotifications": {
+    "trigger": "Értesítések megnyitása",
+    "triggerUnread": "Értesítések megnyitása, {count, plural, one {# olvasatlan értesítés} other {# olvasatlan értesítés}}",
+    "panel": {
+      "label": "Munkaterület értesítései",
+      "title": "Értesítések",
+      "unread": "{count, plural, one {# olvasatlan értesítés} other {# olvasatlan értesítés}}",
+      "caughtUp": "Nincs új értesítés",
+      "summaryLoading": "Frissítések keresése…",
+      "summaryUnavailable": "Az olvasatlan értesítések állapota átmenetileg nem érhető el"
+    },
+    "page": {
+      "title": "Értesítések",
+      "heading": "Működési frissítései",
+      "unreadSummary": "{count, plural, one {# olvasatlan értesítés a munkaterületen} other {# olvasatlan értesítés a munkaterületen}}",
+      "caughtUp": "Minden értesítést elolvasott",
+      "summaryLoading": "Olvasatlan értesítések ellenőrzése…",
+      "summaryUnavailable": "Az olvasatlan értesítések állapota átmenetileg nem érhető el"
+    },
+    "actions": {
+      "markAllRead": "Összes megjelölése olvasottként",
+      "preferences": "Értesítési beállítások",
+      "retry": "Próbálja újra",
+      "viewAll": "Összes értesítés megtekintése"
+    },
+    "filters": {
+      "label": "Értesítésszűrők",
+      "status": "Állapot",
+      "category": "Kategória",
+      "location": "Stúdió helyszíne"
+    },
+    "statuses": {
+      "all": "Összes",
+      "unread": "Olvasatlan",
+      "read": "Olvasott"
+    },
+    "categories": {
+      "all": "Összes kategória",
+      "bookings": "Foglalások",
+      "payments": "Fizetések",
+      "waitlist": "Várólista",
+      "tasks": "Feladatok",
+      "inventory": "Készlet",
+      "migration": "Migráció",
+      "communications": "Kommunikáció",
+      "account": "Fiók"
+    },
+    "locations": {
+      "all": "Összes helyszín"
+    },
+    "item": {
+      "untitled": "Stúdiófrissítés",
+      "open": "Értesítés megnyitása: {title}",
+      "markRead": "Értesítés megjelölése olvasottként: {title}",
+      "groupedCount": "{count, plural, one {# esemény} other {# esemény}}"
+    },
+    "empty": {
+      "title": "Még nincsenek értesítések",
+      "description": "Itt jelennek majd meg a fontos működési frissítések.",
+      "unreadTitle": "Nincs új értesítés",
+      "unreadDescription": "Ebben a nézetben nincs olvasatlan értesítés."
+    },
+    "errors": {
+      "load": "Nem sikerült betölteni az értesítéseket.",
+      "markRead": "Nem sikerült olvasottként megjelölni az értesítést.",
+      "markAllRead": "Nem sikerült olvasottként megjelölni az értesítéseket."
+    },
+    "pagination": {
+      "label": "Értesítési oldalak",
+      "previous": "Előző",
+      "next": "Következő",
+      "summary": "{total, plural, one {# értesítés} other {# értesítés}} · {page}/{pages}. oldal"
+    }
+  },
+  "PublicTenant": {
+    "nav": {
+      "home": "Stúdió",
+      "portal": "Ügyfélportál",
+      "book": "Nyitott stúdió",
+      "courses": "Tanfolyamok",
+      "memberships": "Tagságok",
+      "vouchers": "Ajándékutalványok",
+      "help": "Stúdióútmutató"
+    },
+    "actions": {
+      "signIn": "Bejelentkezés",
+      "book": "Alkalom foglalása",
+      "courses": "Tanfolyamok megtekintése",
+      "memberships": "Tagságok megtekintése",
+      "vouchers": "Ajándékutalványok felfedezése",
+      "register": "Fiók létrehozása"
+    },
+    "mobile": {
+      "eyebrow": "Stúdiónavigáció",
+      "title": "Fedezze fel: {studio}",
+      "poweredBy": "A Shario működteti"
+    },
+    "home": {
+      "eyebrow": "Üdvözöljük itt:",
+      "defaultDescription": "Fedezze fel a(z) {studio} stúdiót, ismerje meg a látogatási lehetőségeket, és találjon meg mindent következő stúdiónapja előtt.",
+      "exploreEyebrow": "Az Ön stúdiója",
+      "exploreTitle": "Látogatási lehetőségek",
+      "explore": "Felfedezés",
+      "cards": {
+        "book": "Válasszon stúdióalkalmat és Önnek megfelelő időpontot.",
+        "courses": "Böngésszen a közelgő tanfolyamok és kreatív programok között.",
+        "memberships": "Hasonlítsa össze a rendszeres stúdióhasználatot és kedvezményeket kínáló csomagokat.",
+        "vouchers": "Ajándékozzon valakinek időt és teret a stúdióbeli alkotáshoz.",
+        "help": "Készüljön fel látogatására stúdióútmutatókkal és gyakorlati válaszokkal."
+      },
+      "highlights": {
+        "viewAll": "Összes megtekintése",
+        "open": "Részletek megtekintése",
+        "coursesTitle": "Kiemelt tanfolyamok",
+        "coursesDescription": "Válasszon a stúdió jelenleg közzétett tanfolyamai közül.",
+        "membershipsTitle": "Tagsági lehetőségek",
+        "membershipsDescription": "Csomagok azoknak, akik rendszeresen szeretnének a stúdióba járni és alkotni.",
+        "helpTitle": "A stúdió Tudásközpontjából",
+        "helpDescription": "A stúdió által kiválasztott hasznos nyilvános útmutatók.",
+        "resourceTypes": {
+          "video": "Videó",
+          "guide": "Útmutató",
+          "faq": "GYIK",
+          "link": "Hivatkozás",
+          "file": "Fájl"
+        }
+      }
+    },
+    "footer": {
+      "explore": "Felfedezés",
+      "contact": "Kapcsolat",
+      "information": "Információ",
+      "defaultCopyright": "© {year} {studio}",
+      "poweredBy": "A Shario működteti"
+    },
+    "legal": {
+      "studioRules": "Stúdiószabályzat",
+      "terms": "Általános szerződési feltételek",
+      "privacy": "Adatvédelmi szabályzat",
+      "cancellation": "Lemondási feltételek"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "website": "Webhely"
+    },
+    "unavailable": {
+      "title": "Ez a lehetőség nem érhető el",
+      "description": "A stúdió jelenleg nem kínálja nyilvánosan ezt a lehetőséget.",
+      "back": "Vissza a stúdióhoz"
+    },
+    "book": {
+      "metadataTitle": "Nyitott stúdió foglalása",
+      "title": "{studio} – Nyitott stúdió",
+      "description": "Válasszon helyszínt, és bejelentkezés előtt tekintse át a jelenleg foglalt időszakokat.",
+      "eyebrow": "Tervezze meg látogatását",
+      "studioLabel": "Stúdió helyszíne",
+      "studioRequired": "Nincs kiválasztott stúdió",
+      "priceFrom": "Foglalási díjak ettől:",
+      "priceLabel": "Foglalási díj",
+      "priceUnavailable": "Érdeklődjön a stúdiónál",
+      "priceUnit": "30 perces blokkonként és vendégenként",
+      "retry": "Próbálja újra",
+      "calendar": {
+        "title": "Stúdió kihasználtsága",
+        "readOnly": "Csak olvasható",
+        "description": "Tekintse át a foglalt időpontokat a stúdió helyi időzónájában. Személyes foglalási adatokat soha nem jelenítünk meg.",
+        "legend": "Naptár jelmagyarázata",
+        "occupied": "Foglalt",
+        "loadingStudios": "Stúdióhelyszínek betöltése…",
+        "locationError": "Nem sikerült betölteni a stúdióhelyszíneket.",
+        "noLocations": "Még nincs elérhető stúdió",
+        "noLocationsDescription": "Ez a stúdió még nem tett közzé foglalható helyszínt.",
+        "invalidLocation": "Ez a stúdióhelyszín nem érhető el",
+        "invalidLocationDescription": "A folytatáshoz válasszon a közzétett stúdióhelyszínek közül.",
+        "loading": "Aktuális kihasználtság betöltése…",
+        "error": "Nem sikerült betölteni az aktuális kihasználtságot.",
+        "empty": "Ebben az időszakban nem találtunk foglalt időpontot. Ez nem garantálja az elérhetőséget.",
+        "occupiedSummary": "{count, plural, one {# foglalt időszak látható.} other {# foglalt időszak látható.}}"
+      }
+    },
+    "courses": {
+      "metadataTitle": "Stúdiótanfolyamok",
+      "title": "Tanfolyamok itt: {studio}",
+      "description": "Fedezze fel a közzétett tanfolyamokat. Az elérhető időpontok megtekintéséhez jelentkezzen be.",
+      "filters": {
+        "label": "Tanfolyamkategóriák",
+        "all": "Összes",
+        "searchLabel": "Tanfolyamok keresése",
+        "searchPlaceholder": "Tanfolyamok keresése…",
+        "clearSearch": "Keresés törlése",
+        "resultCount": "{visible} / {total} tanfolyam",
+        "noResults": "Egyetlen tanfolyam sem felel meg a keresésnek vagy a kiválasztott kategóriának.",
+        "reset": "Összes tanfolyam megjelenítése"
+      }
+    },
+    "vouchers": {
+      "metadataTitle": "Ajándékutalványok",
+      "title": "Figyelmes stúdióajándék",
+      "description": "Válasszon egy közzétett ajándékutalványt, és adja meg valakinek az alkotás szabadságát a(z) {studio} stúdióban.",
+      "checkout": {
+        "eyebrow": "Biztonságos fizetés",
+        "title": "Válasszon utalványt",
+        "description": "Válasszon értéket, adja meg e-mail-címét, majd lépjen tovább a stúdió biztonságos fizetési oldalára.",
+        "email": "E-mail-cím",
+        "quantity": "Mennyiség",
+        "missing": "Válasszon utalványt, és adjon meg érvényes e-mail-címet.",
+        "error": "Nem sikerült elindítani a fizetést. Próbálja újra.",
+        "starting": "Fizetés előkészítése…",
+        "continue": "Tovább a fizetéshez",
+        "secure": "Fizetés előtt biztonságosan ellenőrizzük az utalvány elérhetőségét és árát.",
+        "giftMessage": "Ajándéküzenet (nem kötelező)",
+        "giftMessageHelp": "Legfeljebb 240 karakter. Az üzenet a rendelés minden PDF-fájljába és az e-mailbe is bekerül. Az utalványokat a fent megadott e-mail-címre küldjük.",
+        "giftMessageLegacyHelp": "Legfeljebb 240 karakter. Az üzenet az e-mailben jelenik meg. Ez az utalvány rögzített PDF-sablont használ, ezért az üzenet nem kerül rá a PDF-re.",
+        "giftMessageError": "Az ajándéküzenet nem fér el ezen az utalványon. Próbálja lerövidíteni, csökkenteni a sortörések számát, vagy eltávolítani az emojikat és a speciális jeleket.",
+        "total": "Összesen",
+        "validity": "Érvényesség",
+        "noExpiry": "Nincs lejárati dátum",
+        "validUntil": "Érvényes eddig: {date}",
+        "validMonths": "{months, plural, one {# hónap a vásárlástól számítva} other {# hónap a vásárlástól számítva}}"
+      },
+      "postal": {
+        "title": "Kézbesítés",
+        "digital": "Digitális ajándékutalvány",
+        "physical": "Nyomtatott ajándékutalvány postán",
+        "digitalHelp": "Az e-mail-címére küldjük.",
+        "postage": "Postaköltség: {amount} rendelésenként",
+        "backup": "A stúdió kinyomtatja és postázza az ajándékutalványát. E-mailben is kap egy másolatot ugyanazzal a kóddal. Mindkét példány egyetlen közös egyenleghez tartozik.",
+        "firstname": "Keresztnév",
+        "lastname": "Vezetéknév",
+        "street": "Utca és házszám",
+        "city": "Város",
+        "postalCode": "Irányítószám",
+        "country": "Ország",
+        "chooseCountry": "Válasszon országot",
+        "addressError": "Adja meg a teljes postacímet az országgal együtt.",
+        "unavailable": "Ehhez az ajándékutalványhoz már nem érhető el postai kézbesítés. Válassza a digitális kézbesítést, vagy frissítse az oldalt.",
+        "subtotal": "Az ajándékutalvány értéke",
+        "fee": "Postaköltség"
+      }
+    },
+    "catalog": {
+      "loading": "Aktuális ajánlatok betöltése…",
+      "error": "Nem sikerült betölteni az aktuális ajánlatokat.",
+      "retry": "Próbálja újra",
+      "empty": "Még nincsenek közzétett ajánlatok.",
+      "book": "Bejelentkezés a foglaláshoz",
+      "viewDates": "Elérhető időpontok megtekintése",
+      "viewDetails": "Időpont választása",
+      "continue": "Tovább a foglaláshoz",
+      "availability": {
+        "fullWaitlistOpen": "Betelt · várólista nyitva"
+      }
+    },
+    "details": {
+      "bookingMetadataTitle": "Stúdiólátogatás kiválasztása",
+      "bookingMetadataDescription": "Válasszon Nyitott stúdió-lehetőséget, helyszínt, dátumot és időpontot.",
+      "courseMetadataTitle": "Tanfolyami időpontok",
+      "courseMetadataDescription": "Tekintse meg a közzétett tanfolyami időpontokat, és válassza ki helyét.",
+      "loading": "Aktuális elérhetőség betöltése…",
+      "error": "Nem sikerült betölteni az aktuális elérhetőséget.",
+      "retry": "Próbálja újra",
+      "notFound": "Ez a nyilvános ajánlat már nem érhető el.",
+      "backToBook": "Vissza a stúdiófoglaláshoz",
+      "backToCourses": "Vissza a tanfolyamokhoz",
+      "bookingEyebrow": "Nyitott stúdió",
+      "courseEyebrow": "Tanfolyam",
+      "chooseVisit": "Válassza ki látogatását",
+      "chooseVisitDescription": "Válasszon helyszínt és dátumot. Fizetés előtt újra ellenőrizzük az elérhetőséget.",
+      "chooseCourseSession": "Tanfolyami időpont választása",
+      "chooseCourseSessionDescription": "Válasszon közzétett tanfolyami alkalmat és résztvevőszámot.",
+      "location": "Helyszín",
+      "locationFallback": "{number}. helyszín",
+      "date": "Dátum",
+      "activity": "Tervezett tevékenység",
+      "activityChoose": "Válassz tevékenységet",
+      "activityNotSpecified": "Nincs megadott tevékenység",
+      "activityRequiredHint": "Ezen a helyszínen az időpont kiválasztása előtt tevékenységet kell választanod.",
+      "activityOptionalHint": "Választhatsz tevékenységet, vagy folytathatod a megadása nélkül.",
+      "activityUnavailable": "Ehhez a helyszínhez még nincs beállítva ügyféltevékenység.",
+      "chooseTime": "Időpont választása",
+      "noSlots": "Ezen a napon nincs elérhető időpont.",
+      "noCourseSessions": "Ehhez a tanfolyamhoz nincs közelgő, közzétett alkalom.",
+      "remaining": "{count, plural, =0 {Betelt} one {# hely maradt} other {# hely maradt}}",
+      "continueInPortal": "Folytatás az ügyfélportálon",
+      "signInToContinue": "A folytatáshoz jelentkezzen be",
+      "bookWithAccount": "Foglalás a fiókommal",
+      "openWorkspace": "Stúdió-vezérlőpult megnyitása",
+      "preparingIntent": "Kiválasztás biztosítása…",
+      "selectionChanged": "Ez az időpont már nem érhető el. Frissítettük az elérhető lehetőségeket.",
+      "intentError": "Nem sikerült előkészíteni foglalását. Próbálja újra.",
+      "orGuestCheckout": "vagy folytassa vendégként",
+      "customerChoice": {
+        "mode": "Privát foglalás beállításai",
+        "public": "Megosztott",
+        "private": "Privát",
+        "publicFixedHelp": "Összesen legfeljebb {count} fő osztozhat ezen az időponton, a csoportodat is beleértve. A stúdió és a tevékenység kapacitáskorlátai továbbra is érvényesek.",
+        "publicActivityHelp": "Más vendégek is csatlakozhatnak a tevékenység és a stúdió kapacitásának eléréséig.",
+        "privateHelp": "Foglald le az egész stúdiót a csoportodnak. Foglalásonként egyszeri {amount} felár fizetendő.",
+        "surcharge": "Privát foglalás felára",
+        "people": "A csoportod létszáma"
+      },
+      "activityWorkstation": "Munkaállomások",
+      "activitySharedTable": "Közös asztalok"
+    },
+    "guestCheckout": {
+      "title": "Folytatás vendégként",
+      "description": "Adja meg kapcsolattartási adatait ehhez a tanfolyami foglaláshoz.",
+      "people": "Résztvevők száma",
+      "firstName": "Keresztnév",
+      "lastName": "Vezetéknév",
+      "email": "E-mail-cím",
+      "phone": "Telefonszám (nem kötelező)",
+      "terms": "Tanfolyami feltételek",
+      "acceptTerms": "Elolvastam és elfogadom ezeket a tanfolyami feltételeket.",
+      "termsRequired": "A folytatás előtt fogadja el a tanfolyami feltételeket.",
+      "validationError": "Ellenőrizze kapcsolattartási adatait.",
+      "checkoutError": "Nem sikerült elindítani a fizetést. Lehet, hogy az elérhetőség megváltozott; próbálja újra.",
+      "signInRequired": "A biztonságos folytatáshoz jelentkezzen be ezzel az e-mail-címmel.",
+      "signIn": "Bejelentkezés és folytatás",
+      "starting": "Biztonságos fizetés indítása…",
+      "continue": "Tovább a biztonságos fizetéshez",
+      "serverValidation": "Fizetés előtt biztonságosan ellenőrizzük az árat, a kapacitást és a tanfolyam elérhetőségét.",
+      "totalLabel": "Összesen {count} résztvevőre",
+      "attemptExpired": "Ez a fizetési folyamat lejárt. Folytasd újra a szabad helyek ellenőrzéséhez és új fizetés indításához.",
+      "voucherCode": "Utalványkód (nem kötelező)",
+      "checkVoucher": "Utalvány ellenőrzése",
+      "checkingVoucher": "Ellenőrzés…",
+      "voucherHelp": "Megerősítés előtt ellenőrizd a kedvezményt. Az ellenőrzés nem használja fel az utalványt.",
+      "voucherDiscount": "Utalványkedvezmény",
+      "remainingToPay": "Fennmaradó fizetendő összeg",
+      "voucherCoversAll": "Az utalvány a teljes árat fedezi. Erősítsd meg a beváltást és a helyek foglalását.",
+      "voucherPartial": "Erősítsd meg az utalvány lefoglalását, és fizesd ki a fennmaradó összeget kártyával.",
+      "confirmWithVoucher": "Foglalás megerősítése utalvánnyal",
+      "voucherError": "Ez az utalvány nem használható ehhez a foglaláshoz. Ellenőrizd a kódot, vagy keresd a stúdiót.",
+      "voucherReviewRequired": "Megerősítés előtt ellenőrizd az utalványt és az árat.",
+      "voucherRateLimited": "Túl sok próbálkozás. Várj egy kicsit, és próbáld újra.",
+      "voucherChanged": "Az ár vagy az utalvány egyenlege megváltozott. Megerősítés előtt ellenőrizd újra az utalványt."
+    },
+    "guestCheckoutResult": {
+      "verifyingLabel": "Fizetés ellenőrzése",
+      "confirmedLabel": "Fizetés megerősítve",
+      "unconfirmedLabel": "A fizetést nem sikerült megerősíteni",
+      "verifyingTitle": "Véglegesítjük a foglalásodat",
+      "confirmedTitle": "Köszönjük a foglalásodat",
+      "unconfirmedTitle": "A foglalásod még nincs megerősítve",
+      "verifyingDescription": "A fizetési szolgáltató visszaigazolására várunk. Nyitva hagyhatod ezt az oldalt.",
+      "confirmedDescription": "A fizetésedet és a foglalásodat megerősítettük. A részleteket e-mailben küldjük el.",
+      "unconfirmedDescription": "Ezt a foglalást nem sikerült ellenőriznünk. Újabb fizetés előtt nézd meg az e-mailjeidet, vagy keresd a stúdiót az alábbi rendelési azonosítóval.",
+      "emailPending": "E-mailt küldünk, amint a foglalás megerősítést nyer.",
+      "emailConfirmed": "Nézd meg a levélszemét mappát is.",
+      "orderReference": "Rendelési azonosító",
+      "backToStudio": "Vissza a stúdióhoz",
+      "backToCourse": "Vissza a tanfolyamhoz",
+      "retry": "Ellenőrzés újra",
+      "cancelledTitle": "A fizetési oldal bezárult",
+      "cancelledDescription": "Ez az oldal nem igazol fizetést vagy foglalást. Újabb fizetés indítása előtt ellenőrizd az e-mailjeidet."
+    }
+  },
+  "VoucherEditor": {
+    "colors": {
+      "mainTitle": "Főcím",
+      "useTextColor": "Szövegszín használata"
+    },
+    "description": "Két egyenlő fél: balra a szöveg és az utalványkód, jobbra a fénykép.",
+    "assets": {
+      "image": "A jobb oldali fél fényképe",
+      "imageHelp": "A fénykép felülről lefelé kitölti a jobb oldali felet. A Panel kitöltése levágja a széleket; A teljes fénykép megjelenítése megtartja az egész képet, körülötte üres hellyel.",
+      "imageFormats": "JPEG, PNG vagy WebP · legfeljebb 8 MB. Ellenőrizze a vágást az élő előnézetben.",
+      "uploadImage": "Fénykép feltöltése",
+      "replaceImage": "Fénykép cseréje",
+      "cover": "Panel kitöltése (szélek levágása)",
+      "contain": "A teljes fénykép megjelenítése",
+      "fit": "Fénykép illesztése"
+    },
+    "preview": {
+      "automatic": "Az egyedi kód és a lejárati dátum a bal oldalra kerül. Az összeg nem jelenik meg a nyomaton; az utalvány beváltható értéke változatlan marad. Az előnézet és a PDF-minta bemutatóadatokat használ."
+    }
+  },
+  "WorkspaceModules": {
+    "modules": {
+      "communications": {
+        "description": "E-mail-előzmények, automatizálások, sablonok és e-mail-beállítások."
+      }
+    }
+  },
+  "PublicSiteEditor": {
+    "customerPortal": {
+      "pageLabels": {
+        "courses": "Tanfolyamok"
+      },
+      "navigationLabels": {
+        "courses": "Tanfolyamok"
+      },
+      "courses": {
+        "title": "Tanfolyamok stúdiónként",
+        "description": "Szabd testre a tanfolyamoldal címét, bevezetőjét és fényképét minden helyszínen külön.",
+        "location": "Stúdió helyszíne",
+        "headline": "Tanfolyamoldal címe",
+        "intro": "Tanfolyamoldal bevezetője",
+        "image": "Tanfolyamoldal fényképe",
+        "inherit": "Az üres mezők a közös tanfolyamoldal szövegét és a márka borítóképét használják.",
+        "noLocations": "Adj hozzá egy stúdióhelyszínt a tanfolyamoldalának testreszabásához.",
+        "guestCheckoutEnabled": "Tanfolyamvásárlás engedélyezése fiók nélkül",
+        "guestCheckoutDescription": "Minden stúdióra érvényes. A vendégek fiók létrehozása nélkül vásárolhatnak tanfolyamot; az ügyfelek továbbra is bejelentkezhetnek a foglaláshoz. Látható tanfolyamoldalak és működő online fizetés szükséges. A beállítás alkalmazásához tedd közzé a módosításokat."
+      }
+    },
+    "preview": {
+      "pages": {
+        "portalCourses": "Ügyfélportál tanfolyamai"
+      }
+    },
+    "branding": {
+      "logoRedirectEnabled": "A logó legyen hivatkozás",
+      "logoRedirectHint": "Bekapcsolva a logóra kattintás megnyitja a kiválasztott oldalt. Kikapcsolva a kattintásnak nincs hatása.",
+      "logoRedirectUrl": "A logó célcíme",
+      "logoRedirectUrlHint": "Adjon meg teljes HTTPS-címet vagy / jellel kezdődő útvonalat. Az oldal ugyanazon a lapon nyílik meg.",
+      "invalidLogoRedirectUrl": "Adjon meg érvényes HTTPS-címet vagy / jellel kezdődő útvonalat."
+    },
+    "messages": {
+      "invalidLogoRedirectUrl": "Mentés vagy közzététel előtt javítsa a logó célcímét."
+    }
+  },
+  "Products": {
+    "form": {
+      "courseContent": {
+        "title": "A tanfolyamoldal tartalma",
+        "help": "Opcionális szövegek és fényképek az ügyfélportál tanfolyamoldalához. Az üres mezők a termék fő tartalmát használják.",
+        "language": "Tartalom nyelve",
+        "name": "Tanfolyam címe",
+        "description": "Rövid leírás",
+        "details": "Tanfolyam részletei",
+        "durationLabel": "Időtartam megnevezése",
+        "plainTextHelp": "Használj egyszerű szöveget. A sortörések megmaradnak.",
+        "gallery": "Tanfolyam képgalériája",
+        "galleryHelp": "Adj hozzá legfeljebb 12 HTTPS-képcímet vagy a webhelyhez viszonyított képútvonalat. Üres galéria esetén a termék képe jelenik meg.",
+        "imageUrl": "Új galériakép címe",
+        "addImage": "Kép hozzáadása",
+        "useProductImage": "Jelenlegi termékkép használata",
+        "imageLabel": "{number}. galériakép",
+        "moveEarlier": "{number}. kép előrébb helyezése",
+        "moveLater": "{number}. kép hátrébb helyezése",
+        "removeImage": "{number}. kép eltávolítása",
+        "invalidImage": "Adj meg érvényes HTTPS-képcímet vagy a webhelyhez viszonyított útvonalat (legfeljebb 2000 karakter).",
+        "invalidText": "Ellenőrizd a tanfolyam szövegét: használj egyszerű szöveget a mezők korlátain belül.",
+        "galleryLimit": "Legfeljebb 12 képet adhatsz a galériához.",
+        "locations": "Ezekben a stúdiókban érhető el",
+        "locationsHelp": "Hagyd üresen a kiválasztást, ha a tanfolyamot minden stúdióban meg szeretnéd jeleníteni. Az időpontok mindig a kiválasztott stúdióhoz tartoznak."
+      }
+    }
+  },
+  "CustomerCourses": {
+    "eyebrow": "Alkoss a stúdiódban",
+    "title": "Tanfolyamok",
+    "description": "Fedezd fel a tanfolyamokat, válassz időpontot, és foglald le a helyed.",
+    "location": "Stúdió helyszíne",
+    "allCategories": "Összes tanfolyam",
+    "search": "Tanfolyamok keresése",
+    "noResults": "Nincs a keresésnek megfelelő tanfolyam.",
+    "noCourses": "Ebben a stúdióban még nincsenek elérhető tanfolyamok.",
+    "loading": "Tanfolyamok betöltése…",
+    "error": "Nem sikerült betölteni a tanfolyamokat.",
+    "retry": "Újrapróbálkozás",
+    "details": "Tanfolyam részletei",
+    "chooseDate": "Időpont kiválasztása",
+    "upcomingDates": "Közelgő időpontok",
+    "noDates": "Az új időpontokat hamarosan közzétesszük.",
+    "pricePerPerson": "Ár személyenként",
+    "duration": "Időtartam",
+    "durationMinutes": "{count} perc",
+    "capacity": "Csoportlétszám",
+    "capacityPeople": "Legfeljebb {count} fő",
+    "back": "Vissza a tanfolyamokhoz",
+    "people": "Résztvevők száma",
+    "addToCart": "Kosárba",
+    "inCart": "A kosaradban",
+    "viewCart": "Kosár megtekintése",
+    "unavailable": "Ez a tanfolyam nem érhető el a kiválasztott stúdióban.",
+    "selectDate": "A folytatáshoz válassz egy elérhető időpontot.",
+    "giftVoucher": "Ajándékozz ajándékutalványt",
+    "previousImage": "Előző kép",
+    "nextImage": "Következő kép",
+    "openGallery": "A(z) {name} galériájának megnyitása",
+    "closeGallery": "Galéria bezárása",
+    "imagePosition": "{current}. kép / {total}",
+    "placesLeft": "Szabad helyek: {count}",
+    "full": "Betelt",
+    "date": "Dátum",
+    "added": "A tanfolyam a kosaradba került.",
+    "checkoutPaused": "A foglalás jelenleg nem érhető el. A tanfolyamokat továbbra is böngészheted."
+  },
+  "Sales": {
+    "paymentMethods": {
+      "unknown": "Nincs rögzítve"
+    }
+  },
+  "VoucherShopping": {
+    "buy": "Ajándékutalvány vásárlása",
+    "manage": "Utalványaim beváltása vagy megtekintése",
+    "chooseTitle": "Válassz ajándékot",
+    "chooseDescription": "Válassz utalványt és darabszámot. A vásárláshoz nem szükséges fiók.",
+    "deliveryTitle": "Vedd át az utalványodat",
+    "deliveryDescription": "Fizetés után elküldjük a PDF-formátumú utalványt a megadott e-mail-címre.",
+    "redeemTitle": "Tervezz látogatást a műhelybe",
+    "redeemDescription": "A megajándékozott időpontot választ, és fizetéskor megadja az utalvány kódját. Az utalvány megvásárlása nem foglal helyet a tanfolyamon.",
+    "selection": "Utalvány kiválasztása",
+    "selected": "Kiválasztva"
+  },
+  "BookingActions": {
+    "title": "Foglalás szerkesztése",
+    "details": "Foglalás részletei",
+    "chooseAction": "Mit szeretne tenni?",
+    "extend": "Meghosszabbítás",
+    "move": "Áthelyezés",
+    "cancel": "Lemondás",
+    "extendTitle": "Foglalás meghosszabbítása",
+    "moveTitle": "Foglalás áthelyezése",
+    "cancelTitle": "Foglalás lemondása",
+    "extendHelp": "Tartsa meg a foglalását, és adjon hozzá időt a végén. A résztvevők, a tevékenység és a privát vagy közös használat beállítása nem változik. Csak a hozzáadott időért fizet.",
+    "extraTime": "Mennyi további időt szeretne?",
+    "minutes": "+{minutes} perc",
+    "endsAt": "Befejezés: {time}",
+    "loading": "Szabad időpontok ellenőrzése…",
+    "retry": "Próbálja újra",
+    "quoteError": "Nem sikerült ellenőrizni a hosszabbítási lehetőségeket. Próbálja újra.",
+    "paymentMethod": "Fizetési mód",
+    "card": "Bankkártya",
+    "credits": "Stúdiókreditek",
+    "payExtend": "Foglalás meghosszabbítása · {amount}",
+    "processing": "Feldolgozás…",
+    "extensionError": "Nem sikerült megerősíteni a hosszabbítást. Újabb próbálkozás előtt ellenőrizze a foglalását.",
+    "quoteChanged": "A foglalás vagy az ár megváltozott. Megerősítés előtt ellenőrizze a frissített lehetőségeket.",
+    "currentTariff": "Az eredeti óradíj nem érhető el. A hozzáadott időre a stúdió jelenlegi díja vonatkozik.",
+    "cardTimeLimit": "Ha a foglalása hamarosan véget ér, használjon stúdiókrediteket. Nincs elég idő a kártyás fizetés befejezésére.",
+    "reasons": {
+      "unavailable": "Ez a további idő nem érhető el.",
+      "private": "Ebben az időszakban egy másik privát foglalás kezdődik.",
+      "capacity": "Nincs elegendő kapacitás a stúdióban vagy a tevékenységhez.",
+      "closed": "A hosszabbítás túlnyúlik a stúdió nyitvatartási idején.",
+      "duration": "Ez meghaladja a foglalás megengedett legnagyobb hosszát.",
+      "pending": "Már van függőben lévő hosszabbítási fizetés. Újabb próbálkozás előtt fejezze be vagy szakítsa meg azt."
+    },
+    "moveHelp": "Válasszon új kezdési időpontot. A {minutes} perces időtartam, a stúdió, a tevékenység és a résztvevők nem változnak.",
+    "newDate": "Új dátum",
+    "startTime": "Kezdési idő",
+    "availableTimes": "Szabad kezdési időpontok",
+    "manualTime": "Adjon meg egy kezdési időpontot. Megerősítés előtt ellenőrizzük a rendelkezésre állást.",
+    "confirmMove": "Új időpont megerősítése",
+    "moveInvalid": "Válasszon érvényes dátumot és időpontot.",
+    "moveError": "Ez az időpont már nem érhető el. Válasszon másikat.",
+    "readonly": "A foglalás időpontja már nem módosítható.",
+    "courseReadonly": "A tanfolyami jelentkezések a portálon csak megtekinthetők, mert ütemezett alkalomhoz kapcsolódnak. Módosításhoz vagy lemondáshoz vegye fel a kapcsolatot a stúdióval.",
+    "accessLocked": "A belépési kódot már kiadtuk vagy éppen küldjük, ezért áthelyezésre és lemondásra már nincs lehetőség.",
+    "refundHelp": "A lemondás nem vonható vissza. A kifizetett összeg stúdiókreditként jár vissza; tagsági kredittel történő fizetés esetén ezt a kreditet állítjuk vissza. Lemondásra csak a belépési kód kiadása előtt van lehetőség.",
+    "cancelQuestion": "Lemondja ezt a foglalást?",
+    "confirmCancel": "Igen, lemondom",
+    "keepBooking": "Foglalás megtartása",
+    "cancelling": "Lemondás folyamatban…",
+    "cancelError": "Nem sikerült lemondani a foglalást. Próbálja újra.",
+    "cancelledTitle": "Foglalás lemondva",
+    "cancelledBody": "Foglalását lemondtuk, és a visszatérítés megtörtént.",
+    "movedTitle": "Foglalás áthelyezve",
+    "movedBody": "Foglalása új időpontját megerősítettük.",
+    "extendedTitle": "Foglalás meghosszabbítva",
+    "extendedBody": "Foglalása új befejezési időpontja: {time}. Megerősítő e-mailt küldünk.",
+    "arrival": "Érkezési információk",
+    "accessCode": "A belépési kódot a foglalás előtt {minutes} perccel küldjük el e-mailben.",
+    "cancelPayment": "Hosszabbítás fizetésének megszakítása"
+  },
+  "EmailAutomations": {
+    "history": {
+      "types": {
+        "afterBookingCreated": "Foglalás visszaigazolása"
+      },
+      "pagination": {
+        "label": "E-mail-kézbesítési előzmények oldalai",
+        "previous": "Előző",
+        "next": "Következő",
+        "showing": "{from}–{to} / {total} e-mail-kézbesítés megjelenítése",
+        "newestFirst": "Legújabbak elöl · 20 oldalanként"
+      }
+    }
+  },
+  "TeamSettings": {
+    "actions": {
+      "add": "Csapattag meghívása"
+    },
+    "editor": {
+      "addTitle": "Csapattag meghívása",
+      "email": "E-mail-cím",
+      "existingUserHint": "E-mailben kap meghívót. Az új tagok fiókot hozhatnak létre."
+    },
+    "empty": {
+      "description": "Hívjon meg valakit e-mailben, és válassza ki a szerepkörét és helyszíneit."
+    },
+    "invitations": {
+      "title": "Meghívók",
+      "description": "A hozzáférés a meghívó elfogadása után kezdődik.",
+      "empty": "Nincsenek függőben lévő meghívók.",
+      "resend": "Újraküldés",
+      "revoke": "Visszavonás",
+      "revokeConfirm": "Visszavonja a(z) {email} címre szóló meghívót?",
+      "revoked": "Meghívó visszavonva.",
+      "expires": "Lejár: {date}",
+      "signInLink": "Bejelentkezési hivatkozás",
+      "sendSignIn": "Bejelentkezési hivatkozás küldése",
+      "send": "Meghívó küldése",
+      "statuses": {
+        "pending": "Függőben",
+        "expired": "Lejárt"
+      },
+      "delivery": {
+        "pending": "E-mail küldésre vár",
+        "sent": "E-mail elküldve",
+        "failed": "Sikertelen küldés"
+      },
+      "notices": {
+        "pending": "A(z) {email} címre szóló meghívó mentve. Az e-mail küldésre vár.",
+        "sent": "Meghívó elküldve a(z) {email} címre.",
+        "failed": "A(z) {email} címre szóló meghívó mentve, de az e-mail nem ment el. Küldje újra."
+      },
+      "errors": {
+        "resend": "A meghívót nem sikerült újraküldeni.",
+        "revoke": "A meghívót nem sikerült visszavonni.",
+        "send": "A bejelentkezési hivatkozást nem sikerült elküldeni.",
+        "resendTooSoon": "Várjon egy percet a meghívó újraküldése előtt.",
+        "rateLimited": "Túl sok meghívó. Várjon 15 percet, majd próbálja újra."
+      }
+    }
+  },
+  "TeamInvitation": {
+    "title": "Csatlakozás a csapathoz",
+    "signInTitle": "Bejelentkezés a munkaterületre",
+    "description": "Meghívó a(z) {tenant} munkaterületre a(z) {email} részére.",
+    "newAccount": "A meghívó elfogadásához hozzon létre fiókot.",
+    "existingAccount": "Adja meg jelenlegi jelszavát. A jelszó nem változik meg.",
+    "resetRequired": "Állítson be jelszót a fiók-helyreállítással, majd térjen vissza a meghívóhoz.",
+    "resetPassword": "Jelszó visszaállítása (új lapot nyit)",
+    "accepted": "Meghívó elfogadva. A folytatáshoz jelentkezzen be.",
+    "loginRetry": "A hozzáférés kész, de a bejelentkezés sikertelen. Próbáljon újra bejelentkezni.",
+    "accept": "Meghívó elfogadása",
+    "signIn": "Bejelentkezés",
+    "working": "Kérjük, várjon…",
+    "unavailableTitle": "A meghívó nem érhető el",
+    "unavailable": "A meghívó érvénytelen, lejárt, visszavonták vagy nem tölthető be. Szükség esetén kérjen új meghívót a tulajdonostól.",
+    "retry": "Újrapróbálkozás",
+    "loading": "Meghívó betöltése…",
+    "acceptError": "A meghívót nem sikerült elfogadni. Ellenőrizze adatait, vagy kérjen új meghívót.",
+    "passwordReady": "Beállítottam a jelszavamat"
+  },
+  "Memberships": {
+    "planChange": {
+      "browse": "Csomagok böngészése és összehasonlítása",
+      "currentPlan": "Jelenlegi csomagod",
+      "scheduledPlan": "Ütemezett csomag",
+      "choose": "Váltás a következő megújuláskor",
+      "title": "Tagságod módosítása",
+      "description": "Jelenlegi árad, óráid és tagsági előnyeid {date} napjáig változatlanok maradnak.",
+      "renewal": "{date} napjától a(z) {plan} csomag {price} áron újul meg.",
+      "confirm": "Csomagváltás ütemezése",
+      "cancel": "Jelenlegi csomag megtartása",
+      "pendingTitle": "Csomagváltás ütemezve",
+      "pendingDescription": "Tagságod {date} napján a(z) {plan} csomagra vált. A jelenlegi kifizetett időszakod változatlan marad.",
+      "cancelChange": "Csomagváltás visszavonása",
+      "cancelConfirm": "Visszavonod az ütemezett csomagváltást? Jelenlegi csomagod a korábbiak szerint újul meg.",
+      "cancelTitle": "Jelenlegi tagságod megtartása",
+      "cancelConfirmAction": "Ütemezett váltás visszavonása",
+      "success": "A csomagváltásodat ütemeztük.",
+      "cancelled": "Az ütemezett csomagváltásodat visszavontuk.",
+      "error": "Nem sikerült frissíteni az ütemezett csomagváltásodat. Frissítsd az oldalt, és próbáld újra.",
+      "unavailable": "Itt összehasonlíthatod a csomagokat. Csomagot aktív havi tagság esetén válthatsz, ha nincs már ütemezve lemondás vagy csomagváltás.",
+      "loading": "Jelenlegi tagságod ellenőrzése…",
+      "loadError": "Nem sikerült ellenőrizni a jelenlegi tagságodat. Csomagválasztás előtt frissítsd az oldalt.",
+      "manage": "Tagságod kezelése",
+      "noImmediateCharge": "Most nem vonunk le pénzt. Az új havi ár a következő megújuláskor lép életbe.",
+      "termsRequired": "A váltás ütemezése előtt fogadd el az új csomag tagsági feltételeit.",
+      "processing": "Ütemezett csomagváltásod frissítése…",
+      "cancelBeforeMembership": "Ha meg szeretnéd szüntetni a tagságodat, először vond vissza az ütemezett csomagváltást."
+    },
+    "owner": {
+      "planForm": {
+        "benefitTypes": {
+          "studio_hours": {
+            "title": "Személyes Open Studio órák",
+            "description": "Előre fizetett Open Studio idő csak a tagnak, közösen használható a jogosult helyszíneken.",
+            "editorHint": "Előre fizetett Open Studio idő csak a tagnak, közösen használható a jogosult helyszíneken."
+          },
+          "course_discount": {
+            "title": "Személyes tanfolyamkedvezmény",
+            "description": "Kedvezmény a tag egy helyére; a többi résztvevő normál árat fizet.",
+            "editorHint": "Kedvezmény a tag egy helyére; a többi résztvevő normál árat fizet."
+          }
+        },
+        "benefitDefaults": {
+          "studio_hours": "Személyes Open Studio órák",
+          "course_discount": "Személyes tanfolyamkedvezmény"
+        },
+        "sharedSelectedLocations": "Közös keret a kiválasztott helyszíneken",
+        "hourQuantity": "Órák fizetett időszakonként",
+        "hoursValidation": "Egész perceknek megfelelő pozitív óraszámot adjon meg (például 4,5 óra).",
+        "rolloverPercent": "Átviteli korlát (%)",
+        "rolloverHint": "A szokásos havi keret 0–25%-a vihető át kizárólag a következő fizetett hónapra. Más időszakoknál 0-t állítson be.",
+        "eligibleCourses": "Jogosult tanfolyamok",
+        "eligibleCoursesHint": "Kijelölés nélkül minden tanfolyamra érvényes; különben csak a kiválasztottakra. A kedvezmény kizárólag a tag saját helyére jár.",
+        "oneProductDiscount": "Csomagonként egy termékkedvezményt vagy egy személyes tanfolyamkedvezményt válasszon.",
+        "translationsHint": "Adja meg a tagságok nevét, leírását, feltételeit és az előnyök címkéit a stúdió nyelvein. Az üres fordítások helyett az elsődleges nyelv szövege jelenik meg.",
+        "primaryCurrencyHint": "Az ügyfelek a stúdió elsődleges pénznemében fizetnek ({currency}).",
+        "legacyBenefit": {
+          "preserved": "Az előny beállításai megmaradnak; a szövege szerkeszthető."
+        }
+      }
+    },
+    "benefits": {
+      "benefitValues": {
+        "studioHours": "{duration} Open Studio idő fizetett időszakonként, csak Önnek.",
+        "rollover": "A szokásos havi órák legfeljebb {percentage}%-a vihető át csak a következő fizetett hónapra.",
+        "personalCourseDiscount": "{percentage}% kedvezmény a jogosult tanfolyamokon, csak a saját helyére. Más résztvevők teljes árat fizetnek."
+      },
+      "timeTrackingNotice": "Az órák a saját Open Studio látogatásait fedezik. Kísérőit külön foglalja, vagy a teljes foglalást normál módon fizesse. Az átvitt órák fogynak el először, és a következő fizetett időszak végén lejárnak.",
+      "sharedLocations": "Közös keret itt: {locations}",
+      "currentPeriod": "Aktuális időszak maradéka",
+      "carryover": "Megmaradt átvitt órák",
+      "carryoverExpires": "Átvitt órák lejárata",
+      "adjustMinutes": "Módosítás percben"
+    },
+    "catalog": {
+      "recurringMonthDisclosure": "Automatikusan megújul {amount} összegért {count, plural, one {havonta} other {# havonta}} a lemondásig. A lemondás a fizetett időszak végén lép hatályba.",
+      "recurringYearDisclosure": "Automatikusan megújul {amount} összegért {count, plural, one {évente} other {# évente}} a lemondásig. A lemondás a fizetett időszak végén lép hatályba."
+    }
+  },
+  "SetupCenter": {
+    "practice": {
+      "manual": {
+        "title": "Kézi megerősítés",
+        "description": "Már tesztelt egy foglalást? Erősítse meg itt az eredményt.",
+        "checkbox": "Megerősítem, hogy a próbafoglalás sikeres volt",
+        "confirm": "Ellenőrzés megerősítése",
+        "saving": "Mentés…",
+        "confirmed": "Kézzel megerősítve: {date}.",
+        "stale": "A beállítások megváltoztak a megerősítés óta. Tesztelje újra a foglalást, majd erősítse meg az eredményt.",
+        "undo": "Megerősítés eltávolítása",
+        "error": "A megerősítést nem sikerült menteni. Próbálja újra.",
+        "undoError": "A megerősítést nem sikerült eltávolítani. Próbálja újra.",
+        "configurationChanged": "A beállítások megváltoztak az ellenőrzés közben. Tekintse át az aktuális beállításokat, majd erősítse meg újra a foglalást.",
+        "note": "Ez a saját ellenőrzését rögzíti. Nem hoz létre foglalást, nem von le fizetést és nem küld üzenetet."
+      }
+    },
+    "readiness": {
+      "items": {
+        "customerJourney": {
+          "descriptions": {
+            "manual": "Kézzel megerősítette a sikeres próbafoglalást.",
+            "retest": "A beállítások megváltoztak. Ellenőrizzen újra egy foglalást, és erősítse meg az eredményt.",
+            "action_required": "Ellenőrizzen egy foglalást, és erősítse meg az eredményt.",
+            "waiting": "A foglalás ellenőrzése előtt végezze el a korábbi indítási ellenőrzéseket."
+          }
+        }
+      }
+    }
+  },
+  "SharioMarketing": {
+    "hero": {
+      "eyebrow": "Good spaces bring people together",
+      "title": "Your space.",
+      "highlight": "More possibilities.",
+      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
+      "cta": "Start free trial",
+      "secondary": "Explore Shario",
+      "note": "14-day trial · No credit card required",
+      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
+      "cardTitle": "A little less admin. A lot more connection.",
+      "cardText": "Make room for the people who make your space."
+    },
+    "features": {
+      "eyebrow": "One place for the everyday",
+      "title": "More time for your people.",
+      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "bookings": {
+        "title": "Bookings made simple",
+        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+      },
+      "memberships": {
+        "title": "Memberships that fit",
+        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+      },
+      "website": {
+        "title": "A website that’s yours",
+        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+      },
+      "payments": {
+        "title": "Payments in one place",
+        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+      },
+      "resources": {
+        "title": "Every space, organized",
+        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+      },
+      "communication": {
+        "title": "Keep everyone connected",
+        "description": "Send updates, booking reminders and useful automated messages to your community."
+      },
+      "team": {
+        "title": "A team in sync",
+        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+      },
+      "insights": {
+        "title": "A clearer view",
+        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+      }
+    },
+    "website": {
+      "eyebrow": "Your space. Your identity.",
+      "title": "Your community starts with a warm welcome.",
+      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
+      "one": "Choose your colors, fonts and page layout",
+      "two": "Connect your offers, calendar and customer account",
+      "three": "Use a custom domain on eligible plans",
+      "cta": "Explore your website tools",
+      "example": "Example space website",
+      "spaceName": "Common Ground",
+      "nav": "Our space   ·   Memberships",
+      "previewEyebrow": "A place to belong",
+      "previewTitle": "Good work. Great company.",
+      "previewCta": "Explore our space",
+      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+    },
+    "spaces": {
+      "eyebrow": "For spaces that bring us together",
+      "title": "Different spaces. Shared possibilities.",
+      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
+      "cta": "Make room for your community",
+      "coworking": {
+        "title": "Coworking spaces",
+        "description": "Desks, meeting rooms and memberships for flexible working days."
+      },
+      "creative": {
+        "title": "Creative studios",
+        "description": "Shared equipment, workshops and room for your next idea."
+      },
+      "rehearsal": {
+        "title": "Rehearsal spaces",
+        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+      },
+      "community": {
+        "title": "Community hubs",
+        "description": "Events, memberships and shared places for local connections."
+      },
+      "workshops": {
+        "title": "Workshops & classes",
+        "description": "Classes, instructors, ticketed events and returning participants."
+      }
+    },
+    "faq": {
+      "eyebrow": "A few good questions",
+      "title": "Let’s make it simple.",
+      "one": {
+        "question": "What can I manage with Shario?",
+        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+      },
+      "two": {
+        "question": "Can I use my own branding?",
+        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+      },
+      "three": {
+        "question": "Can my customers book and manage their memberships?",
+        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+      },
+      "four": {
+        "question": "How do I get started?",
+        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+      }
+    },
+    "closing": {
+      "title": "Make room for more.",
+      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
+      "secondary": "Explore plans"
+    },
+    "product": {
+      "eyebrow": "Meet your everyday toolkit",
+      "title": "Everything your space needs, working together.",
+      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
+      "panelEyebrow": "Your connected workspace",
+      "panelTitle": "One place to bring it all together",
+      "solutions": "Find your kind of space"
+    },
+    "access": {
+      "eyebrow": "More freedom for your members",
+      "title": "Let your space work around your people.",
+      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+    },
+    "ai": {
+      "eyebrow": "Meet Shario AI",
+      "title": "A helping hand for everyday work.",
+      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
+      "panelEyebrow": "Connected to your workspace",
+      "panelTitle": "Helpful context. Clear next steps.",
+      "context": {
+        "title": "Context that counts",
+        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+      },
+      "drafts": {
+        "title": "A useful first draft",
+        "description": "Prepare customer messages, website copy and ideas for your next event."
+      },
+      "control": {
+        "title": "You stay in control",
+        "heading": "Your assistant. Your decisions.",
+        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+      }
+    },
+    "footer": {
+      "tagline": "Make room for more.",
+      "product": "Product",
+      "overview": "Explore Shario",
+      "ai": "Shario AI",
+      "pricing": "Pricing",
+      "spaces": "For your space",
+      "company": "Get started",
+      "about": "How it works",
+      "login": "Log in",
+      "register": "Start free trial",
+      "copyright": "© {year} Shario. All rights reserved."
+    }
+  }
+}

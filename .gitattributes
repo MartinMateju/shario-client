@@ -1,0 +1,7 @@
+# Binary brand deliverables should not be treated as text diffs.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.woff2 binary
+*.ttf binary

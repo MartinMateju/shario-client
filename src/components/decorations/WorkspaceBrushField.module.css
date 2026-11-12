@@ -1,0 +1,40 @@
+.accent {
+  aspect-ratio: var(--workspace-brush-aspect-ratio);
+  display: none;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+@supports (
+  (-webkit-mask-image: url("/images/workspace/brush-arc-orbit.webp")) or
+    (mask-image: url("/images/workspace/brush-arc-orbit.webp"))
+) {
+  .accent {
+    display: block;
+  }
+
+  .layer {
+    background: linear-gradient(
+      120deg,
+      rgb(var(--workspace-brush-rgb) / 0.28) 0%,
+      rgb(var(--workspace-brush-rgb) / 0.96) 58%,
+      rgb(var(--workspace-brush-rgb) / 0.42) 100%
+    );
+    -webkit-mask-image: var(--workspace-brush-mask-image);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-image: var(--workspace-brush-mask-image);
+    mask-mode: alpha;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+  }
+}
+
+.flip {
+  transform: scaleX(-1);
+}
