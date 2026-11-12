@@ -42,7 +42,7 @@ describe("customer portal catalog fixture", () => {
       price: 500,
       currency: "CZK",
     });
-    expect(getProductName(products[0], "en")).toBe("Gift of clay");
+    expect(getProductName(products[0], "en")).toBe("Gift of creativity");
     expect(getProductName(products[0], "cs")).toBe("Tvoření jako dárek");
     expect(getProductDescription(products[0], "en")).toBe(
       "Studio credit for a creative visit.",
@@ -70,11 +70,11 @@ describe("customer portal catalog fixture", () => {
       );
       expect(bookable.map((product) => product.name.en)).toEqual([
         "Open Studio",
-        "Glazing Lab",
+        "Rehearsal Room",
       ]);
       expect(bookable.map((product) => product.name.cs)).toEqual([
         "Otevřený ateliér",
-        "Glazovací dílna",
+        "Zkušebna",
       ]);
       const otherLocation = locationId === BRNO ? PRAGUE : BRNO;
       expect(

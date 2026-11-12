@@ -78,60 +78,19 @@ describe("visual authentication fixtures", () => {
     );
   });
 
-  it.each(["PENDING", "RUNNING", "COOLING", "UNLOADED", "COMPLETED"])(
-    "serves the compact %s firing list used by the studio workspace",
-    (status) => {
-      const response = responseForRequest({
+  it.each([
+    "/firings",
+    "/firings/64d000000000000000000001",
+    "/kilns",
+    "/ai/firings/overview",
+    "/ai/firings/64d000000000000000000001/insight",
+  ])("does not serve the retired specialist endpoint %s", (pathname) => {
+    expect(
+      responseForRequest({
         method: "GET",
-        url: new URL(
-          `http://api.shario.localhost:4001/firings?status=${status}`,
-        ),
-      });
-
-      expect(response).toEqual(
-        expect.objectContaining({
-          firings: expect.any(Array),
-          summary: expect.objectContaining({ cooling: 0, unloaded: 0 }),
-        }),
-      );
-      for (const firing of response.firings) {
-        expect(firing.status).toBe(status);
-        expect(firing.manifestLoaded).toBe(false);
-        expect(firing).not.toHaveProperty("userItems");
-        if (status === "COMPLETED") {
-          expect(firing.unloadedAt).toBeTruthy();
-          expect(firing.readyAt).toBeTruthy();
-        }
-      }
-    },
-  );
-
-  it("loads matching firing manifests only from the detail endpoint", () => {
-    for (const status of ["PENDING", "RUNNING", "COMPLETED"]) {
-      const { firings } = responseForRequest({
-        method: "GET",
-        url: new URL(
-          `http://api.shario.localhost:4001/firings?status=${status}`,
-        ),
-      });
-      for (const firing of firings) {
-        const detail = responseForRequest({
-          method: "GET",
-          url: new URL(
-            `http://api.shario.localhost:4001/firings/${firing._id}`,
-          ),
-        });
-        expect(detail).toMatchObject({
-          _id: firing._id,
-          status,
-          manifestLoaded: true,
-        });
-        expect(detail.userItems).toHaveLength(firing.customerCount);
-        expect(
-          detail.userItems.reduce((count, item) => count + item.itemCount, 0),
-        ).toBe(firing.itemCount);
-      }
-    }
+        url: new URL(pathname, "http://api.shario.localhost:4311"),
+      }),
+    ).toBeNull();
   });
 
   it("keeps completed launch readiness healthy and live attention limited to its unverified sender", () => {
