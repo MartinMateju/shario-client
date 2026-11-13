@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
+
 import {
   Dialog,
   DialogBackdrop,
@@ -214,8 +216,9 @@ export const getCustomerPortalHelpTopics = ({
   locale,
   locationReference = "",
   tenant,
+  localizedCopy,
 } = {}) => {
-  const copy = getCustomerPortalHelpCopy(locale);
+  const copy = localizedCopy || getCustomerPortalHelpCopy(locale);
 
   return TOPIC_DEFINITIONS.filter(
     (definition) =>
@@ -342,11 +345,17 @@ export default function CustomerPortalHelpDrawer({
   const locale = useLocale();
   const currentTenant = useSelector(selectCurrentTenant);
   const tenant = useOptionalPublicTenant()?.tenant || currentTenant;
-  const copy = getCustomerPortalHelpCopy(locale);
+  const copy = useLegacyCopy("portalHelp");
   const [activeTopicId, setActiveTopicId] = useState(null);
   const topics = useMemo(
-    () => getCustomerPortalHelpTopics({ locale, locationReference, tenant }),
-    [locale, locationReference, tenant],
+    () =>
+      getCustomerPortalHelpTopics({
+        locale,
+        locationReference,
+        tenant,
+        localizedCopy: copy,
+      }),
+    [locale, locationReference, tenant, copy],
   );
 
   const closeDrawer = () => {

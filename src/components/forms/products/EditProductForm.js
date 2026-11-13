@@ -1,3 +1,4 @@
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { PRODUCT_TYPES, LABEL_COLORS } from "@/config/constants";
@@ -7,7 +8,7 @@ import {
   selectCurrentTenant,
   selectCurrentUser,
 } from "@/lib/features/auth/authSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import Loader from "../../loaders/Loader";
 import TextInput from "@/components/inputs/TextInput";
 import TextArea from "@/components/textareas/TextArea";
@@ -37,6 +38,8 @@ export default function EditProductForm({
   setShow,
   showConfirmModal,
 }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const [updateProduct, { isLoading, isSuccess }] = useUpdateProductMutation();
 
   const language = useSelector(selectCurrentLanguage);
@@ -106,7 +109,7 @@ export default function EditProductForm({
       <div className="bg-[#FCFBF9] px-4 py-4 sm:px-6">
         <div className="flex flex-col gap-2">
           <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--unnamed-color-b3a292)] font-medium">
-            Upravit produkt
+            {legacyText("EditProductForm_Edit_product_fbeab")}{" "}
           </p>
 
           <h3 className="text-lg font-medium text-black sm:text-xl">
@@ -114,7 +117,8 @@ export default function EditProductForm({
           </h3>
 
           <p className="break-all text-xs text-black/45">
-            ID produktu: {product._id || "—"}
+            {legacyText("EditProductForm_Product_ID_5d8ff")}{" "}
+            {product._id || "—"}
           </p>
         </div>
       </div>
@@ -132,7 +136,9 @@ export default function EditProductForm({
               callback={(e) => setName(e.target.value)}
               autoComplete="off"
               className="w-full"
-              placeholder="e.g. Introduction to photography"
+              placeholder={legacyText(
+                "EditProductForm_e_g_Introduction_to_photography_331c9",
+              )}
             />
           </div>
 
@@ -221,7 +227,7 @@ export default function EditProductForm({
               callback={(e) => setImageSrc(e.target.value)}
               autoComplete="off"
               className="w-full"
-              placeholder="e.g. URL source to Cloudinary"
+              placeholder={legacyText("EditProductForm_Image_URL_35c80")}
             />
           </div>
 
@@ -230,7 +236,9 @@ export default function EditProductForm({
               label={translation["DESCRIPTION"][language]}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Popis produktu (volitelné)"
+              placeholder={legacyText(
+                "EditProductForm_Product_description_optional_9111f",
+              )}
               className="w-full"
             />
           </div>

@@ -515,7 +515,7 @@ describe("full-page studio location editor", () => {
       }),
     );
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "The studio could not be updated.",
+      "We could not save this studio location.",
     );
     expect(replace).not.toHaveBeenCalled();
   });
@@ -543,7 +543,7 @@ describe("full-page studio location editor", () => {
       }),
     );
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Temporary save failure.",
+      "We could not save this studio location.",
     );
     expect(nameInput).toHaveValue("Updated studio name");
     expect(refreshAndContinue).not.toHaveBeenCalled();
@@ -701,7 +701,7 @@ describe("full-page studio location editor", () => {
       }),
     );
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "The location could not be activated.",
+      "We could not save this studio location.",
     );
     expect(refreshAndContinue).not.toHaveBeenCalled();
     expect(replace).not.toHaveBeenCalled();

@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { NATIVE_INVOICES_ENABLED } from "@/config/features";
 
 export const SETUP_STEP_ORDER = [
@@ -43,11 +45,7 @@ export const PRACTICE_ACTION_ORDER = [
 ].filter((action) => NATIVE_INVOICES_ENABLED || action !== "preview_invoice");
 
 export const getSetupErrorMessage = (error, fallback) =>
-  error?.data?.message ??
-  error?.data?.error?.message ??
-  error?.error ??
-  error?.message ??
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export const getStep = (setup, stepId) =>
   setup?.steps?.find((item) => item.id === stepId) ?? null;

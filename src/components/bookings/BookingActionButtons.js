@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import React, { Fragment, useMemo, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -18,7 +20,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { selectCurrentUser } from "@/lib/features/auth/authSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { formatMajorCurrencyAmount } from "@/utils/money";
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
 
@@ -48,9 +50,12 @@ export default function BookingActionButtons({
   onIncreaseParticipants,
   isLoading = false,
 }) {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const { id: userId } = useSelector(selectCurrentUser) || {};
   const language = useSelector(selectCurrentLanguage) || "CZ";
-  const locale = language === "CZ" ? "cs-CZ" : "en-GB";
+  const locale = activeLocale;
 
   const [showCancelConfirm, setShowCancelConfirm] = useState(false);
   const [showIncreaseForm, setShowIncreaseForm] = useState(false);
@@ -188,7 +193,7 @@ export default function BookingActionButtons({
             )}
           >
             <TrashIcon className="h-4 w-4" />
-            <span>{translation["CANCEL_BOOKING"]?.[language] || "Cancel"}</span>
+            <span>{translation["CANCEL_BOOKING"]?.[language]}</span>
           </button>
 
           <Transition show={showCancelConfirm} as={Fragment}>
@@ -235,14 +240,14 @@ export default function BookingActionButtons({
 
                           <div>
                             <DialogTitle className="text-base sm:text-lg font-medium">
-                              {translation["CONFIRM_CANCEL"]?.[language] ||
-                                "Confirm cancellation"}
+                              {translation["CONFIRM_CANCEL"]?.[language]}
                             </DialogTitle>
                             <p className="mt-1 text-sm text-gray-700 ">
-                              {translation["CANCEL_BOOKING_WARNING"]?.[
-                                language
-                              ] ||
-                                "Are you sure you want to cancel this booking? You will receive credits."}
+                              {
+                                translation["CANCEL_BOOKING_WARNING"]?.[
+                                  language
+                                ]
+                              }
                             </p>
                           </div>
                         </div>
@@ -252,7 +257,9 @@ export default function BookingActionButtons({
                           className="rounded-full p-2 text-[var(--unnamed-color-b3a292)] hover:bg-gray-100 hover:text-gray-900 disabled:opacity-40"
                           onClick={() => setShowCancelConfirm(false)}
                           disabled={isLoading}
-                          aria-label="Close"
+                          aria-label={legacyText(
+                            "BookingActionButtons_Close_bbfa7",
+                          )}
                         >
                           <XMarkIcon className="h-6 w-6" />
                         </button>
@@ -263,8 +270,7 @@ export default function BookingActionButtons({
                           <div className="flex items-center gap-2">
                             <CheckCircleIcon className="h-5 w-5 text-green-600" />
                             <p className="text-sm text-green-800">
-                              {translation["REFUND_INFO"]?.[language] ||
-                                "Refund will be issued as credits."}
+                              {translation["REFUND_INFO"]?.[language]}
                             </p>
                           </div>
                         </div>
@@ -279,8 +285,7 @@ export default function BookingActionButtons({
                             text-gray-900 border-2 border-[var(--unnamed-color-b3a292)] bg-wood-100 hover:bg-gray-50
                             disabled:opacity-40"
                         >
-                          {translation["KEEP_BOOKING"]?.[language] ||
-                            "Keep booking"}
+                          {translation["KEEP_BOOKING"]?.[language]}
                         </button>
 
                         <button
@@ -294,12 +299,10 @@ export default function BookingActionButtons({
                           {isLoading ? (
                             <span className="inline-flex items-center gap-2">
                               <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/50 border-t-white" />
-                              {translation["CANCELLING"]?.[language] ||
-                                "Cancelling..."}
+                              {translation["CANCELLING"]?.[language]}
                             </span>
                           ) : (
-                            translation["CANCEL_BOOKING"]?.[language] ||
-                            "Cancel booking"
+                            translation["CANCEL_BOOKING"]?.[language]
                           )}
                         </button>
                       </div>
@@ -329,10 +332,7 @@ export default function BookingActionButtons({
             )}
           >
             <UserPlusIcon className="h-4 w-4" />
-            <span>
-              {translation["ADD_PARTICIPANTS"]?.[language] ||
-                "Add participants"}
-            </span>
+            <span>{translation["ADD_PARTICIPANTS"]?.[language]}</span>
           </button>
 
           <Transition show={showIncreaseForm} as={Fragment}>
@@ -374,13 +374,10 @@ export default function BookingActionButtons({
                       <div className="flex items-start justify-between gap-4 px-4 sm:px-6 py-4 border-b border-gray-700">
                         <div>
                           <DialogTitle className="text-base sm:text-lg font-medium">
-                            {translation["ADD_PARTICIPANTS"]?.[language] ||
-                              "Add participants"}
+                            {translation["ADD_PARTICIPANTS"]?.[language]}
                           </DialogTitle>
                           <p className="mt-1 text-sm text-gray-700 ">
-                            {translation["CURRENT_PARTICIPANTS"]?.[language] ||
-                              "Current participants"}
-                            :{" "}
+                            {translation["CURRENT_PARTICIPANTS"]?.[language]}:{" "}
                             <span className="font-medium">
                               {currentTotalPeople}
                             </span>{" "}
@@ -396,7 +393,9 @@ export default function BookingActionButtons({
                           className="rounded-full p-2 text-[var(--unnamed-color-b3a292)] hover:bg-gray-100 hover:text-gray-900 disabled:opacity-40"
                           onClick={() => setShowIncreaseForm(false)}
                           disabled={isLoading}
-                          aria-label="Close"
+                          aria-label={legacyText(
+                            "BookingActionButtons_Close_bbfa7",
+                          )}
                         >
                           <XMarkIcon className="h-6 w-6" />
                         </button>
@@ -405,17 +404,21 @@ export default function BookingActionButtons({
                       <div className="px-4 sm:px-6 py-5 space-y-4">
                         {remainingCapacity <= 0 ? (
                           <p className="text-sm text-gray-700">
-                            {translation["CHANGE_PARTICIPANTS_INFO_LIMIT"]?.[
-                              language
-                            ] || "Capacity is full for this booking."}
+                            {
+                              translation["CHANGE_PARTICIPANTS_INFO_LIMIT"]?.[
+                                language
+                              ]
+                            }
                           </p>
                         ) : (
                           <>
                             <div>
                               <label className="block text-sm font-medium text-gray-900">
-                                {translation["ADDITIONAL_PARTICIPANTS"]?.[
-                                  language
-                                ] || "Additional participants"}
+                                {
+                                  translation["ADDITIONAL_PARTICIPANTS"]?.[
+                                    language
+                                  ]
+                                }
                               </label>
 
                               <select
@@ -438,17 +441,16 @@ export default function BookingActionButtons({
 
                               {!guestIncreaseProduct && (
                                 <p className="mt-2 text-xs text-red-600">
-                                  guest-increase product not found (products
-                                  payload).
+                                  {legacyText(
+                                    "BookingActionButtons_Additional_guests_are_unavailable_for_this_booking_c294b",
+                                  )}{" "}
                                 </p>
                               )}
                             </div>
 
                             <div className="rounded-xl border border-gray-300 bg-white p-3">
                               <p className="text-sm text-gray-700">
-                                {translation["ADDITIONAL_COST"]?.[language] ||
-                                  "Additional cost"}
-                                :{" "}
+                                {translation["ADDITIONAL_COST"]?.[language]}:{" "}
                                 <span className="font-medium text-gray-900">
                                   {formatMajorCurrencyAmount(
                                     additionalCost,
@@ -461,8 +463,7 @@ export default function BookingActionButtons({
                                 </span>
                               </p>
                               <p className="mt-1 text-xs text-gray-500">
-                                {translation["PRICE_NOTE_30MIN"]?.[language] ||
-                                  "Calculated from booking duration (30-minute blocks)."}
+                                {translation["PRICE_NOTE_30MIN"]?.[language]}
                               </p>
                             </div>
                           </>
@@ -480,7 +481,7 @@ export default function BookingActionButtons({
                           className="w-full sm:w-auto h-[37px] rounded-full px-4 text-xs font-medium uppercase tracking-wide
                             text-gray-900 border-2 border-[var(--unnamed-color-b3a292)] bg-wood-100 hover:bg-gray-50 disabled:opacity-40"
                         >
-                          {translation["CANCEL"]?.[language] || "Cancel"}
+                          {translation["CANCEL"]?.[language]}
                         </button>
 
                         <button
@@ -498,12 +499,10 @@ export default function BookingActionButtons({
                           {isLoading ? (
                             <span className="inline-flex items-center gap-2">
                               <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/50 border-t-white" />
-                              {translation["UPDATING"]?.[language] ||
-                                "Updating..."}
+                              {translation["UPDATING"]?.[language]}
                             </span>
                           ) : (
-                            translation["ADD_PARTICIPANTS"]?.[language] ||
-                            "Add participants"
+                            translation["ADD_PARTICIPANTS"]?.[language]
                           )}
                         </button>
                       </div>

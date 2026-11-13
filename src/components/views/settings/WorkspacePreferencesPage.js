@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useMemo, useState } from "react";
 import {
   ArrowPathIcon,
@@ -63,7 +65,7 @@ const controlClass =
   "h-12 w-full min-w-0 rounded-[13px] border border-line bg-white px-4 text-[12px] text-[#292925] outline-none transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10";
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.data?.error || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 function PreferenceForm({ preferences, locations }) {
   const t = useTranslations("WorkspacePreferences");

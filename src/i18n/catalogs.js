@@ -24,58 +24,23 @@ const MESSAGE_CATALOG_LOADERS = Object.freeze({
 export const CATALOG_LOCALE_CODES = Object.freeze(
   Object.keys(MESSAGE_CATALOG_LOADERS),
 );
-const mergedCatalogPromises = new Map();
+const catalogPromises = new Map();
 
-const isPlainObject = (value) =>
-  value !== null &&
-  typeof value === "object" &&
-  !Array.isArray(value) &&
-  Object.getPrototypeOf(value) === Object.prototype;
-
-/**
- * Recursively overlays a partial locale catalog on the complete English
- * catalog without mutating either input. Missing nested values remain English.
- */
-export function deepMergeMessages(fallbackMessages, localizedMessages) {
-  if (!isPlainObject(fallbackMessages) || !isPlainObject(localizedMessages)) {
-    return localizedMessages === undefined
-      ? fallbackMessages
-      : localizedMessages;
-  }
-
-  const mergedMessages = { ...fallbackMessages };
-
-  for (const [key, localizedValue] of Object.entries(localizedMessages)) {
-    mergedMessages[key] = deepMergeMessages(
-      fallbackMessages[key],
-      localizedValue,
-    );
-  }
-
-  return mergedMessages;
-}
-
+// Each supported locale owns its entire catalog. Missing translations must be
+// caught by i18n:check, never silently replaced with English at runtime.
 export function loadMessages(value) {
   const locale = normalizeLocaleCode(value) || DEFAULT_LOCALE;
   const catalogLocale = MESSAGE_CATALOG_LOADERS[locale]
     ? locale
     : DEFAULT_LOCALE;
 
-  if (mergedCatalogPromises.has(catalogLocale)) {
-    return mergedCatalogPromises.get(catalogLocale);
+  if (catalogPromises.has(catalogLocale)) {
+    return catalogPromises.get(catalogLocale);
   }
 
-  const messagesPromise = (async () => {
-    const fallbackMessages = await MESSAGE_CATALOG_LOADERS[DEFAULT_LOCALE]();
+  const messagesPromise = MESSAGE_CATALOG_LOADERS[catalogLocale]();
 
-    if (catalogLocale === DEFAULT_LOCALE) return fallbackMessages;
-
-    const localizedMessages = await MESSAGE_CATALOG_LOADERS[catalogLocale]();
-
-    return deepMergeMessages(fallbackMessages, localizedMessages);
-  })();
-
-  mergedCatalogPromises.set(catalogLocale, messagesPromise);
+  catalogPromises.set(catalogLocale, messagesPromise);
 
   return messagesPromise;
 }

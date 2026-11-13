@@ -477,8 +477,9 @@ export function resolveTimeZone(value) {
 }
 
 /**
- * The remaining Redux/i18next-era surface only has CZ and EN catalogs. Czech
- * stays Czech; every other recognized locale safely uses legacy English.
+ * Compatibility enum for historical Redux/API fields. Visible legacy screens
+ * read the active locale through useLegacyTranslation; this enum must never
+ * select the display language of a product screen.
  */
 export function getLegacyLanguageForLocale(value) {
   return normalizeLocaleCode(value) === "cs" ? "CZ" : "EN";

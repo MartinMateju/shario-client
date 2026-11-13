@@ -29,10 +29,25 @@ const mocks = vi.hoisted(() => ({
   persistedStyle: "classic-editorial-v1",
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => (key) => key,
-}));
+vi.mock("next-intl", async (importOriginal) => {
+  const { createTranslator } = await importOriginal();
+  const messages = (await import("@/messages/en.json")).default;
+  const editorT = createTranslator({
+    locale: "en",
+    messages,
+    namespace: "PublicSiteEditor",
+  });
+  return {
+    useLocale: () => "en",
+    useMessages: () => messages,
+    useTranslations: (namespace) => (key, values) =>
+      namespace === "PublicSiteEditor" && key.startsWith("builderActions.")
+        ? editorT(key, values)
+        : namespace?.startsWith("Legacy.")
+          ? createTranslator({ locale: "en", messages, namespace })(key, values)
+          : key,
+  };
+});
 
 vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),

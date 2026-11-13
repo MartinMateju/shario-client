@@ -68,9 +68,14 @@ vi.mock("@headlessui/react", () => ({
 vi.mock("next/image", () => ({
   default: () => <span data-testid="mock-image" />,
 }));
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+    }))(...args),
+  );
+});
 vi.mock("@/i18n/navigation", () => ({
   useRouter: () => ({
     replace: mocks.replace,
@@ -102,13 +107,17 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
 vi.mock("@/components/customer-shell/CustomerPortalLocationProvider", () => ({
   useOptionalCustomerPortalLocation: () => null,
 }));
-vi.mock("@/components/public-tenant/publicTenant.config", () => ({
-  getPublicTenantTheme: () => ({
-    style: {
-      "--tenant-accent": "#2748D8",
-    },
+vi.mock(
+  "@/components/public-tenant/publicTenant.config",
+  async (importOriginal) => ({
+    ...(await importOriginal()),
+    getPublicTenantTheme: () => ({
+      style: {
+        "--tenant-accent": "#2748D8",
+      },
+    }),
   }),
-}));
+);
 vi.mock("@/lib/features/language/languageSlice", () => ({
   selectCurrentLanguage: () => "EN",
 }));

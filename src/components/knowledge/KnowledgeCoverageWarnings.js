@@ -11,6 +11,17 @@ import { useLocale, useTranslations } from "next-intl";
 import { useGetAiKnowledgeCoverageQuery } from "@/lib/features/ai/aiApiSlice";
 import { mapKnowledgeCoverageCategory } from "@/lib/features/ai/aiApi.utils";
 
+const KNOWLEDGE_COVERAGE_QUESTION_IDS = Object.freeze({
+  booking_price: true,
+  booking_cancellation: true,
+  booking_reschedule: true,
+  studio_inclusions: true,
+  studio_arrival: true,
+  course_preparation: true,
+  membership_usage: true,
+  accessibility: true,
+});
+
 const formatCheckedAt = (value, locale) => {
   if (!value) return "";
   const date = new Date(value);
@@ -179,7 +190,9 @@ export default function KnowledgeCoverageWarnings({
                   </span>
                 </div>
                 <p className="mt-2 text-xs font-medium leading-5 text-ink">
-                  {warning.question}
+                  {t(
+                    `management.coverage.questions.${Object.hasOwn(KNOWLEDGE_COVERAGE_QUESTION_IDS, warning.id) ? warning.id : "unknown"}`,
+                  )}
                 </p>
               </li>
             );

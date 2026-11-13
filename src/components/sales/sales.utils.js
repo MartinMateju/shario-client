@@ -1,3 +1,7 @@
+import { getLocalizedPublicTenantText } from "@/components/public-tenant/publicTenant.config";
+
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import { formatMajorCurrencyAmount } from "@/utils/money";
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
 
@@ -97,16 +101,7 @@ export const getCartItems = (order) =>
 
 export const getProductName = (item, locale = "en") => {
   const product = item?.product || item;
-  const name = product?.name;
-
-  if (!name) return "—";
-
-  if (typeof name === "object") {
-    const localeKey = locale === "cs" ? "CZ" : "EN";
-    return name[localeKey] || name.CZ || name.EN || "—";
-  }
-
-  return String(name);
+  return getLocalizedPublicTenantText(product?.name, locale, "—");
 };
 
 export const getOrderTotal = (order) => {
@@ -148,7 +143,7 @@ export const formatOrderTimestamp = (value, locale = "en", t) => {
   const yesterday = new Date(now);
   yesterday.setDate(now.getDate() - 1);
 
-  const time = new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  const time = new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     hour: "2-digit",
     minute: "2-digit",
   }).format(date);
@@ -158,7 +153,7 @@ export const formatOrderTimestamp = (value, locale = "en", t) => {
     return `${t("dates.yesterday")}, ${time}`;
   }
 
-  const day = new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  const day = new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     day: "numeric",
     month: "short",
   }).format(date);
@@ -171,7 +166,7 @@ export const formatFullDate = (value, locale = "en") => {
 
   if (Number.isNaN(date.getTime())) return "—";
 
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);

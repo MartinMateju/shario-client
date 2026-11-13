@@ -13,7 +13,7 @@ import {
 } from "@/components/dashboard/WorkspaceDialogSurface";
 import { workspaceSecondaryButtonClass } from "@/components/dashboard/WorkspaceFormSurface";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 
 export default function AlertModal({
   open,
@@ -23,9 +23,10 @@ export default function AlertModal({
   text,
   buttonText = "",
 }) {
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   const cancelButtonRef = useRef(null);
-  const closeLabel = translation["CLOSE"]?.[language] || "Close";
+  const closeLabel = translation["CLOSE"]?.[language];
 
   return (
     <Dialog
@@ -60,14 +61,14 @@ export default function AlertModal({
               onClick={() => setOpen(false)}
               ref={cancelButtonRef}
             >
-              {translation["CANCEL"]?.[language] || "Cancel"}
+              {translation["CANCEL"]?.[language]}
             </button>
             <button
               type="button"
               className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-danger px-6 text-[13px] font-semibold text-white transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/30 focus-visible:ring-offset-2 sm:min-h-11 sm:w-auto sm:text-[12px]"
               onClick={onSubmitClicked}
             >
-              {buttonText || translation["REMOVE"]?.[language] || "Remove"}
+              {buttonText || translation["REMOVE"]?.[language]}
             </button>
           </WorkspaceDialogFooter>
         </WorkspaceDialogPanel>

@@ -1,3 +1,8 @@
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs();
+});
+
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -53,7 +58,7 @@ describe("compact customer cart credit balance", () => {
     );
 
     expect(document.querySelector("[data-cart-credit-compact]")).toBeVisible();
-    expect(screen.getByText("Credit balance")).toBeVisible();
+    expect(screen.getByText("Credit Balance")).toBeVisible();
     expect(screen.getByText(/^CZK\s400$/)).toBeVisible();
     expect(document.body).not.toHaveTextContent("400.00");
   });

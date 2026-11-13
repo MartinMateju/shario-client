@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
   BanknotesIcon,
   CheckIcon,
@@ -26,35 +28,6 @@ import {
   toNonNegativeMajorCurrencyAmount,
 } from "@/utils/money";
 
-const copy = {
-  EN: {
-    label: "Payment method",
-    checking: "Checking credits…",
-    card: "Payment card",
-    cardDescription: "Secure online payment",
-    credits: "Studio credits",
-    creditsDescription: "Use your available balance",
-    covered: "Your credits cover this order.",
-    insufficient: "More credits needed",
-    shortfall: "Credit shortfall",
-    short: "short",
-    addCredits: "Add credits",
-  },
-  CZ: {
-    label: "Způsob platby",
-    checking: "Ověřujeme kredity…",
-    card: "Platební karta",
-    cardDescription: "Bezpečná online platba",
-    credits: "Kredity studia",
-    creditsDescription: "Použít dostupný zůstatek",
-    covered: "Kredity pokryjí celou objednávku.",
-    insufficient: "Je potřeba více kreditů",
-    shortfall: "Chybějící kredity",
-    short: "chybí",
-    addCredits: "Přidat kredity",
-  },
-};
-
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 const formatPaymentAmount = (amount, currency, locale) =>
@@ -72,16 +45,17 @@ export default function PaymentMethodSelector({
   currency: currencyProp,
   onMethodChange,
 }) {
+  const activeLocale = useLegacyLocale();
   const dispatch = useDispatch();
   const { id: userId } = useSelector(selectCurrentUser) || {};
   const tenant = useSelector(selectCurrentTenant);
   const language = useSelector(selectCurrentLanguage) === "EN" ? "EN" : "CZ";
-  const text = copy[language];
+  const text = useLegacyCopy("paymentMethods");
   const currency =
     currencyProp ||
     tenant?.settings?.currency ||
     DEFAULT_STUDIO_COMMERCE_CURRENCY;
-  const locale = language === "CZ" ? "cs-CZ" : "en-GB";
+  const locale = activeLocale;
   const paymentMethod = useSelector(selectPaymentMethod) || "card";
   const [checkCredits, { data: creditCheckData, isLoading }] =
     useCheckCreditsForCartMutation();

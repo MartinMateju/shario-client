@@ -1,7 +1,9 @@
-export default function Loader({
-  label = "Preparing your studio",
-  fullscreen = true,
-}) {
+"use client";
+
+import { useTranslations } from "next-intl";
+
+export default function Loader({ label, fullscreen = true }) {
+  const t = useTranslations("Common");
   return (
     <div
       className={[
@@ -10,13 +12,13 @@ export default function Loader({
       ].join(" ")}
       role="status"
       aria-live="polite"
-      aria-label="Loading"
+      aria-label={t("loading")}
     >
       <div className="relative flex flex-col items-center">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/45 blur-3xl" />
 
         <p className="relative mb-7 text-[10px] font-semibold uppercase tracking-[0.34em] text-accent-text">
-          {label}
+          {label || t("preparingSpace")}
         </p>
 
         <div className="relative flex items-center gap-2.5" aria-hidden="true">
@@ -25,7 +27,7 @@ export default function Loader({
           <span className="loader-dot animation-delay-300" />
         </div>
 
-        <span className="sr-only">Loading</span>
+        <span className="sr-only">{t("loading")}</span>
       </div>
 
       <style jsx>{`

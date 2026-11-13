@@ -1,3 +1,5 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import { ACTIVITY_TONES } from "./booking-table.constants";
 import { formatMajorCurrencyAmount } from "@/utils/money";
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
@@ -184,21 +186,18 @@ export const formatBookingDateTime = (booking, locale, t) => {
   } else if (isSameCalendarDay(start, tomorrow)) {
     dateLabel = t("dates.tomorrow");
   } else {
-    dateLabel = new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+    dateLabel = new Intl.DateTimeFormat(resolveIntlLocale(locale), {
       weekday: "short",
       day: "numeric",
       month: "short",
     }).format(start);
   }
 
-  const timeFormatter = new Intl.DateTimeFormat(
-    locale === "cs" ? "cs-CZ" : "en-GB",
-    {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    },
-  );
+  const timeFormatter = new Intl.DateTimeFormat(resolveIntlLocale(locale), {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 
   const startTime = timeFormatter.format(start);
   const endTime = Number.isNaN(end.getTime()) ? "" : timeFormatter.format(end);

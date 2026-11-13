@@ -123,6 +123,7 @@ const labels = {
   "report.description": "Valid rows were processed.",
   "report.failedTitle": "The import needs attention",
   "report.failedDescription": "Review the error.",
+  "errors.execute": "The import could not be completed.",
   "report.file": "Source file",
   "report.completedAt": "Completed",
   "report.strategy": "Duplicate strategy",
@@ -239,6 +240,34 @@ describe("CustomerImportWizard", () => {
     mocks.invalidateTags.mockClear();
   });
 
+  it("uses localized failure copy instead of the API diagnostic in a failed report", async () => {
+    render(
+      <CustomerImportWizard
+        initialSession={{
+          id: "failed-import-1",
+          status: "failed",
+          originalFileName: "customers.csv",
+          lastError: {
+            code: "IMPORT_EXECUTION_FAILED",
+            message: "Internal English database failure",
+          },
+        }}
+      />,
+    );
+
+    expect(
+      await screen.findByRole("heading", {
+        name: "The import needs attention",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("The import could not be completed."),
+    ).toBeVisible();
+    expect(
+      screen.queryByText("Internal English database failure"),
+    ).not.toBeInTheDocument();
+  });
+
   it("downloads the customer template without putting a Blob in RTK Query", async () => {
     const user = userEvent.setup();
     const csv = "Full Name,Email\r\nAda Lovelace,ada@example.com\r\n";
@@ -301,7 +330,7 @@ describe("CustomerImportWizard", () => {
     );
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Template unavailable",
+      "errors.template",
     );
     expect(createObjectURL).not.toHaveBeenCalled();
     expect(anchorClick).not.toHaveBeenCalled();

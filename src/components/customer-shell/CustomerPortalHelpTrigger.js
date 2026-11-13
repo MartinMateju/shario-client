@@ -1,7 +1,7 @@
 "use client";
 
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-import { useLocale } from "next-intl";
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 
 /*
  * The header renders this button on every portal page, while the help drawer
@@ -18,9 +18,7 @@ export function CustomerPortalHelpTrigger({
   expanded = false,
   onOpen,
 }) {
-  const locale = useLocale();
-  const label =
-    CUSTOMER_PORTAL_HELP_TRIGGER_LABELS[locale === "cs" ? "cs" : "en"];
+  const label = useLegacyCopy("portalHelp").trigger;
 
   return (
     <button

@@ -18,10 +18,15 @@ const mocks = vi.hoisted(() => ({
 vi.mock("next/navigation", () => ({
   useSearchParams: () => mocks.searchParams,
 }));
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => (key) => key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+      useTranslations: () => (key) => key,
+    }))(...args),
+  );
+});
 vi.mock("react-redux", () => ({
   useDispatch: () => mocks.dispatch,
   useSelector: (selector) => selector({}),

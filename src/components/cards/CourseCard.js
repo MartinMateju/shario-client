@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { useCallback, useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useSelector } from "react-redux";
@@ -53,6 +55,8 @@ export default function CourseCard({
   translation = {},
   locationReference = "",
 }) {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
   const publicTenant = usePublicTenant();
   const currentTenant = useSelector(selectCurrentTenant);
   const customerAuthenticated = useSelector(selectIsCustomerAuthenticated);
@@ -94,8 +98,12 @@ export default function CourseCard({
       return courseName.replace(/^["']|["']$/g, "").trim();
     }
 
-    return getLocalizedValue(course?.courseDetailTitle, language, "Kurz");
-  }, [course, language]);
+    return getLocalizedValue(
+      course?.courseDetailTitle,
+      language,
+      legacyText("courseFallback"),
+    );
+  }, [course?.courseDetailTitle, course?.name, language, legacyText]);
 
   const description = useMemo(() => {
     const value = course?.description?.[language];
@@ -118,27 +126,27 @@ export default function CourseCard({
 
   const capacityLabel = safeText(
     translation?.COURSE_CAPACITY?.[language],
-    language === "CZ" ? "Kapacita" : "Capacity",
+    legacyText("CourseCard_Capacity_45bd9"),
   );
 
   const lengthLabel = safeText(
     translation?.COURSE_LENGTH?.[language],
-    language === "CZ" ? "Délka" : "Length",
+    legacyText("CourseCard_Length_3bade"),
   );
 
   const priceLabel = safeText(
     translation?.PRICE_PER_PERSON?.[language],
-    language === "CZ" ? "Cena za osobu" : "Price per person",
+    legacyText("CourseCard_Price_per_person_59050"),
   );
 
   const bookLabel = safeText(
     translation?.BOOK_COURSE_BUTTON?.[language],
-    language === "CZ" ? "Rezervovat kurz" : "Book course",
+    legacyText("CourseCard_Book_course_e7003"),
   );
 
   const voucherLabel = safeText(
     translation?.COUPON_BUTTON?.[language],
-    language === "CZ" ? "Dárkový poukaz" : "Gift voucher",
+    legacyText("CourseCard_Gift_voucher_aa850"),
   );
 
   const formattedPrice = useMemo(() => {
@@ -151,9 +159,9 @@ export default function CourseCard({
     return formatMajorCurrencyAmount(
       price,
       course?.currency || DEFAULT_STUDIO_COMMERCE_CURRENCY,
-      language === "CZ" ? "cs-CZ" : "en-GB",
+      activeLocale,
     );
-  }, [course?.currency, course?.price, language]);
+  }, [activeLocale, course?.currency, course?.price]);
 
   const imageFirst = courseIdx % 2 === 0;
 
@@ -225,11 +233,7 @@ export default function CourseCard({
                   →
                 </span>
 
-                <span>
-                  {language === "CZ"
-                    ? "Podrobnosti o kurzu"
-                    : "Course description"}
-                </span>
+                <span>{legacyText("CourseCard_Course_description_17fff")}</span>
               </button>
             </div>
           )}
@@ -242,7 +246,8 @@ export default function CourseCard({
                 {capacityLabel}
               </dt>
               <dd className="mt-1 font-medium text-sm text-[#483827]">
-                Max. {getLocalizedValue(course?.capacity, language, "—")}
+                {legacyText("CourseCard_Maximum_a8df2")}{" "}
+                {getLocalizedValue(course?.capacity, language, "—")}
               </dd>
             </div>
 

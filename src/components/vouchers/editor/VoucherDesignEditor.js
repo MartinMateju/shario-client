@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useEffect, useId, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
@@ -37,7 +38,7 @@ import useVoucherDesignPreview from "./useVoucherDesignPreview";
 import VoucherEditorConfirmation from "./VoucherEditorConfirmation";
 
 const errorMessage = (error, fallback) =>
-  error?.data?.message || error?.message || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 function AssetField({
   purpose,

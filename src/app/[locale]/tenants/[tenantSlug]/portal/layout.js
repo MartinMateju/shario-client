@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import TenantSurfaceBoundary from "@/components/auth/TenantSurfaceBoundary";
 import CustomerStudioConcierge from "@/components/ai/CustomerStudioConcierge";
 import CustomerTenantShell from "@/components/customer-shell/CustomerTenantShell";
@@ -18,12 +19,14 @@ export const metadata = {
 };
 export default async function CustomerPortalLayout({ children, params }) {
   const { locale, tenantSlug } = await params;
+  const t = await getTranslations({ locale, namespace: "Legacy.copy" });
   const result = await getPublicTenantConfig(tenantSlug);
   const degraded = result.notFound || result.unavailable;
   const tenant = degraded
     ? createCustomerShellTenantFallback({
         tenantSlug,
         locale,
+        studioName: t("yourStudio"),
       })
     : result.tenant;
   if (!degraded) {

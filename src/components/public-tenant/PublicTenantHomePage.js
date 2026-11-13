@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -18,6 +19,7 @@ import {
 import { usePublicTenant } from "./PublicTenantProvider";
 
 export default function PublicTenantHomePage({ previewData }) {
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const locale = useLocale();
   const t = useTranslations("PublicTenant");
   const customerSurfaceReady = useIsCustomerSurfaceReady();
@@ -47,6 +49,7 @@ export default function PublicTenantHomePage({ previewData }) {
     textForeground,
   );
   const customizationDefaults = getPublicWebsitePageCustomizationDefaults({
+    localizedDefaults: customerDefaults,
     page: "home",
     locale,
     studio: branding.displayName,

@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { formatMinorCurrencyAmount } from "@/utils/money";
 
 export const REPORT_TABS = Object.freeze([
@@ -278,12 +280,7 @@ export const getOperationSections = (operations = {}) =>
   ].filter(([, section]) => section && typeof section === "object");
 
 export const getReportErrorMessage = (error, fallback) =>
-  (typeof error?.data === "string" ? error.data : null) ||
-  error?.data?.message ||
-  error?.data?.error ||
-  error?.error ||
-  error?.message ||
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export const downloadCsvFile = ({
   csv,

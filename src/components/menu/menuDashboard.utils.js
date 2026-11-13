@@ -1,3 +1,4 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
 import { getCustomerBookings } from "@/lib/features/bookings/customerBookingPagination";
 import { isCustomerBookingNextVisit } from "@/lib/features/bookings/customerBookingState";
 import { formatGreetingName } from "@/lib/features/dashboard/dashboardGreeting";
@@ -217,7 +218,7 @@ export const formatUpcomingBooking = ({
   if (!booking) return null;
 
   const localeKey = getLocaleKey(locale);
-  const localeTag = localeKey === "cs" ? "cs-CZ" : "en-GB";
+  const localeTag = resolveIntlLocale(locale);
   const productId = getProductId(booking);
   const embeddedProduct =
     booking?.product ?? booking?.bookingProduct ?? booking?.productSnapshot;

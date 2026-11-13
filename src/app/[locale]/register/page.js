@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   ArrowLongRightIcon,
   CheckIcon,
@@ -155,7 +156,9 @@ export default function PlatformRegisterPage() {
         }),
       );
     } catch (requestError) {
-      setErrorMessage(requestError?.data?.message || t("errors.createFailed"));
+      setErrorMessage(
+        getLocalizedApiErrorMessage(requestError, t("errors.createFailed")),
+      );
       focusError();
     }
   };

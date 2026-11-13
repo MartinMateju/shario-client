@@ -64,8 +64,13 @@ export default function WorkspaceNotificationItem({
   );
   const severity = String(notification?.severity || "info").toLowerCase();
   const CategoryIcon = CATEGORY_ICONS[category] ?? BellAlertIcon;
-  const title = getNotificationTitle(notification, locale, t("item.untitled"));
-  const message = getNotificationMessage(notification, locale);
+  const title = getNotificationTitle(
+    notification,
+    locale,
+    t("item.untitled"),
+    t,
+  );
+  const message = getNotificationMessage(notification, locale, "", t);
   const href = getNotificationActionHref(notification);
   const locationName =
     notification?.location?.name ?? notification?.locationName ?? "";

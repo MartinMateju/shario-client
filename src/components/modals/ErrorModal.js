@@ -13,12 +13,13 @@ import {
 } from "@/components/dashboard/WorkspaceDialogSurface";
 import { workspaceSecondaryButtonClass } from "@/components/dashboard/WorkspaceFormSurface";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 
 export default function ErrorModal({ open, setOpen, title, text, error }) {
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   const closeButtonRef = useRef(null);
-  const closeLabel = translation["CLOSE"]?.[language] || "Close";
+  const closeLabel = translation["CLOSE"]?.[language];
 
   return (
     <Dialog

@@ -1,3 +1,5 @@
+import { getLocalizedPublicTenantText } from "@/components/public-tenant/publicTenant.config";
+
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
 import {
   PRODUCT_CATEGORY_KEYS,
@@ -44,30 +46,11 @@ export const getProductId = (product) =>
   String(product?.id || product?._id || "").trim();
 
 export const getProductName = (product, locale = "en") => {
-  if (!product?.name) return "—";
-
-  if (typeof product.name === "object") {
-    const key = locale === "cs" ? "CZ" : "EN";
-    return product.name[key] || product.name.CZ || product.name.EN || "—";
-  }
-
-  return String(product.name);
+  return getLocalizedPublicTenantText(product?.name, locale, "—");
 };
 
 export const getProductDescription = (product, locale = "en") => {
-  if (!product?.description) return "";
-
-  if (typeof product.description === "object") {
-    const key = locale === "cs" ? "CZ" : "EN";
-    return (
-      product.description[key] ||
-      product.description.CZ ||
-      product.description.EN ||
-      ""
-    );
-  }
-
-  return String(product.description);
+  return getLocalizedPublicTenantText(product?.description, locale);
 };
 
 export const getProductKind = (product) => normalizeProductKind(product);

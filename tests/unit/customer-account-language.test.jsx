@@ -267,7 +267,7 @@ describe("customer account language preferences", () => {
 
     await waitFor(() =>
       expect(screen.getByRole("alert")).toHaveTextContent(
-        "Please sign in again.",
+        "Your default language could not be saved. Please try again.",
       ),
     );
     expect(defaultSelect()).toHaveValue("en");

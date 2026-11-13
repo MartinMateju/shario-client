@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useSelector } from "react-redux";
@@ -203,7 +205,7 @@ function VoucherCodes({ productId = "", productName = "" }) {
       setFilters(INITIAL_FILTERS);
       fetchCodes(1, INITIAL_FILTERS);
     } catch (error) {
-      setCreateError(error?.data?.message || t("manual.error"));
+      setCreateError(getLocalizedApiErrorMessage(error, t("manual.error")));
     } finally {
       createInFlight.current = false;
     }

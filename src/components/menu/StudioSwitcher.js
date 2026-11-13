@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { Fragment, useMemo, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
@@ -30,21 +31,6 @@ const compactHeaderStyle = {
 const calendarControlStyle = {
   ...panelStyle,
   borderColor: "var(--tenant-border)",
-};
-
-const SWITCHER_COPY = {
-  en: {
-    change: "Change studio",
-    changed: (name) => `Studio changed to ${name}.`,
-    current: "Current studio",
-    empty: "No studio is currently available.",
-  },
-  cs: {
-    change: "Změnit studio",
-    changed: (name) => `Studio bylo změněno na ${name}.`,
-    current: "Aktuální studio",
-    empty: "Momentálně není dostupné žádné studio.",
-  },
 };
 
 function LocationIdentity({
@@ -184,7 +170,7 @@ export default function StudioSwitcher({
   brandDisplayName = "",
 }) {
   const isCzech = locale ? locale === "cs" : language === "CZ";
-  const copy = SWITCHER_COPY[isCzech ? "cs" : "en"];
+  const copy = useLegacyCopy("studioSwitcher");
   const [announcement, setAnnouncement] = useState("");
   const compact = variant === "header";
   const calendar = variant === "calendar";

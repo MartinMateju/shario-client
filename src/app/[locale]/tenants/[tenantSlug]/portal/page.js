@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useEffect, useMemo } from "react";
 import { useLocale } from "next-intl";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,21 +33,6 @@ import {
   isServiceCatalogEnabled,
 } from "@/utils/studioFlow";
 
-const errorCopy = {
-  en: {
-    title: "Studio information could not be loaded",
-    description: "Check your connection and try again.",
-    retry: "Try again",
-    loading: "Loading studio information",
-  },
-  cs: {
-    title: "Informace o studiu se nepodařilo načíst",
-    description: "Zkontrolujte připojení a zkuste to znovu.",
-    retry: "Zkusit znovu",
-    loading: "Načítání informací o studiu",
-  },
-};
-
 function BookingDashboard() {
   const dispatch = useDispatch();
   const locale = useLocale();
@@ -65,7 +51,7 @@ function BookingDashboard() {
   const bookingCommerceEnabled =
     isCustomerBookingCommerceEnabled(modules) && calendarEnabled;
   const serviceCatalogEnabled = isServiceCatalogEnabled(modules);
-  const copy = errorCopy[locale === "cs" ? "cs" : "en"];
+  const copy = useLegacyCopy("portalError");
   const activeBookingLocationId =
     bookingFlowEnabled && activeLocation?.booking?.enabled !== false
       ? activeLocationId

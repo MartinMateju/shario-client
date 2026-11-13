@@ -202,7 +202,7 @@ describe("customer booking cancellation", () => {
     );
 
     expect(await within(dialog).findByRole("alert")).toHaveTextContent(
-      "Please try again later.",
+      "Could not cancel this booking. Please try again.",
     );
     expect(mocks.cancelBooking).toHaveBeenCalledExactlyOnceWith({
       id: "booking-1",

@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useMemo, useState } from "react";
 import {
   ArrowPathIcon,
@@ -42,11 +44,7 @@ import { getLocationEditHref } from "./locations.navigation";
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 const getRequestError = (error, fallback) =>
-  error?.data?.message ||
-  error?.data?.error?.message ||
-  error?.error ||
-  error?.message ||
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 function LocationCard({
   location,

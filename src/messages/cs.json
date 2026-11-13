@@ -15,7 +15,36 @@
     "back": "Zpět",
     "next": "Další",
     "close": "Zavřít",
-    "optional": "Volitelné"
+    "optional": "Volitelné",
+    "loading": "Načítání",
+    "preparingSpace": "Připravujeme váš prostor",
+    "signingOut": "Odhlašování…",
+    "checkingPlatformAccess": "Ověřování přístupu k platformě…",
+    "redirectingAccount": "Přesměrování na správný účet…",
+    "section": "Sekce",
+    "business": "Podnikání",
+    "gallery": {
+      "image": "Obrázek kurzu",
+      "previous": "Předchozí obrázek",
+      "next": "Další obrázek",
+      "thumbnails": "Náhledy obrázků kurzu",
+      "view": "Zobrazit obrázek {number} z {count}",
+      "imageAlt": "{name} — obrázek {number}",
+      "thumbnailAlt": "{name} — náhled {number}"
+    },
+    "internalAdmin": {
+      "eyebrow": "interní shario.io",
+      "title": "Správa platformy",
+      "description": "Tato adresa je vyhrazena provoznímu týmu shario.io. Správa platformy je oddělena od jednotlivých pracovních prostorů."
+    },
+    "selectOption": "Vyberte možnost",
+    "noOptions": "Žádné možnosti",
+    "search": "Vyhledat",
+    "pagination": "Stránkování",
+    "previousPage": "Předchozí stránka",
+    "nextPage": "Další stránka",
+    "sharioHome": "Úvod Shario",
+    "sharioDashboard": "Přehled shario.io"
   },
   "Waitlists": {
     "states": {
@@ -328,7 +357,79 @@
     "openWorkspace": "Otevřít pracovní prostor",
     "openMenu": "Otevřít menu",
     "closeMenu": "Zavřít menu",
-    "changeLanguage": "Změnit jazyk"
+    "changeLanguage": "Změnit jazyk",
+    "adminNavigation": {
+      "sections": {
+        "core": {
+          "description": "Rezervace, kalendář a denní provoz."
+        },
+        "users": {
+          "description": "Zákazníci, členové týmu a historie."
+        },
+        "operations": {
+          "description": "Sklad, reporty, úkoly a provozní přehledy."
+        },
+        "sales": {
+          "description": "Produkty, objednávky, platby, poukazy a prodej."
+        },
+        "management": {
+          "description": "Systém, nastavení, lokace, oprávnění a integrace."
+        }
+      },
+      "items": {
+        "bookings": {
+          "description": "Správa rezervací, hostů, plateb a změn."
+        },
+        "calendar": {
+          "description": "Kapacity, obsazenost, kurzy a studio rozvrh."
+        },
+        "customers": {
+          "description": "Správa zákazníků, kontaktů, kreditů a historie."
+        },
+        "team": {
+          "label": "Můj tým",
+          "description": "Správa členů týmu, rolí a interních přístupů."
+        },
+        "inventory": {
+          "description": "Materiály, zásoby, pohyby a skladový přehled."
+        },
+        "suppliers": {
+          "description": "Kontakty, nákupy a dodavatelská historie."
+        },
+        "statistics": {
+          "description": "Statistiky, přehledy výkonu a provozní metriky."
+        },
+        "products": {
+          "description": "Kurzy, workshopy, poukazy a rezervační produkty."
+        },
+        "orders": {
+          "description": "Objednávky, zakázky, poptávky a platby."
+        },
+        "vouchers": {
+          "description": "Dárkové poukazy, uplatnění a historie."
+        },
+        "general": {
+          "label": "Systém",
+          "description": "Základní nastavení aplikace a interní správa."
+        },
+        "public-site": {
+          "description": "Vzhled, obsah, přihlášení a publikace webu studia."
+        },
+        "locations": {
+          "description": "Správa studií, kapacit, adres a provozních pravidel."
+        },
+        "roles": {
+          "description": "Role, přístupy a bezpečnostní pravidla."
+        },
+        "integrations": {
+          "label": "Integrace",
+          "description": "Stripe, e-maily, kalendáře a externí služby."
+        }
+      },
+      "label": "Navigace administrace",
+      "module": "Modul",
+      "openModule": "Otevřít modul"
+    }
   },
   "PlatformAuth": {
     "login": {
@@ -549,7 +650,7 @@
       "inbox": "Doručená pošta",
       "automations": "Automatizace",
       "templates": "Šablony",
-      "knowledge": "Knowledge Hub",
+      "knowledge": "Centrum znalostí",
       "reports": "Reporty",
       "ai": "AI studia",
       "settings": "Nastavení",
@@ -573,7 +674,7 @@
       "memberships": "Členství",
       "communications": "Komunikace",
       "messages": "Zprávy",
-      "knowledge": "Knowledge Hub",
+      "knowledge": "Centrum znalostí",
       "reports": "Reporty",
       "finance": "Finance",
       "settings": "Nastavení",
@@ -753,7 +854,7 @@
         }
       },
       "opportunity": {
-        "eyebrow": "Business Advisor",
+        "eyebrow": "Obchodní poradce",
         "none": "Nebyla nalezena žádná okamžitá provozní příležitost.",
         "guidance": "Jakmile budou k dispozici nová data ze studia, upozorním zde na užitečné příležitosti.",
         "openAdvisor": "Otevřít poradce",
@@ -1435,18 +1536,18 @@
       "selectLocation": "Pro správu produktu Open Studio vyberte pobočku v přepínači studií."
     },
     "categories": {
-      "openStudio": "Open Studio",
+      "openStudio": "Volný prostor",
       "classes": "Kurzy",
       "memberships": "Členství",
       "vouchers": "Poukazy",
-      "privateStudio": "Private Studio"
+      "privateStudio": "Soukromý prostor"
     },
     "sections": {
       "label": "Kategorie produktů a kurzů",
       "openStudio": {
-        "label": "Open Studio",
+        "label": "Volný prostor",
         "description": "Jeden rezervační produkt pro každou pobočku.",
-        "heading": "Open Studio",
+        "heading": "Volný prostor",
         "detail": "Spravujte sdílené i soukromé rezervace pobočky v jednom produktu.",
         "action": "Přidat Open Studio",
         "searchPlaceholder": "Hledat Open Studio…",
@@ -1484,9 +1585,9 @@
         "emptyDescription": "Vytvořte první poukaz, který si zákazníci mohou koupit."
       },
       "privateStudio": {
-        "label": "Private Studio",
+        "label": "Soukromý prostor",
         "description": "Interní čas a blokace studia.",
-        "heading": "Private Studio",
+        "heading": "Soukromý prostor",
         "detail": "Udržujte neprodejný čas studia viditelný pro tým, aniž by se zobrazil zákazníkům.",
         "action": "Přidat Private Studio",
         "searchPlaceholder": "Hledat Private Studio…",
@@ -1536,12 +1637,12 @@
       "label": "Tabulka katalogu produktů"
     },
     "types": {
-      "openStudio": "Open Studio",
+      "openStudio": "Volný prostor",
       "class": "Kurz",
       "voucher": "Poukaz",
-      "privateStudio": "Private Studio",
+      "privateStudio": "Soukromý prostor",
       "course": "Kurz",
-      "workshop": "Open Studio",
+      "workshop": "Volný prostor",
       "membership": "Členství",
       "creditPack": "Balíček kreditů",
       "giftCard": "Dárková karta",
@@ -1875,7 +1976,7 @@
     "productTypes": {
       "all": "Všechny typy produktů",
       "course": "Kurz",
-      "workshop": "Open Studio",
+      "workshop": "Volný prostor",
       "membership": "Členství",
       "credit-pack": "Balíček kreditů",
       "gift-card": "Dárková karta",
@@ -2796,7 +2897,7 @@
     "selection": {
       "all": "Vybrat všechny zobrazené zákazníky",
       "row": "Vybrat zákazníka {name}",
-      "selected": "Vybráno: {count}",
+      "selected": "{count, plural, other {Vybráno: #}}",
       "exportSelected": "Exportovat vybrané",
       "clear": "Zrušit výběr"
     },
@@ -2957,7 +3058,7 @@
     },
     "features": {
       "locations": {
-        "fixed": "\"{count, plural, one {Až # provozovna} few {Až # provozovny} other {Až # provozoven}}\"",
+        "fixed": "{count, plural, one {Až # provozovna} few {Až # provozovny} many {Až # provozovny} other {Až # provozoven}}",
         "unlimited": "Neomezený počet provozoven",
         "custom": "Individuální počet provozoven"
       },
@@ -3133,7 +3234,7 @@
     "day": {
       "overlapInfo": "Rezervace se mohou překrývat. Dostupnost se počítá samostatně pro každou aktivitu.",
       "max": "max. {count}",
-      "places": "{count, plural, one {# místo} few {# místa} other {# míst}}",
+      "places": "{count, plural, one {# místo} few {# místa} many {# místa} other {# míst}}",
       "capacity": "Kapacita",
       "publicLane": "Veřejná rezervace {number}"
     },
@@ -3156,6 +3257,9 @@
       "WORKSTATION": "Pracovní místa",
       "SHARED_TABLE": "Sdílené stoly",
       "GENERAL": "Obecná kapacita"
+    },
+    "errors": {
+      "load": "Kalendář se nepodařilo načíst. Zkuste to prosím znovu."
     }
   },
   "InvoicingSettings": {
@@ -4337,14 +4441,14 @@
       "productReadyTitle": "Rezervovatelný produkt je připravený",
       "productReadyDescription": "Kurz potřebuje alespoň jeden budoucí termín, než si ho zákazníci mohou rezervovat. Open Studio automaticky využívá dostupnost provozovny; členství a poukazy mají vlastní správu.",
       "types": {
-        "openStudio": "Open Studio",
+        "openStudio": "Volný prostor",
         "class": "Kurz",
         "membership": "Členství",
         "voucher": "Poukaz",
-        "privateStudio": "Private Studio",
+        "privateStudio": "Soukromý prostor",
         "course": "Kurz",
-        "workshop": "Open Studio",
-        "privateSession": "Private Studio"
+        "workshop": "Volný prostor",
+        "privateSession": "Soukromý prostor"
       }
     },
     "practice": {
@@ -4429,7 +4533,7 @@
       "insight": "Nejlepší další výsledek je „{step}“. Mohu vysvětlit, co chybí, a provést vás dokončením.",
       "unavailable": "Launch Assistant není pro vaši úroveň přístupu dostupný.",
       "prompt": "Pomoz mi dosáhnout výsledku spuštění „{step}“. Vysvětli, co chybí, a naveď mě na správné místo.",
-      "fallbackTitle": "Launch Assistant",
+      "fallbackTitle": "Průvodce spuštěním",
       "fallbackSubtitle": "Bezpečná pomoc podle aktuální připravenosti ke spuštění",
       "fallbackDefaultQuestion": "Co mám dokončit jako další?",
       "fallbackSafetyTitle": "Průvodce spuštěním pouze pro čtení",
@@ -5660,9 +5764,9 @@
       "productTypes": {
         "all": "Všechny rezervační produkty",
         "booking": "Rezervace",
-        "workshop": "Open Studio",
+        "workshop": "Volný prostor",
         "course": "Kurz",
-        "private-session": "Private Studio",
+        "private-session": "Soukromý prostor",
         "membership": "Členství",
         "gift-card": "Dárková karta",
         "credit-pack": "Balíček kreditů"
@@ -5979,7 +6083,7 @@
     },
     "businessAdvisor": {
       "eyebrow": "Doporučení založená na datech",
-      "title": "Business Advisor",
+      "title": "Obchodní poradce",
       "description": "Klidný výběr důležitých příležitostí a rizik nalezených v oprávněných datech vašeho studia.",
       "loading": "Načítám Business Advisor…",
       "generate": "Analyzovat studio",
@@ -6334,7 +6438,7 @@
           "description": "Stručné denní shrnutí priorit a rizik."
         },
         "businessAdvisor": {
-          "label": "Business Advisor",
+          "label": "Obchodní poradce",
           "description": "Příležitosti a rizika založené na oprávněných datech studia."
         },
         "reportInsights": {
@@ -6448,7 +6552,7 @@
     "nav": {
       "home": "Studio",
       "portal": "Zákaznický portál",
-      "book": "Open Studio",
+      "book": "Volný prostor",
       "courses": "Kurzy",
       "memberships": "Členství",
       "vouchers": "Dárkové poukazy",
@@ -6518,9 +6622,8 @@
       "website": "Web"
     },
     "unavailable": {
-      "title": "Tato možnost není dostupná",
-      "description": "Studio tuto možnost momentálně veřejně nenabízí.",
-      "back": "Zpět na studio"
+      "title": "Tento prostor je dočasně nedostupný",
+      "description": "Prostor se nepodařilo načíst. Zkuste to prosím znovu za chvíli."
     },
     "book": {
       "metadataTitle": "Rezervovat Open Studio",
@@ -6636,7 +6739,7 @@
       "notFound": "Tato veřejná nabídka již není dostupná.",
       "backToBook": "Zpět k rezervaci studia",
       "backToCourses": "Zpět na kurzy",
-      "bookingEyebrow": "Open Studio",
+      "bookingEyebrow": "Volný prostor",
       "courseEyebrow": "Kurz",
       "chooseVisit": "Vyberte návštěvu",
       "chooseVisitDescription": "Vyberte pobočku a datum. Dostupnost znovu ověříme před platbou.",
@@ -6935,7 +7038,57 @@
     "eyebrow": "Vítejte ve studiu",
     "description": "Prozkoumejte studio, spravujte své rezervace a mějte vše kolem svého účtu na jednom místě.",
     "openPortal": "Otevřít zákaznický portál",
-    "signIn": "Přihlásit se"
+    "signIn": "Přihlásit se",
+    "sections": {
+      "waysToVisit": {
+        "eyebrow": "Prozkoumejte studio",
+        "title": "Možnosti návštěvy"
+      },
+      "featured": {
+        "eyebrow": "Ze studia",
+        "title": "Doporučená nabídka"
+      },
+      "about": {
+        "eyebrow": "Náš příběh",
+        "title": "O studiu"
+      },
+      "gallery": {
+        "eyebrow": "Ze studia",
+        "title": "Galerie"
+      },
+      "testimonials": {
+        "eyebrow": "Hlasy komunity",
+        "title": "Co říkají zákazníci"
+      },
+      "locations": {
+        "eyebrow": "Navštivte nás",
+        "title": "Pobočky studia"
+      },
+      "team": {
+        "eyebrow": "Lidé ve studiu",
+        "title": "Poznejte náš tým"
+      },
+      "faq": {
+        "eyebrow": "Dobré vědět",
+        "title": "Časté dotazy"
+      },
+      "explore": "Prozkoumat",
+      "view": "Zobrazit detail",
+      "contact": "Kontaktovat studio",
+      "noLocation": "Údaje o pobočce se zobrazí po jejím přidání.",
+      "faqCards": {
+        "book": "Rezervace a dostupnost",
+        "courses": "Kurzy a workshopy",
+        "help": "Nápověda studia"
+      },
+      "nav": {
+        "book": "Rezervovat studio",
+        "courses": "Kurzy",
+        "memberships": "Členství",
+        "vouchers": "Dárkové poukazy",
+        "help": "Nápověda"
+      }
+    }
   },
   "Memberships": {
     "planChange": {
@@ -7044,12 +7197,12 @@
       "allLocations": "Všechny pobočky",
       "selectedLocationSummary": "Dostupné na pobočkách: {locations}",
       "selectedLocationsFallback": "Vybrané pobočky",
-      "moreBenefits": "\"+{count, plural, one {# další výhoda} few {# další výhody} other {# dalších výhod}}\"",
+      "moreBenefits": "{count, plural, one {+# další výhoda} few {+# další výhody} many {+# další výhody} other {+# dalších výhod}}",
       "trackingNotice": "Kredity se obnoví po každé úspěšné platbě za členství. Sleva na produkty se uplatní automaticky při platbě.",
       "billing": {
         "monthly": "Každý {count, plural, one {měsíc} few {# měsíce} other {# měsíců}}",
         "yearly": "Každý {count, plural, one {rok} few {# roky} other {# let}}",
-        "fixed": "Pevná doba · {days, plural, one {# den} few {# dny} other {# dní}}"
+        "fixed": "Pevná doba · {days, plural, one {# den} few {# dny} many {# dne} other {# dní}}"
       },
       "statuses": {
         "draft": "Koncept",
@@ -7481,6 +7634,83 @@
       "events": {
         "label": "Akce",
         "description": "Soukromé akce, teambuildingy a speciální aktivity studia."
+      }
+    },
+    "events": {
+      "title": "Akce",
+      "description": "Sledujte týmové aktivity, soukromé oslavy, firemní akce a další události ve vašem prostoru.",
+      "create": "Vytvořit akci",
+      "creating": "Vytváření…",
+      "upcoming": "Nadcházející akce",
+      "confirmed": "Potvrzené",
+      "estimatedValue": "Odhadovaná hodnota",
+      "search": "Hledat akci, zákazníka, e-mail…",
+      "allStatuses": "Všechny stavy",
+      "allTypes": "Všechny typy",
+      "allLocations": "Všechny pobočky",
+      "event": "Akce",
+      "date": "Datum",
+      "customer": "Zákazník",
+      "guests": "Hosté",
+      "status": "Stav",
+      "price": "Cena",
+      "actions": "Akce",
+      "loading": "Načítání akcí…",
+      "empty": "Nebyly nalezeny žádné akce.",
+      "externalVenue": "Externí místo",
+      "externalOption": "Externí místo / bez prostoru",
+      "formDescription": "Zaznamenejte týmovou aktivitu, oslavu nebo soukromou akci.",
+      "closeForm": "Zavřít formulář akce",
+      "eventTitle": "Název",
+      "type": "Typ",
+      "location": "Místo",
+      "venuePlaceholder": "Název místa nebo adresa",
+      "startTime": "Začátek",
+      "endTime": "Konec",
+      "customerName": "Jméno zákazníka",
+      "contactPerson": "Kontaktní osoba",
+      "email": "E-mail",
+      "phone": "Telefon",
+      "estimatedPrice": "Odhadovaná cena ({currency})",
+      "finalPrice": "Konečná cena ({currency})",
+      "depositPaid": "Zaplacená záloha ({currency})",
+      "linkedOrderId": "ID propojené objednávky",
+      "orderPlaceholder": "Nepovinné ID objednávky",
+      "notes": "Poznámky",
+      "internalNotes": "Interní poznámky",
+      "cancel": "Zrušit",
+      "closeDetails": "Zavřít detail akce",
+      "time": "Čas",
+      "contact": "Kontakt",
+      "linkedOrder": "Propojená objednávka",
+      "checklist": "Kontrolní seznam",
+      "viewDetails": "Zobrazit detail akce",
+      "delete": "Smazat akci",
+      "unknownStatus": "Neznámý stav",
+      "types": {
+        "team_building": "Týmová aktivita",
+        "party": "Oslava",
+        "private_workshop": "Soukromý workshop",
+        "school_group": "Školní skupina",
+        "corporate": "Firemní akce",
+        "popup": "Dočasná akce",
+        "other": "Jiné"
+      },
+      "statuses": {
+        "inquiry": "Poptávka",
+        "planned": "Naplánováno",
+        "confirmed": "Potvrzeno",
+        "deposit_paid": "Záloha zaplacena",
+        "completed": "Dokončeno",
+        "cancelled": "Zrušeno"
+      },
+      "checklistItems": {
+        "guests": "Potvrdit počet hostů",
+        "price": "Potvrdit cenu",
+        "deposit": "Vybrat zálohu",
+        "instructor": "Přiřadit instruktora",
+        "materials": "Připravit materiály",
+        "arrival": "Poslat pokyny k příjezdu"
       }
     }
   },
@@ -8448,7 +8678,18 @@
         "partialScan": "Byla vyhodnocena pouze část schváleného Knowledge Hubu. Toto skóre považujte za neúplné a po omezení nebo uspořádání zdrojů kontrolu zopakujte.",
         "missing": "Chybí schválený obsah s odpovědí",
         "addSource": "Přidat schválenou odpověď",
-        "updated": "Zkontrolováno {date}"
+        "updated": "Zkontrolováno {date}",
+        "questions": {
+          "booking_price": "Kolik stojí rezervace studia?",
+          "booking_cancellation": "Jaké jsou podmínky zrušení rezervace a vrácení peněz?",
+          "booking_reschedule": "Mohu změnit termín své rezervace?",
+          "studio_inclusions": "Co je zahrnuto v rezervaci studia?",
+          "studio_arrival": "Jak se po příchodu dostanu do studia?",
+          "course_preparation": "Co si mám přinést na kurz?",
+          "membership_usage": "Jak funguje členství ve studiu?",
+          "accessibility": "Je studio přístupné lidem s omezenou pohyblivostí?",
+          "unknown": "Doplňte odpověď k tomuto tématu."
+        }
       }
     }
   },
@@ -8558,7 +8799,7 @@
           "sample": "Studio"
         },
         "editorialSerif": {
-          "name": "Editorial Serif",
+          "name": "Redakční patkové písmo",
           "description": "Vytříbené patkové písmo pro studia postavená na příběhu.",
           "sample": "Studio"
         },
@@ -8580,19 +8821,19 @@
       "comingSoon": "Již brzy",
       "presets": {
         "classicEditorial": {
-          "name": "Classic Editorial",
+          "name": "Klasický redakční styl",
           "description": "Hřejivá redakční typografie, velkorysé karty a vytříbená atmosféra studia.",
           "sample": "Tvořeno rukama.",
           "sampleText": "Nadčasové rozvržení pro studia, kde vyniká příběh a řemeslo."
         },
         "modernMinimal": {
-          "name": "Modern Minimal",
+          "name": "Moderní minimalismus",
           "description": "Čistá geometrie, úsporné plochy a sebevědomá moderní typografie.",
           "sample": "Prostor pro tvorbu.",
           "sampleText": "Jasné rozvržení, které drží služby a hlavní akce v centru pozornosti."
         },
         "warmOrganic": {
-          "name": "Warm Organic",
+          "name": "Hřejivý přírodní styl",
           "description": "Měkké tvary, přirozený rytmus a hmatové detaily inspirované materiály.",
           "sample": "Tvořte pomalu.",
           "sampleText": "Příjemné rozvržení inspirované přírodními tvary a komunitou."
@@ -8700,7 +8941,8 @@
       "announcementDescription": "Pokud necháte oba texty prázdné, lišta se nezobrazí.",
       "announcementText": "Oznámení",
       "announcementUrl": "Volitelný odkaz",
-      "urlHint": "Použijte cestu studia začínající lomítkem (např. /kurzy) nebo úplnou HTTPS adresu."
+      "urlHint": "Použijte cestu studia začínající lomítkem (např. /kurzy) nebo úplnou HTTPS adresu.",
+      "urlExample": "/courses nebo https://…"
     },
     "footer": {
       "contentTitle": "Obsah patičky",
@@ -8727,7 +8969,8 @@
         "terms": "Obchodní podmínky",
         "privacy": "Ochrana soukromí",
         "cancellation": "Storno podmínky"
-      }
+      },
+      "urlExample": "/privacy nebo https://…"
     },
     "login": {
       "contentTitle": "Text zákaznického přihlášení",
@@ -8839,7 +9082,7 @@
       "safety": "Interakce v náhledu jsou vypnuté. Kliknutím na upravitelný obsah přejdete k jeho nastavení; z náhledu se nic nepublikuje.",
       "pages": {
         "home": "Úvodní stránka",
-        "book": "Open Studio",
+        "book": "Volný prostor",
         "courses": "Kurzy",
         "memberships": "Členství",
         "vouchers": "Dárkové poukazy",
@@ -8850,7 +9093,7 @@
         "portalCourses": "Kurzy pro zákazníky"
       },
       "nav": {
-        "book": "Open Studio",
+        "book": "Volný prostor",
         "courses": "Kurzy",
         "memberships": "Členství",
         "vouchers": "Dárkové poukazy",
@@ -8919,7 +9162,55 @@
         "loading": "Aktualizuji náhled… Neuložené změny zůstávají v editoru.",
         "ready": "Náhled je aktuální.",
         "timeout": "Náhled neodpověděl. Zkuste jej znovu načíst; vaše neuložené změny zůstanou zachovány.",
-        "reload": "Znovu načíst náhled"
+        "reload": "Znovu načíst náhled",
+        "frameTitle": "{name} – náhled produkčního webu"
+      }
+    },
+    "builderActions": {
+      "publishChanges": "Publikovat změny",
+      "publishWebsite": "Publikovat web",
+      "publishingWebsite": "Publikování webu…",
+      "launchTitle": "Je web připravený ke spuštění?",
+      "launchDescription": "Tento poslední krok zpřístupní web studia veřejnosti. Další úpravy publikujete tlačítkem Publikovat změny.",
+      "launchBlocked": "Nejprve dokončete {count, plural, one {# povinný krok} few {# povinné kroky} other {# povinných kroků}} ke spuštění.",
+      "launchConfirmTitle": "Publikovat váš web?",
+      "launchConfirmDescription": "Web studia bude veřejně dostupný komukoliv. Další úpravy publikujete tlačítkem Publikovat změny.",
+      "launched": "Váš web je nyní zveřejněný.",
+      "undo": "Zpět",
+      "redo": "Znovu",
+      "history": "Historie verzí",
+      "historyTitle": "Publikované verze",
+      "historyDescription": "Obnovte publikovanou verzi do konceptu. Živý web se nezmění, dokud změny nepublikujete.",
+      "historyEmpty": "Zatím nebyla publikována žádná verze.",
+      "historyError": "Historii verzí se nepodařilo načíst.",
+      "retryHistory": "Zkusit znovu",
+      "restore": "Obnovit do konceptu",
+      "restored": "Vybraná verze byla obnovena do konceptu.",
+      "restoreBlocked": "Před obnovením verze uložte nebo vraťte neuložené úpravy.",
+      "restoreConfirm": "Obnovit tuto verzi? Nahradí uložený nepublikovaný koncept. Živý web se nezmění.",
+      "close": "Zavřít historii verzí",
+      "revisionNo": "Verze {number}"
+    },
+    "homeSections": {
+      "title": "Sekce domovské stránky",
+      "description": "Přidávejte, odebírejte a řaďte hotové sekce propojené s vaším studiem.",
+      "visible": "Zobrazeno",
+      "hidden": "Nepřidáno",
+      "edit": "Upravit text sekce",
+      "moveUp": "Posunout sekci nahoru",
+      "moveDown": "Posunout sekci dolů",
+      "toggle": "Přidat nebo odebrat sekci",
+      "sectionTitle": "Nadpis sekce",
+      "sectionDescription": "Popis sekce",
+      "labels": {
+        "waysToVisit": "Možnosti návštěvy",
+        "featured": "Doporučená nabídka",
+        "about": "O studiu",
+        "gallery": "Galerie",
+        "testimonials": "Reference",
+        "locations": "Pobočky",
+        "team": "Tým",
+        "faq": "Časté dotazy"
       }
     }
   },
@@ -8994,7 +9285,7 @@
       "types": {
         "art_studio": "Výtvarné studio",
         "photography_studio": "Fotografické studio",
-        "wellness_studio": "Wellness studio",
+        "wellness_studio": "Wellness centrum",
         "other": "Jiné",
         "coworking_space": "Coworking",
         "rehearsal_space": "Zkušebna",
@@ -9030,7 +9321,7 @@
       "confirmation": "Potvrzování rezervací",
       "types": {
         "open_studio": {
-          "label": "Open Studio",
+          "label": "Volný prostor",
           "description": "Sdílený nebo výhradní vstup zákazníků"
         },
         "class": {
@@ -9042,7 +9333,7 @@
           "description": "Lekce s lektorem a vypsanými termíny"
         },
         "private_sessions": {
-          "label": "Private Studio",
+          "label": "Soukromý prostor",
           "description": "Interní čas studia"
         },
         "events": {
@@ -10571,6 +10862,80 @@
       "previous": "Předchozí",
       "next": "Další",
       "summary": "{total, plural, one {# oznámení} few {# oznámení} other {# oznámení}} · strana {page} z {pages}"
+    },
+    "events": {
+      "custom_order_due_soon": {
+        "title": "Blíží se termín zakázky",
+        "message": "Blíží se termín dokončení zakázky. Podrobnosti najdete v jejím detailu."
+      },
+      "custom_order_overdue": {
+        "title": "Zakázka po termínu",
+        "message": "Termín dokončení zakázky již uplynul. Otevřete ji a zkontrolujte další postup."
+      },
+      "booking_created": {
+        "title": "Nová rezervace",
+        "message": "Byla vytvořena nová rezervace. Podrobnosti najdete v jejím detailu."
+      },
+      "booking_cancelled": {
+        "title": "Rezervace zrušena",
+        "message": "Rezervace byla zrušena. Podrobnosti najdete v jejím detailu."
+      },
+      "booking_rescheduled": {
+        "title": "Rezervace přesunuta",
+        "message": "Rezervace byla přesunuta na nový čas. Aktuální podrobnosti najdete v jejím detailu."
+      },
+      "payment_failed": {
+        "title": "Platba se nezdařila",
+        "message": "Platbu se nepodařilo dokončit. Další postup najdete v detailu platby."
+      },
+      "payment_refunded": {
+        "title": "Platba vrácena",
+        "message": "Vrácení platby bylo zaznamenáno. Podrobnosti najdete u platby."
+      },
+      "waitlist_joined": {
+        "title": "Nový zápis na čekací listinu",
+        "message": "Zákazník se přidal na čekací listinu."
+      },
+      "task_assigned": {
+        "title": "Úkol přiřazen",
+        "message": "Byl vám přiřazen úkol. Podrobnosti najdete v jeho detailu."
+      },
+      "task_overdue": {
+        "title": "Úkol po termínu",
+        "message": "Termín úkolu již uplynul. Otevřete jej a zkontrolujte další postup."
+      },
+      "inventory_low": {
+        "title": "Nízký stav zásob",
+        "message": "Zásoby jedné z položek docházejí. Aktuální stav najdete v detailu položky."
+      },
+      "import_completed": {
+        "title": "Import dokončen",
+        "message": "Import byl dokončen. Importované záznamy zkontrolujete ve výsledcích."
+      },
+      "import_failed": {
+        "title": "Import se nezdařil",
+        "message": "Import se nepodařilo dokončit. Podrobnosti o problémech najdete ve výsledcích."
+      },
+      "communication_failed": {
+        "title": "Doručení zprávy se nezdařilo",
+        "message": "Zprávu se nepodařilo doručit. Podrobnosti najdete v jejím detailu."
+      },
+      "subscription_payment_failed": {
+        "title": "Platba za předplatné se nezdařila",
+        "message": "Platbu za předplatné pracovního prostoru se nepodařilo dokončit. Zkontrolujte fakturační údaje."
+      },
+      "subscription_payment_recovered": {
+        "title": "Platba za předplatné přijata",
+        "message": "Platba za předplatné pracovního prostoru byla přijata."
+      },
+      "subscription_action_required": {
+        "title": "Předplatné vyžaduje pozornost",
+        "message": "Předplatné pracovního prostoru vyžaduje pozornost. Další postup najdete ve fakturaci."
+      },
+      "system_notice": {
+        "title": "Aktualizace pracovního prostoru",
+        "message": "Máte novou zprávu o pracovním prostoru. Podrobnosti zobrazíte po otevření oznámení."
+      }
     }
   },
   "CustomerNotifications": {
@@ -10642,6 +11007,104 @@
       "previous": "Předchozí strana",
       "next": "Další strana",
       "summary": "{total, plural, one {# oznámení} few {# oznámení} other {# oznámení}} · strana {page} z {pages}"
+    },
+    "events": {
+      "booking_created": {
+        "title": "Rezervace potvrzena",
+        "message": "Vaše rezervace je potvrzena. Podrobnosti zobrazíte po jejím otevření."
+      },
+      "booking_cancelled": {
+        "title": "Rezervace zrušena",
+        "message": "Vaše rezervace byla zrušena."
+      },
+      "booking_rescheduled": {
+        "title": "Rezervace přesunuta",
+        "message": "Vaše rezervace byla přesunuta na nový čas. Otevřete ji pro aktuální podrobnosti."
+      },
+      "payment_refunded": {
+        "title": "Platba vrácena",
+        "message": "Vrácení platby bylo zaznamenáno. Podrobnosti najdete u platby."
+      },
+      "waitlist_joined": {
+        "title": "Přidáno na čekací listinu",
+        "message": "Byli jste přidáni na čekací listinu."
+      },
+      "waitlist_offered": {
+        "title": "Místo je dostupné",
+        "message": "Uvolnilo se místo. Otevřete nabídku a zkontrolujte podrobnosti a platnost."
+      },
+      "waitlist_expired": {
+        "title": "Nabídka z čekací listiny vypršela",
+        "message": "Platnost vaší nabídky z čekací listiny vypršela."
+      },
+      "waitlist_withdrawn": {
+        "title": "Odebráno z čekací listiny",
+        "message": "Váš zápis na čekací listině byl odvolán."
+      },
+      "waitlist_cancelled": {
+        "title": "Zápis na čekací listině zrušen",
+        "message": "Provozovatel prostoru zrušil váš zápis na čekací listině."
+      },
+      "waitlist_confirmed": {
+        "title": "Rezervace z čekací listiny potvrzena",
+        "message": "Vaše místo je potvrzeno. Podrobnosti najdete v rezervaci."
+      },
+      "waitlist_refunded": {
+        "title": "Platba za rezervaci z čekací listiny vrácena",
+        "message": "Vrácení platby za vaši rezervaci z čekací listiny bylo zaznamenáno."
+      },
+      "membership_activated": {
+        "title": "Členství aktivováno",
+        "message": "Vaše členství je nyní aktivní."
+      },
+      "membership_renewed": {
+        "title": "Členství obnoveno",
+        "message": "Vaše členství bylo obnoveno."
+      },
+      "membership_assigned": {
+        "title": "Členství přiřazeno",
+        "message": "K vašemu účtu bylo přidáno členství."
+      },
+      "membership_payment_failed": {
+        "title": "Platba za členství se nezdařila",
+        "message": "Platbu za členství se nepodařilo dokončit. Další postup najdete v detailu členství."
+      },
+      "membership_cancellation_scheduled": {
+        "title": "Ukončení členství naplánováno",
+        "message": "Ukončení vašeho členství je naplánováno. Datum najdete v detailu členství."
+      },
+      "membership_cancelled": {
+        "title": "Členství ukončeno",
+        "message": "Vaše členství bylo ukončeno."
+      },
+      "membership_resumed": {
+        "title": "Členství pokračuje",
+        "message": "Naplánované zrušení bylo odstraněno. Vaše členství se bude nadále obnovovat."
+      },
+      "credits_purchased": {
+        "title": "Kredity zakoupeny",
+        "message": "Zakoupené kredity jsou dostupné na vašem účtu."
+      },
+      "credits_added": {
+        "title": "Kredity přidány",
+        "message": "Na váš účet byly přidány kredity. Podrobnosti najdete v přehledu zůstatku."
+      },
+      "credits_used": {
+        "title": "Kredity použity",
+        "message": "Z vašeho účtu byly použity kredity. Podrobnosti najdete v přehledu zůstatku."
+      },
+      "credits_refunded": {
+        "title": "Kredity vráceny",
+        "message": "Kredity byly vráceny na váš účet."
+      },
+      "voucher_redeemed": {
+        "title": "Poukaz uplatněn",
+        "message": "Váš poukaz byl uplatněn."
+      },
+      "system_notice": {
+        "title": "Aktualizace účtu",
+        "message": "Máte novou zprávu o svém účtu. Podrobnosti zobrazíte po otevření oznámení."
+      }
     }
   },
   "AccessCodes": {
@@ -10950,7 +11413,15 @@
       "productsError": "Nabídku poukazů se nepodařilo načíst. Obnovte stránku a zkuste to znovu."
     },
     "refund": {
-      "revoked": "Platba vrácena · kódy zneplatněny"
+      "revoked": "Platba vrácena · kódy zneplatněny",
+      "reviewReasons": {
+        "pending": "Bylo požádáno o vrácení celé platby za nákup. Poukazy zůstávají pozastavené do ověření výsledku platby.",
+        "failed": "Vrácení peněz selhalo nebo bylo zrušeno. Před obnovením nároku z poukazu zkontrolujte a vypořádejte platbu.",
+        "partial": "Část platby za nákup byla vrácena. Před opětovnou aktivací kódů určete dotčený zůstatek poukazu.",
+        "used": "Vrácená platba se týká použitých poukazů nebo poukazů rezervovaných pro platbu. Vypořádejte ji bez odebrání kreditů z účtu zákazníka.",
+        "expired": "Platba přišla po vypršení zakoupeného poukazu. Před doručením nákup prověřte a vraťte platbu nebo poukaz nahraďte.",
+        "unknown": "Toto vrácení peněz vyžaduje ruční kontrolu. Před změnou nároku zákazníka zkontrolujte platbu a využití poukazu."
+      }
     },
     "codes": {
       "title": "Všechny kódy poukazů",
@@ -11827,5 +12298,1113 @@
       "register": "Vyzkoušet zdarma",
       "copyright": "© {year} Shario. Všechna práva vyhrazena."
     }
+  },
+  "Legacy": {
+    "CUSTOMER_PAYMENTS_UNAVAILABLE": "Online platby tohoto studia jsou momentálně nedostupné. Kontaktujte prosím studio nebo to zkuste později.",
+    "INVALID_TENANT_CHECKOUT": "Tento odkaz na platbu studiu není platný. Vraťte se prosím na stránku studia a zkuste to znovu.",
+    "CHECKOUT_REDIRECT_MISSING": "Zabezpečenou platební stránku se nepodařilo otevřít. Zkuste to prosím znovu.",
+    "COURSES": "Kurzy",
+    "VOUCHERS": "Poukazy",
+    "TUTORIALS": "Videonávody",
+    "ADD_NEW_BOOKING": "Přidat novou rezervaci",
+    "GIFT_VOUCHER": "Dárkové poukazy",
+    "GIFT_VOUCHER_TITLE": "Dárkový poukaz",
+    "GIFT_VOUCHER_AMOUNT": "Množství",
+    "DELIVERY_DETAILS": "Dodací údaje",
+    "GIFT_VOUCHER_INFO_1": "Začněte tím, že vyplníte informace níže a vytvoříte objednávku.",
+    "GIFT_VOUCHER_INFO_2": "My vám následně zašleme zakoupený dárkový poukaz.",
+    "CLEAR_ALL": "Smazat",
+    "COURSE_LENGTH": "Délka",
+    "COURSE_CAPACITY": "Kapacita",
+    "ACTIVE": "Aktivní",
+    "EDIT": "Upravit",
+    "PASS_UPDATE_CONTENT": "Heslo bylo úspěšně aktualizováno",
+    "PASS_UPDATE_TITLE": "Změna hesla",
+    "SUCCESS_TITLE": "Rezervace je potvrzena",
+    "BOOK_COURSE_BUTTON": "Rezervovat kurz",
+    "COUPON_BUTTON": "Koupit poukaz",
+    "PRE_FILLED": "Předvyplněno z vašeho účtu",
+    "SELECT_VOUCHER": "Vyberte poukaz",
+    "SUCCESS_CONTENT_1": "Potvrzení rezervace a další instrukce byly zaslány na váš e-mail.",
+    "SUCCESS_HELPER_TEXT_1": "Pokud cokoli nesedí, ozvěte se nám a my vám rádi pomůžeme.",
+    "SUCCESS_CONTENT_2": "Vstupní kód do studia vám pošleme e-mailem 15 minut před rezervací.",
+    "SUCCESS_BUTTON": "Pokračovat na rezervace",
+    "CANCEL_TITLE": "Něco se nepovedlo :(",
+    "CANCEL_CONTENT": "Je nám líto, ale platba neproběhla úspěšně.",
+    "OVERLAP_TITLE": "Vybraný termín už byl obsazen :(",
+    "OVERLAP_CONTENT": "Litujeme, ale vybraný termín už je obsazen. Prosím, vyberte si jiný dostupný termín nebo to zkuste znovu později.",
+    "RESERVATION_LIMIT_EXCEEDED_PAGE": "Tento termín dosáhl aktuální kapacity zvolené pobočky. Vyberte prosím jiný dostupný čas.",
+    "CANCEL_BUTTON": "Zpět na rezervace",
+    "LOGIN_EMAIL_PLACEHOLDER": "Váš email",
+    "LOGIN_PASSWORD_PLACEHOLDER": "Vaše heslo",
+    "LOGIN": "Přihlásit se",
+    "OPEN_STUDIO": "Jak otevřít studio?",
+    "DATE": "Datum",
+    "TIME": "Čas",
+    "BUTTON_REGISTER": "Registrovat se",
+    "SAVE": "Uložit",
+    "EDIT_USER": "Upravit uživatele",
+    "DESCRIPTION_404": "Omlouváme se, ale stránku kterou hledáte jsme nenašli.",
+    "HEADER_404": "Stránka nenalezena",
+    "BUTTON_404": "Zpět na hlavní stránku",
+    "EMAIL_VERIFICATION_REQUIRED": "Je třeba ověřit váš e-mail.",
+    "ADD_TO_CART": "Přidat do košíku",
+    "CANCEL": "Zrušit",
+    "CLOSE": "Zavřít",
+    "WHAT_HAPPENS_NEXT": "Co bude dál?",
+    "MAX_NO_PARTICIPANTS": "Max počet účastníků",
+    "USERS": "Uživatelé",
+    "PRODUCTS": "Produkty",
+    "STAFF": "Personál",
+    "BOOKINGS": "Rezervace",
+    "ORDERSTEXT": "Objednávky",
+    "LECTURER": "Lektor",
+    "TYPE": "Typ produktu",
+    "NEW_PRODUCT": "Nový produkt",
+    "IMAGE_SOURCE": "Foto URL",
+    "NAME": "Název",
+    "DESCRIPTION": "Popis",
+    "ADD": "Přidat",
+    "CONTINUE": "Pokračovat",
+    "OPTIONAL": "volitelné",
+    "EMAIL": "Email",
+    "EMAIL_BY_POST": "Zaslat poštou",
+    "EMAIL_BY_POST_INFO": "Dárkový poukaz vám zašleme na uvedenou adresu.",
+    "ORDER_VOUCHER": "Koupit poukaz",
+    "FORGOT_PASSWORD": "Zapomněli jste heslo?",
+    "PASSWORD": "Heslo",
+    "PASSWORD_CONFIRM": "Potvrzení hesla",
+    "REGISTER_CONFIRMATION": "Na email jsme vám zaslali vaše ID, pod kterým si budete moci zapisovat svoje výrobky.",
+    "REGISTER_TITLE_CONFIRMATION": "register proběhla úspěšně",
+    "ERROR_CAPACITY": "Kapacita kurzu je naplněna",
+    "ERROR_PASSWORD_REGEX": "Heslo musí mít alespoň 8 znaků a obsahovat alespoň jednu číslici",
+    "ERROR_EMAIL_REGEX": "Email nemá správný formát",
+    "ERROR_MODAL_CART_DUPLICATE": "Kurz již máte v košíku",
+    "ERROR_TERMS": "Musíte souhlasit s obchodními podmínkami",
+    "ERROR_RULES": "Musíte potvrdit, že jste si přečetl/a pradvidla dílny",
+    "ERROR_UNAUTHORIZED": "Chybně zadané heslo nebo e-mail",
+    "ERROR_PASS_MATCH": "Hesla se musí shodovat",
+    "ERROR_PHONE_REGEX": "Telefon musí být řádně výplněn",
+    "ERROR_NAME_REGEX": "Zadejte prosím platné jméno.",
+    "ERROR_EMAIL_FORMAT": "Email nemá správný formát",
+    "ERROR_MISSING_FIELDS": "Formulář musí být řádně vyplněn",
+    "ERROR_NO_SERVER_RESPONSE": "Žádná odezva serveru",
+    "ERROR_MISSING_CREDENTIALS": "Chybí e-mail nebo heslo",
+    "ERROR_USER_EXISTS": "Uživatel s tímto e-mailem již existuje",
+    "PHONE": "Telefon",
+    "STREET": "Ulice",
+    "CITY": "Město",
+    "POSTAL_CODE": "PSČ",
+    "REMOVE": "Odstranit",
+    "CURRENT_PASS": "Zadejte současné heslo",
+    "NEW_PASS": "Zadejte nové heslo",
+    "CONFIRM_PASS": "Zopakujte nové heslo",
+    "PRODUCT": "Chci rezervovat...",
+    "START_TIME": "Příchod",
+    "BOOKING_COLOR": "Barva",
+    "PRICE": "Cena",
+    "PRICE_PER_PERSON": "Cena za osobu",
+    "NOTE": "Poznámka pro nás",
+    "END_TIME": "Odchod",
+    "NUMBER_OF_GUESTS": "Uvedte počet hostů",
+    "CHANGE_PARTICIPANTS_INFO_LIMIT": "Maximální kapacita hostů je naplněna.",
+    "CAPACITY": "Kapacita",
+    "BOOKING_DETAILS": "Detail rezervace",
+    "LOGOUT_MSG_1": "Museli jsme vás odhlásit",
+    "LOGOUT_MSG_2": "Přihlaste se prosím znovu",
+    "LOGOUT_MSG_3": "Toto pomáhá udržet váš účet v bezpečí.",
+    "ADMIN": "Správa",
+    "MANAGEMENT": "Správa",
+    "CREDITS": "Kredity",
+    "CREDIT_BALANCE": "Zůstatek kreditů",
+    "ADD_CREDITS": "Přidat kredity",
+    "PURCHASE_CREDITS": "Zakoupit kredity",
+    "PAYMENT_METHOD": "Způsob platby",
+    "CREDIT_CARD": "Platební karta",
+    "AVAILABLE": "K dispozici",
+    "PROCESSING": "Zpracovávání...",
+    "PURCHASE": "Zakoupit",
+    "POPULAR": "Oblíbené",
+    "SELECT_PACKAGE": "Vyberte balíček",
+    "SELECTED_AMOUNT": "Vybraná částka",
+    "SELECTED": "Vybráno",
+    "CREDIT_PURCHASE_FAILED": "Platební stránku se nepodařilo otevřít. Zkuste to prosím znovu.",
+    "CREDIT_PURCHASE_LOGIN_REQUIRED": "Pro nákup kreditů je potřeba být přihlášen.",
+    "CREDIT_PURCHASE_DESCRIPTION": "Zakupte si kredity pro budoucí rezervace. Platbu bezpečně dokončíte přes Stripe.",
+    "CREDITS_ERROR": "Chyba při načítání kreditů",
+    "MY_BOOKINGS": "Moje rezervace",
+    "CANCEL_BOOKING": "Zrušit rezervaci",
+    "ADD_PARTICIPANTS": "Přidat účastníky",
+    "CONFIRM_CANCEL": "Potvrdit zrušení",
+    "CANCEL_BOOKING_WARNING": "Opravdu chcete zrušit tuto rezervaci? Obdržíte kredity v hodnotě rezervace.",
+    "REFUND_INFO": "Obdržíte",
+    "KEEP_BOOKING": "Zachovat rezervaci",
+    "CANCELLING": "Ruším rezervaci...",
+    "CURRENT_PARTICIPANTS": "Současní účastníci",
+    "ADDITIONAL_PARTICIPANTS": "Další účastníci",
+    "ADDITIONAL_COST": "Dodatečné náklady",
+    "UPDATING": "Aktualizuji...",
+    "PARTICIPANTS": "Účastníci",
+    "STATUS": "Stav",
+    "FIRST_NAME": "Jméno",
+    "LAST_NAME": "Příjmení",
+    "NO_BOOKINGS": "Nenalezeny žádné rezervace",
+    "PLEASE_WAIT": "Čekejte prosím, zpracováváme váš nákup...",
+    "BOOKING": "Rezervace",
+    "CONFIRMED": "Potvrzeno",
+    "PENDING": "Čeká na zpracování",
+    "CANCELLED": "Zrušeno",
+    "SELECT_TIME_FIRST": "Prosím vyberte si nejdříve čas začátku a konce rezervace.",
+    "COURSE_BOOKING": "Rezervace kurzu",
+    "screens": {
+      "otp": {
+        "close": "Zavřít ověření",
+        "continue": "Pokračovat",
+        "description": "Zadejte šestimístný kód, který jsme poslali na váš e-mail.",
+        "digit": "Číslice ověřovacího kódu {position}",
+        "expired": "Kód je neplatný nebo jeho platnost vypršela. Pošlete si nový.",
+        "generic": "Kód se nepodařilo ověřit. Zkuste to prosím znovu.",
+        "rateLimited": "Proběhlo příliš mnoho pokusů. Zkuste to znovu později.",
+        "resend": "Poslat nový kód",
+        "resendCountdown": "Nový kód můžete poslat za {seconds} s",
+        "resendError": "Nový kód se nepodařilo poslat. Zkuste to prosím znovu.",
+        "resending": "Odesíláme…",
+        "resent": "Nový kód jsme poslali na váš e-mail.",
+        "title": "Zkontrolujte svůj e-mail",
+        "verifying": "Ověřujeme…"
+      },
+      "passwordRequest": {
+        "back": "Zpět na přihlášení",
+        "description": "Zadejte e-mail propojený s účtem. Pošleme vám bezpečný kód pro nastavení nového hesla.",
+        "emailError": "Zadejte platnou e-mailovou adresu.",
+        "emailHelper": "Použijte adresu registrovanou v tomto studiu.",
+        "emailLabel": "E-mail",
+        "eyebrow": "Obnovení přístupu",
+        "genericError": "Kód se nepodařilo odeslat. Zkuste to prosím znovu.",
+        "rateLimited": "Proběhlo příliš mnoho žádostí. Zkuste to znovu později.",
+        "send": "Poslat ověřovací kód",
+        "sending": "Odesíláme…",
+        "title": "Obnovit heslo"
+      },
+      "passwordReset": {
+        "confirmError": "Hesla se neshodují.",
+        "confirmLabel": "Potvrzení nového hesla",
+        "confirmPlaceholder": "Zadejte nové heslo znovu",
+        "description": "Zvolte nové heslo. Po uložení budou z bezpečnostních důvodů odhlášena všechna zařízení.",
+        "expired": "Odkaz pro změnu hesla je neplatný nebo jeho platnost vypršela. Vyžádejte si nový kód.",
+        "genericError": "Heslo se nepodařilo změnit. Zkuste to prosím znovu.",
+        "hideConfirm": "Skrýt potvrzení hesla",
+        "hidePassword": "Skrýt nové heslo",
+        "passwordError": "Použijte 8 až 128 znaků a alespoň jednu číslici.",
+        "passwordHelper": "8 až 128 znaků a alespoň jedna číslice.",
+        "passwordLabel": "Nové heslo",
+        "passwordPlaceholder": "Zadejte nové heslo",
+        "rateLimited": "Proběhlo příliš mnoho pokusů. Zkuste to znovu později.",
+        "requestAgain": "Vyžádat nový kód",
+        "save": "Uložit nové heslo",
+        "saving": "Ukládáme…",
+        "showConfirm": "Zobrazit potvrzení hesla",
+        "showPassword": "Zobrazit nové heslo",
+        "title": "Nastavit nové heslo",
+        "eyebrow": "Zabezpečení účtu"
+      },
+      "passwordSuccess": {
+        "action": "Přejít na přihlášení",
+        "description": "Vaše heslo bylo bezpečně změněno. Přihlaste se znovu novými údaji.",
+        "eyebrow": "Hotovo",
+        "status": "Heslo je připravené k použití.",
+        "title": "Heslo bylo změněno"
+      },
+      "portalError": {
+        "title": "Informace o studiu se nepodařilo načíst",
+        "description": "Zkontrolujte připojení a zkuste to znovu.",
+        "retry": "Zkusit znovu",
+        "loading": "Načítání informací o studiu"
+      },
+      "portalLocations": {
+        "changed": "Aktuální studio bylo změněno na {studio}.",
+        "errorDescription": "Zkontrolujte připojení a zkuste to znovu.",
+        "errorTitle": "Studia se nepodařilo načíst",
+        "loading": "Načítáme vaše studia…",
+        "retry": "Zkusit znovu"
+      },
+      "portalTour": {
+        "welcome": {
+          "eyebrow": "Rychlý průvodce",
+          "title": "Jste tu poprvé?",
+          "description": "Projděte si krátkou prohlídku portálu studia před první rezervací.",
+          "duration": "Zabere asi 60 sekund. Kdykoli ji spustíte znovu v Nápovědě a návodech.",
+          "dismiss": "Teď ne",
+          "start": "Spustit prohlídku",
+          "close": "Zavřít prohlídku"
+        },
+        "progress": "Krok {current} z {total}",
+        "skip": "Přeskočit prohlídku",
+        "back": "Zpět",
+        "next": "Další",
+        "finish": "Začít rezervaci",
+        "final": {
+          "title": "Vše je připraveno",
+          "description": "Až budete chtít, vyberte čas v kalendáři. Prohlídku lze znovu spustit v Nápovědě a návodech."
+        },
+        "steps": {
+          "overview": {
+            "title": "Přehled vašeho portálu",
+            "description": "Na jednom místě najdete příští návštěvu, členské ID a zůstatek kreditu."
+          },
+          "studio": {
+            "title": "Vyberte studio",
+            "description": "Pokud má podnik více provozoven, vyberte zde tu, kterou chcete navštívit."
+          },
+          "calendarControls": {
+            "title": "Pohyb v kalendáři",
+            "description": "Přejděte na dnešek, změňte období či zobrazení a otevřete nebo zavřete legendu."
+          },
+          "legend": {
+            "title": "Rozumějte dostupnosti",
+            "description": "Legenda vysvětluje barvy volných časů a vašich rezervací."
+          },
+          "chooseTime": {
+            "title": "Vyberte volný čas",
+            "description": "Zvolte volný termín a před objednávkou zkontrolujte aktivitu, délku, počet osob a cenu."
+          },
+          "help": {
+            "title": "Nápověda je vždy po ruce",
+            "description": "V Nápovědě a návodech najdete postupy rezervace i možnost znovu spustit tuto prohlídku."
+          }
+        }
+      },
+      "portalGate": {
+        "title": "Stránka není dostupná",
+        "description": "Studio tuto stránku zákaznického portálu vypnulo.",
+        "continue": "Pokračovat v portálu",
+        "empty": "Pokud potřebujete pomoc s účtem nebo existující rezervací, kontaktujte studio."
+      },
+      "portalHelp": {
+        "trigger": "Nápověda a návody",
+        "eyebrow": "Nápověda k rezervacím",
+        "title": "Nápověda a návody",
+        "description": "Rezervace, poukazy a kredit studia.",
+        "introDescription": "Vyberte téma a zobrazí se jasný postup i přímý odkaz na správné místo.",
+        "close": "Zavřít nápovědu",
+        "tour": {
+          "eyebrow": "Základy portálu",
+          "title": "Prohlídka portálu",
+          "summary": "Poznejte kalendář rezervací a svůj účet přibližně za 60 sekund.",
+          "action": "Přehrát prohlídku znovu"
+        },
+        "note": "Dostupnost a pravidla zrušení určuje studio. Pokud daná akce není k dispozici, obraťte se přímo na studio.",
+        "topics": {
+          "createBooking": {
+            "title": "Jak vytvořit rezervaci",
+            "summary": "Vyberte termín ve studiu a dokončete objednávku.",
+            "action": "Vytvořit rezervaci",
+            "steps": {
+              "0": "Otevřete Rezervovat návštěvu a zvolte provozovnu, kterou chcete navštívit.",
+              "1": "Vyberte produkt, volný den a čas a přidejte rezervaci do košíku.",
+              "2": "Zkontrolujte údaje, zvolte způsob platby a potvrďte objednávku."
+            }
+          },
+          "redeemVoucher": {
+            "title": "Jak uplatnit dárkový poukaz",
+            "summary": "Hodnota poukazu se připíše jako kredit studia.",
+            "action": "Uplatnit poukaz",
+            "steps": {
+              "0": "V portálu otevřete Dárkové poukazy.",
+              "1": "Zadejte kód ve formátu D4T-32S-053 a zvolte Uplatnit poukaz.",
+              "2": "Hodnota poukazu se připíše ke kreditům, které můžete použít při další rezervaci."
+            }
+          },
+          "cancelBooking": {
+            "title": "Jak zrušit rezervaci",
+            "summary": "Zrušte způsobilou rezervaci před odesláním vstupního kódu.",
+            "action": "Otevřít moje rezervace",
+            "steps": {
+              "0": "Otevřete Moje rezervace a vyberte nadcházející rezervaci.",
+              "1": "Zvolte Upravit, poté Zrušit rezervaci a zrušení potvrďte.",
+              "2": "Uhrazená částka se vrátí jako kredit studia; členský kredit se obnoví. U kurzů kontaktujte studio."
+            }
+          },
+          "editBooking": {
+            "title": "Jak upravit rezervaci",
+            "summary": "Přesuňte způsobilou rezervaci Open Studia na jiný termín.",
+            "action": "Otevřít moje rezervace",
+            "steps": {
+              "0": "Otevřete Moje rezervace a u nadcházející rezervace zvolte Upravit.",
+              "1": "Vyberte nové datum a dostupný čas začátku.",
+              "2": "Potvrďte nový termín. Produkt, provozovna, délka i počet osob zůstanou stejné."
+            }
+          },
+          "useCredits": {
+            "title": "Jak použít kredity studia",
+            "summary": "Zaplaťte rezervaci ze svého dostupného zůstatku.",
+            "action": "Začít rezervaci",
+            "steps": {
+              "0": "Přidejte rezervaci do košíku a otevřete souhrn objednávky.",
+              "1": "V části Způsob platby zvolte Kredity studia.",
+              "2": "Kredity lze vybrat, pokud pokryjí celou objednávku. Jinak kredity doplňte nebo zaplaťte kartou."
+            }
+          }
+        }
+      },
+      "studioSwitcher": {
+        "change": "Změnit studio",
+        "changed": "Studio bylo změněno na {name}.",
+        "current": "Aktuální studio",
+        "empty": "Momentálně není dostupné žádné studio."
+      },
+      "portalDashboard": {
+        "admin": "Administrátor",
+        "moderator": "Moderátor",
+        "eyebrow": "Vaše studio",
+        "greeting": "Vítejte zpět",
+        "intro": "Rezervace, vaše tvorba a výhody studia na jednom klidném místě.",
+        "book": "Rezervovat návštěvu",
+        "currentStudio": "Aktuální studio",
+        "upcoming": "Další návštěva",
+        "upcomingLoading": "Hledáme váš nejbližší termín…",
+        "upcomingError": "Nejbližší termín teď nelze načíst.",
+        "upcomingEmpty": "Zatím nemáte rezervovaný termín",
+        "upcomingEmptyDescription": "Až budete chtít, vyberte si volný čas v kalendáři.",
+        "chooseTime": "Vybrat termín",
+        "manageBooking": "Zobrazit rezervaci",
+        "cancelBooking": "Zrušit rezervaci",
+        "member": "Členské ID",
+        "credits": "Kredity",
+        "copyMemberId": "Kopírovat členské ID",
+        "copiedMemberId": "Členské ID zkopírováno",
+        "calendarEyebrow": "Kalendář studia",
+        "calendarTitle": "Naplánujte si další návštěvu",
+        "calendarDescription": "Vyberte studio a potom volný termín v kalendáři.",
+        "calendarSuggestion": {
+          "eyebrow": "Vyzkoušejte kalendář",
+          "title": "Tímto dostupným termínem můžete začít",
+          "description": "Jde pouze o návrh. Vyberte ho, nebo si v kalendáři zvolte jiný termín.",
+          "action": "Vybrat tento termín",
+          "dismiss": "Skrýt navržený termín",
+          "unavailable": "Teď se nepodařilo navrhnout volný termín. Prohlédněte si jiný den nebo kontaktujte studio."
+        },
+        "calendarSelection": {
+          "summary": "Vybraný termín",
+          "continue": "Pokračovat",
+          "clear": "Zrušit vybraný termín"
+        },
+        "bookingFallback": "Návštěva studia",
+        "locationFallback": "Vaše studio",
+        "creditLoading": "Načítáme…",
+        "creditUnavailable": "Nedostupné"
+      },
+      "bookingStatus": {
+        "confirmed": "Potvrzeno",
+        "awaiting_payment": "Čeká na platbu",
+        "awaiting_confirmation": "Platba přijata · rezervace čeká na potvrzení",
+        "expired": "Lhůta pro zaplacení vypršela",
+        "failed": "Platba se nezdařila",
+        "cancelled": "Zrušeno",
+        "completed": "Dokončeno",
+        "attention": "Kontaktujte studio a ověřte stav rezervace."
+      },
+      "cartPayment": {
+        "title": "Způsob platby",
+        "card": "Platební karta",
+        "money_credits": "Kredity studia",
+        "membership_credits": "Výhoda členství",
+        "includedHours": "Hodiny zahrnuté v členství",
+        "available": "k dispozici",
+        "required": "čerpání za tuto rezervaci",
+        "addCredits": "Přidat kredity",
+        "insufficientCredits": "Na tuto objednávku nemáte dostatek kreditů studia.",
+        "unavailable": "Tímto způsobem nelze uhradit celou objednávku.",
+        "reasons": {
+          "customer_booking_extension_card_window": "Takto blízko konce rezervace už nelze platit kartou. Návštěvu prodlužte pomocí kreditů studia.",
+          "membership_insufficient_hours": "Na tuto rezervaci nemáte dostatek zahrnutých hodin.",
+          "membership_member_only": "Zahrnuté hodiny platí pouze pro člena. Svou návštěvu rezervujte odděleně od hostů.",
+          "membership_outside_paid_period": "Návštěva musí proběhnout v zaplaceném období členství.",
+          "membership_product_ineligible": "Tato výhoda neplatí pro vybranou aktivitu.",
+          "membership_location_ineligible": "Tato výhoda neplatí ve vybraném studiu.",
+          "membership_location_not_allowed": "Tato výhoda neplatí ve vybraném studiu.",
+          "membership_open_studio_only": "Zahrnuté hodiny platí pouze pro sdílené rezervace ateliéru.",
+          "membership_personal_booking_required": "Zahrnuté hodiny čerpejte na jednu vlastní rezervaci ateliéru najednou.",
+          "membership_entitlement_currency_mismatch": "Tato výhoda používá jinou měnu než vaše objednávka.",
+          "private_booking_surcharge_requires_money": "Soukromou rezervaci uhraďte kartou nebo kredity studia."
+        }
+      },
+      "paymentMethods": {
+        "label": "Způsob platby",
+        "checking": "Ověřujeme kredity…",
+        "card": "Platební karta",
+        "cardDescription": "Bezpečná online platba",
+        "credits": "Kredity studia",
+        "creditsDescription": "Použít dostupný zůstatek",
+        "covered": "Kredity pokryjí celou objednávku.",
+        "insufficient": "Je potřeba více kreditů",
+        "shortfall": "Chybějící kredity",
+        "short": "chybí",
+        "addCredits": "Přidat kredity"
+      },
+      "bookingSidebar": {
+        "title": "Rezervace studia",
+        "subtitle": "Vyberte datum, čas začátku a délku rezervace.",
+        "location": "Studio",
+        "product": "Typ rezervace",
+        "date": "Datum",
+        "start": "Začátek",
+        "duration": "Délka",
+        "guests": "Počet osob",
+        "select": "Vyberte možnost",
+        "closed": "Studio je v tento den zavřené.",
+        "available": "Tento termín je nyní k dispozici.",
+        "unavailable": "Tento termín už není podle aktuální kapacity k dispozici.",
+        "recheck": "Dostupnost znovu ověříme při dokončení objednávky.",
+        "summary": "Shrnutí",
+        "total": "Cena",
+        "cancel": "Zavřít",
+        "add": "Přidat do košíku",
+        "missingLocation": "Nejprve vyberte studio.",
+        "missingProduct": "Pro toto studio není dostupný žádný typ rezervace.",
+        "classTitle": "Rezervace lekce",
+        "classSubtitle": "Zkontrolujte vybraný termín lekce a počet účastníků.",
+        "classProduct": "Lekce",
+        "classType": "Typ produktu",
+        "classLabel": "Lekce",
+        "classMissing": "Vybraná lekce už není dostupná.",
+        "sessionPrice": "Cena rezervace",
+        "classPrice": "Cena lekce",
+        "checking": "Ověřujeme dostupnost…",
+        "added": "Přidáno do košíku"
+      },
+      "customerDefaults": {
+        "login": {
+          "eyebrow": "Váš prostor pro tvoření",
+          "headline": "Vítejte zpět.",
+          "description": "Přihlaste se a mějte rezervace, výrobky i kredity přehledně na jednom místě."
+        },
+        "register": {
+          "eyebrow": "Jeden účet pro toto studio",
+          "headline": "Vše, co tvoříte, přehledně spolu.",
+          "description": "Jednoduchý přístup k rezervacím, výrobkům, kurzům i kreditům tohoto studia."
+        },
+        "portal": {
+          "eyebrow": "Vaše studio",
+          "headline": "Vítejte zpět",
+          "description": "Rezervace, vaše tvorba a výhody studia na jednom klidném místě."
+        },
+        "website": {
+          "home": {
+            "description": "Objevte {studio}, prohlédněte si možnosti návštěvy a zjistěte vše potřebné před dalším dnem ve studiu."
+          },
+          "book": {
+            "title": "Podívejte se, kdy je {studio} obsazené",
+            "description": "Vyberte studio a ještě před přihlášením si prohlédněte zobrazené obsazené časy."
+          },
+          "courses": {
+            "title": "Kurzy v {studio}",
+            "description": "Objevte zveřejněné kurzy. Pro pokračování k termínům se přihlaste."
+          },
+          "memberships": {
+            "title": "Členství ve studiu {studio}",
+            "description": "Porovnejte zveřejněné plány, pobočky, ceny, měsíční kredity, automatické slevy a zahrnuté výhody."
+          },
+          "vouchers": {
+            "title": "Dárek pro radost z tvorby",
+            "description": "Vyberte zveřejněný dárkový poukaz a darujte někomu svobodu tvořit ve studiu {studio}."
+          },
+          "help": {
+            "title": "Vše potřebné pro vaši další návštěvu studia",
+            "description": "Najděte ověřené návody, videa, odpovědi a užitečné materiály studia na jednom místě."
+          }
+        }
+      },
+      "creditBalance": {
+        "eyebrow": "Dostupný zůstatek",
+        "title": "Studio kredity",
+        "loading": "Načítání kreditů…",
+        "errorTitle": "Zůstatek se nepodařilo načíst",
+        "errorDescription": "Zkontrolujte připojení a zkuste načíst zůstatek znovu.",
+        "retry": "Zkusit znovu",
+        "description": "Kredity můžete použít na rezervace, nákupy a další platby ve studiu.",
+        "add": "Přidat kredity",
+        "hint": "Zůstatek se automaticky aktualizuje po každé platbě nebo vrácení peněz."
+      },
+      "creditHistory": {
+        "eyebrow": "Pohyby kreditů",
+        "title": "Historie transakcí",
+        "loading": "Načítání transakcí…",
+        "errorTitle": "Historii se nepodařilo načíst",
+        "errorDescription": "Zkontrolujte připojení a zkuste načíst transakce znovu.",
+        "retry": "Zkusit znovu",
+        "refresh": "Obnovit",
+        "emptyTitle": "Zatím žádné transakce",
+        "emptyDescription": "Všechny pohyby kreditů se zobrazí právě tady.",
+        "dateUnknown": "Datum není k dispozici",
+        "previous": "Předchozí",
+        "next": "Další",
+        "pagination": "Stránkování transakcí",
+        "types": {
+          "added": "Kredity přidány",
+          "used": "Kredity použity",
+          "refund": "Kredity vráceny",
+          "coupon_redeemed": "Poukaz uplatněn",
+          "admin_granted": "Přidáno studiem",
+          "purchased": "Zakoupené kredity",
+          "other": "Kreditní transakce"
+        }
+      },
+      "creditsPage": {
+        "eyebrow": "Studio kredit",
+        "title": "Kredity",
+        "description": "Spravujte svůj zůstatek a mějte všechny pohyby na jednom přehledném místě."
+      },
+      "cart": {
+        "close": "Zavřít košík",
+        "eyebrow": "Vaše objednávka",
+        "title": "Zkontrolujte rezervaci",
+        "subtitle": "Ověřte detaily návštěvy a vyberte způsob bezpečné platby.",
+        "item": "položka",
+        "items": "položky",
+        "itemsMany": "položek",
+        "orderSummary": "Shrnutí objednávky",
+        "total": "Celkem",
+        "date": "Datum",
+        "time": "Čas",
+        "studio": "Studio",
+        "guests": "Osoby",
+        "quantity": "Počet kusů",
+        "hourlyRate": "Cena za hodinu",
+        "bookingType": "Typ rezervace",
+        "privateBooking": "Výhradní studio",
+        "remove": "Odebrat",
+        "emptyTitle": "Váš košík je zatím prázdný",
+        "emptyDescription": "Vyberte si termín v kalendáři studia a objeví se zde.",
+        "returnToStudio": "Zpět do studia",
+        "secureCheckout": "Bezpečná platba",
+        "secureDescription": "Platba bude dokončena přes zabezpečenou platební stránku.",
+        "continueToPayment": "Pokračovat k platbě",
+        "payWithCredits": "Zaplatit kredity",
+        "confirmWithMembership": "Rezervovat s členstvím",
+        "membershipSecureDescription": "Zahrnuté hodiny odečteme po potvrzení rezervace.",
+        "checkingBenefits": "Ověřujeme cenu a výhody členství…",
+        "quoteFailed": "Cenu a výhody členství se nepodařilo ověřit. Zkuste to znovu.",
+        "retryQuote": "Zkusit znovu",
+        "subtotal": "Před slevou",
+        "membershipDiscount": "Členská sleva",
+        "membershipCoversOrder": "Tuto objednávku pokrývá vaše členství. Nic nedoplácíte.",
+        "mixedCurrencies": "Jedna objednávka nemůže obsahovat položky v různých měnách.",
+        "processing": "Připravujeme bezpečnou platbu…",
+        "processingDescription": "Prosím, toto okno nezavírejte.",
+        "itemCount": "{count, plural, one {# položka} few {# položky} other {# položek}}"
+      },
+      "menu": {
+        "STUDIO_CALENDAR": "Studio",
+        "MY_BOOKINGS": "Moje rezervace",
+        "VOUCHERS": "Poukazy",
+        "TUTORIALS": "Rady studia",
+        "OPERATIONS": "Provoz",
+        "CUSTOMERS": "Zákazníci",
+        "COMMUNICATION": "Komunikace",
+        "COMMERCE": "Obchod",
+        "INVENTORY": "Sklad",
+        "INSIGHTS": "Přehledy",
+        "MANAGEMENT": "Správa",
+        "navigation": "Navigace přehledu",
+        "openMenu": "Otevřít nabídku",
+        "closeMenu": "Zavřít nabídku",
+        "title": "Nabídka"
+      },
+      "bookingAvailability": {
+        "loading": {
+          "title": "Ověřujeme dostupnost…",
+          "description": "Aktualizujeme tento termín podle údajů studia."
+        },
+        "available": {
+          "title": "Tento termín je dostupný.",
+          "description": "Dostupnost znovu ověříme při dokončení objednávky."
+        },
+        "incomplete": {
+          "title": "Doplňte údaje rezervace",
+          "description": "Vyberte studio, typ rezervace, datum a čas pro ověření dostupnosti."
+        },
+        "location": {
+          "title": "Online rezervace není dostupná",
+          "description": "Toto studio nyní nepřijímá online rezervace."
+        },
+        "overlap": {
+          "title": "Termín se překrývá s jinou rezervací",
+          "description": "V tomto termínu nelze přidat překrývající se rezervaci. Vyberte jiný čas."
+        },
+        "capacity": {
+          "title": "Studio je v tomto termínu plné",
+          "description": "Vyberte jiný čas nebo snižte počet osob."
+        },
+        "activity": {
+          "title": "Tato aktivita je v daném termínu plná",
+          "description": "Vyberte jiný čas nebo jinou aktivitu."
+        },
+        "unavailable": {
+          "title": "Tento termín není dostupný",
+          "description": "Vyberte jiný čas a dostupnost znovu ověříme."
+        },
+        "guestCount": "{count, plural, one {# osoba} few {# osoby} other {# osob}}"
+      },
+      "bookingKinds": {
+        "open-studio": "Sdílený prostor",
+        "sharedOpenStudio": "Sdílená rezervace prostoru",
+        "exclusiveOpenStudio": "Výhradní rezervace prostoru",
+        "class": "Lekce",
+        "membership": "Členství",
+        "voucher": "Poukaz",
+        "private-studio": "Soukromý prostor",
+        "unknown": "Neznámý typ"
+      },
+      "voucherStatuses": {
+        "pending_coupon_payment": "Čeká na platbu",
+        "processed_coupon": "Zpracováno",
+        "shipped_coupon": "Odesláno"
+      },
+      "management": {
+        "modules": {
+          "users-staff": {
+            "label": "Zákazníci a tým",
+            "description": "Správa zákazníků, kreditů, členů týmu a interního přístupu."
+          },
+          "bookings": {
+            "label": "Rezervace",
+            "description": "Rezervace, účastníci a kapacita studia."
+          },
+          "products": {
+            "label": "Produkty",
+            "description": "Produkty, kurzy, rezervace a ceník."
+          },
+          "orders": {
+            "label": "Objednávky",
+            "description": "Objednávky, platby a historie nákupů."
+          },
+          "inventory": {
+            "label": "Sklad",
+            "description": "Skladové položky, dodavatelé, příjmy, výdeje, inventury a doobjednávky."
+          },
+          "studio-orders": {
+            "label": "Zakázky",
+            "description": "Zakázky, firemní objednávky, termíny, odpovědné osoby a stav řešení."
+          },
+          "staff-tasks": {
+            "label": "Úkoly",
+            "description": "Týdenní přehled práce týmu, priority, blokace a dokončené úkoly."
+          },
+          "memberships": {
+            "label": "Členství",
+            "description": "Správa členství, měsíčních kreditů, výhod a prioritních rezervací."
+          },
+          "statistics": {
+            "label": "Přehledy",
+            "description": "Důležité metriky, přehledy a generování reportů pro studio."
+          },
+          "automated-communications": {
+            "label": "Automatické zprávy",
+            "description": "Sledujte odeslané, čekající a naplánované e-maily. Automatické zprávy a odesílací e-maily najdete v dalších záložkách."
+          },
+          "events": {
+            "label": "Akce",
+            "description": "Eventy, teambuildingy, soukromé akce a propojení se zakázkami."
+          },
+          "vouchers": {
+            "label": "Poukazy",
+            "description": "Vouchery, promokódy a ruční vytváření kódů."
+          }
+        },
+        "groups": {
+          "Core": "Základní",
+          "Studio": "Prostory",
+          "Team": "Tým",
+          "Growth": "Růst",
+          "Communication": "Komunikace",
+          "Sales": "Prodej",
+          "Other": "Ostatní",
+          "Admin": "Správa"
+        },
+        "title": "Správa",
+        "denied": "Nemáte oprávnění pro vstup do administrace.",
+        "adminAccess": "Přístup správce",
+        "moderatorAccess": "Přístup moderátora",
+        "section": "Sekce administrace"
+      }
+    },
+    "copy": {
+      "LocationScopedMyBookingsTable_Book_a_session_bf464": "Rezervovat studio",
+      "LocationScopedMyBookingsTable_Booking_overview_a8c35": "Přehled rezervací",
+      "LocationScopedMyBookingsTable_Loading_bookings_bfbf6": "Načítám rezervace…",
+      "LocationScopedMyBookingsTable_Bookings_could_not_be_loaded_e531a": "Rezervace se nepodařilo načíst",
+      "LocationScopedMyBookingsTable_Check_your_connection_and_try_again_56386": "Zkontrolujte připojení a zkuste to znovu.",
+      "LocationScopedMyBookingsTable_Try_again_042c8": "Zkusit znovu",
+      "LocationScopedMyBookingsTable_Booking_history_a8ef6": "Historie rezervací",
+      "LocationScopedMyBookingsTable_Upcoming_visits_ecb00": "Nadcházející návštěvy",
+      "LocationScopedMyBookingsTable_Booking_range_9d1f1": "Rozsah rezervací",
+      "LocationScopedMyBookingsTable_Upcoming_523ba": "Nadcházející",
+      "LocationScopedMyBookingsTable_History_90ccd": "Historie",
+      "LocationScopedMyBookingsTable_View_69bd4": "Zobrazit",
+      "LocationScopedMyBookingsTable_Completed_and_cancelled_bookings_will_appear_here_e9311": "Po dokončení nebo zrušení rezervace ji najdete zde.",
+      "LocationScopedMyBookingsTable_Choose_a_studio_time_and_plan_your_next_visit_5f44f": "Vyberte si čas ve studiu a naplánujte si další návštěvu.",
+      "LocationScopedMyBookingsTable_Studio_5b23b": "Dílna",
+      "LocationScopedMyBookingsTable_Guests_3c23a": "Počet osob",
+      "LocationScopedMyBookingsTable_Booking_pagination_b2e65": "Stránkování rezervací",
+      "LocationScopedMyBookingsTable_Previous_50f94": "Předchozí",
+      "LocationScopedMyBookingsTable_Next_bc981": "Další",
+      "Login_Your_studio_1b32c": "Vaše studio",
+      "Login_Use_the_account_connected_with_this_studio_a1282": "Použijte účet propojený s tímto studiem.",
+      "Login_Customer_access_aaae3": "Zákaznický účet",
+      "Login_Sign_in_ada2e": "Přihlásit se",
+      "Login_Your_booking_selection_is_saved_Sign_in_to_continue_whe_41b95": "Váš výběr rezervace je uložený. Po přihlášení můžete plynule pokračovat.",
+      "Login_Password_8be3c": "Heslo",
+      "Login_Show_password_044b8": "Zobrazit heslo",
+      "Login_Hide_password_e4012": "Skrýt heslo",
+      "Login_Signing_in_c66b2": "Přihlašujeme…",
+      "Login_New_to_this_studio_938fe": "Ještě nemáte účet? ",
+      "Login_Create_account_aaf37": "Vytvořit účet",
+      "BookingInfoModal_Type_3deb7": "Typ",
+      "BookingInfoModal_Lecturer_e396e": "Lektor",
+      "TermsText_I_accept_the_0dc66": "Souhlasím s ",
+      "TermsText_studio_rules_d3727": "pravidla dílny",
+      "TermsText_Terms_and_Conditions_89403": "obchodními podmínkami",
+      "Registration_Your_studio_1b32c": "Vaše studio",
+      "Registration_First_name_must_contain_at_least_2_characters_1c536": "Jméno musí obsahovat alespoň 2 znaky.",
+      "Registration_Last_name_must_contain_at_least_2_characters_c5dd3": "Příjmení musí obsahovat alespoň 2 znaky.",
+      "Registration_Please_enter_a_valid_email_address_d2306": "Zadejte platnou e-mailovou adresu.",
+      "Registration_Please_enter_a_valid_phone_number_c08e1": "Zadejte platné telefonní číslo.",
+      "Registration_Password_must_be_at_least_8_characters_long_and_contain_3d73c": "Heslo musí mít alespoň 8 znaků a obsahovat alespoň 1 číslici.",
+      "Registration_Passwords_do_not_match_f7c3c": "Hesla se neshodují.",
+      "Registration_It_only_takes_a_moment_and_you_will_not_need_to_enter_y_89bc4": "Zabere to jen chvilku. Údaje pak nebudete zadávat při každé návštěvě.",
+      "Registration_Customer_access_aaae3": "Zákaznický účet",
+      "Registration_Create_account_aaf37": "Vytvořit účet",
+      "Registration_Your_booking_selection_is_saved_Create_your_account_to_c9b1a": "Váš výběr rezervace je uložený. Po registraci můžete plynule pokračovat.",
+      "Registration_Your_details_a6252": "Vaše údaje",
+      "Registration_Account_security_0afc7": "Zabezpečení účtu",
+      "Registration_At_least_8_characters_and_1_number_87242": "Alespoň 8 znaků a 1 číslice.",
+      "Registration_Show_password_044b8": "Zobrazit heslo",
+      "Registration_Hide_password_e4012": "Skrýt heslo",
+      "Registration_Show_password_confirmation_c4411": "Zobrazit potvrzení hesla",
+      "Registration_Hide_password_confirmation_7dbbe": "Skrýt potvrzení hesla",
+      "Registration_Information_about_personal_data_processing_is_available_c4190": "Informace o zpracování osobních údajů najdete v ",
+      "Registration_privacy_policy_478db": "zásadách ochrany osobních údajů",
+      "Registration_Creating_account_baab5": "Vytváříme účet…",
+      "Registration_Already_registered_e7edd": "Už máte účet? ",
+      "Registration_Sign_in_ada2e": "Přihlaste se",
+      "CartModal_Checkout_failed_Please_try_again_ef7be": "Platbu se nepodařilo zahájit. Zkuste to prosím znovu.",
+      "CartModal_Includes_one_time_private_booking_surcharge_67d5a": "Včetně jednorázového příplatku za soukromou rezervaci",
+      "ConfirmationModal_Close_bbfa7": "Zavřít",
+      "CartCreditSummary_Available_for_this_checkout_42c3f": "Lze použít při dokončení objednávky.",
+      "CartCreditSummary_Credits_can_be_used_as_a_discount_when_completing_your_0951c": "Kredity můžete využít jako slevu při dokončení objednávky.",
+      "CreditPurchaseModal_Close_bbfa7": "Zavřít",
+      "Cancel_Payment_cancelled_af438": "Platba zrušena",
+      "Cancel_What_you_can_do_next_78edc": "Co můžeš zkusit",
+      "Cancel_Try_again_sometimes_a_second_attempt_works_c3e09": "Zkus platbu znovu — někdy stačí druhý pokus.",
+      "Cancel_If_you_used_Apple_Pay_Google_Pay_try_paying_by_card_ins_084d5": "Pokud používáš Apple Pay / Google Pay, zkus i klasickou platbu kartou.",
+      "Cancel_If_it_keeps_happening_message_us_and_we_ll_help_ebf8e": "Kdyby problém přetrvával, napiš nám a pomůžeme.",
+      "Cancel_No_charge_is_made_until_the_payment_is_completed_5ec3b": "Žádné peníze se nestrhly, dokud se platba nedokončí.",
+      "VoucherForm_You_need_to_be_signed_in_to_redeem_a_voucher_7fb72": "Pro uplatnění poukazu je potřeba být přihlášen.",
+      "VoucherForm_The_voucher_could_not_be_redeemed_Please_try_again_1d1d3": "Nepodařilo se uplatnit poukaz. Zkuste to prosím znovu.",
+      "VoucherForm_Redeemed_vouchers_1733e": "Uplatněné poukazy",
+      "VoucherForm_Vouchers_credits_fd59d": "Poukazy a kredity",
+      "VoucherForm_My_vouchers_9cb49": "Moje poukazy",
+      "VoucherForm__If_you_have_multiple_vouchers_you_can_redeem_them_one_8e5cf": "• Pokud máte více poukazů, můžete je uplatnit postupně.",
+      "VoucherForm__Voucher_values_are_added_together_automatically_a418b": "• Hodnoty poukazů se vám automaticky sčítají.",
+      "VoucherForm_Voucher_redemption_73a64": "Uplatnění poukazu",
+      "VoucherForm_Voucher_code_eae7b": "Kód poukazu",
+      "VoucherForm_Invalid_format_Use_for_example_D4T_32S_053_16c67": "Neplatný formát. Použijte např. D4T-32S-053",
+      "VoucherForm_Redeem_voucher_4b8cd": "Uplatnit poukaz",
+      "VoucherForm_History_90ccd": "Historie",
+      "VoucherForm_You_need_to_be_signed_in_to_view_redeemed_vouchers_70781": "Pro zobrazení uplatněných poukazů je potřeba být přihlášen.",
+      "VoucherForm_Redeemed_vouchers_could_not_be_loaded_1c156": "Nepodařilo se načíst uplatněné poukazy.",
+      "VoucherForm_Refresh_56e3b": "Obnovit",
+      "VoucherForm_Date_eb9a4": "Datum",
+      "VoucherForm_You_do_not_have_any_redeemed_vouchers_yet_46648": "Zatím nemáte žádné uplatněné poukazy.",
+      "VoucherForm_Name_709a2": "Název",
+      "VoucherForm_Redeemed_on_d5f93": "Datum uplatnění",
+      "PasswordForm_Could_not_update_the_password_Please_try_again_950ff": "Nepodařilo se změnit heslo. Zkuste to prosím znovu.",
+      "PasswordForm_Security_f25ce": "Zabezpečení",
+      "PasswordForm_Login_password_24141": "Přihlašovací heslo",
+      "PasswordForm_Keep_your_password_secure_We_recommend_using_a_mix_of_l_d9679": "Udržujte své heslo bezpečné. Doporučujeme použít kombinaci písmen, čísel a speciálních znaků.",
+      "PasswordForm_Member_ID_7a88b": "Členské ID",
+      "PasswordForm_Change_64fbd": "Změnit",
+      "PasswordForm_Password_is_set_9d82f": "Heslo je nastavené",
+      "PasswordForm_Current_password_19dff": "Zadejte aktuální heslo",
+      "PasswordForm_New_password_d850e": "Zadejte nové heslo",
+      "PasswordForm_Confirm_new_password_f8503": "Zopakujte nové heslo",
+      "PasswordForm_After_saving_the_new_password_will_be_used_for_your_nex_db03d": "Po uložení se nové heslo použije při dalším přihlášení.",
+      "PasswordForm_Saving_ae7e8": "Ukládám...",
+      "SidebarForm__not_available_for_this_currency_yet_8de74": "(pro tuto měnu zatím není dostupné)",
+      "VoucherForm_You_need_to_be_signed_in_to_manage_your_vouchers_b0465": "Pro správu poukazů je potřeba být přihlášen.",
+      "VoucherForm_Studio_benefits_735a6": "Výhody studia",
+      "VoucherForm_Gift_vouchers_e8ee2": "Dárkové poukazy",
+      "VoucherForm_Redeem_a_gift_voucher_and_use_its_value_as_credit_towar_25234": "Uplatněte dárkový poukaz a jeho hodnotu použijte jako kredit při příští návštěvě.",
+      "VoucherForm_Redeem_a_voucher_69a95": "Uplatnit poukaz",
+      "VoucherForm_Add_studio_credit_080dc": "Přidejte kredit",
+      "VoucherForm__for_example_D4T_32S_053_b5110": "(např. D4T-32S-053)",
+      "VoucherForm_Use_the_format_D4T_32S_053_fab4a": "Použijte formát D4T-32S-053.",
+      "VoucherForm_Redeeming_12d34": "Uplatňuji…",
+      "VoucherForm_Your_vouchers_bbc3d": "Vaše poukazy",
+      "VoucherForm_A_history_of_vouchers_added_to_your_account_2773c": "Historie poukazů připsaných k vašemu účtu.",
+      "VoucherForm_Loading_vouchers_eec52": "Načítání poukazů…",
+      "VoucherForm_Vouchers_could_not_be_loaded_3d2e9": "Poukazy se nepodařilo načíst",
+      "VoucherForm_Check_your_connection_and_try_again_56386": "Zkontrolujte připojení a zkuste to znovu.",
+      "VoucherForm_Try_again_042c8": "Zkusit znovu",
+      "VoucherForm_Sign_in_to_see_your_vouchers_e24c2": "Přihlaste se ke svým poukazům",
+      "VoucherForm_No_redeemed_vouchers_yet_18387": "Zatím žádné poukazy",
+      "VoucherForm_Your_first_redeemed_code_will_appear_here_with_its_valu_e69ea": "Po uplatnění prvního kódu se zde zobrazí jeho hodnota a datum.",
+      "VoucherForm_Redeemed_35cc3": "Uplatněno",
+      "VoucherForm_Voucher_409ca": "Poukaz",
+      "BookingSuccess_You_can_manage_your_booking_in_the_My_bookings_section_60eb1": "Rezervaci najdete v sekci \"Moje rezervace\".",
+      "BookingSuccess_Processing_e6345": "Zpracovává se",
+      "BookingSuccess_We_are_confirming_your_payment_c9b64": "Potvrzujeme vaši platbu",
+      "BookingSuccess_Your_payment_is_being_processed_We_will_confirm_the_boo_46e80": "Platbu jsme přijali ke zpracování. Rezervaci potvrdíme, jakmile obdržíme bezpečné potvrzení platby.",
+      "BookingSuccess_You_can_leave_this_page_open_the_status_refreshes_autom_2b868": "Tuto stránku můžete nechat otevřenou; stav se aktualizuje automaticky.",
+      "BookingSuccess_Not_confirmed_b9e09": "Nepotvrzeno",
+      "BookingSuccess_The_payment_was_not_completed_a993b": "Platbu se nepodařilo dokončit",
+      "BookingSuccess_The_booking_was_not_confirmed_Your_cart_was_kept_so_you_73aa5": "Rezervace nebyla potvrzena. Obsah košíku jsme zachovali, abyste mohli platbu bezpečně zkusit znovu.",
+      "BookingSuccess_If_you_were_charged_anyway_contact_the_studio_and_inclu_73483": "Pokud vám přesto byla částka stržena, kontaktujte studio a uveďte číslo objednávky.",
+      "BookingSuccess_Unable_to_verify_43e97": "Nelze ověřit",
+      "BookingSuccess_We_cannot_verify_the_status_yet_278a5": "Stav zatím neznáme",
+      "BookingSuccess_The_order_status_could_not_be_loaded_This_does_not_mean_d1477": "Nepodařilo se načíst stav objednávky. Neznamená to, že platba selhala.",
+      "BookingSuccess_Try_checking_the_status_again_Your_cart_remains_intact_b97b0": "Zkuste stav zkontrolovat znovu. Košík zůstává zachovaný.",
+      "BookingSuccess_The_order_reference_is_missing_7c577": "Chybí číslo objednávky",
+      "BookingSuccess_This_return_link_has_no_valid_order_reference_so_the_bo_69ea4": "Tento návratový odkaz neobsahuje platné číslo objednávky, proto rezervaci nemůžeme potvrdit.",
+      "BookingSuccess_We_kept_your_cart_Return_to_the_portal_or_contact_the_s_b05de": "Košík jsme nesmazali. Vraťte se do portálu nebo kontaktujte studio.",
+      "BookingSuccess_Back_to_portal_0633f": "Zpět do portálu",
+      "BookingSuccess_Back_to_home_34ac3": "Zpět na úvod",
+      "BookingSuccess_Checking_status_c74a3": "Kontroluji stav…",
+      "BookingSuccess_Waiting_for_confirmation_ce436": "Čekám na potvrzení…",
+      "BookingSuccess_Order_1d757": "Objednávka",
+      "BookingSuccess_Check_again_e1850": "Zkontrolovat znovu",
+      "ConfirmationDetails_Confirmed_details_f7c49": "Potvrzené údaje",
+      "ConfirmationDetails_Booking_e38ea": "Rezervace",
+      "ConfirmationDetails_Participants_cd56e": "Počet osob",
+      "ConfirmationDetails_Payment_source_31c56": "Způsob platby",
+      "ConfirmationDetails_Total_b2592": "Celkem",
+      "CourseCard_Capacity_45bd9": "Kapacita",
+      "CourseCard_Length_3bade": "Délka",
+      "CourseCard_Price_per_person_59050": "Cena za osobu",
+      "CourseCard_Book_course_e7003": "Rezervovat kurz",
+      "CourseCard_Gift_voucher_aa850": "Dárkový poukaz",
+      "CourseCard_Course_description_17fff": "Podrobnosti o kurzu",
+      "WithAuth_Sign_in_again_7842f": "Přihlásit se znovu",
+      "CourseCard_Maximum_a8df2": "Maximum",
+      "Login_Email_84add": "E-mail",
+      "BookingActionButtons_Close_bbfa7": "Zavřít",
+      "BookingActionButtons_Additional_guests_are_unavailable_for_this_booking_c294b": "K této rezervaci nelze přidat další hosty.",
+      "CourseModal_Related_dates_661c4": "Navazující termíny:",
+      "CourseModal_or_17583": "nebo",
+      "BookingInfoModal_Close_bbfa7": "Zavřít",
+      "CourseInfoModal_ID_d789a": "ID:",
+      "Registration_Email_84add": "E-mail",
+      "VoucherForm__e_g_D4T_32S_053_d4e4b": "(např. D4T-32S-053)",
+      "VouchersTable_Voucher_management_384c5": "Správa poukazů",
+      "VouchersTable_Find_voucher_orders_by_ID_email_customer_product_or_pro_0ef29": "Vyhledejte objednávky poukazů podle ID, e-mailu, zákazníka, produktu nebo promo kódu.",
+      "VouchersTable_Order_ID_Email_Name_Product_Promo_code_30146": "ID objednávky | E-mail | Jméno | Produkt | Promo kód",
+      "VouchersTable_Delivery_type_58a44": "Typ doručení",
+      "VouchersTable_Postal_delivery_only_3b7bf": "Pouze poštou",
+      "VouchersTable_All_orders_e6909": "Všechny objednávky",
+      "VouchersTable_Without_postal_delivery_e1788": "Pouze bez pošty",
+      "VouchersTable_Custom_ID_bf59e": "Vlastní ID",
+      "VouchersTable_e_g_0023_929f2": "např. 0023",
+      "VouchersTable_Email_84add": "E-mail",
+      "VouchersTable_Product_dd3b8": "Produkt",
+      "VouchersTable_Product_name_63c0f": "Název produktu",
+      "VouchersTable_Status_bae7d": "Stav",
+      "VouchersTable_All_statuses_64051": "Všechny stavy",
+      "VouchersTable_Clear_filters_41222": "Vymazat filtry",
+      "VouchersTable_Loading_vouchers_eec52": "Načítám poukazy…",
+      "VouchersTable_We_could_not_load_the_vouchers_bd8c3": "Nepodařilo se načíst poukazy.",
+      "VouchersTable_Showing_163d8": "Zobrazeno",
+      "VouchersTable_orders_96584": "objednávek",
+      "VouchersTable__page_34ef9": "· strana",
+      "VouchersTable_Customer_5e0d7": "Zákazník:",
+      "VouchersTable_Email_4c4e6": "E-mail:",
+      "VouchersTable_Quantity_fe2c3": "Množství:",
+      "VouchersTable_Delivery_4e854": "Doručení:",
+      "VouchersTable_Status_11dc9": "Stav:",
+      "VouchersTable_Promo_codes_9a9df": "Promo kódy:",
+      "VouchersTable_Address_303d9": "Adresa:",
+      "VouchersTable_No_vouchers_found_95f3e": "Nebyly nalezeny žádné poukazy.",
+      "VouchersTable_ID_89f89": "ID",
+      "VouchersTable_Customer_0e857": "Zákazník",
+      "VouchersTable_Qty_1e5ff": "Ks",
+      "VouchersTable_Delivery_9631a": "Doručení",
+      "VouchersTable_Actions_c3cd6": "Akce",
+      "VouchersTable_Page_fb062": "Strana",
+      "VouchersTable_Edit_voucher_status_6c496": "Upravit stav poukazu",
+      "VouchersTable_Order_3c124": "Objednávka:",
+      "VouchersTable_Current_status_02d14": "Aktuální stav:",
+      "VouchersTable_New_status_660b4": "Nový stav",
+      "NewLecturerForm_New_instructor_04304": "Nový lektor",
+      "NewLecturerForm_Enter_the_details_for_the_new_instructor_acea4": "Vyplňte základní údaje pro vytvoření nového lektora.",
+      "NewBookingForm_Enter_the_booking_details_bdd5c": "Vyplňte základní informace o rezervaci.",
+      "NewBookingForm_Basic_details_42450": "Základní informace",
+      "NewBookingForm_Choose_the_product_location_date_and_time_for_the_booki_2d948": "Vyberte produkt, místo, datum a čas rezervace.",
+      "NewBookingForm_Selected_times_da07f": "Vybrané termíny",
+      "NewBookingForm_Remove_time_2278a": "Odstranit termín",
+      "NewBookingForm_Internal_details_125a9": "Interní informace",
+      "NewBookingForm_Optional_details_for_internal_booking_management_bee7c": "Nepovinné údaje pro interní správu rezervace.",
+      "NewBookingForm_Note_2c924": "Poznámka",
+      "NewBookingForm_This_note_appears_in_the_calendar_for_staff_only_fbd41": "Poznámka se zobrazí v kalendáři (pouze interně).",
+      "NewBookingForm_Select_an_instructor_5faef": "Vyberte lektora",
+      "NewBookingForm_Booking_summary_e2a9a": "Shrnutí rezervace",
+      "NewBookingForm_Review_the_selected_details_before_saving_f6480": "Kontrola vybraných údajů před uložením.",
+      "SidebarForm_Close_panel_fa0b7": "Zavřít panel",
+      "SidebarForm_Postage_31c92": "Poštovné:",
+      "SidebarForm_Total_d8e71": "Celkem:",
+      "EditProductForm_Edit_product_fbeab": "Upravit produkt",
+      "EditProductForm_Product_ID_5d8ff": "ID produktu:",
+      "EditProductForm_e_g_Introduction_to_photography_331c9": "např. Úvod do fotografie",
+      "EditProductForm_Image_URL_35c80": "URL obrázku",
+      "EditProductForm_Product_description_optional_9111f": "Popis produktu (volitelné)",
+      "NewProductForm_e_g_Introduction_to_photography_331c9": "např. Úvod do fotografie",
+      "NewProductForm_Image_URL_35c80": "URL obrázku",
+      "NewProductForm_PDF_template_b3b38": "Šablona PDF",
+      "NewProductForm_Selected_2e084": "Vybráno:",
+      "NewProductForm_Upload_a_PDF_template_for_the_voucher_e71fe": "Nahrajte šablonu poukazu ve formátu PDF.",
+      "NewProductForm_Product_description_optional_9111f": "Popis produktu (volitelné)",
+      "CreditTransactionHistory_Showing_value1_value2_of_value3_f25d4": "Zobrazeno {value1}–{value2} z {value3}",
+      "VoucherForm_Voucher_redeemed_successfully_Added_value1_New_balance_1a0e9": "Poukaz byl úspěšně uplatněn. Připsáno: {value1}. Nový zůstatek: {value2}.",
+      "LocationScopedMyBookingsTable_Showing_value1_value2_of_value3_f25d4": "Zobrazeno {value1}–{value2} z {value3}",
+      "Login_Sign_in_with_your_customer_account_to_open_value1_31cf2": "Přihlaste se zákaznickým účtem a otevřete studio {value1}.",
+      "Login_Sign_in_to_continue_to_value1_9a18a": "Přihlaste se a pokračujte do studia {value1}.",
+      "Registration_Book_visits_and_courses_without_re_entering_details_6952f": "Rezervace a kurzy bez opakovaného vyplňování",
+      "Registration_Keep_pieces_credits_and_history_within_reach_2267f": "Výrobky, kredity a historie vždy po ruce",
+      "CustomerPasswordRecoveryShell_Your_studio_1b32c": "Vaše studio",
+      "CourseDetailsModal_Course_detail_fc5ad": "Detail kurzu",
+      "CourseDetailsModal_Close_bbfa7": "Zavřít",
+      "bookingHistoryUpcoming": "Zde najdete své nadcházející rezervace. {count, plural, one {Celkem # položka} few {Celkem # položky} other {Celkem # položek}}",
+      "bookingHistoryPast": "Zde najdete svou historii včetně zrušených rezervací. {count, plural, one {Celkem # položka} few {Celkem # položky} other {Celkem # položek}}",
+      "genericError": "Něco se pokazilo. Zkuste to znovu.",
+      "instructorCreateError": "Lektora se nepodařilo vytvořit. Zkuste to znovu.",
+      "bookingCreateError": "Rezervaci se nepodařilo vytvořit. Zkuste to znovu.",
+      "voucherUpdateError": "Stav poukazu se nepodařilo aktualizovat.",
+      "yourStudio": "Vaše studio",
+      "studioSignIn": "Přihlášení do studia",
+      "courseFallback": "Kurz"
+    },
+    "VOUCHER_REDEEM_CONTENT": "Poukaz byl úspěšně uplatněn.",
+    "VOUCHER_REDEEM_TITLE": "Poukaz uplatněn",
+    "LOGIN_REQUIRED": "Pro pokračování se přihlaste.",
+    "PRODUCT_NOT_FOUND": "Tato aktivita již není k dispozici.",
+    "ADD_TO_CART_ERROR": "Rezervaci se nepodařilo přidat do košíku. Zkuste to znovu.",
+    "BOOK_AS_GUEST": "Rezervovat jako host",
+    "CONFIRMATION": "Potvrzení",
+    "LOADING": "Načítání…",
+    "PRICE_NOTE_30MIN": "Cena za 30 minut",
+    "ERROR_GENERIC": "Něco se pokazilo. Zkuste to znovu.",
+    "FILTERS": "Filtry",
+    "ADVANCED_FILTERS": "Pokročilé filtry",
+    "CLEAR_FILTERS": "Vymazat filtry",
+    "DATE_FROM": "Datum od",
+    "DATE_TO": "Datum do",
+    "USER_SEARCH": "Hledání zákazníka",
+    "SEARCH_BY_CUSTOM_ID_OR_EMAIL": "Hledat podle ID nebo e-mailu",
+    "PRODUCT_TYPE": "Typ produktu",
+    "ALL_PRODUCT_TYPES": "Všechny typy produktů",
+    "ALL_STATUSES": "Všechny stavy",
+    "ALL_LECTURERS": "Všichni lektoři",
+    "ALL_PRODUCTS": "Všechny produkty",
+    "AUTHOR_SEARCH": "Hledat zákazníka",
+    "SEARCH_BY_NAME_OR_ID": "Hledat podle jména nebo ID",
+    "PASS_RULES": "Použijte alespoň 8 znaků včetně číslice.",
+    "PASS_MISMATCH": "Hesla se neshodují.",
+    "metadata": {
+      "loginTitle": "Přihlášení",
+      "registerTitle": "Registrace",
+      "loginDescription": "Přihlaste se ke svému účtu ve studiu {studio}.",
+      "registerDescription": "Vytvořte si účet pro rezervace ve studiu {studio}.",
+      "studioFallback": "Vaše studio"
+    }
+  },
+  "AIProduct": {
+    "briefing": {
+      "message001": "{count, plural, one {# naléhavá konverzace} few {# naléhavé konverzace} other {# naléhavých konverzací}}",
+      "message002": "Naléhavé zprávy zákazníků",
+      "message003": "{value1} vyžaduje pozornost.",
+      "message004": "{count, plural, one {# zpožděný úkol} few {# zpožděné úkoly} other {# zpožděných úkolů}}",
+      "message005": "Zpožděné úkoly týmu",
+      "message006": "{value1} čeká na dokončení.",
+      "message007": "{count, plural, one {# aktualizace týmu s hlášenou blokací} few {# aktualizace týmu s hlášenou blokací} other {# aktualizací týmu s hlášenou blokací}}",
+      "message008": "Blokace týmu",
+      "message009": "{value1} vyžaduje pomoc.",
+      "message010": "{count, plural, one {# naléhavý úkol} few {# naléhavé úkoly} other {# naléhavých úkolů}}",
+      "message011": "Naléhavé úkoly",
+      "message012": "{value1} má vysokou prioritu.",
+      "message013": "{count, plural, one {# nezaplacená rezervace} few {# nezaplacené rezervace} other {# nezaplacených rezervací}}",
+      "message014": "Nezaplacené rezervace",
+      "message015": "{value1} vyžaduje kontrolu.",
+      "message016": "{count, plural, one {# položka s nízkou zásobou} few {# položky s nízkou zásobou} other {# položek s nízkou zásobou}}",
+      "message017": "Nízké zásoby",
+      "message018": "{value1} může vyžadovat doplnění.",
+      "message019": "{count, plural, one {# aktualizace týmu} few {# aktualizace týmu} other {# aktualizací týmu}}",
+      "message020": "Aktualizace týmu k prověření",
+      "message021": "{value1} vyžaduje pozornost vedoucího.",
+      "message022": "Částečné pokrytí dat",
+      "message023": "Některé zdroje nejsou dostupné; jejich hodnoty nejsou vykázány jako nula.",
+      "message024": "{count, plural, one {# dnešní rezervace} few {# dnešní rezervace} other {# dnešních rezervací}}",
+      "message025": "{count, plural, one {# otevřený úkol} few {# otevřené úkoly} other {# otevřených úkolů}}",
+      "message026": "Dnes je potřeba několik věcí prověřit",
+      "message027": "Studio je dnes na dobré cestě",
+      "message028": "Dostupné provozní zdroje neobsahují souhrnné počty",
+      "message029": "Přehled vychází ze všech dostupných zdrojů pro vaše oprávnění.",
+      "message030": "Nedostupné hodnoty nejsou vykázány jako nula.",
+      "message031": "Pomoz mi vyřešit tuto ověřenou provozní položku: {value1}",
+      "message032": "Projít priority s AI"
+    },
+    "advisor": {
+      "message001": "Prověřte pokles tržeb",
+      "message002": "Čisté tržby jsou oproti srovnávacímu období nižší o {value1} %.",
+      "message003": "Porovnejte vývoj rezervací a nejprodávanější nabídky před změnou cen nebo propagace.",
+      "message004": "Čisté tržby",
+      "message005": "Prověřte pokles rezervací",
+      "message006": "Počet rezervací je oproti srovnávacímu období nižší o {value1} %.",
+      "message007": "Zkontrolujte časový přehled a nabídky, u kterých se změnil zájem.",
+      "message008": "Rezervace",
+      "message009": "Využijte volnou kapacitu",
+      "message010": "Odhadované využití nastavené kapacity je {value1} %.",
+      "message011": "Najděte méně využité dny a hodiny a otestujte cílenou nabídku pro tyto termíny.",
+      "message012": "Využití kapacity",
+      "message013": "Prověřte pokles využití",
+      "message014": "Využití nastavené kapacity kleslo o {value1} procentních bodů.",
+      "message015": "Porovnejte časový přehled obou období a zaměřte se na největší rozdíly.",
+      "message016": "Využití kapacity",
+      "message017": "Podpořte návrat zákazníků",
+      "message018": "Podíl vracejících se zákazníků je {value1} % z {value2} aktivních zákazníků v období.",
+      "message019": "Prověřte navazující nabídku nebo členství a nejprve ji otestujte na malé skupině.",
+      "message020": "Vracející se zákazníci",
+      "message021": "Aktivní zákazníci",
+      "message022": "Kurz",
+      "message023": "Zlepšete naplnění kurzu {value1}",
+      "message024": "Kurz má při {value2} konáních naplněnost {value1} %.",
+      "message025": "Zkontrolujte termíny, popis a publikum kurzu a změňte vždy jen jednu věc k ověření dopadu.",
+      "message026": "Kurz",
+      "message027": "Prověřte další termín kurzu {value1}",
+      "message028": "Kurz má při {value2} konáních naplněnost {value1} %.",
+      "message029": "Ověřte kapacitu týmu a prostoru před přidáním dalšího termínu.",
+      "message030": "Prověřte položky bez objednávky",
+      "message031": "Nízkou zásobu má {value1} položek a otevřeno je {value2} požadavků na doplnění.",
+      "message032": "Ověřte, které nízké zásoby ještě nemají požadavek na doplnění.",
+      "message033": "Nízké zásoby",
+      "message034": "Otevřené objednávky",
+      "message035": "Snižte počet zpožděných úkolů",
+      "message036": "Aktuálně je po termínu {value1} otevřených úkolů.",
+      "message037": "Potvrďte vlastníka a realistický termín každého zpožděného úkolu.",
+      "message038": "Zpožděné úkoly",
+      "message039": "Zatím bez silného doporučení",
+      "message040": "Dostupná data nyní nepřekračují konzervativní hranice pro obchodní doporučení.",
+      "message041": "Pro spolehlivé doporučení zatím není dostupné dostatečné pokrytí dat.",
+      "message042": "Nejdříve se zaměřte na nejdůležitější příležitosti",
+      "message043": "Několik příležitostí stojí za prověření",
+      "message044": "Poradce našel {value1} doporučení založených na ověřených datech studia."
+    }
+  },
+  "PaymentCancellation": {
+    "badge": "Platba zrušena",
+    "nextSteps": "Co můžeš zkusit",
+    "retry": "Zkus platbu znovu — někdy stačí druhý pokus.",
+    "card": "Pokud používáš Apple Pay / Google Pay, zkus i klasickou platbu kartou.",
+    "contact": "Kdyby problém přetrvával, napiš nám a pomůžeme.",
+    "home": "Zpět na úvod",
+    "chargeNotice": "Žádné peníze se nestrhly, dokud se platba nedokončí."
   }
 }

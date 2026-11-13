@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { Dialog, DialogTitle } from "@headlessui/react";
 import { useMemo, useRef, useState } from "react";
 import { PlusIcon, TrashIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -83,11 +84,7 @@ const DAYS = [
 const BULK_SCHEDULES = new Set(["oneTimeEmail", "daily", "weekly", "monthly"]);
 const OFFSET_MINUTE_OPTIONS = [0, 2, 5, 10, 15, 30, 60, 90];
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message ??
-  error?.data?.error ??
-  error?.error ??
-  error?.message ??
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 export default function AutomatedEmailModal({
   automation = null,
   senderEmailId = "",

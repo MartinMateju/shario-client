@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -15,6 +17,7 @@ const safeText = (value, fallback = "") => {
 };
 
 export default function CourseImageGallery({ images = [], courseName = "" }) {
+  const t = useTranslations("Common.gallery");
   const safeImages = useMemo(() => {
     return Array.isArray(images)
       ? images.filter((image) => typeof image === "string" && image.trim())
@@ -73,7 +76,7 @@ export default function CourseImageGallery({ images = [], courseName = "" }) {
 
   if (!currentImage) return null;
 
-  const baseAlt = safeText(courseName, "Course image");
+  const baseAlt = safeText(courseName, t("image"));
 
   return (
     <div
@@ -83,7 +86,7 @@ export default function CourseImageGallery({ images = [], courseName = "" }) {
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] bg-[#f3ece4] shadow-[0_24px_80px_rgba(72,56,39,0.10)] ring-1 ring-black/[0.04]">
         <Image
           src={currentImage}
-          alt={`${baseAlt} - image ${currentImageIndex + 1}`}
+          alt={t("imageAlt", { name: baseAlt, number: currentImageIndex + 1 })}
           fill
           sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 42vw, 670px"
           priority={currentImageIndex === 0}
@@ -100,7 +103,7 @@ export default function CourseImageGallery({ images = [], courseName = "" }) {
               type="button"
               onClick={prevImage}
               className="absolute left-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/75 text-[#483827] shadow-[0_10px_24px_rgba(72,56,39,0.12)] backdrop-blur-sm transition-all hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#483827]/20 focus-visible:ring-offset-2"
-              aria-label="Previous image"
+              aria-label={t("previous")}
             >
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -109,7 +112,7 @@ export default function CourseImageGallery({ images = [], courseName = "" }) {
               type="button"
               onClick={nextImage}
               className="absolute right-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/75 text-[#483827] shadow-[0_10px_24px_rgba(72,56,39,0.12)] backdrop-blur-sm transition-all hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#483827]/20 focus-visible:ring-offset-2"
-              aria-label="Next image"
+              aria-label={t("next")}
             >
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -124,7 +127,7 @@ export default function CourseImageGallery({ images = [], courseName = "" }) {
       {hasMultipleImages && (
         <div
           className="mt-4 w-full overflow-x-auto overflow-y-hidden scroll-smooth"
-          aria-label="Course image thumbnails"
+          aria-label={t("thumbnails")}
         >
           <div className="flex gap-3 pb-1">
             {safeImages.map((image, index) => {
@@ -142,12 +145,18 @@ export default function CourseImageGallery({ images = [], courseName = "" }) {
                       ? "ring-2 ring-[#483827] ring-offset-2"
                       : "ring-1 ring-black/[0.06] hover:opacity-85",
                   )}
-                  aria-label={`View image ${index + 1} of ${imageCount}`}
+                  aria-label={t("view", {
+                    number: index + 1,
+                    count: imageCount,
+                  })}
                   aria-current={isActive ? "true" : undefined}
                 >
                   <Image
                     src={image}
-                    alt={`${baseAlt} thumbnail ${index + 1}`}
+                    alt={t("thumbnailAlt", {
+                      name: baseAlt,
+                      number: index + 1,
+                    })}
                     fill
                     sizes="(max-width: 640px) 96px, (max-width: 1024px) 112px, 160px"
                     loading="lazy"

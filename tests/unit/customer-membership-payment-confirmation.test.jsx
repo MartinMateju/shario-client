@@ -115,7 +115,8 @@ describe("membership-paid booking confirmation", () => {
       }
       showConfirmation();
       expect(screen.getByText("Total").parentElement).toHaveTextContent("250");
-      expect(screen.getByText(method).parentElement).toHaveTextContent("250");
+      const label = method === "stripe" ? "Payment card" : "Studio credits";
+      expect(screen.getByText(label).parentElement).toHaveTextContent("250");
       expect(screen.queryByText("Additional payment")).not.toBeInTheDocument();
     },
   );

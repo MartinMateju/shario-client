@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -27,6 +29,7 @@ export default function CreditBalance({
   showPurchaseButton = true,
   className = "",
 }) {
+  const activeLocale = useLegacyLocale();
   const dispatch = useDispatch();
   const tenant = useSelector(selectCurrentTenant);
   const language = useSelector(selectCurrentLanguage) || "CZ";
@@ -49,35 +52,8 @@ export default function CreditBalance({
     creditData?.balance,
     currency,
   );
-  const locale = language === "CZ" ? "cs-CZ" : "en-GB";
-  const copy =
-    language === "CZ"
-      ? {
-          eyebrow: "Dostupný zůstatek",
-          title: "Studio kredity",
-          loading: "Načítání kreditů…",
-          errorTitle: "Zůstatek se nepodařilo načíst",
-          errorDescription:
-            "Zkontrolujte připojení a zkuste načíst zůstatek znovu.",
-          retry: "Zkusit znovu",
-          description:
-            "Kredity můžete použít na rezervace, nákupy a další platby ve studiu.",
-          add: "Přidat kredity",
-          hint: "Zůstatek se automaticky aktualizuje po každé platbě nebo vrácení peněz.",
-        }
-      : {
-          eyebrow: "Available balance",
-          title: "Studio credits",
-          loading: "Loading your credits…",
-          errorTitle: "We couldn’t load your balance",
-          errorDescription:
-            "Check your connection and try loading your balance again.",
-          retry: "Try again",
-          description:
-            "Use your credits for bookings, purchases and other studio payments.",
-          add: "Add credits",
-          hint: "Your balance updates automatically after every payment or refund.",
-        };
+  const locale = activeLocale;
+  const copy = useLegacyCopy("creditBalance");
 
   const handlePurchaseCredits = () => {
     dispatch({ type: "credits/showCreditPurchaseModal" });

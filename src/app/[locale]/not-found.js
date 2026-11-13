@@ -1,12 +1,13 @@
 "use client";
 
 import PrimaryButton from "@/components/buttons/PrimaryButton";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 
 export default function Custom404() {
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   return (
     <main className="grid min-h-full place-items-center bg-[#F7F5F2] px-6 py-24 sm:py-32 lg:px-8">

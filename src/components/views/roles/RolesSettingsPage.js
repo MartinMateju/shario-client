@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useMemo, useState } from "react";
 import {
   Dialog,
@@ -121,7 +123,7 @@ const isBuiltInRole = (role) =>
   !getId(role);
 
 const getMutationError = (error, fallback) =>
-  error?.data?.message || error?.data?.error || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 function RoleEditor({ role, catalog, open, onClose }) {
   const t = useTranslations("RoleSettings");

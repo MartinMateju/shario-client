@@ -1,5 +1,9 @@
 "use client";
 
+import { getLocalizedPublicTenantText } from "@/components/public-tenant/publicTenant.config";
+
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -34,7 +38,7 @@ import {
   formatZonedTimeRange,
   getLocationTimeZone,
 } from "@/utils/locationBookingUtils";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { isServiceCatalogEnabled } from "@/utils/studioFlow";
 import { useOptionalCustomerPortalLocation } from "@/components/customer-shell/CustomerPortalLocationProvider";
 import { useOptionalPublicTenant } from "@/components/public-tenant/PublicTenantProvider";
@@ -92,26 +96,17 @@ const getGuestsCount = (booking) => {
   return 1;
 };
 
-const getBookingProductName = (product, language) => {
-  const name = product?.name ?? product?.title;
-
-  if (!name) return translation["BOOKING"]?.[language] || "Booking";
-
-  if (typeof name === "object") {
-    return (
-      name?.[language] ||
-      (language === "CZ" ? name?.cs : name?.en) ||
-      name?.CZ ||
-      name?.EN ||
-      name?.cs ||
-      name?.en ||
-      translation["BOOKING"]?.[language] ||
-      "Booking"
-    );
-  }
-
-  return name;
-};
+const getBookingProductName = (
+  product,
+  language,
+  translation,
+  locale = language,
+) =>
+  getLocalizedPublicTenantText(
+    product?.name ?? product?.title,
+    locale,
+    translation["BOOKING"]?.[language] || "",
+  );
 
 const resolveBookingProduct = (products, booking) =>
   getProductByBooking(products, booking) ||
@@ -121,9 +116,10 @@ const resolveBookingProduct = (products, booking) =>
   null;
 
 function CourseBadge({ language }) {
+  const translation = useLegacyTranslation();
   return (
     <span className="inline-flex rounded-full border border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-3 py-1 font-medium text-[10px] uppercase tracking-[0.14em] text-[var(--tenant-text-on-surface)]">
-      {translation["COURSE_BOOKING"]?.[language] || "Course"}
+      {translation["COURSE_BOOKING"]?.[language]}
     </span>
   );
 }
@@ -161,6 +157,9 @@ function LocationScopedMyBookingsTable({
   activeLocationId,
   locationRequired,
 }) {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const user = useSelector(selectCurrentUser);
   const tenant = useSelector(selectCurrentTenant);
   const portalTenant = useOptionalPublicTenant()?.tenant || tenant;
@@ -287,8 +286,14 @@ function LocationScopedMyBookingsTable({
         const productA = resolveBookingProduct(products, a);
         const productB = resolveBookingProduct(products, b);
 
-        comparison = getBookingProductName(productA, language).localeCompare(
-          getBookingProductName(productB, language),
+        comparison = getBookingProductName(
+          productA,
+          language,
+          translation,
+          activeLocale,
+        ).localeCompare(
+          getBookingProductName(productB, language, translation, activeLocale),
+          activeLocale,
         );
       }
 
@@ -298,7 +303,15 @@ function LocationScopedMyBookingsTable({
 
       return sortOrder === "asc" ? comparison : -comparison;
     });
-  }, [visibleBookings, sortBy, sortOrder, products, language]);
+  }, [
+    visibleBookings,
+    sortBy,
+    sortOrder,
+    products,
+    language,
+    translation,
+    activeLocale,
+  ]);
 
   const handleSort = useCallback(
     (key, defaultOrder = "asc") => {
@@ -324,25 +337,10 @@ function LocationScopedMyBookingsTable({
     [products],
   );
 
-  const summaryText = useMemo(() => {
-    if (language === "CZ") {
-      return `${
-        scope === "history"
-          ? "Zde najdete svou historii včetně zrušených rezervací."
-          : "Zde najdete své nadcházející rezervace."
-      } Celkem ${pagination.totalCount} položek${
-        isFetchingUserBookings ? "…" : "."
-      }`;
-    }
-
-    return `${
-      scope === "history"
-        ? "Here is your booking history, including cancelled bookings."
-        : "Here you can find your upcoming bookings."
-    } ${pagination.totalCount} items in total${
-      isFetchingUserBookings ? "…" : "."
-    }`;
-  }, [isFetchingUserBookings, language, pagination.totalCount, scope]);
+  const summaryText = `${legacyText(
+    scope === "history" ? "bookingHistoryPast" : "bookingHistoryUpcoming",
+    { count: pagination.totalCount },
+  )}${isFetchingUserBookings ? "…" : "."}`;
 
   const isLoading =
     isLoadingUserBookings || (serviceCatalogEnabled && isLoadingProducts);
@@ -356,14 +354,16 @@ function LocationScopedMyBookingsTable({
     serviceCatalogEnabled &&
     isCustomerPortalPageEnabled(portalTenant, "calendar") ? (
       <Link href={bookHref} className={customerPortalPrimaryActionClass}>
-        {language === "CZ" ? "Rezervovat studio" : "Book a session"}
+        {legacyText("LocationScopedMyBookingsTable_Book_a_session_bf464")}
         <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
       </Link>
     ) : null;
   const pageHeader = (
     <CustomerPortalPageHeader
       headingAs={Heading}
-      eyebrow={language === "CZ" ? "Přehled rezervací" : "Booking overview"}
+      eyebrow={legacyText(
+        "LocationScopedMyBookingsTable_Booking_overview_a8c35",
+      )}
       title={bookingTitle}
       description={summaryText}
       actions={bookAction}
@@ -376,9 +376,9 @@ function LocationScopedMyBookingsTable({
         {pageHeader}
         <CustomerPortalSurface className="mt-7 p-3">
           <CustomerPortalLoadingState
-            label={
-              language === "CZ" ? "Načítám rezervace…" : "Loading bookings…"
-            }
+            label={legacyText(
+              "LocationScopedMyBookingsTable_Loading_bookings_bfbf6",
+            )}
           />
         </CustomerPortalSurface>
       </CustomerPortalPage>
@@ -392,23 +392,19 @@ function LocationScopedMyBookingsTable({
         <CustomerPortalSurface className="mt-7 p-3">
           <CustomerPortalEmptyState
             icon={CalendarDaysIcon}
-            title={
-              language === "CZ"
-                ? "Rezervace se nepodařilo načíst"
-                : "Bookings could not be loaded"
-            }
-            description={
-              language === "CZ"
-                ? "Zkontrolujte připojení a zkuste to znovu."
-                : "Check your connection and try again."
-            }
+            title={legacyText(
+              "LocationScopedMyBookingsTable_Bookings_could_not_be_loaded_e531a",
+            )}
+            description={legacyText(
+              "LocationScopedMyBookingsTable_Check_your_connection_and_try_again_56386",
+            )}
             action={
               <button
                 type="button"
                 onClick={() => refetchUserBookings()}
                 className={customerPortalPrimaryActionClass}
               >
-                {language === "CZ" ? "Zkusit znovu" : "Try again"}
+                {legacyText("LocationScopedMyBookingsTable_Try_again_042c8")}
               </button>
             }
           />
@@ -438,24 +434,30 @@ function LocationScopedMyBookingsTable({
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[color-mix(in_srgb,var(--tenant-text)_10%,transparent)] px-4 py-4 sm:px-6">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--tenant-muted-on-surface)]">
             {scope === "history"
-              ? language === "CZ"
-                ? "Historie rezervací"
-                : "Booking history"
-              : language === "CZ"
-                ? "Nadcházející návštěvy"
-                : "Upcoming visits"}
+              ? legacyText(
+                  "LocationScopedMyBookingsTable_Booking_history_a8ef6",
+                )
+              : legacyText(
+                  "LocationScopedMyBookingsTable_Upcoming_visits_ecb00",
+                )}
           </p>
           <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:justify-end">
             <div
               className="inline-flex min-h-11 rounded-full border border-[color-mix(in_srgb,var(--tenant-text)_12%,transparent)] bg-[var(--tenant-background)] p-1"
               role="group"
-              aria-label={
-                language === "CZ" ? "Rozsah rezervací" : "Booking range"
-              }
+              aria-label={legacyText(
+                "LocationScopedMyBookingsTable_Booking_range_9d1f1",
+              )}
             >
               {[
-                ["upcoming", language === "CZ" ? "Nadcházející" : "Upcoming"],
-                ["history", language === "CZ" ? "Historie" : "History"],
+                [
+                  "upcoming",
+                  legacyText("LocationScopedMyBookingsTable_Upcoming_523ba"),
+                ],
+                [
+                  "history",
+                  legacyText("LocationScopedMyBookingsTable_History_90ccd"),
+                ],
               ].map(([value, label]) => (
                 <button
                   key={value}
@@ -490,9 +492,14 @@ function LocationScopedMyBookingsTable({
               sortedBookings.map((booking) => {
                 const product = resolveBookingProduct(products, booking);
                 const locationName = getLocationName(booking);
-                const productName = getBookingProductName(product, language);
+                const productName = getBookingProductName(
+                  product,
+                  language,
+                  translation,
+                  activeLocale,
+                );
                 const timezone = getBookingTimezone(booking);
-                const displayLocale = language === "CZ" ? "cs-CZ" : "en-GB";
+                const displayLocale = activeLocale;
 
                 return (
                   <article key={booking._id || booking.id} className="p-4">
@@ -567,9 +574,9 @@ function LocationScopedMyBookingsTable({
                           !booking.canReschedule &&
                           !booking.canExtend &&
                           !booking.hasPendingExtension)
-                          ? language === "CZ"
-                            ? "Zobrazit"
-                            : "View"
+                          ? legacyText(
+                              "LocationScopedMyBookingsTable_View_69bd4",
+                            )
                           : translation["EDIT"][language]}
                       </button>
                     </div>
@@ -584,12 +591,12 @@ function LocationScopedMyBookingsTable({
                   title={translation["NO_BOOKINGS"][language]}
                   description={
                     scope === "history"
-                      ? language === "CZ"
-                        ? "Po dokončení nebo zrušení rezervace ji najdete zde."
-                        : "Completed and cancelled bookings will appear here."
-                      : language === "CZ"
-                        ? "Vyberte si čas ve studiu a naplánujte si další návštěvu."
-                        : "Choose a studio time and plan your next visit."
+                      ? legacyText(
+                          "LocationScopedMyBookingsTable_Completed_and_cancelled_bookings_will_appear_here_e9311",
+                        )
+                      : legacyText(
+                          "LocationScopedMyBookingsTable_Choose_a_studio_time_and_plan_your_next_visit_5f44f",
+                        )
                   }
                   action={scope === "upcoming" ? bookAction : null}
                 />
@@ -620,7 +627,11 @@ function LocationScopedMyBookingsTable({
                       onClick={() => handleSort("location")}
                       className={sortButtonClasses}
                     >
-                      <span>{language === "CZ" ? "Dílna" : "Studio"}</span>
+                      <span>
+                        {legacyText(
+                          "LocationScopedMyBookingsTable_Studio_5b23b",
+                        )}
+                      </span>
                       <SortIcon
                         active={sortBy === "location"}
                         order={sortOrder}
@@ -649,7 +660,7 @@ function LocationScopedMyBookingsTable({
 
                   <th className="border-b border-[var(--tenant-border)] px-4 py-4 text-left">
                     <span className={headerLabelClasses}>
-                      {language === "CZ" ? "Počet osob" : "Guests"}
+                      {legacyText("LocationScopedMyBookingsTable_Guests_3c23a")}
                     </span>
                   </th>
 
@@ -665,9 +676,11 @@ function LocationScopedMyBookingsTable({
                     const productName = getBookingProductName(
                       product,
                       language,
+                      translation,
+                      activeLocale,
                     );
                     const timezone = getBookingTimezone(booking);
-                    const displayLocale = language === "CZ" ? "cs-CZ" : "en-GB";
+                    const displayLocale = activeLocale;
 
                     return (
                       <tr
@@ -728,9 +741,9 @@ function LocationScopedMyBookingsTable({
                               !booking.canReschedule &&
                               !booking.canExtend &&
                               !booking.hasPendingExtension)
-                              ? language === "CZ"
-                                ? "Zobrazit"
-                                : "View"
+                              ? legacyText(
+                                  "LocationScopedMyBookingsTable_View_69bd4",
+                                )
                               : translation["EDIT"][language]}
                           </button>
                         </td>
@@ -745,12 +758,12 @@ function LocationScopedMyBookingsTable({
                         title={translation["NO_BOOKINGS"][language]}
                         description={
                           scope === "history"
-                            ? language === "CZ"
-                              ? "Po dokončení nebo zrušení rezervace ji najdete zde."
-                              : "Completed and cancelled bookings will appear here."
-                            : language === "CZ"
-                              ? "Vyberte si čas ve studiu a naplánujte si další návštěvu."
-                              : "Choose a studio time and plan your next visit."
+                            ? legacyText(
+                                "LocationScopedMyBookingsTable_Completed_and_cancelled_bookings_will_appear_here_e9311",
+                              )
+                            : legacyText(
+                                "LocationScopedMyBookingsTable_Choose_a_studio_time_and_plan_your_next_visit_5f44f",
+                              )
                         }
                         action={scope === "upcoming" ? bookAction : null}
                       />
@@ -768,28 +781,24 @@ function LocationScopedMyBookingsTable({
               className="text-xs text-[var(--tenant-muted-text)]"
               aria-live="polite"
             >
-              {language === "CZ"
-                ? `Zobrazeno ${
-                    (currentPage - 1) * pagination.pageSize + 1
-                  }–${Math.min(
+              {legacyText(
+                "LocationScopedMyBookingsTable_Showing_value1_value2_of_value3_f25d4",
+                {
+                  value1: (currentPage - 1) * pagination.pageSize + 1,
+                  value2: Math.min(
                     currentPage * pagination.pageSize,
                     pagination.totalCount,
-                  )} z ${pagination.totalCount}`
-                : `Showing ${
-                    (currentPage - 1) * pagination.pageSize + 1
-                  }–${Math.min(
-                    currentPage * pagination.pageSize,
-                    pagination.totalCount,
-                  )} of ${pagination.totalCount}`}
+                  ),
+                  value3: pagination.totalCount,
+                },
+              )}
             </p>
 
             <nav
               className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:flex sm:justify-end sm:gap-3"
-              aria-label={
-                language === "CZ"
-                  ? "Stránkování rezervací"
-                  : "Booking pagination"
-              }
+              aria-label={legacyText(
+                "LocationScopedMyBookingsTable_Booking_pagination_b2e65",
+              )}
             >
               <button
                 type="button"
@@ -801,7 +810,7 @@ function LocationScopedMyBookingsTable({
                 )}
               >
                 <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
-                {language === "CZ" ? "Předchozí" : "Previous"}
+                {legacyText("LocationScopedMyBookingsTable_Previous_50f94")}
               </button>
               <span className="min-w-0 text-center text-xs text-[var(--tenant-muted-text)] sm:min-w-16">
                 {currentPage} / {totalPages}
@@ -819,7 +828,7 @@ function LocationScopedMyBookingsTable({
                   "max-sm:gap-1 max-sm:!px-2",
                 )}
               >
-                {language === "CZ" ? "Další" : "Next"}
+                {legacyText("LocationScopedMyBookingsTable_Next_bc981")}
                 <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
               </button>
             </nav>

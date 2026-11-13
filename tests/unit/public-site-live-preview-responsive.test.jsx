@@ -1,7 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("next-intl", () => ({ useTranslations: () => (key) => key }));
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs();
+});
 
 import PublicSiteLivePreview from "@/components/public-site-editor/PublicSiteLivePreview";
 

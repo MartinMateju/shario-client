@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { clearCart } from "@/lib/features/cart/cartSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { Link } from "@/i18n/navigation";
 
 export default function Overlap() {
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   const dispatch = useDispatch();
 

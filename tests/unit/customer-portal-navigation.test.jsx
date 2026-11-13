@@ -4,6 +4,11 @@ import path from "node:path";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs();
+});
+
 import DesktopNavTenant from "@/components/headers/DesktopNavTenant";
 import Brand from "@/components/headers/Brand";
 import { getPublicTenantTheme } from "@/components/public-tenant/publicTenant.config";

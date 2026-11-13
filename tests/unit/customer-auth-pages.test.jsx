@@ -9,6 +9,7 @@ import Registration from "@/app/[locale]/tenants/[tenantSlug]/(tenant-auth)/regi
 import CustomerPasswordRecoveryShell from "@/components/auth/CustomerPasswordRecoveryShell";
 import { resolvePublicTenantLabelColor } from "@/components/public-tenant/publicTenant.config";
 import translation from "@/translations/translation";
+import portugueseMessages from "@/messages/pt-PT.json";
 
 const mocks = vi.hoisted(() => ({
   dispatch: vi.fn(),
@@ -69,10 +70,15 @@ const mocks = vi.hoisted(() => ({
   },
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => mocks.locale,
-  useTranslations: () => (key) => key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => mocks.locale,
+      useTranslations: () => (key) => key,
+    }))(...args),
+  );
+});
 
 vi.mock("@/i18n/customerLocalePreference", () => ({
   getCustomerCurrentLocale: (...args) =>
@@ -304,7 +310,7 @@ describe("end-customer login page", () => {
       screen.getByRole("heading", { level: 2, name: "Sign in" }),
     ).toBeInTheDocument();
     expect(document.querySelector('label[for="email"]')).toHaveTextContent(
-      "E-mail",
+      "Email",
     );
     expect(document.querySelector('label[for="password"]')).toHaveTextContent(
       "Password",
@@ -590,7 +596,7 @@ describe("end-customer registration page", () => {
     await user.click(screen.getByRole("button", { name: "Register" }));
 
     const alert = await screen.findByRole("alert");
-    expect(alert).toHaveTextContent(translation.ERROR_NAME_REGEX.EN);
+    expect(alert).toHaveTextContent("Please enter a valid name.");
     await waitFor(() => expect(alert).toHaveFocus());
     expect(mocks.register).not.toHaveBeenCalled();
   });
@@ -612,7 +618,7 @@ describe("end-customer registration page", () => {
     expect(firstName).toHaveClass("min-h-[52px]");
     expect(lastName).toHaveAccessibleName(/Last Name/);
     expect(lastName).toBeRequired();
-    expect(email).toHaveAccessibleName(/E-mail/);
+    expect(email).toHaveAccessibleName(/Email/);
     expect(email).toHaveAttribute("inputmode", "email");
     expect(phone).toHaveAccessibleName(/Phone/);
     expect(phone).toHaveAttribute("autocomplete", "tel");
@@ -677,10 +683,9 @@ describe("end-customer registration page", () => {
     mocks.locale = "pt_PT";
     renderRegistration(next);
 
-    expect(screen.getByRole("link", { name: "Sign in" })).toHaveAttribute(
-      "href",
-      expectedAuthHref("/login", next),
-    );
+    expect(
+      screen.getByRole("link", { name: "Iniciar sessão" }),
+    ).toHaveAttribute("href", expectedAuthHref("/login", next));
 
     await user.type(document.getElementById("firstname"), "  Ada  ");
     await user.type(document.getElementById("lastname"), "  Lovelace  ");
@@ -689,14 +694,20 @@ describe("end-customer registration page", () => {
     await user.type(document.getElementById("password"), "Studio123");
     await user.type(document.getElementById("password_confirm"), "Studio123");
     await user.click(
-      screen.getByRole("checkbox", { name: /I accept the studio rules/i }),
+      screen.getByRole("checkbox", {
+        name: `${portugueseMessages.Legacy.copy.TermsText_I_accept_the_0dc66}${portugueseMessages.Legacy.copy.TermsText_studio_rules_d3727}.`,
+      }),
     );
     await user.click(
       screen.getByRole("checkbox", {
-        name: /I accept the Terms and Conditions/i,
+        name: `${portugueseMessages.Legacy.copy.TermsText_I_accept_the_0dc66}${portugueseMessages.Legacy.copy.TermsText_Terms_and_Conditions_89403}.`,
       }),
     );
-    await user.click(screen.getByRole("button", { name: "Register" }));
+    await user.click(
+      screen.getByRole("button", {
+        name: portugueseMessages.Legacy.BUTTON_REGISTER,
+      }),
+    );
 
     await waitFor(() => {
       expect(mocks.register).toHaveBeenCalledWith({

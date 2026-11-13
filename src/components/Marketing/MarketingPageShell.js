@@ -411,6 +411,7 @@ export function FinalCta({
 }
 
 function MarketingFooter() {
+  const commonT = useTranslations("Common");
   const t = useTranslations("SharioMarketing");
   const { year, yearKey } = useCurrentYear();
   const columns = [
@@ -445,7 +446,11 @@ function MarketingFooter() {
     <footer className="studio-marketing-footer border-t border-[var(--studio-rule)] px-5 py-12 sm:px-8">
       <div className="mx-auto grid max-w-[1320px] gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_repeat(3,1fr)]">
         <div>
-          <Link aria-label="Shario home" className="inline-flex" href="/">
+          <Link
+            aria-label={commonT("sharioHome")}
+            className="inline-flex"
+            href="/"
+          >
             <SkabLogo size="sm" />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-6 text-[var(--studio-muted)]">

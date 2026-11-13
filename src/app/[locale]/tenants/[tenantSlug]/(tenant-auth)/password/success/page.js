@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
   ArrowLongRightIcon,
   CheckCircleIcon,
@@ -15,32 +16,13 @@ import { clearTempCredentials } from "@/lib/features/pass/passSlice";
 import { getSafeTenantNextPath } from "@/utils/tenantAuthRouting";
 import { buildPlatformUrl } from "@/utils/tenantRouting";
 
-const COPY = {
-  cs: {
-    action: "Přejít na přihlášení",
-    description:
-      "Vaše heslo bylo bezpečně změněno. Přihlaste se znovu novými údaji.",
-    eyebrow: "Hotovo",
-    status: "Heslo je připravené k použití.",
-    title: "Heslo bylo změněno",
-  },
-  en: {
-    action: "Continue to sign in",
-    description:
-      "Your password has been changed securely. Sign in again with your new credentials.",
-    eyebrow: "All set",
-    status: "Your new password is ready to use.",
-    title: "Password updated",
-  },
-};
-
 const actionClassName =
   "group inline-flex min-h-[54px] w-full items-center justify-center gap-3 rounded-full border border-[var(--tenant-accent)] bg-[var(--tenant-accent)] px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--tenant-accent-foreground)] shadow-[0_14px_34px_rgba(25,26,24,0.14)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(25,26,24,0.18)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--tenant-page-label-color)]/20 focus-visible:ring-offset-2 motion-reduce:transform-none";
 
 export default function PasswordResetSuccess() {
   const dispatch = useDispatch();
   const locale = useLocale();
-  const copy = COPY[locale === "cs" ? "cs" : "en"];
+  const copy = useLegacyCopy("passwordSuccess");
   const searchParams = useSearchParams();
   const nextPath = getSafeTenantNextPath(searchParams.get("next"), "/portal");
   const isPlatformSource = searchParams.get("source") === "platform";

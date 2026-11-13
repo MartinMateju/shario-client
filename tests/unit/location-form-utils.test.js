@@ -159,7 +159,7 @@ describe("location form defaults and payload", () => {
 describe("location form display and opening-hour helpers", () => {
   it("formats durations with explicit units", () => {
     expect(formatDurationMinutes(30, "en")).toBe("30 min");
-    expect(formatDurationMinutes(60, "en")).toBe("1 h");
+    expect(formatDurationMinutes(60, "en")).toBe("1 hr");
     expect(formatDurationMinutes(90, "cs")).toBe("1 h 30 min");
   });
   it("accepts midnight closing and rejects malformed values", () => {

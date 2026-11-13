@@ -4,7 +4,6 @@ import { describe, expect, it, vi } from "vitest";
 
 import StudioCalendar from "@/components/calendar/StudioCalendar";
 import { localizeCalendarResource } from "@/components/calendar/calendar.resources";
-import { deepMergeMessages } from "@/i18n/catalogs";
 import { ALL_LOCALE_CODES } from "@/i18n/locales";
 
 const catalogModules = import.meta.glob("../../src/messages/*.json", {
@@ -17,12 +16,7 @@ const rawCatalogs = Object.fromEntries(
     messages,
   ]),
 );
-const catalogs = Object.fromEntries(
-  Object.entries(rawCatalogs).map(([locale, messages]) => [
-    locale,
-    deepMergeMessages(rawCatalogs.en, messages),
-  ]),
-);
+const catalogs = rawCatalogs;
 const activityIds = ["WORKSTATION", "SHARED_TABLE", "GENERAL"];
 const location = {
   id: "grohova",

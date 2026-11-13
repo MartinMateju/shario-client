@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowPathIcon,
@@ -213,6 +214,7 @@ function LoadingPanel({ label }) {
 }
 
 export default function PublicBookingAvailabilityPage({ previewData }) {
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const locale = useLocale();
   const t = useTranslations("PublicTenant.book");
   const params = useParams();
@@ -362,6 +364,7 @@ export default function PublicBookingAvailabilityPage({ previewData }) {
   const tenantTheme = getPublicTenantTheme(tenant);
   const page = tenant.publicSite.pages.book;
   const customizationDefaults = getPublicWebsitePageCustomizationDefaults({
+    localizedDefaults: customerDefaults,
     page: "book",
     locale,
     studio: tenant.publicSite.branding.displayName,

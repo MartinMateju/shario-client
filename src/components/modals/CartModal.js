@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy, useLegacyText } from "@/i18n/useLegacyCopy";
 import { isSupportedCartItem } from "@/lib/features/cart/cartItemScope";
 
 import {
@@ -23,7 +24,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   Fragment,
   useCallback,
@@ -69,13 +70,11 @@ import {
   useGetMyCreditBalanceQuery,
 } from "@/lib/features/credits/creditsApiSlice";
 import { setBalance } from "@/lib/features/credits/creditsSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { getSafeCheckoutUrl } from "@/utils/checkoutUrl";
 import { minorUnitsToMajor } from "@/utils/money";
 import {
   formatCartCurrencyAmount,
-  getCartCopy,
-  getCartItemCountLabel,
   getCartItemHourlyPriceMajor,
   getCartItemTotalMajor,
   getCartItemPrivateSurchargeMajor,
@@ -125,9 +124,17 @@ export default function CartModal({
   allowCourses = allowBookings,
   allowServices = true,
 }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
   const routeLocale = useLocale();
+  const t = useTranslations();
+  const getProductName = (item) =>
+    getCartProductName(item, routeLocale, {
+      studioBooking: t("BookingConfirmation.summary.productFallback"),
+      openStudio: t("Products.types.openStudio"),
+    });
   const language = useSelector(selectCurrentLanguage) === "EN" ? "EN" : "CZ";
   const cartItemsState = useSelector((state) => state.cart);
   const ownerScope = useSelector(getAuthCacheIdentity);
@@ -140,7 +147,7 @@ export default function CartModal({
       }),
     [publicTenantContext?.tenant, publicTenantContext?.surface],
   );
-  const copy = getCartCopy(language);
+  const copy = useLegacyCopy("cart");
   const locale = resolveIntlLocale(routeLocale);
   const checkoutLocale = resolveRolloutEligibleLocaleCode(routeLocale);
   const [selectedOptionId, setSelectedOptionId] = useState("");
@@ -320,10 +327,7 @@ export default function CartModal({
       ) {
         return;
       }
-      throw new Error(
-        translation["CHECKOUT_REDIRECT_MISSING"]?.[language] ||
-          "The secure payment page could not be opened. Please try again.",
-      );
+      throw new Error(translation["CHECKOUT_REDIRECT_MISSING"]?.[language]);
     } catch (error) {
       void quoteQuery.refetch();
       alert(
@@ -331,10 +335,9 @@ export default function CartModal({
           error,
           language,
           translations: translation,
-          fallback:
-            language === "CZ"
-              ? "Platbu se nepodařilo zahájit. Zkuste to prosím znovu."
-              : "Checkout failed. Please try again.",
+          fallback: legacyText(
+            "CartModal_Checkout_failed_Please_try_again_ef7be",
+          ),
         }),
       );
     }
@@ -445,7 +448,7 @@ export default function CartModal({
                           </p>
                           {!isCartEmpty ? (
                             <span className="rounded-full border border-[color-mix(in_srgb,var(--tenant-text)_11%,transparent)] bg-[var(--tenant-background)] px-2.5 py-1 text-[9px] font-medium text-[var(--tenant-muted-text)]">
-                              {getCartItemCountLabel(cart.length, language)}
+                              {copy.itemCount(cart.length)}
                             </span>
                           ) : null}
                         </div>
@@ -563,12 +566,9 @@ export default function CartModal({
                                     <div className="flex items-start justify-between gap-3">
                                       <h3
                                         className="line-clamp-2 text-[14px] font-semibold leading-5 tracking-[-0.015em] text-[var(--tenant-text-on-surface)] sm:text-[15px]"
-                                        title={getCartProductName(
-                                          cartItem,
-                                          language,
-                                        )}
+                                        title={getProductName(cartItem)}
                                       >
-                                        {getCartProductName(cartItem, language)}
+                                        {getProductName(cartItem)}
                                       </h3>
                                       <p className="shrink-0 text-[14px] font-semibold tracking-[-0.02em] text-[var(--tenant-text-on-surface)] sm:text-[15px]">
                                         {formatCartCurrencyAmount(
@@ -584,9 +584,9 @@ export default function CartModal({
                                       cartItem,
                                     ) > 0 && (
                                       <p className="mt-2 text-xs text-[var(--tenant-muted-on-surface)]">
-                                        {language === "CZ"
-                                          ? "Včetně jednorázového příplatku za soukromou rezervaci"
-                                          : "Includes one-time private booking surcharge"}
+                                        {legacyText(
+                                          "CartModal_Includes_one_time_private_booking_surcharge_67d5a",
+                                        )}
                                         :{" "}
                                         {formatCartCurrencyAmount(
                                           getCartItemPrivateSurchargeMajor(
@@ -662,7 +662,7 @@ export default function CartModal({
                                         dispatch(removeItem(removeKey))
                                       }
                                       className="mt-3 inline-flex min-h-9 items-center gap-1.5 rounded-full px-2 text-[10px] font-semibold text-[var(--tenant-muted-on-surface)] transition-colors hover:bg-[color-mix(in_srgb,var(--tenant-secondary)_10%,transparent)] hover:text-[var(--tenant-secondary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-link)]/30 disabled:opacity-40"
-                                      aria-label={`${copy.remove}: ${getCartProductName(cartItem, language)}`}
+                                      aria-label={`${copy.remove}: ${getProductName(cartItem)}`}
                                     >
                                       <TrashIcon
                                         className="h-3.5 w-3.5"
@@ -693,7 +693,7 @@ export default function CartModal({
                                 {copy.orderSummary}
                               </p>
                               <p className="text-[10px] text-[var(--tenant-muted-on-surface)]">
-                                {getCartItemCountLabel(cart.length, language)}
+                                {copy.itemCount(cart.length)}
                               </p>
                             </div>
 

@@ -1,3 +1,8 @@
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs();
+});
+
 import fs from "node:fs";
 import path from "node:path";
 

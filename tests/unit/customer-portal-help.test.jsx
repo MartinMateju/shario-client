@@ -13,9 +13,14 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
     mocks.tenant ? { tenant: mocks.tenant } : null,
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => mocks.locale,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => mocks.locale,
+    }))(...args),
+  );
+});
 
 vi.mock("@/i18n/navigation", () => ({
   Link: ({ children, href, ...props }) => (

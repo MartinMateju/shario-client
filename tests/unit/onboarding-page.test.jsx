@@ -203,7 +203,7 @@ describe("tenant studio setup page", () => {
     expect(header).not.toHaveClass("border-b", "bg-surface/95");
     expect(within(header).queryByRole("navigation")).not.toBeInTheDocument();
     expect(
-      within(header).getByRole("link", { name: "Shario home" }),
+      within(header).getByRole("link", { name: "Úvod Shario" }),
     ).toBeInTheDocument();
     expect(
       within(header).getAllByText("Nastavení studia").length,
@@ -457,7 +457,7 @@ describe("tenant studio setup page", () => {
     );
   });
 
-  it("shows and focuses the server message without continuing after a failed save", async () => {
+  it("shows and focuses localized copy without continuing after a failed save", async () => {
     mocks.saveUnwrap.mockRejectedValueOnce({
       data: { message: "Workspace settings could not be saved." },
     });
@@ -470,7 +470,12 @@ describe("tenant studio setup page", () => {
     );
 
     const alert = await screen.findByRole("alert");
-    expect(alert).toHaveTextContent("Workspace settings could not be saved.");
+    expect(alert).toHaveTextContent(
+      "We could not prepare your workspace. Please try again.",
+    );
+    expect(alert).not.toHaveTextContent(
+      "Workspace settings could not be saved.",
+    );
     await waitFor(() => expect(alert).toHaveFocus());
     expect(mocks.saveStep).toHaveBeenCalledTimes(1);
     expect(mocks.complete).not.toHaveBeenCalled();
@@ -503,7 +508,7 @@ describe("tenant studio setup page", () => {
     renderPage("en");
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Could not load this workspace.",
+      "We could not load your launch details.",
     );
     fireEvent.click(screen.getByRole("button", { name: "Try again" }));
     expect(mocks.refetch).toHaveBeenCalledTimes(1);

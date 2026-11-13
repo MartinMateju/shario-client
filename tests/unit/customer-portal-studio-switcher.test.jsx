@@ -1,3 +1,9 @@
+const intlMocks = vi.hoisted(() => ({ locale: "en" }));
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs({ useLocale: () => intlMocks.locale });
+});
+
 import fs from "node:fs";
 import path from "node:path";
 
@@ -64,6 +70,7 @@ const pieceStudio = {
 
 describe("customer dashboard studio switcher", () => {
   beforeEach(() => {
+    intlMocks.locale = "en";
     vi.stubGlobal(
       "ResizeObserver",
       class ResizeObserverMock {
@@ -224,6 +231,7 @@ describe("customer dashboard studio switcher", () => {
   });
 
   it("localizes the Czech switch control and keeps every option touch-safe", async () => {
+    intlMocks.locale = "cs";
     const user = userEvent.setup();
 
     render(

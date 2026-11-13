@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   ArrowPathIcon,
   CheckCircleIcon,
@@ -86,7 +87,7 @@ export default function VerifyEmailPage() {
         }
         setStatus("verified");
       } catch (error) {
-        setMessage(error?.data?.message || t("error.description"));
+        setMessage(getLocalizedApiErrorMessage(error, t("error.description")));
         setStatus("error");
       }
     };
@@ -117,7 +118,7 @@ export default function VerifyEmailPage() {
       setStatus("sent");
       setMessage(t("sent.again"));
     } catch (error) {
-      setMessage(error?.data?.message || t("resend.error"));
+      setMessage(getLocalizedApiErrorMessage(error, t("resend.error")));
     }
   };
 

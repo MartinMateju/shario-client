@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import {
   formatWallDate,
   formatWallTime,
@@ -107,7 +109,7 @@ export const getBookingEditorError = (error, t, fallback = "request") => {
   if (code === "BOOKING_EDIT_ACCESS_DELIVERY_IN_PROGRESS")
     return t(`lockReasons.${code}`);
   if (keys[code]) return t(`errors.${keys[code]}`);
-  return String(error?.data?.message || t(`errors.${fallback}`));
+  return getLocalizedApiErrorMessage(error, t(`errors.${fallback}`));
 };
 
 export const getBookingEditorLockReason = (code, t, fallback) =>

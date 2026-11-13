@@ -1,5 +1,8 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   AcademicCapIcon,
   ArrowPathIcon,
@@ -52,7 +55,7 @@ const requiresEmailVerification = (error) =>
 const formatDateTime = (value, locale) => {
   const date = new Date(value || "");
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -67,7 +70,7 @@ function PriceSnapshot({ price, locale, label }) {
         {formatMajorCurrencyAmount(
           price.amount,
           price.currency,
-          locale === "cs" ? "cs-CZ" : "en-GB",
+          resolveIntlLocale(locale),
         )}
       </span>
     </p>
@@ -230,7 +233,10 @@ export default function CustomerWaitlistsPage() {
       await leave({ entryId: entry.id }).unwrap();
     } catch (requestError) {
       setError({
-        message: requestError?.data?.message || sharedT("errors.generic"),
+        message: getLocalizedApiErrorMessage(
+          requestError,
+          sharedT("errors.generic"),
+        ),
         verificationRequired: requiresEmailVerification(requestError),
       });
     } finally {
@@ -255,10 +261,10 @@ export default function CustomerWaitlistsPage() {
       window.location.assign(checkoutUrl);
     } catch (requestError) {
       setError({
-        message:
-          requestError?.data?.message ||
-          requestError?.message ||
+        message: getLocalizedApiErrorMessage(
+          requestError,
           sharedT("errors.checkout"),
+        ),
         verificationRequired: requiresEmailVerification(requestError),
       });
     } finally {

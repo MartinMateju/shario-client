@@ -1,3 +1,4 @@
+import { useLegacyCopy, useLegacyText } from "@/i18n/useLegacyCopy";
 import {
   Dialog,
   Transition,
@@ -9,7 +10,7 @@ import { InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { getDateAsString, getDateHourAsString } from "@/utils/utilityFunctions";
 import { getBookingProductLabel } from "@/utils/productBookingLabels";
 import { activeBookingParticipants } from "@/utils/bookingAttendance";
@@ -65,6 +66,9 @@ const getLecturerName = (booking) => {
 };
 
 export default function BookingInfoModal({ open, setOpen, booking = {} }) {
+  const bookingKinds = useLegacyCopy("bookingKinds");
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   const closeButtonRef = useRef(null);
 
@@ -72,7 +76,7 @@ export default function BookingInfoModal({ open, setOpen, booking = {} }) {
     const start = booking?.start;
     const end = booking?.end;
 
-    const typeLabel = getBookingProductLabel(booking, language);
+    const typeLabel = getBookingProductLabel(booking, language, bookingKinds);
     const guests = getGuestsCount(booking);
     const lecturer = getLecturerName(booking);
 
@@ -81,38 +85,36 @@ export default function BookingInfoModal({ open, setOpen, booking = {} }) {
 
       // ✅ Type
       {
-        label: language === "CZ" ? "Typ" : "Type",
+        label: legacyText("BookingInfoModal_Type_3deb7"),
         value: typeLabel,
       },
 
       // ✅ Guests
       {
-        label:
-          translation["NUMBER_OF_GUESTS"]?.[language] ??
-          (language === "CZ" ? "Počet hostů" : "Guests"),
+        label: translation["NUMBER_OF_GUESTS"]?.[language],
         value: String(guests),
       },
 
       // ✅ Lecturer (only if available)
       {
-        label: language === "CZ" ? "Lektor" : "Lecturer",
+        label: legacyText("BookingInfoModal_Lecturer_e396e"),
         value: lecturer,
       },
 
       {
-        label: translation["DATE"]?.[language] ?? "Date",
+        label: translation["DATE"]?.[language],
         value: start ? getDateAsString(start) : "—",
       },
       {
-        label: translation["START_TIME"]?.[language] ?? "Start",
+        label: translation["START_TIME"]?.[language],
         value: start ? getDateHourAsString(start) : "—",
       },
       {
-        label: translation["END_TIME"]?.[language] ?? "End",
+        label: translation["END_TIME"]?.[language],
         value: end ? getDateHourAsString(end) : "—",
       },
       {
-        label: translation["FIRST_NAME"]?.[language] ?? "First name",
+        label: translation["FIRST_NAME"]?.[language],
         value: safeText(booking?.author?.name),
       },
       { label: "Custom ID", value: safeText(booking?.author?.customId) },
@@ -123,7 +125,7 @@ export default function BookingInfoModal({ open, setOpen, booking = {} }) {
     // return lecturer === "—" ? rows.filter(r => r.label !== (language === "CZ" ? "Lektor" : "Lecturer")) : rows;
 
     return rows;
-  }, [booking, language]);
+  }, [booking, bookingKinds, language, legacyText, translation]);
 
   const onClose = () => setOpen(false);
 
@@ -180,8 +182,7 @@ export default function BookingInfoModal({ open, setOpen, booking = {} }) {
                       as="h3"
                       className="font-medium text-lg sm:text-xl text-gray-900 leading-6"
                     >
-                      {translation["BOOKING_DETAILS"]?.[language] ??
-                        "Booking details"}
+                      {translation["BOOKING_DETAILS"]?.[language]}
                     </DialogTitle>
                     <p className="mt-1 text-sm text-gray-500">
                       {booking?.start
@@ -197,7 +198,7 @@ export default function BookingInfoModal({ open, setOpen, booking = {} }) {
                     onClick={onClose}
                     ref={closeButtonRef}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[var(--unnamed-color-e6a684)]"
-                    aria-label="Close"
+                    aria-label={legacyText("BookingInfoModal_Close_bbfa7")}
                   >
                     <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                   </button>
@@ -231,7 +232,7 @@ export default function BookingInfoModal({ open, setOpen, booking = {} }) {
                                ring-1 ring-inset ring-[var(--unnamed-color-b3a292)] text-[var(--unnamed-color-b3a292)]
                                hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[var(--unnamed-color-e6a684)]"
                   >
-                    {translation["CANCEL"]?.[language] ?? "Close"}
+                    {translation["CANCEL"]?.[language]}
                   </button>
                 </div>
               </DialogPanel>

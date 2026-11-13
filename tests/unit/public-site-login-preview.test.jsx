@@ -1,3 +1,8 @@
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs();
+});
+
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowDownTrayIcon,
@@ -93,7 +95,7 @@ const fetchAllPages = async ({ trigger, query, maxPages = 100 }) => {
 };
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export default function SalesView({ showPageHeader = true }) {
   const locale = useLocale();

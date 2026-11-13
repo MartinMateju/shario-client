@@ -47,7 +47,9 @@ describe("voucher revocation dialog", () => {
     expect(submit).toBeDisabled();
     await user.click(screen.getByRole("checkbox"));
     await user.click(submit);
-    expect(await screen.findByRole("alert")).toHaveTextContent("Please retry");
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      messages.VoucherFoundation.revoke.error,
+    );
     expect(onClose).not.toHaveBeenCalled();
     expect(onRevoked).not.toHaveBeenCalled();
     expect(screen.getByRole("textbox", { name: "Reason" })).toHaveValue(

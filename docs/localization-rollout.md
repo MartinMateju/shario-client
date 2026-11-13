@@ -13,17 +13,22 @@ Spanish (`es`), Italian (`it`), European Portuguese (`pt-PT`), Swedish (`sv`),
 Norwegian Bokmål (`nb`), Finnish (`fi`), Hungarian (`hu`), Greek (`el`), Turkish
 (`tr`), Dutch (`nl`) and Romanian (`ro`).
 
-The Shario marketing pages, header, footer and new generic brand copy are
-translated in every language. The inherited product catalogs retain Skab's
-coverage: English, Czech and Dutch have complete key coverage; the other 15
-catalogs translate the launch-critical and tenant-core surfaces and fall back
-to English for missing deeper product messages. Enabling routes does not make
-these partial catalogs complete or translate tenant-authored content.
+Every product catalog must contain the same keys as English. The catalog loader
+loads only the selected language; it never merges missing messages from English.
+The older customer screens also use the active next-intl catalog, including when
+the historical Redux language enum is still `EN` or `CZ`.
 
-English, Czech and Dutch retain their `ready` status. The other languages
-retain `preview` status and `noindex` metadata until their full product
-translation review is complete. The language selector lists all enabled
-languages using their native names.
+The supported product copy includes marketing, authentication, customer portal,
+bookings, waitlists, memberships, billing, inventory, communication settings,
+website editor, imports, notifications and deterministic AI recommendations.
+Server diagnostics are displayed through localized screen messages or known error
+codes. Tenant-written names, descriptions, messages and knowledge articles remain
+in the language supplied by their authors.
+
+English, Czech and Dutch retain their `ready` indexing status. The other languages
+retain `preview` and `noindex` metadata during editorial and release review; this
+status no longer relaxes the full-catalog requirement. The language selector lists
+all enabled languages using their native names.
 
 Norwegian Bokmål uses the canonical `nb` route; `no` and `no-NO` are input
 aliases. Regional inputs such as `hu-HU`, `el-GR`, `tr-TR`, `nl-NL` and `ro-RO`
@@ -81,6 +86,30 @@ tenant control and can later receive a separate, opt-in translation workflow.
   members who can update the workspace. Other team members see the inherited
   workspace language as read-only.
 
-Missing product messages in partial catalogs fall back to English. Tenant-authored public-site fields support the tenant's
-configured primary and optional secondary locale, but shario.io never translates
-that custom copy automatically.
+Tenant-authored public-site fields support the tenant's configured primary and
+optional secondary locale. Shario never translates that custom copy automatically.
+Outgoing email/SMS template language is a separate server feature; product screen
+localization does not automatically translate stored message templates.
+
+## Development and validation
+
+`npm run i18n:check` checks every registered catalog, including Czech, for missing
+or extra keys, empty translations, ICU argument types and rich-text structure.
+Both production build commands run this check before building. The real ICU
+formatter is also exercised in tests with singular, plural and fractional counts.
+Add new messages to all 18 catalogs in the same change; English fallback is not
+available as a development shortcut.
+
+AI briefing and advisor copy is maintained in the `AIProduct` namespace alongside
+the frontend messages. Export its validated catalogs into the separate Shario
+server repository after editing it:
+
+```sh
+node scripts/export-ai-product-catalogs.mjs /absolute/path/to/shario-server/src/modules/ai/ai-product-messages.ts
+```
+
+Commit both repositories when that shared product copy changes. The server tests
+check full locale coverage and preserve the underlying operational and financial
+facts while translating the display strings. During an AI provider outage, the
+assistant and concierge use localized unavailable messages or an exact-language
+knowledge answer, without appending an English fallback answer.

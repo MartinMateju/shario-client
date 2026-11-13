@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   ArrowLeftIcon,
   CalendarDaysIcon,
@@ -52,13 +53,7 @@ const controlClass =
   "mt-2 min-h-11 w-full rounded-[13px] border border-line bg-white px-3.5 text-[12px] text-ink outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10 disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-ink-subtle";
 
 const getErrorMessage = (error, fallback) =>
-  String(
-    error?.data?.message ||
-      error?.data?.error ||
-      error?.error ||
-      error?.message ||
-      fallback,
-  );
+  String(getLocalizedApiErrorMessage(error, fallback));
 
 function Field({ label, hint, children }) {
   return (
@@ -592,7 +587,7 @@ export default function BookingSessionComposer() {
                         : "border-line bg-white text-ink-muted hover:border-line-strong hover:text-ink"
                     }`}
                   >
-                    {formatDuration(value, locale === "cs" ? "CZ" : "EN")}
+                    {formatDuration(value, locale)}
                   </button>
                 ))}
               </div>

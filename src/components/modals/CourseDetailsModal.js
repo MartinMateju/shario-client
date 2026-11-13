@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { Fragment } from "react";
 import {
   Dialog,
@@ -19,6 +20,7 @@ export default function CourseDetailsModal({
   tenantStylePresetId = null,
   tenantThemeStyle = null,
 }) {
+  const legacyText = useLegacyText();
   const isSectionsArray =
     Array.isArray(children) &&
     children.every(
@@ -73,7 +75,7 @@ export default function CourseDetailsModal({
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="mb-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--unnamed-color-e6a684)]">
-                        {language === "CZ" ? "Detail kurzu" : "Course detail"}
+                        {legacyText("CourseDetailsModal_Course_detail_fc5ad")}
                       </p>
 
                       <DialogTitle className="text-xl font-medium leading-tight text-gray-950 sm:text-2xl">
@@ -84,7 +86,7 @@ export default function CourseDetailsModal({
                     <button
                       type="button"
                       onClick={onClose}
-                      aria-label={language === "CZ" ? "Zavřít" : "Close"}
+                      aria-label={legacyText("CourseDetailsModal_Close_bbfa7")}
                       className="
                         group -mr-1 inline-flex h-10 w-10 shrink-0 items-center justify-center
                         rounded-full bg-gray-50 text-gray-500 transition-all duration-200
@@ -143,7 +145,7 @@ export default function CourseDetailsModal({
                         focus-visible:ring-offset-2
                       "
                     >
-                      {language === "CZ" ? "Zavřít" : "Close"}
+                      {legacyText("CourseDetailsModal_Close_bbfa7")}
                     </button>
                   </div>
                 </div>

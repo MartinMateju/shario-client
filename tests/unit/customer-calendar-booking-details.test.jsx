@@ -23,7 +23,12 @@ vi.mock("@/lib/features/auth/authSlice", () => ({
   selectCurrentTenant: () => mocks.tenant,
   selectAuthSessionBoundaryEpoch: () => mocks.sessionBoundaryEpoch,
 }));
-vi.mock("next-intl", () => ({ useLocale: () => "en" }));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({ useLocale: () => "en" }))(...args),
+  );
+});
 vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),
 }));

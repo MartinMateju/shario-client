@@ -16,10 +16,27 @@ const translations = {
   "actions.signIn": "Sign in",
 };
 
-vi.mock("next-intl", () => ({
-  useLocale: () => mocks.locale,
-  useTranslations: () => (key) => translations[key] || key,
-}));
+vi.mock("next-intl", async (importOriginal) => {
+  const { createTranslator } = await importOriginal();
+  const catalogs = {
+    en: (await import("@/messages/en.json")).default,
+    cs: (await import("@/messages/cs.json")).default,
+    nl: (await import("@/messages/nl.json")).default,
+  };
+  return {
+    useLocale: () => mocks.locale,
+    useMessages: () => catalogs[mocks.locale],
+    useTranslations: (namespace) =>
+      namespace === "PublicTenantHome.sections" ||
+      namespace?.startsWith("Legacy.")
+        ? createTranslator({
+            locale: mocks.locale,
+            messages: catalogs[mocks.locale],
+            namespace,
+          })
+        : (key) => translations[key] || key,
+  };
+});
 
 vi.mock("next/navigation", () => ({
   useParams: () => ({ tenantSlug: "studio-olivie" }),
@@ -142,6 +159,18 @@ describe("public tenant home page", () => {
       query.mockReset();
       query.mockReturnValue(emptyQuery());
     }
+  });
+
+  it("renders default section headings and navigation in Dutch without English fallback", () => {
+    mocks.locale = "nl";
+    render(<PublicTenantHomeSections />);
+    expect(
+      screen.getByRole("heading", { name: "Mogelijkheden voor je bezoek" }),
+    ).toBeVisible();
+    expect(screen.getByText("Ontdek de studio")).toBeVisible();
+    expect(screen.getByText("Lidmaatschappen")).toBeVisible();
+    expect(screen.queryByText("Ways to visit")).not.toBeInTheDocument();
+    expect(screen.queryByText("Memberships")).not.toBeInTheDocument();
   });
 
   it("renders the production hero and curated destinations", () => {

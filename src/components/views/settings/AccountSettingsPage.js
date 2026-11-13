@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { useSelector, useStore } from "react-redux";
@@ -60,7 +62,7 @@ const portalControlClass =
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.data?.error || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 function Notice({ notice }) {
   if (!notice) return null;

@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Dialog, DialogTitle } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -134,7 +136,7 @@ const PRODUCT_FORM_KINDS = new Set([
 const inputClass = workspaceInputClass;
 const labelClass = workspaceLabelClass;
 const getApiError = (error, fallback) =>
-  error?.data?.message || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 const getInitialForm = ({
   product,
   initialType,

@@ -33,6 +33,7 @@ import styles from "./dashboardShell.module.css";
 const classNames = (...classes) => classes.filter(Boolean).join(" ");
 
 function DashboardBrand({ collapsed, onNavigate }) {
+  const commonT = useTranslations("Common");
   return (
     <Link
       href="/app"
@@ -42,7 +43,7 @@ function DashboardBrand({ collapsed, onNavigate }) {
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--studio-blue)]",
         collapsed ? "px-2" : "px-1",
       )}
-      aria-label="shario.io dashboard"
+      aria-label={commonT("sharioDashboard")}
     >
       <SkabLogo
         variant={collapsed ? "compact" : "full"}

@@ -149,6 +149,7 @@ describe("Headless UI backport installation", () => {
     for (const hook of ["prebuild", "prebuild:turbopack"]) {
       expect(scripts[hook].split(" && ")).toEqual([
         "node scripts/validate-vercel-env.mjs",
+        "node scripts/validate-locales.mjs",
         backportCommand,
       ]);
     }

@@ -5,7 +5,7 @@ import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { useGetProductsQuery } from "@/lib/features/products/productsApiSlice";
 import { useGetAllLecturersQuery } from "@/lib/features/lecturers/lecturersApiSlice";
 import { selectCurrentUser } from "@/lib/features/auth/authSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 
 export default function AdvancedBookingsFilters({
   filters,
@@ -14,6 +14,7 @@ export default function AdvancedBookingsFilters({
   products = [],
   lecturers = [],
 }) {
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   const { id } = useSelector(selectCurrentUser);
   const [showFilters, setShowFilters] = useState(false);
@@ -66,7 +67,7 @@ export default function AdvancedBookingsFilters({
         >
           <span className="flex items-center">
             <FunnelIcon className="h-5 w-5 mr-2" />
-            {translation["FILTERS"]?.[language] || "Filters"}
+            {translation["FILTERS"]?.[language]}
             {hasActiveFilters() && (
               <span className="ml-2 px-2 py-0.5 bg-cobalt-600 text-white text-xs rounded-full">
                 {
@@ -110,16 +111,14 @@ export default function AdvancedBookingsFilters({
       >
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-medium text-gray-900">
-            {translation["ADVANCED_FILTERS"]?.[language] || "Advanced Filters"}
+            {translation["ADVANCED_FILTERS"]?.[language]}
           </h3>
           {hasActiveFilters() && (
             <button
               onClick={handleClearAll}
               className="text-sm text-cobalt-600 hover:text-cobalt-800 font-medium"
             >
-              {translation["CLEAR_FILTERS"]?.[language] ||
-                translation["CLEAR_ALL"]?.[language] ||
-                "Clear All"}
+              {translation["CLEAR_FILTERS"]?.[language] || "Clear All"}
             </button>
           )}
         </div>
@@ -131,7 +130,7 @@ export default function AdvancedBookingsFilters({
               htmlFor="dateFrom"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["DATE_FROM"]?.[language] || "Date From"}
+              {translation["DATE_FROM"]?.[language]}
             </label>
             <input
               type="date"
@@ -148,7 +147,7 @@ export default function AdvancedBookingsFilters({
               htmlFor="dateTo"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["DATE_TO"]?.[language] || "Date To"}
+              {translation["DATE_TO"]?.[language]}
             </label>
             <input
               type="date"
@@ -166,7 +165,7 @@ export default function AdvancedBookingsFilters({
               htmlFor="lecturer"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["LECTURER"]?.[language] || "Lecturer"}
+              {translation["LECTURER"]?.[language]}
             </label>
             <select
               id="lecturer"
@@ -175,7 +174,7 @@ export default function AdvancedBookingsFilters({
               className="block w-full rounded-none border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-sm"
             >
               <option value="">
-                {translation["ALL_LECTURERS"]?.[language] || "All Lecturers"}
+                {translation["ALL_LECTURERS"]?.[language]}
               </option>
               {displayLecturers.map((lecturer) => (
                 <option
@@ -194,7 +193,7 @@ export default function AdvancedBookingsFilters({
               htmlFor="productId"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["PRODUCT"]?.[language] || "Product"}
+              {translation["PRODUCT"]?.[language]}
             </label>
             <select
               id="productId"
@@ -203,7 +202,7 @@ export default function AdvancedBookingsFilters({
               className="block w-full rounded-none border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-sm"
             >
               <option value="">
-                {translation["ALL_PRODUCTS"]?.[language] || "All Products"}
+                {translation["ALL_PRODUCTS"]?.[language]}
               </option>
               {displayProducts.map((product) => (
                 <option key={product._id} value={product._id}>
@@ -219,7 +218,7 @@ export default function AdvancedBookingsFilters({
               htmlFor="authorSearch"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["AUTHOR_SEARCH"]?.[language] || "Author Search"}
+              {translation["AUTHOR_SEARCH"]?.[language]}
             </label>
             <input
               type="text"
@@ -228,10 +227,7 @@ export default function AdvancedBookingsFilters({
               onChange={(e) =>
                 handleFilterChange("authorSearch", e.target.value)
               }
-              placeholder={
-                translation["SEARCH_BY_NAME_OR_ID"]?.[language] ||
-                "Search by name or ID"
-              }
+              placeholder={translation["SEARCH_BY_NAME_OR_ID"]?.[language]}
               className="block w-full rounded-none border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
             />
           </div>

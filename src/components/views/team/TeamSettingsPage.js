@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useMemo, useState } from "react";
 import {
   Dialog,
@@ -142,10 +144,8 @@ const buildForm = (membership) => {
   };
 };
 
-const getMutationError = (error, fallback) => {
-  const message = error?.data?.message || error?.data?.error || error?.error;
-  return typeof message === "string" ? message : fallback;
-};
+const getMutationError = (error, fallback) =>
+  getLocalizedApiErrorMessage(error, fallback);
 
 function Pill({ children, tone = "neutral" }) {
   const tones = {

@@ -1,3 +1,10 @@
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs({
+    useLocale: () => (mocks.language === "CZ" ? "cs" : "en"),
+  });
+});
+
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 

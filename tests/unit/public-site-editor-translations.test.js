@@ -1,3 +1,4 @@
+import { analyzeIcuMessage } from "../../scripts/validate-locales.mjs";
 import { createHash } from "node:crypto";
 
 import { describe, expect, it } from "vitest";
@@ -58,7 +59,7 @@ const APPEARANCE_PATHS = Object.freeze([
 const PORTAL_PREVIEW_PATHS = Object.freeze([
   "preview.portalProfileSettings",
   "preview.portalBookAction",
-  ...["loading", "ready", "timeout", "reload"].map(
+  ...["loading", "ready", "timeout", "reload", "frameTitle"].map(
     (key) => `preview.connection.${key}`,
   ),
 ]);
@@ -96,6 +97,55 @@ const PORTAL_VISIBILITY_PATHS = Object.freeze(
 );
 
 const NEW_RUNTIME_PATHS = Object.freeze([
+  "builderActions.revisionNo",
+  "header.urlExample",
+  "footer.urlExample",
+  ...[
+    "title",
+    "description",
+    "visible",
+    "hidden",
+    "edit",
+    "moveUp",
+    "moveDown",
+    "toggle",
+    "sectionTitle",
+    "sectionDescription",
+    ...[
+      "waysToVisit",
+      "featured",
+      "about",
+      "gallery",
+      "testimonials",
+      "locations",
+      "team",
+      "faq",
+    ].map((key) => `labels.${key}`),
+  ].map((key) => `homeSections.${key}`),
+  ...[
+    "publishChanges",
+    "publishWebsite",
+    "publishingWebsite",
+    "launchTitle",
+    "launchDescription",
+    "launchBlocked",
+    "launchConfirmTitle",
+    "launchConfirmDescription",
+    "launched",
+    "undo",
+    "redo",
+    "history",
+    "historyTitle",
+    "historyDescription",
+    "historyEmpty",
+    "historyError",
+    "retryHistory",
+    "restore",
+    "restored",
+    "restoreBlocked",
+    "restoreConfirm",
+    "close",
+  ].map((key) => `builderActions.${key}`),
   "customerPortal.pageLabels.courses",
   "customerPortal.navigationLabels.courses",
   "preview.pages.portalCourses",
@@ -175,11 +225,7 @@ function fingerprint(paths) {
 }
 
 function collectPlaceholders(value) {
-  return typeof value === "string"
-    ? [...value.matchAll(/\{([^},]+)(?:,[^}]*)?\}/g)]
-        .map((match) => match[1].trim())
-        .sort()
-    : [];
+  return analyzeIcuMessage(value).argumentSignatures;
 }
 
 function expectLocalizedString(catalog, path, locale) {

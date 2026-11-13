@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useCallback, useMemo, useState } from "react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
@@ -331,9 +333,7 @@ export default function UsersAndStaffTable({
     } catch (error) {
       setShowDeleteAlert(false);
       setStaffError(
-        error?.data?.message ||
-          error?.message ||
-          t("modals.staffDeleteErrorText"),
+        getLocalizedApiErrorMessage(error, t("modals.staffDeleteErrorText")),
       );
     }
   }, [currentUser.isAdmin, deleteLecturer, staffToDelete, t, userId]);

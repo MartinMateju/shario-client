@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { ArrowPathIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -54,7 +55,7 @@ export default function AdminWaitlistSettings({
       setDraft(settings);
       setSaved(true);
     } catch (requestError) {
-      setError(requestError?.data?.message || t("error"));
+      setError(getLocalizedApiErrorMessage(requestError, t("error")));
     }
   };
 

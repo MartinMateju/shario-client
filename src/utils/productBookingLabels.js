@@ -116,8 +116,12 @@ const LABELS = Object.freeze({
 
 const getLabels = (language) => LABELS[language === "CZ" ? "CZ" : "EN"];
 
-export const getBookingProductLabel = (record, language = "EN") => {
-  const labels = getLabels(language);
+export const getBookingProductLabel = (
+  record,
+  language = "EN",
+  localizedLabels,
+) => {
+  const labels = localizedLabels || getLabels(language);
   const kind = normalizeBookingProductKind(record);
 
   if (kind === PRODUCT_KIND.OPEN_STUDIO) {

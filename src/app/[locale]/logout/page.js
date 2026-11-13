@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useDispatch } from "react-redux";
 
 import { useSendLogoutMutation } from "@/lib/features/auth/authApiSlice";
@@ -11,6 +11,7 @@ import { buildPlatformUrl } from "@/utils/tenantRouting";
 
 export default function PlatformLogoutPage() {
   const locale = useLocale();
+  const t = useTranslations("Common");
   const dispatch = useDispatch();
   const [sendLogout] = useSendLogoutMutation();
   const started = useRef(false);
@@ -48,7 +49,7 @@ export default function PlatformLogoutPage() {
   return (
     <main className="grid min-h-dvh place-items-center bg-[#FAF8F4] px-6 text-[#11110F]">
       <p aria-live="polite" className="text-sm text-[#62625D]">
-        Signing you out…
+        {t("signingOut")}
       </p>
     </main>
   );

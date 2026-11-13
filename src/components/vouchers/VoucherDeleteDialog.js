@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useTranslations } from "next-intl";
@@ -79,7 +80,7 @@ export default function VoucherDeleteDialog({
       }
       onSaved(t(action === "delete" ? "delete.deleted" : "delete.archived"));
     } catch (requestError) {
-      setError(requestError?.data?.message || t("delete.error"));
+      setError(getLocalizedApiErrorMessage(requestError, t("delete.error")));
       // Codes or orders can change after this dialog opens. Re-read the policy
       // after a rejected write while retaining the typed text and server error.
       policyQuery.refetch();

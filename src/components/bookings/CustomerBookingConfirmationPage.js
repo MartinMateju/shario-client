@@ -1,5 +1,8 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   ArrowLeftIcon,
   ArrowPathIcon,
@@ -70,7 +73,7 @@ const formatDateTime = (value, locale, timeZone) => {
   if (Number.isNaN(date.getTime())) return "—";
 
   try {
-    return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+    return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
       weekday: "short",
       day: "numeric",
       month: "short",
@@ -238,9 +241,7 @@ export default function CustomerBookingConfirmationPage() {
         return;
       }
 
-      setSubmitError(
-        error?.data?.message || error?.message || t("errors.generic"),
-      );
+      setSubmitError(getLocalizedApiErrorMessage(error, t("errors.generic")));
     }
   };
 
@@ -623,7 +624,7 @@ function ConflictPanel({ conflict, alternatives = [], backHref }) {
             {t("conflict.title")}
           </p>
           <p className="mt-1 text-xs leading-5 text-amber-800">
-            {conflict?.message || t("conflict.description")}
+            {t("conflict.description")}
           </p>
         </div>
       </div>

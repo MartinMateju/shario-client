@@ -1,3 +1,5 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import { CUSTOMER_AVATAR_TONES } from "./people-table.constants";
 import {
   formatMajorCurrencyAmount,
@@ -354,7 +356,7 @@ export const formatRelativeDate = (value, locale, t, { never = true } = {}) => {
   if (isSameCalendarDay(date, now)) return t("dates.today");
   if (isSameCalendarDay(date, yesterday)) return t("dates.yesterday");
 
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     day: "numeric",
     month: "short",
     year: date.getFullYear() === now.getFullYear() ? undefined : "numeric",

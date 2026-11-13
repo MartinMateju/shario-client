@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
+
 import {
   Combobox,
   ComboboxOption,
@@ -33,6 +35,7 @@ export default function MobileMenuDialog({
   unlockScroll,
   onTabChange,
 }) {
+  const labels = useLegacyCopy("menu");
   const publicTenant = useOptionalPublicTenant();
   const tenantTheme = useMemo(
     () => getPublicTenantPortalTheme(publicTenant?.tenant),
@@ -58,12 +61,12 @@ export default function MobileMenuDialog({
           type="button"
           onClick={() => setMobileSheetOpen(true)}
           className="flex h-13 w-full cursor-pointer items-center gap-3 rounded-full border border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-5 py-4 text-left text-[var(--tenant-text-on-surface)] shadow-sm transition-all duration-200 active:scale-[0.99]"
-          aria-label="Open menu"
+          aria-label={labels.openMenu}
         >
           <SelectedIcon className="h-5 w-5 shrink-0" />
 
           <div className="w-full truncate font-medium text-[14px] uppercase tracking-[0.16em]">
-            {getTabLabel(currentTabObj?.name, language)}
+            {getTabLabel(currentTabObj?.name, language, labels)}
           </div>
           <ChevronDownIcon className="size-5 shrink-0" aria-hidden="true" />
         </button>
@@ -90,7 +93,7 @@ export default function MobileMenuDialog({
                   shario.io
                 </div>
                 <DialogTitle className="mt-1 font-medium text-sm uppercase tracking-[0.16em] text-[var(--tenant-text-on-surface)]">
-                  {language === "CZ" ? "Nabídka" : "Menu"}
+                  {labels.title}
                 </DialogTitle>
               </div>
 
@@ -101,7 +104,7 @@ export default function MobileMenuDialog({
                   unlockScroll();
                 }}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--tenant-border)] bg-[var(--tenant-surface)] text-[var(--tenant-text-on-surface)] shadow-sm transition-all duration-200 hover:border-[var(--tenant-accent)] hover:bg-[var(--tenant-accent)] hover:text-[var(--tenant-accent-foreground)] active:scale-95"
-                aria-label={language === "CZ" ? "Zavřít nabídku" : "Close menu"}
+                aria-label={labels.closeMenu}
               >
                 <XMarkIcon className="h-6 w-6" aria-hidden="true" />
               </button>
@@ -132,7 +135,7 @@ export default function MobileMenuDialog({
                     <Icon className="h-5 w-5 shrink-0" />
 
                     <span className="block truncate text-[14px]">
-                      {getTabLabel(tab.name, language)}
+                      {getTabLabel(tab.name, language, labels)}
                     </span>
                   </ComboboxOption>
                 );

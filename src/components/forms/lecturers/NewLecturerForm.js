@@ -1,12 +1,14 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useCreateNewLecturerMutation } from "@/lib/features/lecturers/lecturersApiSlice";
 import { selectCurrentUser } from "@/lib/features/auth/authSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import Loader from "../../loaders/Loader";
 import TextInput from "@/components/inputs/TextInput";
 import SubmitButton from "@/components/buttons/SubmitButton";
@@ -28,6 +30,8 @@ export default function NewLecturerForm({
   showErrModal,
   setErrMsg,
 }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const [createNewLecturer, { isLoading, isSuccess, isError, error }] =
     useCreateNewLecturerMutation();
 
@@ -57,7 +61,7 @@ export default function NewLecturerForm({
       setShow(false);
       showErrModal(true);
       setErrMsg(
-        error?.data?.message || "Nepodařilo se vytvořit nového lektora.",
+        getLocalizedApiErrorMessage(error, legacyText("instructorCreateError")),
       );
     }
   }, [
@@ -69,6 +73,7 @@ export default function NewLecturerForm({
     showConfirmation,
     showErrModal,
     setErrMsg,
+    legacyText,
   ]);
 
   const updateField = (key, value) => {
@@ -110,10 +115,12 @@ export default function NewLecturerForm({
 
           <div>
             <h3 className="mt-1 text-lg sm:text-xl font-medium text-black">
-              Nový lektor
+              {legacyText("NewLecturerForm_New_instructor_04304")}{" "}
             </h3>
             <p className="mt-1 text-sm text-black/55">
-              Vyplňte základní údaje pro vytvoření nového lektora.
+              {legacyText(
+                "NewLecturerForm_Enter_the_details_for_the_new_instructor_acea4",
+              )}{" "}
             </p>
           </div>
         </div>

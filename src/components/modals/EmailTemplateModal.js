@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { Dialog, DialogTitle } from "@headlessui/react";
 import { useMemo, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -38,7 +39,7 @@ const TEMPLATE_CATEGORIES = [
   "general",
 ];
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message ?? error?.data?.error ?? error?.error ?? fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 export default function EmailTemplateModal({
   open,
   mode = "create",

@@ -82,10 +82,10 @@ describe("voucher order refund status", () => {
     mount(<VouchersTable />);
     fireEvent.click(screen.getByRole("button", { name: "" }));
     const statusSelect = screen
-      .getByRole("option", { name: "Všechny stavy" })
+      .getByRole("option", { name: "All statuses" })
       .closest("select");
     fireEvent.change(statusSelect, { target: { value: "shipped_coupon" } });
-    fireEvent.click(screen.getByRole("button", { name: "Vyhledat" }));
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
     await waitFor(() =>
       expect(mocks.list).toHaveBeenLastCalledWith(
         expect.objectContaining({ physicalStatus: "dispatched" }),
@@ -93,7 +93,7 @@ describe("voucher order refund status", () => {
     );
     expect(mocks.list.mock.lastCall[0]).not.toHaveProperty("status");
     fireEvent.change(statusSelect, { target: { value: "processed_coupon" } });
-    fireEvent.click(screen.getByRole("button", { name: "Vyhledat" }));
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
     await waitFor(() =>
       expect(mocks.list).toHaveBeenLastCalledWith(
         expect.objectContaining({ status: "processed_coupon" }),
@@ -105,17 +105,24 @@ describe("voucher order refund status", () => {
     const { container } = mount(<VouchersTable />);
     expect(screen.getAllByText("Needs review")).toHaveLength(2);
     expect(screen.getAllByText("Refunded · codes revoked")).toHaveLength(2);
-    expect(screen.getAllByText("Odesláno")).toHaveLength(2);
+    expect(screen.getAllByText("Dispatched")).toHaveLength(2);
     expect(
-      screen.getAllByText(mocks.orders[0].refundReviewReason),
+      screen.getAllByText(
+        messages.VoucherFoundation.refund.reviewReasons.unknown,
+      ),
     ).toHaveLength(2);
     const desktop = within(screen.getByRole("table"));
     expect(desktop.getByText("Needs review")).toBeInTheDocument();
     expect(desktop.getByText("Refunded · codes revoked")).toBeInTheDocument();
     expect(
-      desktop.getByText(mocks.orders[0].refundReviewReason),
+      desktop.getByText(
+        messages.VoucherFoundation.refund.reviewReasons.unknown,
+      ),
     ).toBeInTheDocument();
     expect(container.querySelector("img")).toBeNull();
+    expect(
+      screen.queryByText(mocks.orders[0].refundReviewReason),
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: /resolve|refund|approve/i }),
     ).not.toBeInTheDocument();

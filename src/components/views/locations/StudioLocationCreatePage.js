@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import {
   AdjustmentsHorizontalIcon,
   ArrowLeftIcon,
@@ -139,13 +141,7 @@ const LEGACY_GENERAL_ACTIVITY = Object.freeze({
   labelKey: "general",
 });
 const getRequestError = (error, fallback) =>
-  String(
-    error?.data?.message ||
-      error?.data?.error ||
-      error?.error ||
-      error?.message ||
-      fallback,
-  );
+  getLocalizedApiErrorMessage(error, fallback);
 function SectionHeader({ help, hint, icon: Icon, tone = "cobalt", title }) {
   const toneClasses = {
     cobalt: "bg-cobalt-50 text-cobalt-600",

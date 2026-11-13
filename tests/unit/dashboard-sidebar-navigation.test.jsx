@@ -70,15 +70,21 @@ const labels = {
   "nav.settings": "Settings",
 };
 
-vi.mock("next-intl", () => ({
-  useTranslations:
-    () =>
-    (key, values = {}) =>
-      (labels[key] || key).replace(
-        /\{(\w+)\}/g,
-        (_, name) => values[name] ?? `{${name}}`,
-      ),
-}));
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    {
+      useTranslations:
+        () =>
+        (key, values = {}) =>
+          (labels[key] || key).replace(
+            /\{(\w+)\}/g,
+            (_, name) => values[name] ?? `{${name}}`,
+          ),
+    },
+    ["Common"],
+  );
+});
 
 vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(mocks.search),

@@ -2,26 +2,24 @@
 
 import { memo } from "react";
 import { BellIcon } from "@heroicons/react/24/outline";
-import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 
 import { classNames, headerStatusBadgeClass } from "./header.utils";
 
 const NotificationButton = memo(function NotificationButton({
-  language,
   className = "",
   hasUnread = false,
   tenantThemed = false,
   href = "/portal/notifications",
 }) {
-  const locale = useLocale();
-  const isCzech = language ? language === "CZ" : locale === "cs";
+  const t = useTranslations("Dashboard.routeTitles");
 
   return (
     <Link
       href={href}
-      aria-label={isCzech ? "Oznámení" : "Notifications"}
+      aria-label={t("notifications")}
       data-header-action="notifications"
       className={classNames(
         "group relative inline-flex h-11 w-11 items-center justify-center rounded-full",

@@ -1,3 +1,5 @@
+import { getLocalizedPublicTenantText } from "@/components/public-tenant/publicTenant.config";
+
 const SCHEDULABLE_PRODUCT_KINDS = new Set(["class", "private-studio"]);
 
 const LEGACY_SCHEDULABLE_KIND = Object.freeze({
@@ -53,17 +55,7 @@ export const isPrivateStudioProduct = (product) =>
   getSchedulableProductKind(product) === "private-studio";
 
 export const getProductName = (product, locale = "en") => {
-  if (typeof product?.name === "string") return product.name;
-
-  const language = locale === "cs" ? "cs" : "en";
-  return (
-    text(product?.name?.[language]) ||
-    text(product?.name?.[language.toUpperCase()]) ||
-    text(product?.name?.en) ||
-    text(product?.name?.EN) ||
-    text(product?.name?.cs) ||
-    text(product?.name?.CZ)
-  );
+  return getLocalizedPublicTenantText(product?.name, locale);
 };
 
 export const getLocationsFromResponse = (response) => {

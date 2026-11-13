@@ -39,22 +39,27 @@ const translations = {
   "vouchers.title": "A thoughtful studio gift",
 };
 
-vi.mock("next-intl", () => ({
-  useLocale: () => mocks.locale,
-  useTranslations:
-    (namespace) =>
-    (key, values = {}) => {
-      const text =
-        namespace === "PublicTenant.vouchers.postal"
-          ? messages.PublicTenant.vouchers.postal[key]
-          : translations[key] || key;
-      return Object.entries(values).reduce(
-        (value, [name, replacement]) =>
-          value.replaceAll(`{${name}}`, replacement),
-        text,
-      );
-    },
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => mocks.locale,
+      useTranslations:
+        (namespace) =>
+        (key, values = {}) => {
+          const text =
+            namespace === "PublicTenant.vouchers.postal"
+              ? messages.PublicTenant.vouchers.postal[key]
+              : translations[key] || key;
+          return Object.entries(values).reduce(
+            (value, [name, replacement]) =>
+              value.replaceAll(`{${name}}`, replacement),
+            text,
+          );
+        },
+    }))(...args),
+  );
+});
 
 vi.mock("next/navigation", () => ({
   useParams: () => ({ tenantSlug: "studio-olivie" }),

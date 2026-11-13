@@ -3,12 +3,13 @@
 import { customerPortalPrimaryActionClass } from "@/components/customer-shell/CustomerPortalPrimitives";
 
 import { XCircleIcon } from "@heroicons/react/20/solid";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { useSelector } from "react-redux";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { Link } from "@/i18n/navigation";
 
 export default function CourseCapacity() {
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   return (
     <div className="flex min-h-[calc(100dvh-var(--header-height,78px))] items-center justify-center bg-[var(--tenant-background)] px-4 py-10 text-[var(--tenant-text)]">
@@ -24,8 +25,7 @@ export default function CourseCapacity() {
             {translation["OVERLAP_TITLE"][language]}
           </h3>
           <p className="mt-2 text-base text-[var(--tenant-text)] max-w-xl">
-            {translation["RESERVATION_LIMIT_EXCEEDED_PAGE"]?.[language] ||
-              translation["COURSE_CAPACITY_ERR_CONTENT"][language]}
+            {translation["RESERVATION_LIMIT_EXCEEDED_PAGE"]?.[language]}
           </p>
           <div className="-mx-2 p-2 mt-2 -my-1.5 flex justify-center ">
             <Link

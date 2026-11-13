@@ -3,52 +3,16 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-import { LOCALE_REGISTRY, LOCALE_STATUS } from "../src/i18n/locales.js";
+import { ALL_LOCALE_CODES } from "../src/i18n/locales.js";
 
 const root = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "../src/messages",
 );
 const sourceLocale = "en";
-const completeCoreLocales = new Set([sourceLocale, "cs"]);
-const targetLocales = fs
-  .readdirSync(root, { withFileTypes: true })
-  .filter(
-    (entry) =>
-      entry.isFile() &&
-      entry.name.endsWith(".json") &&
-      !completeCoreLocales.has(path.basename(entry.name, ".json")),
-  )
-  .map((entry) => path.basename(entry.name, ".json"))
-  .sort();
-const launchCriticalNamespaces = [
-  "Metadata",
-  "Common",
-  "Header",
-  "PlatformAuth",
-  "MarketingHome",
-  "SharioMarketing",
-  "MarketingPages",
-  "CustomerAuth",
-  "CustomerShell",
-  "PublicTenant",
-  "PublicTenantHome",
-  "PublicSiteNotFound",
-  "BookingConfirmation",
-  "EmailVerification",
-  "CreditPurchaseStatus",
-  "CustomerNotifications",
-  "WorkspaceNotifications",
-];
-const tenantCoreNamespaces = [
-  "Dashboard",
-  "WorkspaceSettingsNav",
-  "WorkspaceSettings",
-];
-const requiredNamespaces = [
-  ...launchCriticalNamespaces,
-  ...tenantCoreNamespaces,
-];
+const targetLocales = ALL_LOCALE_CODES.filter(
+  (locale) => locale !== sourceLocale,
+);
 
 const readCatalog = (locale) =>
   JSON.parse(fs.readFileSync(path.join(root, `${locale}.json`), "utf8"));
@@ -72,12 +36,9 @@ const collectLeaves = (value, prefix = "") => {
 
 export const validateRequiredCatalogKeys = ({ locale, source, catalog }) => {
   const failures = [];
-  // Ready locales promise a complete catalog. Preview locales intentionally
-  // retain English fallback outside the launch-critical and tenant-core copy.
-  const namespaces =
-    LOCALE_REGISTRY[locale]?.status === LOCALE_STATUS.READY
-      ? Object.keys(source)
-      : requiredNamespaces;
+  // Full product coverage is required even while a locale remains noindex
+  // pending editorial review. New namespaces cannot bypass this check.
+  const namespaces = Object.keys(source);
 
   for (const namespace of namespaces) {
     const expected = collectLeaves(source[namespace], namespace);
@@ -600,6 +561,11 @@ const validateCatalogFiles = () => {
   }
 
   for (const locale of targetLocales) {
+    const catalogPath = path.join(root, `${locale}.json`);
+    if (!fs.existsSync(catalogPath)) {
+      failures.push(`${locale}: missing catalog file`);
+      continue;
+    }
     const catalog = readCatalog(locale);
     const leaves = collectLeaves(catalog);
 
@@ -615,6 +581,11 @@ const validateCatalogFiles = () => {
 
       if (typeof value !== typeof sourceValue) {
         failures.push(`${locale}: ${key} changes the source value type`);
+        continue;
+      }
+
+      if (typeof value === "string" && sourceValue.trim() && !value.trim()) {
+        failures.push(`${locale}: ${key} has an empty translation`);
         continue;
       }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useMemo, useState } from "react";
 import { BellAlertIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
@@ -94,7 +95,7 @@ export default function AutomatedCommunicationsPage({
     try {
       await toggleAutomation({ id, isActive }).unwrap();
     } catch (error) {
-      setFeedback(error?.data?.message ?? error?.error ?? t("errors.toggle"));
+      setFeedback(getLocalizedApiErrorMessage(error, t("errors.toggle")));
     } finally {
       setTogglingId("");
     }
@@ -107,7 +108,7 @@ export default function AutomatedCommunicationsPage({
       await deleteAutomation(getResourceId(pendingDelete)).unwrap();
       setPendingDelete(null);
     } catch (error) {
-      setFeedback(error?.data?.message ?? error?.error ?? t("errors.delete"));
+      setFeedback(getLocalizedApiErrorMessage(error, t("errors.delete")));
     }
   };
 

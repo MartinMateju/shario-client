@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import {
   PUBLIC_TENANT_LOCALE_CODES,
   PUBLIC_TENANT_HOME_SECTION_KEYS,
@@ -490,11 +492,7 @@ export const movePublicSiteNavigationItem = (items, key, direction) => {
 };
 
 export const getPublicSiteEditorError = (error, fallback) =>
-  error?.data?.message ||
-  error?.data?.error ||
-  error?.error ||
-  error?.message ||
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export const validatePublicSiteMediaFile = (file) => {
   if (!file || typeof file.size !== "number" || file.size <= 0) {

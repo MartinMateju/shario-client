@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
   Dialog,
   DialogBackdrop,
@@ -209,9 +210,6 @@ const COPY = {
   },
 };
 
-const normalizeLocale = (locale) =>
-  Object.prototype.hasOwnProperty.call(COPY, locale) ? locale : "en";
-
 function SpotlightBackdrop({ rect }) {
   const paneClass =
     "fixed z-[120] bg-[#11110F]/55 backdrop-blur-[2px] motion-reduce:backdrop-blur-none";
@@ -262,7 +260,7 @@ export default function CustomerPortalProductTour({ enabled = true }) {
     selectIsSessionReadyForContext(AUTH_CONTEXTS.CUSTOMER),
   );
   const publicTenant = useOptionalPublicTenant()?.tenant;
-  const copy = COPY[normalizeLocale(locale)];
+  const copy = useLegacyCopy("portalTour");
   const tenantTheme = useMemo(
     () =>
       getPublicTenantTheme(publicTenant || currentTenant || {}, {

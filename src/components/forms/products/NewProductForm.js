@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAddNewProductMutation } from "@/lib/features/products/productsApiSlice";
@@ -8,7 +10,7 @@ import {
   selectCurrentUser,
 } from "@/lib/features/auth/authSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import TextInput from "@/components/inputs/TextInput";
 import CancelButton from "@/components/buttons/CancelButton";
 import SubmitButton from "@/components/buttons/SubmitButton";
@@ -24,6 +26,8 @@ export default function NewProductForm({
   setErrMsg,
   locationId,
 }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const [addNewProduct, { isLoading, isSuccess, isError, error }] =
     useAddNewProductMutation();
 
@@ -51,7 +55,7 @@ export default function NewProductForm({
     }
     if (isError || error != null) {
       setShow(false);
-      setErrMsg(error?.data?.message || "Request failed");
+      setErrMsg(getLocalizedApiErrorMessage(error, legacyText("genericError")));
       showErrModal(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -191,7 +195,9 @@ export default function NewProductForm({
                 callback={onNameChanged}
                 autoComplete="off"
                 className={"max-w-md pt-4"}
-                placeholder="e.g. Introduction to photography"
+                placeholder={legacyText(
+                  "NewProductForm_e_g_Introduction_to_photography_331c9",
+                )}
                 isMandatory={true}
               />
 
@@ -238,7 +244,7 @@ export default function NewProductForm({
                 callback={onImageSrcChanged}
                 autoComplete="off"
                 className={"max-w-md pt-2"}
-                placeholder="e.g. URL source to Cloudinary"
+                placeholder={legacyText("NewProductForm_Image_URL_35c80")}
                 isMandatory={true}
               />
 
@@ -246,7 +252,8 @@ export default function NewProductForm({
               {type === "coupon" && (
                 <>
                   <label className="text-left block pt-3 text-sm font-medium leading-6 text-gray-900">
-                    PDF template <span className="text-red-600">*</span>
+                    {legacyText("NewProductForm_PDF_template_b3b38")}{" "}
+                    <span className="text-red-600">*</span>
                   </label>
                   <div className="sm:max-w-md">
                     <input
@@ -261,12 +268,14 @@ export default function NewProductForm({
                     />
                     {templatePdf ? (
                       <p className="mt-2 text-xs text-gray-500">
-                        Selected:{" "}
+                        {legacyText("NewProductForm_Selected_2e084")}{" "}
                         <span className="font-medium">{templatePdf.name}</span>
                       </p>
                     ) : (
                       <p className="mt-2 text-xs text-gray-500">
-                        Upload a .pdf template for the coupon.
+                        {legacyText(
+                          "NewProductForm_Upload_a_PDF_template_for_the_voucher_e71fe",
+                        )}{" "}
                       </p>
                     )}
                   </div>
@@ -305,7 +314,9 @@ export default function NewProductForm({
                 className="sm:max-w-md pt-2"
                 value={desc}
                 onChange={onDescriptionChanged}
-                placeholder="Popis produktu (volitelné)"
+                placeholder={legacyText(
+                  "NewProductForm_Product_description_optional_9111f",
+                )}
               />
 
               <div className="mb-3 pt-7 py-6 flex items-center justify-end gap-x-6 max-w-md">

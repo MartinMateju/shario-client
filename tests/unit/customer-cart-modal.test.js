@@ -96,14 +96,39 @@ describe("premium customer cart modal", () => {
           product: { kind: "open-studio" },
         },
         "EN",
+        { studioBooking: "Studio booking", openStudio: "Open Studio" },
       ),
     ).toBe("Studio booking");
     expect(
       getCartProductName(
         { title: "Open Studio", product: { kind: "open-studio" } },
         "CZ",
+        { studioBooking: "Rezervace studia", openStudio: "Otevřený ateliér" },
       ),
     ).toBe("Otevřený ateliér");
+  });
+
+  it("uses the selected locale and localized defaults for cart product labels", () => {
+    expect(
+      getCartProductName(
+        {
+          product: {
+            name: { el: "Μάθημα φωτογραφίας", en: "Photography class" },
+          },
+        },
+        "el",
+      ),
+    ).toBe("Μάθημα φωτογραφίας");
+    expect(
+      getCartProductName(
+        { product: { kind: "open-studio" }, title: "Studio booking" },
+        "tr",
+        { studioBooking: "Stüdyo rezervasyonu" },
+      ),
+    ).toBe("Stüdyo rezervasyonu");
+    expect(
+      getCartProductName({}, "tr", { studioBooking: "Stüdyo rezervasyonu" }),
+    ).toBe("Stüdyo rezervasyonu");
   });
 
   it("provides natural English and Czech order copy", () => {

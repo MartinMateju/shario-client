@@ -47,7 +47,7 @@ describe("customer booking security boundaries", () => {
     expect(drawer).toContain("arrival.publicInstructions");
     expect(drawer).toContain("arrival.accessCodeDeliveryMinutesBefore");
     expect(table).toContain('const [scope, setScope] = useState("upcoming")');
-    expect(table).toContain('["history"');
+    expect(table).toMatch(/\[\s*"history",/);
     expect(table).toContain("{selectedBooking && (");
     expect(table).not.toContain("{selectedBooking && selectedProduct && (");
   });

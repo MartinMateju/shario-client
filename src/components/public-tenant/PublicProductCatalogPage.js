@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
   AcademicCapIcon,
   ArrowPathIcon,
@@ -338,6 +339,7 @@ function ClassCatalogFilters({
 }
 
 export default function PublicProductCatalogPage({ kind, previewData }) {
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const locale = useLocale();
   const t = useTranslations("PublicTenant");
   const params = useParams();
@@ -438,6 +440,7 @@ export default function PublicProductCatalogPage({ kind, previewData }) {
     getPublicTenantTheme(tenant);
   const page = tenant.publicSite.pages[kind];
   const customizationDefaults = getPublicWebsitePageCustomizationDefaults({
+    localizedDefaults: customerDefaults,
     page: kind,
     locale,
     studio: tenant.publicSite.branding.displayName,

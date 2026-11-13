@@ -24,7 +24,7 @@ import {
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 import { CUSTOMER_SHELL_SURFACES } from "@/components/customer-shell/customerShell.config";
@@ -42,12 +42,6 @@ import {
 } from "./DesktopNavAdmin";
 import { classNames, isActivePath } from "./header.utils";
 import { PUBLIC_NAV_ITEMS } from "./marketingNavigation";
-
-const getLegacyAdminLabel = (value, language, fallback = "") => {
-  if (typeof value === "string") return value;
-
-  return value?.[language] || value?.EN || value?.CZ || fallback;
-};
 
 function PublicNavigation({ pathname, closeMobileMenu }) {
   const t = useTranslations();
@@ -154,15 +148,16 @@ function PublicNavigation({ pathname, closeMobileMenu }) {
   );
 }
 
-function AdminNavigation({ pathname, language, closeMobileMenu }) {
+function AdminNavigation({ pathname, closeMobileMenu }) {
   const t = useTranslations("Header.mobile");
+  const adminT = useTranslations();
 
   return (
     <div className="space-y-2">
       {ADMIN_LINKS.map((section) => {
         const active = isAdminSectionActive(pathname, section);
         const Icon = section.icon;
-        const label = getLegacyAdminLabel(section.label, language, section.id);
+        const label = adminT(section.labelKey);
 
         return (
           <Disclosure as="div" defaultOpen={active} key={section.id}>
@@ -217,11 +212,7 @@ function AdminNavigation({ pathname, language, closeMobileMenu }) {
               {section.items.map((item) => {
                 const ItemIcon = item.icon;
                 const itemActive = isAdminItemActive(pathname, item);
-                const itemLabel = getLegacyAdminLabel(
-                  item.label,
-                  language,
-                  item.href,
-                );
+                const itemLabel = adminT(item.labelKey);
 
                 return (
                   <Link
@@ -380,10 +371,9 @@ const MobileMenu = memo(function MobileMenu({
   customerHelpControls,
   onOpenCustomerHelp,
 }) {
-  const locale = useLocale();
   const t = useTranslations("Header");
   const tm = useTranslations("Header.mobile");
-  const language = locale === "cs" ? "CZ" : "EN";
+  const helpT = useTranslations("Legacy.screens.portalHelp");
   const publicTenantT = useTranslations("PublicTenant");
   const shellT = useTranslations("CustomerShell");
   const tenantName =
@@ -628,7 +618,6 @@ const MobileMenu = memo(function MobileMenu({
                     {isAdminRoute ? (
                       <AdminNavigation
                         pathname={pathname}
-                        language={language}
                         closeMobileMenu={closeMobileMenu}
                       />
                     ) : isTenantRoute ? (
@@ -765,9 +754,7 @@ const MobileMenu = memo(function MobileMenu({
                               aria-hidden="true"
                             />
                             <span className={styles.navigationLabel}>
-                              {language === "CZ"
-                                ? "Nápověda k rezervacím"
-                                : "Booking help"}
+                              {helpT("eyebrow")}
                             </span>
                             <ChevronRightIcon
                               className={styles.navigationChevron}

@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -13,7 +15,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import ConfirmationModal from "../../modals/ConformationModal";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { PWD_REGEX } from "@/config/constants";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { selectCurrentUser } from "@/lib/features/auth/authSlice";
@@ -76,6 +78,8 @@ function PasswordInput({
 }
 
 export default function PasswordForm({ className = "" }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const [updateUserPass, { isLoading, isSuccess, isError, error }] =
     useUpdateUserPassMutation();
 
@@ -125,15 +129,14 @@ export default function PasswordForm({ className = "" }) {
     resetForm();
   }, [isSuccess]);
 
-  const apiErrorMsg =
-    error?.data?.message ||
-    error?.error ||
-    error?.message ||
-    (isError
-      ? language === "CZ"
-        ? "Nepodařilo se změnit heslo. Zkuste to prosím znovu."
-        : "Could not update the password. Please try again."
-      : "");
+  const apiErrorMsg = getLocalizedApiErrorMessage(
+    error,
+    isError
+      ? legacyText(
+          "PasswordForm_Could_not_update_the_password_Please_try_again_950ff",
+        )
+      : "",
+  );
 
   const handleCancel = () => {
     setIsEditing(false);
@@ -159,16 +162,8 @@ export default function PasswordForm({ className = "" }) {
       <ConfirmationModal
         open={showModalConfirm}
         setOpen={setShowModalConfirm}
-        title={
-          translation["PASS_UPDATE_TITLE"]?.[language] ||
-          (language === "CZ" ? "Heslo změněno" : "Password updated")
-        }
-        text={
-          translation["PASS_UPDATE_CONTENT"]?.[language] ||
-          (language === "CZ"
-            ? "Heslo bylo úspěšně změněno."
-            : "Password was updated successfully.")
-        }
+        title={translation["PASS_UPDATE_TITLE"]?.[language]}
+        text={translation["PASS_UPDATE_CONTENT"]?.[language]}
       />
 
       <section
@@ -186,21 +181,21 @@ export default function PasswordForm({ className = "" }) {
 
               <div>
                 <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#a39182]">
-                  {language === "CZ" ? "Zabezpečení" : "Security"}
+                  {legacyText("PasswordForm_Security_f25ce")}
                 </p>
 
                 <h2 className="mt-2 text-2xl font-medium tracking-[-0.035em] text-[#241b14] sm:text-3xl">
-                  {language === "CZ" ? "Přihlašovací heslo" : "Login password"}
+                  {legacyText("PasswordForm_Login_password_24141")}
                 </h2>
 
                 <p className="mt-2 max-w-xl text-sm leading-6 text-[#7f6d5d]">
-                  {language === "CZ"
-                    ? "Udržujte své heslo bezpečné. Doporučujeme použít kombinaci písmen, čísel a speciálních znaků."
-                    : "Keep your password secure. We recommend using a mix of letters, numbers, and special characters."}
+                  {legacyText(
+                    "PasswordForm_Keep_your_password_secure_We_recommend_using_a_mix_of_l_d9679",
+                  )}
                 </p>
 
                 <p className="mt-3 text-xs uppercase tracking-[0.16em] text-[#a39182]">
-                  {language === "CZ" ? "Členské ID" : "Member ID"}{" "}
+                  {legacyText("PasswordForm_Member_ID_7a88b")}{" "}
                   <span className="text-[#483827]">{memberId}</span>
                 </p>
               </div>
@@ -213,7 +208,7 @@ export default function PasswordForm({ className = "" }) {
                 className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-[#d8cec3] bg-white/80 px-5 text-[11px] font-medium uppercase tracking-[0.16em] text-[#483827] transition hover:-translate-y-0.5 hover:border-[#483827] hover:bg-white hover:shadow-[0_12px_28px_rgba(72,56,39,0.08)]"
               >
                 <PencilSquareIcon className="h-4 w-4" />
-                {language === "CZ" ? "Změnit" : "Change"}
+                {legacyText("PasswordForm_Change_64fbd")}
               </button>
             )}
           </div>
@@ -228,7 +223,7 @@ export default function PasswordForm({ className = "" }) {
 
               <div className="min-w-0">
                 <p className="text-sm font-medium text-[#483827]">
-                  {language === "CZ" ? "Heslo je nastavené" : "Password is set"}
+                  {legacyText("PasswordForm_Password_is_set_9d82f")}
                 </p>
                 <p className="mt-1 text-sm text-[#8f7b69]">••••••••••••••••</p>
               </div>
@@ -239,62 +234,39 @@ export default function PasswordForm({ className = "" }) {
             <div className="grid gap-5">
               <PasswordInput
                 id="current_password"
-                label={
-                  translation["CURRENT_PASS"]?.[language] ||
-                  (language === "CZ" ? "Aktuální heslo" : "Current password")
-                }
+                label={translation["CURRENT_PASS"]?.[language]}
                 value={currentPassword}
                 onChange={(event) => setCurrentPassword(event.target.value)}
-                placeholder={
-                  language === "CZ"
-                    ? "Zadejte aktuální heslo"
-                    : "Current password"
-                }
+                placeholder={legacyText("PasswordForm_Current_password_19dff")}
                 autoComplete="current-password"
               />
 
               <PasswordInput
                 id="new_password"
-                label={
-                  translation["NEW_PASS"]?.[language] ||
-                  (language === "CZ" ? "Nové heslo" : "New password")
-                }
+                label={translation["NEW_PASS"]?.[language]}
                 value={newPassword}
                 onChange={(event) => setNewPassword(event.target.value)}
-                placeholder={
-                  language === "CZ" ? "Zadejte nové heslo" : "New password"
-                }
+                placeholder={legacyText("PasswordForm_New_password_d850e")}
                 autoComplete="new-password"
                 error={
                   submitted && !validPassword
-                    ? translation["PASS_RULES"]?.[language] ||
-                      (language === "CZ"
-                        ? "Heslo nesplňuje požadavky."
-                        : "The password does not meet the requirements.")
+                    ? translation["PASS_RULES"]?.[language]
                     : ""
                 }
               />
 
               <PasswordInput
                 id="password_confirm"
-                label={
-                  translation["CONFIRM_PASS"]?.[language] ||
-                  (language === "CZ" ? "Potvrdit heslo" : "Confirm password")
-                }
+                label={translation["CONFIRM_PASS"]?.[language]}
                 value={newPasswordConfirm}
                 onChange={(event) => setNewPasswordConfirm(event.target.value)}
-                placeholder={
-                  language === "CZ"
-                    ? "Zopakujte nové heslo"
-                    : "Confirm new password"
-                }
+                placeholder={legacyText(
+                  "PasswordForm_Confirm_new_password_f8503",
+                )}
                 autoComplete="new-password"
                 error={
                   submitted && !passwordMatch
-                    ? translation["PASS_MISMATCH"]?.[language] ||
-                      (language === "CZ"
-                        ? "Hesla se neshodují."
-                        : "Passwords do not match.")
+                    ? translation["PASS_MISMATCH"]?.[language]
                     : ""
                 }
               />
@@ -303,9 +275,9 @@ export default function PasswordForm({ className = "" }) {
                 <div className="flex gap-3">
                   <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-[#8f7b69]" />
                   <p className="text-sm leading-6 text-[#7f6d5d]">
-                    {language === "CZ"
-                      ? "Po uložení se nové heslo použije při dalším přihlášení."
-                      : "After saving, the new password will be used for your next login."}
+                    {legacyText(
+                      "PasswordForm_After_saving_the_new_password_will_be_used_for_your_nex_db03d",
+                    )}
                   </p>
                 </div>
               </div>
@@ -324,8 +296,7 @@ export default function PasswordForm({ className = "" }) {
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-[#d8cec3] bg-white/70 px-6 text-[11px] font-medium uppercase tracking-[0.16em] text-[#7f6d5d] transition hover:bg-white hover:text-[#483827]"
               >
                 <XMarkIcon className="h-4 w-4" />
-                {translation["CANCEL"]?.[language] ||
-                  (language === "CZ" ? "Zrušit" : "Cancel")}
+                {translation["CANCEL"]?.[language]}
               </button>
 
               <button
@@ -334,11 +305,8 @@ export default function PasswordForm({ className = "" }) {
                 className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#483827] px-7 text-[11px] font-medium uppercase tracking-[0.16em] text-white shadow-[0_16px_36px_rgba(72,56,39,0.18)] transition hover:-translate-y-0.5 hover:bg-[#2f241a] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
               >
                 {isLoading
-                  ? language === "CZ"
-                    ? "Ukládám..."
-                    : "Saving..."
-                  : translation["SAVE"]?.[language] ||
-                    (language === "CZ" ? "Uložit změny" : "Save changes")}
+                  ? legacyText("PasswordForm_Saving_ae7e8")
+                  : translation["SAVE"]?.[language]}
               </button>
             </div>
           </form>

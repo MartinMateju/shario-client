@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 import CustomerTenantShell from "@/components/customer-shell/CustomerTenantShell";
 import PublicTenantUnavailable from "@/components/public-tenant/PublicTenantUnavailable";
@@ -13,11 +14,12 @@ export async function generateMetadata({ params }) {
   if (result.notFound) notFound();
 
   if (result.unavailable) {
+    const t = await getTranslations({
+      locale,
+      namespace: "PublicTenant.unavailable",
+    });
     return {
-      title:
-        locale === "cs"
-          ? "Studio je dočasně nedostupné"
-          : "Studio temporarily unavailable",
+      title: t("title"),
       robots: { index: false, follow: false },
     };
   }

@@ -1,15 +1,18 @@
 "use client";
 
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Link, useRouter } from "@/i18n/navigation";
 import { selectIsAuthenticated } from "@/lib/features/auth/authSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 
 const isAuth = (WrappedComponent) => {
   return function WithAuth(props) {
+    const legacyText = useLegacyText();
+    const translation = useLegacyTranslation();
     const router = useRouter();
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const language = useSelector(selectCurrentLanguage);
@@ -63,12 +66,8 @@ const isAuth = (WrappedComponent) => {
               href="/login"
               className="inline-flex w-full items-center justify-center rounded-full bg-gray-900 px-4 py-3  text-white transition hover:bg-gray-800"
             >
-              Přihlásit se znovu
+              {legacyText("WithAuth_Sign_in_again_7842f")}{" "}
             </Link>
-
-            <p className="mt-4 text-xs text-gray-400">
-              Budete automaticky přesměrováni za několik sekund…
-            </p>
           </div>
         </div>
       );

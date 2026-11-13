@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 export const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export const getEntityId = (value) => {
@@ -16,12 +18,7 @@ export const unwrapAiData = (value, key) => {
 };
 
 export const getAiErrorMessage = (error, fallback) =>
-  error?.data?.message ??
-  error?.data?.error?.message ??
-  error?.data?.error ??
-  error?.error ??
-  error?.message ??
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export const normalizeAiMessages = (conversation) => {
   const source =

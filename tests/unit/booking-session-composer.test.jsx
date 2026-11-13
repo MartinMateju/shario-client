@@ -292,7 +292,7 @@ describe("BookingSessionComposer", () => {
       screen.getByRole("button", { name: "Create session" }),
     ).toBeDisabled();
 
-    fireEvent.click(screen.getByRole("button", { name: "1 h" }));
+    fireEvent.click(screen.getByRole("button", { name: "1 hr" }));
 
     expect(screen.queryByRole("alert")).toBeNull();
     expect(
@@ -329,7 +329,7 @@ describe("BookingSessionComposer", () => {
     fireEvent.click(screen.getByRole("button", { name: "Create session" }));
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "This location is not available.",
+      "Request failed",
     );
     expect(
       screen.getByRole("button", { name: "Create session" }),

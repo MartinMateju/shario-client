@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   Label,
   Listbox,
@@ -39,17 +40,18 @@ const MenuBox = forwardRef(function MenuBox(
     title = "",
     options = [],
     onChange,
-    placeholder = "Vyberte možnost",
+    placeholder,
     value = null,
     isMandatory = false,
     highlightFocus = false,
     disabled = false,
-    emptyMessage = "Žádné možnosti",
+    emptyMessage,
     tenantStylePresetId = null,
     tenantThemeStyle = null,
   },
   ref,
 ) {
+  const t = useTranslations("Common");
   const safeOptions = useMemo(
     () => (Array.isArray(options) ? options : []),
     [options],
@@ -94,7 +96,9 @@ const MenuBox = forwardRef(function MenuBox(
           {selectedLabel ? (
             <span className="block truncate font-medium">{selectedLabel}</span>
           ) : (
-            <span className="block truncate text-black/40">{placeholder}</span>
+            <span className="block truncate text-black/40">
+              {placeholder ?? t("selectOption")}
+            </span>
           )}
 
           <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
@@ -168,7 +172,7 @@ const MenuBox = forwardRef(function MenuBox(
               })
             ) : (
               <div className="px-4 py-3 text-sm text-black/45">
-                {emptyMessage}
+                {emptyMessage ?? t("noOptions")}
               </div>
             )}
           </ListboxOptions>

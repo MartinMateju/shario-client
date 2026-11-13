@@ -1,3 +1,8 @@
+import {
+  getNotificationLocaleText,
+  getNotificationEventText,
+} from "./notificationCopy";
+
 export const WORKSPACE_NOTIFICATION_CATEGORIES = Object.freeze([
   "bookings",
   "payments",
@@ -16,11 +21,6 @@ export const WORKSPACE_NOTIFICATION_STATUSES = Object.freeze([
 ]);
 
 const NOTIFICATION_ORIGIN = "https://workspace.shario.io";
-const LOCALE_ALIASES = Object.freeze({
-  cs: ["cs", "cz", "CS", "CZ"],
-  en: ["en", "EN"],
-});
-
 const firstDefined = (...values) =>
   values.find((value) => value !== undefined && value !== null);
 
@@ -40,48 +40,31 @@ export const normalizeWorkspaceNotificationCategory = (value) => {
     : "account";
 };
 
-export const getLocalizedNotificationText = (value, locale, fallback = "") => {
-  if (typeof value === "string") {
-    return value.trim() || fallback;
-  }
+export const getLocalizedNotificationText = getNotificationLocaleText;
 
-  if (!value || typeof value !== "object" || Array.isArray(value)) {
-    return fallback;
-  }
-
-  const normalizedLocale = String(locale || "en")
-    .trim()
-    .toLowerCase()
-    .split("-")[0];
-  const aliases = LOCALE_ALIASES[normalizedLocale] || [normalizedLocale];
-  const preferred = aliases
-    .map((key) => value[key])
-    .find((candidate) => typeof candidate === "string" && candidate.trim());
-  const secondary = [...LOCALE_ALIASES.en, ...LOCALE_ALIASES.cs]
-    .map((key) => value[key])
-    .find((candidate) => typeof candidate === "string" && candidate.trim());
-
-  return String(preferred || secondary || fallback).trim();
-};
-
-export const getNotificationTitle = (notification, locale, fallback = "") =>
+export const getNotificationTitle = (notification, locale, fallback = "", t) =>
   getLocalizedNotificationText(
     firstDefined(notification?.title, {
       en: notification?.titleEn,
       cs: notification?.titleCs ?? notification?.titleCz,
     }),
     locale,
-    fallback,
+    getNotificationEventText(notification, "title", t, fallback),
   );
 
-export const getNotificationMessage = (notification, locale, fallback = "") =>
+export const getNotificationMessage = (
+  notification,
+  locale,
+  fallback = "",
+  t,
+) =>
   getLocalizedNotificationText(
     firstDefined(notification?.message, {
       en: notification?.messageEn,
       cs: notification?.messageCs ?? notification?.messageCz,
     }),
     locale,
-    fallback,
+    getNotificationEventText(notification, "message", t, fallback),
   );
 
 export const getSafeWorkspaceNotificationHref = (value) => {

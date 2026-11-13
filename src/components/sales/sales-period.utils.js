@@ -1,3 +1,5 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 export function localDateValue(date) {
   return [
     String(date.getFullYear()).padStart(4, "0"),
@@ -53,14 +55,11 @@ export function getSalesPeriod(filters, referenceDate = new Date()) {
 
 export function formatSalesPeriod(period, locale) {
   if (!period.from || !period.to) return "";
-  const formatter = new Intl.DateTimeFormat(
-    locale === "cs" ? "cs-CZ" : "en-GB",
-    {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    },
-  );
+  const formatter = new Intl.DateTimeFormat(resolveIntlLocale(locale), {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
   return formatter.formatRange(
     parseLocalDate(period.from),
     parseLocalDate(period.to),

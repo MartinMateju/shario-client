@@ -62,54 +62,7 @@ const STYLE_PRESET_MESSAGE_KEYS = Object.freeze({
   "warm-organic-v1": "warmOrganic",
 });
 const DEFAULT_EDITOR_LOCALE_CODES = Object.freeze(["cs", "en"]);
-const HOME_SECTION_COPY = Object.freeze({
-  en: Object.freeze({
-    title: "Homepage sections",
-    description:
-      "Add, remove, and reorder production-ready sections connected to your studio.",
-    visible: "Shown",
-    hidden: "Not added",
-    edit: "Edit section copy",
-    moveUp: "Move section up",
-    moveDown: "Move section down",
-    toggle: "Add or remove section",
-    sectionTitle: "Section title",
-    sectionDescription: "Section description",
-    labels: Object.freeze({
-      waysToVisit: "Ways to visit",
-      featured: "Featured offers",
-      about: "About the studio",
-      gallery: "Gallery",
-      testimonials: "Testimonials",
-      locations: "Locations",
-      team: "Team",
-      faq: "FAQ",
-    }),
-  }),
-  cs: Object.freeze({
-    title: "Sekce domovské stránky",
-    description:
-      "Přidávejte, odebírejte a řaďte hotové sekce propojené s vaším studiem.",
-    visible: "Zobrazeno",
-    hidden: "Nepřidáno",
-    edit: "Upravit text sekce",
-    moveUp: "Posunout sekci nahoru",
-    moveDown: "Posunout sekci dolů",
-    toggle: "Přidat nebo odebrat sekci",
-    sectionTitle: "Nadpis sekce",
-    sectionDescription: "Popis sekce",
-    labels: Object.freeze({
-      waysToVisit: "Možnosti návštěvy",
-      featured: "Doporučená nabídka",
-      about: "O studiu",
-      gallery: "Galerie",
-      testimonials: "Reference",
-      locations: "Pobočky",
-      team: "Tým",
-      faq: "Časté dotazy",
-    }),
-  }),
-});
+
 const PublicSiteEditorLocaleContext = createContext(
   DEFAULT_EDITOR_LOCALE_CODES,
 );
@@ -1074,8 +1027,7 @@ export function PagesFields({
   uploadState,
 }) {
   const t = useTranslations("PublicSiteEditor.pages");
-  const locale = useLocale();
-  const sectionCopy = HOME_SECTION_COPY[locale] || HOME_SECTION_COPY.en;
+  const sectionT = useTranslations("PublicSiteEditor.homeSections");
   const home = draft.pages.home;
   const homeTheme = getPublicTenantTheme({ publicSite: draft });
   const configuredHeadlineColor = String(home.headlineColor ?? "")
@@ -1153,7 +1105,7 @@ export function PagesFields({
         />
       </Section>
 
-      <Section title={sectionCopy.title} description={sectionCopy.description}>
+      <Section title={sectionT("title")} description={sectionT("description")}>
         <div className="space-y-2">
           {home.sectionOrder.map((key, index) => {
             const hidden = home.hiddenSections.includes(key);
@@ -1177,7 +1129,7 @@ export function PagesFields({
                           : [...home.hiddenSections, key],
                       )
                     }
-                    aria-label={`${sectionCopy.toggle}: ${sectionCopy.labels[key]}`}
+                    aria-label={`${sectionT("toggle")}: ${sectionT(`labels.${key}`)}`}
                     aria-pressed={!hidden}
                     className={
                       hidden
@@ -1199,10 +1151,10 @@ export function PagesFields({
                           : "text-xs font-semibold text-[#292925]"
                       }
                     >
-                      {sectionCopy.labels[key]}
+                      {sectionT(`labels.${key}`)}
                     </p>
                     <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#858580]">
-                      {hidden ? sectionCopy.hidden : sectionCopy.visible}
+                      {hidden ? sectionT("hidden") : sectionT("visible")}
                     </p>
                   </div>
                   <button
@@ -1218,7 +1170,7 @@ export function PagesFields({
                         ),
                       )
                     }
-                    aria-label={`${sectionCopy.moveUp}: ${sectionCopy.labels[key]}`}
+                    aria-label={`${sectionT("moveUp")}: ${sectionT(`labels.${key}`)}`}
                     className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#686762] hover:bg-white disabled:opacity-25"
                   >
                     <ArrowUpIcon className="h-3.5 w-3.5" />
@@ -1234,7 +1186,7 @@ export function PagesFields({
                         movePublicSiteNavigationItem(home.sectionOrder, key, 1),
                       )
                     }
-                    aria-label={`${sectionCopy.moveDown}: ${sectionCopy.labels[key]}`}
+                    aria-label={`${sectionT("moveDown")}: ${sectionT(`labels.${key}`)}`}
                     className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#686762] hover:bg-white disabled:opacity-25"
                   >
                     <ArrowDownIcon className="h-3.5 w-3.5" />
@@ -1244,12 +1196,12 @@ export function PagesFields({
                 {!hidden ? (
                   <details className="mt-2 rounded-[12px] bg-white px-3 py-2">
                     <summary className="min-h-9 cursor-pointer py-2 text-[10px] font-semibold text-cobalt-700">
-                      {sectionCopy.edit}
+                      {sectionT("edit")}
                     </summary>
                     <div className="space-y-4 pb-2 pt-3">
                       <LocalizedField
                         path={`pages.home.sectionContent.${key}.title`}
-                        label={sectionCopy.sectionTitle}
+                        label={sectionT("sectionTitle")}
                         value={content.title}
                         onChange={onChange}
                         multiline={false}
@@ -1257,7 +1209,7 @@ export function PagesFields({
                       />
                       <LocalizedField
                         path={`pages.home.sectionContent.${key}.description`}
-                        label={sectionCopy.sectionDescription}
+                        label={sectionT("sectionDescription")}
                         value={content.description}
                         onChange={onChange}
                       />
@@ -1444,7 +1396,7 @@ export function HeaderFields({ draft, onChange }) {
           <input
             value={header.announcement.url}
             maxLength={2048}
-            placeholder="/courses or https://…"
+            placeholder={t("urlExample")}
             onChange={(event) =>
               onChange("header.announcement.url", event.target.value)
             }
@@ -1548,7 +1500,7 @@ export function FooterFields({ draft, onChange }) {
               <input
                 value={footer.legal[key]}
                 maxLength={2048}
-                placeholder="/privacy or https://…"
+                placeholder={t("urlExample")}
                 onChange={(event) =>
                   onChange(`footer.legal.${key}`, event.target.value)
                 }

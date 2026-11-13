@@ -161,7 +161,9 @@ describe("voucher design editor", () => {
       unwrap: () => Promise.reject({ data: { message: "Upload failed" } }),
     }));
     await user.upload(screen.getByLabelText("Right-side photo"), file);
-    expect(await screen.findByRole("alert")).toHaveTextContent("Upload failed");
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      en.VoucherEditor.assets.error,
+    );
     expect(api.changed.mock.lastCall[0]).toMatchObject({
       assets: { imageKey: "tenants/one/voucher-design/photo.png" },
       imageFit: "contain",

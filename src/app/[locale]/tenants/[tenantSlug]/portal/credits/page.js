@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useSelector } from "react-redux";
 
 import CreditBalance from "@/components/credits/CreditBalance";
@@ -13,20 +14,7 @@ import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 
 export default function CreditsPage() {
   const language = useSelector(selectCurrentLanguage) || "CZ";
-  const copy =
-    language === "CZ"
-      ? {
-          eyebrow: "Studio kredit",
-          title: "Kredity",
-          description:
-            "Spravujte svůj zůstatek a mějte všechny pohyby na jednom přehledném místě.",
-        }
-      : {
-          eyebrow: "Studio credit",
-          title: "Credits",
-          description:
-            "Manage your available balance and review every credit movement in one calm place.",
-        };
+  const copy = useLegacyCopy("creditsPage");
 
   return (
     <>

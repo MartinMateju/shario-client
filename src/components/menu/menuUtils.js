@@ -10,7 +10,8 @@ export const formatTabToUrl = (tabName, location) =>
 export const formatUrlToTab = (tabName) =>
   tabName ? tabName.toUpperCase().replace(/-/g, "_") : DEFAULT_TAB;
 
-export const getTabLabel = (tabName, language) =>
+export const getTabLabel = (tabName, language, labels) =>
+  labels?.[tabName] ||
   TAB_LABELS[tabName]?.[language] ||
   TAB_LABELS[tabName]?.EN ||
   translation[tabName]?.[language] ||

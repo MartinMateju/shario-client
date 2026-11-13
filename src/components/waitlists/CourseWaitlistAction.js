@@ -1,5 +1,7 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import {
   ArrowPathIcon,
   EnvelopeIcon,
@@ -49,7 +51,7 @@ const formatDateTime = (value, locale) => {
   const date = new Date(value || "");
   if (Number.isNaN(date.getTime())) return "";
 
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -254,7 +256,7 @@ export default function CourseWaitlistAction({
               amount: formatMajorCurrencyAmount(
                 entry.price.amount,
                 entry.price.currency,
-                locale === "cs" ? "cs-CZ" : "en-GB",
+                resolveIntlLocale(locale),
               ),
             })}
           </p>

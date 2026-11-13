@@ -1,4 +1,9 @@
 import {
+  getNotificationLocaleText,
+  getNotificationEventText,
+} from "./notificationCopy";
+
+import {
   getPortalLocationReference,
   getPortalLocationReferenceFromPath,
   normalizePortalLocationReference,
@@ -21,11 +26,6 @@ export const CUSTOMER_NOTIFICATION_STATUSES = Object.freeze([
 ]);
 
 const CUSTOMER_PORTAL_ORIGIN = "https://portal.shario.io";
-const LOCALE_ALIASES = Object.freeze({
-  cs: ["cs", "cz", "CS", "CZ"],
-  en: ["en", "EN"],
-});
-
 const firstDefined = (...values) =>
   values.find((value) => value !== undefined && value !== null);
 
@@ -45,36 +45,13 @@ export const normalizeCustomerNotificationCategory = (value) => {
     : "account";
 };
 
-export const getLocalizedCustomerNotificationText = (
-  value,
-  locale,
-  fallback = "",
-) => {
-  if (typeof value === "string") return value.trim() || fallback;
-
-  if (!value || typeof value !== "object" || Array.isArray(value)) {
-    return fallback;
-  }
-
-  const normalizedLocale = String(locale || "en")
-    .trim()
-    .toLowerCase()
-    .split("-")[0];
-  const aliases = LOCALE_ALIASES[normalizedLocale] || [normalizedLocale];
-  const preferred = aliases
-    .map((key) => value[key])
-    .find((candidate) => typeof candidate === "string" && candidate.trim());
-  const secondary = [...LOCALE_ALIASES.en, ...LOCALE_ALIASES.cs]
-    .map((key) => value[key])
-    .find((candidate) => typeof candidate === "string" && candidate.trim());
-
-  return String(preferred || secondary || fallback).trim();
-};
+export const getLocalizedCustomerNotificationText = getNotificationLocaleText;
 
 export const getCustomerNotificationTitle = (
   notification,
   locale,
   fallback = "",
+  t,
 ) =>
   getLocalizedCustomerNotificationText(
     firstDefined(notification?.title, {
@@ -82,13 +59,14 @@ export const getCustomerNotificationTitle = (
       cs: notification?.titleCs ?? notification?.titleCz,
     }),
     locale,
-    fallback,
+    getNotificationEventText(notification, "title", t, fallback),
   );
 
 export const getCustomerNotificationMessage = (
   notification,
   locale,
   fallback = "",
+  t,
 ) =>
   getLocalizedCustomerNotificationText(
     firstDefined(notification?.message, {
@@ -96,7 +74,7 @@ export const getCustomerNotificationMessage = (
       cs: notification?.messageCs ?? notification?.messageCz,
     }),
     locale,
-    fallback,
+    getNotificationEventText(notification, "message", t, fallback),
   );
 
 export const getSafeCustomerNotificationHref = (value) => {

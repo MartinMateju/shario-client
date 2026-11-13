@@ -76,7 +76,7 @@ describe("customer directory API metric wiring", () => {
       { skip: false, refetchOnMountOrArgChange: true },
     );
     const cells = within(screen.getAllByRole("row")[1]).getAllByRole("cell");
-    expect(cells[5]).toHaveTextContent("2 Jan 2025");
+    expect(cells[5]).toHaveTextContent("Jan 2, 2025");
     expect(cells[6]).toHaveTextContent(/^€123\.45$/);
     const mobile = container.querySelector("article dl").closest("article");
     expect(
@@ -107,7 +107,7 @@ describe("customer directory API metric wiring", () => {
     const rows = screen.getAllByRole("row");
     expect(rows).toHaveLength(2);
     const cells = within(rows[1]).getAllByRole("cell");
-    expect(cells[5]).toHaveTextContent("2 Jan 2025");
+    expect(cells[5]).toHaveTextContent("Jan 2, 2025");
     expect(cells[6]).toHaveTextContent(/^€123\.45$/);
     expect(
       screen.getByRole("button", { name: "pagination.previous" }),
@@ -146,7 +146,7 @@ describe("customer directory API metric wiring", () => {
       reader.onerror = () => reject(reader.error);
       reader.readAsText(blob);
     });
-    expect(csv).toContain("2 Jan 2025,€123.45,");
+    expect(csv).toContain('"Jan 2, 2025",€123.45,');
     expect(csv).not.toContain("hidden@example.test");
   });
 });

@@ -1,3 +1,7 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 export const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export const createIdempotencyKey = (scope = "communication") => {
@@ -292,7 +296,7 @@ export const formatDateTime = (value, locale = "en") => {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
 
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -306,7 +310,7 @@ export const formatRelativeTime = (value, locale = "en") => {
 
   const deltaSeconds = Math.round((date.getTime() - Date.now()) / 1000);
   const absoluteSeconds = Math.abs(deltaSeconds);
-  const formatter = new Intl.RelativeTimeFormat(locale === "cs" ? "cs" : "en", {
+  const formatter = new Intl.RelativeTimeFormat(resolveIntlLocale(locale), {
     numeric: "auto",
   });
 
@@ -394,4 +398,4 @@ export const getSuggestedActions = (conversation) => {
 };
 
 export const extractMutationMessage = (error, fallback) =>
-  error?.data?.message ?? error?.error ?? error?.message ?? fallback;
+  getLocalizedApiErrorMessage(error, fallback);

@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import {
   ArrowPathIcon,
   ArrowTopRightOnSquareIcon,
@@ -35,11 +37,7 @@ import useGuidedSetupStep from "@/components/setup-center/useGuidedSetupStep";
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message ||
-  error?.data?.error?.message ||
-  error?.data?.error ||
-  error?.error ||
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 const statusStyles = {
   [CONNECT_DISPLAY_STATUSES.NOT_STARTED]: {

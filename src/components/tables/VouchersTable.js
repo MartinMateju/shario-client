@@ -1,5 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { useLegacyCopy, useLegacyText } from "@/i18n/useLegacyCopy";
 import {
   MagnifyingGlassIcon,
   FunnelIcon,
@@ -16,7 +19,7 @@ import {
 import { useGetUsersQuery } from "@/lib/features/users/usersApiSlice";
 import { selectCurrentUser } from "@/lib/features/auth/authSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import Loader from "../loaders/Loader";
 import { WorkspaceTable } from "@/components/dashboard/WorkspaceDataSurface";
 import ConfirmationModal from "../modals/ConformationModal";
@@ -31,21 +34,13 @@ const INITIAL_FILTERS = {
   sendPost: "all",
 };
 
-const getStatusOptions = () => [
-  { value: "pending_coupon_payment", label: "Čeká na platbu" },
-  { value: "processed_coupon", label: "Zpracováno" },
-  { value: "shipped_coupon", label: "Odesláno" },
+const getStatusOptions = (labels) => [
+  { value: "pending_coupon_payment", label: labels.pending_coupon_payment },
+  { value: "processed_coupon", label: labels.processed_coupon },
+  { value: "shipped_coupon", label: labels.shipped_coupon },
 ];
 
-const getStatusLabel = (status) => {
-  const statusMap = {
-    pending_coupon_payment: "Čeká na platbu",
-    processed_coupon: "Zpracováno",
-    shipped_coupon: "Odesláno",
-  };
-
-  return statusMap[status] || status || "—";
-};
+const getStatusLabel = (status, labels) => labels[status] || status || "—";
 const getDisplayStatus = (order) =>
   order.physicalDelivery?.status === "dispatched"
     ? "shipped_coupon"
@@ -132,6 +127,10 @@ const getCustomerName = (order) => {
 };
 
 export default function VouchersTable() {
+  const commonT = useTranslations("Common");
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
+  const statusLabels = useLegacyCopy("voucherStatuses");
   const { id, isAdmin } = useSelector(selectCurrentUser);
   const language = useSelector(selectCurrentLanguage);
 
@@ -248,7 +247,9 @@ export default function VouchersTable() {
       fetchCouponOrders({ page: currentPage, activeFilters: filters });
     } catch (error) {
       console.error("Failed to update status:", error);
-      alert(error?.data?.message || "Nepodařilo se aktualizovat status");
+      alert(
+        getLocalizedApiErrorMessage(error, legacyText("voucherUpdateError")),
+      );
     }
   };
 
@@ -263,12 +264,13 @@ export default function VouchersTable() {
           <div className="mb-5 flex items-center justify-between gap-3">
             <div>
               <h3 className="mt-1 text-lg font-medium text-black sm:text-xl">
-                Správa poukazů
+                {legacyText("VouchersTable_Voucher_management_384c5")}{" "}
               </h3>
 
               <p className="mt-1 text-sm text-black/45">
-                Vyhledejte objednávky poukazů podle ID, e-mailu, zákazníka,
-                produktu nebo promo kódu.
+                {legacyText(
+                  "VouchersTable_Find_voucher_orders_by_ID_email_customer_product_or_pro_0ef29",
+                )}{" "}
               </p>
             </div>
           </div>
@@ -279,7 +281,9 @@ export default function VouchersTable() {
                 <FilterInput
                   value={filters.search}
                   onChange={(e) => updateFilter("search", e.target.value)}
-                  placeholder="Order ID | Email | Jméno | Produkt | Promo kód"
+                  placeholder={legacyText(
+                    "VouchersTable_Order_ID_Email_Name_Product_Promo_code_30146",
+                  )}
                   icon={
                     <MagnifyingGlassIcon className="h-5 w-5 text-black/35" />
                   }
@@ -314,7 +318,9 @@ export default function VouchersTable() {
                     disabled:cursor-not-allowed disabled:opacity-60
                   "
                 >
-                  {isLoadingCouponOrders ? "Načítám…" : "Vyhledat"}
+                  {isLoadingCouponOrders
+                    ? commonT("loading")
+                    : commonT("search")}
                 </button>
               </div>
             </div>
@@ -323,30 +329,46 @@ export default function VouchersTable() {
               <div className="mt-5 rounded-[22px] border border-black/5 bg-[#F7F5F2] p-4 sm:p-5">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
                   <div>
-                    <FieldLabel>Typ doručení</FieldLabel>
+                    <FieldLabel>
+                      {legacyText("VouchersTable_Delivery_type_58a44")}{" "}
+                    </FieldLabel>
                     <FilterSelect
                       value={filters.sendPost}
                       onChange={(e) => updateFilter("sendPost", e.target.value)}
                     >
-                      <option value="true">Pouze poštou</option>
-                      <option value="all">Všechny objednávky</option>
-                      <option value="false">Pouze bez pošty</option>
+                      <option value="true">
+                        {legacyText(
+                          "VouchersTable_Postal_delivery_only_3b7bf",
+                        )}{" "}
+                      </option>
+                      <option value="all">
+                        {legacyText("VouchersTable_All_orders_e6909")}{" "}
+                      </option>
+                      <option value="false">
+                        {legacyText(
+                          "VouchersTable_Without_postal_delivery_e1788",
+                        )}{" "}
+                      </option>
                     </FilterSelect>
                   </div>
 
                   <div>
-                    <FieldLabel>Custom ID</FieldLabel>
+                    <FieldLabel>
+                      {legacyText("VouchersTable_Custom_ID_bf59e")}{" "}
+                    </FieldLabel>
                     <FilterInput
                       value={filters.userCustomId}
                       onChange={(e) =>
                         updateFilter("userCustomId", e.target.value)
                       }
-                      placeholder="např. 0023"
+                      placeholder={legacyText("VouchersTable_e_g_0023_929f2")}
                     />
                   </div>
 
                   <div>
-                    <FieldLabel>Email</FieldLabel>
+                    <FieldLabel>
+                      {legacyText("VouchersTable_Email_84add")}{" "}
+                    </FieldLabel>
                     <FilterInput
                       type="email"
                       value={filters.userEmail}
@@ -358,24 +380,32 @@ export default function VouchersTable() {
                   </div>
 
                   <div>
-                    <FieldLabel>Produkt</FieldLabel>
+                    <FieldLabel>
+                      {legacyText("VouchersTable_Product_dd3b8")}{" "}
+                    </FieldLabel>
                     <FilterInput
                       value={filters.productType}
                       onChange={(e) =>
                         updateFilter("productType", e.target.value)
                       }
-                      placeholder="Název produktu"
+                      placeholder={legacyText(
+                        "VouchersTable_Product_name_63c0f",
+                      )}
                     />
                   </div>
 
                   <div>
-                    <FieldLabel>Status</FieldLabel>
+                    <FieldLabel>
+                      {legacyText("VouchersTable_Status_bae7d")}{" "}
+                    </FieldLabel>
                     <FilterSelect
                       value={filters.status}
                       onChange={(e) => updateFilter("status", e.target.value)}
                     >
-                      <option value="">Všechny stavy</option>
-                      {getStatusOptions().map((option) => (
+                      <option value="">
+                        {legacyText("VouchersTable_All_statuses_64051")}{" "}
+                      </option>
+                      {getStatusOptions(statusLabels).map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -397,7 +427,7 @@ export default function VouchersTable() {
                       "
                     >
                       <XMarkIcon className="h-4 w-4" />
-                      Vymazat filtry
+                      {legacyText("VouchersTable_Clear_filters_41222")}{" "}
                     </button>
                   </div>
                 )}
@@ -409,29 +439,32 @@ export default function VouchersTable() {
         <div className="bg-white">
           {isLoadingCouponOrders && (
             <div className="px-4 py-8 text-center text-sm text-black/55 sm:px-6">
-              Načítám poukazy…
+              {legacyText("VouchersTable_Loading_vouchers_eec52")}{" "}
             </div>
           )}
 
           {isError && (
             <div className="px-4 py-8 text-center text-sm text-red-600 sm:px-6">
-              Nepodařilo se načíst poukazy.
+              {legacyText(
+                "VouchersTable_We_could_not_load_the_vouchers_bd8c3",
+              )}{" "}
             </div>
           )}
 
           {!isLoadingCouponOrders && !isError && (
             <>
               <div className="border-b border-black/5 px-4 py-3 text-sm text-black/55 sm:px-6">
-                Zobrazeno{" "}
+                {legacyText("VouchersTable_Showing_163d8")}{" "}
                 <span className="font-medium text-black">
                   {couponOrders.length}
                 </span>{" "}
                 z <span className="font-medium text-black">{totalCount}</span>{" "}
-                objednávek
+                {legacyText("VouchersTable_orders_96584")}{" "}
                 {totalPages > 1 && (
                   <span>
                     {" "}
-                    · strana {currentPage} z {totalPages}
+                    {legacyText("VouchersTable__page_34ef9")} {currentPage} z{" "}
+                    {totalPages}
                   </span>
                 )}
               </div>
@@ -473,49 +506,54 @@ export default function VouchersTable() {
                       <div className="mt-3 space-y-1.5 text-sm text-black/65">
                         <div>
                           <span className="font-medium text-black/80">
-                            Zákazník:
+                            {legacyText("VouchersTable_Customer_5e0d7")}{" "}
                           </span>{" "}
                           {getCustomerName(order)}
                         </div>
 
                         <div>
                           <span className="font-medium text-black/80">
-                            Email:
+                            {legacyText("VouchersTable_Email_4c4e6")}{" "}
                           </span>{" "}
                           {order.email || "—"}
                         </div>
 
                         <div>
                           <span className="font-medium text-black/80">
-                            Množství:
+                            {legacyText("VouchersTable_Quantity_fe2c3")}{" "}
                           </span>{" "}
                           {order.quantity || 0}
                         </div>
 
                         <div>
                           <span className="font-medium text-black/80">
-                            Doručení:
+                            {legacyText("VouchersTable_Delivery_4e854")}{" "}
                           </span>{" "}
                           {order.sendPost ? "Poštou" : "E-mailem"}
                         </div>
 
                         <div>
                           <span className="font-medium text-black/80">
-                            Status:
+                            {legacyText("VouchersTable_Status_11dc9")}{" "}
                           </span>{" "}
                           <span
                             className={`ml-1 inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${getStatusColor(
                               getDisplayStatus(order),
                             )}`}
                           >
-                            {getStatusLabel(getDisplayStatus(order))}
+                            {getStatusLabel(
+                              getDisplayStatus(order),
+                              statusLabels,
+                            )}
                           </span>
                         </div>
 
                         {order.promoCodesSnapshot?.length > 0 && (
                           <div>
                             <span className="font-medium text-black/80">
-                              Promo kódy:
+                              {legacyText(
+                                "VouchersTable_Promo_codes_9a9df",
+                              )}{" "}
                             </span>{" "}
                             {order.promoCodesSnapshot.join(", ")}
                           </div>
@@ -524,7 +562,7 @@ export default function VouchersTable() {
                         {order.sendPost && (
                           <div>
                             <span className="font-medium text-black/80">
-                              Adresa:
+                              {legacyText("VouchersTable_Address_303d9")}{" "}
                             </span>{" "}
                             {[order.street, order.city, order.postalCode]
                               .filter(Boolean)
@@ -536,7 +574,7 @@ export default function VouchersTable() {
                   ))
                 ) : (
                   <div className="px-4 py-10 text-center text-sm text-black/45">
-                    Nebyly nalezeny žádné poukazy.
+                    {legacyText("VouchersTable_No_vouchers_found_95f3e")}{" "}
                   </div>
                 )}
               </div>
@@ -546,29 +584,29 @@ export default function VouchersTable() {
                   <thead className="sticky top-0 z-10">
                     <tr className="bg-[#FCFBF9]">
                       <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                        ID
+                        {legacyText("VouchersTable_ID_89f89")}{" "}
                       </th>
                       <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                        Zákazník
+                        {legacyText("VouchersTable_Customer_0e857")}{" "}
                       </th>
                       <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                        Email
+                        {legacyText("VouchersTable_Email_84add")}{" "}
                       </th>
                       <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                        Produkt
+                        {legacyText("VouchersTable_Product_dd3b8")}{" "}
                       </th>
                       <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                        Ks
+                        {legacyText("VouchersTable_Qty_1e5ff")}{" "}
                       </th>
                       <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                        Doručení
+                        {legacyText("VouchersTable_Delivery_9631a")}{" "}
                       </th>
                       <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                        Status
+                        {legacyText("VouchersTable_Status_bae7d")}{" "}
                       </th>
                       {isAdmin && (
                         <th className="border-b border-black/5 px-6 py-4 text-left text-xs uppercase tracking-[0.14em] text-black/55 font-medium">
-                          Akce
+                          {legacyText("VouchersTable_Actions_c3cd6")}{" "}
                         </th>
                       )}
                     </tr>
@@ -612,7 +650,10 @@ export default function VouchersTable() {
                                 getDisplayStatus(order),
                               )}`}
                             >
-                              {getStatusLabel(getDisplayStatus(order))}
+                              {getStatusLabel(
+                                getDisplayStatus(order),
+                                statusLabels,
+                              )}
                             </span>
                           </td>
 
@@ -635,7 +676,9 @@ export default function VouchersTable() {
                           colSpan={isAdmin ? 8 : 7}
                           className="px-6 py-10 text-center text-sm text-black/45"
                         >
-                          Nebyly nalezeny žádné poukazy.
+                          {legacyText(
+                            "VouchersTable_No_vouchers_found_95f3e",
+                          )}{" "}
                         </td>
                       </tr>
                     )}
@@ -647,7 +690,7 @@ export default function VouchersTable() {
                 <div className="border-t border-black/5 bg-[#FCFBF9] px-4 py-4 sm:px-6">
                   <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
                     <p className="text-sm text-black/55">
-                      Strana{" "}
+                      {legacyText("VouchersTable_Page_fb062")}{" "}
                       <span className="font-medium text-black">
                         {currentPage}
                       </span>{" "}
@@ -705,31 +748,33 @@ export default function VouchersTable() {
             setEditStatus("");
           }}
           onConfirm={handleStatusUpdate}
-          title="Upravit status poukazu"
+          title={legacyText("VouchersTable_Edit_voucher_status_6c496")}
           message={
             <div className="space-y-4 text-left">
               <p className="text-sm text-black/70">
-                Objednávka:{" "}
+                {legacyText("VouchersTable_Order_3c124")}{" "}
                 <span className="font-medium text-black">
                   #{getShortId(orderToUpdate._id)}
                 </span>
               </p>
 
               <p className="text-sm text-black/70">
-                Aktuální status:{" "}
+                {legacyText("VouchersTable_Current_status_02d14")}{" "}
                 <span className="font-medium text-black">
-                  {getStatusLabel(orderToUpdate.status)}
+                  {getStatusLabel(orderToUpdate.status, statusLabels)}
                 </span>
               </p>
 
               <div>
-                <FieldLabel>Nový status</FieldLabel>
+                <FieldLabel>
+                  {legacyText("VouchersTable_New_status_660b4")}{" "}
+                </FieldLabel>
 
                 <FilterSelect
                   value={editStatus}
                   onChange={(e) => setEditStatus(e.target.value)}
                 >
-                  {getStatusOptions().map((option) => (
+                  {getStatusOptions(statusLabels).map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>

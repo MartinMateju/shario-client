@@ -64,10 +64,92 @@ export const getCreditTransactionDescription = (transaction, language) => {
   }
 };
 
-export const getCreditTransactionDetails = (transaction) => {
-  const details = [transaction?.reason, transaction?.description]
-    .map((value) => String(value || "").trim())
-    .filter(Boolean);
+export const getCreditTransactionDetails = (
+  transaction,
+  { orderLabel = "" } = {},
+) => {
+  const type = transaction?.type;
+  let reason = String(transaction?.reason || "").trim();
+  let description = String(transaction?.description || "").trim();
+
+  // Historical API records mix system prose with tenant-authored notes. Strip
+  // only known system templates; the translated transaction heading supplies
+  // their label, while names, references and custom reasons remain visible.
+  const defaultDescriptions = {
+    added: "Credits added",
+    used: "Credits used",
+    refund: "Credits refunded",
+  };
+  if (description === defaultDescriptions[type]) description = "";
+
+  if (
+    type === "admin_granted" &&
+    description.startsWith("Admin granted credits: ")
+  ) {
+    description = description.slice("Admin granted credits: ".length).trim();
+  }
+
+  const orderMatch =
+    type === "added" || type === "purchased"
+      ? /^Credits purchased \(order ([^)]+)\)$/.exec(description)
+      : type === "used"
+        ? /^Credits used as discount \(order ([^)]+)\)$/.exec(description) ||
+          /^Payment with credits for order (.+)$/.exec(description)
+        : null;
+  if (orderMatch) {
+    description = [orderLabel, orderMatch[1]].filter(Boolean).join(" ");
+  }
+
+  if (type === "refund") {
+    const bookingMatch =
+      /^Refund for (?:added booking time|cancelled booking) - (.*)$/.exec(
+        description,
+      );
+    if (bookingMatch) description = bookingMatch[1].trim();
+    if (
+      description === "Refund for an administratively cancelled Class place"
+    ) {
+      description = "";
+    }
+    if (
+      description ===
+      "Booking payment returned to the converted voucher's studio-credit wallet"
+    ) {
+      description = "";
+      if (reason === "Booking refund after voucher conversion") reason = "";
+    }
+  }
+
+  if (type === "coupon_redeemed") {
+    const voucherMatch =
+      /^Uplatněn poukaz ([A-Z0-9]{3}-[A-Z0-9]{3}-[A-Z0-9]{3}) \((.*)\)$/.exec(
+        description,
+      );
+    if (voucherMatch) {
+      description =
+        voucherMatch[2] && voucherMatch[2] !== "Voucher"
+          ? `${voucherMatch[1]} (${voucherMatch[2]})`
+          : voucherMatch[1];
+      if (reason === "coupon redeemed") reason = "";
+    }
+  }
+
+  if (
+    ["migration_credit", "migration_debit"].includes(type) &&
+    description === "Imported source credit allocation adjustment"
+  ) {
+    description = "";
+    if (reason === "migration") reason = "";
+  }
+  if (
+    ["migration_rollback_credit", "migration_rollback_debit"].includes(type) &&
+    description === "Import rollback credit compensation"
+  ) {
+    description = "";
+    if (reason === "migration_rollback") reason = "";
+  }
+
+  const details = [reason, description].filter(Boolean);
 
   return [...new Set(details)].join(" · ");
 };

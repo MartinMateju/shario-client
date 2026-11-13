@@ -10,14 +10,21 @@ const mocks = vi.hoisted(() => ({
   loadPiece: vi.fn(),
   dispatch: vi.fn(),
   replace: vi.fn(),
+  locale: "en",
 }));
 vi.mock("next/navigation", () => ({
   useSearchParams: () => mocks.searchParams,
 }));
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => (key) => key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => mocks.locale,
+      useTranslations: () => (key) => key,
+    }))(...args),
+    [undefined],
+  );
+});
 vi.mock("react-redux", () => ({
   useDispatch: () => mocks.dispatch,
   useSelector: (selector) => selector({}),
@@ -137,6 +144,7 @@ function expectResultPalette() {
 describe("portal payment results follow personal colors", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mocks.locale = "en";
     mocks.searchParams = new URLSearchParams(
       `orderId=${orderId}&location=vaclavska`,
     );
@@ -167,6 +175,28 @@ describe("portal payment results follow personal colors", () => {
       },
     };
     mocks.pieceQuery = {};
+  });
+  it("translates payment allocation methods while preserving amounts", () => {
+    mocks.locale = "nl";
+    mocks.bookingQuery.data.confirmation.paymentAllocations = [
+      { method: "stripe", amountMinor: 1000 },
+      { method: "credits", amountMinor: 500 },
+      { method: "membership_credit", amountMinor: 1000 },
+      { method: "unknown_method", amountMinor: 0 },
+    ];
+    render(
+      <Appearance>
+        <Success />
+      </Appearance>,
+    );
+    expect(screen.getByText("Betaalkaart")).toBeVisible();
+    expect(screen.getByText("Studiotegoed")).toBeVisible();
+    expect(screen.getByText("Lidmaatschapsvoordeel")).toBeVisible();
+    expect(screen.getByText("Betalingsbron")).toBeVisible();
+    expect(
+      screen.queryByText(/membership.credit|unknown.method|stripe/),
+    ).not.toBeInTheDocument();
+    expect(screen.getAllByText(/10/).length).toBeGreaterThan(0);
   });
   it("themes booking details and restores studio colors without reconciling the payment again", () => {
     const view = render(

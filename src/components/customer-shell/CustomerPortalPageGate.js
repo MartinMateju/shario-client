@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useEffect } from "react";
 import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
@@ -20,26 +21,9 @@ import {
   isCustomerPortalPageEnabled,
 } from "./customerPortalVisibility";
 
-const COPY = {
-  en: {
-    title: "Page unavailable",
-    description: "This studio has disabled this customer portal page.",
-    continue: "Continue in the portal",
-    empty:
-      "Contact the studio if you need help with your account or an existing booking.",
-  },
-  cs: {
-    title: "Stránka není dostupná",
-    description: "Studio tuto stránku zákaznického portálu vypnulo.",
-    continue: "Pokračovat v portálu",
-    empty:
-      "Pokud potřebujete pomoc s účtem nebo existující rezervací, kontaktujte studio.",
-  },
-};
-
 export function CustomerPortalPageUnavailable({ fallbackHref }) {
   const locale = useLocale();
-  const copy = COPY[locale === "cs" ? "cs" : "en"];
+  const copy = useLegacyCopy("portalGate");
   return (
     <main
       data-customer-portal-page-unavailable

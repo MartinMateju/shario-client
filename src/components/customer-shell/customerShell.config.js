@@ -143,11 +143,12 @@ export const isCustomerCartSurface = (surface, pathname = "") => {
 export const createCustomerShellTenantFallback = ({
   tenantSlug = "",
   locale = "en",
+  studioName,
 } = {}) =>
   normalizePublicTenant(
     {
       slug: tenantSlug,
-      name: locale === "cs" ? "Vaše studio" : "Your studio",
+      name: studioName || (locale === "cs" ? "Vaše studio" : "Your studio"),
       publicCapabilities: {
         bookStudio: false,
         courses: false,
@@ -158,7 +159,8 @@ export const createCustomerShellTenantFallback = ({
       },
       publicSite: {
         branding: {
-          displayName: locale === "cs" ? "Vaše studio" : "Your studio",
+          displayName:
+            studioName || (locale === "cs" ? "Vaše studio" : "Your studio"),
         },
       },
     },

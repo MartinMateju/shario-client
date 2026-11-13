@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import React, {
   Fragment,
   useMemo,
@@ -31,7 +32,7 @@ import {
 } from "@/lib/features/credits/creditsSlice";
 import { usePurchaseCreditsMutation } from "@/lib/features/credits/creditsApiSlice";
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { formatMajorCurrencyAmount } from "@/utils/money";
 import { getSafeCheckoutUrl } from "@/utils/checkoutUrl";
 import { getCheckoutErrorMessage } from "@/lib/features/checkout/checkout.errors";
@@ -52,6 +53,8 @@ const CREDIT_PACKAGES = [
 const classNames = (...classes) => classes.filter(Boolean).join(" ");
 
 export default function CreditPurchaseModal() {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const dispatch = useDispatch();
   const routeLocale = useLocale();
 
@@ -132,9 +135,7 @@ export default function CreditPurchaseModal() {
         error,
         language,
         translations: translation,
-        fallback:
-          translation["CREDIT_PURCHASE_FAILED"]?.[language] ||
-          "Credit purchase failed. Please try again.",
+        fallback: translation["CREDIT_PURCHASE_FAILED"]?.[language],
       });
       setPurchaseError(msg);
       purchaseLock.current = false;
@@ -142,12 +143,13 @@ export default function CreditPurchaseModal() {
     }
   }, [
     userId,
+    isLoading,
+    purchaseCredits,
     selectedAmount,
     checkoutLocale,
-    purchaseCredits,
-    language,
-    isLoading,
     locationReference,
+    translation,
+    language,
   ]);
 
   const packages = useMemo(() => CREDIT_PACKAGES, []);
@@ -215,8 +217,7 @@ export default function CreditPurchaseModal() {
                       className="text-base font-medium text-[var(--tenant-text-on-surface)] sm:text-xl"
                       data-tenant-type="display"
                     >
-                      {translation["PURCHASE_CREDITS"]?.[language] ||
-                        "Purchase Credits"}
+                      {translation["PURCHASE_CREDITS"]?.[language]}
                     </DialogTitle>
                   </div>
 
@@ -225,7 +226,7 @@ export default function CreditPurchaseModal() {
                     className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--tenant-border)] text-[var(--tenant-muted-on-surface)] transition-all hover:bg-[color-mix(in_srgb,var(--tenant-accent)_8%,transparent)] hover:text-[var(--tenant-text-on-surface)] active:scale-95 disabled:opacity-40"
                     onClick={handleClose}
                     disabled={isPending}
-                    aria-label={language === "CZ" ? "Zavřít" : "Close"}
+                    aria-label={legacyText("CreditPurchaseModal_Close_bbfa7")}
                   >
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
@@ -237,16 +238,14 @@ export default function CreditPurchaseModal() {
                   className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-4 py-4 sm:px-6"
                 >
                   <DialogDescription className="mb-4 text-xs leading-5 text-[var(--tenant-muted-on-surface)] sm:text-sm">
-                    {translation["CREDIT_PURCHASE_DESCRIPTION"]?.[language] ||
-                      "Purchase credit packages to use for future bookings."}
+                    {translation["CREDIT_PURCHASE_DESCRIPTION"]?.[language]}
                   </DialogDescription>
                   <fieldset disabled={isPending} className="min-w-0">
                     <legend
                       className="text-sm font-medium text-[var(--tenant-text-on-surface)]"
                       data-tenant-type="label"
                     >
-                      {translation["SELECT_PACKAGE"]?.[language] ||
-                        "Select Package"}
+                      {translation["SELECT_PACKAGE"]?.[language]}
                     </legend>
                     <div className="mt-3 grid grid-cols-2 gap-3">
                       {packages.map((pkg) => {
@@ -299,21 +298,18 @@ export default function CreditPurchaseModal() {
                               </span>
 
                               <span className="mt-1 text-xs text-[var(--tenant-muted-text)]">
-                                {translation["CREDITS"]?.[language] ||
-                                  "Credits"}
+                                {translation["CREDITS"]?.[language]}
                               </span>
 
                               <span className="mt-2 flex min-h-5 flex-wrap items-center gap-1.5">
                                 {pkg.popular && (
                                   <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 ring-1 ring-green-200">
-                                    {translation["POPULAR"]?.[language] ||
-                                      "Popular"}
+                                    {translation["POPULAR"]?.[language]}
                                   </span>
                                 )}
                                 {isSelected && (
                                   <span className="text-xs font-medium text-[var(--tenant-accent-link)]">
-                                    {translation["SELECTED"]?.[language] ||
-                                      "Selected"}
+                                    {translation["SELECTED"]?.[language]}
                                   </span>
                                 )}
                               </span>
@@ -333,9 +329,7 @@ export default function CreditPurchaseModal() {
                   >
                     <div className="flex flex-wrap justify-between gap-x-3 gap-y-1 text-sm">
                       <span className="text-[var(--tenant-muted-on-surface)]">
-                        {translation["SELECTED_AMOUNT"]?.[language] ||
-                          "Selected amount"}
-                        :
+                        {translation["SELECTED_AMOUNT"]?.[language]}:
                       </span>
                       <span className="font-medium text-[var(--tenant-text-on-surface)]">
                         {formatMajorCurrencyAmount(
@@ -347,12 +341,10 @@ export default function CreditPurchaseModal() {
                     </div>
                     <div className="mt-1 flex flex-wrap justify-between gap-x-3 gap-y-1 text-sm">
                       <span className="text-[var(--tenant-muted-on-surface)]">
-                        {translation["PAYMENT_METHOD"]?.[language] ||
-                          "Payment method"}
-                        :
+                        {translation["PAYMENT_METHOD"]?.[language]}:
                       </span>
                       <span className="text-[var(--tenant-text-on-surface)]">
-                        {translation["CREDIT_CARD"]?.[language] || "Card"}
+                        {translation["CREDIT_CARD"]?.[language]}
                       </span>
                     </div>
                   </div>
@@ -390,7 +382,7 @@ export default function CreditPurchaseModal() {
                       onClick={handleClose}
                       disabled={isPending}
                     >
-                      {translation["CANCEL"]?.[language] || "Cancel"}
+                      {translation["CANCEL"]?.[language]}
                     </button>
 
                     <button
@@ -407,7 +399,7 @@ export default function CreditPurchaseModal() {
                         translation["PROCESSING"]?.[language]
                       ) : (
                         <>
-                          {translation["PURCHASE"]?.[language] || "Purchase"}{" "}
+                          {translation["PURCHASE"]?.[language]}{" "}
                           <span className="whitespace-nowrap">
                             {formatMajorCurrencyAmount(
                               selectedAmount,

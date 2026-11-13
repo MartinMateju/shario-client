@@ -15,21 +15,26 @@ const mocks = vi.hoisted(() => ({
   modal: vi.fn(),
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations:
-    (namespace) =>
-    (key, values = {}) => {
-      const value = `${namespace}.${key}`
-        .split(".")
-        .reduce((text, part) => text?.[part], messages);
-      return Object.entries(values).reduce(
-        (text, [name, replacement]) =>
-          text.replaceAll(`{${name}}`, String(replacement)),
-        typeof value === "string" ? value : key,
-      );
-    },
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+      useTranslations:
+        (namespace) =>
+        (key, values = {}) => {
+          const value = `${namespace}.${key}`
+            .split(".")
+            .reduce((text, part) => text?.[part], messages);
+          return Object.entries(values).reduce(
+            (text, [name, replacement]) =>
+              text.replaceAll(`{${name}}`, String(replacement)),
+            typeof value === "string" ? value : key,
+          );
+        },
+    }))(...args),
+  );
+});
 vi.mock("next/navigation", () => ({
   useParams: () => ({ tenantSlug: "test-studio" }),
 }));

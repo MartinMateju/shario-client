@@ -1,3 +1,7 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
 import { formatMinorCurrencyAmount } from "@/utils/money";
 
@@ -253,7 +257,7 @@ export const formatInvoiceDate = (
     : new Date(value);
   if (Number.isNaN(date.getTime())) return "—";
 
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     ...(withTime ? { timeStyle: "short" } : {}),
     // A bare YYYY-MM-DD is already a calendar date. Datetime values are
@@ -278,11 +282,7 @@ export const canCreditInvoice = (invoice) =>
   Number(invoice?.creditedAmountMinor || 0) < getInvoiceTotalMinor(invoice);
 
 export const getInvoiceError = (error, fallback) =>
-  error?.data?.message ??
-  error?.data?.error ??
-  error?.error ??
-  error?.message ??
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export const downloadInvoiceFile = (result, fallbackFilename) => {
   const url = result?.downloadUrl ?? result?.url ?? result?.pdfUrl;

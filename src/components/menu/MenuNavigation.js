@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
+
 import { useCallback } from "react";
 import { CalendarDaysIcon } from "@heroicons/react/20/solid";
 
@@ -20,6 +22,7 @@ export default function MenuNavigation({
   setMobileSheetOpen,
   unlockScroll,
 }) {
+  const labels = useLegacyCopy("menu");
   const userAccountTabs = groupedTabs.USER_ACCOUNT || [];
 
   const getDesktopTabClasses = useCallback(
@@ -60,18 +63,18 @@ export default function MenuNavigation({
             />
 
             <span className="whitespace-nowrap">
-              {getTabLabel(tab.name, language)}
+              {getTabLabel(tab.name, language, labels)}
             </span>
           </button>
         );
       }),
-    [currentTab, getDesktopTabClasses, language, onTabChange],
+    [currentTab, getDesktopTabClasses, language, onTabChange, labels],
   );
 
   return (
     <nav
       className="border-b border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-4 py-4 text-[var(--tenant-text-on-surface)] sm:px-5 lg:px-10"
-      aria-label="Dashboard navigation"
+      aria-label={labels.navigation}
     >
       <div className="mx-auto max-w-[1480px]">
         <div className="hidden flex-wrap items-center gap-2 sm:flex">

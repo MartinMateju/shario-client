@@ -41,6 +41,7 @@ const toDateTimeInput = (value) => {
 };
 
 function ModalFrame({ children, description, onClose, title }) {
+  const commonT = useTranslations("Common");
   return (
     <Dialog open onClose={onClose} className="relative z-[110]">
       <DialogBackdrop
@@ -67,7 +68,7 @@ function ModalFrame({ children, description, onClose, title }) {
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={commonT("close")}
                 className="grid size-10 shrink-0 place-items-center rounded-full border border-line bg-white text-ink-muted transition hover:border-line-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30"
               >
                 <XMarkIcon aria-hidden="true" className="size-5" />

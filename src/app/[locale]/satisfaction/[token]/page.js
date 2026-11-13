@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -37,7 +38,9 @@ export default function SatisfactionSurveyPage() {
       if (status === 404 || status === 410) {
         setState("expired");
       } else {
-        setErrorMessage(error?.data?.message ?? t("errorDescription"));
+        setErrorMessage(
+          getLocalizedApiErrorMessage(error, t("errorDescription")),
+        );
       }
     }
   };

@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import {
   ArrowDownTrayIcon,
   ArrowPathIcon,
@@ -61,7 +63,7 @@ import { formatMinorCurrencyAmount } from "@/utils/money";
 const classNames = (...classes) => classes.filter(Boolean).join(" ");
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 const formatDate = (date, locale) => {
   if (!date) return "—";

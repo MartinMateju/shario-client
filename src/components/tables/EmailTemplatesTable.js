@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useMemo, useState } from "react";
 import {
   CheckCircleIcon,
@@ -91,7 +92,7 @@ export default function EmailTemplatesTable({ canManage = false }) {
     try {
       await operation();
     } catch (error) {
-      setFeedback(error?.data?.message ?? error?.error ?? fallback);
+      setFeedback(getLocalizedApiErrorMessage(error, fallback));
     }
   };
   const confirmDelete = async () => {

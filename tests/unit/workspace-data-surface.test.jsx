@@ -21,6 +21,11 @@ import {
   WorkspaceTruncatedText,
 } from "@/components/dashboard/WorkspaceDataSurface";
 
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs();
+});
+
 const TestIcon = (props) => <svg data-testid="empty-icon" {...props} />;
 
 describe("WorkspaceDataSurface", () => {

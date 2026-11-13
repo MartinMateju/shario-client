@@ -22,44 +22,27 @@ import {
   UsersIcon,
   WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { classNames } from "./header.utils";
 export const ADMIN_LINKS = [
   {
     id: "core",
     href: "/app/bookings",
-    label: {
-      CZ: "Core",
-      EN: "Core",
-    },
+    labelKey: "Legacy.screens.management.groups.Core",
     icon: Squares2X2Icon,
-    description: {
-      CZ: "Rezervace, kalendář a denní provoz.",
-      EN: "Bookings, calendar and daily operations.",
-    },
+    descriptionKey: "Header.adminNavigation.sections.core.description",
     items: [
       {
         href: "/app/bookings",
-        label: {
-          CZ: "Rezervace",
-          EN: "Bookings",
-        },
-        description: {
-          CZ: "Správa rezervací, hostů, plateb a změn.",
-          EN: "Manage bookings, guests, payments and changes.",
-        },
+        labelKey: "Dashboard.nav.bookings",
+        descriptionKey: "Header.adminNavigation.items.bookings.description",
         icon: ClipboardDocumentListIcon,
       },
       {
         href: "/app/calendar",
-        label: {
-          CZ: "Kalendář",
-          EN: "Calendar",
-        },
-        description: {
-          CZ: "Kapacity, obsazenost, kurzy a studio rozvrh.",
-          EN: "Capacity, occupancy, courses and studio schedule.",
-        },
+        labelKey: "Dashboard.nav.calendar",
+        descriptionKey: "Header.adminNavigation.items.calendar.description",
         icon: CalendarDaysIcon,
       },
     ],
@@ -67,38 +50,20 @@ export const ADMIN_LINKS = [
   {
     id: "users",
     href: "/app/users",
-    label: {
-      CZ: "Uživatelé",
-      EN: "Users",
-    },
+    labelKey: "Legacy.USERS",
     icon: UsersIcon,
-    description: {
-      CZ: "Zákazníci, členové týmu a historie.",
-      EN: "Customers, team members and history.",
-    },
+    descriptionKey: "Header.adminNavigation.sections.users.description",
     items: [
       {
         href: "/app/users?section=customers",
-        label: {
-          CZ: "Zákazníci",
-          EN: "Customers",
-        },
-        description: {
-          CZ: "Správa zákazníků, kontaktů, kreditů a historie.",
-          EN: "Manage customers, contacts, credits and history.",
-        },
+        labelKey: "Dashboard.nav.customers",
+        descriptionKey: "Header.adminNavigation.items.customers.description",
         icon: UsersIcon,
       },
       {
         href: "/app/settings/team",
-        label: {
-          CZ: "Můj tým",
-          EN: "My team",
-        },
-        description: {
-          CZ: "Správa členů týmu, rolí a interních přístupů.",
-          EN: "Manage team members, roles and internal access.",
-        },
+        labelKey: "Header.adminNavigation.items.team.label",
+        descriptionKey: "Header.adminNavigation.items.team.description",
         icon: UserGroupIcon,
       },
     ],
@@ -106,50 +71,26 @@ export const ADMIN_LINKS = [
   {
     id: "operations",
     href: "/app/operations",
-    label: {
-      CZ: "Operations",
-      EN: "Operations",
-    },
+    labelKey: "Dashboard.routeTitles.operations",
     icon: WrenchScrewdriverIcon,
-    description: {
-      CZ: "Sklad, reporty, úkoly a provozní přehledy.",
-      EN: "Inventory, reports, tasks and operational overview.",
-    },
+    descriptionKey: "Header.adminNavigation.sections.operations.description",
     items: [
       {
         href: "/app/operations?section=inventory",
-        label: {
-          CZ: "Sklad",
-          EN: "Inventory",
-        },
-        description: {
-          CZ: "Materiály, zásoby, pohyby a skladový přehled.",
-          EN: "Materials, stock, movements and inventory overview.",
-        },
+        labelKey: "Dashboard.nav.inventory",
+        descriptionKey: "Header.adminNavigation.items.inventory.description",
         icon: CubeIcon,
       },
       {
         href: "/app/operations?section=suppliers",
-        label: {
-          CZ: "Dodavatelé",
-          EN: "Suppliers",
-        },
-        description: {
-          CZ: "Kontakty, nákupy a dodavatelská historie.",
-          EN: "Contacts, purchases and supplier history.",
-        },
+        labelKey: "Dashboard.routeTitles.suppliers",
+        descriptionKey: "Header.adminNavigation.items.suppliers.description",
         icon: TruckIcon,
       },
       {
         href: "/app/operations?section=statistics",
-        label: {
-          CZ: "Insights",
-          EN: "Insights",
-        },
-        description: {
-          CZ: "Statistiky, přehledy výkonu a provozní metriky.",
-          EN: "Statistics, performance overview and operational metrics.",
-        },
+        labelKey: "Legacy.screens.menu.INSIGHTS",
+        descriptionKey: "Header.adminNavigation.items.statistics.description",
         icon: ChartBarIcon,
       },
     ],
@@ -157,50 +98,26 @@ export const ADMIN_LINKS = [
   {
     id: "sales",
     href: "/app/sales",
-    label: {
-      CZ: "Sales",
-      EN: "Sales",
-    },
+    labelKey: "Dashboard.nav.sales",
     icon: ShoppingBagIcon,
-    description: {
-      CZ: "Produkty, objednávky, platby, poukazy a prodej.",
-      EN: "Products, orders, payments, vouchers and sales.",
-    },
+    descriptionKey: "Header.adminNavigation.sections.sales.description",
     items: [
       {
         href: "/app/products",
-        label: {
-          CZ: "Produkty",
-          EN: "Products",
-        },
-        description: {
-          CZ: "Kurzy, workshopy, poukazy a rezervační produkty.",
-          EN: "Courses, workshops, vouchers and booking products.",
-        },
+        labelKey: "Legacy.PRODUCTS",
+        descriptionKey: "Header.adminNavigation.items.products.description",
         icon: ShoppingBagIcon,
       },
       {
         href: "/app/sales?section=orders",
-        label: {
-          CZ: "Objednávky",
-          EN: "Orders",
-        },
-        description: {
-          CZ: "Objednávky, zakázky, poptávky a platby.",
-          EN: "Orders, custom work, requests and payments.",
-        },
+        labelKey: "Sales.overview.orders",
+        descriptionKey: "Header.adminNavigation.items.orders.description",
         icon: ReceiptPercentIcon,
       },
       {
         href: "/app/sales?section=vouchers",
-        label: {
-          CZ: "Poukazy",
-          EN: "Vouchers",
-        },
-        description: {
-          CZ: "Dárkové poukazy, uplatnění a historie.",
-          EN: "Gift vouchers, redemptions and history.",
-        },
+        labelKey: "Products.categories.vouchers",
+        descriptionKey: "Header.adminNavigation.items.vouchers.description",
         icon: TagIcon,
       },
     ],
@@ -208,83 +125,43 @@ export const ADMIN_LINKS = [
   {
     id: "management",
     href: "/app/settings",
-    label: {
-      CZ: "Management",
-      EN: "Management",
-    },
+    labelKey: "Legacy.MANAGEMENT",
     icon: Cog6ToothIcon,
-    description: {
-      CZ: "Systém, nastavení, lokace, oprávnění a integrace.",
-      EN: "System, settings, locations, permissions and integrations.",
-    },
+    descriptionKey: "Header.adminNavigation.sections.management.description",
     items: [
       {
         href: "/app/settings/general",
-        label: {
-          CZ: "System",
-          EN: "System",
-        },
-        description: {
-          CZ: "Základní nastavení aplikace a interní správa.",
-          EN: "Core app settings and internal administration.",
-        },
+        labelKey: "Header.adminNavigation.items.general.label",
+        descriptionKey: "Header.adminNavigation.items.general.description",
         icon: Cog6ToothIcon,
       },
       {
         href: "/app/settings/public-site",
-        label: {
-          CZ: "Veřejný web",
-          EN: "Public website",
-        },
-        description: {
-          CZ: "Vzhled, obsah, přihlášení a publikace webu studia.",
-          EN: "Branding, content, sign-in and studio-site publishing.",
-        },
+        labelKey: "SetupCenter.readiness.items.publicSite.title",
+        descriptionKey: "Header.adminNavigation.items.public-site.description",
         icon: PaintBrushIcon,
       },
       {
         href: "/app/settings/locations",
-        label: {
-          CZ: "Lokace",
-          EN: "Locations",
-        },
-        description: {
-          CZ: "Správa studií, kapacit, adres a provozních pravidel.",
-          EN: "Manage studios, capacity, addresses and operating rules.",
-        },
+        labelKey: "WorkspaceSettingsNav.items.locations",
+        descriptionKey: "Header.adminNavigation.items.locations.description",
         icon: BuildingStorefrontIcon,
       },
       {
         href: "/app/settings/roles",
-        label: {
-          CZ: "Oprávnění",
-          EN: "Permissions",
-        },
-        description: {
-          CZ: "Role, přístupy a bezpečnostní pravidla.",
-          EN: "Roles, access and security rules.",
-        },
+        labelKey: "RoleSettings.editor.permissionsTitle",
+        descriptionKey: "Header.adminNavigation.items.roles.description",
         icon: UsersIcon,
       },
       {
         href: "/app/settings",
-        label: {
-          CZ: "Integrace",
-          EN: "Integrations",
-        },
-        description: {
-          CZ: "Stripe, e-maily, kalendáře a externí služby.",
-          EN: "Stripe, emails, calendars and external services.",
-        },
+        labelKey: "Header.adminNavigation.items.integrations.label",
+        descriptionKey: "Header.adminNavigation.items.integrations.description",
         icon: PuzzlePieceIcon,
       },
     ],
   },
 ];
-const getLocalized = (value, language, fallback = "") => {
-  if (typeof value === "string") return value;
-  return value?.[language] || value?.EN || value?.CZ || fallback;
-};
 const parseLocation = (value = "") => {
   const [rawPath = "", rawQuery = ""] = String(value).split("?");
   const normalizedPath =
@@ -318,10 +195,8 @@ const getGridClass = (itemCount) => {
   if (itemCount === 3) return "grid-cols-3";
   return "grid-cols-4";
 };
-const DesktopNavAdmin = memo(function DesktopNavAdmin({
-  pathname = "",
-  language = "CZ",
-}) {
+const DesktopNavAdmin = memo(function DesktopNavAdmin({ pathname = "" }) {
+  const t = useTranslations();
   const closeTimeoutRef = useRef(null);
   const [openSectionId, setOpenSectionId] = useState(null);
   const navItems = useMemo(
@@ -392,14 +267,14 @@ const DesktopNavAdmin = memo(function DesktopNavAdmin({
   return (
     <nav
       className="hidden min-w-0 flex-1 items-center justify-center gap-x-1 xl:flex 2xl:gap-x-1.5"
-      aria-label={language === "CZ" ? "Administrace" : "Admin navigation"}
+      aria-label={t("Header.adminNavigation.label")}
     >
       {navItems.map((section) => {
         const active = isAdminSectionActive(pathname, section);
         const isOpen = openSectionId === section.id;
         const Icon = section.icon;
-        const label = getLocalized(section.label, language, section.id);
-        const description = getLocalized(section.description, language);
+        const label = t(section.labelKey);
+        const description = t(section.descriptionKey);
         const panelId = `admin-menu-${section.id}`;
         return (
           <div
@@ -481,7 +356,7 @@ const DesktopNavAdmin = memo(function DesktopNavAdmin({
                       </span>
 
                       <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.14em] text-skab-coral-300">
-                        {language === "CZ" ? "Modul" : "Module"}
+                        {t("Header.adminNavigation.module")}
                       </p>
 
                       <p className="mt-2 text-[28px] font-semibold leading-none tracking-[-0.05em] text-white">
@@ -496,7 +371,7 @@ const DesktopNavAdmin = memo(function DesktopNavAdmin({
                     </div>
 
                     <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 group-hover:gap-3">
-                      {language === "CZ" ? "Otevřít modul" : "Open module"}
+                      {t("Header.adminNavigation.openModule")}
                       <ArrowLongRightIcon
                         className="h-4 w-4 stroke-[1.7]"
                         aria-hidden="true"
@@ -513,15 +388,8 @@ const DesktopNavAdmin = memo(function DesktopNavAdmin({
                     {section.items.map((item, index) => {
                       const ItemIcon = item.icon;
                       const itemActive = isAdminItemActive(pathname, item);
-                      const itemTitle = getLocalized(
-                        item.label,
-                        language,
-                        item.href,
-                      );
-                      const itemDescription = getLocalized(
-                        item.description,
-                        language,
-                      );
+                      const itemTitle = t(item.labelKey);
+                      const itemDescription = t(item.descriptionKey);
                       return (
                         <Link
                           key={item.href}
@@ -570,7 +438,7 @@ const DesktopNavAdmin = memo(function DesktopNavAdmin({
                           )}
 
                           <span className="mt-auto inline-flex items-center gap-2 pt-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-primary-text transition-all duration-300 group-hover:gap-3">
-                            {language === "CZ" ? "Otevřít" : "Open"}
+                            {t("Locations.portalLinks.open")}
                             <ArrowLongRightIcon
                               className="h-4 w-4 stroke-[1.7]"
                               aria-hidden="true"

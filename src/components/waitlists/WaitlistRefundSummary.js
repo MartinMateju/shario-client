@@ -1,5 +1,7 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -8,7 +10,7 @@ import { formatMinorCurrencyAmount } from "@/utils/money";
 const formatDateTime = (value, locale) => {
   const date = new Date(value || "");
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -37,7 +39,7 @@ export default function WaitlistRefundSummary({ refund }) {
             {formatMinorCurrencyAmount(
               refund.amountMinor,
               refund.currency,
-              locale === "cs" ? "cs-CZ" : "en-GB",
+              resolveIntlLocale(locale),
             )}
           </p>
           {refundedAt ? (

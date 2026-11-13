@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useMemo, useRef, useState } from "react";
 import {
   ArrowDownTrayIcon,
@@ -25,11 +27,12 @@ import {
 
 const MAX_BULK_CODES = 500;
 
-const downloadTemplate = () => {
+const downloadTemplate = (t) => {
+  const csvText = (value) => `"${String(value).replaceAll('"', '""')}"`;
   const content = [
     "code,label,type,status,valid_from,valid_until,notes,programmed_and_tested",
-    '001527,"Main entrance",single_booking,draft,,,"Keep code cells formatted as text",false',
-    '009999,"Emergency reserve",emergency_reserve,available,,,,true',
+    `001527,${csvText(t("poolForm.name"))},single_booking,draft,,,${csvText(t("codeForm.createDescription"))},false`,
+    `009999,${csvText(t("types.emergency_reserve.label"))},emergency_reserve,available,,,,true`,
   ].join("\r\n");
   const url = URL.createObjectURL(
     new Blob([content], { type: "text/csv;charset=utf-8" }),
@@ -167,8 +170,15 @@ export default function BulkAccessCodesDialog({
         failed,
         errors: failures.slice(0, 3).map((result) => ({
           row: Number(result.index) + 1,
-          message: String(
-            result?.error?.message || result?.error?.code || "Import failed",
+          message: getLocalizedApiErrorMessage(
+            result?.error,
+            t("errors.saveCode"),
+            {
+              ACCESS_CODE_DUPLICATE: t("bulk.errors.rows", { count: 1 }),
+              ACCESS_CODE_IMPORT_ROW_INVALID: t("bulk.errors.rows", {
+                count: 1,
+              }),
+            },
           ),
         })),
       });
@@ -210,7 +220,7 @@ export default function BulkAccessCodesDialog({
             />
             <button
               type="button"
-              onClick={downloadTemplate}
+              onClick={() => downloadTemplate(t)}
               className="flex min-h-20 items-center gap-3 rounded-[16px] border border-line bg-white px-4 text-left transition hover:border-cobalt-200 hover:bg-surface-muted"
             >
               <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-surface text-ink-muted">

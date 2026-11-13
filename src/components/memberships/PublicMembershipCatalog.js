@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowPathIcon,
@@ -54,6 +55,7 @@ export default function PublicMembershipCatalog({
   previewData,
   customerContext,
 }) {
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const t = useTranslations("Memberships.catalog");
   const commonT = useTranslations("Memberships.common");
   const benefitT = useTranslations("Memberships.benefits");
@@ -122,6 +124,7 @@ export default function PublicMembershipCatalog({
     customerContext ? { surface: "portal" } : undefined,
   );
   const customizationDefaults = getPublicWebsitePageCustomizationDefaults({
+    localizedDefaults: customerDefaults,
     page: "memberships",
     locale,
     studio: publicTenant.publicSite.branding.displayName || tenant.name || "",

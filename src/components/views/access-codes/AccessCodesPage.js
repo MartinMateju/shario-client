@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowPathIcon,
@@ -66,14 +68,7 @@ import {
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 const getRequestError = (error, fallback) =>
-  String(
-    error?.data?.message ||
-      error?.data?.error?.message ||
-      error?.data?.error ||
-      error?.error ||
-      error?.message ||
-      fallback,
-  );
+  getLocalizedApiErrorMessage(error, fallback);
 
 const getCodeId = (code) => String(code?.id ?? code?._id ?? "").trim();
 const getPoolId = (pool) => String(pool?.id ?? pool?._id ?? "").trim();

@@ -493,7 +493,7 @@ describe("global workspace registration behavior", () => {
     expect(window.location.hash).toBe("#tenant-onboarding");
   });
 
-  it("announces and focuses a localized registration request error", async () => {
+  it("announces and focuses localized copy instead of raw registration errors", async () => {
     const user = userEvent.setup();
     mocks.registerUnwrap.mockRejectedValueOnce({
       data: { message: "Tento identifikátor studia je již obsazený." },
@@ -506,7 +506,8 @@ describe("global workspace registration behavior", () => {
 
     const alert = await screen.findByRole("alert");
 
-    expect(alert).toHaveTextContent(
+    expect(alert).toHaveTextContent(COPY.cs.createFailed);
+    expect(alert).not.toHaveTextContent(
       "Tento identifikátor studia je již obsazený.",
     );
     expect(alert).toHaveAttribute("tabindex", "-1");

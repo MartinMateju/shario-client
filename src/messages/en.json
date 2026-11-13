@@ -15,7 +15,36 @@
     "back": "Back",
     "next": "Next",
     "close": "Close",
-    "optional": "Optional"
+    "optional": "Optional",
+    "loading": "Loading",
+    "preparingSpace": "Preparing your space",
+    "signingOut": "Signing you out…",
+    "checkingPlatformAccess": "Checking platform access…",
+    "redirectingAccount": "Taking you to the right account…",
+    "section": "Section",
+    "business": "Business",
+    "gallery": {
+      "image": "Class image",
+      "previous": "Previous image",
+      "next": "Next image",
+      "thumbnails": "Class image thumbnails",
+      "view": "View image {number} of {count}",
+      "imageAlt": "{name} — image {number}",
+      "thumbnailAlt": "{name} — thumbnail {number}"
+    },
+    "internalAdmin": {
+      "eyebrow": "shario.io internal",
+      "title": "Platform administration",
+      "description": "This hostname is reserved for the shario.io operations team. Platform administration is separate from each workspace."
+    },
+    "selectOption": "Select an option",
+    "noOptions": "No options",
+    "search": "Search",
+    "pagination": "Pagination",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "sharioHome": "Shario home",
+    "sharioDashboard": "shario.io dashboard"
   },
   "Waitlists": {
     "states": {
@@ -328,7 +357,79 @@
     "openWorkspace": "Open workspace",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "changeLanguage": "Change language"
+    "changeLanguage": "Change language",
+    "adminNavigation": {
+      "sections": {
+        "core": {
+          "description": "Bookings, calendar and daily operations."
+        },
+        "users": {
+          "description": "Customers, team members and history."
+        },
+        "operations": {
+          "description": "Inventory, reports, tasks and operational overview."
+        },
+        "sales": {
+          "description": "Products, orders, payments, vouchers and sales."
+        },
+        "management": {
+          "description": "System, settings, locations, permissions and integrations."
+        }
+      },
+      "items": {
+        "bookings": {
+          "description": "Manage bookings, guests, payments and changes."
+        },
+        "calendar": {
+          "description": "Capacity, occupancy, courses and studio schedule."
+        },
+        "customers": {
+          "description": "Manage customers, contacts, credits and history."
+        },
+        "team": {
+          "label": "My team",
+          "description": "Manage team members, roles and internal access."
+        },
+        "inventory": {
+          "description": "Materials, stock, movements and inventory overview."
+        },
+        "suppliers": {
+          "description": "Contacts, purchases and supplier history."
+        },
+        "statistics": {
+          "description": "Statistics, performance overview and operational metrics."
+        },
+        "products": {
+          "description": "Courses, workshops, vouchers and booking products."
+        },
+        "orders": {
+          "description": "Orders, custom work, requests and payments."
+        },
+        "vouchers": {
+          "description": "Gift vouchers, redemptions and history."
+        },
+        "general": {
+          "label": "System",
+          "description": "Core app settings and internal administration."
+        },
+        "public-site": {
+          "description": "Branding, content, sign-in and studio-site publishing."
+        },
+        "locations": {
+          "description": "Manage studios, capacity, addresses and operating rules."
+        },
+        "roles": {
+          "description": "Roles, access and security rules."
+        },
+        "integrations": {
+          "label": "Integrations",
+          "description": "Stripe, emails, calendars and external services."
+        }
+      },
+      "label": "Admin navigation",
+      "module": "Module",
+      "openModule": "Open module"
+    }
   },
   "PlatformAuth": {
     "login": {
@@ -2957,7 +3058,7 @@
     },
     "features": {
       "locations": {
-        "fixed": "Up to {count, number} locations",
+        "fixed": "{count, plural, one {Up to # location} other {Up to # locations}}",
         "unlimited": "Unlimited locations",
         "custom": "Custom location capacity"
       },
@@ -3133,7 +3234,7 @@
     "day": {
       "overlapInfo": "Bookings may overlap. Availability is calculated independently for each activity.",
       "max": "max {count}",
-      "places": "{count} places",
+      "places": "{count, plural, one {# place} other {# places}}",
       "capacity": "Capacity",
       "publicLane": "Public booking {number}"
     },
@@ -3156,6 +3257,9 @@
       "WORKSTATION": "Workstations",
       "SHARED_TABLE": "Shared tables",
       "GENERAL": "General capacity"
+    },
+    "errors": {
+      "load": "The calendar could not be loaded. Please try again."
     }
   },
   "InvoicingSettings": {
@@ -6518,9 +6622,8 @@
       "website": "Website"
     },
     "unavailable": {
-      "title": "This option is not available",
-      "description": "The studio is not currently offering this option publicly.",
-      "back": "Back to studio"
+      "title": "This space is temporarily unavailable",
+      "description": "The space could not be loaded. Please try again in a moment."
     },
     "book": {
       "metadataTitle": "Book Open Studio",
@@ -6935,7 +7038,57 @@
     "eyebrow": "Welcome to",
     "description": "Explore the studio, manage your bookings and keep everything related to your account in one place.",
     "openPortal": "Open customer portal",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "sections": {
+      "waysToVisit": {
+        "eyebrow": "Explore the studio",
+        "title": "Ways to visit"
+      },
+      "featured": {
+        "eyebrow": "Studio highlights",
+        "title": "Featured at the studio"
+      },
+      "about": {
+        "eyebrow": "Our story",
+        "title": "About the studio"
+      },
+      "gallery": {
+        "eyebrow": "From the studio",
+        "title": "Gallery"
+      },
+      "testimonials": {
+        "eyebrow": "Community voices",
+        "title": "What customers say"
+      },
+      "locations": {
+        "eyebrow": "Visit us",
+        "title": "Studio locations"
+      },
+      "team": {
+        "eyebrow": "People behind the studio",
+        "title": "Meet the team"
+      },
+      "faq": {
+        "eyebrow": "Good to know",
+        "title": "Frequently asked questions"
+      },
+      "explore": "Explore",
+      "view": "View details",
+      "contact": "Contact studio",
+      "noLocation": "Location details will appear here once added.",
+      "faqCards": {
+        "book": "Booking and availability",
+        "courses": "Courses and workshops",
+        "help": "Studio help"
+      },
+      "nav": {
+        "book": "Book a studio",
+        "courses": "Courses",
+        "memberships": "Memberships",
+        "vouchers": "Gift vouchers",
+        "help": "Help"
+      }
+    }
   },
   "Memberships": {
     "planChange": {
@@ -7044,12 +7197,12 @@
       "allLocations": "All locations",
       "selectedLocationSummary": "Available at: {locations}",
       "selectedLocationsFallback": "Selected locations",
-      "moreBenefits": "+{count} more benefits",
+      "moreBenefits": "{count, plural, one {+# more benefit} other {+# more benefits}}",
       "trackingNotice": "Credits refresh after each successful membership payment. Product discounts are applied automatically at checkout.",
       "billing": {
         "monthly": "Every {count, plural, one {month} other {# months}}",
         "yearly": "Every {count, plural, one {year} other {# years}}",
-        "fixed": "Fixed term · {days} days"
+        "fixed": "Fixed term · {days, plural, one {# day} other {# days}}"
       },
       "statuses": {
         "draft": "Draft",
@@ -7481,6 +7634,83 @@
       "events": {
         "label": "Events",
         "description": "Private events, team buildings and special studio activities."
+      }
+    },
+    "events": {
+      "title": "Events",
+      "description": "Track team activities, private parties, corporate events and special activities in your space.",
+      "create": "Create event",
+      "creating": "Creating…",
+      "upcoming": "Upcoming events",
+      "confirmed": "Confirmed",
+      "estimatedValue": "Estimated value",
+      "search": "Search event, customer, email…",
+      "allStatuses": "All statuses",
+      "allTypes": "All types",
+      "allLocations": "All locations",
+      "event": "Event",
+      "date": "Date",
+      "customer": "Customer",
+      "guests": "Guests",
+      "status": "Status",
+      "price": "Price",
+      "actions": "Actions",
+      "loading": "Loading events…",
+      "empty": "No events found.",
+      "externalVenue": "External venue",
+      "externalOption": "External venue / no space",
+      "formDescription": "Register a team activity, party or private event.",
+      "closeForm": "Close event form",
+      "eventTitle": "Title",
+      "type": "Type",
+      "location": "Location",
+      "venuePlaceholder": "Venue name or address",
+      "startTime": "Start time",
+      "endTime": "End time",
+      "customerName": "Customer name",
+      "contactPerson": "Contact person",
+      "email": "Email",
+      "phone": "Phone",
+      "estimatedPrice": "Estimated price ({currency})",
+      "finalPrice": "Final price ({currency})",
+      "depositPaid": "Deposit paid ({currency})",
+      "linkedOrderId": "Linked order ID",
+      "orderPlaceholder": "Optional order ID",
+      "notes": "Notes",
+      "internalNotes": "Internal notes",
+      "cancel": "Cancel",
+      "closeDetails": "Close event details",
+      "time": "Time",
+      "contact": "Contact",
+      "linkedOrder": "Linked order",
+      "checklist": "Checklist",
+      "viewDetails": "View event details",
+      "delete": "Delete event",
+      "unknownStatus": "Unknown status",
+      "types": {
+        "team_building": "Team building",
+        "party": "Party",
+        "private_workshop": "Private workshop",
+        "school_group": "School group",
+        "corporate": "Corporate event",
+        "popup": "Pop-up",
+        "other": "Other"
+      },
+      "statuses": {
+        "inquiry": "Inquiry",
+        "planned": "Planned",
+        "confirmed": "Confirmed",
+        "deposit_paid": "Deposit paid",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "checklistItems": {
+        "guests": "Confirm number of guests",
+        "price": "Confirm price",
+        "deposit": "Collect deposit",
+        "instructor": "Assign instructor",
+        "materials": "Prepare materials",
+        "arrival": "Send arrival instructions"
       }
     }
   },
@@ -8448,7 +8678,18 @@
         "partialScan": "Only part of the approved Knowledge Hub could be evaluated. Treat this score as incomplete and refresh after reducing or reorganizing sources.",
         "missing": "No answer-bearing approved content",
         "addSource": "Add an approved answer",
-        "updated": "Checked {date}"
+        "updated": "Checked {date}",
+        "questions": {
+          "booking_price": "How much does a studio booking cost?",
+          "booking_cancellation": "What is the cancellation and refund policy?",
+          "booking_reschedule": "Can I reschedule my booking?",
+          "studio_inclusions": "What is included in a studio booking?",
+          "studio_arrival": "How do I enter the studio when I arrive?",
+          "course_preparation": "What should I bring to a course?",
+          "membership_usage": "How does a studio membership work?",
+          "accessibility": "Is the studio accessible for people with limited mobility?",
+          "unknown": "Add an answer for this topic."
+        }
       }
     }
   },
@@ -8700,7 +8941,8 @@
       "announcementDescription": "Leave both text fields empty to hide the announcement.",
       "announcementText": "Announcement",
       "announcementUrl": "Optional destination",
-      "urlHint": "Use a root-relative studio path or a complete HTTPS URL."
+      "urlHint": "Use a root-relative studio path or a complete HTTPS URL.",
+      "urlExample": "/courses or https://…"
     },
     "footer": {
       "contentTitle": "Footer content",
@@ -8727,7 +8969,8 @@
         "terms": "Terms and conditions",
         "privacy": "Privacy policy",
         "cancellation": "Cancellation policy"
-      }
+      },
+      "urlExample": "/privacy or https://…"
     },
     "login": {
       "contentTitle": "Customer login copy",
@@ -8919,7 +9162,55 @@
         "loading": "Updating preview… Your unsaved changes stay in the editor.",
         "ready": "Preview is up to date.",
         "timeout": "The preview did not respond. Reload the preview to try again; your unsaved changes will be kept.",
-        "reload": "Reload preview"
+        "reload": "Reload preview",
+        "frameTitle": "{name} production preview"
+      }
+    },
+    "builderActions": {
+      "publishChanges": "Publish changes",
+      "publishWebsite": "Publish website",
+      "publishingWebsite": "Publishing website…",
+      "launchTitle": "Ready to launch your website?",
+      "launchDescription": "This final step makes the studio website publicly available. Future edits use Publish changes.",
+      "launchBlocked": "Complete {count, plural, one {# required launch step} other {# required launch steps}} first.",
+      "launchConfirmTitle": "Publish your website?",
+      "launchConfirmDescription": "Your studio website will become publicly available to anyone. Future edits use Publish changes.",
+      "launched": "Your website is now live.",
+      "undo": "Undo",
+      "redo": "Redo",
+      "history": "Version history",
+      "historyTitle": "Published versions",
+      "historyDescription": "Restore a published version into the draft. The live website stays unchanged until you publish changes.",
+      "historyEmpty": "No published versions yet.",
+      "historyError": "Version history could not be loaded.",
+      "retryHistory": "Try again",
+      "restore": "Restore to draft",
+      "restored": "The selected version was restored to the draft.",
+      "restoreBlocked": "Save or undo your unsaved edits before restoring a version.",
+      "restoreConfirm": "Restore this version? It will replace your saved unpublished draft. The live website will not change.",
+      "close": "Close version history",
+      "revisionNo": "Revision {number}"
+    },
+    "homeSections": {
+      "title": "Homepage sections",
+      "description": "Add, remove, and reorder production-ready sections connected to your studio.",
+      "visible": "Shown",
+      "hidden": "Not added",
+      "edit": "Edit section copy",
+      "moveUp": "Move section up",
+      "moveDown": "Move section down",
+      "toggle": "Add or remove section",
+      "sectionTitle": "Section title",
+      "sectionDescription": "Section description",
+      "labels": {
+        "waysToVisit": "Ways to visit",
+        "featured": "Featured offers",
+        "about": "About the studio",
+        "gallery": "Gallery",
+        "testimonials": "Testimonials",
+        "locations": "Locations",
+        "team": "Team",
+        "faq": "FAQ"
       }
     }
   },
@@ -10571,6 +10862,80 @@
       "previous": "Previous",
       "next": "Next",
       "summary": "{total, plural, one {# notification} other {# notifications}} · page {page} of {pages}"
+    },
+    "events": {
+      "custom_order_due_soon": {
+        "title": "Custom order due soon",
+        "message": "A custom order is approaching its due date. Open it to review the details."
+      },
+      "custom_order_overdue": {
+        "title": "Custom order overdue",
+        "message": "A custom order is past its due date. Open it to review the next steps."
+      },
+      "booking_created": {
+        "title": "New booking",
+        "message": "A new booking has been created. Open it for details."
+      },
+      "booking_cancelled": {
+        "title": "Booking cancelled",
+        "message": "A booking has been cancelled. Open it for details."
+      },
+      "booking_rescheduled": {
+        "title": "Booking rescheduled",
+        "message": "A booking has been moved to a new time. Open it for updated details."
+      },
+      "payment_failed": {
+        "title": "Payment failed",
+        "message": "A payment could not be completed. Open it to review the next steps."
+      },
+      "payment_refunded": {
+        "title": "Payment refunded",
+        "message": "A refund has been recorded. Open the payment for details."
+      },
+      "waitlist_joined": {
+        "title": "New waitlist entry",
+        "message": "A customer has joined the waitlist."
+      },
+      "task_assigned": {
+        "title": "Task assigned",
+        "message": "A task has been assigned to you. Open it for details."
+      },
+      "task_overdue": {
+        "title": "Task overdue",
+        "message": "A task is past its due date. Open it to review the next steps."
+      },
+      "inventory_low": {
+        "title": "Low stock",
+        "message": "An inventory item is running low. Open it to review the stock level."
+      },
+      "import_completed": {
+        "title": "Import completed",
+        "message": "The import has finished. Open the results to review the imported records."
+      },
+      "import_failed": {
+        "title": "Import failed",
+        "message": "The import could not be completed. Open the results to review the issues."
+      },
+      "communication_failed": {
+        "title": "Message delivery failed",
+        "message": "A message could not be delivered. Open it to review the issue."
+      },
+      "subscription_payment_failed": {
+        "title": "Subscription payment failed",
+        "message": "The workspace subscription payment could not be completed. Review the billing details."
+      },
+      "subscription_payment_recovered": {
+        "title": "Subscription payment received",
+        "message": "The workspace subscription payment has been received."
+      },
+      "subscription_action_required": {
+        "title": "Subscription needs attention",
+        "message": "Your workspace subscription needs attention. Open billing to review the next steps."
+      },
+      "system_notice": {
+        "title": "Workspace update",
+        "message": "There is an update to your workspace. Open the notification for details."
+      }
     }
   },
   "CustomerNotifications": {
@@ -10642,6 +11007,104 @@
       "previous": "Previous page",
       "next": "Next page",
       "summary": "{total, plural, one {# notification} other {# notifications}} · page {page} of {pages}"
+    },
+    "events": {
+      "booking_created": {
+        "title": "Booking confirmed",
+        "message": "Your booking is confirmed. Open it to see the details."
+      },
+      "booking_cancelled": {
+        "title": "Booking cancelled",
+        "message": "Your booking has been cancelled."
+      },
+      "booking_rescheduled": {
+        "title": "Booking rescheduled",
+        "message": "Your booking has been moved to a new time. Open it to see the updated details."
+      },
+      "payment_refunded": {
+        "title": "Payment refunded",
+        "message": "A refund has been recorded. Open the payment for details."
+      },
+      "waitlist_joined": {
+        "title": "Added to the waitlist",
+        "message": "You have joined the waitlist."
+      },
+      "waitlist_offered": {
+        "title": "A place is available",
+        "message": "A place has become available. Open the offer to check its details and expiry."
+      },
+      "waitlist_expired": {
+        "title": "Waitlist offer expired",
+        "message": "Your waitlist offer has expired."
+      },
+      "waitlist_withdrawn": {
+        "title": "Removed from the waitlist",
+        "message": "Your waitlist entry has been withdrawn."
+      },
+      "waitlist_cancelled": {
+        "title": "Waitlist entry cancelled",
+        "message": "The space cancelled your waitlist entry."
+      },
+      "waitlist_confirmed": {
+        "title": "Waitlist booking confirmed",
+        "message": "Your place has been confirmed. Open the booking for details."
+      },
+      "waitlist_refunded": {
+        "title": "Waitlist payment refunded",
+        "message": "A refund for your waitlist booking has been recorded."
+      },
+      "membership_activated": {
+        "title": "Membership activated",
+        "message": "Your membership is now active."
+      },
+      "membership_renewed": {
+        "title": "Membership renewed",
+        "message": "Your membership has been renewed."
+      },
+      "membership_assigned": {
+        "title": "Membership assigned",
+        "message": "A membership has been added to your account."
+      },
+      "membership_payment_failed": {
+        "title": "Membership payment failed",
+        "message": "Your membership payment could not be completed. Open your membership to review the next steps."
+      },
+      "membership_cancellation_scheduled": {
+        "title": "Membership cancellation scheduled",
+        "message": "Your membership is scheduled to end. Open it to see the end date."
+      },
+      "membership_cancelled": {
+        "title": "Membership cancelled",
+        "message": "Your membership has ended."
+      },
+      "membership_resumed": {
+        "title": "Membership continues",
+        "message": "Your scheduled cancellation was removed. Your membership will continue renewing."
+      },
+      "credits_purchased": {
+        "title": "Credits purchased",
+        "message": "Your purchased credits are available in your account."
+      },
+      "credits_added": {
+        "title": "Credits added",
+        "message": "Credits have been added to your account. Open your balance for details."
+      },
+      "credits_used": {
+        "title": "Credits used",
+        "message": "Credits have been used from your account. Open your balance for details."
+      },
+      "credits_refunded": {
+        "title": "Credits refunded",
+        "message": "Credits have been returned to your account."
+      },
+      "voucher_redeemed": {
+        "title": "Voucher redeemed",
+        "message": "Your voucher has been redeemed."
+      },
+      "system_notice": {
+        "title": "Account update",
+        "message": "There is an update to your account. Open the notification for details."
+      }
     }
   },
   "AccessCodes": {
@@ -10950,7 +11413,15 @@
       "productsError": "Voucher offerings could not be loaded. Please refresh and try again."
     },
     "refund": {
-      "revoked": "Refunded · codes revoked"
+      "revoked": "Refunded · codes revoked",
+      "reviewReasons": {
+        "pending": "A full purchase refund was requested. Vouchers remain on hold until the payment outcome is reconciled.",
+        "failed": "The refund failed or was canceled. Reconcile the payment before restoring any voucher entitlement.",
+        "partial": "The purchase was partially refunded. Identify the affected voucher balance before reactivating codes.",
+        "used": "The refunded purchase includes used vouchers or vouchers reserved for payment. Reconcile it without removing customer account credits.",
+        "expired": "Payment arrived after the purchased voucher expired. Review and refund or replace the purchase before delivery.",
+        "unknown": "This refund needs manual review. Check the payment and voucher usage before changing any customer entitlement."
+      }
     },
     "codes": {
       "title": "All voucher codes",
@@ -11827,5 +12298,1113 @@
       "register": "Start free trial",
       "copyright": "© {year} Shario. All rights reserved."
     }
+  },
+  "Legacy": {
+    "CUSTOMER_PAYMENTS_UNAVAILABLE": "Online payments for this studio are currently unavailable. Please contact the studio or try again later.",
+    "INVALID_TENANT_CHECKOUT": "This studio checkout link is invalid. Please return to the studio page and try again.",
+    "CHECKOUT_REDIRECT_MISSING": "The secure payment page could not be opened. Please try again.",
+    "COURSES": "Courses",
+    "VOUCHERS": "Vouchers",
+    "TUTORIALS": "Tutorials",
+    "ADD_NEW_BOOKING": "Add New Booking",
+    "GIFT_VOUCHER": "Gift Vouchers",
+    "GIFT_VOUCHER_TITLE": "Gift Voucher",
+    "GIFT_VOUCHER_AMOUNT": "Quantity",
+    "DELIVERY_DETAILS": "Delivery details",
+    "GIFT_VOUCHER_INFO_1": "Get started by filling out the information below to create an order.",
+    "GIFT_VOUCHER_INFO_2": "We will then send your purchased gift voucher.",
+    "CLEAR_ALL": "Clear",
+    "COURSE_LENGTH": "Length",
+    "COURSE_CAPACITY": "Capacity",
+    "ACTIVE": "Active",
+    "EDIT": "Edit",
+    "PASS_UPDATE_CONTENT": "Password was successfully updated",
+    "PASS_UPDATE_TITLE": "Password update",
+    "SUCCESS_TITLE": "Your booking is confirmed",
+    "BOOK_COURSE_BUTTON": "Book Course",
+    "COUPON_BUTTON": "Buy Voucher",
+    "PRE_FILLED": "Pre-filled from your account",
+    "SELECT_VOUCHER": "Select gift voucher",
+    "SUCCESS_CONTENT_1": "Booking confirmation and further instructions have been sent to your email.",
+    "SUCCESS_HELPER_TEXT_1": "If anything looks off, message us and we’ll help.",
+    "SUCCESS_CONTENT_2": "The entry code for the studio will be sent to your email 15 minutes before the reservation.",
+    "SUCCESS_BUTTON": "Proceed to bookings",
+    "CANCEL_TITLE": "Something went wrong :(",
+    "CANCEL_CONTENT": "We are sorry, but the payment was not successful.",
+    "OVERLAP_TITLE": "Oops! Something went wrong :(",
+    "OVERLAP_CONTENT": "We're sorry, but the term you selected is already booked. Please, choose another available date.",
+    "RESERVATION_LIMIT_EXCEEDED_PAGE": "This time has reached the studio location's current capacity. Please choose another available time.",
+    "CANCEL_BUTTON": "Back to bookings",
+    "LOGIN_EMAIL_PLACEHOLDER": "Your email",
+    "LOGIN_PASSWORD_PLACEHOLDER": "Your password",
+    "LOGIN": "Login",
+    "OPEN_STUDIO": "How to open the studio?",
+    "DATE": "Date",
+    "TIME": "Time",
+    "BUTTON_REGISTER": "Register",
+    "SAVE": "Save",
+    "EDIT_USER": "Edit user",
+    "DESCRIPTION_404": "Sorry, we could not find the page you are looking for.",
+    "HEADER_404": "Page not found",
+    "BUTTON_404": "Go back home",
+    "EMAIL_VERIFICATION_REQUIRED": "Email verification required!",
+    "ADD_TO_CART": "Add to cart",
+    "CANCEL": "Cancel",
+    "CLOSE": "Close",
+    "WHAT_HAPPENS_NEXT": "What’s next?",
+    "MAX_NO_PARTICIPANTS": "Max number of people",
+    "USERS": "Users",
+    "PRODUCTS": "Products",
+    "STAFF": "Staff",
+    "BOOKINGS": "Bookings",
+    "ORDERSTEXT": "Orders",
+    "LECTURER": "Lecturer",
+    "TYPE": "Type of product",
+    "NEW_PRODUCT": "New product",
+    "IMAGE_SOURCE": "Photo URL",
+    "NAME": "Name",
+    "DESCRIPTION": "Description",
+    "ADD": "Add",
+    "CONTINUE": "Continue",
+    "OPTIONAL": "optional",
+    "EMAIL": "Email",
+    "EMAIL_BY_POST": "Send by post",
+    "EMAIL_BY_POST_INFO": "The gift voucher will be sent to the provided address.",
+    "ORDER_VOUCHER": "Buy Gift Voucher",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "PASSWORD": "Password",
+    "PASSWORD_CONFIRM": "Confirm password",
+    "REGISTER_CONFIRMATION": "We have sent your ID to your email, under which you will be able to register your products.",
+    "REGISTER_TITLE_CONFIRMATION": "Registration was successful",
+    "ERROR_CAPACITY": "Course capacity is full",
+    "ERROR_PASSWORD_REGEX": "Password must be at least 8 characters and include at least one number",
+    "ERROR_EMAIL_REGEX": "Email does not have the right format",
+    "ERROR_MODAL_CART_DUPLICATE": "Course is already in your cart",
+    "ERROR_TERMS": "You must agree to the terms and conditions",
+    "ERROR_RULES": "You must confirm that you have read the studio guidelines",
+    "ERROR_UNAUTHORIZED": "Wrong username or password",
+    "ERROR_PASS_MATCH": "Passwords must match",
+    "ERROR_PHONE_REGEX": "Phone must be propperly filled",
+    "ERROR_NAME_REGEX": "Please enter a valid name.",
+    "ERROR_EMAIL_FORMAT": "Email address is incorrect format",
+    "ERROR_MISSING_FIELDS": "Form must be properly filled out",
+    "ERROR_NO_SERVER_RESPONSE": "No server response",
+    "ERROR_MISSING_CREDENTIALS": "Missing email or password",
+    "ERROR_USER_EXISTS": "User with this email already exists",
+    "PHONE": "Phone",
+    "STREET": "Street",
+    "CITY": "City",
+    "POSTAL_CODE": "Postal code",
+    "REMOVE": "Remove",
+    "CURRENT_PASS": "Current password",
+    "NEW_PASS": "New password",
+    "CONFIRM_PASS": "New password",
+    "PRODUCT": "I want to book...",
+    "START_TIME": "Start time",
+    "BOOKING_COLOR": "Color",
+    "PRICE": "Price",
+    "PRICE_PER_PERSON": "Price per person",
+    "NOTE": "Leave Us a Note",
+    "END_TIME": "End time",
+    "NUMBER_OF_GUESTS": "Number of people",
+    "CHANGE_PARTICIPANTS_INFO_LIMIT": "Maximum number of guests is full.",
+    "CAPACITY": "Capacity",
+    "BOOKING_DETAILS": "Booking details",
+    "LOGOUT_MSG_1": "Sorry, we had to log you out",
+    "LOGOUT_MSG_2": "Please, login again",
+    "LOGOUT_MSG_3": "This helps to keep your account safe.",
+    "ADMIN": "Management",
+    "MANAGEMENT": "Management",
+    "CREDITS": "Credits",
+    "CREDIT_BALANCE": "Credit Balance",
+    "ADD_CREDITS": "Add Credits",
+    "PURCHASE_CREDITS": "Purchase Credits",
+    "PAYMENT_METHOD": "Payment Method",
+    "CREDIT_CARD": "Credit Card",
+    "AVAILABLE": "Available",
+    "PROCESSING": "Processing...",
+    "PURCHASE": "Purchase",
+    "POPULAR": "Popular",
+    "SELECT_PACKAGE": "Select Package",
+    "SELECTED_AMOUNT": "Selected amount",
+    "SELECTED": "Selected",
+    "CREDIT_PURCHASE_FAILED": "We couldn't open the payment page. Please try again.",
+    "CREDIT_PURCHASE_LOGIN_REQUIRED": "Please sign in to purchase credits.",
+    "CREDIT_PURCHASE_DESCRIPTION": "Purchase credits for future bookings. You will complete payment securely with Stripe.",
+    "CREDITS_ERROR": "Error loading credits",
+    "MY_BOOKINGS": "My Bookings",
+    "CANCEL_BOOKING": "Cancel Booking",
+    "ADD_PARTICIPANTS": "Add Participants",
+    "CONFIRM_CANCEL": "Confirm Cancellation",
+    "CANCEL_BOOKING_WARNING": "Are you sure you want to cancel this booking? You will receive credits equal to the booking value.",
+    "REFUND_INFO": "You will receive",
+    "KEEP_BOOKING": "Keep Booking",
+    "CANCELLING": "Cancelling...",
+    "CURRENT_PARTICIPANTS": "Current participants",
+    "ADDITIONAL_PARTICIPANTS": "Additional participants",
+    "ADDITIONAL_COST": "Additional cost",
+    "UPDATING": "Updating...",
+    "PARTICIPANTS": "Participants",
+    "STATUS": "Status",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "NO_BOOKINGS": "No bookings found",
+    "PLEASE_WAIT": "Please wait while we process your purchase...",
+    "BOOKING": "Booking",
+    "CONFIRMED": "Confirmed",
+    "PENDING": "Pending",
+    "CANCELLED": "Cancelled",
+    "SELECT_TIME_FIRST": "Please select start and end time first.",
+    "COURSE_BOOKING": "Course Booking",
+    "screens": {
+      "otp": {
+        "close": "Close verification",
+        "continue": "Continue",
+        "description": "Enter the six-digit code we sent to your email address.",
+        "digit": "Verification code digit {position}",
+        "expired": "This code is invalid or has expired. Request a new one.",
+        "generic": "We could not verify the code. Please try again.",
+        "rateLimited": "There have been too many attempts. Please try again later.",
+        "resend": "Send a new code",
+        "resendCountdown": "You can send a new code in {seconds} seconds",
+        "resendError": "We could not send a new code. Please try again.",
+        "resending": "Sending…",
+        "resent": "We sent a new code to your email address.",
+        "title": "Check your email",
+        "verifying": "Verifying…"
+      },
+      "passwordRequest": {
+        "back": "Back to sign in",
+        "description": "Enter the email connected with your account. We will send a secure code so you can choose a new password.",
+        "emailError": "Enter a valid email address.",
+        "emailHelper": "Use the address registered with this studio.",
+        "emailLabel": "E-mail",
+        "eyebrow": "Account recovery",
+        "genericError": "We could not send the code. Please try again.",
+        "rateLimited": "There have been too many requests. Please try again later.",
+        "send": "Send verification code",
+        "sending": "Sending…",
+        "title": "Reset password"
+      },
+      "passwordReset": {
+        "confirmError": "Passwords do not match.",
+        "confirmLabel": "Confirm new password",
+        "confirmPlaceholder": "Enter the new password again",
+        "description": "Choose a new password. For your security, every device will be signed out after it is saved.",
+        "expired": "This password reset is invalid or has expired. Request a new code.",
+        "genericError": "We could not update the password. Please try again.",
+        "hideConfirm": "Hide password confirmation",
+        "hidePassword": "Hide new password",
+        "passwordError": "Use 8 to 128 characters and include at least one number.",
+        "passwordHelper": "8 to 128 characters with at least one number.",
+        "passwordLabel": "New password",
+        "passwordPlaceholder": "Enter a new password",
+        "rateLimited": "There have been too many attempts. Please try again later.",
+        "requestAgain": "Request a new code",
+        "save": "Save new password",
+        "saving": "Saving…",
+        "showConfirm": "Show password confirmation",
+        "showPassword": "Show new password",
+        "title": "Choose a new password",
+        "eyebrow": "Account security"
+      },
+      "passwordSuccess": {
+        "action": "Continue to sign in",
+        "description": "Your password has been changed securely. Sign in again with your new credentials.",
+        "eyebrow": "All set",
+        "status": "Your new password is ready to use.",
+        "title": "Password updated"
+      },
+      "portalError": {
+        "title": "Studio information could not be loaded",
+        "description": "Check your connection and try again.",
+        "retry": "Try again",
+        "loading": "Loading studio information"
+      },
+      "portalLocations": {
+        "changed": "Current studio changed to {studio}.",
+        "errorDescription": "Check your connection and try again.",
+        "errorTitle": "Your studios could not be loaded",
+        "loading": "Loading your studios…",
+        "retry": "Try again"
+      },
+      "portalTour": {
+        "welcome": {
+          "eyebrow": "Quick guide",
+          "title": "First time here?",
+          "description": "Take a short tour of your studio portal before making your first booking.",
+          "duration": "About 60 seconds. You can replay it anytime from Help and guides.",
+          "dismiss": "Not now",
+          "start": "Start tour",
+          "close": "Close tour"
+        },
+        "progress": "Step {current} of {total}",
+        "skip": "Skip tour",
+        "back": "Back",
+        "next": "Next",
+        "finish": "Start booking",
+        "final": {
+          "title": "You’re ready",
+          "description": "Choose a time in the calendar whenever you are ready. Help and guides can replay this tour."
+        },
+        "steps": {
+          "overview": {
+            "title": "Your portal at a glance",
+            "description": "See your next visit, member ID, and studio-credit balance in one place."
+          },
+          "studio": {
+            "title": "Choose your studio",
+            "description": "If the business has several locations, select the one you want to visit here."
+          },
+          "calendarControls": {
+            "title": "Move around the calendar",
+            "description": "Jump to today, change the date range, switch views, or open and close the legend."
+          },
+          "legend": {
+            "title": "Understand availability",
+            "description": "The legend explains the colors used for available times and your bookings."
+          },
+          "chooseTime": {
+            "title": "Pick an available time",
+            "description": "Select an open slot to review the activity, duration, participants, and price before checkout."
+          },
+          "help": {
+            "title": "Help is always nearby",
+            "description": "Open Help and guides for booking instructions or to replay this tour later."
+          }
+        }
+      },
+      "portalGate": {
+        "title": "Page unavailable",
+        "description": "This studio has disabled this customer portal page.",
+        "continue": "Continue in the portal",
+        "empty": "Contact the studio if you need help with your account or an existing booking."
+      },
+      "portalHelp": {
+        "trigger": "Help and guides",
+        "eyebrow": "Booking help",
+        "title": "Help and guides",
+        "description": "Bookings, vouchers, and studio credit.",
+        "introDescription": "Choose a topic for clear steps and a direct link to the right place.",
+        "close": "Close help",
+        "tour": {
+          "eyebrow": "Portal essentials",
+          "title": "Product tour",
+          "summary": "Learn the booking calendar and your account in about 60 seconds.",
+          "action": "Replay tour"
+        },
+        "note": "Availability and cancellation rules are set by the studio. If an action is unavailable, contact the studio directly.",
+        "topics": {
+          "createBooking": {
+            "title": "How to create a booking",
+            "summary": "Choose a studio time and complete your order.",
+            "action": "Create a booking",
+            "steps": {
+              "0": "Open Book a session and choose the studio location you want to visit.",
+              "1": "Select a product, an available day and time, then add the booking to your cart.",
+              "2": "Review the details, choose a payment method, and confirm your order."
+            }
+          },
+          "redeemVoucher": {
+            "title": "How to redeem a gift voucher",
+            "summary": "Turn the voucher value into studio credit.",
+            "action": "Redeem a voucher",
+            "steps": {
+              "0": "Open Gift vouchers in your portal.",
+              "1": "Enter the code in the format D4T-32S-053 and select Redeem voucher.",
+              "2": "The voucher value is added to your studio-credit balance for a future booking."
+            }
+          },
+          "cancelBooking": {
+            "title": "How to cancel a booking",
+            "summary": "Cancel an eligible booking before the access code is issued.",
+            "action": "Open my bookings",
+            "steps": {
+              "0": "Open My bookings and choose an upcoming booking.",
+              "1": "Select Edit, then Cancel booking, and confirm the cancellation.",
+              "2": "Paid amounts return as studio credit; membership credits are restored. Contact the studio about course registrations."
+            }
+          },
+          "editBooking": {
+            "title": "How to edit a booking",
+            "summary": "Move an eligible Open Studio booking to another time.",
+            "action": "Open my bookings",
+            "steps": {
+              "0": "Open My bookings and select Edit on the upcoming booking.",
+              "1": "Choose a new date and an available start time.",
+              "2": "Confirm the new time. The product, location, duration, and participant count stay unchanged."
+            }
+          },
+          "useCredits": {
+            "title": "How to use studio credits",
+            "summary": "Use your available balance to pay for a booking.",
+            "action": "Start a booking",
+            "steps": {
+              "0": "Add your booking to the cart and open the order summary.",
+              "1": "Under Payment method, choose Studio credits.",
+              "2": "Credits can be selected when your balance covers the full order. Otherwise, add credits or pay by card."
+            }
+          }
+        }
+      },
+      "studioSwitcher": {
+        "change": "Change studio",
+        "changed": "Studio changed to {name}.",
+        "current": "Current studio",
+        "empty": "No studio is currently available."
+      },
+      "portalDashboard": {
+        "admin": "Admin",
+        "moderator": "Moderator",
+        "eyebrow": "Your studio",
+        "greeting": "Welcome back",
+        "intro": "Your bookings, creative work and studio benefits in one calm place.",
+        "book": "Book a session",
+        "currentStudio": "Current studio",
+        "upcoming": "Next visit",
+        "upcomingLoading": "Finding your next visit…",
+        "upcomingError": "Your next visit is temporarily unavailable.",
+        "upcomingEmpty": "Nothing booked yet",
+        "upcomingEmptyDescription": "Choose a time in the calendar whenever you are ready.",
+        "chooseTime": "Choose a time",
+        "manageBooking": "View booking",
+        "cancelBooking": "Cancel booking",
+        "member": "Member ID",
+        "credits": "Credits",
+        "copyMemberId": "Copy member ID",
+        "copiedMemberId": "Member ID copied",
+        "calendarEyebrow": "Studio calendar",
+        "calendarTitle": "Plan your next visit",
+        "calendarDescription": "Choose a studio, then select an available time in the calendar.",
+        "calendarSuggestion": {
+          "eyebrow": "Try the calendar",
+          "title": "Here is an available time to start with",
+          "description": "This is only a suggestion. Select it to continue, or choose any other time in the calendar.",
+          "action": "Select this time",
+          "dismiss": "Dismiss suggested time",
+          "unavailable": "No open time could be suggested right now. Browse another day or contact the studio."
+        },
+        "calendarSelection": {
+          "summary": "Selected time",
+          "continue": "Continue",
+          "clear": "Clear selected time"
+        },
+        "bookingFallback": "Studio session",
+        "locationFallback": "Your studio",
+        "creditLoading": "Loading…",
+        "creditUnavailable": "Unavailable"
+      },
+      "bookingStatus": {
+        "confirmed": "Confirmed",
+        "awaiting_payment": "Awaiting payment",
+        "awaiting_confirmation": "Payment received · awaiting confirmation",
+        "expired": "Checkout expired",
+        "failed": "Payment failed",
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "attention": "Contact the studio to check your booking."
+      },
+      "cartPayment": {
+        "title": "Payment method",
+        "card": "Payment card",
+        "money_credits": "Studio credits",
+        "membership_credits": "Membership benefit",
+        "includedHours": "Included studio hours",
+        "available": "available",
+        "required": "used for this booking",
+        "addCredits": "Add credits",
+        "insufficientCredits": "Not enough studio credits to cover this order.",
+        "unavailable": "This payment method cannot cover this order.",
+        "reasons": {
+          "customer_booking_extension_card_window": "Card payment is unavailable this close to the booking end. Use studio credits to extend your visit.",
+          "membership_insufficient_hours": "Not enough included hours for this booking.",
+          "membership_member_only": "Included hours cover the member only. Book your visit separately from guests.",
+          "membership_outside_paid_period": "The visit must be within your paid membership period.",
+          "membership_product_ineligible": "This benefit does not cover the selected activity.",
+          "membership_location_ineligible": "This benefit is unavailable at the selected studio.",
+          "membership_location_not_allowed": "This benefit is unavailable at the selected studio.",
+          "membership_open_studio_only": "Included hours cover shared studio visits only.",
+          "membership_personal_booking_required": "Use included hours for one personal studio booking at a time.",
+          "membership_entitlement_currency_mismatch": "This benefit uses a different currency from your order.",
+          "private_booking_surcharge_requires_money": "A private booking requires payment by card or studio credits."
+        }
+      },
+      "paymentMethods": {
+        "label": "Payment method",
+        "checking": "Checking credits…",
+        "card": "Payment card",
+        "cardDescription": "Secure online payment",
+        "credits": "Studio credits",
+        "creditsDescription": "Use your available balance",
+        "covered": "Your credits cover this order.",
+        "insufficient": "More credits needed",
+        "shortfall": "Credit shortfall",
+        "short": "short",
+        "addCredits": "Add credits"
+      },
+      "bookingSidebar": {
+        "title": "Book a session",
+        "subtitle": "Choose your date, start time and duration.",
+        "location": "Studio",
+        "product": "Session type",
+        "date": "Date",
+        "start": "Start time",
+        "duration": "Duration",
+        "guests": "Guests",
+        "select": "Choose an option",
+        "closed": "This studio is closed on the selected day.",
+        "available": "This time is currently available.",
+        "unavailable": "This time is no longer available at the current capacity.",
+        "recheck": "Availability is checked again when you complete checkout.",
+        "summary": "Summary",
+        "total": "Price",
+        "cancel": "Close",
+        "add": "Add to cart",
+        "missingLocation": "Choose a studio first.",
+        "missingProduct": "No session type is available for this studio.",
+        "classTitle": "Book Class",
+        "classSubtitle": "Review the selected class session and participant count.",
+        "classProduct": "Class",
+        "classType": "Product type",
+        "classLabel": "Class",
+        "classMissing": "The selected class is no longer available.",
+        "sessionPrice": "Session price",
+        "classPrice": "Class price",
+        "checking": "Checking availability…",
+        "added": "Added to cart"
+      },
+      "customerDefaults": {
+        "login": {
+          "eyebrow": "Your creative place",
+          "headline": "Welcome back.",
+          "description": "Sign in to keep your bookings, memberships and credits together in one calm place."
+        },
+        "register": {
+          "eyebrow": "One account for this studio",
+          "headline": "Everything you create, kept together.",
+          "description": "A simple way to access your bookings, pieces, courses and credits with this studio."
+        },
+        "portal": {
+          "eyebrow": "Your studio",
+          "headline": "Welcome back",
+          "description": "Your bookings, creative work and studio benefits in one calm place."
+        },
+        "website": {
+          "home": {
+            "description": "Discover {studio}, explore the ways to visit and find everything you need before your next studio day."
+          },
+          "book": {
+            "title": "See when {studio} is occupied",
+            "description": "Choose a studio and browse the occupied periods currently shown before you sign in."
+          },
+          "courses": {
+            "title": "Classes at {studio}",
+            "description": "Discover published classes. Sign in to continue to available dates."
+          },
+          "memberships": {
+            "title": "Memberships at {studio}",
+            "description": "Compare published plans, locations, prices, monthly credits, automatic discounts and included perks."
+          },
+          "vouchers": {
+            "title": "A thoughtful studio gift",
+            "description": "Choose a published gift voucher and send someone the freedom to create at {studio}."
+          },
+          "help": {
+            "title": "Everything you need for your next studio visit",
+            "description": "Find approved studio guides, videos, answers and useful resources in one place."
+          }
+        }
+      },
+      "creditBalance": {
+        "eyebrow": "Available balance",
+        "title": "Studio credits",
+        "loading": "Loading your credits…",
+        "errorTitle": "We couldn’t load your balance",
+        "errorDescription": "Check your connection and try loading your balance again.",
+        "retry": "Try again",
+        "description": "Use your credits for bookings, purchases and other studio payments.",
+        "add": "Add credits",
+        "hint": "Your balance updates automatically after every payment or refund."
+      },
+      "creditHistory": {
+        "eyebrow": "Credit activity",
+        "title": "Transaction history",
+        "loading": "Loading your transactions…",
+        "errorTitle": "We couldn’t load your history",
+        "errorDescription": "Check your connection and try loading your transactions again.",
+        "retry": "Try again",
+        "refresh": "Refresh",
+        "emptyTitle": "No transactions yet",
+        "emptyDescription": "Every credit movement will appear here.",
+        "dateUnknown": "Date unavailable",
+        "previous": "Previous",
+        "next": "Next",
+        "pagination": "Transaction pagination",
+        "types": {
+          "added": "Credits added",
+          "used": "Credits used",
+          "refund": "Credits refunded",
+          "coupon_redeemed": "Voucher redeemed",
+          "admin_granted": "Granted by studio",
+          "purchased": "Purchased credits",
+          "other": "Credit transaction"
+        }
+      },
+      "creditsPage": {
+        "eyebrow": "Studio credit",
+        "title": "Credits",
+        "description": "Manage your available balance and review every credit movement in one calm place."
+      },
+      "cart": {
+        "close": "Close cart",
+        "eyebrow": "Your order",
+        "title": "Review your booking",
+        "subtitle": "Check your visit details and choose how you would like to pay.",
+        "item": "item",
+        "items": "items",
+        "orderSummary": "Order summary",
+        "total": "Total",
+        "date": "Date",
+        "time": "Time",
+        "studio": "Studio",
+        "guests": "Guests",
+        "quantity": "Quantity",
+        "hourlyRate": "Hourly rate",
+        "bookingType": "Booking type",
+        "privateBooking": "Exclusive studio",
+        "remove": "Remove",
+        "emptyTitle": "Your cart is waiting",
+        "emptyDescription": "Choose a time from the studio calendar and it will appear here.",
+        "returnToStudio": "Return to studio",
+        "secureCheckout": "Secure checkout",
+        "secureDescription": "Payment is completed on a protected payment page.",
+        "continueToPayment": "Continue to payment",
+        "payWithCredits": "Pay with credits",
+        "confirmWithMembership": "Book with membership",
+        "membershipSecureDescription": "Your included hours are deducted when the reservation is confirmed.",
+        "checkingBenefits": "Checking price and membership benefits…",
+        "quoteFailed": "We could not verify the price and membership benefits. Please try again.",
+        "retryQuote": "Try again",
+        "subtotal": "Before discount",
+        "membershipDiscount": "Membership discount",
+        "membershipCoversOrder": "Your membership covers this order. Nothing more to pay.",
+        "mixedCurrencies": "A checkout cannot contain items in different currencies.",
+        "processing": "Preparing secure checkout…",
+        "processingDescription": "Please keep this window open.",
+        "itemCount": "{count, plural, one {# item} other {# items}}",
+        "itemsMany": "items"
+      },
+      "menu": {
+        "STUDIO_CALENDAR": "Studio",
+        "MY_BOOKINGS": "My bookings",
+        "VOUCHERS": "Vouchers",
+        "TUTORIALS": "Knowledge hub",
+        "OPERATIONS": "Operations",
+        "CUSTOMERS": "Customers",
+        "COMMUNICATION": "Communication",
+        "COMMERCE": "Commerce",
+        "INVENTORY": "Inventory",
+        "INSIGHTS": "Insights",
+        "MANAGEMENT": "Management",
+        "navigation": "Dashboard navigation",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "title": "Menu"
+      },
+      "bookingAvailability": {
+        "loading": {
+          "title": "Checking availability…",
+          "description": "We are refreshing this time with the studio."
+        },
+        "available": {
+          "title": "This time is available.",
+          "description": "Availability is checked again when you complete checkout."
+        },
+        "incomplete": {
+          "title": "Complete the booking details",
+          "description": "Choose a studio, session type, date and time to check availability."
+        },
+        "location": {
+          "title": "Online booking is unavailable",
+          "description": "This studio is not currently accepting online bookings."
+        },
+        "overlap": {
+          "title": "This time overlaps another booking",
+          "description": "This time cannot accept overlapping bookings. Choose another time."
+        },
+        "capacity": {
+          "title": "The studio is full at this time",
+          "description": "Try another time or reduce the number of guests."
+        },
+        "activity": {
+          "title": "This activity is full at this time",
+          "description": "Try another time or select a different activity."
+        },
+        "unavailable": {
+          "title": "This time is unavailable",
+          "description": "Choose another time and we will check availability again."
+        },
+        "guestCount": "{count, plural, one {# guest} other {# guests}}"
+      },
+      "bookingKinds": {
+        "open-studio": "Shared space",
+        "sharedOpenStudio": "Shared space booking",
+        "exclusiveOpenStudio": "Exclusive space booking",
+        "class": "Class",
+        "membership": "Membership",
+        "voucher": "Voucher",
+        "private-studio": "Private space",
+        "unknown": "Unknown"
+      },
+      "voucherStatuses": {
+        "pending_coupon_payment": "Awaiting payment",
+        "processed_coupon": "Processed",
+        "shipped_coupon": "Dispatched"
+      },
+      "management": {
+        "modules": {
+          "users-staff": {
+            "label": "Customers and team",
+            "description": "Manage customers, credits, team members and staff access."
+          },
+          "bookings": {
+            "label": "Bookings",
+            "description": "Bookings, participants and space capacity."
+          },
+          "products": {
+            "label": "Products",
+            "description": "Products, classes, bookings and prices."
+          },
+          "orders": {
+            "label": "Orders",
+            "description": "Orders, payments and purchase history."
+          },
+          "inventory": {
+            "label": "Inventory",
+            "description": "Stock items, suppliers, receipts, issues, stocktakes and reordering."
+          },
+          "studio-orders": {
+            "label": "Custom orders",
+            "description": "Custom orders, business requests, deadlines, assignees and progress."
+          },
+          "staff-tasks": {
+            "label": "Tasks",
+            "description": "Weekly team work, priorities, blockers and completed tasks."
+          },
+          "memberships": {
+            "label": "Memberships",
+            "description": "Manage memberships, monthly credits, benefits and priority bookings."
+          },
+          "statistics": {
+            "label": "Reports",
+            "description": "Key metrics, summaries and reports for your business."
+          },
+          "automated-communications": {
+            "label": "Automated messages",
+            "description": "Review sent, pending and scheduled emails. Manage automations and sender addresses in the other tabs."
+          },
+          "events": {
+            "label": "Events",
+            "description": "Events, team activities, private occasions and related custom orders."
+          },
+          "vouchers": {
+            "label": "Vouchers",
+            "description": "Vouchers, promo codes and manually created codes."
+          }
+        },
+        "groups": {
+          "Core": "Core",
+          "Studio": "Spaces",
+          "Team": "Team",
+          "Growth": "Growth",
+          "Communication": "Communication",
+          "Sales": "Sales",
+          "Other": "Other",
+          "Admin": "Admin"
+        },
+        "title": "Management",
+        "denied": "You do not have permission to access administration.",
+        "adminAccess": "Admin access",
+        "moderatorAccess": "Moderator access",
+        "section": "Administration section"
+      }
+    },
+    "copy": {
+      "LocationScopedMyBookingsTable_Book_a_session_bf464": "Book a session",
+      "LocationScopedMyBookingsTable_Booking_overview_a8c35": "Booking overview",
+      "LocationScopedMyBookingsTable_Loading_bookings_bfbf6": "Loading bookings…",
+      "LocationScopedMyBookingsTable_Bookings_could_not_be_loaded_e531a": "Bookings could not be loaded",
+      "LocationScopedMyBookingsTable_Check_your_connection_and_try_again_56386": "Check your connection and try again.",
+      "LocationScopedMyBookingsTable_Try_again_042c8": "Try again",
+      "LocationScopedMyBookingsTable_Booking_history_a8ef6": "Booking history",
+      "LocationScopedMyBookingsTable_Upcoming_visits_ecb00": "Upcoming visits",
+      "LocationScopedMyBookingsTable_Booking_range_9d1f1": "Booking range",
+      "LocationScopedMyBookingsTable_Upcoming_523ba": "Upcoming",
+      "LocationScopedMyBookingsTable_History_90ccd": "History",
+      "LocationScopedMyBookingsTable_View_69bd4": "View",
+      "LocationScopedMyBookingsTable_Completed_and_cancelled_bookings_will_appear_here_e9311": "Completed and cancelled bookings will appear here.",
+      "LocationScopedMyBookingsTable_Choose_a_studio_time_and_plan_your_next_visit_5f44f": "Choose a studio time and plan your next visit.",
+      "LocationScopedMyBookingsTable_Studio_5b23b": "Studio",
+      "LocationScopedMyBookingsTable_Guests_3c23a": "Guests",
+      "LocationScopedMyBookingsTable_Booking_pagination_b2e65": "Booking pagination",
+      "LocationScopedMyBookingsTable_Previous_50f94": "Previous",
+      "LocationScopedMyBookingsTable_Next_bc981": "Next",
+      "Login_Your_studio_1b32c": "Your studio",
+      "Login_Use_the_account_connected_with_this_studio_a1282": "Use the account connected with this studio.",
+      "Login_Customer_access_aaae3": "Customer access",
+      "Login_Sign_in_ada2e": "Sign in",
+      "Login_Your_booking_selection_is_saved_Sign_in_to_continue_whe_41b95": "Your booking selection is saved. Sign in to continue where you left off.",
+      "Login_Password_8be3c": "Password",
+      "Login_Show_password_044b8": "Show password",
+      "Login_Hide_password_e4012": "Hide password",
+      "Login_Signing_in_c66b2": "Signing in…",
+      "Login_New_to_this_studio_938fe": "New to this studio? ",
+      "Login_Create_account_aaf37": "Create account",
+      "BookingInfoModal_Type_3deb7": "Type",
+      "BookingInfoModal_Lecturer_e396e": "Lecturer",
+      "TermsText_I_accept_the_0dc66": "I accept the ",
+      "TermsText_studio_rules_d3727": "studio rules",
+      "TermsText_Terms_and_Conditions_89403": "Terms and Conditions",
+      "Registration_Your_studio_1b32c": "Your studio",
+      "Registration_First_name_must_contain_at_least_2_characters_1c536": "First name must contain at least 2 characters.",
+      "Registration_Last_name_must_contain_at_least_2_characters_c5dd3": "Last name must contain at least 2 characters.",
+      "Registration_Please_enter_a_valid_email_address_d2306": "Please enter a valid email address.",
+      "Registration_Please_enter_a_valid_phone_number_c08e1": "Please enter a valid phone number.",
+      "Registration_Password_must_be_at_least_8_characters_long_and_contain_3d73c": "Password must be at least 8 characters long and contain at least 1 number.",
+      "Registration_Passwords_do_not_match_f7c3c": "Passwords do not match.",
+      "Registration_It_only_takes_a_moment_and_you_will_not_need_to_enter_y_89bc4": "It only takes a moment, and you will not need to enter your details for every visit.",
+      "Registration_Customer_access_aaae3": "Customer access",
+      "Registration_Create_account_aaf37": "Create account",
+      "Registration_Your_booking_selection_is_saved_Create_your_account_to_c9b1a": "Your booking selection is saved. Create your account to continue where you left off.",
+      "Registration_Your_details_a6252": "Your details",
+      "Registration_Account_security_0afc7": "Account security",
+      "Registration_At_least_8_characters_and_1_number_87242": "At least 8 characters and 1 number.",
+      "Registration_Show_password_044b8": "Show password",
+      "Registration_Hide_password_e4012": "Hide password",
+      "Registration_Show_password_confirmation_c4411": "Show password confirmation",
+      "Registration_Hide_password_confirmation_7dbbe": "Hide password confirmation",
+      "Registration_Information_about_personal_data_processing_is_available_c4190": "Information about personal data processing is available in our ",
+      "Registration_privacy_policy_478db": "privacy policy",
+      "Registration_Creating_account_baab5": "Creating account…",
+      "Registration_Already_registered_e7edd": "Already registered? ",
+      "Registration_Sign_in_ada2e": "Sign in",
+      "CartModal_Checkout_failed_Please_try_again_ef7be": "Checkout failed. Please try again.",
+      "CartModal_Includes_one_time_private_booking_surcharge_67d5a": "Includes one-time private booking surcharge",
+      "ConfirmationModal_Close_bbfa7": "Close",
+      "CartCreditSummary_Available_for_this_checkout_42c3f": "Available for this checkout.",
+      "CartCreditSummary_Credits_can_be_used_as_a_discount_when_completing_your_0951c": "Credits can be used as a discount when completing your order.",
+      "CreditPurchaseModal_Close_bbfa7": "Close",
+      "Cancel_Payment_cancelled_af438": "Payment cancelled",
+      "Cancel_What_you_can_do_next_78edc": "What you can do next",
+      "Cancel_Try_again_sometimes_a_second_attempt_works_c3e09": "Try again — sometimes a second attempt works.",
+      "Cancel_If_you_used_Apple_Pay_Google_Pay_try_paying_by_card_ins_084d5": "If you used Apple Pay / Google Pay, try paying by card instead.",
+      "Cancel_If_it_keeps_happening_message_us_and_we_ll_help_ebf8e": "If it keeps happening, message us and we’ll help.",
+      "Cancel_No_charge_is_made_until_the_payment_is_completed_5ec3b": "No charge is made until the payment is completed.",
+      "VoucherForm_You_need_to_be_signed_in_to_redeem_a_voucher_7fb72": "You need to be signed in to redeem a voucher.",
+      "VoucherForm_The_voucher_could_not_be_redeemed_Please_try_again_1d1d3": "The voucher could not be redeemed. Please try again.",
+      "VoucherForm_Redeemed_vouchers_1733e": "Redeemed vouchers",
+      "VoucherForm_Vouchers_credits_fd59d": "Vouchers & credits",
+      "VoucherForm_My_vouchers_9cb49": "My vouchers",
+      "VoucherForm__If_you_have_multiple_vouchers_you_can_redeem_them_one_8e5cf": "• If you have multiple vouchers, you can redeem them one by one.",
+      "VoucherForm__Voucher_values_are_added_together_automatically_a418b": "• Voucher values are added together automatically.",
+      "VoucherForm_Voucher_redemption_73a64": "Voucher redemption",
+      "VoucherForm_Voucher_code_eae7b": "Voucher code",
+      "VoucherForm_Invalid_format_Use_for_example_D4T_32S_053_16c67": "Invalid format. Use for example D4T-32S-053",
+      "VoucherForm_Redeem_voucher_4b8cd": "Redeem voucher",
+      "VoucherForm_History_90ccd": "History",
+      "VoucherForm_You_need_to_be_signed_in_to_view_redeemed_vouchers_70781": "You need to be signed in to view redeemed vouchers.",
+      "VoucherForm_Redeemed_vouchers_could_not_be_loaded_1c156": "Redeemed vouchers could not be loaded.",
+      "VoucherForm_Refresh_56e3b": "Refresh",
+      "VoucherForm_Date_eb9a4": "Date",
+      "VoucherForm_You_do_not_have_any_redeemed_vouchers_yet_46648": "You do not have any redeemed vouchers yet.",
+      "VoucherForm_Name_709a2": "Name",
+      "VoucherForm_Redeemed_on_d5f93": "Redeemed on",
+      "PasswordForm_Could_not_update_the_password_Please_try_again_950ff": "Could not update the password. Please try again.",
+      "PasswordForm_Security_f25ce": "Security",
+      "PasswordForm_Login_password_24141": "Login password",
+      "PasswordForm_Keep_your_password_secure_We_recommend_using_a_mix_of_l_d9679": "Keep your password secure. We recommend using a mix of letters, numbers, and special characters.",
+      "PasswordForm_Member_ID_7a88b": "Member ID",
+      "PasswordForm_Change_64fbd": "Change",
+      "PasswordForm_Password_is_set_9d82f": "Password is set",
+      "PasswordForm_Current_password_19dff": "Current password",
+      "PasswordForm_New_password_d850e": "New password",
+      "PasswordForm_Confirm_new_password_f8503": "Confirm new password",
+      "PasswordForm_After_saving_the_new_password_will_be_used_for_your_nex_db03d": "After saving, the new password will be used for your next login.",
+      "PasswordForm_Saving_ae7e8": "Saving...",
+      "SidebarForm__not_available_for_this_currency_yet_8de74": "(not available for this currency yet)",
+      "VoucherForm_You_need_to_be_signed_in_to_manage_your_vouchers_b0465": "You need to be signed in to manage your vouchers.",
+      "VoucherForm_Studio_benefits_735a6": "Studio benefits",
+      "VoucherForm_Gift_vouchers_e8ee2": "Gift vouchers",
+      "VoucherForm_Redeem_a_gift_voucher_and_use_its_value_as_credit_towar_25234": "Redeem a gift voucher and use its value as credit toward your next studio visit.",
+      "VoucherForm_Redeem_a_voucher_69a95": "Redeem a voucher",
+      "VoucherForm_Add_studio_credit_080dc": "Add studio credit",
+      "VoucherForm__for_example_D4T_32S_053_b5110": "(for example D4T-32S-053)",
+      "VoucherForm_Use_the_format_D4T_32S_053_fab4a": "Use the format D4T-32S-053.",
+      "VoucherForm_Redeeming_12d34": "Redeeming…",
+      "VoucherForm_Your_vouchers_bbc3d": "Your vouchers",
+      "VoucherForm_A_history_of_vouchers_added_to_your_account_2773c": "A history of vouchers added to your account.",
+      "VoucherForm_Loading_vouchers_eec52": "Loading vouchers…",
+      "VoucherForm_Vouchers_could_not_be_loaded_3d2e9": "Vouchers could not be loaded",
+      "VoucherForm_Check_your_connection_and_try_again_56386": "Check your connection and try again.",
+      "VoucherForm_Try_again_042c8": "Try again",
+      "VoucherForm_Sign_in_to_see_your_vouchers_e24c2": "Sign in to see your vouchers",
+      "VoucherForm_No_redeemed_vouchers_yet_18387": "No redeemed vouchers yet",
+      "VoucherForm_Your_first_redeemed_code_will_appear_here_with_its_valu_e69ea": "Your first redeemed code will appear here with its value and date.",
+      "VoucherForm_Redeemed_35cc3": "Redeemed",
+      "VoucherForm_Voucher_409ca": "Voucher",
+      "BookingSuccess_You_can_manage_your_booking_in_the_My_bookings_section_60eb1": "You can manage your booking in the My bookings section.",
+      "BookingSuccess_Processing_e6345": "Processing",
+      "BookingSuccess_We_are_confirming_your_payment_c9b64": "We are confirming your payment",
+      "BookingSuccess_Your_payment_is_being_processed_We_will_confirm_the_boo_46e80": "Your payment is being processed. We will confirm the booking after receiving secure payment confirmation.",
+      "BookingSuccess_You_can_leave_this_page_open_the_status_refreshes_autom_2b868": "You can leave this page open; the status refreshes automatically.",
+      "BookingSuccess_Not_confirmed_b9e09": "Not confirmed",
+      "BookingSuccess_The_payment_was_not_completed_a993b": "The payment was not completed",
+      "BookingSuccess_The_booking_was_not_confirmed_Your_cart_was_kept_so_you_73aa5": "The booking was not confirmed. Your cart was kept so you can safely try the payment again.",
+      "BookingSuccess_If_you_were_charged_anyway_contact_the_studio_and_inclu_73483": "If you were charged anyway, contact the studio and include the order reference.",
+      "BookingSuccess_Unable_to_verify_43e97": "Unable to verify",
+      "BookingSuccess_We_cannot_verify_the_status_yet_278a5": "We cannot verify the status yet",
+      "BookingSuccess_The_order_status_could_not_be_loaded_This_does_not_mean_d1477": "The order status could not be loaded. This does not mean that the payment failed.",
+      "BookingSuccess_Try_checking_the_status_again_Your_cart_remains_intact_b97b0": "Try checking the status again. Your cart remains intact.",
+      "BookingSuccess_The_order_reference_is_missing_7c577": "The order reference is missing",
+      "BookingSuccess_This_return_link_has_no_valid_order_reference_so_the_bo_69ea4": "This return link has no valid order reference, so the booking cannot be confirmed.",
+      "BookingSuccess_We_kept_your_cart_Return_to_the_portal_or_contact_the_s_b05de": "We kept your cart. Return to the portal or contact the studio.",
+      "BookingSuccess_Back_to_portal_0633f": "Back to portal",
+      "BookingSuccess_Back_to_home_34ac3": "Back to home",
+      "BookingSuccess_Checking_status_c74a3": "Checking status…",
+      "BookingSuccess_Waiting_for_confirmation_ce436": "Waiting for confirmation…",
+      "BookingSuccess_Order_1d757": "Order",
+      "BookingSuccess_Check_again_e1850": "Check again",
+      "ConfirmationDetails_Confirmed_details_f7c49": "Confirmed details",
+      "ConfirmationDetails_Booking_e38ea": "Booking",
+      "ConfirmationDetails_Participants_cd56e": "Participants",
+      "ConfirmationDetails_Payment_source_31c56": "Payment source",
+      "ConfirmationDetails_Total_b2592": "Total",
+      "CourseCard_Capacity_45bd9": "Capacity",
+      "CourseCard_Length_3bade": "Length",
+      "CourseCard_Price_per_person_59050": "Price per person",
+      "CourseCard_Book_course_e7003": "Book course",
+      "CourseCard_Gift_voucher_aa850": "Gift voucher",
+      "CourseCard_Course_description_17fff": "Course description",
+      "WithAuth_Sign_in_again_7842f": "Sign in again",
+      "CourseCard_Maximum_a8df2": "Maximum",
+      "Login_Email_84add": "Email",
+      "BookingActionButtons_Close_bbfa7": "Close",
+      "BookingActionButtons_Additional_guests_are_unavailable_for_this_booking_c294b": "Additional guests are unavailable for this booking.",
+      "CourseModal_Related_dates_661c4": "Related dates:",
+      "CourseModal_or_17583": "or",
+      "BookingInfoModal_Close_bbfa7": "Close",
+      "CourseInfoModal_ID_d789a": "ID:",
+      "Registration_Email_84add": "Email",
+      "VoucherForm__e_g_D4T_32S_053_d4e4b": "(e.g. D4T-32S-053)",
+      "VouchersTable_Voucher_management_384c5": "Voucher management",
+      "VouchersTable_Find_voucher_orders_by_ID_email_customer_product_or_pro_0ef29": "Find voucher orders by ID, email, customer, product or promo code.",
+      "VouchersTable_Order_ID_Email_Name_Product_Promo_code_30146": "Order ID | Email | Name | Product | Promo code",
+      "VouchersTable_Delivery_type_58a44": "Delivery type",
+      "VouchersTable_Postal_delivery_only_3b7bf": "Postal delivery only",
+      "VouchersTable_All_orders_e6909": "All orders",
+      "VouchersTable_Without_postal_delivery_e1788": "Without postal delivery",
+      "VouchersTable_Custom_ID_bf59e": "Custom ID",
+      "VouchersTable_e_g_0023_929f2": "e.g. 0023",
+      "VouchersTable_Email_84add": "Email",
+      "VouchersTable_Product_dd3b8": "Product",
+      "VouchersTable_Product_name_63c0f": "Product name",
+      "VouchersTable_Status_bae7d": "Status",
+      "VouchersTable_All_statuses_64051": "All statuses",
+      "VouchersTable_Clear_filters_41222": "Clear filters",
+      "VouchersTable_Loading_vouchers_eec52": "Loading vouchers…",
+      "VouchersTable_We_could_not_load_the_vouchers_bd8c3": "We could not load the vouchers.",
+      "VouchersTable_Showing_163d8": "Showing",
+      "VouchersTable_orders_96584": "orders",
+      "VouchersTable__page_34ef9": "· page",
+      "VouchersTable_Customer_5e0d7": "Customer:",
+      "VouchersTable_Email_4c4e6": "Email:",
+      "VouchersTable_Quantity_fe2c3": "Quantity:",
+      "VouchersTable_Delivery_4e854": "Delivery:",
+      "VouchersTable_Status_11dc9": "Status:",
+      "VouchersTable_Promo_codes_9a9df": "Promo codes:",
+      "VouchersTable_Address_303d9": "Address:",
+      "VouchersTable_No_vouchers_found_95f3e": "No vouchers found.",
+      "VouchersTable_ID_89f89": "ID",
+      "VouchersTable_Customer_0e857": "Customer",
+      "VouchersTable_Qty_1e5ff": "Qty",
+      "VouchersTable_Delivery_9631a": "Delivery",
+      "VouchersTable_Actions_c3cd6": "Actions",
+      "VouchersTable_Page_fb062": "Page",
+      "VouchersTable_Edit_voucher_status_6c496": "Edit voucher status",
+      "VouchersTable_Order_3c124": "Order:",
+      "VouchersTable_Current_status_02d14": "Current status:",
+      "VouchersTable_New_status_660b4": "New status",
+      "NewLecturerForm_New_instructor_04304": "New instructor",
+      "NewLecturerForm_Enter_the_details_for_the_new_instructor_acea4": "Enter the details for the new instructor.",
+      "NewBookingForm_Enter_the_booking_details_bdd5c": "Enter the booking details.",
+      "NewBookingForm_Basic_details_42450": "Basic details",
+      "NewBookingForm_Choose_the_product_location_date_and_time_for_the_booki_2d948": "Choose the product, location, date and time for the booking.",
+      "NewBookingForm_Selected_times_da07f": "Selected times",
+      "NewBookingForm_Remove_time_2278a": "Remove time",
+      "NewBookingForm_Internal_details_125a9": "Internal details",
+      "NewBookingForm_Optional_details_for_internal_booking_management_bee7c": "Optional details for internal booking management.",
+      "NewBookingForm_Note_2c924": "Note",
+      "NewBookingForm_This_note_appears_in_the_calendar_for_staff_only_fbd41": "This note appears in the calendar for staff only.",
+      "NewBookingForm_Select_an_instructor_5faef": "Select an instructor",
+      "NewBookingForm_Booking_summary_e2a9a": "Booking summary",
+      "NewBookingForm_Review_the_selected_details_before_saving_f6480": "Review the selected details before saving.",
+      "SidebarForm_Close_panel_fa0b7": "Close panel",
+      "SidebarForm_Postage_31c92": "Postage:",
+      "SidebarForm_Total_d8e71": "Total:",
+      "EditProductForm_Edit_product_fbeab": "Edit product",
+      "EditProductForm_Product_ID_5d8ff": "Product ID:",
+      "EditProductForm_e_g_Introduction_to_photography_331c9": "e.g. Introduction to photography",
+      "EditProductForm_Image_URL_35c80": "Image URL",
+      "EditProductForm_Product_description_optional_9111f": "Product description (optional)",
+      "NewProductForm_e_g_Introduction_to_photography_331c9": "e.g. Introduction to photography",
+      "NewProductForm_Image_URL_35c80": "Image URL",
+      "NewProductForm_PDF_template_b3b38": "PDF template",
+      "NewProductForm_Selected_2e084": "Selected:",
+      "NewProductForm_Upload_a_PDF_template_for_the_voucher_e71fe": "Upload a PDF template for the voucher.",
+      "NewProductForm_Product_description_optional_9111f": "Product description (optional)",
+      "CreditTransactionHistory_Showing_value1_value2_of_value3_f25d4": "Showing {value1}–{value2} of {value3}",
+      "VoucherForm_Voucher_redeemed_successfully_Added_value1_New_balance_1a0e9": "Voucher redeemed successfully. Added: {value1}. New balance: {value2}.",
+      "LocationScopedMyBookingsTable_Showing_value1_value2_of_value3_f25d4": "Showing {value1}–{value2} of {value3}",
+      "Login_Sign_in_with_your_customer_account_to_open_value1_31cf2": "Sign in with your customer account to open {value1}.",
+      "Login_Sign_in_to_continue_to_value1_9a18a": "Sign in to continue to {value1}.",
+      "Registration_Book_visits_and_courses_without_re_entering_details_6952f": "Book visits and courses without re-entering details",
+      "Registration_Keep_pieces_credits_and_history_within_reach_2267f": "Keep pieces, credits and history within reach",
+      "CustomerPasswordRecoveryShell_Your_studio_1b32c": "Your studio",
+      "CourseDetailsModal_Course_detail_fc5ad": "Course detail",
+      "CourseDetailsModal_Close_bbfa7": "Close",
+      "bookingHistoryUpcoming": "Here you can find your upcoming bookings. {count, plural, one {# item in total} other {# items in total}}",
+      "bookingHistoryPast": "Here is your booking history, including cancelled bookings. {count, plural, one {# item in total} other {# items in total}}",
+      "genericError": "Something went wrong. Please try again.",
+      "instructorCreateError": "We could not create the instructor. Please try again.",
+      "bookingCreateError": "We could not create the booking. Please try again.",
+      "voucherUpdateError": "We could not update the voucher status.",
+      "yourStudio": "Your studio",
+      "studioSignIn": "Studio sign in",
+      "courseFallback": "Course"
+    },
+    "VOUCHER_REDEEM_CONTENT": "Your voucher was redeemed successfully.",
+    "VOUCHER_REDEEM_TITLE": "Voucher redeemed",
+    "LOGIN_REQUIRED": "Please sign in to continue.",
+    "PRODUCT_NOT_FOUND": "This activity is no longer available.",
+    "ADD_TO_CART_ERROR": "We could not add this booking to your cart. Please try again.",
+    "BOOK_AS_GUEST": "Book as a guest",
+    "CONFIRMATION": "Confirmation",
+    "LOADING": "Loading…",
+    "PRICE_NOTE_30MIN": "Price per 30 minutes",
+    "ERROR_GENERIC": "Something went wrong. Please try again.",
+    "FILTERS": "Filters",
+    "ADVANCED_FILTERS": "Advanced filters",
+    "CLEAR_FILTERS": "Clear filters",
+    "DATE_FROM": "Date from",
+    "DATE_TO": "Date to",
+    "USER_SEARCH": "Customer search",
+    "SEARCH_BY_CUSTOM_ID_OR_EMAIL": "Search by ID or email",
+    "PRODUCT_TYPE": "Product type",
+    "ALL_PRODUCT_TYPES": "All product types",
+    "ALL_STATUSES": "All statuses",
+    "ALL_LECTURERS": "All instructors",
+    "ALL_PRODUCTS": "All products",
+    "AUTHOR_SEARCH": "Search for a customer",
+    "SEARCH_BY_NAME_OR_ID": "Search by name or ID",
+    "PASS_RULES": "Use at least 8 characters, including a number.",
+    "PASS_MISMATCH": "Passwords do not match.",
+    "metadata": {
+      "loginTitle": "Sign in",
+      "registerTitle": "Create account",
+      "loginDescription": "Sign in to your {studio} account.",
+      "registerDescription": "Create your account to book at {studio}.",
+      "studioFallback": "Your studio"
+    }
+  },
+  "AIProduct": {
+    "briefing": {
+      "message001": "{count, plural, one {# urgent conversation} other {# urgent conversations}}",
+      "message002": "Urgent customer messages",
+      "message003": "{value1} need attention.",
+      "message004": "{count, plural, one {# overdue task} other {# overdue tasks}}",
+      "message005": "Overdue studio tasks",
+      "message006": "{value1} are waiting to be completed.",
+      "message007": "{count, plural, one {# staff update reporting a blocker} other {# staff updates reporting blockers}}",
+      "message008": "Staff blockers",
+      "message009": "{value1} need help.",
+      "message010": "{count, plural, one {# urgent task} other {# urgent tasks}}",
+      "message011": "Urgent tasks",
+      "message012": "{value1} are marked high priority.",
+      "message013": "{count, plural, one {# unpaid booking} other {# unpaid bookings}}",
+      "message014": "Unpaid bookings",
+      "message015": "{value1} need review.",
+      "message016": "{count, plural, one {# low-stock item} other {# low-stock items}}",
+      "message017": "Low inventory",
+      "message018": "{value1} may need replenishment.",
+      "message019": "{count, plural, one {# staff update} other {# staff updates}}",
+      "message020": "Staff updates to review",
+      "message021": "{value1} need owner attention.",
+      "message022": "Partial data coverage",
+      "message023": "Some sources are unavailable; their values are not reported as zero.",
+      "message024": "{count, plural, one {# booking today} other {# bookings today}}",
+      "message025": "{count, plural, one {# open task} other {# open tasks}}",
+      "message026": "A few things need your attention today",
+      "message027": "Your studio is on track today",
+      "message028": "The available operational sources contain no summary counts",
+      "message029": "The briefing uses every source available to your current access.",
+      "message030": "Unavailable values are not reported as zero.",
+      "message031": "Help me resolve this verified studio item: {value1}",
+      "message032": "Review priorities with AI"
+    },
+    "advisor": {
+      "message001": "Review the sales decline",
+      "message002": "Net sales are {value1}% lower than the comparison period.",
+      "message003": "Compare booking trends and top offers before changing pricing or promotion.",
+      "message004": "Net sales",
+      "message005": "Review the booking decline",
+      "message006": "Bookings are {value1}% lower than the comparison period.",
+      "message007": "Review the time breakdown and offers whose demand has changed.",
+      "message008": "Bookings",
+      "message009": "Put available capacity to work",
+      "message010": "Estimated configured-capacity utilization is {value1}%.",
+      "message011": "Identify lower-utilization days and hours, then test a targeted offer for those times.",
+      "message012": "Capacity utilization",
+      "message013": "Review the utilization decline",
+      "message014": "Configured-capacity utilization fell by {value1} percentage points.",
+      "message015": "Compare both periods in the time breakdown and focus on the largest differences.",
+      "message016": "Capacity utilization",
+      "message017": "Encourage customers to return",
+      "message018": "Returning customers represent {value1}% of {value2} active customers in the period.",
+      "message019": "Review a follow-up offer or membership and test it with a small audience first.",
+      "message020": "Returning customers",
+      "message021": "Active customers",
+      "message022": "Course",
+      "message023": "Improve fill for {value1}",
+      "message024": "The course has {value1}% fill across {value2} sessions.",
+      "message025": "Review timing, description, and audience, changing one thing at a time to measure the result.",
+      "message026": "Course",
+      "message027": "Consider another {value1} session",
+      "message028": "The course has {value1}% fill across {value2} sessions.",
+      "message029": "Check team and space capacity before adding another session.",
+      "message030": "Review stock without a reorder",
+      "message031": "{value1} items are low on stock while {value2} reorder requests are open.",
+      "message032": "Check which low-stock items do not yet have a reorder request.",
+      "message033": "Low-stock items",
+      "message034": "Open reorders",
+      "message035": "Reduce overdue studio tasks",
+      "message036": "{value1} open tasks are currently overdue.",
+      "message037": "Confirm an owner and a realistic due date for each overdue task.",
+      "message038": "Overdue tasks",
+      "message039": "No strong recommendation yet",
+      "message040": "Available data does not currently cross the conservative thresholds for business advice.",
+      "message041": "There is not yet enough data coverage for a reliable recommendation.",
+      "message042": "Start with the highest-priority opportunities",
+      "message043": "A few opportunities are worth reviewing",
+      "message044": "The advisor found {value1} recommendations grounded in verified studio data."
+    }
+  },
+  "PaymentCancellation": {
+    "badge": "Payment cancelled",
+    "nextSteps": "What you can do next",
+    "retry": "Try again — sometimes a second attempt works.",
+    "card": "If you used Apple Pay / Google Pay, try paying by card instead.",
+    "contact": "If it keeps happening, message us and we’ll help.",
+    "home": "Back to home",
+    "chargeNotice": "No charge is made until the payment is completed."
   }
 }

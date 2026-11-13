@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
@@ -33,6 +35,7 @@ const getBookingsFromResponse = (response) => {
 };
 
 function CalendarContent() {
+  const t = useTranslations("Calendar");
   const router = useRouter();
   const activeStudioId = useSelector(selectActiveStudioId);
   const workspaceAccess = useSelector(selectCurrentWorkspaceAccess);
@@ -129,7 +132,7 @@ function CalendarContent() {
     >
       {hasError ? (
         <div className="m-4 flex flex-1 items-center justify-center rounded-[20px] border border-[#F0C7BD] bg-[#FFF5F1] px-5 py-8 text-center text-[12px] text-[#A44330] sm:m-6">
-          The calendar could not be loaded. Please try again.
+          {t("errors.load")}
         </div>
       ) : isLoading ? (
         <div

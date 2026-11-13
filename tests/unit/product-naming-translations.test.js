@@ -87,7 +87,7 @@ describe("canonical product naming translations", () => {
       metadataTitle: "Studio classes",
       title: "Classes at {studio}",
     });
-    expect(cs.PublicTenant.nav.book).toBe("Open Studio");
+    expect(cs.PublicTenant.nav.book).toBe("Volný prostor");
     expect(cs.PublicTenant.book.title).toBe("Open Studio v {studio}");
   });
 });

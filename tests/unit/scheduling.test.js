@@ -1388,7 +1388,7 @@ describe("location booking options and availability preflight", () => {
     expect(buildStartTimeOptions(location, "2026-07-21")).toEqual([]);
     expect(buildDurationOptions(location, "2026-07-21", "09:00")).toEqual([]);
     expect(buildDurationOptions(location, "2026-07-20", "")).toEqual([]);
-    expect(formatDuration(90)).toBe("1 h 30 min");
+    expect(formatDuration(90)).toBe("1 hr 30 min");
     expect(formatDuration(120, "CZ")).toBe("2 h");
     expect(formatDuration(45)).toBe("45 min");
   });

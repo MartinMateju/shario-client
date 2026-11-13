@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { useLegacyCopy, useLegacyText } from "@/i18n/useLegacyCopy";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { useParams, useSearchParams } from "next/navigation";
@@ -23,7 +25,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { useCustomerLoginMutation } from "@/lib/features/auth/authApiSlice";
 import { setLoaderRunning } from "@/lib/features/config/configSlice";
 import { useGetPublicBookingLocationsQuery } from "@/lib/features/publicBooking/publicBookingApiSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import {
   findPortalLocationByReference,
   getPortalLocationReferenceFromPath,
@@ -34,6 +36,9 @@ import {
 } from "@/utils/tenantAuthRouting";
 
 export default function Login() {
+  const customerDefaults = useLegacyCopy("customerDefaults");
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const userRef = useRef(null);
   const errRef = useRef(null);
 
@@ -57,7 +62,7 @@ export default function Login() {
 
   const t = useMemo(() => {
     return (key, fallback = "") => translation?.[key]?.[language] ?? fallback;
-  }, [language]);
+  }, [language, translation]);
 
   const normalizedEmail = useMemo(() => {
     return email.toLowerCase().replace(/\s+/g, "");
@@ -72,7 +77,7 @@ export default function Login() {
   const tenantName =
     tenant.publicSite.branding.displayName ||
     tenant.name ||
-    (language === "CZ" ? "Vaše studio" : "Your studio");
+    legacyText("Login_Your_studio_1b32c");
   const safeNextPath = getSafeTenantNextPath(searchParams.get("next"));
   const requestedLocationReference =
     getPortalLocationReferenceFromPath(safeNextPath);
@@ -118,6 +123,7 @@ export default function Login() {
   const customizationDefaults = getCustomerAuthCustomizationDefaults(
     "login",
     locale,
+    customerDefaults,
   );
 
   useEffect(() => {
@@ -140,91 +146,73 @@ export default function Login() {
     };
   }, [dispatch]);
 
-  const handleSubmit = useCallback(
-    async (event) => {
-      event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-      if (isLoading) return;
+    if (isLoading) return;
 
-      if (!normalizedEmail || !password) {
-        setErrMsg(t("ERROR_MISSING_CREDENTIALS", "Please fill in all fields."));
-        window.requestAnimationFrame(() => {
-          errRef.current?.focus?.();
-        });
+    if (!normalizedEmail || !password) {
+      setErrMsg(t("ERROR_MISSING_CREDENTIALS"));
+      window.requestAnimationFrame(() => {
+        errRef.current?.focus?.();
+      });
+      return;
+    }
+
+    try {
+      dispatch(setLoaderRunning(true));
+
+      const result = await login({
+        email: normalizedEmail,
+        password,
+        tenantSlug,
+      }).unwrap();
+
+      setEmail("");
+      setPassword("");
+      setErrMsg("");
+
+      // The tenant login endpoint always issues a customer-scoped session.
+      // An owner or staff member may use the same credentials here without
+      // gaining access to workspace routes.
+      router.replace(safeNextPath || "/portal", {
+        locale: resolveCustomerAuthLocale({
+          locale,
+          settings: result?.tenant?.settings || tenant.settings,
+          tenantSlug,
+          user: result?.user,
+        }),
+      });
+    } catch (error) {
+      const errorCode = String(error?.data?.code || "").toUpperCase();
+      if (errorCode === "EMAIL_VERIFICATION_REQUIRED") {
+        router.push(
+          `/verify-email?email=${encodeURIComponent(
+            normalizedEmail,
+          )}&next=${encodeURIComponent(safeNextPath)}`,
+        );
         return;
       }
 
-      try {
-        dispatch(setLoaderRunning(true));
-
-        const result = await login({
-          email: normalizedEmail,
-          password,
-          tenantSlug,
-        }).unwrap();
-
-        setEmail("");
-        setPassword("");
-        setErrMsg("");
-
-        // The tenant login endpoint always issues a customer-scoped session.
-        // An owner or staff member may use the same credentials here without
-        // gaining access to workspace routes.
-        router.replace(safeNextPath || "/portal", {
-          locale: resolveCustomerAuthLocale({
-            locale,
-            settings: result?.tenant?.settings || tenant.settings,
-            tenantSlug,
-            user: result?.user,
-          }),
-        });
-      } catch (error) {
-        const errorCode = String(error?.data?.code || "").toUpperCase();
-        if (errorCode === "EMAIL_VERIFICATION_REQUIRED") {
-          router.push(
-            `/verify-email?email=${encodeURIComponent(
-              normalizedEmail,
-            )}&next=${encodeURIComponent(safeNextPath)}`,
-          );
-          return;
-        }
-
-        if (!error?.status) {
-          setErrMsg(t("ERROR_NO_SERVER_RESPONSE", "Server is not responding."));
-        } else if (error.status === 400) {
-          setErrMsg(
-            t("ERROR_MISSING_CREDENTIALS", "Please fill in all fields."),
-          );
-        } else if (error.status === 401) {
-          setErrMsg(t("ERROR_UNAUTHORIZED", "Incorrect email or password."));
-        } else {
-          setErrMsg(
-            error?.data?.message ||
-              t("ERROR_NO_SERVER_RESPONSE", "Server is not responding."),
-          );
-        }
-
-        window.requestAnimationFrame(() => {
-          errRef.current?.focus?.();
-        });
-      } finally {
-        dispatch(setLoaderRunning(false));
+      if (!error?.status) {
+        setErrMsg(t("ERROR_NO_SERVER_RESPONSE"));
+      } else if (error.status === 400) {
+        setErrMsg(t("ERROR_MISSING_CREDENTIALS"));
+      } else if (error.status === 401) {
+        setErrMsg(t("ERROR_UNAUTHORIZED"));
+      } else {
+        setErrMsg(
+          getLocalizedApiErrorMessage(error, t("ERROR_NO_SERVER_RESPONSE")),
+        );
       }
-    },
-    [
-      dispatch,
-      isLoading,
-      locale,
-      login,
-      normalizedEmail,
-      password,
-      router,
-      safeNextPath,
-      t,
-      tenant.settings,
-      tenantSlug,
-    ],
-  );
+
+      window.requestAnimationFrame(() => {
+        errRef.current?.focus?.();
+      });
+    } finally {
+      dispatch(setLoaderRunning(false));
+    }
+  };
 
   return (
     <CustomerAuthShell
@@ -236,25 +224,24 @@ export default function Login() {
       eyebrow={configuredEyebrow || customizationDefaults.eyebrow}
       formDescription={
         requestedLocation?.name
-          ? isCzech
-            ? `Přihlaste se zákaznickým účtem a otevřete studio ${requestedLocation.name}.`
-            : `Sign in with your customer account to open ${requestedLocation.name}.`
-          : isCzech
-            ? "Použijte účet propojený s tímto studiem."
-            : "Use the account connected with this studio."
+          ? legacyText(
+              "Login_Sign_in_with_your_customer_account_to_open_value1_31cf2",
+              { value1: requestedLocation.name },
+            )
+          : legacyText("Login_Use_the_account_connected_with_this_studio_a1282")
       }
-      formEyebrow={isCzech ? "Zákaznický účet" : "Customer access"}
-      formTitle={isCzech ? "Přihlášení" : "Sign in"}
+      formEyebrow={legacyText("Login_Customer_access_aaae3")}
+      formTitle={legacyText("Login_Sign_in_ada2e")}
       helpText={configuredHelpText}
       intentText={
         requestedLocation?.name
-          ? isCzech
-            ? `Přihlaste se a pokračujte do studia ${requestedLocation.name}.`
-            : `Sign in to continue to ${requestedLocation.name}.`
+          ? legacyText("Login_Sign_in_to_continue_to_value1_9a18a", {
+              value1: requestedLocation.name,
+            })
           : safeNextPath
-            ? isCzech
-              ? "Váš výběr rezervace je uložený. Po přihlášení můžete plynule pokračovat."
-              : "Your booking selection is saved. Sign in to continue where you left off."
+            ? legacyText(
+                "Login_Your_booking_selection_is_saved_Sign_in_to_continue_whe_41b95",
+              )
             : ""
       }
       labelColor={labelColor}
@@ -276,7 +263,7 @@ export default function Login() {
         <CustomerAuthField
           ref={userRef}
           id="email"
-          label="E-mail"
+          label={legacyText("Login_Email_84add")}
           name="email"
           type="email"
           value={email}
@@ -288,12 +275,12 @@ export default function Login() {
           inputMode="email"
           compact
           required
-          placeholder={t("LOGIN_EMAIL_PLACEHOLDER", "you@email.com")}
+          placeholder={t("LOGIN_EMAIL_PLACEHOLDER")}
         />
 
         <CustomerAuthPasswordField
           id="password"
-          label={isCzech ? "Heslo" : "Password"}
+          label={legacyText("Login_Password_8be3c")}
           name="password"
           value={password}
           onChange={(event) => {
@@ -303,9 +290,9 @@ export default function Login() {
           autoComplete="current-password"
           compact
           required
-          placeholder={t("LOGIN_PASSWORD_PLACEHOLDER", "Password")}
-          showPasswordLabel={isCzech ? "Zobrazit heslo" : "Show password"}
-          hidePasswordLabel={isCzech ? "Skrýt heslo" : "Hide password"}
+          placeholder={t("LOGIN_PASSWORD_PLACEHOLDER")}
+          showPasswordLabel={legacyText("Login_Show_password_044b8")}
+          hidePasswordLabel={legacyText("Login_Hide_password_e4012")}
         />
 
         <div className="flex justify-end">
@@ -313,7 +300,7 @@ export default function Login() {
             href={passwordHref}
             className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--tenant-auth-form-link)] transition hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:underline"
           >
-            {t("FORGOT_PASSWORD", "Forgot password?")}
+            {t("FORGOT_PASSWORD")}
           </Link>
         </div>
 
@@ -321,12 +308,8 @@ export default function Login() {
 
         <CustomerAuthSubmitButton type="submit" disabled={isLoading}>
           {isLoading
-            ? isCzech
-              ? "Přihlašujeme…"
-              : "Signing in…"
-            : isCzech
-              ? "Přihlásit se"
-              : "Sign in"}
+            ? legacyText("Login_Signing_in_c66b2")
+            : legacyText("Login_Sign_in_ada2e")}
         </CustomerAuthSubmitButton>
 
         <CustomerSocialAuthButtons
@@ -338,12 +321,12 @@ export default function Login() {
 
         {tenant.publicCapabilities.registration ? (
           <p className="border-t border-[color-mix(in_srgb,var(--tenant-auth-form-text)_12%,transparent)] pt-3 text-center text-sm leading-6 text-[var(--tenant-auth-form-muted)]">
-            {isCzech ? "Ještě nemáte účet? " : "New to this studio? "}
+            {legacyText("Login_New_to_this_studio_938fe")}
             <Link
               href={registerHref}
               className="font-semibold text-[var(--tenant-auth-form-link)] transition hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:underline"
             >
-              {isCzech ? "Vytvořit účet" : "Create account"}
+              {legacyText("Login_Create_account_aaf37")}
             </Link>
           </p>
         ) : null}

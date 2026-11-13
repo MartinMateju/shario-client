@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
   ArrowLongRightIcon,
   ArrowPathIcon,
@@ -76,6 +77,7 @@ export default function PublicVoucherCatalogPage({
   initialEmail = "",
   children,
 }) {
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const locale = useLocale();
   const t = useTranslations("PublicTenant");
   const shopping = useTranslations("VoucherShopping");
@@ -146,6 +148,7 @@ export default function PublicVoucherCatalogPage({
       ) * Number(quantity)
     : 0;
   const customizationDefaults = getPublicWebsitePageCustomizationDefaults({
+    localizedDefaults: customerDefaults,
     page: "vouchers",
     locale,
     studio: tenant.publicSite.branding.displayName,

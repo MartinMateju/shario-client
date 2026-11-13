@@ -1,3 +1,4 @@
+import { formatDuration } from "@/utils/locationBookingUtils";
 const freezeOptions = (options) =>
   Object.freeze(options.map((option) => Object.freeze(option)));
 
@@ -442,14 +443,9 @@ export const DURATION_OPTIONS = Object.freeze([
 ]);
 export const BOOKING_DURATION_OPTIONS = DURATION_OPTIONS;
 export function formatDurationMinutes(value, locale = "en") {
-  const minutes = Math.max(0, Number(value) || 0);
-  const hours = Math.floor(minutes / 60);
-  const remainingMinutes = minutes % 60;
-  const number = new Intl.NumberFormat(locale);
-  if (!hours) return `${number.format(remainingMinutes)} min`;
-  if (!remainingMinutes) return `${number.format(hours)} h`;
-  return `${number.format(hours)} h ${number.format(remainingMinutes)} min`;
+  return formatDuration(value, locale);
 }
+
 export const ACTIVITY_SELECTION_MODE = Object.freeze({
   REQUIRED: "REQUIRED",
   OPTIONAL: "OPTIONAL",

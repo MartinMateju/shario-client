@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useState } from "react";
 import { KeyIcon } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
@@ -25,7 +26,7 @@ export default function DoorAccessEmailAutomation({ canManage }) {
     try {
       await update({ locationId: location.id, enabled }).unwrap();
     } catch (error) {
-      setError(error?.data?.message || t("saveError"));
+      setError(getLocalizedApiErrorMessage(error, t("saveError")));
     }
   }
   function date(value, timezone) {

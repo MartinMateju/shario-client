@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export function WorkspaceCard({
@@ -255,18 +257,19 @@ export function WorkspacePagination({
   pageCount,
   onPrevious,
   onNext,
-  previousLabel = "Previous page",
-  nextLabel = "Next page",
+  previousLabel,
+  nextLabel,
   pageLabel,
   className,
   ...props
 }) {
+  const commonT = useTranslations("Common");
   const resolvedPage = Math.max(1, Number(page) || 1);
   const resolvedPageCount = Math.max(1, Number(pageCount) || 1);
 
   return (
     <nav
-      aria-label={pageLabel || "Pagination"}
+      aria-label={pageLabel || commonT("pagination")}
       className={cx(
         "flex flex-col gap-3 border-t border-line px-4 py-3 sm:flex-row sm:items-center sm:justify-between",
         className,
@@ -283,7 +286,7 @@ export function WorkspacePagination({
           disabled={resolvedPage <= 1}
           className="min-h-11 rounded-full border border-line bg-white px-4 text-[12px] font-semibold text-ink-soft transition hover:border-line-strong disabled:cursor-not-allowed disabled:opacity-45"
         >
-          {previousLabel}
+          {previousLabel ?? commonT("previousPage")}
         </button>
         <button
           type="button"
@@ -291,7 +294,7 @@ export function WorkspacePagination({
           disabled={resolvedPage >= resolvedPageCount}
           className="min-h-11 rounded-full border border-line bg-white px-4 text-[12px] font-semibold text-ink-soft transition hover:border-line-strong disabled:cursor-not-allowed disabled:opacity-45"
         >
-          {nextLabel}
+          {nextLabel ?? commonT("nextPage")}
         </button>
       </div>
     </nav>

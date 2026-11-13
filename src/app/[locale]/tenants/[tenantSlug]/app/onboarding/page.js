@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRightIcon, CheckIcon } from "@heroicons/react/20/solid";
 import { useLocale, useTranslations } from "next-intl";
@@ -31,7 +32,7 @@ import {
 } from "@/lib/features/tenants/tenantApiSlice";
 
 const getApiErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export default function TenantOnboardingPage() {
   const locale = useLocale();

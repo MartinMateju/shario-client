@@ -1,3 +1,4 @@
+import { useLegacyCopy, useLegacyText } from "@/i18n/useLegacyCopy";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 import BrushStrokeSwash from "@/components/decorations/BrushStrokeSwash";
@@ -58,6 +59,7 @@ export default function PublicSiteLoginPreview({
   t,
   mode = "login",
 }) {
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const isRegister = mode === "register";
   const previewDevice = device || (mobile ? "mobile" : "desktop");
   const registerDesktop = isRegister && previewDevice === "desktop";
@@ -69,6 +71,7 @@ export default function PublicSiteLoginPreview({
   const customizationDefaults = getCustomerAuthCustomizationDefaults(
     mode,
     locale,
+    customerDefaults,
   );
   const eyebrow = getLocalizedPublicTenantText(
     authSettings.eyebrow,
@@ -105,15 +108,15 @@ export default function PublicSiteLoginPreview({
     theme.style["--tenant-auth-form-surface"],
     theme.style["--tenant-auth-form-label"] || branding.labelColor,
   );
-  const registerHighlights = String(locale).toLowerCase().startsWith("cs")
-    ? [
-        "Rezervace a kurzy bez opakovaného vyplňování",
-        "Výrobky, kredity a historie vždy po ruce",
-      ]
-    : [
-        "Book visits and courses without re-entering details",
-        "Keep pieces, credits and history within reach",
-      ];
+  const legacyText = useLegacyText();
+  const registerHighlights = [
+    legacyText(
+      "Registration_Book_visits_and_courses_without_re_entering_details_6952f",
+    ),
+    legacyText(
+      "Registration_Keep_pieces_credits_and_history_within_reach_2267f",
+    ),
+  ];
 
   return (
     <div

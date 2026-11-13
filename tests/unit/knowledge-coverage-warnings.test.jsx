@@ -12,6 +12,10 @@ vi.mock("next-intl", () => ({
     (key, values = {}) => {
       const messages = {
         "management.coverage.title": "Common customer questions need answers",
+        "management.coverage.questions.booking_cancellation":
+          "What is the cancellation and refund policy?",
+        "management.coverage.questions.unknown":
+          "Add an answer for this topic.",
         "management.coverage.description": "Add approved answers.",
         "management.coverage.readyTitle": "Questions are covered",
         "management.coverage.readyDescription": "Every question is covered.",
@@ -64,7 +68,7 @@ describe("KnowledgeCoverageWarnings", () => {
         truncated: false,
         warnings: [
           {
-            id: "cancellation-policy",
+            id: "booking_cancellation",
             question: "What is your cancellation policy?",
             category: "bookings",
             severity: "high",
@@ -90,7 +94,12 @@ describe("KnowledgeCoverageWarnings", () => {
     ).toBeVisible();
     expect(screen.getByText("67% covered")).toBeVisible();
     expect(screen.getByText("2 of 3 questions covered")).toBeVisible();
-    expect(screen.getByText("What is your cancellation policy?")).toBeVisible();
+    expect(
+      screen.getByText("What is the cancellation and refund policy?"),
+    ).toBeVisible();
+    expect(
+      screen.queryByText("What is your cancellation policy?"),
+    ).not.toBeInTheDocument();
     expect(screen.getByText("Bookings")).toBeVisible();
 
     fireEvent.click(

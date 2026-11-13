@@ -1,5 +1,8 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   ArrowPathIcon,
   CheckCircleIcon,
@@ -76,7 +79,7 @@ export const parseWaitlistHash = (hash, storage) => {
 const formatDateTime = (value, locale) => {
   const date = new Date(value || "");
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -197,7 +200,9 @@ export default function PublicWaitlistManagementPage() {
         `${window.location.pathname}${window.location.search}`,
       );
     } catch (requestError) {
-      setError(requestError?.data?.message || sharedT("errors.generic"));
+      setError(
+        getLocalizedApiErrorMessage(requestError, sharedT("errors.generic")),
+      );
     }
   };
 

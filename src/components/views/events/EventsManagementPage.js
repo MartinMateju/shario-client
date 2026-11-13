@@ -1,5 +1,8 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import { WorkspaceTable } from "@/components/dashboard/WorkspaceDataSurface";
 
 import { Dialog } from "@headlessui/react";
@@ -57,6 +60,17 @@ const statuses = [
   { value: "cancelled", label: "Cancelled" },
 ];
 
+// The API stores checklist titles as strings. Recognize its unchanged system
+// defaults in the UI while leaving custom, tenant-authored titles intact.
+const DEFAULT_CHECKLIST_MESSAGE_KEYS = Object.freeze({
+  "Confirm number of guests": "guests",
+  "Confirm price": "price",
+  "Collect deposit": "deposit",
+  "Assign instructor": "instructor",
+  "Prepare materials": "materials",
+  "Send arrival instructions": "arrival",
+});
+
 const createEmptyForm = (locationId = "") => ({
   title: "",
   type: "team_building",
@@ -83,21 +97,22 @@ const getLocationName = (
   location,
   locationsById,
   externalLocationName = "",
+  fallback = "",
 ) => {
   if (location && typeof location === "object") {
-    return location.name || externalLocationName || "External venue";
+    return location.name || externalLocationName || fallback;
   }
 
   const locationId = String(location || "");
 
   return (
-    locationsById.get(locationId)?.name ||
-    externalLocationName ||
-    "External venue"
+    locationsById.get(locationId)?.name || externalLocationName || fallback
   );
 };
 
 export default function EventsManagementPage() {
+  const t = useTranslations("Operations.events");
+  const locale = useLocale();
   const activeStudioId = useSelector(selectActiveStudioId);
   const currentTenant = useSelector(selectCurrentTenant);
   const currency =
@@ -213,12 +228,11 @@ export default function EventsManagementPage() {
           <div>
             <div className="flex items-center gap-2">
               <CalendarDaysIcon className="h-5 w-5 text-stone-500" />
-              <h2 className="text-lg font-semibold text-stone-900">Events</h2>
+              <h2 className="text-lg font-semibold text-stone-900">
+                {t("title")}
+              </h2>
             </div>
-            <p className="mt-1 text-sm text-stone-500">
-              Track team buildings, private parties, corporate events and
-              special studio activities.
-            </p>
+            <p className="mt-1 text-sm text-stone-500">{t("description")}</p>
           </div>
 
           <button
@@ -230,19 +244,19 @@ export default function EventsManagementPage() {
             className="inline-flex items-center justify-center gap-2 rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-stone-700"
           >
             <PlusIcon className="h-4 w-4" />
-            Create event
+            {t("create")}
           </button>
         </div>
 
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
-          <MetricCard label="Upcoming events" value={metrics.upcoming} />
-          <MetricCard label="Confirmed" value={metrics.confirmed} />
+          <MetricCard label={t("upcoming")} value={metrics.upcoming} />
+          <MetricCard label={t("confirmed")} value={metrics.confirmed} />
           <MetricCard
-            label="Estimated value"
+            label={t("estimatedValue")}
             value={formatMajorCurrencyAmount(
               metrics.totalValue,
               currency,
-              "cs-CZ",
+              resolveIntlLocale(locale),
             )}
           />
         </div>
@@ -255,7 +269,7 @@ export default function EventsManagementPage() {
             onChange={(e) =>
               setFilters((prev) => ({ ...prev, search: e.target.value }))
             }
-            placeholder="Search event, customer, email..."
+            placeholder={t("search")}
             className="rounded-2xl border border-stone-200 px-4 py-2 text-sm outline-none focus:border-stone-400"
           />
 
@@ -266,10 +280,10 @@ export default function EventsManagementPage() {
             }
             className="rounded-2xl border border-stone-200 px-4 py-2 text-sm outline-none focus:border-stone-400"
           >
-            <option value="">All statuses</option>
+            <option value="">{t("allStatuses")}</option>
             {statuses.map((status) => (
               <option key={status.value} value={status.value}>
-                {status.label}
+                {t(`statuses.${status.value}`)}
               </option>
             ))}
           </select>
@@ -281,10 +295,10 @@ export default function EventsManagementPage() {
             }
             className="rounded-2xl border border-stone-200 px-4 py-2 text-sm outline-none focus:border-stone-400"
           >
-            <option value="">All types</option>
+            <option value="">{t("allTypes")}</option>
             {eventTypes.map((type) => (
               <option key={type.value} value={type.value}>
-                {type.label}
+                {t(`types.${type.value}`)}
               </option>
             ))}
           </select>
@@ -296,7 +310,7 @@ export default function EventsManagementPage() {
             }
             className="rounded-2xl border border-stone-200 px-4 py-2 text-sm outline-none focus:border-stone-400"
           >
-            <option value="">All locations</option>
+            <option value="">{t("allLocations")}</option>
             {locations.map((location) => (
               <option key={location.id} value={location.id}>
                 {location.name}
@@ -311,13 +325,13 @@ export default function EventsManagementPage() {
           <WorkspaceTable className="min-w-full text-left text-sm">
             <thead className="bg-stone-50 text-xs uppercase tracking-[0.16em] text-stone-500">
               <tr>
-                <th className="px-4 py-3">Event</th>
-                <th className="px-4 py-3">Date</th>
-                <th className="px-4 py-3">Customer</th>
-                <th className="px-4 py-3">Guests</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Price</th>
-                <th className="px-4 py-3 text-right">Actions</th>
+                <th className="px-4 py-3">{t("event")}</th>
+                <th className="px-4 py-3">{t("date")}</th>
+                <th className="px-4 py-3">{t("customer")}</th>
+                <th className="px-4 py-3">{t("guests")}</th>
+                <th className="px-4 py-3">{t("status")}</th>
+                <th className="px-4 py-3">{t("price")}</th>
+                <th className="px-4 py-3 text-right">{t("actions")}</th>
               </tr>
             </thead>
 
@@ -328,7 +342,7 @@ export default function EventsManagementPage() {
                     colSpan="7"
                     className="px-4 py-8 text-center text-stone-500"
                   >
-                    Loading events...
+                    {t("loading")}
                   </td>
                 </tr>
               ) : events.length === 0 ? (
@@ -337,7 +351,7 @@ export default function EventsManagementPage() {
                     colSpan="7"
                     className="px-4 py-8 text-center text-stone-500"
                   >
-                    No events found.
+                    {t("empty")}
                   </td>
                 </tr>
               ) : (
@@ -348,17 +362,18 @@ export default function EventsManagementPage() {
                         {event.title}
                       </div>
                       <div className="text-xs text-stone-500">
-                        {formatType(event.type)} ·{" "}
+                        {formatType(event.type, t)} ·{" "}
                         {getLocationName(
                           event.locationId || event.location,
                           locationsById,
                           event.externalLocationName,
+                          t("externalVenue"),
                         )}
                       </div>
                     </td>
 
                     <td className="px-4 py-4">
-                      <div>{formatDate(event.date)}</div>
+                      <div>{formatDate(event.date, locale)}</div>
                       <div className="text-xs text-stone-500">
                         {event.startTime}–{event.endTime}
                       </div>
@@ -375,7 +390,7 @@ export default function EventsManagementPage() {
 
                     <td className="px-4 py-4">
                       <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700">
-                        {formatStatus(event.status)}
+                        {formatStatus(event.status, t)}
                       </span>
                     </td>
 
@@ -383,7 +398,7 @@ export default function EventsManagementPage() {
                       {formatMajorCurrencyAmount(
                         event.finalPrice || event.priceEstimate || 0,
                         event.currency || currency,
-                        "cs-CZ",
+                        resolveIntlLocale(locale),
                       )}
                     </td>
 
@@ -391,6 +406,7 @@ export default function EventsManagementPage() {
                       <div className="flex justify-end gap-2">
                         <button
                           type="button"
+                          aria-label={t("viewDetails")}
                           onClick={() => setSelectedEvent(event)}
                           className="rounded-full border border-stone-200 p-2 text-stone-600 hover:bg-stone-50"
                         >
@@ -399,6 +415,7 @@ export default function EventsManagementPage() {
 
                         <button
                           type="button"
+                          aria-label={t("delete")}
                           onClick={() => deleteEvent(event._id)}
                           className="rounded-full border border-red-100 p-2 text-red-500 hover:bg-red-50"
                         >
@@ -459,6 +476,7 @@ function EventFormModal({
   locations,
   currency,
 }) {
+  const t = useTranslations("Operations.events");
   const update = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
@@ -469,40 +487,46 @@ function EventFormModal({
       <WorkspaceDialogViewport layout="form">
         <WorkspaceDialogPanel layout="form" size="medium">
           <WorkspaceDialogHeader
-            title="Create event"
-            description="Register a team building, party or private studio event."
-            closeLabel="Close event form"
+            title={t("create")}
+            description={t("formDescription")}
+            closeLabel={t("closeForm")}
             onClose={onClose}
           />
           <WorkspaceDialogBody>
             <form onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2">
               <Input
-                label="Title"
+                label={t("eventTitle")}
                 value={form.title}
                 onChange={(v) => update("title", v)}
                 required
               />
 
               <Select
-                label="Type"
+                label={t("type")}
                 value={form.type}
                 onChange={(v) => update("type", v)}
-                options={eventTypes}
+                options={eventTypes.map((item) => ({
+                  ...item,
+                  label: t(`types.${item.value}`),
+                }))}
               />
 
               <Select
-                label="Status"
+                label={t("status")}
                 value={form.status}
                 onChange={(v) => update("status", v)}
-                options={statuses}
+                options={statuses.map((item) => ({
+                  ...item,
+                  label: t(`statuses.${item.value}`),
+                }))}
               />
 
               <Select
-                label="Location"
+                label={t("location")}
                 value={form.locationId}
                 onChange={(v) => update("locationId", v)}
                 options={[
-                  { value: "", label: "External venue / no studio" },
+                  { value: "", label: t("externalOption") },
                   ...locations.map((location) => ({
                     value: location.id,
                     label: location.name,
@@ -512,62 +536,62 @@ function EventFormModal({
 
               {!form.locationId && (
                 <Input
-                  label="External venue"
+                  label={t("externalVenue")}
                   value={form.externalLocationName}
                   onChange={(v) => update("externalLocationName", v)}
-                  placeholder="Venue name or address"
+                  placeholder={t("venuePlaceholder")}
                 />
               )}
 
               <Input
-                label="Date"
+                label={t("date")}
                 type="date"
                 value={form.date}
                 onChange={(v) => update("date", v)}
                 required
               />
               <Input
-                label="Start time"
+                label={t("startTime")}
                 type="time"
                 value={form.startTime}
                 onChange={(v) => update("startTime", v)}
               />
               <Input
-                label="End time"
+                label={t("endTime")}
                 type="time"
                 value={form.endTime}
                 onChange={(v) => update("endTime", v)}
               />
               <Input
-                label="Guests"
+                label={t("guests")}
                 type="number"
                 value={form.numberOfGuests}
                 onChange={(v) => update("numberOfGuests", v)}
               />
 
               <Input
-                label="Customer name"
+                label={t("customerName")}
                 value={form.customerName}
                 onChange={(v) => update("customerName", v)}
               />
               <Input
-                label="Contact person"
+                label={t("contactPerson")}
                 value={form.contactPerson}
                 onChange={(v) => update("contactPerson", v)}
               />
               <Input
-                label="Email"
+                label={t("email")}
                 value={form.email}
                 onChange={(v) => update("email", v)}
               />
               <Input
-                label="Phone"
+                label={t("phone")}
                 value={form.phone}
                 onChange={(v) => update("phone", v)}
               />
 
               <Input
-                label={`Estimated price (${currency})`}
+                label={t("estimatedPrice", { currency })}
                 type="number"
                 min="0"
                 step={getMajorCurrencyInputStep(currency)}
@@ -575,7 +599,7 @@ function EventFormModal({
                 onChange={(v) => update("priceEstimate", v)}
               />
               <Input
-                label={`Final price (${currency})`}
+                label={t("finalPrice", { currency })}
                 type="number"
                 min="0"
                 step={getMajorCurrencyInputStep(currency)}
@@ -583,7 +607,7 @@ function EventFormModal({
                 onChange={(v) => update("finalPrice", v)}
               />
               <Input
-                label={`Deposit paid (${currency})`}
+                label={t("depositPaid", { currency })}
                 type="number"
                 min="0"
                 step={getMajorCurrencyInputStep(currency)}
@@ -592,19 +616,19 @@ function EventFormModal({
               />
 
               <Input
-                label="Linked order ID"
+                label={t("linkedOrderId")}
                 value={form.order}
                 onChange={(v) => update("order", v)}
-                placeholder="Optional MongoDB order ID"
+                placeholder={t("orderPlaceholder")}
               />
 
               <Textarea
-                label="Notes"
+                label={t("notes")}
                 value={form.notes}
                 onChange={(v) => update("notes", v)}
               />
               <Textarea
-                label="Internal notes"
+                label={t("internalNotes")}
                 value={form.internalNotes}
                 onChange={(v) => update("internalNotes", v)}
               />
@@ -615,7 +639,7 @@ function EventFormModal({
                   onClick={onClose}
                   className="rounded-full border border-stone-200 px-5 py-2 text-sm"
                 >
-                  Cancel
+                  {t("cancel")}
                 </button>
 
                 <button
@@ -623,7 +647,7 @@ function EventFormModal({
                   disabled={isSubmitting}
                   className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-white disabled:opacity-60"
                 >
-                  {isSubmitting ? "Creating..." : "Create event"}
+                  {isSubmitting ? t("creating") : t("create")}
                 </button>
               </div>
             </form>
@@ -641,6 +665,8 @@ function EventDetailModal({
   locationsById,
   currency,
 }) {
+  const t = useTranslations("Operations.events");
+  const locale = useLocale();
   return (
     <Dialog open onClose={onClose} className="relative z-[100]">
       <WorkspaceDialogBackdrop />
@@ -648,47 +674,51 @@ function EventDetailModal({
         <WorkspaceDialogPanel layout="modal" size="small">
           <WorkspaceDialogHeader
             title={event.title}
-            description={`${formatType(event.type)} · ${formatDate(event.date)}`}
-            closeLabel="Close event details"
+            description={`${formatType(event.type, t)} · ${formatDate(event.date, locale)}`}
+            closeLabel={t("closeDetails")}
             onClose={onClose}
           />
           <WorkspaceDialogBody>
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <Detail label="Status" value={formatStatus(event.status)} />
               <Detail
-                label="Location"
+                label={t("status")}
+                value={formatStatus(event.status, t)}
+              />
+              <Detail
+                label={t("location")}
                 value={getLocationName(
                   event.locationId || event.location,
                   locationsById,
                   event.externalLocationName,
+                  t("externalVenue"),
                 )}
               />
               <Detail
-                label="Time"
+                label={t("time")}
                 value={`${event.startTime || "—"}–${event.endTime || "—"}`}
               />
-              <Detail label="Guests" value={event.numberOfGuests || "—"} />
-              <Detail label="Customer" value={event.customerName || "—"} />
-              <Detail label="Contact" value={event.contactPerson || "—"} />
-              <Detail label="Email" value={event.email || "—"} />
-              <Detail label="Phone" value={event.phone || "—"} />
+              <Detail label={t("guests")} value={event.numberOfGuests || "—"} />
+              <Detail label={t("customer")} value={event.customerName || "—"} />
+              <Detail label={t("contact")} value={event.contactPerson || "—"} />
+              <Detail label={t("email")} value={event.email || "—"} />
+              <Detail label={t("phone")} value={event.phone || "—"} />
               <Detail
-                label="Price"
+                label={t("price")}
                 value={formatMajorCurrencyAmount(
                   event.finalPrice || event.priceEstimate || 0,
                   event.currency || currency,
-                  "cs-CZ",
+                  resolveIntlLocale(locale),
                 )}
               />
               <Detail
-                label="Linked order"
+                label={t("linkedOrder")}
                 value={event.order?._id || event.order || "—"}
               />
             </div>
 
             <div className="mt-5">
               <h4 className="text-sm font-semibold text-stone-900">
-                Checklist
+                {t("checklist")}
               </h4>
 
               <div className="mt-2 space-y-2">
@@ -705,7 +735,11 @@ function EventDetailModal({
                     <span
                       className={item.done ? "text-stone-400 line-through" : ""}
                     >
-                      {item.title}
+                      {DEFAULT_CHECKLIST_MESSAGE_KEYS[item.title]
+                        ? t(
+                            `checklistItems.${DEFAULT_CHECKLIST_MESSAGE_KEYS[item.title]}`,
+                          )
+                        : item.title}
                     </span>
                   </label>
                 ))}
@@ -714,14 +748,16 @@ function EventDetailModal({
 
             {event.notes && (
               <div className="mt-5 rounded-2xl bg-stone-50 p-4 text-sm text-stone-700">
-                <div className="mb-1 font-medium text-stone-900">Notes</div>
+                <div className="mb-1 font-medium text-stone-900">
+                  {t("notes")}
+                </div>
                 {event.notes}
               </div>
             )}
 
             {event.internalNotes && (
               <div className="mt-3 rounded-2xl bg-amber-50 p-4 text-sm text-amber-900">
-                <div className="mb-1 font-medium">Internal notes</div>
+                <div className="mb-1 font-medium">{t("internalNotes")}</div>
                 {event.internalNotes}
               </div>
             )}
@@ -807,15 +843,20 @@ function Detail({ label, value }) {
   );
 }
 
-function formatDate(date) {
-  if (!date) return "—";
-  return new Date(date).toLocaleDateString("cs-CZ");
+function formatDate(date, locale) {
+  const value = new Date(date);
+  if (!date || Number.isNaN(value.getTime())) return "—";
+  return value.toLocaleDateString(resolveIntlLocale(locale));
 }
 
-function formatType(type) {
-  return eventTypes.find((item) => item.value === type)?.label || type;
+function formatType(type, t) {
+  return eventTypes.some((item) => item.value === type)
+    ? t(`types.${type}`)
+    : t("types.other");
 }
 
-function formatStatus(status) {
-  return statuses.find((item) => item.value === status)?.label || status;
+function formatStatus(status, t) {
+  return statuses.some((item) => item.value === status)
+    ? t(`statuses.${status}`)
+    : t("unknownStatus");
 }

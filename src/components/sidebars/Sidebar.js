@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
@@ -72,71 +74,6 @@ const nowMs = () =>
     ? performance.now()
     : Date.now();
 
-const copy = {
-  CZ: {
-    title: "Rezervace studia",
-    subtitle: "Vyberte datum, čas začátku a délku rezervace.",
-    location: "Studio",
-    product: "Typ rezervace",
-    date: "Datum",
-    start: "Začátek",
-    duration: "Délka",
-    guests: "Počet osob",
-    select: "Vyberte možnost",
-    closed: "Studio je v tento den zavřené.",
-    available: "Tento termín je nyní k dispozici.",
-    unavailable: "Tento termín už není podle aktuální kapacity k dispozici.",
-    recheck: "Dostupnost znovu ověříme při dokončení objednávky.",
-    summary: "Shrnutí",
-    total: "Cena",
-    cancel: "Zavřít",
-    add: "Přidat do košíku",
-    missingLocation: "Nejprve vyberte studio.",
-    missingProduct: "Pro toto studio není dostupný žádný typ rezervace.",
-    classTitle: "Rezervace lekce",
-    classSubtitle: "Zkontrolujte vybraný termín lekce a počet účastníků.",
-    classProduct: "Lekce",
-    classType: "Typ produktu",
-    classLabel: "Lekce",
-    classMissing: "Vybraná lekce už není dostupná.",
-    sessionPrice: "Cena rezervace",
-    classPrice: "Cena lekce",
-    checking: "Ověřujeme dostupnost…",
-    added: "Přidáno do košíku",
-  },
-  EN: {
-    title: "Book a session",
-    subtitle: "Choose your date, start time and duration.",
-    location: "Studio",
-    product: "Session type",
-    date: "Date",
-    start: "Start time",
-    duration: "Duration",
-    guests: "Guests",
-    select: "Choose an option",
-    closed: "This studio is closed on the selected day.",
-    available: "This time is currently available.",
-    unavailable: "This time is no longer available at the current capacity.",
-    recheck: "Availability is checked again when you complete checkout.",
-    summary: "Summary",
-    total: "Price",
-    cancel: "Close",
-    add: "Add to cart",
-    missingLocation: "Choose a studio first.",
-    missingProduct: "No session type is available for this studio.",
-    classTitle: "Book Class",
-    classSubtitle: "Review the selected class session and participant count.",
-    classProduct: "Class",
-    classType: "Product type",
-    classLabel: "Class",
-    classMissing: "The selected class is no longer available.",
-    sessionPrice: "Session price",
-    classPrice: "Class price",
-    checking: "Checking availability…",
-    added: "Added to cart",
-  },
-};
-
 const ACTIVITY_TRANSLATION_KEYS = {
   WORKSTATION: "activityWorkstation",
   SHARED_TABLE: "activitySharedTable",
@@ -168,6 +105,7 @@ export default function Sidebar({
   isAvailabilityLoading = false,
   isCatalogLoading = false,
 }) {
+  const activeLocale = useLegacyLocale();
   const dispatch = useDispatch();
   const open = useSelector(selectIsSidebarOpen);
   const requestedLocationId = useSelector(selectSidebarLocationId);
@@ -177,8 +115,9 @@ export default function Sidebar({
   const locale = useLocale();
   const t = useTranslations("PublicTenant.details");
   const language = locale === "cs" ? "CZ" : "EN";
+  const availabilityCopy = useLegacyCopy("bookingAvailability");
   const text = {
-    ...copy[language],
+    ...useLegacyCopy("bookingSidebar"),
     bookingType: t("customerChoice.mode"),
     public: t("customerChoice.public"),
     private: t("customerChoice.private"),
@@ -276,7 +215,7 @@ export default function Sidebar({
     const fallback =
       sameModeCount > 1 ? `${baseFallback} ${index + 1}` : baseFallback;
 
-    return getLocalizedBookingProductName(item, language, { fallback });
+    return getLocalizedBookingProductName(item, locale, { fallback });
   };
   const bookingMode = useMemo(
     () =>
@@ -444,6 +383,7 @@ export default function Sidebar({
     start,
   ]);
   const availabilityPresentation = getBookingAvailabilityPresentation({
+    copy: availabilityCopy,
     available: availability.available,
     isLoading: bookingDataLoading,
     language,
@@ -468,18 +408,19 @@ export default function Sidebar({
   });
   const cartQuantity = isClassFlow ? guests : priceBreakdown.durationQuantity;
   const total = priceBreakdown.total;
-  const dateLabel = formatBookingDateLabel(dateValue, language);
-  const summaryDateLabel = formatBookingDateLabel(dateValue, language, {
+  const dateLabel = formatBookingDateLabel(dateValue, locale);
+  const summaryDateLabel = formatBookingDateLabel(dateValue, locale, {
     includeWeekday: false,
   });
   const summaryLabel =
     start && end
       ? formatBookingSummary({
+          copy: availabilityCopy,
           durationMinutes,
           startTime: formatWallTime(start, timezone),
           endTime: formatWallTime(end, timezone),
           guests,
-          language,
+          language: locale,
         })
       : "—";
   const submitEnabled = Boolean(
@@ -506,10 +447,12 @@ export default function Sidebar({
     event.preventDefault();
     if (!submitEnabled) return;
 
-    const formatter = new Intl.DateTimeFormat(
-      language === "CZ" ? "cs-CZ" : "en-GB",
-      { timeZone: timezone, day: "numeric", month: "short", year: "numeric" },
-    );
+    const formatter = new Intl.DateTimeFormat(activeLocale, {
+      timeZone: timezone,
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
 
     dispatch(
       addToCart({
@@ -771,7 +714,7 @@ export default function Sidebar({
                               : undefined
                           }
                         >
-                          {formatDuration(value, language)}
+                          {formatDuration(value, locale)}
                         </button>
                       ),
                     )}
@@ -899,7 +842,8 @@ export default function Sidebar({
                         {priceBreakdown.guestCount > 1
                           ? ` · ${formatBookingGuestCount(
                               priceBreakdown.guestCount,
-                              language,
+                              locale,
+                              availabilityCopy,
                             )}`
                           : ""}
                       </span>
@@ -907,7 +851,7 @@ export default function Sidebar({
                         {formatBookingPrice(
                           priceBreakdown.baseTotal,
                           product?.currency || DEFAULT_STUDIO_COMMERCE_CURRENCY,
-                          language === "CZ" ? "cs-CZ" : "en-GB",
+                          activeLocale,
                         )}
                       </span>
                     </div>
@@ -919,7 +863,7 @@ export default function Sidebar({
                             priceBreakdown.surchargeTotal,
                             product?.currency ||
                               DEFAULT_STUDIO_COMMERCE_CURRENCY,
-                            language === "CZ" ? "cs-CZ" : "en-GB",
+                            activeLocale,
                           )}
                         </span>
                       </div>
@@ -990,7 +934,7 @@ export default function Sidebar({
                       {formatBookingPrice(
                         total,
                         product?.currency || DEFAULT_STUDIO_COMMERCE_CURRENCY,
-                        language === "CZ" ? "cs-CZ" : "en-GB",
+                        activeLocale,
                       )}
                     </p>
                   </div>

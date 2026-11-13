@@ -21,7 +21,12 @@ vi.mock("react-redux", () => ({
   useDispatch: () => mocks.dispatch,
   useSelector: (selector) => selector(),
 }));
-vi.mock("next-intl", () => ({ useLocale: () => mocks.locale }));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({ useLocale: () => mocks.locale }))(...args),
+  );
+});
 vi.mock("@/lib/features/auth/authSlice", () => ({
   selectCurrentUser: () => mocks.user,
   selectCurrentTenant: () => ({

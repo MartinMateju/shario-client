@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
   createContext,
   useCallback,
@@ -53,23 +54,6 @@ const subscribeToLocationPreference = (onStoreChange) => {
   };
 };
 
-const copy = {
-  en: {
-    changed: (studio) => `Current studio changed to ${studio}.`,
-    errorDescription: "Check your connection and try again.",
-    errorTitle: "Your studios could not be loaded",
-    loading: "Loading your studios…",
-    retry: "Try again",
-  },
-  cs: {
-    changed: (studio) => `Aktuální studio bylo změněno na ${studio}.`,
-    errorDescription: "Zkontrolujte připojení a zkuste to znovu.",
-    errorTitle: "Studia se nepodařilo načíst",
-    loading: "Načítáme vaše studia…",
-    retry: "Zkusit znovu",
-  },
-};
-
 const buildCurrentPortalHref = ({ pathname, queryString, location }) => {
   const path = pathname || "/portal";
   const href = queryString ? `${path}?${queryString}` : path;
@@ -104,7 +88,7 @@ export default function CustomerPortalLocationProvider({ children }) {
   // but must not be blocked by the location chooser or canonical redirects.
   const isPortalRoute =
     pathname === "/portal" || pathname?.startsWith("/portal/");
-  const localizedCopy = copy[locale === "cs" ? "cs" : "en"];
+  const localizedCopy = useLegacyCopy("portalLocations");
   const [announcement, setAnnouncement] = useState("");
   const [isSwitching, startLocationTransition] = useTransition();
   const tenantCacheKey = String(currentTenantId || "");
@@ -371,7 +355,7 @@ export function CustomerPortalLocationGate({ children }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const context = useCustomerPortalLocation();
-  const localizedCopy = copy[locale === "cs" ? "cs" : "en"];
+  const localizedCopy = useLegacyCopy("portalLocations");
 
   // Vouchers belong to the whole tenant, so buying one does not require choosing
   // a studio or waiting for customer location data to load.

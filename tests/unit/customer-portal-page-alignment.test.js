@@ -79,6 +79,8 @@ describe("aligned customer portal pages", () => {
     expect(credits).toContain("formatCustomerPortalCurrencyAmount");
     expect(vouchers).toContain("formatCustomerPortalCurrencyAmount");
     expect(credits).not.toContain("CZK 400.00");
-    expect(vouchers).toContain("(for example D4T-32S-053)");
+    expect(vouchers).toContain(
+      'legacyText("VoucherForm__for_example_D4T_32S_053_b5110")',
+    );
   });
 });

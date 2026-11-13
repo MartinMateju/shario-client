@@ -53,10 +53,15 @@ const t = (key, values = {}) => {
   return copy[key] || key;
 };
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => t,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+      useTranslations: () => t,
+    }))(...args),
+  );
+});
 
 vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),

@@ -1,5 +1,7 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import {
   ArrowDownTrayIcon,
   ArrowPathIcon,
@@ -90,7 +92,7 @@ const formatDate = (value, locale) => {
   const date = new Date(value);
   if (!value || Number.isNaN(date.getTime())) return "—";
 
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);

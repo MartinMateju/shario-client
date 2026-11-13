@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import {
   Popover,
@@ -52,7 +53,7 @@ const getErrorMessage = (error, t) => {
   }
 
   if (error.status === 400) {
-    return error?.data?.message || t("errors.checkInformation");
+    return getLocalizedApiErrorMessage(error, t("errors.checkInformation"));
   }
 
   if (error.status === 401) {
@@ -71,7 +72,7 @@ const getErrorMessage = (error, t) => {
     return t("errors.rateLimited");
   }
 
-  return error?.data?.message || t("errors.signInFailed");
+  return getLocalizedApiErrorMessage(error, t("errors.signInFailed"));
 };
 
 export default function PlatformLoginPage() {

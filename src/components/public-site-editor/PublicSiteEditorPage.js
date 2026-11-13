@@ -113,67 +113,6 @@ const INITIAL_UPLOAD_STATE = Object.freeze({
 });
 const MAX_LOCAL_HISTORY = 50;
 const EMPTY_LOCAL_HISTORY = Object.freeze({ past: [], future: [] });
-const BUILDER_ACTION_COPY = Object.freeze({
-  en: Object.freeze({
-    publishChanges: "Publish changes",
-    publishWebsite: "Publish website",
-    publishingWebsite: "Publishing website…",
-    launchTitle: "Ready to launch your website?",
-    launchDescription:
-      "This final step makes the studio website publicly available. Future edits use Publish changes.",
-    launchBlocked: (count) =>
-      `Complete ${count} required launch ${count === 1 ? "step" : "steps"} first.`,
-    launchConfirmTitle: "Publish your website?",
-    launchConfirmDescription:
-      "Your studio website will become publicly available to anyone. Future edits use Publish changes.",
-    launched: "Your website is now live.",
-    undo: "Undo",
-    redo: "Redo",
-    history: "Version history",
-    historyTitle: "Published versions",
-    historyDescription:
-      "Restore a published version into the draft. The live website stays unchanged until you publish changes.",
-    historyEmpty: "No published versions yet.",
-    historyError: "Version history could not be loaded.",
-    retryHistory: "Try again",
-    restore: "Restore to draft",
-    restored: "The selected version was restored to the draft.",
-    restoreBlocked:
-      "Save or undo your unsaved edits before restoring a version.",
-    restoreConfirm:
-      "Restore this version? It will replace your saved unpublished draft. The live website will not change.",
-    close: "Close version history",
-  }),
-  cs: Object.freeze({
-    publishChanges: "Publikovat změny",
-    publishWebsite: "Publikovat web",
-    publishingWebsite: "Publikování webu…",
-    launchTitle: "Je web připravený ke spuštění?",
-    launchDescription:
-      "Tento poslední krok zpřístupní web studia veřejnosti. Další úpravy publikujete tlačítkem Publikovat změny.",
-    launchBlocked: (count) =>
-      `Nejprve dokončete ${count} povinné ${count === 1 ? "krok" : "kroky"}.`,
-    launchConfirmTitle: "Publikovat váš web?",
-    launchConfirmDescription:
-      "Web studia bude veřejně dostupný komukoliv. Další úpravy publikujete tlačítkem Publikovat změny.",
-    launched: "Váš web je nyní zveřejněný.",
-    undo: "Zpět",
-    redo: "Znovu",
-    history: "Historie verzí",
-    historyTitle: "Publikované verze",
-    historyDescription:
-      "Obnovte publikovanou verzi do konceptu. Živý web se nezmění, dokud změny nepublikujete.",
-    historyEmpty: "Zatím nebyla publikována žádná verze.",
-    historyError: "Historii verzí se nepodařilo načíst.",
-    retryHistory: "Zkusit znovu",
-    restore: "Obnovit do konceptu",
-    restored: "Vybraná verze byla obnovena do konceptu.",
-    restoreBlocked: "Před obnovením verze uložte nebo vraťte neuložené úpravy.",
-    restoreConfirm:
-      "Obnovit tuto verzi? Nahradí uložený nepublikovaný koncept. Živý web se nezmění.",
-    close: "Zavřít historii verzí",
-  }),
-});
 
 function PreviewSelectField({
   children,
@@ -406,7 +345,7 @@ function VersionHistoryPanel({
                 {formatDate(version.publishedAt, locale)}
               </p>
               <p className="mt-1 text-[10px] text-[#858580]">
-                Revision {version.sourceDraftRevision}
+                {copy.revisionNo(version.sourceDraftRevision)}
               </p>
               <button
                 type="button"
@@ -555,7 +494,35 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
   const revision =
     revisionOverride ?? Number(query.data?.editor?.draftRevision ?? 0);
   const editor = editorOverride || query.data?.editor || null;
-  const actionCopy = BUILDER_ACTION_COPY[locale] || BUILDER_ACTION_COPY.en;
+  const actionCopy = {
+    ...Object.fromEntries(
+      [
+        "publishChanges",
+        "publishWebsite",
+        "publishingWebsite",
+        "launchTitle",
+        "launchDescription",
+        "launchConfirmTitle",
+        "launchConfirmDescription",
+        "launched",
+        "undo",
+        "redo",
+        "history",
+        "historyTitle",
+        "historyDescription",
+        "historyEmpty",
+        "historyError",
+        "retryHistory",
+        "restore",
+        "restored",
+        "restoreBlocked",
+        "restoreConfirm",
+        "close",
+      ].map((key) => [key, t(`builderActions.${key}`)]),
+    ),
+    launchBlocked: (count) => t("builderActions.launchBlocked", { count }),
+    revisionNo: (number) => t("builderActions.revisionNo", { number }),
+  };
   const isDirty = useMemo(
     () =>
       Boolean(

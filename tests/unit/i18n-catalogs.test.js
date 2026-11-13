@@ -4,13 +4,9 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
+import { CATALOG_LOCALE_CODES, loadMessages } from "@/i18n/catalogs";
 import {
-  CATALOG_LOCALE_CODES,
-  deepMergeMessages,
-  loadMessages,
-} from "@/i18n/catalogs";
-import {
-  PREVIEW_LOCALE_CODES,
+  ALL_LOCALE_CODES,
   ROLLOUT_ELIGIBLE_LOCALE_CODES,
   WAVE_TWO_A_LOCALE_CODES,
   WAVE_TWO_B_LOCALE_CODES,
@@ -50,14 +46,14 @@ describe("locale validator readiness requirements", () => {
     ).toEqual(["nl: missing required namespace FutureWorkspaceFeature"]);
   });
 
-  it("keeps English fallback available outside a preview locale's required namespaces", () => {
+  it("requires complete product copy even for preview locales", () => {
     expect(
       validateRequiredCatalogKeys({
         locale: "de",
         source,
         catalog: messagesEn,
       }),
-    ).toEqual([]);
+    ).toEqual(["de: missing required namespace FutureWorkspaceFeature"]);
   });
 
   it("still rejects missing required preview copy", () => {
@@ -83,9 +79,9 @@ describe("locale validator readiness requirements", () => {
     ]);
   });
 
-  it("fails the CLI for missing ready-locale keys while allowing preview fallback", () => {
+  it("fails the CLI for any missing locale, including Czech and previews", () => {
     const fixtureRoot = fs.mkdtempSync(
-      path.join(os.tmpdir(), "skab-locale-validator-"),
+      path.join(os.tmpdir(), "shario-locale-validator-"),
     );
     try {
       fs.mkdirSync(path.join(fixtureRoot, "scripts"), { recursive: true });
@@ -109,7 +105,7 @@ describe("locale validator readiness requirements", () => {
           path.join(fixtureRoot, "src/messages", `${locale}.json`),
           JSON.stringify(catalog),
         );
-      writeCatalog("en", source);
+      for (const locale of ALL_LOCALE_CODES) writeCatalog(locale, source);
       writeCatalog("de", messagesEn);
       writeCatalog("nl", {
         ...source,
@@ -128,6 +124,13 @@ describe("locale validator readiness requirements", () => {
       );
 
       writeCatalog("nl", source);
+      expect(run().stderr).toContain(
+        "de: missing required namespace FutureWorkspaceFeature",
+      );
+      writeCatalog("de", source);
+      fs.unlinkSync(path.join(fixtureRoot, "src/messages/cs.json"));
+      expect(run().stderr).toContain("cs: missing catalog file");
+      writeCatalog("cs", source);
       const complete = run();
       expect(complete.status).toBe(0);
       expect(complete.stdout).toContain("Target catalogs passed");
@@ -136,7 +139,7 @@ describe("locale validator readiness requirements", () => {
       const resolved = path.resolve(fixtureRoot);
       if (
         path.dirname(resolved) !== path.resolve(os.tmpdir()) ||
-        !path.basename(resolved).startsWith("skab-locale-validator-")
+        !path.basename(resolved).startsWith("shario-locale-validator-")
       ) {
         throw new Error("Unexpected locale-validator fixture directory");
       }
@@ -145,45 +148,15 @@ describe("locale validator readiness requirements", () => {
   });
 });
 
-describe("message catalog fallback", () => {
-  it("deeply fills missing localized messages without mutating either input", () => {
-    const fallback = {
-      Header: {
-        title: "Header",
-        actions: {
-          save: "Save",
-          cancel: "Cancel",
-        },
-      },
-      Common: {
-        items: ["one", "two"],
-      },
-    };
-    const localized = {
-      Header: {
-        actions: {
-          save: "Speichern",
-        },
-      },
-      Common: {
-        items: ["eins"],
-      },
-    };
-
-    expect(deepMergeMessages(fallback, localized)).toEqual({
-      Header: {
-        title: "Header",
-        actions: {
-          save: "Speichern",
-          cancel: "Cancel",
-        },
-      },
-      Common: {
-        items: ["eins"],
-      },
-    });
-    expect(fallback.Header.actions.save).toBe("Save");
-    expect(localized.Header.actions).toEqual({ save: "Speichern" });
+describe("complete message catalogs without English overlays", () => {
+  it.each(ALL_LOCALE_CODES)("loads exactly the %s catalog", async (locale) => {
+    const catalog = JSON.parse(
+      fs.readFileSync(path.resolve(`src/messages/${locale}.json`), "utf8"),
+    );
+    await expect(loadMessages(locale)).resolves.toEqual(catalog);
+    expect(
+      validateRequiredCatalogKeys({ locale, source: messagesEn, catalog }),
+    ).toEqual([]);
   });
 
   it("keeps catalog loaders aligned with every rollout-eligible locale", () => {
@@ -201,8 +174,8 @@ describe("message catalog fallback", () => {
     ]);
   });
 
-  it.each(PREVIEW_LOCALE_CODES)(
-    "loads localized tenant-core copy for %s over complete English fallback",
+  it.each(ALL_LOCALE_CODES.filter((locale) => locale !== "en"))(
+    "loads localized tenant-core copy for %s",
     async (locale) => {
       const messages = await loadMessages(locale);
 
@@ -224,7 +197,7 @@ describe("message catalog fallback", () => {
     await expect(loadMessages("not-a-locale")).resolves.toEqual(messagesEn);
   });
 
-  it("reuses the merged catalog promise for canonical locale aliases", () => {
+  it("reuses the catalog promise for canonical locale aliases", () => {
     expect(loadMessages("de-DE")).toBe(loadMessages("de"));
     expect(loadMessages("pt_PT")).toBe(loadMessages("pt-PT"));
     expect(loadMessages("sv-SE")).toBe(loadMessages("sv"));

@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import dayjs from "dayjs";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -22,7 +24,7 @@ import ComboBox from "@/components/comboboxes/ComboBox";
 import DatePicker from "@/components/date-pickers/DatePicker";
 import Loader from "../../loaders/Loader";
 import MenuBox from "@/components/listboxes/MenuBox";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 import Checkbox from "@/components/checkboxes/Checkbox";
 import SubmitButton from "@/components/buttons/SubmitButton";
@@ -69,6 +71,8 @@ export default function NewBookingForm({
   showErrModal,
   setErrMsg,
 }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const { id, isAdmin } = useSelector(selectCurrentUser);
   const language = useSelector(selectCurrentLanguage);
   const activeStudioId = useSelector(selectActiveStudioId);
@@ -248,7 +252,9 @@ export default function NewBookingForm({
     }
 
     if (isError) {
-      setErrMsg(error?.data?.message || "Failed to create booking.");
+      setErrMsg(
+        getLocalizedApiErrorMessage(error, legacyText("bookingCreateError")),
+      );
       showErrModal(true);
     }
   }, [
@@ -259,6 +265,7 @@ export default function NewBookingForm({
     setShow,
     showConfirmModal,
     showErrModal,
+    legacyText,
   ]);
 
   useEffect(() => {
@@ -508,7 +515,9 @@ export default function NewBookingForm({
                 {translation["ADD_NEW_BOOKING"][language]}
               </h1>
               <p className="mt-1 text-sm text-black/55">
-                Vyplňte základní informace o rezervaci.
+                {legacyText(
+                  "NewBookingForm_Enter_the_booking_details_bdd5c",
+                )}{" "}
               </p>
             </div>
 
@@ -516,10 +525,12 @@ export default function NewBookingForm({
               <section className="rounded-xl border border-black/8 bg-white p-4">
                 <div className="mb-4">
                   <h2 className="text-sm font-medium text-black">
-                    Základní informace
+                    {legacyText("NewBookingForm_Basic_details_42450")}{" "}
                   </h2>
                   <p className="mt-1 text-xs text-black/50">
-                    Vyberte produkt, místo, datum a čas rezervace.
+                    {legacyText(
+                      "NewBookingForm_Choose_the_product_location_date_and_time_for_the_booki_2d948",
+                    )}{" "}
                   </p>
                 </div>
 
@@ -600,7 +611,9 @@ export default function NewBookingForm({
                       {selectedDatesFormatted.length > 0 && (
                         <div className="mt-4">
                           <p className="mb-2 text-xs font-medium uppercase tracking-wide text-black/45">
-                            Vybrané termíny
+                            {legacyText(
+                              "NewBookingForm_Selected_times_da07f",
+                            )}{" "}
                           </p>
 
                           <div className="flex flex-wrap gap-2">
@@ -610,7 +623,9 @@ export default function NewBookingForm({
                                 type="button"
                                 onClick={() => onRemoveDateClicked(index)}
                                 className="rounded-full border border-black/10 bg-white px-3 py-1.5 text-sm text-black transition hover:border-black/20 hover:bg-black/5"
-                                title="Odstranit termín"
+                                title={legacyText(
+                                  "NewBookingForm_Remove_time_2278a",
+                                )}
                               >
                                 {date}{" "}
                                 <span className="ml-1 text-black/40">×</span>
@@ -651,20 +666,24 @@ export default function NewBookingForm({
               <section className="rounded-xl border border-black/8 bg-white p-4">
                 <div className="mb-4">
                   <h2 className="text-sm font-medium text-black">
-                    Interní informace
+                    {legacyText("NewBookingForm_Internal_details_125a9")}{" "}
                   </h2>
                   <p className="mt-1 text-xs text-black/50">
-                    Nepovinné údaje pro interní správu rezervace.
+                    {legacyText(
+                      "NewBookingForm_Optional_details_for_internal_booking_management_bee7c",
+                    )}{" "}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:max-w-[640px]">
                   <TextArea
-                    label="Poznámka"
+                    label={legacyText("NewBookingForm_Note_2c924")}
                     className="pt-0"
                     value={note}
                     onChange={onNoteChanged}
-                    placeholder="Poznámka se zobrazí v kalendáři (pouze interně)."
+                    placeholder={legacyText(
+                      "NewBookingForm_This_note_appears_in_the_calendar_for_staff_only_fbd41",
+                    )}
                     id="booking-note"
                     name="booking-note"
                     rows={2}
@@ -697,7 +716,11 @@ export default function NewBookingForm({
                           value={lecturer}
                           className="block w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm text-black outline-none transition focus:border-black/25"
                         >
-                          <option value="">Vyberte lektora</option>
+                          <option value="">
+                            {legacyText(
+                              "NewBookingForm_Select_an_instructor_5faef",
+                            )}{" "}
+                          </option>
                           {lecturers?.length > 0 &&
                             lecturers.map((lecturerItem, index) => (
                               <option
@@ -721,10 +744,12 @@ export default function NewBookingForm({
           <div className="px-4 py-4 sm:px-5 sm:py-5 lg:sticky lg:top-0">
             <div className="rounded-xl border border-black/8 bg-white p-4">
               <h2 className="text-sm font-medium text-black">
-                Shrnutí rezervace
+                {legacyText("NewBookingForm_Booking_summary_e2a9a")}{" "}
               </h2>
               <p className="mt-1 text-xs text-black/50">
-                Kontrola vybraných údajů před uložením.
+                {legacyText(
+                  "NewBookingForm_Review_the_selected_details_before_saving_f6480",
+                )}{" "}
               </p>
 
               <div className="mt-4 space-y-3">
@@ -744,7 +769,7 @@ export default function NewBookingForm({
               {!!note?.trim() && (
                 <div className="mt-4 rounded-lg bg-[#FCFBF9] p-3">
                   <p className="mb-1 text-xs font-medium uppercase tracking-wide text-black/40">
-                    Poznámka
+                    {legacyText("NewBookingForm_Note_2c924")}{" "}
                   </p>
                   <p className="text-sm text-black/75">{note}</p>
                 </div>

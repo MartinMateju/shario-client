@@ -1,5 +1,8 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   ArrowPathIcon,
   ArrowUturnLeftIcon,
@@ -29,7 +32,7 @@ import { isActiveBookingParticipant } from "@/utils/bookingAttendance";
 const formatDateTime = (value, locale) => {
   const date = new Date(value || "");
   if (Number.isNaN(date.getTime())) return "—";
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -128,7 +131,7 @@ export default function CourseSessionRoster({
       setError(
         code === "WAITLIST_FIFO_CONFLICT"
           ? t("errors.fifo")
-          : requestError?.data?.message || t("errors.generic"),
+          : getLocalizedApiErrorMessage(requestError, t("errors.generic")),
       );
     }
   };
@@ -189,7 +192,10 @@ export default function CourseSessionRoster({
           "COURSE_PARTICIPANT_REFUND_SNAPSHOT_INVALID",
         ].includes(code)
           ? t("bookedActions.errors.manualReview")
-          : requestError?.data?.message || t("bookedActions.errors.generic"),
+          : getLocalizedApiErrorMessage(
+              requestError,
+              t("bookedActions.errors.generic"),
+            ),
       );
     }
   };

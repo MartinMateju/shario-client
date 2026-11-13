@@ -60,18 +60,24 @@ const tenant = {
   },
 };
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => (key) =>
-    ({
-      "home.exploreEyebrow": "Explore",
-      "home.exploreTitle": "Ways to visit",
-      "home.cards.book": "Book your visit",
-      "nav.book": "Book",
-      "home.explore": "Explore",
-      "actions.signIn": "Sign in",
-    })[key] || key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+      useTranslations: () => (key) =>
+        ({
+          "home.exploreEyebrow": "Explore",
+          "home.exploreTitle": "Ways to visit",
+          "home.cards.book": "Book your visit",
+          "nav.book": "Book",
+          "home.explore": "Explore",
+          "actions.signIn": "Sign in",
+        })[key] || key,
+    }))(...args),
+    ["PublicTenantHome.sections"],
+  );
+});
 
 vi.mock("react-redux", () => ({
   useSelector: () => false,

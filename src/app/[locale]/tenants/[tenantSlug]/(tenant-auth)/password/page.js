@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useMemo, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { useParams, useSearchParams } from "next/navigation";
@@ -24,37 +25,6 @@ import {
   getValidatedTenantSlugParam,
 } from "@/utils/tenantRouting";
 
-const COPY = {
-  cs: {
-    back: "Zpět na přihlášení",
-    description:
-      "Zadejte e-mail propojený s účtem. Pošleme vám bezpečný kód pro nastavení nového hesla.",
-    emailError: "Zadejte platnou e-mailovou adresu.",
-    emailHelper: "Použijte adresu registrovanou v tomto studiu.",
-    emailLabel: "E-mail",
-    eyebrow: "Obnovení přístupu",
-    genericError: "Kód se nepodařilo odeslat. Zkuste to prosím znovu.",
-    rateLimited: "Proběhlo příliš mnoho žádostí. Zkuste to znovu později.",
-    send: "Poslat ověřovací kód",
-    sending: "Odesíláme…",
-    title: "Obnovit heslo",
-  },
-  en: {
-    back: "Back to sign in",
-    description:
-      "Enter the email connected with your account. We will send a secure code so you can choose a new password.",
-    emailError: "Enter a valid email address.",
-    emailHelper: "Use the address registered with this studio.",
-    emailLabel: "E-mail",
-    eyebrow: "Account recovery",
-    genericError: "We could not send the code. Please try again.",
-    rateLimited: "There have been too many requests. Please try again later.",
-    send: "Send verification code",
-    sending: "Sending…",
-    title: "Reset password",
-  },
-};
-
 const getRequestError = (error, copy) => {
   if (error?.status === 429) return copy.rateLimited;
   return copy.genericError;
@@ -62,7 +32,7 @@ const getRequestError = (error, copy) => {
 
 export default function ResetPasswordRequest() {
   const locale = useLocale();
-  const copy = COPY[locale === "cs" ? "cs" : "en"];
+  const copy = useLegacyCopy("passwordRequest");
   const params = useParams();
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
@@ -113,7 +83,7 @@ export default function ResetPasswordRequest() {
       await requestReset({
         tenantSlug,
         email: normalizedEmail,
-        locale: locale === "cs" ? "cs" : "en",
+        locale,
       }).unwrap();
       setShowModal(true);
     } catch (error) {

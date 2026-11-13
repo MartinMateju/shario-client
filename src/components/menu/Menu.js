@@ -1,5 +1,8 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +57,6 @@ import {
   focusCustomerPortalCalendar,
   formatUpcomingBooking,
   getNextUpcomingBooking,
-  getPortalDashboardCopy,
   getPortalGreetingName,
 } from "./menuDashboard.utils";
 import {
@@ -100,6 +102,7 @@ export default function Menu({
   initialBookingIntent = null,
   previewMode = false,
 }) {
+  const activeLocale = useLegacyLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const locale = useLocale();
@@ -113,7 +116,7 @@ export default function Menu({
   // owner's identity would expose their name and unlock staff-only portal tabs.
   const currentUser = previewMode ? {} : sessionUser;
   const { name, memberNumber, id, isAdmin, isModerator } = currentUser;
-  const defaultCopy = useMemo(() => getPortalDashboardCopy(locale), [locale]);
+  const defaultCopy = useLegacyCopy("portalDashboard");
   const { copy, labelColor: dashboardLabelColor } = useMemo(
     () =>
       resolveCustomerPortalDashboardCustomization({
@@ -230,17 +233,17 @@ export default function Menu({
   const creditValue = useMemo(() => {
     if (isLoadingCredit || isFetchingCredit) return copy.creditLoading;
     if (isCreditError) return copy.creditUnavailable;
-    return new Intl.NumberFormat(locale === "cs" ? "cs-CZ" : "en-GB").format(
+    return new Intl.NumberFormat(activeLocale).format(
       Number(creditData?.balance ?? 0),
     );
   }, [
+    activeLocale,
     copy.creditLoading,
     copy.creditUnavailable,
     creditData?.balance,
     isCreditError,
     isFetchingCredit,
     isLoadingCredit,
-    locale,
   ]);
   const {
     data: upcomingData,

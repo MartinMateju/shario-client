@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyText } from "@/i18n/useLegacyCopy";
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useLocale } from "next-intl";
 
 import CustomerAuthShell from "@/components/auth/CustomerAuthShell";
@@ -18,16 +20,22 @@ export default function CustomerPasswordRecoveryShell({
   intentText = "",
   mode = "recovery",
 }) {
+  const legacyText = useLegacyText();
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const locale = useLocale();
   const { tenant } = usePublicTenant();
   const tenantTheme = getPublicTenantTheme(tenant);
-  const defaults = getCustomerAuthCustomizationDefaults("login", locale);
+  const defaults = getCustomerAuthCustomizationDefaults(
+    "login",
+    locale,
+    customerDefaults,
+  );
   const login = tenant.publicSite.login;
   const branding = tenant.publicSite.branding;
   const tenantName =
     branding.displayName ||
     tenant.name ||
-    (locale === "cs" ? "Vaše studio" : "Your studio");
+    legacyText("CustomerPasswordRecoveryShell_Your_studio_1b32c");
   const labelColor =
     login.labelColor ||
     branding.labelColor ||

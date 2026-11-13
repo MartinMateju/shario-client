@@ -3,7 +3,7 @@ import { XMarkIcon, FunnelIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { useGetProductsQuery } from "@/lib/features/products/productsApiSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { getOrderProductTypeLabel } from "@/utils/productBookingLabels";
 
 const PRODUCT_TYPES = [
@@ -30,6 +30,7 @@ export default function AdvancedOrdersFilters({
   onClearFilters,
   products = [],
 }) {
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   const [showFilters, setShowFilters] = useState(false);
 
@@ -78,7 +79,7 @@ export default function AdvancedOrdersFilters({
         >
           <span className="flex items-center">
             <FunnelIcon className="h-5 w-5 mr-2" />
-            {translation["FILTERS"]?.[language] || "Filters"}
+            {translation["FILTERS"]?.[language]}
             {hasActiveFilters() && (
               <span className="ml-2 px-2 py-0.5 bg-cobalt-600 text-white text-xs rounded-full">
                 {
@@ -121,7 +122,7 @@ export default function AdvancedOrdersFilters({
       >
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-medium text-gray-900">
-            {translation["ADVANCED_FILTERS"]?.[language] || "Advanced Filters"}
+            {translation["ADVANCED_FILTERS"]?.[language]}
           </h3>
           {hasActiveFilters() && (
             <button
@@ -134,9 +135,7 @@ export default function AdvancedOrdersFilters({
               }}
               className="text-sm text-cobalt-600 hover:text-cobalt-800 font-medium min-h-[44px] min-w-[80px] px-3 py-2 touch-manipulation"
             >
-              {translation["CLEAR_FILTERS"]?.[language] ||
-                translation["CLEAR_ALL"]?.[language] ||
-                "Clear All"}
+              {translation["CLEAR_FILTERS"]?.[language] || "Clear All"}
             </button>
           )}
         </div>
@@ -148,7 +147,7 @@ export default function AdvancedOrdersFilters({
               htmlFor="dateFrom"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["DATE_FROM"]?.[language] || "Date From"}
+              {translation["DATE_FROM"]?.[language]}
             </label>
             <input
               type="date"
@@ -165,7 +164,7 @@ export default function AdvancedOrdersFilters({
               htmlFor="dateTo"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["DATE_TO"]?.[language] || "Date To"}
+              {translation["DATE_TO"]?.[language]}
             </label>
             <input
               type="date"
@@ -183,7 +182,7 @@ export default function AdvancedOrdersFilters({
               htmlFor="userSearch"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["USER_SEARCH"]?.[language] || "User Search"}
+              {translation["USER_SEARCH"]?.[language]}
             </label>
             <input
               type="text"
@@ -191,8 +190,7 @@ export default function AdvancedOrdersFilters({
               value={filters.userSearch || ""}
               onChange={(e) => handleFilterChange("userSearch", e.target.value)}
               placeholder={
-                translation["SEARCH_BY_CUSTOM_ID_OR_EMAIL"]?.[language] ||
-                "Search by Custom ID or Email"
+                translation["SEARCH_BY_CUSTOM_ID_OR_EMAIL"]?.[language]
               }
               className="block w-full rounded-none border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm"
             />
@@ -204,7 +202,7 @@ export default function AdvancedOrdersFilters({
               htmlFor="productType"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["PRODUCT_TYPE"]?.[language] || "Product Type"}
+              {translation["PRODUCT_TYPE"]?.[language]}
             </label>
             <select
               id="productType"
@@ -215,8 +213,7 @@ export default function AdvancedOrdersFilters({
               className="block w-full rounded-none border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-sm"
             >
               <option value="">
-                {translation["ALL_PRODUCT_TYPES"]?.[language] ||
-                  "All Product Types"}
+                {translation["ALL_PRODUCT_TYPES"]?.[language]}
               </option>
               {PRODUCT_TYPES.map((type) => (
                 <option key={type} value={type}>
@@ -232,7 +229,7 @@ export default function AdvancedOrdersFilters({
               htmlFor="status"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {translation["STATUS"]?.[language] || "Status"}
+              {translation["STATUS"]?.[language]}
             </label>
             <select
               id="status"
@@ -241,7 +238,7 @@ export default function AdvancedOrdersFilters({
               className="block w-full rounded-none border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-sm"
             >
               <option value="">
-                {translation["ALL_STATUSES"]?.[language] || "All Statuses"}
+                {translation["ALL_STATUSES"]?.[language]}
               </option>
               {ORDER_STATUSES.map((status) => (
                 <option key={status} value={status}>

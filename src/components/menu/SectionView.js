@@ -1,15 +1,18 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useEffect, useMemo, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { classNames } from "./menuUtils";
 
 export default function SectionView({
-  eyebrow = "Business",
+  eyebrow,
   title,
   description,
   modules = [],
 }) {
+  const t = useTranslations("Common");
   const [activeModuleId, setActiveModuleId] = useState(modules[0]?.id);
 
   const activeModule = useMemo(() => {
@@ -37,7 +40,7 @@ export default function SectionView({
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="min-w-0">
               <p className="font-medium text-[11px] uppercase tracking-[0.22em] text-[#9f8d7c]">
-                {eyebrow}
+                {eyebrow || t("business")}
               </p>
 
               <h1 className="mt-3  text-[36px] leading-[0.98] tracking-[-0.045em] text-[#33261d] sm:text-[48px]">
@@ -120,7 +123,7 @@ export default function SectionView({
 
           <div className="mt-6 lg:hidden">
             <label className="mb-2 block font-medium text-[10px] uppercase tracking-[0.18em] text-[#8f7b69]">
-              Section
+              {t("section")}
             </label>
 
             <div className="relative">

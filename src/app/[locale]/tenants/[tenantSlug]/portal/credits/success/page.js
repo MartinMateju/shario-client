@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
@@ -7,6 +9,7 @@ import { useEffect } from "react";
 import { useRouter } from "@/i18n/navigation";
 
 export default function LegacyCreditSuccessRedirect() {
+  const t = useTranslations("CreditPurchaseStatus");
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryString = searchParams?.toString();
@@ -23,7 +26,7 @@ export default function LegacyCreditSuccessRedirect() {
     <main
       className="flex min-h-[72vh] items-center justify-center bg-[var(--tenant-background)] text-[var(--tenant-text)] px-4"
       role="status"
-      aria-label="Verifying credit purchase"
+      aria-label={t("loading")}
     >
       <ArrowPathIcon
         className="h-7 w-7 animate-spin text-[var(--tenant-accent-link)]"

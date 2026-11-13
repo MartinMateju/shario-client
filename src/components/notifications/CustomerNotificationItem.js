@@ -71,8 +71,9 @@ export default function CustomerNotificationItem({
     notification,
     locale,
     t("item.untitled"),
+    t,
   );
-  const message = getCustomerNotificationMessage(notification, locale);
+  const message = getCustomerNotificationMessage(notification, locale, "", t);
   const actionHref = getCustomerNotificationActionHref(
     notification,
     currentLocationReference,

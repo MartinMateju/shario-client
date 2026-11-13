@@ -16,10 +16,15 @@ const mocks = vi.hoisted(() => ({
   credits: vi.fn(),
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => (key) => key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+      useTranslations: () => (key) => key,
+    }))(...args),
+  );
+});
 vi.mock("react-redux", () => ({ useSelector: (selector) => selector() }));
 vi.mock("@/lib/features/auth/authSlice", () => ({
   selectCurrentTenant: () => mocks.tenant,

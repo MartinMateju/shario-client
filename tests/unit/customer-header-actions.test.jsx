@@ -25,10 +25,15 @@ const mocks = vi.hoisted(() => ({
   portalAppearance: {},
   publicNavigation: [],
 }));
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => (key) => key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+      useTranslations: () => (key) => key,
+    }))(...args),
+  );
+});
 vi.mock("@/i18n/navigation", () => ({
   Link: ({ children, href, onClick, ...props }) => (
     <a

@@ -83,7 +83,7 @@ describe("customer directory statistics", () => {
   it("preserves real zero spending and a supplied booking date", () => {
     renderCustomer({ totalSpent: 0, lastBookingAt: "2025-01-02T12:00:00Z" });
     const cells = within(screen.getAllByRole("row")[1]).getAllByRole("cell");
-    expect(cells[5]).toHaveTextContent("2 Jan 2025");
+    expect(cells[5]).toHaveTextContent("Jan 2, 2025");
     expect(cells[6]).toHaveTextContent("0");
     expect(cells[6]).not.toHaveTextContent("—");
   });
@@ -108,7 +108,7 @@ describe("customer directory statistics", () => {
     ).toBe(expected);
     expect(
       within(mobile).getByText("columns.lastBooking").nextElementSibling,
-    ).toHaveTextContent("2 Jan 2025");
+    ).toHaveTextContent("Jan 2, 2025");
   });
 
   it("keeps explicit unknown metrics private even when legacy values remain", () => {
@@ -209,7 +209,7 @@ describe("customer directory statistics", () => {
       reader.onerror = () => reject(reader.error);
       reader.readAsText(blob);
     });
-    expect(content).toContain("2 Jan 2025,CZK 123.45 · €25,");
+    expect(content).toContain('"Jan 2, 2025",CZK 123.45 · €25,');
     expect(content).not.toContain("999");
     expect(content).toContain(",—,—,status.inactive");
   });

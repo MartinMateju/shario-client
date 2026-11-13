@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { formatMakerId } from "@/utils/memberIdentity";
 
 export const CUSTOMER_IMPORT_FIELDS = Object.freeze([
@@ -554,12 +556,7 @@ export const validateCustomerImportFile = (file) => {
 };
 
 export const getImportErrorMessage = (error, fallback) =>
-  error?.data?.message ??
-  error?.data?.error?.message ??
-  error?.data?.error ??
-  error?.error ??
-  error?.message ??
-  fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export const triggerBlobDownload = (blob, fileName) => {
   if (

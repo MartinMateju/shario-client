@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
   Dialog,
   DialogDescription,
@@ -27,42 +28,6 @@ import { getSafeTenantNextPath } from "@/utils/tenantAuthRouting";
 
 const classNames = (...classes) => classes.filter(Boolean).join(" ");
 
-const COPY = {
-  cs: {
-    close: "Zavřít ověření",
-    continue: "Pokračovat",
-    description: "Zadejte šestimístný kód, který jsme poslali na váš e-mail.",
-    digit: (position) => `Číslice ověřovacího kódu ${position}`,
-    expired: "Kód je neplatný nebo jeho platnost vypršela. Pošlete si nový.",
-    generic: "Kód se nepodařilo ověřit. Zkuste to prosím znovu.",
-    rateLimited: "Proběhlo příliš mnoho pokusů. Zkuste to znovu později.",
-    resend: "Poslat nový kód",
-    resendCountdown: (seconds) => `Nový kód můžete poslat za ${seconds} s`,
-    resendError: "Nový kód se nepodařilo poslat. Zkuste to prosím znovu.",
-    resending: "Odesíláme…",
-    resent: "Nový kód jsme poslali na váš e-mail.",
-    title: "Zkontrolujte svůj e-mail",
-    verifying: "Ověřujeme…",
-  },
-  en: {
-    close: "Close verification",
-    continue: "Continue",
-    description: "Enter the six-digit code we sent to your email address.",
-    digit: (position) => `Verification code digit ${position}`,
-    expired: "This code is invalid or has expired. Request a new one.",
-    generic: "We could not verify the code. Please try again.",
-    rateLimited: "There have been too many attempts. Please try again later.",
-    resend: "Send a new code",
-    resendCountdown: (seconds) =>
-      `You can send a new code in ${seconds} seconds`,
-    resendError: "We could not send a new code. Please try again.",
-    resending: "Sending…",
-    resent: "We sent a new code to your email address.",
-    title: "Check your email",
-    verifying: "Verifying…",
-  },
-};
-
 const getErrorMessage = (error, copy) => {
   if (
     !error?.status ||
@@ -89,7 +54,7 @@ export default function OTPModal({
   tenantSlug = "",
 }) {
   const locale = useLocale();
-  const copy = COPY[locale === "cs" ? "cs" : "en"];
+  const copy = useLegacyCopy("otp");
   const { tenant } = usePublicTenant();
   const tenantTheme = getPublicTenantTheme(tenant);
   const [verifyOtp, verifyState] = useVerifyOtpMutation();
@@ -178,7 +143,7 @@ export default function OTPModal({
       await requestReset({
         tenantSlug,
         email,
-        locale: locale === "cs" ? "cs" : "en",
+        locale,
       }).unwrap();
       setOtp("");
       setResetKey((value) => value + 1);

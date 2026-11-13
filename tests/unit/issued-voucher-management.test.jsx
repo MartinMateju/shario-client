@@ -178,7 +178,7 @@ describe("issued voucher management", () => {
       dialog.getByRole("button", { name: "Create", exact: true }),
     );
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Delivery address rejected",
+      "The voucher could not be issued. Please try again.",
     );
     expect(recipient).toHaveValue("recipient@example.com");
     expect(mocks.create.mock.calls[0][0]).toMatchObject({
@@ -350,7 +350,9 @@ describe("issued voucher management", () => {
     );
     expect(dialog.getByText(/holder can still redeem it/)).toBeVisible();
     await user.click(dialog.getByRole("button", { name: "Archive code" }));
-    expect(await screen.findByRole("alert")).toHaveTextContent("Retry archive");
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "The code could not be updated. Please try again.",
+    );
     await user.click(dialog.getByRole("button", { name: "Archive code" }));
     await waitFor(() =>
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),

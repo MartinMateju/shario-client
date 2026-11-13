@@ -1,3 +1,5 @@
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 const pad = (value) => String(value).padStart(2, "0");
 
 export const getEntityId = (value) => {
@@ -338,7 +340,7 @@ export const normalizeAiPlanningResult = (value) => {
 };
 
 export const getMutationError = (error, fallback) =>
-  error?.data?.message || error?.data?.error || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 export const isDateOnly = (value) =>
   /^\d{4}-\d{2}-\d{2}$/.test(String(value || ""));

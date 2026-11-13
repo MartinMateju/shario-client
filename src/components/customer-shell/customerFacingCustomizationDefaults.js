@@ -111,9 +111,14 @@ const localeKey = (locale) =>
     ? "cs"
     : "en";
 
-export const getCustomerAuthCustomizationDefaults = (mode, locale) => {
+export const getCustomerAuthCustomizationDefaults = (
+  mode,
+  locale,
+  localizedDefaults,
+) => {
   const surface = mode === "register" ? "register" : "login";
-  return CUSTOMER_FACING_CUSTOMIZATION_DEFAULTS[localeKey(locale)][surface];
+  return (localizedDefaults ||
+    CUSTOMER_FACING_CUSTOMIZATION_DEFAULTS[localeKey(locale)])[surface];
 };
 
 export const getCustomerPortalCustomizationDefaults = (locale) =>
@@ -123,9 +128,12 @@ export const getPublicWebsitePageCustomizationDefaults = ({
   page,
   locale,
   studio = "",
+  localizedDefaults,
 }) => {
-  const website =
-    CUSTOMER_FACING_CUSTOMIZATION_DEFAULTS[localeKey(locale)].website;
+  const website = (
+    localizedDefaults ||
+    CUSTOMER_FACING_CUSTOMIZATION_DEFAULTS[localeKey(locale)]
+  ).website;
   const definition = website[page] || website.home;
   const context = { studio: String(studio || "").trim() };
 

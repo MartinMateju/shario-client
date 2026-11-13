@@ -1,3 +1,5 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
+import { getLocalizedPublicTenantText } from "@/components/public-tenant/publicTenant.config";
 import {
   OPEN_STUDIO_BOOKING_MODE,
   PRODUCT_KIND,
@@ -10,7 +12,7 @@ import {
 const getProductId = (product) =>
   String(product?.id ?? product?._id ?? "").trim();
 
-const getLanguageLocale = (language) => (language === "CZ" ? "cs-CZ" : "en-GB");
+const getLanguageLocale = (language) => resolveIntlLocale(language);
 
 const BOOKING_AVAILABILITY_COPY = Object.freeze({
   EN: Object.freeze({
@@ -100,9 +102,10 @@ export const getBookingAvailabilityPresentation = ({
   isLoading = false,
   language = "EN",
   reason,
+  copy,
 } = {}) => {
   const localizedCopy =
-    BOOKING_AVAILABILITY_COPY[language === "CZ" ? "CZ" : "EN"];
+    copy || BOOKING_AVAILABILITY_COPY[language === "CZ" ? "CZ" : "EN"];
 
   if (isLoading) return { ...localizedCopy.loading, tone: "loading" };
   if (available) return { ...localizedCopy.available, tone: "available" };
@@ -114,7 +117,8 @@ export const getBookingAvailabilityPresentation = ({
   };
 };
 
-export const formatBookingGuestCount = (guests, language) => {
+export const formatBookingGuestCount = (guests, language, copy) => {
+  if (copy) return copy.guestCount(guests);
   if (language === "CZ") {
     const noun = guests >= 2 && guests <= 4 ? "osoby" : "osob";
     return `${guests} ${noun}`;
@@ -157,13 +161,11 @@ export const formatBookingDurationSummary = (
   if (hours && remainingMinutes) return `${hours} h ${remainingMinutes} min`;
   if (remainingMinutes) return `${remainingMinutes} min`;
 
-  if (language === "CZ") {
-    const noun =
-      hours === 1 ? "hodina" : hours >= 2 && hours <= 4 ? "hodiny" : "hodin";
-    return `${hours} ${noun}`;
-  }
-
-  return `${hours} ${hours === 1 ? "hour" : "hours"}`;
+  return new Intl.NumberFormat(getLanguageLocale(language), {
+    style: "unit",
+    unit: "hour",
+    unitDisplay: "long",
+  }).format(hours);
 };
 
 export const formatBookingSummary = ({
@@ -172,6 +174,7 @@ export const formatBookingSummary = ({
   endTime,
   guests = 1,
   language = "EN",
+  copy,
 } = {}) => {
   if (!startTime || !endTime) return "—";
 
@@ -181,7 +184,7 @@ export const formatBookingSummary = ({
   ].filter(Boolean);
 
   if (Number(guests) > 1) {
-    parts.push(formatBookingGuestCount(Number(guests), language));
+    parts.push(formatBookingGuestCount(Number(guests), language, copy));
   }
 
   return parts.join(" · ");
@@ -235,16 +238,9 @@ export const getLocalizedBookingProductName = (
   language = "EN",
   { fallback = "" } = {},
 ) => {
-  const name = product?.name;
-  if (typeof name === "string") return name.trim() || fallback;
-
-  const keys = language === "CZ" ? ["CZ", "cs", "cz"] : ["EN", "en"];
-  for (const key of keys) {
-    const value = name?.[key];
-    if (typeof value === "string" && value.trim()) return value.trim();
-  }
-
-  return fallback;
+  // Product names are tenant-authored content. Keep the product identifiable
+  // when the tenant has not supplied that language; only system copy is strict.
+  return getLocalizedPublicTenantText(product?.name, language, fallback);
 };
 
 /**

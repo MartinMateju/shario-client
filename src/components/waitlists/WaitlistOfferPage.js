@@ -1,5 +1,8 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import {
   ArrowPathIcon,
   ClockIcon,
@@ -68,7 +71,7 @@ export const buildWaitlistOfferLoginHref = () => {
 const formatDateTime = (value, locale) => {
   const date = new Date(value || "");
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -122,7 +125,9 @@ export default function WaitlistOfferPage() {
         if (active) setOffer(inspected);
       } catch (requestError) {
         if (active) {
-          setError(requestError?.data?.message || t("errors.invalid"));
+          setError(
+            getLocalizedApiErrorMessage(requestError, t("errors.invalid")),
+          );
         }
       }
     };
@@ -147,11 +152,7 @@ export default function WaitlistOfferPage() {
       }
       window.location.assign(url);
     } catch (requestError) {
-      setError(
-        requestError?.data?.message ||
-          requestError?.message ||
-          t("errors.checkout"),
-      );
+      setError(getLocalizedApiErrorMessage(requestError, t("errors.checkout")));
     }
   };
 
@@ -172,11 +173,7 @@ export default function WaitlistOfferPage() {
       }
       window.location.assign(url);
     } catch (requestError) {
-      setError(
-        requestError?.data?.message ||
-          requestError?.message ||
-          t("errors.checkout"),
-      );
+      setError(getLocalizedApiErrorMessage(requestError, t("errors.checkout")));
     }
   };
 
@@ -253,7 +250,7 @@ export default function WaitlistOfferPage() {
                   {formatMajorCurrencyAmount(
                     offer.price.amount,
                     offer.price.currency,
-                    locale === "cs" ? "cs-CZ" : "en-GB",
+                    resolveIntlLocale(locale),
                   )}
                 </p>
                 <p className="mt-1 text-[10px] leading-4 text-[var(--tenant-muted-text)]">

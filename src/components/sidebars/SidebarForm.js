@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import {
   Transition,
   TransitionChild,
@@ -29,7 +30,7 @@ import { resolveIntlLocale } from "@/i18n/formatting";
 import { resolveRolloutEligibleLocaleCode } from "@/i18n/locales";
 import { formatMajorCurrencyAmount } from "@/utils/money";
 import MenuBox from "../listboxes/MenuBox";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { getCheckoutErrorMessage } from "@/lib/features/checkout/checkout.errors";
 import { getValidatedTenantSlugParam } from "@/utils/tenantRouting";
 import { getSafeCheckoutUrl } from "@/utils/checkoutUrl";
@@ -91,6 +92,8 @@ export default function SidebarForm({
   callback,
   products = [],
 }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const publicTenant = usePublicTenant();
   const tenantTheme = useMemo(
     () =>
@@ -231,10 +234,7 @@ export default function SidebarForm({
       }
 
       if (!tenantSlug) {
-        setErrMsg(
-          translation["INVALID_TENANT_CHECKOUT"]?.[language] ||
-            "This studio checkout link is invalid.",
-        );
+        setErrMsg(translation["INVALID_TENANT_CHECKOUT"]?.[language]);
         return;
       }
 
@@ -278,10 +278,7 @@ export default function SidebarForm({
 
       const checkoutUrl = getSafeCheckoutUrl(result?.url);
       if (!checkoutUrl) {
-        setErrMsg(
-          translation["CHECKOUT_REDIRECT_MISSING"]?.[language] ||
-            "The payment page could not be opened. Please try again.",
-        );
+        setErrMsg(translation["CHECKOUT_REDIRECT_MISSING"]?.[language]);
         return;
       }
 
@@ -292,8 +289,7 @@ export default function SidebarForm({
           error: err,
           language,
           translations: translation,
-          fallback:
-            translation["ERROR_GENERIC"]?.[language] || "Something went wrong",
+          fallback: translation["ERROR_GENERIC"]?.[language],
         }),
       );
     }
@@ -378,7 +374,9 @@ export default function SidebarForm({
                           )}
                           onClick={onClose}
                         >
-                          <span className="sr-only">Close panel</span>
+                          <span className="sr-only">
+                            {legacyText("SidebarForm_Close_panel_fa0b7")}{" "}
+                          </span>
                           <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
@@ -485,9 +483,9 @@ export default function SidebarForm({
                               <span className="text-black/60">
                                 {isPostageAvailable
                                   ? `(+${formatMoney(configuredPostageFee)})`
-                                  : language === "CZ"
-                                    ? "(pro tuto měnu zatím není dostupné)"
-                                    : "(not available for this currency yet)"}
+                                  : legacyText(
+                                      "SidebarForm__not_available_for_this_currency_yet_8de74",
+                                    )}
                               </span>
                             </p>
                           </div>
@@ -509,8 +507,7 @@ export default function SidebarForm({
                               </p>
                               {isAuthenticated && (
                                 <span className="text-xs text-black/60 border border-gray-300 bg-white/60 px-3 py-1 rounded-full ">
-                                  {translation["PRE_FILLED"]?.[language] ||
-                                    "Pre-filled from your account"}
+                                  {translation["PRE_FILLED"]?.[language]}
                                 </span>
                               )}
                             </div>
@@ -719,7 +716,8 @@ export default function SidebarForm({
                                     TEXT_MUTED,
                                   )}
                                 >
-                                  Poštovné: {formatMoney(shippingFee)}
+                                  {legacyText("SidebarForm_Postage_31c92")}{" "}
+                                  {formatMoney(shippingFee)}
                                 </div>
                                 <div
                                   className={classNames(
@@ -727,7 +725,8 @@ export default function SidebarForm({
                                     ACCENT,
                                   )}
                                 >
-                                  Celkem: {formatMoney(totalPrice)}
+                                  {legacyText("SidebarForm_Total_d8e71")}{" "}
+                                  {formatMoney(totalPrice)}
                                 </div>
                               </div>
                             </div>

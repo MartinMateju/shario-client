@@ -1,3 +1,4 @@
+import { normalizeLocaleCode } from "@/i18n/locales";
 import {
   formatMajorCurrencyAmount,
   roundMajorCurrencyAmount,
@@ -130,42 +131,36 @@ export const formatCartCurrencyAmount = (
   }
   return formatMajorCurrencyAmount(value, normalizedCurrency, locale);
 };
-const canonicalOpenStudioNames = {
-  EN: new Map([
-    ["rezervace studia", "Studio booking"],
-    ["otevřený ateliér", "Open Studio"],
-  ]),
-  CZ: new Map([
-    ["studio booking", "Rezervace studia"],
-    ["open studio", "Otevřený ateliér"],
-  ]),
-};
-const localizeCanonicalProductName = (value, item, language) => {
-  const trimmedValue = typeof value === "string" ? value.trim() : "";
-  if (!trimmedValue || !isTimedStudioCartItem(item)) return trimmedValue;
-  return (
-    canonicalOpenStudioNames[language]?.get(trimmedValue.toLowerCase()) ||
-    trimmedValue
-  );
-};
-export const getCartProductName = (item, language = "EN") => {
-  const normalizedLanguage = language === "CZ" ? "CZ" : "EN";
+export const getCartProductName = (item, locale = "en", copy = {}) => {
+  const normalizedLocale = normalizeLocaleCode(locale) || "en";
   const name = item?.product?.name;
-  const keys = normalizedLanguage === "CZ" ? ["CZ", "cs", "cz"] : ["EN", "en"];
-  for (const key of keys) {
-    const value = name?.[key];
-    if (typeof value === "string" && value.trim()) return value.trim();
-  }
-  const candidates = [item?.title, name, item?.product?.title];
+  const aliases =
+    normalizedLocale === "cs"
+      ? ["cs", "CZ", "CS", "cz"]
+      : [normalizedLocale, normalizedLocale.toUpperCase()];
+  const candidates = [
+    ...aliases.map((key) => name?.[key]),
+    item?.title,
+    typeof name === "string" ? name : "",
+    item?.product?.title,
+    name?.en,
+    name?.EN,
+    name?.cs,
+    name?.CZ,
+  ];
   for (const candidate of candidates) {
-    const localizedName = localizeCanonicalProductName(
-      candidate,
-      item,
-      normalizedLanguage,
-    );
-    if (localizedName) return localizedName;
+    if (typeof candidate !== "string" || !candidate.trim()) continue;
+    const value = candidate.trim();
+    if (isTimedStudioCartItem(item)) {
+      const canonical = value.toLowerCase();
+      if (["studio booking", "rezervace studia"].includes(canonical))
+        return copy.studioBooking || "";
+      if (["open studio", "otevřený ateliér"].includes(canonical))
+        return copy.openStudio || "";
+    }
+    return value;
   }
-  return normalizedLanguage === "CZ" ? "Rezervace studia" : "Studio booking";
+  return copy.studioBooking || "";
 };
 export const getCartCopy = (language = "EN") =>
   language === "CZ"

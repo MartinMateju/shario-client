@@ -72,7 +72,7 @@
     "day": {
       "overlapInfo": "Boekingen kunnen elkaar overlappen. Beschikbaarheid wordt voor elke activiteit apart berekend.",
       "max": "max {count}",
-      "places": "{count} plekken",
+      "places": "{count, plural, one {# plek} other {# plekken}}",
       "capacity": "Capaciteit",
       "publicLane": "Openbare boeking {number}"
     },
@@ -95,6 +95,9 @@
       "WORKSTATION": "Werkplekken",
       "SHARED_TABLE": "Gedeelde tafels",
       "GENERAL": "Algemene capaciteit"
+    },
+    "errors": {
+      "load": "De agenda kon niet worden geladen. Probeer het opnieuw."
     }
   },
   "Metadata": {
@@ -108,7 +111,36 @@
     "back": "Terug",
     "next": "Volgende",
     "close": "Sluiten",
-    "optional": "Optioneel"
+    "optional": "Optioneel",
+    "loading": "Laden",
+    "preparingSpace": "Je ruimte wordt voorbereid",
+    "signingOut": "Je wordt afgemeld…",
+    "checkingPlatformAccess": "Toegang tot het platform controleren…",
+    "redirectingAccount": "Je wordt naar het juiste account doorgestuurd…",
+    "section": "Sectie",
+    "business": "Bedrijf",
+    "gallery": {
+      "image": "Afbeelding van de les",
+      "previous": "Vorige afbeelding",
+      "next": "Volgende afbeelding",
+      "thumbnails": "Miniaturen van lesafbeeldingen",
+      "view": "Afbeelding {number} van {count} bekijken",
+      "imageAlt": "{name} — afbeelding {number}",
+      "thumbnailAlt": "{name} — miniatuur {number}"
+    },
+    "internalAdmin": {
+      "eyebrow": "shario.io intern",
+      "title": "Platformbeheer",
+      "description": "Dit adres is gereserveerd voor het operationele team van shario.io. Het platformbeheer staat los van elke werkruimte."
+    },
+    "selectOption": "Selecteer een optie",
+    "noOptions": "Geen opties",
+    "search": "Zoeken",
+    "pagination": "Paginering",
+    "previousPage": "Vorige pagina",
+    "nextPage": "Volgende pagina",
+    "sharioHome": "Shario startpagina",
+    "sharioDashboard": "shario.io-dashboard"
   },
   "Dashboard": {
     "sidebarLabel": "Studiobeheer",
@@ -135,7 +167,7 @@
     "greetingAfternoon": "Goedemiddag, {name}",
     "greetingEvening": "Goedenavond, {name}",
     "subheading": "Dit gebeurt er vandaag in je studio.",
-    "setupCenter": "Launch Center",
+    "setupCenter": "Startcentrum",
     "openSetupCenter": "Launch Center openen",
     "launchCenterRequiredProgress": "{completed} van {total} punten op de lanceringschecklist voltooid",
     "continueSetup": "Doorgaan met lancering · {percentage}%",
@@ -171,7 +203,7 @@
     },
     "nav": {
       "overview": "Overzicht",
-      "setup": "Launch Center",
+      "setup": "Startcentrum",
       "calendar": "Agenda",
       "bookings": "Boekingen",
       "allBookings": "Alle boekingen",
@@ -201,7 +233,7 @@
     },
     "routeTitles": {
       "workspace": "Werkruimte",
-      "setup": "Launch Center",
+      "setup": "Startcentrum",
       "ai": "Studio-AI",
       "calendar": "Agenda",
       "bookings": "Boekingen",
@@ -396,7 +428,7 @@
         }
       },
       "opportunity": {
-        "eyebrow": "Business Advisor",
+        "eyebrow": "Bedrijfsadviseur",
         "none": "Er is geen directe operationele kans gemeld.",
         "guidance": "Ik wijs hier op nuttige kansen zodra er nieuwe studiogegevens beschikbaar zijn.",
         "openAdvisor": "Adviseur openen",
@@ -841,7 +873,7 @@
     "title": "Instellingen",
     "label": "Werkruimte-instellingen",
     "items": {
-      "setup": "Launch Center",
+      "setup": "Startcentrum",
       "general": "Algemeen",
       "modules": "Modules en navigatie",
       "locations": "Locaties",
@@ -980,7 +1012,7 @@
         "dashboard": "Studiodashboard",
         "account": "Accountinstellingen",
         "preferences": "Persoonlijke voorkeuren",
-        "setupCenter": "Launch Center",
+        "setupCenter": "Startcentrum",
         "settings": "Werkruimte-instellingen",
         "bookingSite": "Openbare website bekijken",
         "bookingSiteNewTab": "Openbare website bekijken in een nieuw tabblad"
@@ -1022,7 +1054,79 @@
     "openWorkspace": "Werkruimte openen",
     "openMenu": "Menu openen",
     "closeMenu": "Menu sluiten",
-    "changeLanguage": "Taal wijzigen"
+    "changeLanguage": "Taal wijzigen",
+    "adminNavigation": {
+      "sections": {
+        "core": {
+          "description": "Boekingen, kalender en dagelijkse werkzaamheden."
+        },
+        "users": {
+          "description": "Klanten, teamleden en geschiedenis."
+        },
+        "operations": {
+          "description": "Voorraad, rapporten, taken en operationeel overzicht."
+        },
+        "sales": {
+          "description": "Producten, bestellingen, betalingen, waardebonnen en verkoop."
+        },
+        "management": {
+          "description": "Systeem, instellingen, locaties, rechten en integraties."
+        }
+      },
+      "items": {
+        "bookings": {
+          "description": "Beheer boekingen, gasten, betalingen en wijzigingen."
+        },
+        "calendar": {
+          "description": "Capaciteit, bezetting, cursussen en studioplanning."
+        },
+        "customers": {
+          "description": "Beheer klanten, contacten, tegoeden en geschiedenis."
+        },
+        "team": {
+          "label": "Mijn team",
+          "description": "Beheer teamleden, rollen en interne toegang."
+        },
+        "inventory": {
+          "description": "Materialen, voorraad, mutaties en voorraadoverzicht."
+        },
+        "suppliers": {
+          "description": "Contacten, aankopen en leveranciersgeschiedenis."
+        },
+        "statistics": {
+          "description": "Statistieken, prestatieoverzicht en operationele cijfers."
+        },
+        "products": {
+          "description": "Cursussen, workshops, waardebonnen en boekbare producten."
+        },
+        "orders": {
+          "description": "Bestellingen, maatwerk, aanvragen en betalingen."
+        },
+        "vouchers": {
+          "description": "Cadeaubonnen, inwisselingen en geschiedenis."
+        },
+        "general": {
+          "label": "Systeem",
+          "description": "Basisinstellingen van de app en intern beheer."
+        },
+        "public-site": {
+          "description": "Huisstijl, inhoud, inloggen en publicatie van de studiowebsite."
+        },
+        "locations": {
+          "description": "Beheer studio’s, capaciteit, adressen en bedrijfsregels."
+        },
+        "roles": {
+          "description": "Rollen, toegang en beveiligingsregels."
+        },
+        "integrations": {
+          "label": "Integraties",
+          "description": "Stripe, e-mails, kalenders en externe diensten."
+        }
+      },
+      "label": "Beheernavigatie",
+      "module": "Module",
+      "openModule": "Module openen"
+    }
   },
   "PlatformAuth": {
     "login": {
@@ -1357,7 +1461,57 @@
     "eyebrow": "Welkom bij",
     "description": "Ontdek de studio, beheer je boekingen en houd alles rond je account op één plek.",
     "openPortal": "Klantenportaal openen",
-    "signIn": "Inloggen"
+    "signIn": "Inloggen",
+    "sections": {
+      "waysToVisit": {
+        "eyebrow": "Ontdek de studio",
+        "title": "Mogelijkheden voor je bezoek"
+      },
+      "featured": {
+        "eyebrow": "Uitgelicht",
+        "title": "Uitgelicht in de studio"
+      },
+      "about": {
+        "eyebrow": "Ons verhaal",
+        "title": "Over de studio"
+      },
+      "gallery": {
+        "eyebrow": "Een kijkje in de studio",
+        "title": "Galerij"
+      },
+      "testimonials": {
+        "eyebrow": "Ervaringen uit onze gemeenschap",
+        "title": "Wat klanten zeggen"
+      },
+      "locations": {
+        "eyebrow": "Kom langs",
+        "title": "Onze locaties"
+      },
+      "team": {
+        "eyebrow": "De mensen achter de studio",
+        "title": "Maak kennis met het team"
+      },
+      "faq": {
+        "eyebrow": "Goed om te weten",
+        "title": "Veelgestelde vragen"
+      },
+      "explore": "Ontdekken",
+      "view": "Details bekijken",
+      "contact": "Contact opnemen met de studio",
+      "noLocation": "Locatiegegevens verschijnen hier zodra ze zijn toegevoegd.",
+      "faqCards": {
+        "book": "Boekingen en beschikbaarheid",
+        "courses": "Cursussen en workshops",
+        "help": "Hulp bij de studio"
+      },
+      "nav": {
+        "book": "Een studio boeken",
+        "courses": "Cursussen",
+        "memberships": "Lidmaatschappen",
+        "vouchers": "Cadeaubonnen",
+        "help": "Hulp"
+      }
+    }
   },
   "PublicSiteNotFound": {
     "brandLabel": "Maak ruimte voor meer.",
@@ -1623,6 +1777,104 @@
       "previous": "Vorige pagina",
       "next": "Volgende pagina",
       "summary": "{total, plural, one {# melding} other {# meldingen}} · pagina {page} van {pages}"
+    },
+    "events": {
+      "booking_created": {
+        "title": "Boeking bevestigd",
+        "message": "Je boeking is bevestigd. Open de boeking voor de details."
+      },
+      "booking_cancelled": {
+        "title": "Boeking geannuleerd",
+        "message": "Je boeking is geannuleerd."
+      },
+      "booking_rescheduled": {
+        "title": "Boeking verplaatst",
+        "message": "Je boeking is verplaatst naar een ander tijdstip. Open de boeking voor de bijgewerkte details."
+      },
+      "payment_refunded": {
+        "title": "Betaling terugbetaald",
+        "message": "Er is een terugbetaling geregistreerd. Open de betaling voor de details."
+      },
+      "waitlist_joined": {
+        "title": "Toegevoegd aan de wachtlijst",
+        "message": "Je bent toegevoegd aan de wachtlijst."
+      },
+      "waitlist_offered": {
+        "title": "Er is een plek beschikbaar",
+        "message": "Er is een plek vrijgekomen. Open het aanbod voor de details en de vervaldatum."
+      },
+      "waitlist_expired": {
+        "title": "Aanbod van de wachtlijst verlopen",
+        "message": "Je aanbod van de wachtlijst is verlopen."
+      },
+      "waitlist_withdrawn": {
+        "title": "Verwijderd van de wachtlijst",
+        "message": "Je inschrijving op de wachtlijst is ingetrokken."
+      },
+      "waitlist_cancelled": {
+        "title": "Wachtlijstinschrijving geannuleerd",
+        "message": "De beheerder van de ruimte heeft je inschrijving op de wachtlijst geannuleerd."
+      },
+      "waitlist_confirmed": {
+        "title": "Wachtlijstboeking bevestigd",
+        "message": "Je plek is bevestigd. Open de boeking voor de details."
+      },
+      "waitlist_refunded": {
+        "title": "Wachtlijstbetaling terugbetaald",
+        "message": "Er is een terugbetaling voor je wachtlijstboeking geregistreerd."
+      },
+      "membership_activated": {
+        "title": "Lidmaatschap geactiveerd",
+        "message": "Je lidmaatschap is nu actief."
+      },
+      "membership_renewed": {
+        "title": "Lidmaatschap verlengd",
+        "message": "Je lidmaatschap is verlengd."
+      },
+      "membership_assigned": {
+        "title": "Lidmaatschap toegewezen",
+        "message": "Er is een lidmaatschap aan je account toegevoegd."
+      },
+      "membership_payment_failed": {
+        "title": "Betaling voor lidmaatschap mislukt",
+        "message": "De betaling voor je lidmaatschap is mislukt. Open je lidmaatschap om de volgende stappen te bekijken."
+      },
+      "membership_cancellation_scheduled": {
+        "title": "Beëindiging van lidmaatschap gepland",
+        "message": "Je lidmaatschap wordt beëindigd. Open het lidmaatschap om de einddatum te bekijken."
+      },
+      "membership_cancelled": {
+        "title": "Lidmaatschap beëindigd",
+        "message": "Je lidmaatschap is beëindigd."
+      },
+      "membership_resumed": {
+        "title": "Lidmaatschap loopt door",
+        "message": "Je geplande opzegging is ingetrokken. Je lidmaatschap wordt weer automatisch verlengd."
+      },
+      "credits_purchased": {
+        "title": "Tegoed gekocht",
+        "message": "Je gekochte tegoed is beschikbaar in je account."
+      },
+      "credits_added": {
+        "title": "Tegoed toegevoegd",
+        "message": "Er is tegoed aan je account toegevoegd. Open je saldo voor de details."
+      },
+      "credits_used": {
+        "title": "Tegoed gebruikt",
+        "message": "Er is tegoed van je account gebruikt. Open je saldo voor de details."
+      },
+      "credits_refunded": {
+        "title": "Tegoed teruggestort",
+        "message": "Er is tegoed teruggestort op je account."
+      },
+      "voucher_redeemed": {
+        "title": "Cadeaubon ingewisseld",
+        "message": "Je cadeaubon is ingewisseld."
+      },
+      "system_notice": {
+        "title": "Accountupdate",
+        "message": "Er is een update voor je account. Open de melding voor de details."
+      }
     }
   },
   "WorkspaceNotifications": {
@@ -1697,13 +1949,87 @@
       "previous": "Vorige",
       "next": "Volgende",
       "summary": "{total, plural, one {# melding} other {# meldingen}} · pagina {page} van {pages}"
+    },
+    "events": {
+      "custom_order_due_soon": {
+        "title": "Maatwerkorder nadert de deadline",
+        "message": "De deadline van een maatwerkorder nadert. Open de order om de details te bekijken."
+      },
+      "custom_order_overdue": {
+        "title": "Maatwerkorder te laat",
+        "message": "De deadline van een maatwerkorder is verstreken. Open de order om de volgende stappen te bekijken."
+      },
+      "booking_created": {
+        "title": "Nieuwe boeking",
+        "message": "Er is een nieuwe boeking gemaakt. Open de boeking voor de details."
+      },
+      "booking_cancelled": {
+        "title": "Boeking geannuleerd",
+        "message": "Er is een boeking geannuleerd. Open de boeking voor de details."
+      },
+      "booking_rescheduled": {
+        "title": "Boeking verplaatst",
+        "message": "Er is een boeking verplaatst. Open de boeking voor de bijgewerkte details."
+      },
+      "payment_failed": {
+        "title": "Betaling mislukt",
+        "message": "Een betaling is mislukt. Open de betaling om de volgende stappen te bekijken."
+      },
+      "payment_refunded": {
+        "title": "Betaling terugbetaald",
+        "message": "Er is een terugbetaling geregistreerd. Open de betaling voor de details."
+      },
+      "waitlist_joined": {
+        "title": "Nieuwe inschrijving op de wachtlijst",
+        "message": "Een klant heeft zich ingeschreven op de wachtlijst."
+      },
+      "task_assigned": {
+        "title": "Taak toegewezen",
+        "message": "Er is een taak aan je toegewezen. Open de taak voor de details."
+      },
+      "task_overdue": {
+        "title": "Taak te laat",
+        "message": "De deadline van een taak is verstreken. Open de taak om de volgende stappen te bekijken."
+      },
+      "inventory_low": {
+        "title": "Voorraad bijna op",
+        "message": "De voorraad van een artikel raakt op. Open het artikel om het voorraadniveau te bekijken."
+      },
+      "import_completed": {
+        "title": "Import voltooid",
+        "message": "De import is voltooid. Open de resultaten om de geïmporteerde gegevens te bekijken."
+      },
+      "import_failed": {
+        "title": "Import mislukt",
+        "message": "De import kon niet worden voltooid. Open de resultaten om de problemen te bekijken."
+      },
+      "communication_failed": {
+        "title": "Bericht niet bezorgd",
+        "message": "Een bericht kon niet worden bezorgd. Open het bericht om het probleem te bekijken."
+      },
+      "subscription_payment_failed": {
+        "title": "Betaling voor abonnement mislukt",
+        "message": "De betaling voor het werkruimteabonnement is mislukt. Controleer de factuurgegevens."
+      },
+      "subscription_payment_recovered": {
+        "title": "Betaling voor abonnement ontvangen",
+        "message": "De betaling voor het werkruimteabonnement is ontvangen."
+      },
+      "subscription_action_required": {
+        "title": "Abonnement vereist aandacht",
+        "message": "Je werkruimteabonnement vereist aandacht. Open de facturatie om de volgende stappen te bekijken."
+      },
+      "system_notice": {
+        "title": "Werkruimteupdate",
+        "message": "Er is een update voor je werkruimte. Open de melding voor de details."
+      }
     }
   },
   "PublicTenant": {
     "nav": {
       "home": "Studio",
       "portal": "Klantenportaal",
-      "book": "Open Studio",
+      "book": "Vrije werkruimte",
       "courses": "Lessen",
       "memberships": "Lidmaatschappen",
       "vouchers": "Cadeaubonnen",
@@ -1773,9 +2099,8 @@
       "website": "Website"
     },
     "unavailable": {
-      "title": "Deze optie is niet beschikbaar",
-      "description": "De studio biedt deze optie momenteel niet openbaar aan.",
-      "back": "Terug naar studio"
+      "title": "Deze ruimte is tijdelijk niet beschikbaar",
+      "description": "De ruimte kon niet worden geladen. Probeer het zo opnieuw."
     },
     "book": {
       "metadataTitle": "Open Studio boeken",
@@ -1891,7 +2216,7 @@
       "notFound": "Dit openbare aanbod is niet meer beschikbaar.",
       "backToBook": "Terug naar studioboeking",
       "backToCourses": "Terug naar lessen",
-      "bookingEyebrow": "Open Studio",
+      "bookingEyebrow": "Vrije werkruimte",
       "courseEyebrow": "Les",
       "chooseVisit": "Kies je bezoek",
       "chooseVisitDescription": "Kies een locatie en datum. De beschikbaarheid wordt vóór het afrekenen opnieuw gecontroleerd.",
@@ -2428,7 +2753,7 @@
       "attentionDetail": "{count, plural, =0 {Alles ziet er klaar uit} one {# item moet worden beoordeeld} other {# items moeten worden beoordeeld}}"
     },
     "categories": {
-      "openStudio": "Open Studio",
+      "openStudio": "Vrije werkruimte",
       "classes": "Lessen",
       "memberships": "Lidmaatschappen",
       "vouchers": "Cadeaubonnen",
@@ -2437,9 +2762,9 @@
     "sections": {
       "label": "Product- en lescategorieën",
       "openStudio": {
-        "label": "Open Studio",
+        "label": "Vrije werkruimte",
         "description": "Gedeelde of exclusieve klantboekingen.",
-        "heading": "Open Studio",
+        "heading": "Vrije werkruimte",
         "detail": "Bied gedeelde tijd aan met een capaciteitslimiet, of één exclusieve boeking voor de hele studio.",
         "action": "Open Studio toevoegen",
         "searchPlaceholder": "Open Studio zoeken…",
@@ -2529,12 +2854,12 @@
       "label": "Tabel met productcatalogus"
     },
     "types": {
-      "openStudio": "Open Studio",
+      "openStudio": "Vrije werkruimte",
       "class": "Les",
       "voucher": "Cadeaubon",
       "privateStudio": "Privéstudio",
       "course": "Les",
-      "workshop": "Open Studio",
+      "workshop": "Vrije werkruimte",
       "membership": "Lidmaatschap",
       "creditPack": "Tegoedpakket",
       "giftCard": "Cadeaukaart",
@@ -3494,7 +3819,7 @@
     },
     "features": {
       "locations": {
-        "fixed": "Tot {count, number} locaties",
+        "fixed": "{count, plural, one {Tot # locatie} other {Tot # locaties}}",
         "unlimited": "Onbeperkt aantal locaties",
         "custom": "Locatiecapaciteit op maat"
       },
@@ -4364,7 +4689,7 @@
     },
     "checksTitle": "Om deze stap af te ronden",
     "hero": {
-      "launchEyebrow": "Launch Center",
+      "launchEyebrow": "Startcentrum",
       "launchTitle": "Lanceer je studio met vertrouwen",
       "launchDescription": "Voltooi de resultaten die belangrijk zijn voor je ingeschakelde modules. Elke actie opent de echte werkruimte die je blijft gebruiken.",
       "remainingTitle": "{count, plural, =0 {Bekijk je lanceringschecklist} one {Nog # onderdeel te gaan voordat je studio klaar is} other {Nog # onderdelen te gaan voordat je studio klaar is}}",
@@ -4381,9 +4706,9 @@
       "adjustModules": "Kies studio-workflows"
     },
     "widget": {
-      "eyebrow": "Launch Center",
+      "eyebrow": "Startcentrum",
       "title": "Houd je lancering in beweging",
-      "learningEyebrow": "Launch Center",
+      "learningEyebrow": "Startcentrum",
       "learningTitle": "Blijf je studio verbeteren",
       "readyTitle": "Je studio is klaar",
       "readyDescription": "Je lanceringschecklist is voltooid. Houd Launch Center beschikbaar voor latere verbeteringen.",
@@ -4665,7 +4990,7 @@
       "create_offer": "Maak een boekbaar aanbod aan",
       "customize_public_site": "Pas openbare website aan",
       "schedule_offer": "Voeg een aankomende datum toe",
-      "practice_booking": "Start Practice Mode",
+      "practice_booking": "Oefenmodus starten",
       "configure_communications": "Stel e-mailafzender in",
       "verify_sender": "Stel beheerde afzender in",
       "invite_team": "Voeg een teamlid toe",
@@ -4799,7 +5124,7 @@
     },
     "practice": {
       "eyebrow": "Veilige simulatie",
-      "title": "Practice Mode",
+      "title": "Oefenmodus",
       "safety": "Practice Mode gebruikt alleen previews. Het maakt geen echte boekingen aan, int geen betalingen, verstuurt geen berichten, wijzigt geen capaciteit en heeft geen invloed op de boekhouding.",
       "description": "Doorloop het volledige klanttraject met een voorbeeldklant. Elke actie levert een veilige preview op, zodat je kunt bevestigen hoe de ervaring zal werken.",
       "start": "Start oefenrun",
@@ -4879,7 +5204,7 @@
       "insight": "Je volgende beste resultaat is “{step}”. Ik kan uitleggen wat er nog ontbreekt en je erdoorheen begeleiden.",
       "unavailable": "Launch Assistant is niet beschikbaar voor jouw toegangsniveau.",
       "prompt": "Help me het lanceerresultaat “{step}” te behalen. Leg uit wat er ontbreekt en begeleid me naar de juiste plek.",
-      "fallbackTitle": "Launch Assistant",
+      "fallbackTitle": "Startassistent",
       "fallbackSubtitle": "Veilige hulp op basis van je huidige lanceergereedheid",
       "fallbackDefaultQuestion": "Wat moet ik hierna afronden?",
       "fallbackSafetyTitle": "Alleen-lezen lanceerbegeleiding",
@@ -6249,7 +6574,7 @@
   "AI": {
     "eyebrow": "Commandolaag voor je studio",
     "commandCenter": {
-      "title": "AI Command Center",
+      "title": "AI-beheercentrum",
       "description": "Stel vragen over de actuele studioactiviteiten, beoordeel voorgestelde opdrachten en houd een duidelijk overzicht bij van elke AI-ondersteunde wijziging.",
       "tabs": {
         "label": "AI Command Center-weergaven",
@@ -6285,8 +6610,8 @@
       }
     },
     "assistant": {
-      "name": "Studio Assistant",
-      "title": "AI Command Center",
+      "name": "Ruimteassistent",
+      "title": "AI-beheercentrum",
       "subtitle": "Antwoorden gebaseerd op je actuele werkruimte",
       "pageDescription": "Stel operationele vragen en zet duidelijke instructies om in controleerbare studio-opdrachten.",
       "newConversation": "Nieuw gesprek",
@@ -6328,7 +6653,7 @@
       },
       "operationsInbox": {
         "eyebrow": "Geverifieerde signalen van vandaag",
-        "title": "Operations Inbox",
+        "title": "Operationele inbox",
         "count": "{count, plural, =0 {Alles in orde} one {# item} other {# items}}",
         "loading": "Geverifieerde studiosignalen van vandaag worden gecontroleerd…",
         "empty": "Niets in de huidige briefing vraagt om jouw aandacht.",
@@ -6345,7 +6670,7 @@
     },
     "businessAdvisor": {
       "eyebrow": "Onderbouwd advies",
-      "title": "Business Advisor",
+      "title": "Bedrijfsadviseur",
       "description": "Een rustig overzicht van relevante kansen en risico's in je geautoriseerde studiogegevens.",
       "loading": "Business Advisor laden…",
       "generate": "Analyseer mijn studio",
@@ -6688,27 +7013,27 @@
       },
       "features": {
         "assistant": {
-          "label": "Studio Assistant",
+          "label": "Ruimteassistent",
           "description": "Operationele vraag-en-antwoord met onderbouwde werkruimtecontext en bevestigde acties."
         },
         "communicationsCopilot": {
-          "label": "Communications Copilot",
+          "label": "Communicatieassistent",
           "description": "Stel klantgesprekken op, vertaal, transcribeer en analyseer ze."
         },
         "dailyBriefing": {
-          "label": "Daily Studio Briefing",
+          "label": "Dagelijks ruimteoverzicht",
           "description": "Een beknopt dagelijks overzicht van prioriteiten en risico's."
         },
         "businessAdvisor": {
-          "label": "Business Advisor",
+          "label": "Bedrijfsadviseur",
           "description": "Op bewijs gebaseerde kansen en risico's, gevonden in geautoriseerde studiogegevens."
         },
         "reportInsights": {
-          "label": "Reports AI briefing",
+          "label": "AI-samenvatting van rapporten",
           "description": "Licht geverifieerde rapportcijfers, wijzigingen en aanbevolen vervolgstappen toe."
         },
         "staffPlanning": {
-          "label": "Staff Planning AI",
+          "label": "AI-personeelsplanning",
           "description": "Stel updates op namens het personeel en bereid adviserende dagelijkse, wekelijkse en maandelijkse overzichten voor."
         },
         "knowledgeBase": {
@@ -6716,11 +7041,11 @@
           "description": "Gebruik goedgekeurd beleid en feiten als onderbouwde AI-bronnen."
         },
         "publicConcierge": {
-          "label": "Public Studio Concierge",
+          "label": "Bezoekersassistent",
           "description": "Beantwoord bezoekers met gepubliceerde openbare informatie op de studiowebsite."
         },
         "customerConcierge": {
-          "label": "Customer Concierge",
+          "label": "Klantenassistent",
           "description": "Beantwoord ingelogde klanten met goedgekeurde inhoud uit de Kennisbank en algemene openbare studio-informatie."
         }
       },
@@ -6773,7 +7098,7 @@
       "title": "Stel een vraag aan de studio",
       "description": "Directe antwoorden met AI"
     },
-    "title": "Studio Concierge",
+    "title": "Ruimteassistent",
     "subtitleWithStudio": "Handige antwoorden van {studio}",
     "subtitle": "Handige studioantwoorden",
     "close": "Studio Concierge sluiten",
@@ -6835,6 +7160,83 @@
       "events": {
         "label": "Evenementen",
         "description": "Privé-evenementen, teambuildingen en speciale studioactiviteiten."
+      }
+    },
+    "events": {
+      "title": "Evenementen",
+      "description": "Beheer teamactiviteiten, privéfeesten, bedrijfsevenementen en bijzondere activiteiten in je ruimte.",
+      "create": "Evenement aanmaken",
+      "creating": "Aanmaken…",
+      "upcoming": "Komende evenementen",
+      "confirmed": "Bevestigd",
+      "estimatedValue": "Geschatte waarde",
+      "search": "Zoeken op evenement, klant of e-mail…",
+      "allStatuses": "Alle statussen",
+      "allTypes": "Alle typen",
+      "allLocations": "Alle locaties",
+      "event": "Evenement",
+      "date": "Datum",
+      "customer": "Klant",
+      "guests": "Gasten",
+      "status": "Status",
+      "price": "Prijs",
+      "actions": "Acties",
+      "loading": "Evenementen laden…",
+      "empty": "Geen evenementen gevonden.",
+      "externalVenue": "Externe locatie",
+      "externalOption": "Externe locatie / geen ruimte",
+      "formDescription": "Registreer een teamactiviteit, feest of privé-evenement.",
+      "closeForm": "Evenementformulier sluiten",
+      "eventTitle": "Titel",
+      "type": "Type",
+      "location": "Locatie",
+      "venuePlaceholder": "Naam of adres van de locatie",
+      "startTime": "Begintijd",
+      "endTime": "Eindtijd",
+      "customerName": "Naam van de klant",
+      "contactPerson": "Contactpersoon",
+      "email": "E-mail",
+      "phone": "Telefoon",
+      "estimatedPrice": "Geschatte prijs ({currency})",
+      "finalPrice": "Definitieve prijs ({currency})",
+      "depositPaid": "Betaalde aanbetaling ({currency})",
+      "linkedOrderId": "ID van gekoppelde bestelling",
+      "orderPlaceholder": "Optioneel bestelnummer",
+      "notes": "Notities",
+      "internalNotes": "Interne notities",
+      "cancel": "Annuleren",
+      "closeDetails": "Evenementdetails sluiten",
+      "time": "Tijd",
+      "contact": "Contact",
+      "linkedOrder": "Gekoppelde bestelling",
+      "checklist": "Controlelijst",
+      "viewDetails": "Evenementdetails bekijken",
+      "delete": "Evenement verwijderen",
+      "unknownStatus": "Onbekende status",
+      "types": {
+        "team_building": "Teambuilding",
+        "party": "Feest",
+        "private_workshop": "Privéworkshop",
+        "school_group": "Schoolgroep",
+        "corporate": "Bedrijfsevenement",
+        "popup": "Pop-upevenement",
+        "other": "Overig"
+      },
+      "statuses": {
+        "inquiry": "Aanvraag",
+        "planned": "Gepland",
+        "confirmed": "Bevestigd",
+        "deposit_paid": "Aanbetaling betaald",
+        "completed": "Afgerond",
+        "cancelled": "Geannuleerd"
+      },
+      "checklistItems": {
+        "guests": "Aantal gasten bevestigen",
+        "price": "Prijs bevestigen",
+        "deposit": "Aanbetaling innen",
+        "instructor": "Instructeur toewijzen",
+        "materials": "Materialen voorbereiden",
+        "arrival": "Aankomstinstructies versturen"
       }
     }
   },
@@ -7067,12 +7469,12 @@
       "allLocations": "Alle locaties",
       "selectedLocationSummary": "Beschikbaar bij: {locations}",
       "selectedLocationsFallback": "Geselecteerde locaties",
-      "moreBenefits": "+{count} extra voordelen",
+      "moreBenefits": "{count, plural, one {+# extra voordeel} other {+# extra voordelen}}",
       "trackingNotice": "Tegoeden worden vernieuwd na elke geslaagde lidmaatschapsbetaling. Productkortingen worden automatisch toegepast bij het afrekenen.",
       "billing": {
         "monthly": "Elke {count, plural, one {maand} other {# maanden}}",
         "yearly": "Elk {count, plural, one {jaar} other {# jaar}}",
-        "fixed": "Vaste termijn · {days} dagen"
+        "fixed": "Vaste termijn · {days, plural, one {# dag} other {# dagen}}"
       },
       "statuses": {
         "draft": "Concept",
@@ -8443,7 +8845,18 @@
         "partialScan": "Slechts een deel van de goedgekeurde Kennisbank kon worden beoordeeld. Beschouw deze score als onvolledig en vernieuw na het verminderen of herstructureren van bronnen.",
         "missing": "Geen goedgekeurde content met een antwoord",
         "addSource": "Voeg een goedgekeurd antwoord toe",
-        "updated": "Gecontroleerd op {date}"
+        "updated": "Gecontroleerd op {date}",
+        "questions": {
+          "booking_price": "Wat kost een boeking in de studio?",
+          "booking_cancellation": "Wat zijn de voorwaarden voor annulering en terugbetaling?",
+          "booking_reschedule": "Kan ik mijn boeking verplaatsen?",
+          "studio_inclusions": "Wat is inbegrepen bij een boeking in de studio?",
+          "studio_arrival": "Hoe krijg ik toegang tot de studio bij aankomst?",
+          "course_preparation": "Wat moet ik meenemen naar een cursus?",
+          "membership_usage": "Hoe werkt een lidmaatschap van de studio?",
+          "accessibility": "Is de studio toegankelijk voor mensen met beperkte mobiliteit?",
+          "unknown": "Voeg een antwoord over dit onderwerp toe."
+        }
       }
     }
   },
@@ -8483,8 +8896,8 @@
       "publish": "Publiceren"
     },
     "status": {
-      "publiclyAvailable": "Studio is live",
-      "live": "Studio is live",
+      "publiclyAvailable": "De ruimte is gepubliceerd",
+      "live": "De ruimte is gepubliceerd",
       "draft": "Studio is niet live",
       "unpublished": "Studio is niet live",
       "unknown": "Publicatiestatus niet beschikbaar",
@@ -8553,7 +8966,7 @@
           "sample": "Studio"
         },
         "editorialSerif": {
-          "name": "Editorial Serif",
+          "name": "Redactioneel schreeflettertype",
           "description": "Een verfijnde schreefletter voor studio's die het verhaal centraal stellen.",
           "sample": "Studio"
         },
@@ -8563,7 +8976,7 @@
           "sample": "STUDIO"
         },
         "warmSerif": {
-          "name": "Warm Serif",
+          "name": "Warme schreefletter",
           "description": "Zachte, expressieve lettervormen met een organisch gevoel.",
           "sample": "Studio"
         }
@@ -8575,19 +8988,19 @@
       "comingSoon": "Binnenkort beschikbaar",
       "presets": {
         "classicEditorial": {
-          "name": "Classic Editorial",
+          "name": "Klassiek redactioneel",
           "description": "Warme redactionele typografie, ruime kaarten en een verfijnde studio-uitstraling.",
           "sample": "Met de hand gemaakt.",
           "sampleText": "Een tijdloze lay-out voor studio's waar verhaal en vakmanschap voorop staan."
         },
         "modernMinimal": {
-          "name": "Modern Minimal",
+          "name": "Modern minimalistisch",
           "description": "Strakke geometrie, compacte vlakken en zelfverzekerde hedendaagse typografie.",
           "sample": "Ruimte om te creëren.",
           "sampleText": "Een heldere lay-out die diensten en acties centraal houdt."
         },
         "warmOrganic": {
-          "name": "Warm Organic",
+          "name": "Warm en natuurlijk",
           "description": "Zachte vormen, natuurlijk ritme en tactiele details geïnspireerd op materialen.",
           "sample": "Langzaam creëren.",
           "sampleText": "Een uitnodigende indeling, geïnspireerd op natuurlijke vormen en gemeenschap."
@@ -8695,7 +9108,8 @@
       "announcementDescription": "Laat beide tekstvelden leeg om de mededeling te verbergen.",
       "announcementText": "Mededeling",
       "announcementUrl": "Optionele bestemming",
-      "urlHint": "Gebruik een root-relatief studiopad of een volledige HTTPS-URL."
+      "urlHint": "Gebruik een root-relatief studiopad of een volledige HTTPS-URL.",
+      "urlExample": "/courses of https://…"
     },
     "footer": {
       "contentTitle": "Footerinhoud",
@@ -8722,7 +9136,8 @@
         "terms": "Algemene voorwaarden",
         "privacy": "Privacybeleid",
         "cancellation": "Annuleringsbeleid"
-      }
+      },
+      "urlExample": "/privacy of https://…"
     },
     "login": {
       "contentTitle": "Inlogtekst voor klanten",
@@ -8834,7 +9249,7 @@
       "safety": "Interacties in het voorbeeld zijn uitgeschakeld. Klik op bewerkbare inhoud om naar de bijbehorende instelling te springen; er wordt niets gepubliceerd vanuit het voorbeeld.",
       "pages": {
         "home": "Homepage",
-        "book": "Open Studio",
+        "book": "Vrije werkruimte",
         "courses": "Lessen",
         "memberships": "Lidmaatschappen",
         "vouchers": "Cadeaubonnen",
@@ -8845,7 +9260,7 @@
         "portalCourses": "Cursussen voor klanten"
       },
       "nav": {
-        "book": "Open Studio",
+        "book": "Vrije werkruimte",
         "courses": "Lessen",
         "memberships": "Lidmaatschappen",
         "vouchers": "Cadeaubonnen",
@@ -8914,7 +9329,55 @@
         "loading": "Voorbeeld wordt bijgewerkt… Je niet-opgeslagen wijzigingen blijven in de editor staan.",
         "ready": "Het voorbeeld is bijgewerkt.",
         "timeout": "Het voorbeeld reageerde niet. Laad het opnieuw om het nogmaals te proberen; je niet-opgeslagen wijzigingen blijven behouden.",
-        "reload": "Voorbeeld opnieuw laden"
+        "reload": "Voorbeeld opnieuw laden",
+        "frameTitle": "{name} – voorbeeld van de productiesite"
+      }
+    },
+    "builderActions": {
+      "publishChanges": "Wijzigingen publiceren",
+      "publishWebsite": "Website publiceren",
+      "publishingWebsite": "Website publiceren…",
+      "launchTitle": "Klaar om je website te publiceren?",
+      "launchDescription": "Met deze laatste stap maak je de website van je studio openbaar. Gebruik daarna Wijzigingen publiceren voor verdere aanpassingen.",
+      "launchBlocked": "Voltooi eerst {count, plural, one {# verplichte stap} other {# verplichte stappen}} om je website te publiceren.",
+      "launchConfirmTitle": "Je website publiceren?",
+      "launchConfirmDescription": "De website van je studio wordt voor iedereen toegankelijk. Gebruik daarna Wijzigingen publiceren voor verdere aanpassingen.",
+      "launched": "Je website is nu openbaar.",
+      "undo": "Ongedaan maken",
+      "redo": "Opnieuw uitvoeren",
+      "history": "Versiegeschiedenis",
+      "historyTitle": "Gepubliceerde versies",
+      "historyDescription": "Herstel een gepubliceerde versie als concept. De openbare website blijft ongewijzigd totdat je de wijzigingen publiceert.",
+      "historyEmpty": "Er zijn nog geen gepubliceerde versies.",
+      "historyError": "De versiegeschiedenis kon niet worden geladen.",
+      "retryHistory": "Opnieuw proberen",
+      "restore": "Herstellen als concept",
+      "restored": "De geselecteerde versie is hersteld als concept.",
+      "restoreBlocked": "Sla je wijzigingen op of maak ze ongedaan voordat je een versie herstelt.",
+      "restoreConfirm": "Deze versie herstellen? Hiermee vervang je het opgeslagen, nog niet gepubliceerde concept. De openbare website blijft ongewijzigd.",
+      "close": "Versiegeschiedenis sluiten",
+      "revisionNo": "Versie {number}"
+    },
+    "homeSections": {
+      "title": "Secties van de startpagina",
+      "description": "Voeg kant-en-klare secties voor je studio toe, verwijder ze of wijzig de volgorde.",
+      "visible": "Zichtbaar",
+      "hidden": "Niet toegevoegd",
+      "edit": "Sectietekst bewerken",
+      "moveUp": "Sectie omhoog verplaatsen",
+      "moveDown": "Sectie omlaag verplaatsen",
+      "toggle": "Sectie toevoegen of verwijderen",
+      "sectionTitle": "Sectietitel",
+      "sectionDescription": "Sectiebeschrijving",
+      "labels": {
+        "waysToVisit": "Mogelijkheden voor je bezoek",
+        "featured": "Uitgelicht aanbod",
+        "about": "Over de studio",
+        "gallery": "Galerij",
+        "testimonials": "Ervaringen",
+        "locations": "Locaties",
+        "team": "Team",
+        "faq": "Veelgestelde vragen"
       }
     }
   },
@@ -10950,7 +11413,15 @@
       "productsError": "De cadeaubonproducten konden niet worden geladen. Vernieuw de pagina en probeer het opnieuw."
     },
     "refund": {
-      "revoked": "Terugbetaald · codes ingetrokken"
+      "revoked": "Terugbetaald · codes ingetrokken",
+      "reviewReasons": {
+        "pending": "Er is een volledige terugbetaling aangevraagd. De cadeaubonnen blijven geblokkeerd totdat het betalingsresultaat is gecontroleerd en verwerkt.",
+        "failed": "De terugbetaling is mislukt of geannuleerd. Controleer en verwerk de betaling voordat je rechten op een cadeaubon herstelt.",
+        "partial": "De aankoop is gedeeltelijk terugbetaald. Bepaal op welk cadeaubonsaldo de terugbetaling betrekking heeft voordat je codes opnieuw activeert.",
+        "used": "De terugbetaalde aankoop bevat gebruikte cadeaubonnen of bonnen die voor betaling zijn gereserveerd. Verwerk dit zonder tegoed van het klantaccount af te trekken.",
+        "expired": "De betaling kwam binnen nadat de gekochte cadeaubon was verlopen. Controleer de aankoop en betaal deze terug of vervang de bon voordat je deze levert.",
+        "unknown": "Deze terugbetaling moet handmatig worden gecontroleerd. Controleer de betaling en het gebruik van de cadeaubon voordat je rechten van de klant wijzigt."
+      }
     },
     "codes": {
       "title": "Alle cadeauboncodes",
@@ -11827,5 +12298,1113 @@
       "register": "Start je gratis proefperiode",
       "copyright": "© {year} Shario. Alle rechten voorbehouden."
     }
+  },
+  "Legacy": {
+    "COURSES": "Cursussen",
+    "VOUCHERS": "Cadeaubonnen",
+    "GIFT_VOUCHER_AMOUNT": "Aantal",
+    "CLEAR_ALL": "Wissen",
+    "COURSE_CAPACITY": "Capaciteit",
+    "ACTIVE": "Actief",
+    "EDIT": "Bewerken",
+    "CANCEL_BUTTON": "Terug naar boekingen",
+    "LOGIN": "Inloggen",
+    "DATE": "Datum",
+    "TIME": "Tijd",
+    "SAVE": "Opslaan",
+    "ADD_TO_CART": "Toevoegen aan winkelwagen",
+    "CANCEL": "Annuleren",
+    "CLOSE": "Sluiten",
+    "PRODUCTS": "Producten",
+    "STAFF": "Personeel",
+    "BOOKINGS": "Boekingen",
+    "ORDERSTEXT": "Bestellingen",
+    "LECTURER": "Docent",
+    "NAME": "Naam",
+    "DESCRIPTION": "Omschrijving",
+    "CONTINUE": "Doorgaan",
+    "EMAIL": "E-mail",
+    "FORGOT_PASSWORD": "Wachtwoord vergeten?",
+    "PASSWORD": "Wachtwoord",
+    "PASSWORD_CONFIRM": "Wachtwoord bevestigen",
+    "PHONE": "Telefoon",
+    "CITY": "Stad",
+    "POSTAL_CODE": "Postcode",
+    "REMOVE": "Verwijderen",
+    "CURRENT_PASS": "Huidig wachtwoord",
+    "NEW_PASS": "Nieuw wachtwoord",
+    "CONFIRM_PASS": "Nieuw wachtwoord",
+    "START_TIME": "Starttijd",
+    "PRICE": "Prijs",
+    "PRICE_PER_PERSON": "Prijs per persoon",
+    "END_TIME": "Eindtijd",
+    "NUMBER_OF_GUESTS": "Aantal personen",
+    "CAPACITY": "Capaciteit",
+    "BOOKING_DETAILS": "Boekingsgegevens",
+    "CREDITS": "Tegoeden",
+    "AVAILABLE": "Beschikbaar",
+    "PURCHASE": "Aankoop",
+    "SELECTED": "Geselecteerd",
+    "PARTICIPANTS": "Deelnemers",
+    "STATUS": "Status",
+    "NO_BOOKINGS": "Geen boekingen gevonden",
+    "BOOKING": "Boeking",
+    "CONFIRMED": "Bevestigd",
+    "PENDING": "In behandeling",
+    "CANCELLED": "Geannuleerd",
+    "screens": {
+      "otp": {
+        "continue": "Doorgaan",
+        "resending": "Verzenden…",
+        "title": "Controleer je e-mail",
+        "verifying": "Bezig met verifiëren…",
+        "close": "Verificatie sluiten",
+        "description": "Voer de zescijferige code in die we naar je e-mailadres hebben gestuurd.",
+        "digit": "Cijfer {position} van de verificatiecode",
+        "expired": "Deze code is ongeldig of verlopen. Vraag een nieuwe aan.",
+        "generic": "We konden de code niet verifiëren. Probeer het opnieuw.",
+        "rateLimited": "Er zijn te veel pogingen gedaan. Probeer het later opnieuw.",
+        "resend": "Nieuwe code versturen",
+        "resendCountdown": "Je kunt over {seconds} seconden een nieuwe code versturen",
+        "resendError": "We konden geen nieuwe code versturen. Probeer het opnieuw.",
+        "resent": "We hebben een nieuwe code naar je e-mailadres gestuurd."
+      },
+      "passwordRequest": {
+        "back": "Terug naar inloggen",
+        "emailError": "Voer een geldig e-mailadres in.",
+        "sending": "Verzenden…",
+        "description": "Voer het e-mailadres van je account in. We sturen je een beveiligde code waarmee je een nieuw wachtwoord kunt kiezen.",
+        "emailHelper": "Gebruik het adres waarmee je bij deze studio bent geregistreerd.",
+        "emailLabel": "E-mailadres",
+        "eyebrow": "Account herstellen",
+        "genericError": "We konden de code niet versturen. Probeer het opnieuw.",
+        "rateLimited": "Er zijn te veel aanvragen gedaan. Probeer het later opnieuw.",
+        "send": "Verificatiecode versturen",
+        "title": "Wachtwoord opnieuw instellen"
+      },
+      "passwordReset": {
+        "confirmError": "De wachtwoorden komen niet overeen.",
+        "confirmLabel": "Bevestig nieuw wachtwoord",
+        "hideConfirm": "Wachtwoordbevestiging verbergen",
+        "passwordLabel": "Nieuw wachtwoord",
+        "saving": "Opslaan…",
+        "showConfirm": "Wachtwoordbevestiging tonen",
+        "rateLimited": "Er zijn te veel pogingen gedaan. Probeer het later opnieuw.",
+        "confirmPlaceholder": "Voer het nieuwe wachtwoord nogmaals in",
+        "description": "Kies een nieuw wachtwoord. Voor je veiligheid word je na het opslaan op alle apparaten afgemeld.",
+        "expired": "Deze aanvraag om je wachtwoord opnieuw in te stellen is ongeldig of verlopen. Vraag een nieuwe code aan.",
+        "genericError": "We konden het wachtwoord niet bijwerken. Probeer het opnieuw.",
+        "hidePassword": "Nieuw wachtwoord verbergen",
+        "passwordError": "Gebruik 8 tot 128 tekens, waaronder minstens één cijfer.",
+        "passwordHelper": "8 tot 128 tekens, waaronder minstens één cijfer.",
+        "passwordPlaceholder": "Voer een nieuw wachtwoord in",
+        "requestAgain": "Nieuwe code aanvragen",
+        "save": "Nieuw wachtwoord opslaan",
+        "showPassword": "Nieuw wachtwoord tonen",
+        "title": "Kies een nieuw wachtwoord",
+        "eyebrow": "Accountbeveiliging"
+      },
+      "passwordSuccess": {
+        "action": "Verder naar aanmelden",
+        "description": "Je wachtwoord is veilig gewijzigd. Meld je opnieuw aan met je nieuwe gegevens.",
+        "eyebrow": "Alles is klaar",
+        "status": "Je kunt je nieuwe wachtwoord nu gebruiken.",
+        "title": "Wachtwoord bijgewerkt"
+      },
+      "portalError": {
+        "description": "Controleer je verbinding en probeer het opnieuw.",
+        "retry": "Opnieuw proberen",
+        "title": "De studio-informatie kon niet worden geladen",
+        "loading": "Studio-informatie laden"
+      },
+      "portalLocations": {
+        "errorDescription": "Controleer je verbinding en probeer het opnieuw.",
+        "retry": "Opnieuw proberen",
+        "changed": "Je huidige studio is gewijzigd naar {studio}.",
+        "errorTitle": "Je studio’s konden niet worden geladen",
+        "loading": "Je studio’s laden…"
+      },
+      "portalTour": {
+        "welcome": {
+          "title": "Eerste keer hier?",
+          "dismiss": "Niet nu",
+          "start": "Rondleiding starten",
+          "close": "Rondleiding sluiten",
+          "eyebrow": "Korte uitleg",
+          "description": "Ontdek je studioportaal in een korte rondleiding voordat je voor het eerst boekt.",
+          "duration": "Dit duurt ongeveer 60 seconden. Je kunt de rondleiding altijd opnieuw bekijken via Hulp en handleidingen."
+        },
+        "skip": "Rondleiding overslaan",
+        "back": "Terug",
+        "next": "Volgende",
+        "final": {
+          "title": "Je bent er klaar voor",
+          "description": "Kies een tijdstip in de kalender wanneer je klaar bent. Via Hulp en handleidingen kun je deze rondleiding opnieuw bekijken."
+        },
+        "steps": {
+          "overview": {
+            "title": "Je portaal in één oogopslag",
+            "description": "Bekijk je volgende bezoek, lidnummer en creditsaldo op één plek."
+          },
+          "studio": {
+            "title": "Kies je studio",
+            "description": "Heeft het bedrijf meerdere locaties? Selecteer hier welke je wilt bezoeken."
+          },
+          "calendarControls": {
+            "title": "Navigeren in de kalender",
+            "description": "Ga naar vandaag, wijzig de periode, wissel van weergave of open en sluit de legenda."
+          },
+          "legend": {
+            "title": "Beschikbaarheid begrijpen",
+            "description": "De legenda legt uit welke kleuren worden gebruikt voor beschikbare tijden en je boekingen."
+          },
+          "chooseTime": {
+            "title": "Kies een beschikbaar tijdstip",
+            "description": "Selecteer een vrij tijdvak om de activiteit, duur, deelnemers en prijs te bekijken voordat je afrekent."
+          },
+          "help": {
+            "title": "Hulp is altijd dichtbij",
+            "description": "Open Hulp en handleidingen voor boekingsinstructies of om deze rondleiding later opnieuw te bekijken."
+          }
+        },
+        "progress": "Stap {current} van {total}",
+        "finish": "Beginnen met boeken"
+      },
+      "portalGate": {
+        "title": "Pagina niet beschikbaar",
+        "description": "Deze studio heeft deze pagina van het klantenportaal uitgeschakeld.",
+        "continue": "Verder in het portaal",
+        "empty": "Neem contact op met de studio als je hulp nodig hebt met je account of een bestaande boeking."
+      },
+      "portalHelp": {
+        "tour": {
+          "title": "Productrondleiding",
+          "action": "Rondleiding opnieuw bekijken",
+          "eyebrow": "Het portaal leren kennen",
+          "summary": "Ontdek de boekingskalender en je account in ongeveer 60 seconden."
+        },
+        "topics": {
+          "createBooking": {
+            "steps": {
+              "0": "Open Een sessie boeken en kies de studiolocatie die je wilt bezoeken.",
+              "1": "Selecteer een product en een beschikbare dag en tijd, en voeg de boeking toe aan je winkelwagen.",
+              "2": "Controleer de gegevens, kies een betaalmethode en bevestig je bestelling."
+            },
+            "title": "Een boeking maken",
+            "summary": "Kies een tijdstip in de studio en rond je bestelling af.",
+            "action": "Boeking maken"
+          },
+          "redeemVoucher": {
+            "steps": {
+              "0": "Open Cadeaubonnen in je portaal.",
+              "1": "Voer de code in volgens het formaat D4T-32S-053 en kies Cadeaubon inwisselen.",
+              "2": "De waarde van de cadeaubon wordt toegevoegd aan je studiotegoed voor een toekomstige boeking."
+            },
+            "title": "Een cadeaubon inwisselen",
+            "summary": "Zet de waarde van je cadeaubon om in studiotegoed.",
+            "action": "Cadeaubon inwisselen"
+          },
+          "cancelBooking": {
+            "steps": {
+              "0": "Open Mijn boekingen en kies een toekomstige boeking.",
+              "1": "Kies Bewerken, vervolgens Boeking annuleren, en bevestig de annulering.",
+              "2": "Betaalde bedragen worden teruggestort als studiotegoed; lidmaatschapscredits worden hersteld. Neem voor cursusinschrijvingen contact op met de studio."
+            },
+            "title": "Een boeking annuleren",
+            "summary": "Annuleer een boeking die daarvoor in aanmerking komt voordat de toegangscode wordt verstrekt.",
+            "action": "Mijn boekingen openen"
+          },
+          "editBooking": {
+            "steps": {
+              "0": "Open Mijn boekingen en kies Bewerken bij de toekomstige boeking.",
+              "1": "Kies een nieuwe datum en een beschikbare begintijd.",
+              "2": "Bevestig het nieuwe tijdstip. Het product, de locatie, de duur en het aantal deelnemers blijven hetzelfde."
+            },
+            "action": "Mijn boekingen openen",
+            "title": "Een boeking wijzigen",
+            "summary": "Verplaats een boeking voor de gedeelde studio naar een ander tijdstip als de regels dit toelaten."
+          },
+          "useCredits": {
+            "action": "Start een boeking",
+            "steps": {
+              "0": "Voeg je boeking toe aan de winkelwagen en open het besteloverzicht.",
+              "1": "Kies Studiotegoed onder Betaalmethode.",
+              "2": "Je kunt credits gebruiken als je saldo de hele bestelling dekt. Voeg anders credits toe of betaal met een kaart."
+            },
+            "title": "Studiotegoed gebruiken",
+            "summary": "Betaal een boeking met je beschikbare saldo."
+          }
+        },
+        "trigger": "Hulp en handleidingen",
+        "title": "Hulp en handleidingen",
+        "eyebrow": "Hulp bij boeken",
+        "description": "Boekingen, cadeaubonnen en studiotegoed.",
+        "introDescription": "Kies een onderwerp voor duidelijke stappen en een directe link naar de juiste plek.",
+        "close": "Hulp sluiten",
+        "note": "De studio bepaalt de beschikbaarheid en annuleringsregels. Neem rechtstreeks contact op met de studio als een actie niet beschikbaar is."
+      },
+      "studioSwitcher": {
+        "change": "Van studio wisselen",
+        "changed": "Studio gewijzigd naar {name}.",
+        "current": "Huidige studio",
+        "empty": "Er is momenteel geen studio beschikbaar."
+      },
+      "portalDashboard": {
+        "admin": "Beheerder",
+        "moderator": "Moderator",
+        "eyebrow": "Jouw studio",
+        "greeting": "Welkom terug",
+        "intro": "Je boekingen, creatieve werk en studiovoordelen op één rustige plek.",
+        "book": "Boek een sessie",
+        "upcoming": "Volgend bezoek",
+        "chooseTime": "Kies een tijdstip",
+        "manageBooking": "Boeking bekijken",
+        "cancelBooking": "Boeking annuleren",
+        "member": "Lid-ID",
+        "credits": "Tegoeden",
+        "calendarEyebrow": "Studiokalender",
+        "calendarSuggestion": {
+          "action": "Kies deze tijd",
+          "eyebrow": "Probeer de kalender",
+          "title": "Dit is een beschikbaar tijdstip om mee te beginnen",
+          "description": "Dit is alleen een suggestie. Selecteer deze om verder te gaan of kies een ander tijdstip in de kalender.",
+          "dismiss": "Voorgesteld tijdstip sluiten",
+          "unavailable": "We kunnen momenteel geen vrij tijdstip voorstellen. Bekijk een andere dag of neem contact op met de studio."
+        },
+        "calendarSelection": {
+          "continue": "Doorgaan",
+          "summary": "Gekozen tijdstip",
+          "clear": "Gekozen tijdstip wissen"
+        },
+        "bookingFallback": "Studiosessie",
+        "locationFallback": "Jouw studio",
+        "creditLoading": "Laden…",
+        "creditUnavailable": "Niet beschikbaar",
+        "currentStudio": "Huidige studio",
+        "upcomingLoading": "Je volgende bezoek opzoeken…",
+        "upcomingError": "Je volgende bezoek kan tijdelijk niet worden weergegeven.",
+        "upcomingEmpty": "Nog niets geboekt",
+        "upcomingEmptyDescription": "Kies een tijdstip in de kalender wanneer je klaar bent.",
+        "copyMemberId": "Lidnummer kopiëren",
+        "copiedMemberId": "Lidnummer gekopieerd",
+        "calendarTitle": "Plan je volgende bezoek",
+        "calendarDescription": "Kies een studio en selecteer een beschikbaar tijdstip in de kalender."
+      },
+      "bookingStatus": {
+        "confirmed": "Bevestigd",
+        "awaiting_payment": "In afwachting van betaling",
+        "failed": "Betaling mislukt",
+        "cancelled": "Geannuleerd",
+        "completed": "Afgerond",
+        "awaiting_confirmation": "Betaling ontvangen · wacht op bevestiging",
+        "expired": "Betaalsessie verlopen",
+        "attention": "Neem contact op met de studio om je boeking te controleren."
+      },
+      "cartPayment": {
+        "title": "Betaalmethode",
+        "card": "Betaalkaart",
+        "money_credits": "Studiotegoed",
+        "addCredits": "Tegoed toevoegen",
+        "reasons": {
+          "customer_booking_extension_card_window": "Zo kort voor het einde van de boeking kun je niet meer met een kaart betalen. Gebruik studiotegoed om je bezoek te verlengen.",
+          "membership_insufficient_hours": "Onvoldoende inbegrepen uren voor deze boeking.",
+          "membership_member_only": "De inbegrepen uren zijn alleen voor het lid zelf. Boek je eigen bezoek apart van dat van je gasten.",
+          "membership_outside_paid_period": "Het bezoek moet binnen je betaalde lidmaatschapsperiode vallen.",
+          "membership_product_ineligible": "Dit voordeel geldt niet voor de gekozen activiteit.",
+          "membership_location_ineligible": "Dit voordeel is niet beschikbaar bij de gekozen studio.",
+          "membership_location_not_allowed": "Dit voordeel is niet beschikbaar bij de gekozen studio.",
+          "membership_open_studio_only": "De inbegrepen uren gelden alleen voor bezoeken aan de gedeelde studio.",
+          "membership_personal_booking_required": "Gebruik de inbegrepen uren voor één persoonlijke studioboeking tegelijk.",
+          "membership_entitlement_currency_mismatch": "Dit voordeel heeft een andere valuta dan je bestelling.",
+          "private_booking_surcharge_requires_money": "Een privéboeking moet met een kaart of studiotegoed worden betaald."
+        },
+        "membership_credits": "Lidmaatschapsvoordeel",
+        "includedHours": "Inbegrepen studio-uren",
+        "available": "beschikbaar",
+        "required": "gebruikt voor deze boeking",
+        "insufficientCredits": "Onvoldoende studiotegoed om deze bestelling te betalen.",
+        "unavailable": "Deze bestelling kan niet met deze betaalmethode worden betaald."
+      },
+      "paymentMethods": {
+        "label": "Betaalmethode",
+        "card": "Betaalkaart",
+        "credits": "Studiotegoed",
+        "addCredits": "Tegoed toevoegen",
+        "checking": "Credits controleren…",
+        "cardDescription": "Veilig online betalen",
+        "creditsDescription": "Gebruik je beschikbare saldo",
+        "covered": "Je credits dekken deze bestelling.",
+        "insufficient": "Meer credits nodig",
+        "shortfall": "Tekort aan credits",
+        "short": "tekort"
+      },
+      "bookingSidebar": {
+        "title": "Boek een sessie",
+        "location": "Atelier",
+        "date": "Datum",
+        "start": "Starttijd",
+        "duration": "Duur",
+        "guests": "Gasten",
+        "total": "Prijs",
+        "cancel": "Sluiten",
+        "add": "Toevoegen aan winkelwagen",
+        "classProduct": "Les",
+        "classType": "Producttype",
+        "classLabel": "Les",
+        "subtitle": "Kies je datum, begintijd en duur.",
+        "product": "Type sessie",
+        "select": "Kies een optie",
+        "closed": "Deze studio is gesloten op de gekozen dag.",
+        "available": "Dit tijdstip is momenteel beschikbaar.",
+        "unavailable": "Dit tijdstip is niet meer beschikbaar bij de huidige capaciteit.",
+        "recheck": "De beschikbaarheid wordt opnieuw gecontroleerd wanneer je de bestelling afrondt.",
+        "summary": "Overzicht",
+        "missingLocation": "Kies eerst een studio.",
+        "missingProduct": "Er is geen type sessie beschikbaar voor deze studio.",
+        "classTitle": "Les boeken",
+        "classSubtitle": "Controleer de gekozen les en het aantal deelnemers.",
+        "classMissing": "De gekozen les is niet meer beschikbaar.",
+        "sessionPrice": "Prijs per sessie",
+        "classPrice": "Lesprijs",
+        "checking": "Beschikbaarheid controleren…",
+        "added": "Toegevoegd aan winkelwagen"
+      },
+      "customerDefaults": {
+        "login": {
+          "eyebrow": "Jouw creatieve plek",
+          "headline": "Welkom terug.",
+          "description": "Meld je aan om je boekingen, lidmaatschappen en credits overzichtelijk op één plek te beheren."
+        },
+        "register": {
+          "eyebrow": "Eén account voor deze studio",
+          "headline": "Alles wat je maakt, overzichtelijk bij elkaar.",
+          "description": "Een eenvoudige manier om toegang te krijgen tot je boekingen, werkstukken, lessen en tegoeden bij deze studio."
+        },
+        "portal": {
+          "eyebrow": "Jouw studio",
+          "headline": "Welkom terug",
+          "description": "Je boekingen, creatieve werk en studiovoordelen op één rustige plek."
+        },
+        "website": {
+          "home": {
+            "description": "Ontdek {studio}, bekijk de manieren om langs te komen en vind alles wat je nodig hebt voor je volgende studiodag."
+          },
+          "book": {
+            "description": "Kies een studio en bekijk de momenteel weergegeven bezette tijdsblokken voordat je inlogt.",
+            "title": "Bekijk wanneer {studio} bezet is"
+          },
+          "courses": {
+            "title": "Lessen bij {studio}",
+            "description": "Ontdek gepubliceerde lessen. Log in om door te gaan naar beschikbare datums."
+          },
+          "memberships": {
+            "title": "Lidmaatschappen bij {studio}",
+            "description": "Vergelijk gepubliceerde abonnementen, locaties, prijzen, maandelijkse tegoeden, automatische kortingen en inbegrepen voordelen."
+          },
+          "vouchers": {
+            "title": "Een attent studiocadeau",
+            "description": "Kies een gepubliceerde cadeaubon en geef iemand de vrijheid om bij {studio} te creëren."
+          },
+          "help": {
+            "title": "Alles wat je nodig hebt voor je volgende studiobezoek",
+            "description": "Vind goedgekeurde studiogidsen, video's, antwoorden en handige bronnen op één plek."
+          }
+        }
+      },
+      "creditBalance": {
+        "eyebrow": "Beschikbaar saldo",
+        "title": "Studiotegoed",
+        "retry": "Opnieuw proberen",
+        "add": "Tegoed toevoegen",
+        "loading": "Je credits laden…",
+        "errorTitle": "We konden je saldo niet laden",
+        "errorDescription": "Controleer je verbinding en probeer je saldo opnieuw te laden.",
+        "description": "Gebruik je credits voor boekingen, aankopen en andere betalingen bij de studio.",
+        "hint": "Je saldo wordt na elke betaling of terugbetaling automatisch bijgewerkt."
+      },
+      "creditHistory": {
+        "title": "Transactiegeschiedenis",
+        "retry": "Opnieuw proberen",
+        "refresh": "Vernieuwen",
+        "previous": "Vorige",
+        "next": "Volgende",
+        "types": {
+          "added": "Tegoed toegevoegd",
+          "used": "Tegoed gebruikt",
+          "refund": "Tegoed teruggestort",
+          "coupon_redeemed": "Cadeaubon ingewisseld",
+          "admin_granted": "Toegekend door de studio",
+          "purchased": "Gekochte credits",
+          "other": "Credittransactie"
+        },
+        "eyebrow": "Credittransacties",
+        "loading": "Je transacties laden…",
+        "errorTitle": "We konden je geschiedenis niet laden",
+        "errorDescription": "Controleer je verbinding en probeer je transacties opnieuw te laden.",
+        "emptyTitle": "Nog geen transacties",
+        "emptyDescription": "Elke wijziging in je creditsaldo verschijnt hier.",
+        "dateUnknown": "Datum niet beschikbaar",
+        "pagination": "Paginanavigatie voor transacties"
+      },
+      "creditsPage": {
+        "title": "Tegoeden",
+        "eyebrow": "Studiotegoed",
+        "description": "Beheer je beschikbare saldo en bekijk alle credittransacties overzichtelijk op één plek."
+      },
+      "cart": {
+        "orderSummary": "Opdrachtoverzicht",
+        "total": "Totaal",
+        "date": "Datum",
+        "time": "Tijd",
+        "studio": "Atelier",
+        "guests": "Gasten",
+        "quantity": "Aantal",
+        "remove": "Verwijderen",
+        "secureCheckout": "Veilig afrekenen",
+        "continueToPayment": "Doorgaan naar betalen",
+        "retryQuote": "Opnieuw proberen",
+        "membershipDiscount": "Lidmaatschapskorting",
+        "itemCount": "{count, plural, one {# artikel} other {# artikelen}}",
+        "close": "Winkelwagen sluiten",
+        "eyebrow": "Je bestelling",
+        "title": "Controleer je boeking",
+        "subtitle": "Controleer de gegevens van je bezoek en kies hoe je wilt betalen.",
+        "item": "artikel",
+        "items": "artikelen",
+        "itemsMany": "artikelen",
+        "hourlyRate": "Uurtarief",
+        "bookingType": "Boekingstype",
+        "privateBooking": "Studio voor exclusief gebruik",
+        "emptyTitle": "Je winkelwagen staat klaar",
+        "emptyDescription": "Kies een tijdstip in de studiokalender; je boeking verschijnt dan hier.",
+        "returnToStudio": "Terug naar de studio",
+        "secureDescription": "Je rondt de betaling af op een beveiligde betaalpagina.",
+        "payWithCredits": "Betalen met credits",
+        "confirmWithMembership": "Boeken met lidmaatschap",
+        "membershipSecureDescription": "Je inbegrepen uren worden afgeschreven wanneer de boeking wordt bevestigd.",
+        "checkingBenefits": "Prijs en lidmaatschapsvoordelen controleren…",
+        "quoteFailed": "We konden de prijs en lidmaatschapsvoordelen niet controleren. Probeer het opnieuw.",
+        "subtotal": "Vóór korting",
+        "membershipCoversOrder": "Je lidmaatschap dekt deze bestelling. Je hoeft niets bij te betalen.",
+        "mixedCurrencies": "Een bestelling kan geen artikelen met verschillende valuta bevatten.",
+        "processing": "Veilig afrekenen voorbereiden…",
+        "processingDescription": "Houd dit venster open."
+      },
+      "menu": {
+        "MY_BOOKINGS": "Mijn boekingen",
+        "VOUCHERS": "Cadeaubonnen",
+        "CUSTOMERS": "Klanten",
+        "INVENTORY": "Voorraad",
+        "openMenu": "Menu openen",
+        "closeMenu": "Menu sluiten",
+        "MANAGEMENT": "Beheer",
+        "STUDIO_CALENDAR": "Studio",
+        "TUTORIALS": "Kenniscentrum",
+        "OPERATIONS": "Bedrijfsvoering",
+        "COMMUNICATION": "Communicatie",
+        "COMMERCE": "Verkoop",
+        "INSIGHTS": "Inzichten",
+        "navigation": "Dashboardnavigatie",
+        "title": "Menu"
+      },
+      "bookingAvailability": {
+        "guestCount": "{count, plural, one {# gast} other {# gasten}}",
+        "available": {
+          "description": "De beschikbaarheid wordt opnieuw gecontroleerd wanneer je de bestelling afrondt.",
+          "title": "Dit tijdstip is beschikbaar."
+        },
+        "loading": {
+          "title": "Beschikbaarheid controleren…",
+          "description": "We controleren dit tijdstip opnieuw bij de studio."
+        },
+        "incomplete": {
+          "title": "Vul de boekingsgegevens aan",
+          "description": "Kies een studio, type sessie, datum en tijdstip om de beschikbaarheid te controleren."
+        },
+        "location": {
+          "title": "Online boeken is niet beschikbaar",
+          "description": "Deze studio accepteert momenteel geen online boekingen."
+        },
+        "overlap": {
+          "title": "Dit tijdstip overlapt met een andere boeking",
+          "description": "Op dit tijdstip zijn overlappende boekingen niet toegestaan. Kies een ander tijdstip."
+        },
+        "capacity": {
+          "title": "De studio is op dit tijdstip vol",
+          "description": "Probeer een ander tijdstip of verminder het aantal gasten."
+        },
+        "activity": {
+          "title": "Deze activiteit is op dit tijdstip vol",
+          "description": "Probeer een ander tijdstip of kies een andere activiteit."
+        },
+        "unavailable": {
+          "title": "Dit tijdstip is niet beschikbaar",
+          "description": "Kies een ander tijdstip, dan controleren we de beschikbaarheid opnieuw."
+        }
+      },
+      "bookingKinds": {
+        "class": "Les",
+        "membership": "Lidmaatschap",
+        "voucher": "Cadeaubon",
+        "unknown": "Onbekend",
+        "open-studio": "Gedeelde ruimte",
+        "sharedOpenStudio": "Boeking van een gedeelde ruimte",
+        "exclusiveOpenStudio": "Boeking van een ruimte voor exclusief gebruik",
+        "private-studio": "Privéruimte"
+      },
+      "voucherStatuses": {
+        "processed_coupon": "Verwerkt",
+        "shipped_coupon": "Verzonden",
+        "pending_coupon_payment": "Wacht op betaling"
+      },
+      "management": {
+        "modules": {
+          "bookings": {
+            "label": "Boekingen",
+            "description": "Boekingen, deelnemers en de capaciteit van ruimtes."
+          },
+          "products": {
+            "label": "Producten",
+            "description": "Producten, lessen, boekingen en prijzen."
+          },
+          "orders": {
+            "label": "Bestellingen",
+            "description": "Bestellingen, betalingen en aankoopgeschiedenis."
+          },
+          "inventory": {
+            "label": "Voorraad",
+            "description": "Voorraadartikelen, leveranciers, ontvangsten, uitgiften, inventarisaties en nabestellingen."
+          },
+          "studio-orders": {
+            "label": "Maatwerkopdrachten",
+            "description": "Maatwerkopdrachten, zakelijke aanvragen, deadlines, verantwoordelijken en voortgang."
+          },
+          "staff-tasks": {
+            "label": "Taken",
+            "description": "Wekelijkse teamtaken, prioriteiten, belemmeringen en afgeronde taken."
+          },
+          "memberships": {
+            "label": "Lidmaatschappen",
+            "description": "Beheer lidmaatschappen, maandelijkse credits, voordelen en voorrang bij het boeken."
+          },
+          "statistics": {
+            "label": "Rapporten",
+            "description": "Belangrijke cijfers, overzichten en rapporten voor je bedrijf."
+          },
+          "vouchers": {
+            "label": "Cadeaubonnen",
+            "description": "Cadeaubonnen, kortingscodes en handmatig aangemaakte codes."
+          },
+          "users-staff": {
+            "label": "Klanten en team",
+            "description": "Beheer klanten, credits, teamleden en toegangsrechten van medewerkers."
+          },
+          "automated-communications": {
+            "label": "Automatische berichten",
+            "description": "Bekijk verzonden, wachtende en geplande e-mails. Beheer automatiseringen en afzenderadressen in de andere tabbladen."
+          },
+          "events": {
+            "label": "Evenementen",
+            "description": "Evenementen, teamactiviteiten, privégelegenheden en bijbehorende maatwerkopdrachten."
+          }
+        },
+        "groups": {
+          "Team": "Team",
+          "Communication": "Communicatie",
+          "Sales": "Verkoop",
+          "Core": "Basis",
+          "Studio": "Ruimtes",
+          "Growth": "Groei",
+          "Other": "Overig",
+          "Admin": "Beheer"
+        },
+        "title": "Beheer",
+        "denied": "Je hebt geen toegang tot het beheergedeelte.",
+        "adminAccess": "Beheerderstoegang",
+        "moderatorAccess": "Moderatortoegang",
+        "section": "Beheergedeelte"
+      }
+    },
+    "copy": {
+      "LocationScopedMyBookingsTable_Book_a_session_bf464": "Boek een sessie",
+      "LocationScopedMyBookingsTable_Booking_overview_a8c35": "Boekingenoverzicht",
+      "LocationScopedMyBookingsTable_Loading_bookings_bfbf6": "Boekingen laden…",
+      "LocationScopedMyBookingsTable_Check_your_connection_and_try_again_56386": "Controleer je verbinding en probeer het opnieuw.",
+      "LocationScopedMyBookingsTable_Try_again_042c8": "Opnieuw proberen",
+      "LocationScopedMyBookingsTable_Booking_history_a8ef6": "Boekingsgeschiedenis",
+      "LocationScopedMyBookingsTable_Upcoming_523ba": "Aankomend",
+      "LocationScopedMyBookingsTable_History_90ccd": "Geschiedenis",
+      "LocationScopedMyBookingsTable_View_69bd4": "Bekijken",
+      "LocationScopedMyBookingsTable_Studio_5b23b": "Atelier",
+      "LocationScopedMyBookingsTable_Guests_3c23a": "Gasten",
+      "LocationScopedMyBookingsTable_Previous_50f94": "Vorige",
+      "LocationScopedMyBookingsTable_Next_bc981": "Volgende",
+      "Login_Your_studio_1b32c": "Jouw studio",
+      "Login_Customer_access_aaae3": "Klanttoegang",
+      "Login_Sign_in_ada2e": "Aanmelden",
+      "Login_Password_8be3c": "Wachtwoord",
+      "Login_Show_password_044b8": "Wachtwoord tonen",
+      "Login_Hide_password_e4012": "Wachtwoord verbergen",
+      "Login_Signing_in_c66b2": "Bezig met inloggen…",
+      "Login_Create_account_aaf37": "Account aanmaken",
+      "BookingInfoModal_Type_3deb7": "Type",
+      "BookingInfoModal_Lecturer_e396e": "Docent",
+      "Registration_Your_studio_1b32c": "Jouw studio",
+      "Registration_Passwords_do_not_match_f7c3c": "De wachtwoorden komen niet overeen.",
+      "Registration_Customer_access_aaae3": "Klanttoegang",
+      "Registration_Create_account_aaf37": "Account aanmaken",
+      "Registration_Show_password_044b8": "Wachtwoord tonen",
+      "Registration_Hide_password_e4012": "Wachtwoord verbergen",
+      "Registration_Show_password_confirmation_c4411": "Wachtwoordbevestiging tonen",
+      "Registration_Hide_password_confirmation_7dbbe": "Wachtwoordbevestiging verbergen",
+      "Registration_Sign_in_ada2e": "Aanmelden",
+      "ConfirmationModal_Close_bbfa7": "Sluiten",
+      "CreditPurchaseModal_Close_bbfa7": "Sluiten",
+      "VoucherForm_History_90ccd": "Geschiedenis",
+      "VoucherForm_Refresh_56e3b": "Vernieuwen",
+      "VoucherForm_Date_eb9a4": "Datum",
+      "VoucherForm_Name_709a2": "Naam",
+      "PasswordForm_Security_f25ce": "Beveiliging",
+      "PasswordForm_Member_ID_7a88b": "Lid-ID",
+      "PasswordForm_Current_password_19dff": "Huidig wachtwoord",
+      "PasswordForm_New_password_d850e": "Nieuw wachtwoord",
+      "PasswordForm_Confirm_new_password_f8503": "Bevestig nieuw wachtwoord",
+      "VoucherForm_Gift_vouchers_e8ee2": "Cadeaubonnen",
+      "VoucherForm_Check_your_connection_and_try_again_56386": "Controleer je verbinding en probeer het opnieuw.",
+      "VoucherForm_Try_again_042c8": "Opnieuw proberen",
+      "VoucherForm_Redeemed_35cc3": "Ingewisseld",
+      "VoucherForm_Voucher_409ca": "Cadeaubon",
+      "BookingSuccess_Processing_e6345": "Wordt verwerkt",
+      "BookingSuccess_We_are_confirming_your_payment_c9b64": "We bevestigen je betaling",
+      "BookingSuccess_Back_to_portal_0633f": "Terug naar portaal",
+      "BookingSuccess_Back_to_home_34ac3": "Terug naar de homepage",
+      "BookingSuccess_Order_1d757": "Bestelling",
+      "BookingSuccess_Check_again_e1850": "Opnieuw controleren",
+      "ConfirmationDetails_Booking_e38ea": "Boeking",
+      "ConfirmationDetails_Participants_cd56e": "Deelnemers",
+      "ConfirmationDetails_Total_b2592": "Totaal",
+      "CourseCard_Capacity_45bd9": "Capaciteit",
+      "CourseCard_Price_per_person_59050": "Prijs per persoon",
+      "Login_Email_84add": "E-mail",
+      "BookingActionButtons_Close_bbfa7": "Sluiten",
+      "BookingInfoModal_Close_bbfa7": "Sluiten",
+      "Registration_Email_84add": "E-mail",
+      "VouchersTable_Email_84add": "E-mail",
+      "VouchersTable_Product_dd3b8": "Product",
+      "VouchersTable_Product_name_63c0f": "Productnaam",
+      "VouchersTable_Status_bae7d": "Status",
+      "VouchersTable_All_statuses_64051": "Alle statussen",
+      "VouchersTable_Clear_filters_41222": "Filters wissen",
+      "VouchersTable_Customer_0e857": "Klant",
+      "VouchersTable_Actions_c3cd6": "Acties",
+      "NewBookingForm_Note_2c924": "Notitie",
+      "EditProductForm_Edit_product_fbeab": "Product bewerken",
+      "CourseDetailsModal_Close_bbfa7": "Sluiten",
+      "CourseCard_Length_3bade": "Duur",
+      "Registration_Account_security_0afc7": "Accountbeveiliging",
+      "VoucherForm_Redeem_a_voucher_69a95": "Cadeaubon inwisselen",
+      "LocationScopedMyBookingsTable_Bookings_could_not_be_loaded_e531a": "Boekingen konden niet worden geladen",
+      "LocationScopedMyBookingsTable_Upcoming_visits_ecb00": "Komende bezoeken",
+      "LocationScopedMyBookingsTable_Booking_range_9d1f1": "Boekingsperiode",
+      "LocationScopedMyBookingsTable_Completed_and_cancelled_bookings_will_appear_here_e9311": "Afgeronde en geannuleerde boekingen verschijnen hier.",
+      "LocationScopedMyBookingsTable_Choose_a_studio_time_and_plan_your_next_visit_5f44f": "Kies een tijdstip in de studio en plan je volgende bezoek.",
+      "LocationScopedMyBookingsTable_Booking_pagination_b2e65": "Paginanavigatie voor boekingen",
+      "Login_Use_the_account_connected_with_this_studio_a1282": "Gebruik het account dat aan deze studio is gekoppeld.",
+      "Login_Your_booking_selection_is_saved_Sign_in_to_continue_whe_41b95": "Je gekozen boeking is opgeslagen. Meld je aan om verder te gaan waar je gebleven was.",
+      "Login_New_to_this_studio_938fe": "Nieuw bij deze studio? ",
+      "TermsText_I_accept_the_0dc66": "Ik ga akkoord met de ",
+      "TermsText_studio_rules_d3727": "studioregels",
+      "TermsText_Terms_and_Conditions_89403": "Algemene voorwaarden",
+      "Registration_First_name_must_contain_at_least_2_characters_1c536": "De voornaam moet minstens 2 tekens bevatten.",
+      "Registration_Last_name_must_contain_at_least_2_characters_c5dd3": "De achternaam moet minstens 2 tekens bevatten.",
+      "Registration_Please_enter_a_valid_email_address_d2306": "Voer een geldig e-mailadres in.",
+      "Registration_Please_enter_a_valid_phone_number_c08e1": "Voer een geldig telefoonnummer in.",
+      "Registration_Password_must_be_at_least_8_characters_long_and_contain_3d73c": "Het wachtwoord moet minstens 8 tekens bevatten, waaronder minstens 1 cijfer.",
+      "Registration_It_only_takes_a_moment_and_you_will_not_need_to_enter_y_89bc4": "Het kost maar even, en je hoeft niet bij elk bezoek je gegevens opnieuw in te voeren.",
+      "Registration_Your_booking_selection_is_saved_Create_your_account_to_c9b1a": "Je gekozen boeking is opgeslagen. Maak je account aan om verder te gaan waar je gebleven was.",
+      "Registration_Your_details_a6252": "Je gegevens",
+      "Registration_At_least_8_characters_and_1_number_87242": "Minstens 8 tekens en 1 cijfer.",
+      "Registration_Information_about_personal_data_processing_is_available_c4190": "Informatie over de verwerking van persoonsgegevens vind je in ons ",
+      "Registration_privacy_policy_478db": "privacybeleid",
+      "Registration_Creating_account_baab5": "Account aanmaken…",
+      "Registration_Already_registered_e7edd": "Al geregistreerd? ",
+      "CartModal_Checkout_failed_Please_try_again_ef7be": "Afrekenen is mislukt. Probeer het opnieuw.",
+      "CartModal_Includes_one_time_private_booking_surcharge_67d5a": "Inclusief eenmalige toeslag voor een privéboeking",
+      "CartCreditSummary_Available_for_this_checkout_42c3f": "Beschikbaar voor deze bestelling.",
+      "CartCreditSummary_Credits_can_be_used_as_a_discount_when_completing_your_0951c": "Je kunt credits als korting gebruiken bij het afronden van je bestelling.",
+      "Cancel_Payment_cancelled_af438": "Betaling geannuleerd",
+      "Cancel_What_you_can_do_next_78edc": "Wat je nu kunt doen",
+      "Cancel_Try_again_sometimes_a_second_attempt_works_c3e09": "Probeer het opnieuw — soms lukt het bij een tweede poging.",
+      "Cancel_If_you_used_Apple_Pay_Google_Pay_try_paying_by_card_ins_084d5": "Heb je Apple Pay of Google Pay gebruikt? Probeer dan rechtstreeks met je kaart te betalen.",
+      "Cancel_If_it_keeps_happening_message_us_and_we_ll_help_ebf8e": "Blijft dit gebeuren? Stuur ons een bericht, dan helpen we je.",
+      "Cancel_No_charge_is_made_until_the_payment_is_completed_5ec3b": "Er wordt pas geld afgeschreven wanneer de betaling is afgerond.",
+      "VoucherForm_You_need_to_be_signed_in_to_redeem_a_voucher_7fb72": "Je moet aangemeld zijn om een cadeaubon in te wisselen.",
+      "VoucherForm_The_voucher_could_not_be_redeemed_Please_try_again_1d1d3": "De cadeaubon kon niet worden ingewisseld. Probeer het opnieuw.",
+      "VoucherForm_Redeemed_vouchers_1733e": "Ingewisselde cadeaubonnen",
+      "VoucherForm_Vouchers_credits_fd59d": "Cadeaubonnen en credits",
+      "VoucherForm_My_vouchers_9cb49": "Mijn cadeaubonnen",
+      "VoucherForm__If_you_have_multiple_vouchers_you_can_redeem_them_one_8e5cf": "• Heb je meerdere cadeaubonnen? Je kunt ze één voor één inwisselen.",
+      "VoucherForm__Voucher_values_are_added_together_automatically_a418b": "• De waarden van de cadeaubonnen worden automatisch bij elkaar opgeteld.",
+      "VoucherForm_Voucher_redemption_73a64": "Cadeaubon inwisselen",
+      "VoucherForm_Voucher_code_eae7b": "Cadeauboncode",
+      "VoucherForm_Invalid_format_Use_for_example_D4T_32S_053_16c67": "Ongeldig formaat. Gebruik bijvoorbeeld D4T-32S-053",
+      "VoucherForm_Redeem_voucher_4b8cd": "Cadeaubon inwisselen",
+      "VoucherForm_You_need_to_be_signed_in_to_view_redeemed_vouchers_70781": "Je moet aangemeld zijn om ingewisselde cadeaubonnen te bekijken.",
+      "VoucherForm_Redeemed_vouchers_could_not_be_loaded_1c156": "Ingewisselde cadeaubonnen konden niet worden geladen.",
+      "VoucherForm_You_do_not_have_any_redeemed_vouchers_yet_46648": "Je hebt nog geen cadeaubonnen ingewisseld.",
+      "VoucherForm_Redeemed_on_d5f93": "Ingewisseld op",
+      "PasswordForm_Could_not_update_the_password_Please_try_again_950ff": "Het wachtwoord kon niet worden bijgewerkt. Probeer het opnieuw.",
+      "PasswordForm_Login_password_24141": "Wachtwoord voor aanmelden",
+      "PasswordForm_Keep_your_password_secure_We_recommend_using_a_mix_of_l_d9679": "Houd je wachtwoord veilig. We raden een combinatie van letters, cijfers en speciale tekens aan.",
+      "PasswordForm_Change_64fbd": "Wijzigen",
+      "PasswordForm_Password_is_set_9d82f": "Wachtwoord is ingesteld",
+      "PasswordForm_After_saving_the_new_password_will_be_used_for_your_nex_db03d": "Na het opslaan gebruik je het nieuwe wachtwoord om je aan te melden.",
+      "PasswordForm_Saving_ae7e8": "Bezig met opslaan...",
+      "SidebarForm__not_available_for_this_currency_yet_8de74": "(nog niet beschikbaar voor deze valuta)",
+      "VoucherForm_You_need_to_be_signed_in_to_manage_your_vouchers_b0465": "Je moet aangemeld zijn om je cadeaubonnen te beheren.",
+      "VoucherForm_Studio_benefits_735a6": "Studiovoordelen",
+      "VoucherForm_Redeem_a_gift_voucher_and_use_its_value_as_credit_towar_25234": "Wissel een cadeaubon in en gebruik de waarde als tegoed voor je volgende studiobezoek.",
+      "VoucherForm_Add_studio_credit_080dc": "Studiotegoed toevoegen",
+      "VoucherForm__for_example_D4T_32S_053_b5110": "(bijvoorbeeld D4T-32S-053)",
+      "VoucherForm_Use_the_format_D4T_32S_053_fab4a": "Gebruik het formaat D4T-32S-053.",
+      "VoucherForm_Redeeming_12d34": "Bezig met inwisselen…",
+      "VoucherForm_Your_vouchers_bbc3d": "Je cadeaubonnen",
+      "VoucherForm_A_history_of_vouchers_added_to_your_account_2773c": "Een overzicht van de cadeaubonnen die aan je account zijn toegevoegd.",
+      "VoucherForm_Loading_vouchers_eec52": "Cadeaubonnen laden…",
+      "VouchersTable_Loading_vouchers_eec52": "Cadeaubonnen laden…",
+      "VoucherForm_Vouchers_could_not_be_loaded_3d2e9": "Cadeaubonnen konden niet worden geladen",
+      "VoucherForm_Sign_in_to_see_your_vouchers_e24c2": "Meld je aan om je cadeaubonnen te bekijken",
+      "VoucherForm_No_redeemed_vouchers_yet_18387": "Nog geen ingewisselde cadeaubonnen",
+      "VoucherForm_Your_first_redeemed_code_will_appear_here_with_its_valu_e69ea": "Je eerste ingewisselde code verschijnt hier met de waarde en datum.",
+      "BookingSuccess_You_can_manage_your_booking_in_the_My_bookings_section_60eb1": "Je kunt je boeking beheren onder Mijn boekingen.",
+      "BookingSuccess_Your_payment_is_being_processed_We_will_confirm_the_boo_46e80": "Je betaling wordt verwerkt. We bevestigen de boeking zodra we een beveiligde betalingsbevestiging hebben ontvangen.",
+      "BookingSuccess_You_can_leave_this_page_open_the_status_refreshes_autom_2b868": "Je kunt deze pagina open laten; de status wordt automatisch bijgewerkt.",
+      "BookingSuccess_Not_confirmed_b9e09": "Niet bevestigd",
+      "BookingSuccess_The_payment_was_not_completed_a993b": "De betaling is niet afgerond",
+      "BookingSuccess_The_booking_was_not_confirmed_Your_cart_was_kept_so_you_73aa5": "De boeking is niet bevestigd. Je winkelwagen is bewaard, zodat je de betaling veilig opnieuw kunt proberen.",
+      "BookingSuccess_If_you_were_charged_anyway_contact_the_studio_and_inclu_73483": "Is er toch geld afgeschreven? Neem contact op met de studio en vermeld het bestelnummer.",
+      "BookingSuccess_Unable_to_verify_43e97": "Kan niet worden geverifieerd",
+      "BookingSuccess_We_cannot_verify_the_status_yet_278a5": "We kunnen de status nog niet controleren",
+      "BookingSuccess_The_order_status_could_not_be_loaded_This_does_not_mean_d1477": "De bestelstatus kon niet worden geladen. Dit betekent niet dat de betaling is mislukt.",
+      "BookingSuccess_Try_checking_the_status_again_Your_cart_remains_intact_b97b0": "Probeer de status opnieuw te controleren. Je winkelwagen blijft bewaard.",
+      "BookingSuccess_The_order_reference_is_missing_7c577": "Het bestelnummer ontbreekt",
+      "BookingSuccess_This_return_link_has_no_valid_order_reference_so_the_bo_69ea4": "Deze terugkeerlink bevat geen geldig bestelnummer, waardoor de boeking niet kan worden bevestigd.",
+      "BookingSuccess_We_kept_your_cart_Return_to_the_portal_or_contact_the_s_b05de": "Je winkelwagen is bewaard. Ga terug naar het portaal of neem contact op met de studio.",
+      "BookingSuccess_Checking_status_c74a3": "Status controleren…",
+      "BookingSuccess_Waiting_for_confirmation_ce436": "Wachten op bevestiging…",
+      "ConfirmationDetails_Confirmed_details_f7c49": "Bevestigde gegevens",
+      "ConfirmationDetails_Payment_source_31c56": "Betalingsbron",
+      "CourseCard_Book_course_e7003": "Cursus boeken",
+      "CourseCard_Gift_voucher_aa850": "Cadeaubon",
+      "CourseCard_Course_description_17fff": "Cursusbeschrijving",
+      "WithAuth_Sign_in_again_7842f": "Opnieuw aanmelden",
+      "CourseCard_Maximum_a8df2": "Maximum",
+      "BookingActionButtons_Additional_guests_are_unavailable_for_this_booking_c294b": "Je kunt geen extra gasten aan deze boeking toevoegen.",
+      "CourseModal_Related_dates_661c4": "Bijbehorende datums:",
+      "CourseModal_or_17583": "of",
+      "CourseInfoModal_ID_d789a": "ID:",
+      "VoucherForm__e_g_D4T_32S_053_d4e4b": "(bijv. D4T-32S-053)",
+      "VouchersTable_Voucher_management_384c5": "Cadeaubonnenbeheer",
+      "VouchersTable_Find_voucher_orders_by_ID_email_customer_product_or_pro_0ef29": "Zoek cadeaubonbestellingen op ID, e-mailadres, klant, product of kortingscode.",
+      "VouchersTable_Order_ID_Email_Name_Product_Promo_code_30146": "Bestelnummer | E-mailadres | Naam | Product | Kortingscode",
+      "VouchersTable_Delivery_type_58a44": "Bezorgmethode",
+      "VouchersTable_Postal_delivery_only_3b7bf": "Alleen per post",
+      "VouchersTable_All_orders_e6909": "Alle bestellingen",
+      "VouchersTable_Without_postal_delivery_e1788": "Zonder bezorging per post",
+      "VouchersTable_Custom_ID_bf59e": "Eigen ID",
+      "VouchersTable_e_g_0023_929f2": "bijv. 0023",
+      "VouchersTable_We_could_not_load_the_vouchers_bd8c3": "We konden de cadeaubonnen niet laden.",
+      "VouchersTable_Showing_163d8": "Weergave",
+      "VouchersTable_orders_96584": "bestellingen",
+      "VouchersTable__page_34ef9": "· pagina",
+      "VouchersTable_Customer_5e0d7": "Klant:",
+      "VouchersTable_Email_4c4e6": "E-mailadres:",
+      "VouchersTable_Quantity_fe2c3": "Aantal:",
+      "VouchersTable_Delivery_4e854": "Bezorging:",
+      "VouchersTable_Status_11dc9": "Status:",
+      "VouchersTable_Promo_codes_9a9df": "Kortingscodes:",
+      "VouchersTable_Address_303d9": "Adres:",
+      "VouchersTable_No_vouchers_found_95f3e": "Geen cadeaubonnen gevonden.",
+      "VouchersTable_ID_89f89": "ID",
+      "VouchersTable_Qty_1e5ff": "Aantal",
+      "VouchersTable_Delivery_9631a": "Bezorging",
+      "VouchersTable_Page_fb062": "Pagina",
+      "VouchersTable_Edit_voucher_status_6c496": "Cadeaubonstatus wijzigen",
+      "VouchersTable_Order_3c124": "Bestelling:",
+      "VouchersTable_Current_status_02d14": "Huidige status:",
+      "VouchersTable_New_status_660b4": "Nieuwe status",
+      "NewLecturerForm_New_instructor_04304": "Nieuwe docent",
+      "NewLecturerForm_Enter_the_details_for_the_new_instructor_acea4": "Vul de gegevens van de nieuwe docent in.",
+      "NewBookingForm_Enter_the_booking_details_bdd5c": "Vul de boekingsgegevens in.",
+      "NewBookingForm_Basic_details_42450": "Basisgegevens",
+      "NewBookingForm_Choose_the_product_location_date_and_time_for_the_booki_2d948": "Kies het product, de locatie, de datum en het tijdstip voor de boeking.",
+      "NewBookingForm_Selected_times_da07f": "Gekozen tijdstippen",
+      "NewBookingForm_Remove_time_2278a": "Tijdstip verwijderen",
+      "NewBookingForm_Internal_details_125a9": "Interne gegevens",
+      "NewBookingForm_Optional_details_for_internal_booking_management_bee7c": "Optionele gegevens voor het interne boekingsbeheer.",
+      "NewBookingForm_This_note_appears_in_the_calendar_for_staff_only_fbd41": "Deze opmerking is in de kalender alleen zichtbaar voor medewerkers.",
+      "NewBookingForm_Select_an_instructor_5faef": "Selecteer een docent",
+      "NewBookingForm_Booking_summary_e2a9a": "Boekingsoverzicht",
+      "NewBookingForm_Review_the_selected_details_before_saving_f6480": "Controleer de gekozen gegevens voordat je ze opslaat.",
+      "SidebarForm_Close_panel_fa0b7": "Paneel sluiten",
+      "SidebarForm_Postage_31c92": "Verzendkosten:",
+      "SidebarForm_Total_d8e71": "Totaal:",
+      "EditProductForm_Product_ID_5d8ff": "Product-ID:",
+      "EditProductForm_e_g_Introduction_to_photography_331c9": "bijv. Inleiding tot fotografie",
+      "NewProductForm_e_g_Introduction_to_photography_331c9": "bijv. Inleiding tot fotografie",
+      "EditProductForm_Image_URL_35c80": "Afbeeldings-URL",
+      "NewProductForm_Image_URL_35c80": "Afbeeldings-URL",
+      "EditProductForm_Product_description_optional_9111f": "Productbeschrijving (optioneel)",
+      "NewProductForm_Product_description_optional_9111f": "Productbeschrijving (optioneel)",
+      "NewProductForm_PDF_template_b3b38": "PDF-sjabloon",
+      "NewProductForm_Selected_2e084": "Geselecteerd:",
+      "NewProductForm_Upload_a_PDF_template_for_the_voucher_e71fe": "Upload een PDF-sjabloon voor de cadeaubon.",
+      "CreditTransactionHistory_Showing_value1_value2_of_value3_f25d4": "{value1}–{value2} van {value3}",
+      "LocationScopedMyBookingsTable_Showing_value1_value2_of_value3_f25d4": "{value1}–{value2} van {value3}",
+      "VoucherForm_Voucher_redeemed_successfully_Added_value1_New_balance_1a0e9": "Cadeaubon ingewisseld. Toegevoegd: {value1}. Nieuw saldo: {value2}.",
+      "Login_Sign_in_with_your_customer_account_to_open_value1_31cf2": "Meld je aan met je klantaccount om {value1} te openen.",
+      "Login_Sign_in_to_continue_to_value1_9a18a": "Meld je aan om verder te gaan naar {value1}.",
+      "Registration_Book_visits_and_courses_without_re_entering_details_6952f": "Boek bezoeken en cursussen zonder je gegevens opnieuw in te voeren",
+      "Registration_Keep_pieces_credits_and_history_within_reach_2267f": "Houd je werkstukken, credits en geschiedenis binnen handbereik",
+      "CustomerPasswordRecoveryShell_Your_studio_1b32c": "Je studio",
+      "yourStudio": "Je studio",
+      "CourseDetailsModal_Course_detail_fc5ad": "Cursusdetails",
+      "bookingHistoryUpcoming": "Hier vind je je komende boekingen. {count, plural, one {# boeking in totaal} other {# boekingen in totaal}}",
+      "bookingHistoryPast": "Hier vind je je boekingsgeschiedenis, inclusief geannuleerde boekingen. {count, plural, one {# boeking in totaal} other {# boekingen in totaal}}",
+      "genericError": "Er is iets misgegaan. Probeer het opnieuw.",
+      "instructorCreateError": "We konden de docent niet toevoegen. Probeer het opnieuw.",
+      "bookingCreateError": "We konden de boeking niet aanmaken. Probeer het opnieuw.",
+      "voucherUpdateError": "We konden de cadeaubonstatus niet bijwerken.",
+      "studioSignIn": "Aanmelden bij de studio",
+      "courseFallback": "Cursus"
+    },
+    "VOUCHER_REDEEM_TITLE": "Cadeaubon ingewisseld",
+    "LOADING": "Laden…",
+    "FILTERS": "Filters",
+    "CLEAR_FILTERS": "Filters wissen",
+    "PRODUCT_TYPE": "Producttype",
+    "ALL_PRODUCT_TYPES": "Alle producttypen",
+    "ALL_STATUSES": "Alle statussen",
+    "PASS_MISMATCH": "De wachtwoorden komen niet overeen.",
+    "metadata": {
+      "registerTitle": "Account aanmaken",
+      "studioFallback": "Je studio",
+      "loginTitle": "Aanmelden",
+      "loginDescription": "Meld je aan bij je account voor {studio}.",
+      "registerDescription": "Maak een account aan om bij {studio} te boeken."
+    },
+    "CUSTOMER_PAYMENTS_UNAVAILABLE": "Online betalen is momenteel niet beschikbaar voor deze studio. Neem contact op met de studio of probeer het later opnieuw.",
+    "INVALID_TENANT_CHECKOUT": "Deze betaallink voor de studio is ongeldig. Ga terug naar de studiopagina en probeer het opnieuw.",
+    "CHECKOUT_REDIRECT_MISSING": "De beveiligde betaalpagina kon niet worden geopend. Probeer het opnieuw.",
+    "TUTORIALS": "Handleidingen",
+    "ADD_NEW_BOOKING": "Nieuwe boeking toevoegen",
+    "GIFT_VOUCHER": "Cadeaubonnen",
+    "GIFT_VOUCHER_TITLE": "Cadeaubon",
+    "DELIVERY_DETAILS": "Bezorggegevens",
+    "GIFT_VOUCHER_INFO_1": "Vul hieronder je gegevens in om een bestelling te plaatsen.",
+    "GIFT_VOUCHER_INFO_2": "Daarna sturen we je de gekochte cadeaubon.",
+    "COURSE_LENGTH": "Duur",
+    "PASS_UPDATE_CONTENT": "Het wachtwoord is bijgewerkt",
+    "PASS_UPDATE_TITLE": "Wachtwoord bijwerken",
+    "SUCCESS_TITLE": "Je boeking is bevestigd",
+    "BOOK_COURSE_BUTTON": "Cursus boeken",
+    "COUPON_BUTTON": "Cadeaubon kopen",
+    "PRE_FILLED": "Vooraf ingevuld vanuit je account",
+    "SELECT_VOUCHER": "Cadeaubon selecteren",
+    "SUCCESS_CONTENT_1": "De boekingsbevestiging en verdere instructies zijn naar je e-mailadres gestuurd.",
+    "SUCCESS_HELPER_TEXT_1": "Klopt er iets niet? Stuur ons een bericht, dan helpen we je.",
+    "SUCCESS_CONTENT_2": "De toegangscode voor de studio wordt 15 minuten voor je boeking naar je e-mailadres gestuurd.",
+    "SUCCESS_BUTTON": "Naar boekingen",
+    "CANCEL_TITLE": "Er is iets misgegaan :(",
+    "CANCEL_CONTENT": "Helaas is de betaling niet gelukt.",
+    "OVERLAP_TITLE": "Oeps! Er is iets misgegaan :(",
+    "OVERLAP_CONTENT": "Helaas is het gekozen tijdstip al geboekt. Kies een andere beschikbare datum.",
+    "RESERVATION_LIMIT_EXCEEDED_PAGE": "De huidige capaciteit van deze studiolocatie is op dit tijdstip bereikt. Kies een ander beschikbaar tijdstip.",
+    "LOGIN_EMAIL_PLACEHOLDER": "Je e-mailadres",
+    "LOGIN_PASSWORD_PLACEHOLDER": "Je wachtwoord",
+    "OPEN_STUDIO": "Hoe open je de studio?",
+    "BUTTON_REGISTER": "Registreren",
+    "EDIT_USER": "Gebruiker bewerken",
+    "DESCRIPTION_404": "We konden de pagina die je zoekt helaas niet vinden.",
+    "HEADER_404": "Pagina niet gevonden",
+    "BUTTON_404": "Terug naar de startpagina",
+    "EMAIL_VERIFICATION_REQUIRED": "Verificatie van je e-mailadres is vereist!",
+    "WHAT_HAPPENS_NEXT": "Wat gebeurt er nu?",
+    "MAX_NO_PARTICIPANTS": "Maximaal aantal personen",
+    "USERS": "Gebruikers",
+    "TYPE": "Producttype",
+    "NEW_PRODUCT": "Nieuw product",
+    "IMAGE_SOURCE": "Foto-URL",
+    "ADD": "Toevoegen",
+    "OPTIONAL": "optioneel",
+    "EMAIL_BY_POST": "Per post versturen",
+    "EMAIL_BY_POST_INFO": "De cadeaubon wordt naar het opgegeven adres gestuurd.",
+    "ORDER_VOUCHER": "Cadeaubon kopen",
+    "REGISTER_CONFIRMATION": "We hebben je ID naar je e-mailadres gestuurd. Met dit ID kun je je producten registreren.",
+    "REGISTER_TITLE_CONFIRMATION": "Registratie geslaagd",
+    "ERROR_CAPACITY": "De cursus is vol",
+    "ERROR_PASSWORD_REGEX": "Het wachtwoord moet minstens 8 tekens bevatten, waaronder minstens één cijfer",
+    "ERROR_EMAIL_REGEX": "Het e-mailadres heeft niet de juiste indeling",
+    "ERROR_MODAL_CART_DUPLICATE": "De cursus zit al in je winkelwagen",
+    "ERROR_TERMS": "Je moet akkoord gaan met de algemene voorwaarden",
+    "ERROR_RULES": "Je moet bevestigen dat je de richtlijnen van de studio hebt gelezen",
+    "ERROR_UNAUTHORIZED": "Onjuiste gebruikersnaam of onjuist wachtwoord",
+    "ERROR_PASS_MATCH": "De wachtwoorden moeten overeenkomen",
+    "ERROR_PHONE_REGEX": "Vul een geldig telefoonnummer in",
+    "ERROR_NAME_REGEX": "Voer een geldige naam in.",
+    "ERROR_EMAIL_FORMAT": "Het e-mailadres heeft een ongeldige indeling",
+    "ERROR_MISSING_FIELDS": "Vul het formulier correct in",
+    "ERROR_NO_SERVER_RESPONSE": "Geen reactie van de server",
+    "ERROR_MISSING_CREDENTIALS": "E-mailadres of wachtwoord ontbreekt",
+    "ERROR_USER_EXISTS": "Er bestaat al een gebruiker met dit e-mailadres",
+    "STREET": "Straat",
+    "PRODUCT": "Ik wil boeken...",
+    "BOOKING_COLOR": "Kleur",
+    "NOTE": "Laat een opmerking achter",
+    "CHANGE_PARTICIPANTS_INFO_LIMIT": "Het maximale aantal gasten is bereikt.",
+    "LOGOUT_MSG_1": "We moesten je helaas afmelden",
+    "LOGOUT_MSG_2": "Meld je opnieuw aan",
+    "LOGOUT_MSG_3": "Zo houden we je account veilig.",
+    "ADMIN": "Beheer",
+    "MANAGEMENT": "Beheer",
+    "CREDIT_BALANCE": "Creditsaldo",
+    "ADD_CREDITS": "Credits toevoegen",
+    "PURCHASE_CREDITS": "Credits kopen",
+    "PAYMENT_METHOD": "Betaalmethode",
+    "CREDIT_CARD": "Creditcard",
+    "PROCESSING": "Bezig met verwerken...",
+    "POPULAR": "Populair",
+    "SELECT_PACKAGE": "Pakket selecteren",
+    "SELECTED_AMOUNT": "Gekozen bedrag",
+    "CREDIT_PURCHASE_FAILED": "We konden de betaalpagina niet openen. Probeer het opnieuw.",
+    "CREDIT_PURCHASE_LOGIN_REQUIRED": "Meld je aan om credits te kopen.",
+    "CREDIT_PURCHASE_DESCRIPTION": "Koop credits voor toekomstige boekingen. Je rondt de betaling veilig af via Stripe.",
+    "CREDITS_ERROR": "Credits konden niet worden geladen",
+    "MY_BOOKINGS": "Mijn boekingen",
+    "CANCEL_BOOKING": "Boeking annuleren",
+    "ADD_PARTICIPANTS": "Deelnemers toevoegen",
+    "CONFIRM_CANCEL": "Annulering bevestigen",
+    "CANCEL_BOOKING_WARNING": "Weet je zeker dat je deze boeking wilt annuleren? Je ontvangt credits ter waarde van de boeking.",
+    "REFUND_INFO": "Je ontvangt",
+    "KEEP_BOOKING": "Boeking behouden",
+    "CANCELLING": "Bezig met annuleren...",
+    "CURRENT_PARTICIPANTS": "Huidige deelnemers",
+    "ADDITIONAL_PARTICIPANTS": "Extra deelnemers",
+    "ADDITIONAL_COST": "Extra kosten",
+    "UPDATING": "Bezig met bijwerken...",
+    "FIRST_NAME": "Voornaam",
+    "LAST_NAME": "Achternaam",
+    "PLEASE_WAIT": "Even geduld terwijl we je aankoop verwerken...",
+    "SELECT_TIME_FIRST": "Selecteer eerst een begin- en eindtijd.",
+    "COURSE_BOOKING": "Cursusboeking",
+    "ERROR_GENERIC": "Er is iets misgegaan. Probeer het opnieuw.",
+    "VOUCHER_REDEEM_CONTENT": "Je cadeaubon is ingewisseld.",
+    "LOGIN_REQUIRED": "Meld je aan om verder te gaan.",
+    "PRODUCT_NOT_FOUND": "Deze activiteit is niet meer beschikbaar.",
+    "ADD_TO_CART_ERROR": "We konden deze boeking niet aan je winkelwagen toevoegen. Probeer het opnieuw.",
+    "BOOK_AS_GUEST": "Boeken als gast",
+    "CONFIRMATION": "Bevestiging",
+    "PRICE_NOTE_30MIN": "Prijs per 30 minuten",
+    "ADVANCED_FILTERS": "Geavanceerde filters",
+    "DATE_FROM": "Vanaf datum",
+    "DATE_TO": "Tot datum",
+    "USER_SEARCH": "Klant zoeken",
+    "SEARCH_BY_CUSTOM_ID_OR_EMAIL": "Zoeken op ID of e-mailadres",
+    "ALL_LECTURERS": "Alle docenten",
+    "ALL_PRODUCTS": "Alle producten",
+    "AUTHOR_SEARCH": "Zoek een klant",
+    "SEARCH_BY_NAME_OR_ID": "Zoeken op naam of ID",
+    "PASS_RULES": "Gebruik minstens 8 tekens, waaronder een cijfer."
+  },
+  "AIProduct": {
+    "briefing": {
+      "message011": "Urgente taken",
+      "message001": "{count, plural, one {# dringend gesprek} other {# dringende gesprekken}}",
+      "message002": "Dringende klantberichten",
+      "message003": "Aandacht nodig: {value1}.",
+      "message004": "{count, plural, one {# taak waarvan de deadline is verstreken} other {# taken waarvan de deadline is verstreken}}",
+      "message005": "Studiotaken waarvan de deadline is verstreken",
+      "message006": "Nog af te ronden: {value1}.",
+      "message007": "{count, plural, one {# personeelsupdate met een belemmering} other {# personeelsupdates met belemmeringen}}",
+      "message008": "Belemmeringen voor medewerkers",
+      "message009": "Hulp nodig: {value1}.",
+      "message010": "{count, plural, one {# dringende taak} other {# dringende taken}}",
+      "message012": "Hoge prioriteit: {value1}.",
+      "message013": "{count, plural, one {# onbetaalde boeking} other {# onbetaalde boekingen}}",
+      "message014": "Onbetaalde boekingen",
+      "message015": "Te beoordelen: {value1}.",
+      "message016": "{count, plural, one {# artikel met een lage voorraad} other {# artikelen met een lage voorraad}}",
+      "message017": "Lage voorraad",
+      "message018": "Mogelijk aan te vullen: {value1}.",
+      "message019": "{count, plural, one {# personeelsupdate} other {# personeelsupdates}}",
+      "message020": "Te beoordelen personeelsupdates",
+      "message021": "Aandacht van de eigenaar nodig: {value1}.",
+      "message022": "Onvolledige gegevensdekking",
+      "message023": "Sommige bronnen zijn niet beschikbaar; hun waarden worden niet als nul weergegeven.",
+      "message024": "{count, plural, one {# boeking vandaag} other {# boekingen vandaag}}",
+      "message025": "{count, plural, one {# openstaande taak} other {# openstaande taken}}",
+      "message026": "Een paar zaken vragen vandaag om je aandacht",
+      "message027": "Je studio ligt vandaag op koers",
+      "message028": "De beschikbare operationele bronnen bevatten geen samenvattende aantallen",
+      "message029": "Het overzicht gebruikt elke bron waartoe je momenteel toegang hebt.",
+      "message030": "Niet-beschikbare waarden worden niet als nul weergegeven.",
+      "message031": "Help me dit geverifieerde studiopunt op te lossen: {value1}",
+      "message032": "Prioriteiten bekijken met AI"
+    },
+    "advisor": {
+      "message004": "Netto-omzet",
+      "message008": "Boekingen",
+      "message020": "Terugkerende klanten",
+      "message021": "Actieve klanten",
+      "message022": "Cursus",
+      "message026": "Cursus",
+      "message001": "Onderzoek de omzetdaling",
+      "message002": "De netto-omzet is {value1}% lager dan in de vergelijkingsperiode.",
+      "message003": "Vergelijk boekingstrends en het best presterende aanbod voordat je prijzen of promoties wijzigt.",
+      "message005": "Onderzoek de daling in boekingen",
+      "message006": "Het aantal boekingen is {value1}% lager dan in de vergelijkingsperiode.",
+      "message007": "Bekijk de uitsplitsing per tijdstip en het aanbod waarnaar de vraag is veranderd.",
+      "message009": "Benut de beschikbare capaciteit",
+      "message010": "De geschatte benutting van de ingestelde capaciteit is {value1}%.",
+      "message011": "Bepaal welke dagen en uren minder worden benut en test een gericht aanbod voor die tijdstippen.",
+      "message012": "Capaciteitsbenutting",
+      "message016": "Capaciteitsbenutting",
+      "message013": "Onderzoek de dalende bezetting",
+      "message014": "De benutting van de ingestelde capaciteit daalde met {value1} procentpunt.",
+      "message015": "Vergelijk beide periodes in de uitsplitsing per tijdstip en richt je op de grootste verschillen.",
+      "message017": "Moedig klanten aan om terug te komen",
+      "message018": "Terugkerende klanten vormen {value1}% van de {value2} actieve klanten in deze periode.",
+      "message019": "Overweeg een vervolgaanbod of lidmaatschap en test dit eerst bij een kleine doelgroep.",
+      "message023": "Verbeter de bezetting van {value1}",
+      "message024": "De cursus heeft een bezetting van {value1}% over {value2} sessies.",
+      "message028": "De cursus heeft een bezetting van {value1}% over {value2} sessies.",
+      "message025": "Bekijk de planning, beschrijving en doelgroep. Verander steeds één onderdeel om het resultaat te kunnen meten.",
+      "message027": "Overweeg een extra sessie van {value1}",
+      "message029": "Controleer de capaciteit van het team en de ruimte voordat je een sessie toevoegt.",
+      "message030": "Bekijk lage voorraden zonder nabestelling",
+      "message031": "Bij {value1} artikelen is de voorraad laag, terwijl er {value2} nabestelaanvragen openstaan.",
+      "message032": "Controleer voor welke artikelen met een lage voorraad nog geen nabestelaanvraag bestaat.",
+      "message033": "Artikelen met een lage voorraad",
+      "message034": "Openstaande nabestellingen",
+      "message035": "Werk achterstallige studiotaken weg",
+      "message036": "Van {value1} openstaande taken is de deadline verstreken.",
+      "message037": "Wijs voor elke achterstallige taak een verantwoordelijke aan en bevestig een haalbare deadline.",
+      "message038": "Achterstallige taken",
+      "message039": "Nog geen overtuigende aanbeveling",
+      "message040": "De beschikbare gegevens overschrijden momenteel de voorzichtig ingestelde drempels voor bedrijfsadvies niet.",
+      "message041": "Er zijn nog onvoldoende gegevens beschikbaar voor een betrouwbare aanbeveling.",
+      "message042": "Begin met de kansen met de hoogste prioriteit",
+      "message043": "Een paar kansen zijn het bekijken waard",
+      "message044": "De adviseur heeft {value1} aanbevelingen gevonden op basis van geverifieerde studiogegevens."
+    }
+  },
+  "PaymentCancellation": {
+    "badge": "Betaling geannuleerd",
+    "nextSteps": "Wat je nu kunt doen",
+    "retry": "Probeer het opnieuw — soms lukt een tweede poging wel.",
+    "card": "Als je Apple Pay / Google Pay hebt gebruikt, probeer dan met een kaart te betalen.",
+    "contact": "Blijft het probleem bestaan? Stuur ons een bericht, dan helpen we je.",
+    "home": "Terug naar de startpagina",
+    "chargeNotice": "Er wordt pas een bedrag afgeschreven als de betaling is voltooid."
   }
 }

@@ -1,5 +1,9 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useMemo, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import {
@@ -117,12 +121,11 @@ const secondaryButtonClass =
   "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-[12px] font-semibold text-[#292925] transition hover:border-cobalt-200 hover:text-cobalt-700 disabled:cursor-not-allowed disabled:opacity-50";
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.data?.error || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 const getResultEntity = (result, key) => result?.[key] || result;
 
-const getDateLocale = (locale) =>
-  locale?.toLowerCase().startsWith("cs") ? "cs-CZ" : "en-GB";
+const getDateLocale = (locale) => resolveIntlLocale(locale);
 
 export default function InventoryManagementPage({
   defaultSection,

@@ -1,3 +1,5 @@
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import {
   Dialog,
   Transition,
@@ -12,7 +14,7 @@ import {
 import { Fragment, useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, openCart } from "@/lib/features/cart/cartSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { selectIsAuthenticated } from "@/lib/features/auth/authSlice";
 import { Link } from "@/i18n/navigation";
@@ -49,6 +51,9 @@ export default function CourseModal({
   products,
   bookings,
 }) {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const dispatch = useDispatch();
   const cancelButtonRef = useRef(null);
   const language = useSelector(selectCurrentLanguage);
@@ -98,20 +103,14 @@ export default function CourseModal({
 
     // Check if course is already in cart
     if (isCourseInCart()) {
-      setErrMsg(
-        translation["ERROR_MODAL_CART_DUPLICATE"]?.[language] ||
-          "This course is already in your cart.",
-      );
+      setErrMsg(translation["ERROR_MODAL_CART_DUPLICATE"]?.[language]);
       return false;
     }
 
     // Check capacity
     const availableCapacity = getAvailableCapacity();
     if (availableCapacity !== null && availableCapacity <= 0) {
-      setErrMsg(
-        translation["ERROR_CAPACITY"]?.[language] ||
-          "This course is full. Please select a different time slot.",
-      );
+      setErrMsg(translation["ERROR_CAPACITY"]?.[language]);
       return false;
     }
 
@@ -119,10 +118,7 @@ export default function CourseModal({
       (!booking?.start || !booking?.end) &&
       product?.type.includes("workshop")
     ) {
-      setErrMsg(
-        translation["SELECT_TIME_FIRST"]?.[language] ||
-          "Please select a time slot first.",
-      );
+      setErrMsg(translation["SELECT_TIME_FIRST"]?.[language]);
       return false;
     }
     return true;
@@ -135,18 +131,12 @@ export default function CourseModal({
 
     // Check if user is logged in
     if (!isAuthenticated) {
-      setErrMsg(
-        translation["LOGIN_REQUIRED"]?.[language] ||
-          "Please log in to add items to your cart. You can also checkout as a guest.",
-      );
+      setErrMsg(translation["LOGIN_REQUIRED"]?.[language]);
       return;
     }
 
     if (!product || !booking) {
-      setErrMsg(
-        translation["PRODUCT_NOT_FOUND"]?.[language] ||
-          "Product or booking information is missing.",
-      );
+      setErrMsg(translation["PRODUCT_NOT_FOUND"]?.[language]);
       return;
     }
 
@@ -156,10 +146,7 @@ export default function CourseModal({
 
     // Check for duplicates one more time before adding
     if (isCourseInCart()) {
-      setErrMsg(
-        translation["ERROR_MODAL_CART_DUPLICATE"]?.[language] ||
-          "This course is already in your cart.",
-      );
+      setErrMsg(translation["ERROR_MODAL_CART_DUPLICATE"]?.[language]);
       return;
     }
 
@@ -167,10 +154,7 @@ export default function CourseModal({
     const availableCapacity = getAvailableCapacity();
     if (availableCapacity !== null && availableCapacity <= 0) {
       console.error("Course capacity exceeded: ", availableCapacity);
-      setErrMsg(
-        translation["ERROR_CAPACITY"]?.[language] ||
-          "This course is now full. Please select a different time slot.",
-      );
+      setErrMsg(translation["ERROR_CAPACITY"]?.[language]);
       return;
     }
 
@@ -205,10 +189,7 @@ export default function CourseModal({
       }, 1000);
     } catch (error) {
       console.error("Error adding course to cart:", error);
-      setErrMsg(
-        translation["ADD_TO_CART_ERROR"]?.[language] ||
-          "Failed to add course to cart. Please try again.",
-      );
+      setErrMsg(translation["ADD_TO_CART_ERROR"]?.[language]);
     }
   };
 
@@ -358,7 +339,9 @@ export default function CourseModal({
                           <>
                             <br />
                             <span className="font-medium">
-                              Navazujicí termíny:{" "}
+                              {legacyText(
+                                "CourseModal_Related_dates_661c4",
+                              )}{" "}
                             </span>
                             <br />
                             <span className="text-sm">
@@ -395,7 +378,7 @@ export default function CourseModal({
                             product.price,
                             product.currency ||
                               DEFAULT_STUDIO_COMMERCE_CURRENCY,
-                            language === "CZ" ? "cs-CZ" : "en-GB",
+                            activeLocale,
                           )}
                         </p>
                         {/* <div className="">
@@ -415,17 +398,14 @@ export default function CourseModal({
                       <div className="mt-3 p-2 bg-gray-50 rounded-md">
                         <p className="text-sm text-gray-700">
                           <span className="font-medium">
-                            {translation["CAPACITY"]?.[language] || "Capacity"}
-                            :{" "}
+                            {translation["CAPACITY"]?.[language]}:{" "}
                           </span>
                           {booking?.numberOfGuests || 0} /{" "}
                           {product.maxNumberOfParticipants}
                           {getAvailableCapacity() !== null && (
                             <span className="ml-2 text-gray-600">
                               ({getAvailableCapacity()}{" "}
-                              {translation["AVAILABLE"]?.[language] ||
-                                "available"}
-                              )
+                              {translation["AVAILABLE"]?.[language]})
                             </span>
                           )}
                         </p>
@@ -436,41 +416,42 @@ export default function CourseModal({
                     {isCourseInCart() && (
                       <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
                         <p className="text-sm text-yellow-800">
-                          {translation["ERROR_MODAL_CART_DUPLICATE"]?.[
-                            language
-                          ] || "This course is already in your cart."}
+                          {
+                            translation["ERROR_MODAL_CART_DUPLICATE"]?.[
+                              language
+                            ]
+                          }
                         </p>
                       </div>
                     )}
                     {isCourseCapacityFulfilled() && (
                       <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-md">
                         <p className="text-sm text-red-800">
-                          {translation["ERROR_CAPACITY"]?.[language] ||
-                            "This course is full. Please select a different time slot."}
+                          {translation["ERROR_CAPACITY"]?.[language]}
                         </p>
                       </div>
                     )}
                     {!isAuthenticated && (
                       <div className="mt-3 p-3 bg-cobalt-50 border border-cobalt-200 rounded-md">
                         <p className="text-sm text-cobalt-800 mb-2">
-                          {translation["LOGIN_REQUIRED"]?.[language] ||
-                            "Please log in to add courses to your cart."}
+                          {translation["LOGIN_REQUIRED"]?.[language]}
                         </p>
                         <Link
                           href="/login"
                           className="text-sm font-medium text-cobalt-600 hover:text-cobalt-800 underline"
                           onClick={() => setOpen(false)}
                         >
-                          {translation["LOGIN"]?.[language] || "Log in"}
+                          {translation["LOGIN"]?.[language]}
                         </Link>
-                        <span className="text-sm text-cobalt-600 mx-2">or</span>
+                        <span className="text-sm text-cobalt-600 mx-2">
+                          {legacyText("CourseModal_or_17583")}{" "}
+                        </span>
                         <Link
                           href="/courses"
                           className="text-sm font-medium text-cobalt-600 hover:text-cobalt-800 underline"
                           onClick={() => setOpen(false)}
                         >
-                          {translation["BOOK_AS_GUEST"]?.[language] ||
-                            "Book as guest"}
+                          {translation["BOOK_AS_GUEST"]?.[language]}
                         </Link>
                       </div>
                     )}
@@ -494,7 +475,7 @@ export default function CourseModal({
                       onClick={handleAddToCart}
                     >
                       <ShoppingCartIcon className="h-5 w-5" />
-                      {translation["ADD_TO_CART"]?.[language] || "Add to Cart"}
+                      {translation["ADD_TO_CART"]?.[language]}
                     </button>
                   )}
                   <button
@@ -503,7 +484,7 @@ export default function CourseModal({
                     onClick={() => setOpen(false)}
                     ref={cancelButtonRef}
                   >
-                    {translation["CLOSE"]?.[language] || "Close"}
+                    {translation["CLOSE"]?.[language]}
                   </button>
                 </div>
               </DialogPanel>

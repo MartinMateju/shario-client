@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useState } from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
@@ -30,7 +32,7 @@ const fieldClass =
   "mt-1.5 w-full rounded-[14px] border-line bg-white text-sm text-ink focus:border-cobalt-300 focus:ring-cobalt-200";
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.data?.error || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 function CheckboxGrid({
   label,

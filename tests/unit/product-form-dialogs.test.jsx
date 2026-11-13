@@ -1616,7 +1616,7 @@ describe("canonical product kind dialogs", () => {
         );
         expect(productApi.uploadAsset.mock.calls[0][0].get("file")).toBe(file);
         if (action === "failed replacement")
-          expect(screen.getByRole("alert")).toHaveTextContent("Upload failed");
+          expect(screen.getByRole("alert")).toHaveTextContent("assets.error");
       }
       await user.click(
         screen.getByRole("button", {
@@ -1935,7 +1935,7 @@ describe("canonical product kind dialogs", () => {
       date: "2029-12-31",
     });
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Expiry date must be in the future",
+      "Request failed",
     );
     expect(screen.getByLabelText("validity.date")).toHaveValue("2029-12-31");
     expect(onClose).not.toHaveBeenCalled();
@@ -2031,7 +2031,7 @@ describe("canonical product kind dialogs", () => {
       }),
     );
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Price conflict",
+      "Request failed",
     );
     expect(
       screen.getByRole("dialog", {

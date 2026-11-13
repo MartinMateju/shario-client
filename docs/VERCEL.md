@@ -24,7 +24,7 @@ Set these project environment variables for **Production** before building:
 
 Keep **Automatically expose System Environment Variables** enabled. The proxy accepts this project's exact `VERCEL_URL`, `VERCEL_BRANCH_URL` and `VERCEL_PROJECT_PRODUCTION_URL`; other unknown hosts still return 404. Do not put generated Vercel URLs in the tenant-root variables.
 
-Both language settings are required for all 18 languages in production. The marketing copy is translated for each language; incomplete product catalogs keep their existing English fallback and preview/noindex status. Set these variables separately for a staging environment if needed. Changing the variables requires a new build.
+Both language settings are required for all 18 languages in production. Product catalogs require complete key coverage in each language; missing translations block the production build. Preview/noindex status remains separate from catalog completeness. Set these variables separately for a staging environment if needed. Changing the variables requires a new build.
 
 The build checks the four required URL/root settings when `VERCEL=1`. It rejects local-only values, insecure URLs, mismatched tenant roots and a generated `vercel.app` tenant root. This validates configuration shape; it does not prove that the API, DNS or provider accounts are ready. `NEXT_PUBLIC_*` values are built into the browser bundle: redeploy after changing them.
 

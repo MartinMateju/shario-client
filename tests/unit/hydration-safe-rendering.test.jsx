@@ -6,6 +6,11 @@ import { hydrateRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs();
+});
+
 vi.mock("@/i18n/navigation", () => ({
   Link: ({ children, href, ...props }) => (
     <a href={href} {...props}>

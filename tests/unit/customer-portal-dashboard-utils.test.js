@@ -243,7 +243,7 @@ describe("customer portal upcoming booking", () => {
     expect(english).toMatchObject({
       id: "booking-1",
       title: "Wheel basics",
-      date: "Fri 7 August",
+      date: "Fri, August 7",
       time: "16:30–18:00",
       locationName: "Studio Olivie",
     });

@@ -4,9 +4,10 @@ import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { selectCurrentUser } from "@/lib/features/auth/authSlice";
 import { useUpdateUserMutation } from "@/lib/features/users/usersApiSlice";
 import Loader from "../../loaders/Loader";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 
 export default function EditUserForm({ user, setOpen, showModalConfirm }) {
+  const translation = useLegacyTranslation();
   const [updateUser, { isLoading, isSuccess, isError, error }] =
     useUpdateUserMutation();
 

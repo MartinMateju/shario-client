@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { isOpenStudioPlanEntitled } from "@/config/planEntitlements";
 import OpenStudioPlanNotice from "./OpenStudioPlanNotice";
 
@@ -77,7 +79,7 @@ const PRODUCT_BACKED_SECTIONS = new Set([
 ]);
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 const isModuleEnabled = (tenant, module) => tenant?.modules?.[module] !== false;
 

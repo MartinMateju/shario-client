@@ -1,3 +1,4 @@
+import { resolveIntlLocale } from "@/i18n/formatting";
 import {
   getOpenStudioGuestLimit,
   isCustomerChoiceOpenStudio,
@@ -255,15 +256,22 @@ export const buildDurationOptions = (location, dateValue, startTime) => {
   return values;
 };
 
-export const formatDuration = (minutes, language = "EN") => {
+export const formatDuration = (value, locale = "en") => {
+  const minutes = Math.max(0, Math.round(Number(value) || 0));
   const hours = Math.floor(minutes / 60);
-  const rest = minutes % 60;
-  const hourLabel = language === "CZ" ? "h" : "h";
-  const minuteLabel = language === "CZ" ? "min" : "min";
-
-  if (hours && rest) return `${hours} ${hourLabel} ${rest} ${minuteLabel}`;
-  if (hours) return `${hours} ${hourLabel}`;
-  return `${rest} ${minuteLabel}`;
+  const remainder = minutes % 60;
+  const format = (amount, unit) =>
+    new Intl.NumberFormat(resolveIntlLocale(locale), {
+      style: "unit",
+      unit,
+      unitDisplay: "short",
+    }).format(amount);
+  return [
+    hours ? format(hours, "hour") : "",
+    remainder || !hours ? format(remainder, "minute") : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 };
 
 const CAPACITY_BOOKING_TAGS = new Set([

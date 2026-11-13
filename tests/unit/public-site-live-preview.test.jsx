@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { NextRequest } from "next/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { createTranslator } from "use-intl/core";
 import en from "@/messages/en.json";
 import cs from "@/messages/cs.json";
 import nl from "@/messages/nl.json";
@@ -8,8 +9,12 @@ import nl from "@/messages/nl.json";
 const translation = vi.hoisted(() => ({ locale: "en" }));
 const messages = { en, cs, nl };
 vi.mock("next-intl", () => ({
-  useTranslations: () => (key) =>
-    messages[translation.locale].PublicSiteEditor.preview.connection[key],
+  useTranslations: (namespace) =>
+    createTranslator({
+      locale: translation.locale,
+      messages: messages[translation.locale],
+      namespace,
+    }),
 }));
 
 vi.mock("next-intl/middleware", () => ({

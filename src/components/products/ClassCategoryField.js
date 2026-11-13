@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useState } from "react";
 import {
   ArrowPathIcon,
@@ -18,7 +20,7 @@ import {
 } from "@/lib/features/products/productsApiSlice";
 
 const getApiError = (error, fallback) =>
-  error?.data?.message || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 const normalizedName = (value) =>
   String(value || "")

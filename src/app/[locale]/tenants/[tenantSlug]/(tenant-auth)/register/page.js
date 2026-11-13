@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { useLegacyCopy, useLegacyText } from "@/i18n/useLegacyCopy";
 import React, {
   useCallback,
   useEffect,
@@ -34,7 +36,7 @@ import {
 import { Link, useRouter } from "@/i18n/navigation";
 import { resolveRolloutEligibleLocaleCode } from "@/i18n/locales";
 import { useRegisterNewUserMutation } from "@/lib/features/users/usersApiSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import {
   buildTenantAuthHref,
   getSafeTenantNextPath,
@@ -85,12 +87,13 @@ function LegalLink({ href, children }) {
 }
 
 function TermsText({ type, language, href }) {
+  const legacyText = useLegacyText();
   if (type === "rules") {
     return (
       <span id="rules-agreement">
-        {language === "CZ" ? "Přečetl/a jsem si " : "I accept the "}
+        {legacyText("TermsText_I_accept_the_0dc66")}
         <LegalLink href={href}>
-          {language === "CZ" ? "pravidla dílny" : "studio rules"}
+          {legacyText("TermsText_studio_rules_d3727")}
         </LegalLink>
         .
       </span>
@@ -99,9 +102,9 @@ function TermsText({ type, language, href }) {
 
   return (
     <span id="terms-agreement">
-      {language === "CZ" ? "Souhlasím s " : "I accept the "}
+      {legacyText("TermsText_I_accept_the_0dc66")}
       <LegalLink href={href}>
-        {language === "CZ" ? "obchodními podmínkami" : "Terms and Conditions"}
+        {legacyText("TermsText_Terms_and_Conditions_89403")}
       </LegalLink>
       .
     </span>
@@ -127,6 +130,9 @@ function Agreement({ checked, children, describedBy, id, onChange }) {
 }
 
 export default function Registration() {
+  const customerDefaults = useLegacyCopy("customerDefaults");
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -157,7 +163,7 @@ export default function Registration() {
   const tenantName =
     tenant.publicSite.branding.displayName ||
     tenant.name ||
-    (language === "CZ" ? "Vaše studio" : "Your studio");
+    legacyText("Registration_Your_studio_1b32c");
   const legal = tenant.publicSite.footer.legal;
   const safeNextPath = getSafeTenantNextPath(searchParams.get("next"));
   const tenantLoginHref = buildTenantAuthHref("/login", safeNextPath);
@@ -171,6 +177,7 @@ export default function Registration() {
   const customizationDefaults = getCustomerAuthCustomizationDefaults(
     "register",
     locale,
+    customerDefaults,
   );
   const configuredEyebrow = getLocalizedPublicTenantText(
     register.eyebrow,
@@ -196,7 +203,7 @@ export default function Registration() {
 
   const t = useMemo(() => {
     return (key, fallback = "") => translation?.[key]?.[language] ?? fallback;
-  }, [language]);
+  }, [language, translation]);
 
   const validation = useMemo(() => {
     const firstName = form.firstName.trim();
@@ -273,44 +280,58 @@ export default function Registration() {
     return {
       firstName:
         touched.firstName && form.firstName && !validation.validFirstName
-          ? isCzech
-            ? "Jméno musí obsahovat alespoň 2 znaky."
-            : "First name must contain at least 2 characters."
+          ? legacyText(
+              "Registration_First_name_must_contain_at_least_2_characters_1c536",
+            )
           : "",
       lastName:
         touched.lastName && form.lastName && !validation.validLastName
-          ? isCzech
-            ? "Příjmení musí obsahovat alespoň 2 znaky."
-            : "Last name must contain at least 2 characters."
+          ? legacyText(
+              "Registration_Last_name_must_contain_at_least_2_characters_c5dd3",
+            )
           : "",
       email:
         touched.email && form.email && !validation.validEmail
-          ? isCzech
-            ? "Zadejte platnou e-mailovou adresu."
-            : "Please enter a valid email address."
+          ? legacyText("Registration_Please_enter_a_valid_email_address_d2306")
           : "",
       phone:
         touched.phone && form.phone && !validation.validPhone
-          ? isCzech
-            ? "Zadejte platné telefonní číslo."
-            : "Please enter a valid phone number."
+          ? legacyText("Registration_Please_enter_a_valid_phone_number_c08e1")
           : "",
       password:
         touched.password && form.password && !validation.validPassword
-          ? isCzech
-            ? "Heslo musí mít alespoň 8 znaků a obsahovat alespoň 1 číslici."
-            : "Password must be at least 8 characters long and contain at least 1 number."
+          ? legacyText(
+              "Registration_Password_must_be_at_least_8_characters_long_and_contain_3d73c",
+            )
           : "",
       passwordConfirm:
         touched.passwordConfirm &&
         form.passwordConfirm &&
         !validation.passwordMatch
-          ? isCzech
-            ? "Hesla se neshodují."
-            : "Passwords do not match."
+          ? legacyText("Registration_Passwords_do_not_match_f7c3c")
           : "",
     };
-  }, [form, isCzech, touched, validation]);
+  }, [
+    form.email,
+    form.firstName,
+    form.lastName,
+    form.password,
+    form.passwordConfirm,
+    form.phone,
+    legacyText,
+    touched.email,
+    touched.firstName,
+    touched.lastName,
+    touched.password,
+    touched.passwordConfirm,
+    touched.phone,
+    validation.passwordMatch,
+    validation.validEmail,
+    validation.validFirstName,
+    validation.validLastName,
+    validation.validPassword,
+    validation.validPhone,
+  ]);
 
   const focusError = useCallback(() => {
     window.requestAnimationFrame(() => {
@@ -341,27 +362,21 @@ export default function Registration() {
       let nextError = "";
 
       if (!validation.validFirstName) {
-        nextError = t("ERROR_NAME_REGEX", "Please enter a valid name.");
+        nextError = t("ERROR_NAME_REGEX");
       } else if (!validation.validLastName) {
-        nextError = t("ERROR_NAME_REGEX", "Please enter a valid name.");
+        nextError = t("ERROR_NAME_REGEX");
       } else if (!validation.validEmail) {
-        nextError = t("ERROR_EMAIL_REGEX", "Please enter a valid email.");
+        nextError = t("ERROR_EMAIL_REGEX");
       } else if (!validation.validPhone) {
-        nextError = t(
-          "ERROR_PHONE_REGEX",
-          "Please enter a valid phone number.",
-        );
+        nextError = t("ERROR_PHONE_REGEX");
       } else if (!validation.validPassword) {
-        nextError = t(
-          "ERROR_PASSWORD_REGEX",
-          "Password must be at least 8 characters long and contain at least 1 number.",
-        );
+        nextError = t("ERROR_PASSWORD_REGEX");
       } else if (!validation.passwordMatch) {
-        nextError = t("ERROR_PASS_MATCH", "Passwords do not match.");
+        nextError = t("ERROR_PASS_MATCH");
       } else if (legal.studioRules && !rulesAgreement) {
-        nextError = t("ERROR_RULES", "Please accept the studio rules.");
+        nextError = t("ERROR_RULES");
       } else if (legal.terms && !termsAgreement) {
-        nextError = t("ERROR_TERMS", "Please accept the terms.");
+        nextError = t("ERROR_TERMS");
       }
 
       if (nextError) {
@@ -390,19 +405,16 @@ export default function Registration() {
         setShowModal(true);
       } catch (err) {
         if (!err?.status) {
-          setErrMsg(t("ERROR_NO_SERVER_RESPONSE", "Server is not responding."));
+          setErrMsg(t("ERROR_NO_SERVER_RESPONSE"));
         } else if (err.status === 400) {
-          setErrMsg(
-            t("ERROR_MISSING_CREDENTIALS", "Please fill in all fields."),
-          );
+          setErrMsg(t("ERROR_MISSING_CREDENTIALS"));
         } else if (err.status === 401) {
-          setErrMsg(t("ERROR_UNAUTHORIZED", "Unauthorized request."));
+          setErrMsg(t("ERROR_UNAUTHORIZED"));
         } else if (err.status === 409) {
-          setErrMsg(t("ERROR_USER_EXISTS", "User already exists."));
+          setErrMsg(t("ERROR_USER_EXISTS"));
         } else {
           setErrMsg(
-            err?.data?.message ||
-              t("ERROR_NO_SERVER_RESPONSE", "Server is not responding."),
+            getLocalizedApiErrorMessage(err, t("ERROR_NO_SERVER_RESPONSE")),
           );
         }
 
@@ -441,8 +453,8 @@ export default function Registration() {
           customerMode
           tenantStylePresetId={tenantTheme?.stylePresetId}
           tenantThemeStyle={tenantTheme?.style}
-          text={t("REGISTER_CONFIRMATION", "Registration was successful.")}
-          title={t("REGISTER_TITLE_CONFIRMATION", "Registration completed")}
+          text={t("REGISTER_CONFIRMATION")}
+          title={t("REGISTER_TITLE_CONFIRMATION")}
           href={tenantLoginHref}
         />
       ) : null}
@@ -455,30 +467,25 @@ export default function Registration() {
             configuredSupportingText || customizationDefaults.description
           }
           eyebrow={configuredEyebrow || customizationDefaults.eyebrow}
-          formDescription={
-            isCzech
-              ? "Zabere to jen chvilku. Údaje pak nebudete zadávat při každé návštěvě."
-              : "It only takes a moment, and you will not need to enter your details for every visit."
-          }
-          formEyebrow={isCzech ? "Zákaznický účet" : "Customer access"}
-          formTitle={isCzech ? "Vytvořit účet" : "Create account"}
+          formDescription={legacyText(
+            "Registration_It_only_takes_a_moment_and_you_will_not_need_to_enter_y_89bc4",
+          )}
+          formEyebrow={legacyText("Registration_Customer_access_aaae3")}
+          formTitle={legacyText("Registration_Create_account_aaf37")}
           helpText={configuredHelpText}
-          highlights={
-            isCzech
-              ? [
-                  "Rezervace a kurzy bez opakovaného vyplňování",
-                  "Výrobky, kredity a historie vždy po ruce",
-                ]
-              : [
-                  "Book visits and courses without re-entering details",
-                  "Keep pieces, credits and history within reach",
-                ]
-          }
+          highlights={[
+            legacyText(
+              "Registration_Book_visits_and_courses_without_re_entering_details_6952f",
+            ),
+            legacyText(
+              "Registration_Keep_pieces_credits_and_history_within_reach_2267f",
+            ),
+          ]}
           intentText={
             safeNextPath
-              ? isCzech
-                ? "Váš výběr rezervace je uložený. Po registraci můžete plynule pokračovat."
-                : "Your booking selection is saved. Create your account to continue where you left off."
+              ? legacyText(
+                  "Registration_Your_booking_selection_is_saved_Create_your_account_to_c9b1a",
+                )
               : ""
           }
           labelColor={labelColor}
@@ -500,7 +507,7 @@ export default function Registration() {
           >
             <fieldset className="space-y-3">
               <legend className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--tenant-auth-form-muted)]">
-                {isCzech ? "Vaše údaje" : "Your details"}
+                {legacyText("Registration_Your_details_a6252")}
               </legend>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -508,13 +515,13 @@ export default function Registration() {
                   ref={firstNameRef}
                   id="firstname"
                   name="given-name"
-                  label={t("FIRST_NAME", "First name")}
+                  label={t("FIRST_NAME")}
                   type="text"
                   autoComplete="given-name"
                   value={form.firstName}
                   onChange={handleChange("firstName")}
                   onBlur={handleBlur("firstName")}
-                  placeholder={t("FIRST_NAME", "First name")}
+                  placeholder={t("FIRST_NAME")}
                   touched={touched.firstName}
                   valid={validation.validFirstName}
                   error={helperTexts.firstName}
@@ -525,13 +532,13 @@ export default function Registration() {
                 <CustomerAuthField
                   id="lastname"
                   name="family-name"
-                  label={t("LAST_NAME", "Last name")}
+                  label={t("LAST_NAME")}
                   type="text"
                   autoComplete="family-name"
                   value={form.lastName}
                   onChange={handleChange("lastName")}
                   onBlur={handleBlur("lastName")}
-                  placeholder={t("LAST_NAME", "Last name")}
+                  placeholder={t("LAST_NAME")}
                   touched={touched.lastName}
                   valid={validation.validLastName}
                   error={helperTexts.lastName}
@@ -542,7 +549,7 @@ export default function Registration() {
                 <CustomerAuthField
                   id="email"
                   name="email"
-                  label="E-mail"
+                  label={legacyText("Registration_Email_84add")}
                   type="email"
                   autoComplete="email"
                   inputMode="email"
@@ -560,14 +567,14 @@ export default function Registration() {
                 <CustomerAuthField
                   id="phone"
                   name="tel"
-                  label={t("PHONE", "Phone")}
+                  label={t("PHONE")}
                   type="tel"
                   autoComplete="tel"
                   inputMode="tel"
                   value={form.phone}
                   onChange={handleChange("phone")}
                   onBlur={handleBlur("phone")}
-                  placeholder={t("PHONE", "Phone")}
+                  placeholder={t("PHONE")}
                   touched={touched.phone}
                   valid={validation.validPhone}
                   error={helperTexts.phone}
@@ -579,33 +586,35 @@ export default function Registration() {
 
             <fieldset className="space-y-3 border-t border-[color-mix(in_srgb,var(--tenant-auth-form-text)_12%,transparent)] pt-5">
               <legend className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--tenant-auth-form-muted)]">
-                {isCzech ? "Zabezpečení účtu" : "Account security"}
+                {legacyText("Registration_Account_security_0afc7")}
               </legend>
 
               <div className="grid gap-3 sm:grid-cols-2">
                 <CustomerAuthPasswordField
                   id="password"
                   name="new-password"
-                  label={t("PASSWORD", "Password")}
+                  label={t("PASSWORD")}
                   autoComplete="new-password"
                   value={form.password}
                   onChange={handleChange("password")}
                   onBlur={handleBlur("password")}
-                  placeholder={t("PASSWORD", "Password")}
+                  placeholder={t("PASSWORD")}
                   touched={touched.password}
                   valid={validation.validPassword}
                   error={helperTexts.password}
                   helperText={
                     !helperTexts.password
-                      ? isCzech
-                        ? "Alespoň 8 znaků a 1 číslice."
-                        : "At least 8 characters and 1 number."
+                      ? legacyText(
+                          "Registration_At_least_8_characters_and_1_number_87242",
+                        )
                       : ""
                   }
-                  showPasswordLabel={
-                    isCzech ? "Zobrazit heslo" : "Show password"
-                  }
-                  hidePasswordLabel={isCzech ? "Skrýt heslo" : "Hide password"}
+                  showPasswordLabel={legacyText(
+                    "Registration_Show_password_044b8",
+                  )}
+                  hidePasswordLabel={legacyText(
+                    "Registration_Hide_password_e4012",
+                  )}
                   compact
                   required
                 />
@@ -613,25 +622,21 @@ export default function Registration() {
                 <CustomerAuthPasswordField
                   id="password_confirm"
                   name="new-password-confirm"
-                  label={t("PASSWORD_CONFIRM", "Confirm password")}
+                  label={t("PASSWORD_CONFIRM")}
                   autoComplete="new-password"
                   value={form.passwordConfirm}
                   onChange={handleChange("passwordConfirm")}
                   onBlur={handleBlur("passwordConfirm")}
-                  placeholder={t("PASSWORD_CONFIRM", "Confirm password")}
+                  placeholder={t("PASSWORD_CONFIRM")}
                   touched={touched.passwordConfirm}
                   valid={validation.passwordMatch}
                   error={helperTexts.passwordConfirm}
-                  showPasswordLabel={
-                    isCzech
-                      ? "Zobrazit potvrzení hesla"
-                      : "Show password confirmation"
-                  }
-                  hidePasswordLabel={
-                    isCzech
-                      ? "Skrýt potvrzení hesla"
-                      : "Hide password confirmation"
-                  }
+                  showPasswordLabel={legacyText(
+                    "Registration_Show_password_confirmation_c4411",
+                  )}
+                  hidePasswordLabel={legacyText(
+                    "Registration_Hide_password_confirmation_7dbbe",
+                  )}
                   compact
                   required
                 />
@@ -678,13 +683,11 @@ export default function Registration() {
 
                 {legal.privacy ? (
                   <p className="px-1 pt-1 text-xs leading-5 text-[var(--tenant-auth-form-muted)]">
-                    {isCzech
-                      ? "Informace o zpracování osobních údajů najdete v "
-                      : "Information about personal data processing is available in our "}
+                    {legacyText(
+                      "Registration_Information_about_personal_data_processing_is_available_c4190",
+                    )}
                     <LegalLink href={legal.privacy}>
-                      {isCzech
-                        ? "zásadách ochrany osobních údajů"
-                        : "privacy policy"}
+                      {legacyText("Registration_privacy_policy_478db")}
                     </LegalLink>
                     .
                   </p>
@@ -696,10 +699,8 @@ export default function Registration() {
 
             <CustomerAuthSubmitButton type="submit" disabled={isLoading}>
               {isLoading
-                ? isCzech
-                  ? "Vytváříme účet…"
-                  : "Creating account…"
-                : t("BUTTON_REGISTER", "Create account")}
+                ? legacyText("Registration_Creating_account_baab5")
+                : t("BUTTON_REGISTER")}
             </CustomerAuthSubmitButton>
 
             <CustomerSocialAuthButtons
@@ -710,12 +711,12 @@ export default function Registration() {
             />
 
             <p className="border-t border-[color-mix(in_srgb,var(--tenant-auth-form-text)_12%,transparent)] pt-3 text-center text-sm leading-6 text-[var(--tenant-auth-form-muted)]">
-              {isCzech ? "Už máte účet? " : "Already registered? "}
+              {legacyText("Registration_Already_registered_e7edd")}
               <Link
                 href={tenantLoginHref}
                 className="inline-flex min-h-11 items-center font-semibold text-[var(--tenant-auth-form-link)] transition hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:underline"
               >
-                {isCzech ? "Přihlaste se" : "Sign in"}
+                {legacyText("Registration_Sign_in_ada2e")}
               </Link>
             </p>
           </form>

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLegacyText } from "@/i18n/useLegacyCopy";
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -26,7 +29,6 @@ import { selectCurrentTenant } from "@/lib/features/auth/authSlice";
 import { useGetMyCreditTransactionsQuery } from "@/lib/features/credits/creditsApiSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import {
-  getCreditTransactionDescription,
   getCreditTransactionDetails,
   getCreditTransactionPagination,
 } from "./creditTransactionHistory.utils";
@@ -81,47 +83,16 @@ const formatTransactionDate = (value, locale, fallback) => {
 };
 
 export default function CreditTransactionHistory({ className = "" }) {
+  const legacyText = useLegacyText();
+  const activeLocale = useLegacyLocale();
   const tenant = useSelector(selectCurrentTenant);
   const language = useSelector(selectCurrentLanguage) || "CZ";
   const currency =
     tenant?.settings?.currency || DEFAULT_STUDIO_COMMERCE_CURRENCY;
-  const locale = language === "CZ" ? "cs-CZ" : "en-GB";
+  const locale = activeLocale;
   const [page, setPage] = useState(1);
   const pageSize = 15;
-  const copy =
-    language === "CZ"
-      ? {
-          eyebrow: "Pohyby kreditů",
-          title: "Historie transakcí",
-          loading: "Načítání transakcí…",
-          errorTitle: "Historii se nepodařilo načíst",
-          errorDescription:
-            "Zkontrolujte připojení a zkuste načíst transakce znovu.",
-          retry: "Zkusit znovu",
-          refresh: "Obnovit",
-          emptyTitle: "Zatím žádné transakce",
-          emptyDescription: "Všechny pohyby kreditů se zobrazí právě tady.",
-          dateUnknown: "Datum není k dispozici",
-          previous: "Předchozí",
-          next: "Další",
-          pagination: "Stránkování transakcí",
-        }
-      : {
-          eyebrow: "Credit activity",
-          title: "Transaction history",
-          loading: "Loading your transactions…",
-          errorTitle: "We couldn’t load your history",
-          errorDescription:
-            "Check your connection and try loading your transactions again.",
-          retry: "Try again",
-          refresh: "Refresh",
-          emptyTitle: "No transactions yet",
-          emptyDescription: "Every credit movement will appear here.",
-          dateUnknown: "Date unavailable",
-          previous: "Previous",
-          next: "Next",
-          pagination: "Transaction pagination",
-        };
+  const copy = useLegacyCopy("creditHistory");
 
   const {
     data: transactionData,
@@ -233,7 +204,12 @@ export default function CreditTransactionHistory({ className = "" }) {
         <div className="flex-1 divide-y divide-[color-mix(in_srgb,var(--tenant-text)_8%,transparent)]">
           {transactions.map((transaction, index) => {
             const amountSign = transaction.type === "used" ? "−" : "+";
-            const transactionDetails = getCreditTransactionDetails(transaction);
+            const transactionDetails = getCreditTransactionDetails(
+              transaction,
+              {
+                orderLabel: legacyText("BookingSuccess_Order_1d757"),
+              },
+            );
             const when = formatTransactionDate(
               transaction.createdAt,
               locale,
@@ -253,7 +229,7 @@ export default function CreditTransactionHistory({ className = "" }) {
 
                   <div className="min-w-0 flex-1">
                     <p className="text-[13px] font-medium text-[var(--tenant-text-on-surface)] sm:text-[14px]">
-                      {getCreditTransactionDescription(transaction, language)}
+                      {copy.types[transaction.type] || copy.types.other}
                     </p>
                     {transactionDetails ? (
                       <p className="mt-1 text-[11px] leading-5 text-[var(--tenant-muted-on-surface)] sm:text-[12px]">
@@ -291,15 +267,17 @@ export default function CreditTransactionHistory({ className = "" }) {
       {pagination.totalCount > 0 ? (
         <div className="flex flex-col gap-3 border-t border-[color-mix(in_srgb,var(--tenant-text)_9%,transparent)] bg-[var(--tenant-background)] px-5 py-4 text-[11px] text-[var(--tenant-muted-text)] sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p aria-live="polite">
-            {language === "CZ"
-              ? `Zobrazeno ${(currentPage - 1) * pagination.pageSize + 1}–${Math.min(
+            {legacyText(
+              "CreditTransactionHistory_Showing_value1_value2_of_value3_f25d4",
+              {
+                value1: (currentPage - 1) * pagination.pageSize + 1,
+                value2: Math.min(
                   currentPage * pagination.pageSize,
                   pagination.totalCount,
-                )} z ${pagination.totalCount}`
-              : `Showing ${(currentPage - 1) * pagination.pageSize + 1}–${Math.min(
-                  currentPage * pagination.pageSize,
-                  pagination.totalCount,
-                )} of ${pagination.totalCount}`}
+                ),
+                value3: pagination.totalCount,
+              },
+            )}
           </p>
 
           <nav

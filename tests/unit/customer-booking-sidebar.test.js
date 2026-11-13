@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { describe, expect, it } from "vitest";
+import messagesEn from "@/messages/en.json";
+import messagesCs from "@/messages/cs.json";
 
 import {
   formatBookingDateLabel,
@@ -31,7 +33,7 @@ const readPortalPageSource = () =>
 describe("customer booking sidebar presentation", () => {
   it("formats wall dates without an ambiguous numeric-only representation", () => {
     expect(formatBookingDateLabel("2026-08-05", "EN")).toBe(
-      "Wednesday, 5 August 2026",
+      "Wednesday, August 5, 2026",
     );
     expect(formatBookingDateLabel("2026-08-05", "CZ")).toContain(
       "5. srpna 2026",
@@ -40,7 +42,7 @@ describe("customer booking sidebar presentation", () => {
       formatBookingDateLabel("2026-08-05", "EN", {
         includeWeekday: false,
       }),
-    ).toBe("5 August 2026");
+    ).toBe("August 5, 2026");
     expect(formatBookingDateLabel("08/05/2026", "EN")).toBe("");
   });
 
@@ -143,7 +145,7 @@ describe("customer booking sidebar presentation", () => {
     });
   });
 
-  it("uses lowercase catalog translations and never falls back to another locale", () => {
+  it("prefers the selected product language and preserves tenant-authored names", () => {
     const product = {
       name: { cs: "Glazovací dílna", en: "Glazing Lab" },
     };
@@ -156,15 +158,25 @@ describe("customer booking sidebar presentation", () => {
       getLocalizedBookingProductName({ name: { cs: "Pouze česky" } }, "EN", {
         fallback: "Shared session",
       }),
-    ).toBe("Shared session");
+    ).toBe("Pouze česky");
+    expect(
+      getLocalizedBookingProductName({}, "pl", { fallback: "Sesja wspólna" }),
+    ).toBe("Sesja wspólna");
   });
 
   it("uses customer-friendly English and Czech booking copy", () => {
     const source = readSidebarSource();
 
-    expect(source).toContain('title: "Book a session"');
-    expect(source).toContain('product: "Session type"');
-    expect(source).toContain('title: "Rezervace studia"');
+    expect(source).toContain('useLegacyCopy("bookingSidebar")');
+    expect(messagesEn.Legacy.screens.bookingSidebar.title).toBe(
+      "Book a session",
+    );
+    expect(messagesEn.Legacy.screens.bookingSidebar.product).toBe(
+      "Session type",
+    );
+    expect(messagesCs.Legacy.screens.bookingSidebar.title).toBe(
+      "Rezervace studia",
+    );
     expect(source).not.toContain('title: "Book Open Studio"');
     expect(source).not.toContain('product: "Open Studio option"');
   });
@@ -196,7 +208,9 @@ describe("customer booking sidebar presentation", () => {
     expect(source).toContain("data-booking-loading-skeleton");
     expect(source).toContain("data-booking-availability-state");
     expect(source).toContain("data-booking-submit-state");
-    expect(source).toContain('added: "Added to cart"');
+    expect(messagesEn.Legacy.screens.bookingSidebar.added).toBe(
+      "Added to cart",
+    );
     expect(source).toContain("window.setTimeout");
     expect(source).toContain("}, 520)");
     expect(portalSource).toContain("isFetching: isFetchingBookings");

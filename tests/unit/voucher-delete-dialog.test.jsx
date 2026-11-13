@@ -125,7 +125,8 @@ describe("voucher offering deletion", () => {
       reason: null,
     });
     await user.click(screen.getByRole("button", { name: "delete.confirm" }));
-    expect(await screen.findByRole("alert")).toHaveTextContent(
+    expect(await screen.findByRole("alert")).toHaveTextContent("delete.error");
+    expect(screen.getByRole("alert")).not.toHaveTextContent(
       "An order is still pending",
     );
     expect(api.refetch).toHaveBeenCalled();

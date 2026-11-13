@@ -1,5 +1,9 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import {
   customerPortalPrimaryActionClass,
   customerPortalSecondaryActionClass,
@@ -25,7 +29,7 @@ import { removeBookingItems } from "@/lib/features/cart/cartSlice";
 import { useLazyGetMyOrderConfirmationQuery } from "@/lib/features/checkout/checkoutSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { selectIsAuthenticated } from "@/lib/features/auth/authSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { formatMinorCurrencyAmount } from "@/utils/money";
 import { getConfirmedOrderLocationReference } from "@/utils/customerCheckoutLocation";
 import {
@@ -63,6 +67,8 @@ export default function Success() {
   return <BookingSuccess />;
 }
 function BookingSuccess() {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const rememberLocation =
@@ -107,75 +113,70 @@ function BookingSuccess() {
   }, [dispatch, isTerminal, state]);
   const t = useMemo(() => {
     return (key, fallback = "") => translation?.[key]?.[language] ?? fallback;
-  }, [language]);
+  }, [language, translation]);
   const reservationNote = useMemo(() => {
     if (!isAuthenticated || state !== "success") return "";
-    return language === "CZ"
-      ? 'Rezervaci najdete v sekci "Moje rezervace".'
-      : "You can manage your booking in the My bookings section.";
-  }, [isAuthenticated, language, state]);
+    return legacyText(
+      "BookingSuccess_You_can_manage_your_booking_in_the_My_bookings_section_60eb1",
+    );
+  }, [isAuthenticated, legacyText, state]);
   const statusCopy = useMemo(() => {
     const isCzech = language === "CZ";
     return {
       success: {
-        badge: t("CONFIRMED", isCzech ? "Potvrzeno" : "Confirmed"),
-        title: t(
-          "SUCCESS_TITLE",
-          isCzech ? "Rezervace je potvrzena" : "Your booking is confirmed",
-        ),
+        badge: t("CONFIRMED"),
+        title: t("SUCCESS_TITLE"),
         description: t("SUCCESS_CONTENT_1"),
         next: t("SUCCESS_CONTENT_2"),
       },
       pending: {
-        badge: isCzech ? "Zpracovává se" : "Processing",
-        title: isCzech
-          ? "Potvrzujeme vaši platbu"
-          : "We are confirming your payment",
-        description: isCzech
-          ? "Platbu jsme přijali ke zpracování. Rezervaci potvrdíme, jakmile obdržíme bezpečné potvrzení platby."
-          : "Your payment is being processed. We will confirm the booking after receiving secure payment confirmation.",
-        next: isCzech
-          ? "Tuto stránku můžete nechat otevřenou; stav se aktualizuje automaticky."
-          : "You can leave this page open; the status refreshes automatically.",
+        badge: legacyText("BookingSuccess_Processing_e6345"),
+        title: legacyText(
+          "BookingSuccess_We_are_confirming_your_payment_c9b64",
+        ),
+        description: legacyText(
+          "BookingSuccess_Your_payment_is_being_processed_We_will_confirm_the_boo_46e80",
+        ),
+        next: legacyText(
+          "BookingSuccess_You_can_leave_this_page_open_the_status_refreshes_autom_2b868",
+        ),
       },
       failed: {
-        badge: isCzech ? "Nepotvrzeno" : "Not confirmed",
-        title: isCzech
-          ? "Platbu se nepodařilo dokončit"
-          : "The payment was not completed",
-        description: isCzech
-          ? "Rezervace nebyla potvrzena. Obsah košíku jsme zachovali, abyste mohli platbu bezpečně zkusit znovu."
-          : "The booking was not confirmed. Your cart was kept so you can safely try the payment again.",
-        next: isCzech
-          ? "Pokud vám přesto byla částka stržena, kontaktujte studio a uveďte číslo objednávky."
-          : "If you were charged anyway, contact the studio and include the order reference.",
+        badge: legacyText("BookingSuccess_Not_confirmed_b9e09"),
+        title: legacyText("BookingSuccess_The_payment_was_not_completed_a993b"),
+        description: legacyText(
+          "BookingSuccess_The_booking_was_not_confirmed_Your_cart_was_kept_so_you_73aa5",
+        ),
+        next: legacyText(
+          "BookingSuccess_If_you_were_charged_anyway_contact_the_studio_and_inclu_73483",
+        ),
       },
       unavailable: {
-        badge: isCzech ? "Nelze ověřit" : "Unable to verify",
-        title: isCzech
-          ? "Stav zatím neznáme"
-          : "We cannot verify the status yet",
-        description: isCzech
-          ? "Nepodařilo se načíst stav objednávky. Neznamená to, že platba selhala."
-          : "The order status could not be loaded. This does not mean that the payment failed.",
-        next: isCzech
-          ? "Zkuste stav zkontrolovat znovu. Košík zůstává zachovaný."
-          : "Try checking the status again. Your cart remains intact.",
+        badge: legacyText("BookingSuccess_Unable_to_verify_43e97"),
+        title: legacyText(
+          "BookingSuccess_We_cannot_verify_the_status_yet_278a5",
+        ),
+        description: legacyText(
+          "BookingSuccess_The_order_status_could_not_be_loaded_This_does_not_mean_d1477",
+        ),
+        next: legacyText(
+          "BookingSuccess_Try_checking_the_status_again_Your_cart_remains_intact_b97b0",
+        ),
       },
       invalid: {
-        badge: isCzech ? "Nelze ověřit" : "Unable to verify",
-        title: isCzech
-          ? "Chybí číslo objednávky"
-          : "The order reference is missing",
-        description: isCzech
-          ? "Tento návratový odkaz neobsahuje platné číslo objednávky, proto rezervaci nemůžeme potvrdit."
-          : "This return link has no valid order reference, so the booking cannot be confirmed.",
-        next: isCzech
-          ? "Košík jsme nesmazali. Vraťte se do portálu nebo kontaktujte studio."
-          : "We kept your cart. Return to the portal or contact the studio.",
+        badge: legacyText("BookingSuccess_Unable_to_verify_43e97"),
+        title: legacyText(
+          "BookingSuccess_The_order_reference_is_missing_7c577",
+        ),
+        description: legacyText(
+          "BookingSuccess_This_return_link_has_no_valid_order_reference_so_the_bo_69ea4",
+        ),
+        next: legacyText(
+          "BookingSuccess_We_kept_your_cart_Return_to_the_portal_or_contact_the_s_b05de",
+        ),
       },
     }[state];
-  }, [language, state, t]);
+  }, [language, legacyText, state, t]);
   const StatusIcon =
     state === "success"
       ? CheckIcon
@@ -203,12 +204,8 @@ function BookingSuccess() {
   const primaryLabel = isAuthenticated
     ? state === "success"
       ? t("SUCCESS_BUTTON")
-      : language === "CZ"
-        ? "Zpět do portálu"
-        : "Back to portal"
-    : language === "CZ"
-      ? "Zpět na úvod"
-      : "Back to home";
+      : legacyText("BookingSuccess_Back_to_portal_0633f")
+    : legacyText("BookingSuccess_Back_to_home_34ac3");
   return (
     <main className="relative flex min-h-[calc(100dvh-var(--header-height,78px))] items-center bg-[var(--tenant-background)] text-[var(--tenant-text)] px-4 py-4 sm:px-6">
       <div
@@ -255,12 +252,10 @@ function BookingSuccess() {
                     className="h-4 w-4 shrink-0 animate-spin"
                   />
                   {isFetching
-                    ? language === "CZ"
-                      ? "Kontroluji stav…"
-                      : "Checking status…"
-                    : language === "CZ"
-                      ? "Čekám na potvrzení…"
-                      : "Waiting for confirmation…"}
+                    ? legacyText("BookingSuccess_Checking_status_c74a3")
+                    : legacyText(
+                        "BookingSuccess_Waiting_for_confirmation_ce436",
+                      )}
                 </div>
               )}
             </div>
@@ -285,10 +280,7 @@ function BookingSuccess() {
                   className="h-5 w-5 shrink-0 text-[var(--tenant-muted-on-surface)]"
                 />
                 <h2 className="text-base font-medium text-[var(--tenant-heading-on-surface)]">
-                  {t(
-                    "WHAT_HAPPENS_NEXT",
-                    language === "CZ" ? "Co bude dál?" : "What happens next?",
-                  )}
+                  {t("WHAT_HAPPENS_NEXT")}
                 </h2>
               </div>
 
@@ -297,7 +289,7 @@ function BookingSuccess() {
                 {reservationNote && <p>{reservationNote}</p>}
                 {orderId && (
                   <p className="text-xs leading-5 text-[var(--tenant-muted-on-surface)]">
-                    {language === "CZ" ? "Objednávka" : "Order"}:{" "}
+                    {legacyText("BookingSuccess_Order_1d757")}:{" "}
                     <span className="font-mono">{orderId}</span>
                   </p>
                 )}
@@ -319,7 +311,7 @@ function BookingSuccess() {
                   disabled={isFetching}
                   className={customerPortalSecondaryActionClass}
                 >
-                  {language === "CZ" ? "Zkontrolovat znovu" : "Check again"}
+                  {legacyText("BookingSuccess_Check_again_e1850")}
                 </button>
               )}
               <Link
@@ -350,7 +342,7 @@ const formatBookingDateTime = (value, language, timeZone) => {
   const date = new Date(value || "");
   if (Number.isNaN(date.getTime())) return "";
   try {
-    return new Intl.DateTimeFormat(language === "CZ" ? "cs-CZ" : "en-GB", {
+    return new Intl.DateTimeFormat(resolveIntlLocale(language), {
       dateStyle: "medium",
       timeStyle: "short",
       ...(timeZone
@@ -397,6 +389,21 @@ function MembershipPaymentSummary({
   );
 }
 function ConfirmationDetails({ data, language }) {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
+  const paymentT = useTranslations();
+  const paymentLabelKeys = {
+    card: "Legacy.screens.cartPayment.card",
+    stripe: "Legacy.screens.cartPayment.card",
+    credits: "Legacy.screens.cartPayment.money_credits",
+    studio_credit: "Legacy.screens.cartPayment.money_credits",
+    money_credits: "Legacy.screens.cartPayment.money_credits",
+    membership_credit: "Legacy.screens.cartPayment.membership_credits",
+    membership_credits: "Legacy.screens.cartPayment.membership_credits",
+    voucher: "Legacy.copy.VoucherForm_Voucher_409ca",
+    manual: "Invoices.payments.methods.manual",
+    free: "People.membershipDialog.reasons.complimentary",
+  };
   const confirmation = data?.confirmation ?? data ?? {};
   const bookings = Array.isArray(confirmation.bookings)
     ? confirmation.bookings
@@ -447,7 +454,7 @@ function ConfirmationDetails({ data, language }) {
   return (
     <section className="min-w-0 rounded-2xl border border-[var(--tenant-border)] bg-[var(--tenant-surface)] p-4">
       <h2 className="text-base font-medium text-[var(--tenant-heading-on-surface)]">
-        {language === "CZ" ? "Potvrzené údaje" : "Confirmed details"}
+        {legacyText("ConfirmationDetails_Confirmed_details_f7c49")}
       </h2>
 
       {bookings.length ? (
@@ -462,7 +469,7 @@ function ConfirmationDetails({ data, language }) {
                   item?.name ??
                   item?.title,
                 language,
-              ) || (language === "CZ" ? "Rezervace" : "Booking");
+              ) || legacyText("ConfirmationDetails_Booking_e38ea");
             const location =
               booking?.location && typeof booking.location === "object"
                 ? booking.location
@@ -498,9 +505,9 @@ function ConfirmationDetails({ data, language }) {
                     <p className="flex min-w-0 items-start gap-2 sm:col-span-2">
                       <CalendarDaysIcon className="mt-0.5 h-4 w-4 shrink-0" />
                       <span>
-                        {formatBookingDateTime(start, language, timeZone)}
+                        {formatBookingDateTime(start, activeLocale, timeZone)}
                         {end
-                          ? ` – ${formatBookingDateTime(end, language, timeZone)}`
+                          ? ` – ${formatBookingDateTime(end, activeLocale, timeZone)}`
                           : ""}
                       </span>
                     </p>
@@ -513,7 +520,7 @@ function ConfirmationDetails({ data, language }) {
                   ) : null}
                   <p className="flex items-center gap-2">
                     <UserGroupIcon className="h-4 w-4 shrink-0" />
-                    {language === "CZ" ? "Počet osob" : "Participants"}:{" "}
+                    {legacyText("ConfirmationDetails_Participants_cd56e")}:{" "}
                     {people}
                   </p>
                 </div>
@@ -534,13 +541,17 @@ function ConfirmationDetails({ data, language }) {
         ) : (
           <>
             {allocations.map((allocation, index) => {
-              const method = String(
-                allocation?.label ??
-                  allocation?.method ??
+              const methodCode = String(
+                allocation?.method ??
                   allocation?.source ??
                   allocation?.type ??
                   "",
-              ).replaceAll("_", " ");
+              )
+                .trim()
+                .toLowerCase();
+              const method = Object.hasOwn(paymentLabelKeys, methodCode)
+                ? paymentT(paymentLabelKeys[methodCode])
+                : legacyText("ConfirmationDetails_Payment_source_31c56");
               const amountMinor = Number(
                 allocation?.amountMinor ?? allocation?.allocatedMinor,
               );
@@ -552,14 +563,14 @@ function ConfirmationDetails({ data, language }) {
                   <span className="flex min-w-0 items-center gap-2 capitalize">
                     <BanknotesIcon className="h-4 w-4 shrink-0" />
                     {method ||
-                      (language === "CZ" ? "Způsob platby" : "Payment source")}
+                      legacyText("ConfirmationDetails_Payment_source_31c56")}
                   </span>
                   {Number.isFinite(amountMinor) ? (
                     <span className="shrink-0">
                       {formatMinorCurrencyAmount(
                         amountMinor,
                         allocation?.currency ?? currency,
-                        language === "CZ" ? "cs" : "en",
+                        activeLocale,
                       )}
                     </span>
                   ) : null}
@@ -568,12 +579,12 @@ function ConfirmationDetails({ data, language }) {
             })}
             {Number.isFinite(totalMinor) ? (
               <p className="flex items-center justify-between gap-4 text-sm font-semibold text-[var(--tenant-text-on-surface)]">
-                <span>{language === "CZ" ? "Celkem" : "Total"}</span>
+                <span>{legacyText("ConfirmationDetails_Total_b2592")}</span>
                 <span className="shrink-0">
                   {formatMinorCurrencyAmount(
                     totalMinor,
                     currency,
-                    language === "CZ" ? "cs" : "en",
+                    activeLocale,
                   )}
                 </span>
               </p>

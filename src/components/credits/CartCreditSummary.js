@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CreditCardIcon, PlusIcon } from "@heroicons/react/24/outline";
@@ -8,7 +10,7 @@ import { selectCurrentTenant } from "@/lib/features/auth/authSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { useGetMyCreditBalanceQuery } from "@/lib/features/credits/creditsApiSlice";
 import { setBalance } from "@/lib/features/credits/creditsSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
 import {
   formatMajorCurrencyAmount,
@@ -25,6 +27,9 @@ export default function CartCreditSummary({
   currency: currencyProp,
   compact = false,
 }) {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const dispatch = useDispatch();
   const tenant = useSelector(selectCurrentTenant);
   const language = useSelector(selectCurrentLanguage) || "CZ";
@@ -45,7 +50,7 @@ export default function CartCreditSummary({
     creditData?.balance,
     currency,
   );
-  const locale = language === "CZ" ? "cs-CZ" : "en-GB";
+  const locale = activeLocale;
   const formattedBalance =
     String(currency).toUpperCase() === "CZK"
       ? new Intl.NumberFormat(locale, {
@@ -125,7 +130,7 @@ export default function CartCreditSummary({
           className,
         )}
       >
-        {translation["CREDITS_ERROR"]?.[language] || "Error loading credits"}
+        {translation["CREDITS_ERROR"]?.[language]}
       </div>
     );
   }
@@ -148,16 +153,14 @@ export default function CartCreditSummary({
         </span>
         <span className="relative min-w-0 flex-1">
           <span className="block text-[8px] font-semibold uppercase tracking-[0.15em] text-[var(--tenant-muted-text)]">
-            {translation["CREDIT_BALANCE"]?.[language] || "Credit balance"}
+            {translation["CREDIT_BALANCE"]?.[language]}
           </span>
           <span className="mt-0.5 block text-[16px] font-semibold tracking-[-0.03em] text-[var(--tenant-text)]">
             {formattedBalance}
           </span>
         </span>
         <span className="relative hidden max-w-[118px] text-right text-[8px] leading-4 text-[var(--tenant-muted-text)] min-[380px]:block">
-          {language === "CZ"
-            ? "Lze použít při dokončení objednávky."
-            : "Available for this checkout."}
+          {legacyText("CartCreditSummary_Available_for_this_checkout_42c3f")}
         </span>
       </div>
     );
@@ -178,7 +181,7 @@ export default function CartCreditSummary({
 
             <div className="min-w-0">
               <p className={labelClasses}>
-                {translation["CREDIT_BALANCE"]?.[language] || "Credit balance"}
+                {translation["CREDIT_BALANCE"]?.[language]}
               </p>
 
               <div className="mt-1.5 flex items-end gap-2">
@@ -199,16 +202,16 @@ export default function CartCreditSummary({
               )}
             >
               <PlusIcon className="mr-2 h-4 w-4 text-[var(--unnamed-color-b3a292)]" />
-              {translation["ADD_CREDITS"]?.[language] || "Add Credits"}
+              {translation["ADD_CREDITS"]?.[language]}
             </button>
           )}
         </div>
 
         <div className="mt-4 border-t border-[rgba(179,162,146,0.22)] pt-3.5">
           <p className="text-xs sm:text-[13px] leading-relaxed  text-[#6B635D]">
-            {language === "CZ"
-              ? "Kredity můžete využít jako slevu při dokončení objednávky."
-              : "Credits can be used as a discount when completing your order."}
+            {legacyText(
+              "CartCreditSummary_Credits_can_be_used_as_a_discount_when_completing_your_0951c",
+            )}
           </p>
         </div>
       </div>

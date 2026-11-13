@@ -29,14 +29,19 @@ const mocks = vi.hoisted(() => ({
   push: vi.fn(),
   replace: vi.fn(),
 }));
-vi.mock("next-intl", () => ({
-  useLocale: () => mocks.locale,
-  useTranslations: (namespace) => (key) =>
-    namespace === "PublicTenant.legal"
-      ? (mocks.locale === "cs" ? czechMessages : englishMessages).PublicTenant
-          .legal[key]
-      : key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => mocks.locale,
+      useTranslations: (namespace) => (key) =>
+        namespace === "PublicTenant.legal"
+          ? (mocks.locale === "cs" ? czechMessages : englishMessages)
+              .PublicTenant.legal[key]
+          : key,
+    }))(...args),
+  );
+});
 vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(mocks.search),
   useParams: () => ({ tenantSlug: "klei", productId: mocks.productId }),

@@ -9,7 +9,7 @@ import {
   IdentificationIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import {
   formatPlanPrice,
@@ -49,61 +49,6 @@ const NAV_ICONS = Object.freeze({
   memberships: IdentificationIcon,
   vouchers: GiftIcon,
   help: BookOpenIcon,
-});
-
-const HOME_COPY = Object.freeze({
-  en: Object.freeze({
-    waysToVisit: ["Explore the studio", "Ways to visit"],
-    featured: ["Studio highlights", "Featured at the studio"],
-    about: ["Our story", "About the studio"],
-    gallery: ["From the studio", "Gallery"],
-    testimonials: ["Community voices", "What customers say"],
-    locations: ["Visit us", "Studio locations"],
-    team: ["People behind the studio", "Meet the team"],
-    faq: ["Good to know", "Frequently asked questions"],
-    explore: "Explore",
-    view: "View details",
-    contact: "Contact studio",
-    noLocation: "Location details will appear here once added.",
-    faqCards: [
-      "Booking and availability",
-      "Courses and workshops",
-      "Studio help",
-    ],
-    nav: Object.freeze({
-      book: "Book a studio",
-      courses: "Courses",
-      memberships: "Memberships",
-      vouchers: "Gift vouchers",
-      help: "Help",
-    }),
-  }),
-  cs: Object.freeze({
-    waysToVisit: ["Prozkoumejte studio", "Možnosti návštěvy"],
-    featured: ["Ze studia", "Doporučená nabídka"],
-    about: ["Náš příběh", "O studiu"],
-    gallery: ["Ze studia", "Galerie"],
-    testimonials: ["Hlasy komunity", "Co říkají zákazníci"],
-    locations: ["Navštivte nás", "Pobočky studia"],
-    team: ["Lidé ve studiu", "Poznejte náš tým"],
-    faq: ["Dobré vědět", "Časté dotazy"],
-    explore: "Prozkoumat",
-    view: "Zobrazit detail",
-    contact: "Kontaktovat studio",
-    noLocation: "Údaje o pobočce se zobrazí po jejím přidání.",
-    faqCards: [
-      "Rezervace a dostupnost",
-      "Kurzy a workshopy",
-      "Nápověda studia",
-    ],
-    nav: Object.freeze({
-      book: "Rezervovat studio",
-      courses: "Kurzy",
-      memberships: "Členství",
-      vouchers: "Dárkové poukazy",
-      help: "Nápověda",
-    }),
-  }),
 });
 
 const getId = (value) => String(value?.id ?? value?._id ?? "").trim();
@@ -539,7 +484,31 @@ function FaqSection({ content, copy, locale, availablePages }) {
 
 export default function PublicTenantHomeSections({ previewData }) {
   const locale = useLocale();
-  const copy = HOME_COPY[locale] || HOME_COPY.en;
+  const t = useTranslations("PublicTenantHome.sections");
+  const copy = {
+    ...Object.fromEntries(
+      [
+        "waysToVisit",
+        "featured",
+        "about",
+        "gallery",
+        "testimonials",
+        "locations",
+        "team",
+        "faq",
+      ].map((key) => [key, [t(`${key}.eyebrow`), t(`${key}.title`)]]),
+    ),
+    ...Object.fromEntries(
+      ["explore", "view", "contact", "noLocation"].map((key) => [key, t(key)]),
+    ),
+    faqCards: ["book", "courses", "help"].map((key) => t(`faqCards.${key}`)),
+    nav: Object.fromEntries(
+      ["book", "courses", "memberships", "vouchers", "help"].map((key) => [
+        key,
+        t(`nav.${key}`),
+      ]),
+    ),
+  };
   const { tenant, navigation } = usePublicTenant();
   const previewMode = previewData && typeof previewData === "object";
   const home = tenant.publicSite.pages.home;

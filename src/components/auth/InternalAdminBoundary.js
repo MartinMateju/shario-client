@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -21,7 +21,7 @@ const hasPlatformAccess = (user) => {
   return Boolean(role && role !== "none");
 };
 
-function AdminLoadingState({ children = "Checking platform access…" }) {
+function AdminLoadingState({ children }) {
   return (
     <main className="relative z-[60] -mt-[var(--header-height)] flex min-h-dvh items-center justify-center bg-[#11110F] px-6 text-white">
       <p className="text-sm text-white/65" role="status">
@@ -33,6 +33,7 @@ function AdminLoadingState({ children = "Checking platform access…" }) {
 
 export default function InternalAdminBoundary({ children }) {
   const locale = useLocale();
+  const t = useTranslations("Common");
   const dispatch = useDispatch();
   const sessionReady = useSelector(selectIsSessionReady);
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -77,13 +78,11 @@ export default function InternalAdminBoundary({ children }) {
   ]);
 
   if (!sessionReady) {
-    return <AdminLoadingState />;
+    return <AdminLoadingState>{t("checkingPlatformAccess")}</AdminLoadingState>;
   }
 
   if (!isAuthenticated || !canAccess) {
-    return (
-      <AdminLoadingState>Taking you to the right account…</AdminLoadingState>
-    );
+    return <AdminLoadingState>{t("redirectingAccount")}</AdminLoadingState>;
   }
 
   return children;

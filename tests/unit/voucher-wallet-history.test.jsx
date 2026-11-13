@@ -1,9 +1,15 @@
 import { render, screen, within } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import ApplyVouchers from "@/components/views/voucher/ApplyVouchers";
 import VoucherForm from "@/components/forms/vouchers/VoucherForm";
 import messages from "@/messages/en.json";
+import messagesNl from "@/messages/nl.json";
+
+const state = vi.hoisted(() => ({ queryError: false }));
+beforeEach(() => {
+  state.queryError = false;
+});
 
 vi.mock("react-redux", () => ({
   useSelector: (selector) =>
@@ -27,6 +33,10 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
 vi.mock("@/lib/features/coupons/couponsApiSlice", () => ({
   useRedeemPromoCodeMutation: () => [vi.fn(), {}],
   useGetUserRedeemedCouponsQuery: () => ({
+    isError: state.queryError,
+    error: state.queryError
+      ? { data: { message: "English server diagnostic" } }
+      : undefined,
     data: [
       {
         _id: "partial-code",
@@ -45,6 +55,34 @@ vi.mock("@/lib/features/coupons/couponsApiSlice", () => ({
 }));
 
 describe("voucher wallet history", () => {
+  it.each([ApplyVouchers, VoucherForm])(
+    "keeps a failed wallet request in the selected language",
+    (Component) => {
+      state.queryError = true;
+      render(
+        <NextIntlClientProvider
+          locale="nl"
+          messages={messagesNl}
+          timeZone="UTC"
+        >
+          <Component />
+        </NextIntlClientProvider>,
+      );
+      expect(
+        screen.getByText(
+          Component === ApplyVouchers
+            ? messagesNl.Legacy.copy
+                .VoucherForm_Check_your_connection_and_try_again_56386
+            : messagesNl.Legacy.copy
+                .VoucherForm_Redeemed_vouchers_could_not_be_loaded_1c156,
+        ),
+      ).toBeVisible();
+      expect(
+        screen.queryByText("English server diagnostic"),
+      ).not.toBeInTheDocument();
+    },
+  );
+
   it.each([
     ["customer portal", ApplyVouchers],
     ["legacy voucher form", VoucherForm],

@@ -16,9 +16,10 @@ const mocks = vi.hoisted(() => ({
   membershipsResult: null,
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-}));
+vi.mock("next-intl", async () => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs({ useLocale: () => "en" });
+});
 
 vi.mock("@headlessui/react", () => ({
   Dialog: ({ open, children, ...props }) =>

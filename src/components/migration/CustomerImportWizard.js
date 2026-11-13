@@ -1,5 +1,7 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import {
   ArrowDownTrayIcon,
   ArrowLeftIcon,
@@ -287,7 +289,7 @@ const resolveWizardStep = (session) => {
 const getCurrentStepIndex = (step) => WIZARD_STEPS.indexOf(step);
 
 const formatFileSize = (size, locale) =>
-  new Intl.NumberFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  new Intl.NumberFormat(resolveIntlLocale(locale), {
     style: "unit",
     unit: "kilobyte",
     maximumFractionDigits: 0,
@@ -298,7 +300,7 @@ const formatDate = (value, locale) => {
 
   if (!value || Number.isNaN(date.getTime())) return "—";
 
-  return new Intl.DateTimeFormat(locale === "cs" ? "cs-CZ" : "en-GB", {
+  return new Intl.DateTimeFormat(resolveIntlLocale(locale), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
@@ -1235,9 +1237,9 @@ function ReportStep({
                 ? entityT("report.description")
                 : t("report.failedDescription")}
             </p>
-            {session?.lastError?.message ? (
+            {session?.lastError ? (
               <p className="mt-3 rounded-[12px] border border-danger/20 bg-white px-3 py-2 text-[10px] text-danger">
-                {session.lastError.message}
+                {getImportErrorMessage(session.lastError, t("errors.execute"))}
               </p>
             ) : null}
           </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useEffect, useRef } from "react";
 import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
@@ -17,6 +18,7 @@ import {
 } from "./publicTenant.config";
 
 export default function PublicHelpPage({ previewData }) {
+  const customerDefaults = useLegacyCopy("customerDefaults");
   const contentRef = useRef(null);
   const locale = useLocale();
   const params = useParams();
@@ -40,6 +42,7 @@ export default function PublicHelpPage({ previewData }) {
   const page = tenant.publicSite.pages.help;
   const theme = getPublicTenantTheme(tenant);
   const customizationDefaults = getPublicWebsitePageCustomizationDefaults({
+    localizedDefaults: customerDefaults,
     page: "help",
     locale,
     studio: tenant.publicSite.branding.displayName,

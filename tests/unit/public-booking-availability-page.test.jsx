@@ -68,10 +68,15 @@ const locations = [
   },
 ];
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-  useTranslations: () => (key) => copy[key] || key,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+      useTranslations: () => (key) => copy[key] || key,
+    }))(...args),
+  );
+});
 
 vi.mock("next/navigation", () => ({
   useParams: () => ({ tenantSlug: "studio-olivie" }),

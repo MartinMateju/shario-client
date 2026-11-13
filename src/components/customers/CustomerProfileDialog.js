@@ -1,5 +1,7 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import { useMemo, useState } from "react";
 import { Dialog, DialogTitle } from "@headlessui/react";
 import {
@@ -144,7 +146,7 @@ const humanize = (value) =>
     .replaceAll("-", " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 
-const getDateLocale = (locale) => (locale === "cs" ? "cs-CZ" : "en-GB");
+const getDateLocale = (locale) => resolveIntlLocale(locale);
 
 const formatDate = (value, locale, options = {}) => {
   if (!value) return "—";

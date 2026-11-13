@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import { useCallback, useMemo, useRef } from "react";
 import { Dialog } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
@@ -19,7 +20,7 @@ import {
 } from "@/components/dashboard/WorkspaceFormSurface";
 import { Link } from "@/i18n/navigation";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 
 export default function ConfirmationModal({
   open,
@@ -41,6 +42,8 @@ export default function ConfirmationModal({
   isLoading = false,
   showSuccessIcon = true,
 }) {
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const language = useSelector(selectCurrentLanguage);
   const secondaryButtonRef = useRef(null);
 
@@ -48,15 +51,13 @@ export default function ConfirmationModal({
     () =>
       (key, fallback = "") =>
         translation?.[key]?.[language] ?? fallback,
-    [language],
+    [language, translation],
   );
 
   const isOpen =
     typeof open === "boolean" ? open : typeof show === "boolean" ? show : false;
   const displayText = message ?? text ?? "";
-  const resolvedTitle =
-    title ||
-    t("CONFIRMATION", language === "CZ" ? "Potvrzení" : "Confirmation");
+  const resolvedTitle = title || t("CONFIRMATION");
 
   const handleClose = useCallback(() => {
     if (isLoading) return;
@@ -72,10 +73,10 @@ export default function ConfirmationModal({
   }, [isLoading, onClose, setOpen]);
 
   const primaryButtonText = isLoading
-    ? t("LOADING", "Loading...")
-    : confirmText || t("CONTINUE", "Continue");
+    ? t("LOADING")
+    : confirmText || t("CONTINUE");
   const secondaryButtonText =
-    cancelText || (language === "CZ" ? "Zavřít" : "Close");
+    cancelText || legacyText("ConfirmationModal_Close_bbfa7");
 
   return (
     <Dialog
@@ -147,7 +148,7 @@ export default function ConfirmationModal({
                 data-tenant-button="primary"
                 className={workspacePrimaryButtonClass}
               >
-                {continueText || t("CONTINUE", "Continue")}
+                {continueText || t("CONTINUE")}
               </Link>
             )}
           </WorkspaceDialogFooter>

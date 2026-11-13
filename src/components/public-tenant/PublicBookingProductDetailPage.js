@@ -1,5 +1,7 @@
 "use client";
 
+import { resolveIntlLocale } from "@/i18n/formatting";
+
 import {
   ArrowLeftIcon,
   ArrowPathIcon,
@@ -118,7 +120,7 @@ const formatSlot = (slot, locale, timeZone) => {
   const end = new Date(slot?.end || "");
   if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return "—";
 
-  const resolvedLocale = locale === "cs" ? "cs-CZ" : "en-GB";
+  const resolvedLocale = resolveIntlLocale(locale);
   try {
     const dateFormatter = new Intl.DateTimeFormat(resolvedLocale, {
       weekday: "short",

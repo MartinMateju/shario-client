@@ -186,7 +186,7 @@ export default function PublicSiteLivePreview({
         key={reloadVersion}
         ref={frameRef}
         src={frameUrl}
-        title={`${tenantName} production preview`}
+        title={t("frameTitle", { name: tenantName })}
         sandbox="allow-same-origin allow-scripts"
         onLoad={sendPayload}
         className="mx-auto block min-h-[760px] rounded-[12px] border-0 bg-white shadow-[0_22px_70px_rgba(17,17,15,0.18)] transition-[width] duration-200"

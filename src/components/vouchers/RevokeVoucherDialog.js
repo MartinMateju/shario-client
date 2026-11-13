@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useRef, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useTranslations } from "next-intl";
@@ -49,7 +50,7 @@ export default function RevokeVoucherDialog({ coupon, onClose, onRevoked }) {
         operationId: operationId.current,
       }).unwrap();
     } catch (failure) {
-      setError(failure?.data?.message || t("revoke.error"));
+      setError(getLocalizedApiErrorMessage(failure, t("revoke.error")));
       return;
     } finally {
       requestInFlight.current = false;

@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import ConfirmationModal from "@/components/modals/ConformationModal";
@@ -34,7 +35,7 @@ export default function ArchiveVoucherCodeDialog({
         operationId: operationId.current,
       }).unwrap();
     } catch (failure) {
-      setError(failure?.data?.message || t("codes.archiveError"));
+      setError(getLocalizedApiErrorMessage(failure, t("codes.archiveError")));
       return;
     } finally {
       inFlight.current = false;

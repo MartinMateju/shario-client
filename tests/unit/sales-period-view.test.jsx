@@ -181,7 +181,7 @@ describe("Sales reporting period integration", () => {
     expect(
       screen.getByRole("combobox", { name: copy.period.presetLabel }),
     ).toHaveValue("30");
-    const formatter = new Intl.DateTimeFormat("en-GB", {
+    const formatter = new Intl.DateTimeFormat("en-US", {
       day: "numeric",
       month: "short",
       year: "numeric",
@@ -336,7 +336,9 @@ describe("Sales reporting period integration", () => {
         data: { message: "Orders unavailable" },
       });
       choosePeriod("7");
-      expect(await screen.findByText("Orders unavailable")).toBeInTheDocument();
+      expect(
+        (await screen.findAllByText(copy.loadError)).length,
+      ).toBeGreaterThan(0);
       expect(
         screen.getByRole("combobox", { name: copy.period.presetLabel }),
       ).toBeEnabled();

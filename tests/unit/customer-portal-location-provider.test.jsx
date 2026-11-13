@@ -24,9 +24,14 @@ const mocks = vi.hoisted(() => ({
   },
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => mocks.locale,
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => mocks.locale,
+    }))(...args),
+  );
+});
 
 vi.mock("next/navigation", () => ({
   useSearchParams: () => mocks.searchParams,

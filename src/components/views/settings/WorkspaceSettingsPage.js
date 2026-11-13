@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useState } from "react";
 import {
   ArrowPathIcon,
@@ -35,7 +37,7 @@ export {
 } from "./workspaceLocaleSettings";
 
 const getErrorMessage = (error, fallback) =>
-  error?.data?.message || error?.data?.error || error?.error || fallback;
+  getLocalizedApiErrorMessage(error, fallback);
 
 function Field({ label, hint, children }) {
   return (

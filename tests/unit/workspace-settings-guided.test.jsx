@@ -195,7 +195,9 @@ describe("guided workspace settings", () => {
       }),
     );
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Save failed");
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "WorkspaceSettings.messages.error",
+    );
     expect(mocks.refreshAndContinue).not.toHaveBeenCalled();
   });
 });

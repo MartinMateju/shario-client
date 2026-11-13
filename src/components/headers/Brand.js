@@ -1,6 +1,7 @@
 "use client";
 
 import { memo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import SkabLogo from "@/components/brand/SkabLogo";
 import TenantLogoLink from "@/components/brand/TenantLogoLink";
@@ -14,6 +15,7 @@ const Brand = memo(function Brand({
   href = "/",
   textColor: textColorOverride,
 }) {
+  const commonT = useTranslations("Common");
   const [failedLogoUrl, setFailedLogoUrl] = useState("");
   const logoRef = useRef(null);
   const branding = tenant?.publicSite?.branding;
@@ -32,7 +34,7 @@ const Brand = memo(function Brand({
   return (
     <Wrapper
       {...wrapperProps}
-      aria-label={tenantName || "Shario home"}
+      aria-label={tenantName || commonT("sharioHome")}
       onClick={onClickHome}
       className={`group inline-flex items-center rounded-full px-1.5 ${
         tenant ? "min-w-0 max-w-full xl:shrink-0" : "shrink-0"

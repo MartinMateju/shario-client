@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useMemo, useRef, useState } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import {
@@ -237,7 +238,7 @@ export default function Drawer({
       resetAndClose();
       setShowConfirmation(true);
     } catch (error) {
-      setCancelError(error?.data?.message || t("cancelError"));
+      setCancelError(getLocalizedApiErrorMessage(error, t("cancelError")));
     } finally {
       cancelLockRef.current = false;
       setCancelBusy(false);
@@ -255,7 +256,7 @@ export default function Drawer({
       resetAndClose();
       setShowMoveConfirmation(true);
     } catch (error) {
-      setMoveError(error?.data?.message || t("moveError"));
+      setMoveError(getLocalizedApiErrorMessage(error, t("moveError")));
       if (!availabilityQuery.isUninitialized) availabilityQuery.refetch();
     } finally {
       moveLock.current = false;
@@ -279,7 +280,9 @@ export default function Drawer({
       if (code === "CUSTOMER_BOOKING_EXTENSION_PAYMENT_CONFIRMED") {
         resetAndClose();
       } else {
-        setExtensionError(error?.data?.message || t("extensionError"));
+        setExtensionError(
+          getLocalizedApiErrorMessage(error, t("extensionError")),
+        );
       }
     } finally {
       pendingPaymentLock.current = false;
@@ -328,7 +331,7 @@ export default function Drawer({
           ? t("quoteChanged")
           : /PENDING/.test(code)
             ? t("reasons.pending")
-            : error?.data?.message || t("extensionError"),
+            : getLocalizedApiErrorMessage(error, t("extensionError")),
       );
       if (!extensionQuery.isUninitialized) extensionQuery.refetch();
     } finally {

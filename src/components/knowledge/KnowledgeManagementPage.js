@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useMemo, useState } from "react";
 import {
   BookOpenIcon,
@@ -295,7 +297,7 @@ export default function KnowledgeManagementPage({ showPageHeader = true }) {
       setFeedback(t("management.deleted"));
     } catch (error) {
       setFeedback(
-        error?.data?.message || error?.error || t("management.deleteError"),
+        getLocalizedApiErrorMessage(error, t("management.deleteError")),
       );
     }
   };

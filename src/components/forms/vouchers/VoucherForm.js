@@ -1,9 +1,14 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+import { resolveIntlLocale } from "@/i18n/formatting";
+
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import React, { useEffect, useMemo, useState } from "react";
 import Loader from "../../loaders/Loader";
 import ConfirmationModal from "../../modals/ConformationModal";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { useSelector } from "react-redux";
 import { useTranslations } from "next-intl";
 import {
@@ -69,7 +74,7 @@ const formatDateByLanguage = (iso, language) => {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "-";
 
-  return d.toLocaleDateString(language === "EN" ? "en-US" : "cs-CZ", {
+  return d.toLocaleDateString(resolveIntlLocale(language), {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -77,13 +82,16 @@ const formatDateByLanguage = (iso, language) => {
 };
 
 export default function VoucherForm() {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const t = useTranslations("VoucherFoundation");
   const language = useSelector(selectCurrentLanguage) || "CZ";
   const { id: userId } = useSelector(selectCurrentUser) || {};
   const tenant = useSelector(selectCurrentTenant);
   const tenantCurrency =
     tenant?.settings?.currency || DEFAULT_STUDIO_COMMERCE_CURRENCY;
-  const moneyLocale = language === "CZ" ? "cs-CZ" : "en-US";
+  const moneyLocale = activeLocale;
 
   const [redeemPromoCode, redeemState] = useRedeemPromoCodeMutation();
   const { isLoading: isRedeeming } = redeemState;
@@ -104,16 +112,12 @@ export default function VoucherForm() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const [confirmText, setConfirmText] = useState(
-    translation["VOUCHER_REDEEM_CONTENT"]?.[language] ||
-      "Poukaz byl úspěšně uplatněn.",
+    translation["VOUCHER_REDEEM_CONTENT"]?.[language],
   );
 
   useEffect(() => {
-    setConfirmText(
-      translation["VOUCHER_REDEEM_CONTENT"]?.[language] ||
-        "Poukaz byl úspěšně uplatněn.",
-    );
-  }, [language]);
+    setConfirmText(translation["VOUCHER_REDEEM_CONTENT"]?.[language]);
+  }, [language, translation]);
 
   const formatPromoCode = (value) => {
     const cleaned = value.toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -142,9 +146,9 @@ export default function VoucherForm() {
 
     if (!userId) {
       setErrorMsg(
-        language === "CZ"
-          ? "Pro uplatnění poukazu je potřeba být přihlášen."
-          : "You need to be signed in to redeem a voucher.",
+        legacyText(
+          "VoucherForm_You_need_to_be_signed_in_to_redeem_a_voucher_7fb72",
+        ),
       );
       return;
     }
@@ -161,15 +165,24 @@ export default function VoucherForm() {
         typeof resp?.newBalance === "number"
       ) {
         setConfirmText(
-          language === "CZ"
-            ? `Poukaz byl úspěšně uplatněn. Připsáno: ${formatMajorCurrencyAmount(resp.creditsAdded, resp.currency || tenantCurrency, moneyLocale)}. Nový zůstatek: ${formatMajorCurrencyAmount(resp.newBalance, resp.currency || tenantCurrency, moneyLocale)}.`
-            : `Voucher redeemed successfully. Added: ${formatMajorCurrencyAmount(resp.creditsAdded, resp.currency || tenantCurrency, moneyLocale)}. New balance: ${formatMajorCurrencyAmount(resp.newBalance, resp.currency || tenantCurrency, moneyLocale)}.`,
+          legacyText(
+            "VoucherForm_Voucher_redeemed_successfully_Added_value1_New_balance_1a0e9",
+            {
+              value1: formatMajorCurrencyAmount(
+                resp.creditsAdded,
+                resp.currency || tenantCurrency,
+                moneyLocale,
+              ),
+              value2: formatMajorCurrencyAmount(
+                resp.newBalance,
+                resp.currency || tenantCurrency,
+                moneyLocale,
+              ),
+            },
+          ),
         );
       } else {
-        setConfirmText(
-          translation["VOUCHER_REDEEM_CONTENT"]?.[language] ||
-            "Poukaz byl úspěšně uplatněn.",
-        );
+        setConfirmText(translation["VOUCHER_REDEEM_CONTENT"]?.[language]);
       }
 
       setShowModalConfirm(true);
@@ -177,13 +190,12 @@ export default function VoucherForm() {
       setSubmitted(false);
       refetchRedeemed();
     } catch (err) {
-      const msg =
-        err?.data?.message ||
-        err?.error ||
-        err?.message ||
-        (language === "CZ"
-          ? "Nepodařilo se uplatnit poukaz. Zkuste to prosím znovu."
-          : "The voucher could not be redeemed. Please try again.");
+      const msg = getLocalizedApiErrorMessage(
+        err,
+        legacyText(
+          "VoucherForm_The_voucher_could_not_be_redeemed_Please_try_again_1d1d3",
+        ),
+      );
       setErrorMsg(msg);
     }
   };
@@ -191,8 +203,7 @@ export default function VoucherForm() {
   const isLoading = isRedeeming || isLoadingRedeemed;
   if (isLoading) return <Loader />;
 
-  const historyTitle =
-    language === "CZ" ? "Uplatněné poukazy" : "Redeemed vouchers";
+  const historyTitle = legacyText("VoucherForm_Redeemed_vouchers_1733e");
 
   return (
     <>
@@ -200,10 +211,7 @@ export default function VoucherForm() {
         open={showModalConfirm}
         setOpen={setShowModalConfirm}
         text={confirmText}
-        title={
-          translation["VOUCHER_REDEEM_TITLE"]?.[language] ||
-          (language === "CZ" ? "Poukaz uplatněn" : "Voucher redeemed")
-        }
+        title={translation["VOUCHER_REDEEM_TITLE"]?.[language]}
       />
 
       <div className="mt-6 sm:mt-7">
@@ -217,9 +225,7 @@ export default function VoucherForm() {
 
               <div className="min-w-0 max-w-4xl">
                 <div className="text-[11px] uppercase tracking-[0.18em] text-[#8A7F74] ">
-                  {language === "CZ"
-                    ? "Poukazy a kredity"
-                    : "Vouchers & credits"}
+                  {legacyText("VoucherForm_Vouchers_credits_fd59d")}
                 </div>
 
                 <h2
@@ -228,7 +234,7 @@ export default function VoucherForm() {
                     TEXT_DARK,
                   )}
                 >
-                  {language === "CZ" ? "Moje poukazy" : "My vouchers"}
+                  {legacyText("VoucherForm_My_vouchers_9cb49")}
                 </h2>
 
                 <p
@@ -242,14 +248,14 @@ export default function VoucherForm() {
 
                 <div className="mt-4 space-y-2 text-sm sm:text-[15px]">
                   <p className={classNames("", TEXT_MUTED)}>
-                    {language === "CZ"
-                      ? "• Pokud máte více poukazů, můžete je uplatnit postupně."
-                      : "• If you have multiple vouchers, you can redeem them one by one."}
+                    {legacyText(
+                      "VoucherForm__If_you_have_multiple_vouchers_you_can_redeem_them_one_8e5cf",
+                    )}
                   </p>
                   <p className={classNames("", TEXT_MUTED)}>
-                    {language === "CZ"
-                      ? "• Hodnoty poukazů se vám automaticky sčítají."
-                      : "• Voucher values are added together automatically."}
+                    {legacyText(
+                      "VoucherForm__Voucher_values_are_added_together_automatically_a418b",
+                    )}
                   </p>
                 </div>
               </div>
@@ -261,9 +267,7 @@ export default function VoucherForm() {
             <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-end">
               <div className="min-w-0">
                 <div className="text-[11px] uppercase tracking-[0.18em] text-[#8A7F74] ">
-                  {language === "CZ"
-                    ? "Uplatnění poukazu"
-                    : "Voucher redemption"}
+                  {legacyText("VoucherForm_Voucher_redemption_73a64")}
                 </div>
 
                 <label
@@ -273,9 +277,9 @@ export default function VoucherForm() {
                     TEXT_DARK,
                   )}
                 >
-                  {language === "CZ" ? "Kód poukazu" : "Voucher code"}
+                  {legacyText("VoucherForm_Voucher_code_eae7b")}
                   <span className={classNames("ml-2 text-xs", TEXT_MUTED)}>
-                    (např. D4T-32S-053)
+                    {legacyText("VoucherForm__e_g_D4T_32S_053_d4e4b")}{" "}
                   </span>
                 </label>
 
@@ -303,9 +307,9 @@ export default function VoucherForm() {
 
                 {submitted && !isValid && (
                   <p className="mt-3 text-xs text-red-600">
-                    {language === "CZ"
-                      ? "Neplatný formát. Použijte např. D4T-32S-053"
-                      : "Invalid format. Use for example D4T-32S-053"}
+                    {legacyText(
+                      "VoucherForm_Invalid_format_Use_for_example_D4T_32S_053_16c67",
+                    )}
                   </p>
                 )}
 
@@ -330,13 +334,13 @@ export default function VoucherForm() {
                   )}
                   title={
                     !userId
-                      ? language === "CZ"
-                        ? "Pro uplatnění poukazu je potřeba být přihlášen."
-                        : "You need to be signed in to redeem a voucher."
+                      ? legacyText(
+                          "VoucherForm_You_need_to_be_signed_in_to_redeem_a_voucher_7fb72",
+                        )
                       : ""
                   }
                 >
-                  {language === "CZ" ? "Uplatnit poukaz" : "Redeem voucher"}
+                  {legacyText("VoucherForm_Redeem_voucher_4b8cd")}
                 </button>
               </div>
             </div>
@@ -347,7 +351,7 @@ export default function VoucherForm() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="min-w-0">
                 <div className="text-[11px] uppercase tracking-[0.18em] text-[#8A7F74] ">
-                  {language === "CZ" ? "Historie" : "History"}
+                  {legacyText("VoucherForm_History_90ccd")}
                 </div>
 
                 <h3
@@ -361,18 +365,20 @@ export default function VoucherForm() {
 
                 {!userId && (
                   <p className={classNames("mt-2 text-sm", TEXT_MUTED)}>
-                    {language === "CZ"
-                      ? "Pro zobrazení uplatněných poukazů je potřeba být přihlášen."
-                      : "You need to be signed in to view redeemed vouchers."}
+                    {legacyText(
+                      "VoucherForm_You_need_to_be_signed_in_to_view_redeemed_vouchers_70781",
+                    )}
                   </p>
                 )}
 
                 {isRedeemedError && (
                   <p className="mt-2 text-sm text-red-600">
-                    {redeemedError?.data?.message ||
-                      (language === "CZ"
-                        ? "Nepodařilo se načíst uplatněné poukazy."
-                        : "Redeemed vouchers could not be loaded.")}
+                    {getLocalizedApiErrorMessage(
+                      redeemedError,
+                      legacyText(
+                        "VoucherForm_Redeemed_vouchers_could_not_be_loaded_1c156",
+                      ),
+                    )}
                   </p>
                 )}
               </div>
@@ -384,7 +390,7 @@ export default function VoucherForm() {
                 disabled={!userId}
               >
                 <ArrowPathIcon className="mr-2 h-4 w-4" />
-                {language === "CZ" ? "Obnovit" : "Refresh"}
+                {legacyText("VoucherForm_Refresh_56e3b")}
               </button>
             </div>
 
@@ -398,7 +404,7 @@ export default function VoucherForm() {
                       const productName = getIssuedVoucherName(c, moneyLocale);
                       const redeemedAt = formatDateByLanguage(
                         c?.redeemedAt,
-                        language,
+                        activeLocale,
                       );
                       const amount = formatVoucherCreditsReceived(
                         c,
@@ -428,7 +434,7 @@ export default function VoucherForm() {
                               <div className="mt-3 space-y-1.5 text-sm">
                                 <div className="flex items-start justify-between gap-3">
                                   <span className={classNames("", TEXT_DARK)}>
-                                    {language === "CZ" ? "Datum" : "Date"}
+                                    {legacyText("VoucherForm_Date_eb9a4")}
                                   </span>
                                   <span
                                     className={classNames(
@@ -462,9 +468,9 @@ export default function VoucherForm() {
                   ) : (
                     <div className="rounded-[24px] border border-[rgba(179,162,146,0.34)] bg-white/58 p-6 text-center shadow-[0_8px_24px_rgba(0,0,0,0.02)]">
                       <p className={classNames("text-sm ", TEXT_MUTED)}>
-                        {language === "CZ"
-                          ? "Zatím nemáte žádné uplatněné poukazy."
-                          : "You do not have any redeemed vouchers yet."}
+                        {legacyText(
+                          "VoucherForm_You_do_not_have_any_redeemed_vouchers_yet_46648",
+                        )}
                       </p>
                     </div>
                   )}
@@ -478,12 +484,10 @@ export default function VoucherForm() {
                         <thead className="sticky top-0 z-10 border-b border-[rgba(179,162,146,0.22)] bg-[#F7F5F2]/84 supports-[backdrop-filter]:bg-[#F7F5F2]/70 backdrop-blur-sm">
                           <tr>
                             <th className="px-5 py-4 text-left text-[11px] uppercase tracking-[0.16em]  text-[#8A7F74]">
-                              {language === "CZ" ? "Název" : "Name"}
+                              {legacyText("VoucherForm_Name_709a2")}
                             </th>
                             <th className="px-5 py-4 text-left text-[11px] uppercase tracking-[0.16em]  text-[#8A7F74]">
-                              {language === "CZ"
-                                ? "Datum uplatnění"
-                                : "Redeemed on"}
+                              {legacyText("VoucherForm_Redeemed_on_d5f93")}
                             </th>
                             <th className="px-5 py-4 text-left text-[11px] uppercase tracking-[0.16em]  text-[#8A7F74]">
                               {t("walletConversion.received")}
@@ -501,7 +505,7 @@ export default function VoucherForm() {
                               );
                               const redeemedAt = formatDateByLanguage(
                                 c?.redeemedAt,
-                                language,
+                                activeLocale,
                               );
                               const amount = formatVoucherCreditsReceived(
                                 c,
@@ -550,9 +554,9 @@ export default function VoucherForm() {
                                       TEXT_MUTED,
                                     )}
                                   >
-                                    {language === "CZ"
-                                      ? "Zatím nemáte žádné uplatněné poukazy."
-                                      : "You do not have any redeemed vouchers yet."}
+                                    {legacyText(
+                                      "VoucherForm_You_do_not_have_any_redeemed_vouchers_yet_46648",
+                                    )}
                                   </p>
                                 </div>
                               </td>

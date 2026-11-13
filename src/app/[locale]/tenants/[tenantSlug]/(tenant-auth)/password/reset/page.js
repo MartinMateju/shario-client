@@ -1,5 +1,6 @@
 "use client";
 
+import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import { useMemo, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { useParams, useSearchParams } from "next/navigation";
@@ -25,57 +26,6 @@ import {
 } from "@/utils/tenantAuthRouting";
 import { getValidatedTenantSlugParam } from "@/utils/tenantRouting";
 
-const COPY = {
-  cs: {
-    confirmError: "Hesla se neshodují.",
-    confirmLabel: "Potvrzení nového hesla",
-    confirmPlaceholder: "Zadejte nové heslo znovu",
-    description:
-      "Zvolte nové heslo. Po uložení budou z bezpečnostních důvodů odhlášena všechna zařízení.",
-    expired:
-      "Odkaz pro změnu hesla je neplatný nebo jeho platnost vypršela. Vyžádejte si nový kód.",
-    genericError: "Heslo se nepodařilo změnit. Zkuste to prosím znovu.",
-    hideConfirm: "Skrýt potvrzení hesla",
-    hidePassword: "Skrýt nové heslo",
-    passwordError: "Použijte 8 až 128 znaků a alespoň jednu číslici.",
-    passwordHelper: "8 až 128 znaků a alespoň jedna číslice.",
-    passwordLabel: "Nové heslo",
-    passwordPlaceholder: "Zadejte nové heslo",
-    rateLimited: "Proběhlo příliš mnoho pokusů. Zkuste to znovu později.",
-    requestAgain: "Vyžádat nový kód",
-    save: "Uložit nové heslo",
-    saving: "Ukládáme…",
-    showConfirm: "Zobrazit potvrzení hesla",
-    showPassword: "Zobrazit nové heslo",
-    title: "Nastavit nové heslo",
-    eyebrow: "Zabezpečení účtu",
-  },
-  en: {
-    confirmError: "Passwords do not match.",
-    confirmLabel: "Confirm new password",
-    confirmPlaceholder: "Enter the new password again",
-    description:
-      "Choose a new password. For your security, every device will be signed out after it is saved.",
-    expired:
-      "This password reset is invalid or has expired. Request a new code.",
-    genericError: "We could not update the password. Please try again.",
-    hideConfirm: "Hide password confirmation",
-    hidePassword: "Hide new password",
-    passwordError: "Use 8 to 128 characters and include at least one number.",
-    passwordHelper: "8 to 128 characters with at least one number.",
-    passwordLabel: "New password",
-    passwordPlaceholder: "Enter a new password",
-    rateLimited: "There have been too many attempts. Please try again later.",
-    requestAgain: "Request a new code",
-    save: "Save new password",
-    saving: "Saving…",
-    showConfirm: "Show password confirmation",
-    showPassword: "Show new password",
-    title: "Choose a new password",
-    eyebrow: "Account security",
-  },
-};
-
 const getResetError = (error, copy) => {
   if (error?.status === 401) return copy.expired;
   if (error?.status === 429) return copy.rateLimited;
@@ -85,7 +35,7 @@ const getResetError = (error, copy) => {
 
 function ResetPasswordForm() {
   const locale = useLocale();
-  const copy = COPY[locale === "cs" ? "cs" : "en"];
+  const copy = useLegacyCopy("passwordReset");
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();

@@ -1,5 +1,7 @@
 "use client";
 
+import { useLegacyLocale } from "@/i18n/useLegacyCopy";
+import { useLegacyText } from "@/i18n/useLegacyCopy";
 import {
   Dialog,
   DialogPanel,
@@ -19,7 +21,7 @@ import {
   selectCurrentWorkspaceAccess,
 } from "@/lib/features/auth/authSlice";
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
-import translation from "@/translations/translation";
+import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
 import { formatMajorCurrencyAmount } from "@/utils/money";
 import { getNumberOfParticipantsAsString } from "@/utils/sidebarUtils";
 import {
@@ -136,6 +138,9 @@ export default function CourseInfoModal({
   products,
   users,
 }) {
+  const activeLocale = useLegacyLocale();
+  const legacyText = useLegacyText();
+  const translation = useLegacyTranslation();
   const cancelButtonRef = useRef(null);
   const dialogTitleId = useId();
   const language = useSelector(selectCurrentLanguage);
@@ -224,7 +229,9 @@ export default function CourseInfoModal({
                     >
                       {product?.name || `Course ${sessionId}`}
                     </DialogTitle>
-                    <p>ID: {sessionId}</p>
+                    <p>
+                      {legacyText("CourseInfoModal_ID_d789a")} {sessionId}
+                    </p>
                     <p>
                       {translation["LECTURER"][language]}: {booking?.lecturer}
                     </p>
@@ -245,7 +252,7 @@ export default function CourseInfoModal({
                       {formatMajorCurrencyAmount(
                         product?.price,
                         product?.currency || DEFAULT_STUDIO_COMMERCE_CURRENCY,
-                        language === "CZ" ? "cs-CZ" : "en-GB",
+                        activeLocale,
                       )}
                     </p>
                     <p>

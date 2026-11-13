@@ -28,9 +28,14 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
   useOptionalPublicTenant: () => ({ tenant: mocks.publicTenant }),
 }));
 
-vi.mock("next-intl", () => ({
-  useLocale: () => "en",
-}));
+vi.mock("next-intl", async (...args) => {
+  const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
+  return withMessageCatalogs(
+    await (() => ({
+      useLocale: () => "en",
+    }))(...args),
+  );
+});
 
 vi.mock("react-redux", () => ({
   useDispatch: () => mocks.dispatch,

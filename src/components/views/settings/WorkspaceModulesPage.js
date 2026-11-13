@@ -1,5 +1,7 @@
 "use client";
 
+import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
+
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowPathIcon,
@@ -123,12 +125,7 @@ const getRequestError = (error, t) => {
   if (code === "TENANT_MODULE_NOT_ENTITLED") {
     return t("errors.notEntitled");
   }
-  return (
-    error?.data?.message ??
-    error?.data?.error?.message ??
-    error?.error ??
-    t("errors.save")
-  );
+  return getLocalizedApiErrorMessage(error, t("errors.save"));
 };
 function Toggle({ checked, disabled = false, label, onChange }) {
   return (
