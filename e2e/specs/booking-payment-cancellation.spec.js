@@ -307,8 +307,8 @@ async function exercisePaidBookingCancellation(
   await confirmation
     .getByRole("button", { name: "Yes, cancel", exact: true })
     .click();
-  await expect(confirmation.getByRole("alert")).toContainText(
-    "Temporary cancellation failure",
+  await expect(confirmation.getByRole("alert")).toHaveText(
+    "Could not cancel this booking. Please try again.",
   );
   await expect(confirmation.locator("[data-confirmation-success]")).toHaveCount(
     0,
