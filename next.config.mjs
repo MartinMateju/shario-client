@@ -16,6 +16,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "api.shario.io",
+        pathname: "/media/public/**",
+        search: "",
+      },
+      {
+        protocol: "https",
         hostname: "i.ytimg.com",
         pathname: "/vi/**",
       },
