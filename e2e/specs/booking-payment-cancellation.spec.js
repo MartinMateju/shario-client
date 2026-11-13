@@ -147,7 +147,7 @@ async function exercisePaidBookingCancellation(
     .getByRole("combobox", { name: "Planned activity", exact: true })
     .selectOption("SHARED_TABLE");
   if (overnight) {
-    const lateSlot = page.getByRole("radio", { name: /23:30–00:30/ });
+    const lateSlot = page.getByRole("radio", { name: /11:30\s*PM–12:30\s*AM/ });
     await expect(lateSlot).toBeEnabled();
     await lateSlot.check();
     await expect(lateSlot).toBeChecked();
@@ -158,7 +158,7 @@ async function exercisePaidBookingCancellation(
     .getByRole("button", { name: "Book with my account", exact: true })
     .click();
   await expect(page).toHaveURL(/\/en\/login\?next=/);
-  await page.getByLabel("E-mail").fill(customer.email);
+  await page.getByLabel(/^e-?mail\s*\*?$/i).fill(customer.email);
   await page.getByLabel(/^Password\s*\*?$/).fill(PASSWORD);
   const loginResponse = page.waitForResponse(
     (response) =>

@@ -19,7 +19,7 @@ test.describe("tenant authentication", () => {
   test("shows a focused error after a failed login", async ({ page }) => {
     await openLogin(page, E2E.alphaSlug);
 
-    await page.getByLabel("E-mail").fill(USERS.owner);
+    await page.getByLabel(/^e-?mail\s*\*?$/i).fill(USERS.owner);
     await page.getByLabel("Password").fill("Definitely-wrong-password");
 
     const responsePromise = page.waitForResponse((response) =>
@@ -149,7 +149,7 @@ test.describe("tenant authentication", () => {
       }),
     ).toBeVisible();
 
-    await page.getByLabel("E-mail").fill(USERS.customer);
+    await page.getByLabel(/^e-?mail\s*\*?$/i).fill(USERS.customer);
     await page.getByLabel("Password").fill(PASSWORD);
     const loginResponsePromise = page.waitForResponse((response) =>
       isApiResponse(response, "/auth/customer", "POST"),
@@ -229,7 +229,7 @@ test.describe("tenant authentication", () => {
       );
     });
 
-    await page.getByLabel("E-mail").fill(USERS.owner);
+    await page.getByLabel(/^e-?mail\s*\*?$/i).fill(USERS.owner);
     await page.getByLabel("Password").fill(PASSWORD);
 
     const customerLoginResponse = page.waitForResponse((response) =>

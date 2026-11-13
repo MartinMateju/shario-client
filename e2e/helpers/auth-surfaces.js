@@ -48,7 +48,7 @@ export async function loginCustomerAs(
 ) {
   await openLogin(page, slug);
 
-  await page.getByLabel("E-mail").fill(email);
+  await page.getByLabel(/^e-?mail\s*\*?$/i).fill(email);
   await page.getByLabel(/^Password\s*\*?$/).fill(password);
 
   const loginResponsePromise = page.waitForResponse((response) =>

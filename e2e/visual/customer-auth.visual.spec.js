@@ -683,7 +683,7 @@ for (const { copy, locale } of localeScenarios) {
       );
     }
 
-    const email = form.getByLabel("E-mail");
+    const email = form.getByLabel(/^e-?mail\s*\*?$/i);
     const password = form.locator("#password");
     const passwordVisibility = form.getByRole("button", {
       name: locale === "cs" ? "Zobrazit heslo" : "Show password",
@@ -1248,7 +1248,7 @@ test("password recovery keeps the tenant auth design through OTP verification", 
 
   const surface = page.locator('[data-auth-surface="recovery"]');
   const form = page.getByRole("form", { name: "Reset password" });
-  const email = form.getByLabel("E-mail");
+  const email = form.getByLabel(/^e-?mail\s*\*?$/i);
   const submit = form.getByRole("button", {
     name: "Send verification code",
   });

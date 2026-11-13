@@ -86,7 +86,7 @@ async function completeAuthenticationGate({
         ?.includes(`/portal/booking/confirm?intent=${token}`),
   );
 
-  await page.getByLabel("E-mail").fill(USERS.customer);
+  await page.getByLabel(/^e-?mail\s*\*?$/i).fill(USERS.customer);
   await page.getByLabel(/^Password\s*\*?$/).fill(PASSWORD);
 
   const loginResponsePromise = page.waitForResponse((response) =>

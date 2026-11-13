@@ -23,7 +23,7 @@ export async function createPaidBooking({ page, request, e2eState }) {
     .getByRole("button", { name: "Book with my account", exact: true })
     .click();
   await expect(page).toHaveURL(/\/en\/login\?next=/);
-  await page.getByLabel("E-mail").fill(customer.email);
+  await page.getByLabel(/^e-?mail\s*\*?$/i).fill(customer.email);
   await page.getByLabel(/^Password\s*\*?$/).fill(PASSWORD);
   const loginPromise = page.waitForResponse(
     (response) =>

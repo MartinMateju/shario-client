@@ -12,7 +12,7 @@ test("rejects valid credentials presented to the wrong tenant", async ({
   page,
 }) => {
   await openLogin(page, E2E.betaSlug);
-  await page.getByLabel("E-mail").fill(USERS.owner);
+  await page.getByLabel(/^e-?mail\s*\*?$/i).fill(USERS.owner);
   await page.getByLabel(/^Password\s*\*?$/).fill(PASSWORD);
 
   const responsePromise = page.waitForResponse((response) =>
