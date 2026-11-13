@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "Dit sted. Flere muligheder.",
+    "homeDescription": "Bookinger, medlemskaber og din egen flotte hjemmeside. Alt, hvad du behøver for at dele dit sted og udvikle dit fællesskab, samlet i Shario."
   },
   "Common": {
     "skipToContent": "Gå til indhold",
@@ -101,8 +101,8 @@
   "Header": {
     "mobile": {
       "navigation": "Mobilnavigation",
-      "publicEyebrow": "Operativsystemet til kreative studier.",
-      "publicTitle": "Driv dit studio. Træf bedre beslutninger hver dag.",
+      "publicEyebrow": "Gode steder bringer mennesker sammen",
+      "publicTitle": "Dit sted. Flere muligheder.",
       "adminEyebrow": "Studioadministration",
       "adminTitle": "Alt, der sker i dit studio. Helt overskueligt.",
       "moduleOverview": "Moduloversigt",
@@ -110,7 +110,7 @@
       "admin": "Administration",
       "myAccount": "Min konto",
       "language": "Sprog",
-      "tagline": "Mere tid til at skabe. Mindre tid på administration."
+      "tagline": "Giv plads til mere."
     },
     "booking": "Booking",
     "cart": {
@@ -171,7 +171,7 @@
       "payments": "Betalinger",
       "memberships": "Medlemskaber",
       "automatedCommunication": "Automatiseret kommunikation",
-      "studioOperations": "Studiodrift og produktion",
+      "studioOperations": "Lokaler, ressourcer og team",
       "analytics": "AI, analyse og beslutninger",
       "viewAll": "Udforsk hele produktet"
     },
@@ -183,7 +183,7 @@
       "multiLocationStudios": "Studier med flere lokationer",
       "viewAll": "Udforsk alle løsninger"
     },
-    "forStudios": "Til studier",
+    "forStudios": "Til fælles steder",
     "pricing": "Priser",
     "membershipCatalog": "Medlemskaber",
     "resources": {
@@ -221,7 +221,7 @@
         "workspaceHelp": {
           "open": "Hvad er en arbejdsområde-URL?",
           "title": "Dit studios Shario-adresse",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Det er den unikke adresse, du bruger til at åbne dit arbejdsområde, for eksempel common-ground.shario.io. Du finder den i din velkomstmail eller invitation."
         },
         "findWorkspace": "Find dit arbejdsområde",
         "emailLabel": "E-mailadresse",
@@ -350,40 +350,40 @@
       "currencyLabel": "Vælg en valuta"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Alt, hvad dit sted behøver. Samlet.",
+      "metaDescription": "Forbind bookinger, medlemmer, betalinger, team og offentlig hjemmeside. Hold fokus på menneskerne, mens Shario hjælper dig med at organisere dagen."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "En hjælpende hånd i hverdagen.",
+      "metaDescription": "Stil spørgsmål om dit arbejdsområde, forbered indhold, og få hjælp til understøttede opgaver. Dit team bevarer kontrollen over ændringer og beslutninger."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Forskellige steder. Fælles muligheder.",
+      "metaDescription": "Fra det lokale arbejdsfællesskab til et livligt samlingssted – tilpas Shario til den måde, dit sted fungerer på."
     },
     "pricing": {
-      "metaTitle": "Planer og priser til kreative studier",
-      "metaDescription": "Sammenlign Shario-planer, studiokapacitet og AI-kreditter, og start en 14-dages prøveperiode uden betalingskort.",
-      "eyebrow": "Planer til studier i vækst",
+      "metaTitle": "Abonnementer og priser til fælles steder",
+      "metaDescription": "Start med bookinger, tilknyt medlemskaber, og tilføj flere værktøjer, efterhånden som dit sted vokser. Alle abonnementer starter med 14 dages Professional-prøveperiode uden kreditkort.",
+      "eyebrow": "Abonnementer til dit sted",
       "title": "Start med det, du har brug for i dag.",
-      "description": "Alle planer starter med en 14-dages Professional-prøveperiode, så du kan teste den centrale studiorejse, før du vælger.",
+      "description": "Start med bookinger, tilknyt medlemskaber, og tilføj flere værktøjer, efterhånden som dit sted vokser. Alle abonnementer starter med 14 dages Professional-prøveperiode uden kreditkort.",
       "sectionEyebrow": "Tydelige forskelle mellem planerne",
       "sectionTitle": "Sammenlign kapacitet, arbejdsgange og AI-kreditter.",
       "sectionDescription": "Vælg ud fra antallet af lokationer, teamkonti og den driftsdybde, dit studio har brug for.",
       "closingTitle": "I tvivl om, hvilken plan der passer?",
       "closingDescription": "Start prøveperioden uden betalingskort, eller tal med os om en skræddersyet implementering.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Opsæt i dit eget tempo.",
+      "onboardingDescription": "Tilføj dit sted, opsæt tilbud og betalinger, og udgiv din hjemmeside, når du er klar."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Bookinger, medlemskaber og din egen flotte hjemmeside. Alt, hvad du behøver for at dele dit sted og udvikle dit fællesskab, samlet i Shario."
     },
     "pricing": {
       "eyebrow": "Gennemsigtige priser",
-      "title": "Vælg planen, der passer til den måde, dit studie arbejder på.",
-      "description": "Start med kurser, gå videre til komplet studiedrift, og tilføj derefter avanceret automatisering og værktøjer til flere lokationer. Alle planer starter med en 14-dages Professional-prøveperiode — uden kort.",
+      "title": "Vælg det abonnement, der passer til dit sted.",
+      "description": "Start med bookinger, tilknyt medlemskaber, og tilføj flere værktøjer, efterhånden som dit sted vokser. Alle abonnementer starter med 14 dages Professional-prøveperiode uden kreditkort.",
       "billingIntervalLabel": "Vælg faktureringsperiode",
       "monthly": "Månedligt",
       "yearly": "Årligt",
@@ -395,25 +395,25 @@
       "mostPopular": "Mest populær",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Start med bookinger, betalinger, hold og arrangementer til dit sted.",
         "feature1": "1 studielokation · 1 teamkonto",
         "feature2": "Kurser, private arrangementer og gavekort",
         "feature3": "500 inkluderede e-mails pr. måned",
-        "feature4": "Begrænset Shario AI · 200 credits pr. måned",
+        "feature4": "Begrænset Shario AI · 200 credits om måneden",
         "cta": "Start gratis prøveperiode"
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Forbind medlemskaber, fælles steder og den daglige drift.",
         "feature1": "1 studielokation · 3 teamkonti",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Medlemskaber, bookinger og fælles ressourcer",
         "feature3": "3 aktive automatiseringer · 2.500 e-mails pr. måned",
-        "feature4": "Fuld Shario AI · 2.000 credits pr. måned",
+        "feature4": "Fuld Shario AI · 2.000 credits om måneden",
         "cta": "Start gratis prøveperiode"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Automatiser dit arbejde, og forbind flere lokationer.",
         "feature1": "Op til 2 studielokationer · 6 teamkonti",
         "feature2": "Adgangskoder og eget domæne",
         "feature3": "Avancerede automatiseringer · 5.000 e-mails pr. måned",
@@ -427,7 +427,7 @@
         "feature2": "Tilpassede kvoter for automatisering, e-mail og AI",
         "feature3": "SSO/SCIM, API, webhooks og revisionslogge",
         "feature4": "Dedikeret onboarding, migrering og SLA",
-        "cta": "Start free trial"
+        "cta": "Start gratis prøveperiode"
       },
       "note": "Priser er eksklusive gældende skatter. Årlige selvbetjeningsplaner inkluderer to gratis måneder. Nødvendige system-e-mails tæller ikke med i e-mailkvoten, og AI-forbruget stopper ved den inkluderede grænse — uden automatiske ekstraomkostninger.",
       "loading": "Indlæser priser…",
@@ -536,7 +536,7 @@
     "signIn": "Log ind"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Giv plads til mere.",
     "checking": "Kontrollerer hjemmesidens status…",
     "owner": {
       "eyebrow": "Offentlig hjemmeside",
@@ -1338,8 +1338,8 @@
         "calmHeadline": "Dit studio kører problemfrit.",
         "attentionHeadline": "Et par ting har brug for din opmærksomhed.",
         "partialHeadline": "Her er hvad vi kan bekræfte lige nu.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookinger}} og {attention, plural, one {# prioritet} other {# prioriteter}} at gennemgå.",
+        "countsUnavailableSummary": "Antallet af bookinger er ikke fuldt tilgængeligt. Ubekræftede værdier vises ikke.",
         "partialSummary": "Sammendraget har i øjeblikket {count, plural, one {# tilgængelig kilde} other {# tilgængelige kilder}}. Utilgængelige værdier forbliver ukendte i stedet for at blive vist som nul.",
         "coverageComplete": "Baseret på {count, plural, one {# studiosignal} other {# studiosignaler}}",
         "coveragePartial": "Baseret på {count, plural, one {# tilgængeligt studiosignal} other {# tilgængelige studiosignaler}} · delvis dækning",
@@ -1555,7 +1555,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Aktivér kun de aktiviteter, du tilbyder, og angiv kapacitetsgrænser for ressourcer som arbejdspladser og fællesborde."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -1847,7 +1847,7 @@
       "steps": {
         "overview": {
           "title": "Velkommen til din oversigt",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Her får du et levende overblik over dit arbejdsområde. Det kan virke stille, indtil bookinger, opgaver og beskeder begynder at komme ind. Hvert kort forklarer, hvad der vil blive vist her."
         },
         "launch_center": {
           "title": "Konfigurér i Launch Center",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Gode steder bringer mennesker sammen",
+      "title": "Dit sted.",
+      "highlight": "Flere muligheder.",
+      "description": "Bookinger, medlemskaber og din egen flotte hjemmeside. Alt, hvad du behøver for at dele dit sted og udvikle dit fællesskab, samlet i Shario.",
+      "cta": "Start gratis prøveperiode",
+      "secondary": "Udforsk Shario",
+      "note": "14 dages prøveperiode · Intet kreditkort påkrævet",
+      "imageAlt": "Mennesker mødes i et lyst fællesrum omgivet af farverige, flydende former",
+      "cardTitle": "Lidt mindre administration. Meget mere fællesskab.",
+      "cardText": "Giv plads til de mennesker, der gør dit sted til noget særligt."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "Ét sted til hverdagens opgaver",
+      "title": "Mere tid til dine mennesker.",
+      "description": "Hold sammen på driften af dit sted, fra det første besøg til den næste fornyelse af medlemskabet.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Enkle bookinger",
+        "description": "Lad folk booke lokaler, udstyr, hold og arrangementer. Hold kapacitet, tilgængelighed og kalender opdateret sammen."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Medlemskaber, der passer",
+        "description": "Tilbyd abonnementer, tilgodehavender og medlemsfordele, der passer til den måde, folk bruger dit sted på."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "En hjemmeside, der er din",
+        "description": "Giv dit brand liv med sider, du kan tilpasse, dit eget indhold og integreret booking."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Betalinger ét sted",
+        "description": "Saml betalinger, følg ordrer, og tilbyd gavekort. Få ét klart overblik over køb og betalingsstatus."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Styr på alle dine rum",
+        "description": "Administrer lokationer, lokaler, arbejdspladser, fælles udstyr og materialer fra ét arbejdsområde."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Hold alle i kontakt",
+        "description": "Send nyheder, bookingpåmindelser og nyttige automatiske beskeder til dit fællesskab."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Et team, der arbejder sammen",
+        "description": "Koordiner tidsplaner og opgaver med roller og tilladelser til dem, der driver dit sted."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Et bedre overblik",
+        "description": "Følg bookinger, omsætning og aktivitet. Få hjælp til det daglige arbejde fra din AI-assistent."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "Dit sted. Din identitet.",
+      "title": "Dit fællesskab begynder med en varm velkomst.",
+      "description": "Skab en offentlig hjemmeside, der føles som dig. Gør det nemt at opdage dit sted, finde et medlemskab og booke noget at glæde sig til.",
+      "one": "Vælg farver, skrifttyper og sidelayout",
+      "two": "Forbind dine tilbud, din kalender og kundekontoen",
+      "three": "Brug dit eget domæne med de abonnementer, der understøtter det",
+      "cta": "Udforsk dine hjemmesideværktøjer",
+      "example": "Eksempel på et steds hjemmeside",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "Vores sted   ·   Medlemskaber",
+      "previewEyebrow": "Et sted at høre til",
+      "previewTitle": "Godt arbejde. Godt selskab.",
+      "previewCta": "Udforsk vores sted",
+      "imageAlt": "Et indbydende fælles arbejdsrum med dagslys og mennesker, der arbejder sammen"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Til steder, der bringer os sammen",
+      "title": "Forskellige steder. Fælles muligheder.",
+      "description": "Fra det lokale arbejdsfællesskab til et livligt samlingssted – tilpas Shario til den måde, dit sted fungerer på.",
+      "cta": "Giv plads til dit fællesskab",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Kontorfællesskaber",
+        "description": "Skriveborde, mødelokaler og medlemskaber til fleksible arbejdsdage."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Kreative studier",
+        "description": "Fælles udstyr, workshops og plads til din næste idé."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Øvelokaler",
+        "description": "Lokaler til booking, faste tider og koordinerede tidsplaner."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Fælleshuse",
+        "description": "Arrangementer, medlemskaber og fælles steder til lokale fællesskaber."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Workshops og hold",
+        "description": "Hold, undervisere, arrangementer med billetter og tilbagevendende deltagere."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Et par gode spørgsmål",
+      "title": "Lad os gøre det enkelt.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Hvad kan jeg administrere med Shario?",
+        "answer": "Administrer bookinger, medlemskaber, betalinger, lokationer, fælles ressourcer, dit team og din offentlige hjemmeside. Aktivér de moduler, der passer til dit sted."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Kan jeg bruge mit eget brand?",
+        "answer": "Ja. Tilpas farver, typografi, indhold og layout på din offentlige hjemmeside. Egne domæner er tilgængelige med de abonnementer, der understøtter dem."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Kan mine kunder booke og administrere deres medlemskaber?",
+        "answer": "Ja. Din offentlige hjemmeside og kundeportalen forbinder bookinger, køb, medlemskaber, tilgodehavender og fakturaer."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Hvordan kommer jeg i gang?",
+        "answer": "Opret dit arbejdsområde, og start en prøveperiode på 14 dage. Tilføj dit sted, opsæt tilbud og betalinger, og udgiv din bookinghjemmeside, når du er klar."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Giv plads til mere.",
+      "description": "Flere møder. Flere muligheder. Mere tid til det sted, du holder af. Begynd at opbygge dit fællesskab med Shario.",
+      "secondary": "Se abonnementer"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Mød dine værktøjer til hverdagen",
+      "title": "Alt, hvad dit sted behøver. Samlet.",
+      "description": "Forbind bookinger, medlemmer, betalinger, team og offentlig hjemmeside. Hold fokus på menneskerne, mens Shario hjælper dig med at organisere dagen.",
+      "panelEyebrow": "Dit sammenhængende arbejdsområde",
+      "panelTitle": "Ét sted, der samler det hele",
+      "solutions": "Find løsningen til dit sted"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Mere frihed til dine medlemmer",
+      "title": "Lad dit sted tilpasse sig dine mennesker.",
+      "description": "Tilbyd onlinebooking, kundekonti og selvbetjent adgang. Opsæt adgangskoder, tidsplaner og din understøttede låseintegration med de rette abonnementer og på udstyrede lokationer."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Mød Shario AI",
+      "title": "En hjælpende hånd i hverdagen.",
+      "description": "Stil spørgsmål om dit arbejdsområde, forbered indhold, og få hjælp til understøttede opgaver. Dit team bevarer kontrollen over ændringer og beslutninger.",
+      "panelEyebrow": "Forbundet med dit arbejdsområde",
+      "panelTitle": "Nyttig sammenhæng. Klare næste skridt.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "Viden, der gør en forskel",
+        "description": "Arbejd med relevante oplysninger fra dit arbejdsområde i stedet for at begynde forfra med hvert spørgsmål."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "Et nyttigt første udkast",
+        "description": "Forbered kundebeskeder, hjemmesidetekster og idéer til dit næste arrangement."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Du bevarer kontrollen",
+        "heading": "Din assistent. Dine beslutninger.",
+        "description": "Gennemgå forslag, og bekræft handlinger, når det er nødvendigt. AI-funktionerne afhænger af tilladelserne i dit arbejdsområde, aktive integrationer og dit abonnements grænser."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Giv plads til mere.",
+      "product": "Produkt",
+      "overview": "Udforsk Shario",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Priser",
+      "spaces": "Til dit sted",
+      "company": "Kom i gang",
+      "about": "Sådan fungerer det",
+      "login": "Log ind",
+      "register": "Start gratis prøveperiode",
+      "copyright": "© {year} Shario. Alle rettigheder forbeholdes."
     }
   }
 }

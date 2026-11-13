@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "Sinun tilasi. Enemmän mahdollisuuksia.",
+    "homeDescription": "Varaukset, jäsenyydet ja oma tyylikäs verkkosivusto. Kaikki, mitä tarvitset tilasi jakamiseen ja yhteisösi kasvattamiseen, yhdessä Shariossa."
   },
   "Common": {
     "skipToContent": "Siirry sisältöön",
@@ -275,8 +275,8 @@
         "calmHeadline": "Studiosi toimii sujuvasti.",
         "attentionHeadline": "Muutama asia vaatii huomiotasi.",
         "partialHeadline": "Nämä asiat voimme vahvistaa juuri nyt.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "Tarkistettavana {bookings, plural, one {# varaus} other {# varausta}} ja {attention, plural, one {# tärkeä asia} other {# tärkeää asiaa}}.",
+        "countsUnavailableSummary": "Kaikkia varausmääriä ei ole saatavilla. Vahvistamattomia arvoja ei näytetä.",
         "partialSummary": "Katsauksessa on tällä hetkellä {count, plural, one {# käytettävissä oleva lähde} other {# käytettävissä olevaa lähdettä}}. Puuttuvat arvot jätetään tuntemattomiksi sen sijaan, että ne näytettäisiin nollina.",
         "coverageComplete": "Perustuu {count, plural, one {# studiosignaaliin} other {# studiosignaaliin}}",
         "coveragePartial": "Perustuu {count, plural, one {# käytettävissä olevaan studiosignaaliin} other {# käytettävissä olevaan studiosignaaliin}} · osittainen kattavuus",
@@ -492,7 +492,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Ota käyttöön vain tarjoamasi toiminnot ja määritä kapasiteettirajat esimerkiksi työpisteille ja yhteisille pöydille."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -784,7 +784,7 @@
       "steps": {
         "overview": {
           "title": "Tervetuloa Yleiskatsaukseen",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Tämä on työtilasi ajantasainen aloitussivu. Se voi näyttää hiljaiselta, kunnes varauksia, tehtäviä ja viestejä alkaa saapua. Jokainen kortti kertoo, mitä tässä näkyy myöhemmin."
         },
         "launch_center": {
           "title": "Määritä Launch Centerissä",
@@ -913,8 +913,8 @@
   "Header": {
     "mobile": {
       "navigation": "Mobiilinavigointi",
-      "publicEyebrow": "Luovien studioiden toiminnanohjausjärjestelmä.",
-      "publicTitle": "Johda studiotasi. Tee parempia päätöksiä joka päivä.",
+      "publicEyebrow": "Hyvät tilat tuovat ihmiset yhteen",
+      "publicTitle": "Sinun tilasi. Enemmän mahdollisuuksia.",
       "adminEyebrow": "Studion hallinta",
       "adminTitle": "Kaikki studiosi tapahtumat selkeästi.",
       "moduleOverview": "Moduulien yleiskatsaus",
@@ -922,7 +922,7 @@
       "admin": "Ylläpito",
       "myAccount": "Oma tili",
       "language": "Kieli",
-      "tagline": "Enemmän aikaa luomiseen. Vähemmän hallintoa."
+      "tagline": "Tee tilaa enemmälle."
     },
     "booking": "Varaus",
     "cart": {
@@ -983,7 +983,7 @@
       "payments": "Maksut",
       "memberships": "Jäsenyydet",
       "automatedCommunication": "Automaattinen viestintä",
-      "studioOperations": "Studion toiminta ja tuotanto",
+      "studioOperations": "Tilat, resurssit ja tiimi",
       "analytics": "AI, analytiikka ja päätökset",
       "viewAll": "Tutustu koko tuotteeseen"
     },
@@ -995,7 +995,7 @@
       "multiLocationStudios": "Usean toimipisteen studiot",
       "viewAll": "Tutustu kaikkiin ratkaisuihin"
     },
-    "forStudios": "Studioille",
+    "forStudios": "Yhteisille tiloille",
     "pricing": "Hinnoittelu",
     "membershipCatalog": "Jäsenyydet",
     "resources": {
@@ -1033,7 +1033,7 @@
         "workspaceHelp": {
           "open": "Mikä on työtilan osoite?",
           "title": "Studiosi Shario-osoite",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Se on yksilöllinen osoite, jolla avaat työtilasi, esimerkiksi common-ground.shario.io. Löydät sen tervetulo- tai kutsusähköpostistasi."
         },
         "findWorkspace": "Etsi työtilasi",
         "emailLabel": "Sähköpostiosoite",
@@ -1162,40 +1162,40 @@
       "currencyLabel": "Valitse valuutta"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Kaikki tilasi tarpeet, yhdessä.",
+      "metaDescription": "Yhdistä varaukset, jäsenet, maksut, tiimi ja julkinen verkkosivusto. Keskity ihmisiin, kun Shario auttaa päivän järjestämisessä."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "Apua arjen työhön.",
+      "metaDescription": "Kysy työtilastasi, valmistele sisältöä ja pyydä apua tuettuihin tehtäviin. Tiimisi päättää edelleen muutoksista ja ratkaisuista."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Erilaisia tiloja. Yhteisiä mahdollisuuksia.",
+      "metaDescription": "Naapuruston työtilasta vilkkaaseen yhteisökeskukseen – muokkaa Shario tilasi toimintaan sopivaksi."
     },
     "pricing": {
-      "metaTitle": "Luovien studioiden paketit ja hinnat",
-      "metaDescription": "Vertaa Shario-paketteja, studiokapasiteettia ja AI-krediittejä ja aloita 14 päivän kokeilu ilman maksukorttia.",
-      "eyebrow": "Paketit kasvaville studioille",
+      "metaTitle": "Paketit ja hinnat yhteisille tiloille",
+      "metaDescription": "Aloita varauksista, yhdistä jäsenyydet ja lisää työkaluja toimintasi kasvaessa. Jokainen paketti alkaa 14 päivän Professional-kokeilulla ilman maksukorttia.",
+      "eyebrow": "Paketteja tilallesi",
       "title": "Aloita siitä, mitä tarvitset tänään.",
-      "description": "Jokainen paketti alkaa 14 päivän Professional-kokeilulla, jotta voit testata studion tärkeimmän polun ennen valintaa.",
+      "description": "Aloita varauksista, yhdistä jäsenyydet ja lisää työkaluja toimintasi kasvaessa. Jokainen paketti alkaa 14 päivän Professional-kokeilulla ilman maksukorttia.",
       "sectionEyebrow": "Selkeät erot pakettien välillä",
       "sectionTitle": "Vertaa kapasiteettia, työnkulkuja ja AI-krediittejä.",
       "sectionDescription": "Valitse toimipisteiden, tiimitilien ja studiosi tarvitseman toiminnallisen laajuuden perusteella.",
       "closingTitle": "Etkö tiedä, mikä paketti sopii?",
       "closingDescription": "Aloita kokeilu ilman maksukorttia tai keskustele kanssamme räätälöidystä käyttöönotosta.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Ota käyttöön omaan tahtiisi.",
+      "onboardingDescription": "Lisää tilasi, määritä tarjontasi ja maksut sekä julkaise verkkosivustosi, kun olet valmis."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Varaukset, jäsenyydet ja oma tyylikäs verkkosivusto. Kaikki, mitä tarvitset tilasi jakamiseen ja yhteisösi kasvattamiseen, yhdessä Shariossa."
     },
     "pricing": {
       "eyebrow": "Selkeä hinnoittelu",
-      "title": "Valitse studiolle sopiva toimintamalli.",
-      "description": "Aloita kursseista, siirry studion täyteen toimintaan ja lisää sitten edistyneet automaatiot sekä usean toimipisteen työkalut. Jokainen paketti alkaa 14 päivän Professional-kokeilulla ilman korttia.",
+      "title": "Valitse tilallesi sopiva paketti.",
+      "description": "Aloita varauksista, yhdistä jäsenyydet ja lisää työkaluja toimintasi kasvaessa. Jokainen paketti alkaa 14 päivän Professional-kokeilulla ilman maksukorttia.",
       "billingIntervalLabel": "Valitse laskutusväli",
       "monthly": "Kuukausittain",
       "yearly": "Vuosittain",
@@ -1207,7 +1207,7 @@
       "mostPopular": "Suosituin",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Aloita tilasi varauksista, maksuista, kursseista ja tapahtumista.",
         "feature1": "1 studiotoimipiste · 1 tiimitili",
         "feature2": "Kurssit, yksityistapahtumat ja lahjakortit",
         "feature3": "500 sisältyvää sähköpostia kuukaudessa",
@@ -1216,16 +1216,16 @@
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Yhdistä jäsenyydet, yhteiset tilat ja päivittäinen toiminta.",
         "feature1": "1 studiotoimipiste · 3 tiimitiliä",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Jäsenyydet, varaukset ja yhteiset resurssit",
         "feature3": "3 aktiivista automaatiota · 2 500 sähköpostia kuukaudessa",
         "feature4": "Täysi Shario AI · 2 000 krediittiä kuukaudessa",
         "cta": "Aloita maksuton kokeilu"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Automatisoi työsi ja yhdistä useita toimipisteitä.",
         "feature1": "Enintään 2 studiotoimipistettä · 6 tiimitiliä",
         "feature2": "Pääsykoodit ja oma verkkotunnus",
         "feature3": "Edistyneet automaatiot · 5 000 sähköpostia kuukaudessa",
@@ -1239,7 +1239,7 @@
         "feature2": "Räätälöidyt automaatio-, sähköposti- ja AI-kiintiöt",
         "feature3": "SSO/SCIM, API, webhookit ja auditointilokit",
         "feature4": "Oma käyttöönotto, siirto ja SLA",
-        "cta": "Start free trial"
+        "cta": "Aloita ilmainen kokeilu"
       },
       "note": "Hinnat eivät sisällä sovellettavia veroja. Vuosittaiset itsepalvelupaketit sisältävät kaksi ilmaista kuukautta. Välttämättömiä järjestelmäviestejä ei lasketa kiintiöön, ja AI-käyttö pysähtyy sisältyvään rajaan ilman automaattisia lisämaksuja.",
       "loading": "Ladataan hintoja…",
@@ -1348,7 +1348,7 @@
     "signIn": "Kirjaudu sisään"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Tee tilaa enemmälle.",
     "checking": "Verkkosivuston tilaa tarkistetaan…",
     "owner": {
       "eyebrow": "Julkinen verkkosivusto",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Hyvät tilat tuovat ihmiset yhteen",
+      "title": "Sinun tilasi.",
+      "highlight": "Enemmän mahdollisuuksia.",
+      "description": "Varaukset, jäsenyydet ja oma tyylikäs verkkosivusto. Kaikki, mitä tarvitset tilasi jakamiseen ja yhteisösi kasvattamiseen, yhdessä Shariossa.",
+      "cta": "Aloita ilmainen kokeilu",
+      "secondary": "Tutustu Sharioon",
+      "note": "14 päivän kokeilu · Ei luottokorttia",
+      "imageAlt": "Ihmiset kohtaavat valoisassa yhteisessä tilassa värikkäiden, aaltoilevien muotojen ympäröiminä",
+      "cardTitle": "Vähemmän hallinnointia. Enemmän yhteisöllisyyttä.",
+      "cardText": "Tee tilaa ihmisille, jotka tekevät paikastasi erityisen."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "Arjen asiat yhdessä paikassa",
+      "title": "Enemmän aikaa ihmisille.",
+      "description": "Pidä tilasi arki hallinnassa ensimmäisestä vierailusta seuraavaan jäsenyyden uusimiseen.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Varaaminen on helppoa",
+        "description": "Anna ihmisten varata huoneita, laitteita, kursseja ja tapahtumia. Pidä kapasiteetti, saatavuus ja kalenteri ajan tasalla."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Sopivat jäsenyydet",
+        "description": "Tarjoa tilauksia, krediittejä ja jäsenetuja sen mukaan, miten ihmiset käyttävät tilaasi."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Sinun näköisesi verkkosivusto",
+        "description": "Tuo brändisi esiin muokattavilla sivuilla, omalla sisällöllä ja integroidulla varauksella."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Maksut yhdessä paikassa",
+        "description": "Yhdistä maksut, seuraa tilauksia ja tarjoa lahjakortteja. Näe ostot ja maksujen tila yhdestä selkeästä näkymästä."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Jokainen tila järjestyksessä",
+        "description": "Hallitse toimipisteitä, huoneita, työpisteitä, yhteisiä laitteita ja tarvikkeita yhdestä työtilasta."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Pidä yhteyttä kaikkiin",
+        "description": "Lähetä yhteisöllesi uutisia, varausmuistutuksia ja hyödyllisiä automaattisia viestejä."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Tiimi samalla kartalla",
+        "description": "Sovita aikataulut ja tehtävät yhteen sekä määritä roolit ja käyttöoikeudet tilaasi pyörittäville ihmisille."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Selkeämpi kokonaiskuva",
+        "description": "Seuraa varauksia, tuloja ja toimintaa. Saat tekoälyavustajalta apua arjen työhön."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "Sinun tilasi. Sinun ilmeesi.",
+      "title": "Yhteisösi alkaa lämpimästä vastaanotosta.",
+      "description": "Luo julkinen verkkosivusto, joka tuntuu omaltasi. Tee tilaasi tutustumisesta, jäsenyyden löytämisestä ja innostavan tekemisen varaamisesta helppoa.",
+      "one": "Valitse värit, fontit ja sivuasettelu",
+      "two": "Yhdistä tarjontasi, kalenterisi ja asiakastilisi",
+      "three": "Käytä omaa verkkotunnusta sitä tukevilla paketeilla",
+      "cta": "Tutustu verkkosivuston työkaluihin",
+      "example": "Esimerkki tilan verkkosivustosta",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "Tilamme   ·   Jäsenyydet",
+      "previewEyebrow": "Paikka, johon kuulua",
+      "previewTitle": "Hyvää työtä. Hyvää seuraa.",
+      "previewCta": "Tutustu tilaamme",
+      "imageAlt": "Kutsuva yhteinen työtila, jossa on luonnonvaloa ja yhdessä työskenteleviä ihmisiä"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Tiloille, jotka tuovat meidät yhteen",
+      "title": "Erilaisia tiloja. Yhteisiä mahdollisuuksia.",
+      "description": "Naapuruston työtilasta vilkkaaseen yhteisökeskukseen – muokkaa Shario tilasi toimintaan sopivaksi.",
+      "cta": "Tee tilaa yhteisöllesi",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Yhteisölliset työtilat",
+        "description": "Työpöytiä, kokoushuoneita ja jäsenyyksiä joustaviin työpäiviin."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Luovat studiot",
+        "description": "Yhteisiä laitteita, työpajoja ja tilaa seuraavalle ideallesi."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Harjoitustilat",
+        "description": "Varattavia huoneita, säännöllisiä harjoituksia ja yhteensovitettuja aikatauluja."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Yhteisötilat",
+        "description": "Tapahtumia, jäsenyyksiä ja yhteisiä paikkoja paikallisille kohtaamisille."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Työpajat ja kurssit",
+        "description": "Kursseja, ohjaajia, lipullisia tapahtumia ja uudelleen palaavia osallistujia."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Muutama hyvä kysymys",
+      "title": "Tehdään siitä helppoa.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Mitä voin hallita Shariolla?",
+        "answer": "Hallitse varauksia, jäsenyyksiä, maksuja, toimipisteitä, yhteisiä resursseja, tiimiäsi ja julkista verkkosivustoasi. Ota käyttöön tilaasi sopivat moduulit."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Voinko käyttää omaa brändiäni?",
+        "answer": "Kyllä. Muokkaa julkisen verkkosivustosi värejä, typografiaa, sisältöä ja asettelua. Oma verkkotunnus on saatavilla sitä tukevilla paketeilla."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Voivatko asiakkaani tehdä varauksia ja hallita jäsenyyksiään?",
+        "answer": "Kyllä. Julkinen verkkosivustosi ja asiakasportaalisi yhdistävät varaukset, ostot, jäsenyydet, krediitit ja laskut."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Miten pääsen alkuun?",
+        "answer": "Luo työtilasi ja aloita 14 päivän kokeilu. Lisää tilasi, määritä tarjontasi ja maksut sekä julkaise varaussivustosi, kun olet valmis."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Tee tilaa enemmälle.",
+      "description": "Enemmän kohtaamisia. Enemmän mahdollisuuksia. Enemmän aikaa rakastamallesi paikalle. Aloita yhteisösi rakentaminen Shariolla.",
+      "secondary": "Tutustu paketteihin"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Tutustu arjen työkaluihisi",
+      "title": "Kaikki tilasi tarpeet, yhdessä.",
+      "description": "Yhdistä varaukset, jäsenet, maksut, tiimi ja julkinen verkkosivusto. Keskity ihmisiin, kun Shario auttaa päivän järjestämisessä.",
+      "panelEyebrow": "Yhteen koottu työtilasi",
+      "panelTitle": "Yksi paikka, jossa kaikki kohtaa",
+      "solutions": "Löydä omanlaisesi tila"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Enemmän vapautta jäsenillesi",
+      "title": "Anna tilasi mukautua ihmisten arkeen.",
+      "description": "Tarjoa verkkovaraus, asiakastilit ja omatoiminen kulku. Määritä kulkukoodit, aikataulut ja tuettu lukkointegraatio niitä tukeville paketeille ja tarvittavilla laitteilla varustetuille toimipisteille."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Tutustu Shario AI:hin",
+      "title": "Apua arjen työhön.",
+      "description": "Kysy työtilastasi, valmistele sisältöä ja pyydä apua tuettuihin tehtäviin. Tiimisi päättää edelleen muutoksista ja ratkaisuista.",
+      "panelEyebrow": "Yhteydessä työtilaasi",
+      "panelTitle": "Hyödyllistä taustatietoa. Selkeät seuraavat askeleet.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "Merkityksellistä taustatietoa",
+        "description": "Hyödynnä työtilasi olennaisia tietoja sen sijaan, että aloittaisit jokaisen kysymyksen alusta."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "Hyödyllinen ensimmäinen luonnos",
+        "description": "Valmistele asiakasviestejä, verkkosivutekstejä ja ideoita seuraavaan tapahtumaan."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Sinä päätät",
+        "heading": "Sinun avustajasi. Sinun päätöksesi.",
+        "description": "Tarkista ehdotukset ja vahvista toiminnot tarvittaessa. Tekoälyominaisuudet riippuvat työtilasi käyttöoikeuksista, käytössä olevista integraatioista ja paketin käyttörajoista."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Tee tilaa enemmälle.",
+      "product": "Tuote",
+      "overview": "Tutustu Sharioon",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Hinnasto",
+      "spaces": "Sinun tilallesi",
+      "company": "Aloita tästä",
+      "about": "Näin se toimii",
+      "login": "Kirjaudu sisään",
+      "register": "Aloita ilmainen kokeilu",
+      "copyright": "© {year} Shario. Kaikki oikeudet pidätetään."
     }
   }
 }

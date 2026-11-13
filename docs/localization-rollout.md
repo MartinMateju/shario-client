@@ -5,44 +5,31 @@ Czech is `cs`; historical `CZ`/`EN` values remain only in explicitly
 deprecated compatibility bridges for the client Redux catalog and the server's
 legacy `defaultLanguage` field.
 
-## Roadmap
+## Enabled languages and coverage
 
-| Stage   | Locales                   |
-| ------- | ------------------------- |
-| Current | `en`, `cs`                |
-| Wave 1  | `de`, `pl`, `sk`, `da`    |
-| Wave 2A | `fr`, `es`, `it`, `pt-PT` |
-| Wave 2B | `sv`, `nb`, `fi`          |
-| Wave 2C | `hu`, `el`, `tr`          |
-| Wave 2D | `nl`                      |
-| Wave 2E | `ro`                      |
+Shario enables the same 18 registered languages as Skab: English (`en`), Czech
+(`cs`), German (`de`), Polish (`pl`), Slovak (`sk`), Danish (`da`), French (`fr`),
+Spanish (`es`), Italian (`it`), European Portuguese (`pt-PT`), Swedish (`sv`),
+Norwegian Bokmål (`nb`), Finnish (`fi`), Hungarian (`hu`), Greek (`el`), Turkish
+(`tr`), Dutch (`nl`) and Romanian (`ro`).
 
-All Wave 2 entries now have preview catalogs and can be enabled through the
-controlled rollout gates. Norwegian Bokmål uses the canonical `nb` route; `no`
-and `no-NO` are accepted only as input aliases.
+The Shario marketing pages, header, footer and new generic brand copy are
+translated in every language. The inherited product catalogs retain Skab's
+coverage: English, Czech and Dutch have complete key coverage; the other 15
+catalogs translate the launch-critical and tenant-core surfaces and fall back
+to English for missing deeper product messages. Enabling routes does not make
+these partial catalogs complete or translate tenant-authored content.
 
-Wave 2C regional inputs `hu-HU`, `el-GR` and `tr-TR` resolve to the canonical
-`hu`, `el` and `tr` routes; the legacy Greek input `gr-GR` also resolves to
-`el`.
-Wave 2D regional input `nl-NL` resolves to the canonical `nl` route.
-Wave 2E regional input `ro-RO` resolves to the canonical `ro` route.
+English, Czech and Dutch retain their `ready` status. The other languages
+retain `preview` status and `noindex` metadata until their full product
+translation review is complete. The language selector lists all enabled
+languages using their native names.
 
-## Current preview milestone
+Norwegian Bokmål uses the canonical `nb` route; `no` and `no-NO` are input
+aliases. Regional inputs such as `hu-HU`, `el-GR`, `tr-TR`, `nl-NL` and `ro-RO`
+resolve to their canonical routes. European Portuguese uses `pt-PT`.
 
-The preview implementation translates 16 launch-critical namespaces plus the
-three tenant-core namespaces `Dashboard`, `WorkspaceSettingsNav`, and
-`WorkspaceSettings` (1,424 messages per language) for Wave 1 and all five
-Wave 2 groups. The covered surfaces include metadata, shared navigation,
-platform and customer authentication, the marketing home page, public tenant and booking flows,
-customer shell, confirmations, verification, purchase status, notifications,
-the tenant dashboard shell and overview, and General settings.
-
-All remaining namespaces use the complete English catalog as an explicit
-fallback. These locales therefore remain `preview` and `noindex`; they are
-suitable for staging and language review, but not yet for a production claim of
-complete localization.
-
-## Preview activation
+## Deployment activation
 
 Czech and English are always enabled. A missing or blank allow-list enables all
 preview locales automatically during local development. Set the values
@@ -56,7 +43,7 @@ NEXT_PUBLIC_ENABLE_PREVIEW_LOCALES=true
 
 An explicit allow-list is sufficient in local development and tests. Blank test
 and production environments remain core-only; only local development receives
-the automatic preview default. A production build requires both values above,
+the automatic preview default. Shario production uses both values above. A production build requires them,
 and the preview switch accepts only the exact value `true`. Keeping production
 routing and locale detection behind this double gate avoids redirecting a
 customer to an unfinished language based on their browser or a stale locale
@@ -94,7 +81,6 @@ tenant control and can later receive a separate, opt-in translation workflow.
   members who can update the workspace. Other team members see the inherited
   workspace language as read-only.
 
-Preview product chrome falls back to English outside the launch-critical and
-tenant-core namespaces. Tenant-authored public-site fields support the tenant's
+Missing product messages in partial catalogs fall back to English. Tenant-authored public-site fields support the tenant's
 configured primary and optional secondary locale, but shario.io never translates
 that custom copy automatically.

@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "O seu espaço. Mais possibilidades.",
+    "homeDescription": "Reservas, subscrições e um site bonito à sua medida. Tudo o que precisa para partilhar o seu espaço e fazer crescer a sua comunidade, reunido no Shario."
   },
   "Common": {
     "skipToContent": "Saltar para o conteúdo",
@@ -275,8 +275,8 @@
         "calmHeadline": "O seu estúdio está a funcionar sem problemas.",
         "attentionHeadline": "Há alguns pontos que requerem a sua atenção.",
         "partialHeadline": "Eis o que podemos verificar neste momento.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "{bookings, plural, one {# reserva} other {# reservas}} e {attention, plural, one {# prioridade} other {# prioridades}} para rever.",
+        "countsUnavailableSummary": "O número de reservas não está totalmente disponível. Os valores não verificados não são apresentados.",
         "partialSummary": "O resumo tem atualmente {count, plural, one {# fonte disponível} other {# fontes disponíveis}}. Os valores indisponíveis permanecem desconhecidos em vez de serem apresentados como zero.",
         "coverageComplete": "Com base em {count, plural, one {# sinal do estúdio} other {# sinais do estúdio}}",
         "coveragePartial": "Com base em {count, plural, one {# sinal disponível do estúdio} other {# sinais disponíveis do estúdio}} · cobertura parcial",
@@ -492,7 +492,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Ative apenas as atividades que oferece e defina limites de capacidade para recursos como postos de trabalho e mesas partilhadas."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -784,7 +784,7 @@
       "steps": {
         "overview": {
           "title": "Bem-vindo à sua Visão geral",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Esta é a página inicial da sua área de gestão, atualizada em tempo real. Pode parecer tranquila até começarem a chegar reservas, tarefas e mensagens. Cada cartão explica o que será apresentado aqui."
         },
         "launch_center": {
           "title": "Configure tudo no Launch Center",
@@ -913,8 +913,8 @@
   "Header": {
     "mobile": {
       "navigation": "Navegação móvel",
-      "publicEyebrow": "O sistema operativo para estúdios criativos.",
-      "publicTitle": "Gira o seu estúdio. Tome melhores decisões todos os dias.",
+      "publicEyebrow": "Os bons espaços aproximam as pessoas",
+      "publicTitle": "O seu espaço. Mais possibilidades.",
       "adminEyebrow": "Gestão do estúdio",
       "adminTitle": "Tudo o que acontece no seu estúdio. Com clareza.",
       "moduleOverview": "Visão geral dos módulos",
@@ -922,7 +922,7 @@
       "admin": "Administração",
       "myAccount": "A minha conta",
       "language": "Idioma",
-      "tagline": "Mais tempo para criar. Menos tempo em tarefas administrativas."
+      "tagline": "Abra espaço a mais possibilidades."
     },
     "booking": "Reserva",
     "cart": {
@@ -983,7 +983,7 @@
       "payments": "Pagamentos",
       "memberships": "Subscrições",
       "automatedCommunication": "Comunicação automatizada",
-      "studioOperations": "Operações do estúdio e produção",
+      "studioOperations": "Espaços, recursos e equipa",
       "analytics": "IA, análises e decisões",
       "viewAll": "Explorar o produto completo"
     },
@@ -995,7 +995,7 @@
       "multiLocationStudios": "Estúdios com vários locais",
       "viewAll": "Explorar todas as soluções"
     },
-    "forStudios": "Para estúdios",
+    "forStudios": "Para espaços",
     "pricing": "Preços",
     "membershipCatalog": "Subscrições",
     "resources": {
@@ -1003,7 +1003,7 @@
       "helpCenter": "Centro de ajuda",
       "guides": "Guias",
       "customerStories": "Histórias de clientes",
-      "about": "Sobre a Shario"
+      "about": "Sobre o Shario"
     },
     "login": "Iniciar sessão",
     "getStarted": "Começar teste gratuito",
@@ -1015,7 +1015,7 @@
   "PlatformAuth": {
     "login": {
       "header": {
-        "newToSkab": "Ainda não utiliza a Shario?",
+        "newToSkab": "Ainda não utiliza o Shario?",
         "createWorkspace": "Criar espaço de trabalho",
         "switchLanguage": "Mudar para {language}",
         "languages": {
@@ -1029,11 +1029,11 @@
         "description": "Utilize o endereço do estúdio e os dados da sua conta para continuar.",
         "workspaceLabel": "URL do espaço de trabalho",
         "workspacePlaceholder": "common-ground",
-        "workspaceHint": "O endereço do seu estúdio na Shario",
+        "workspaceHint": "O endereço do seu estúdio no Shario",
         "workspaceHelp": {
           "open": "O que é um URL de espaço de trabalho?",
           "title": "O endereço Shario do seu estúdio",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "É o endereço único que utiliza para aceder à sua área de gestão, por exemplo common-ground.shario.io. Pode encontrá-lo no email de boas-vindas ou de convite."
         },
         "findWorkspace": "Encontrar o seu espaço de trabalho",
         "emailLabel": "Endereço de email",
@@ -1140,7 +1140,7 @@
         "eyebrow": "O seu estúdio, gerido com elegância",
         "titleBefore": "Crie espaço para aquilo que",
         "titleAccent": "adora.",
-        "description": "Comece pelo essencial e adapte depois a Shario à forma como o seu estúdio criativo realmente funciona.",
+        "description": "Comece pelo essencial e adapte depois o Shario à forma como o seu estúdio criativo realmente funciona.",
         "cardLabel": "O seu percurso até ao lançamento",
         "cardTitle": "Da ideia à abertura do estúdio",
         "workspace": "Crie o seu espaço de trabalho seguro",
@@ -1155,47 +1155,47 @@
       "startTrial": "Iniciar o período experimental de 14 dias",
       "noCreditCard": "Não é necessário cartão",
       "exploreProduct": "Explorar o produto",
-      "exploreAi": "Explorar a IA para estúdios",
+      "exploreAi": "Descobrir o Shario AI",
       "exploreStudios": "Explorar soluções para estúdios",
       "explorePricing": "Ver preços",
       "builtWithStudios": "Desenvolvido com estúdios criativos em atividade",
       "currencyLabel": "Escolher uma moeda"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Tudo para o seu espaço, a funcionar em conjunto.",
+      "metaDescription": "Ligue reservas, membros, pagamentos, equipa e site público. Concentre-se nas pessoas enquanto o Shario ajuda a organizar o dia."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "Uma ajuda no trabalho de todos os dias.",
+      "metaDescription": "Faça perguntas sobre a sua área de gestão, prepare conteúdos e receba ajuda nas tarefas suportadas. A sua equipa mantém o controlo das alterações e decisões."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Espaços diferentes. Possibilidades partilhadas.",
+      "metaDescription": "De um espaço de trabalho de bairro a um centro comunitário cheio de vida, adapte o Shario à forma como o seu espaço funciona."
     },
     "pricing": {
-      "metaTitle": "Planos e preços para estúdios criativos",
-      "metaDescription": "Compare planos Shario, capacidade do estúdio e créditos de IA e inicie um período experimental de 14 dias sem cartão.",
-      "eyebrow": "Planos para estúdios em crescimento",
+      "metaTitle": "Planos e preços para espaços partilhados",
+      "metaDescription": "Comece pelas reservas, ligue as subscrições e adicione mais ferramentas à medida que o seu espaço cresce. Todos os planos começam com um teste Professional de 14 dias, sem cartão de crédito.",
+      "eyebrow": "Planos para o seu espaço",
       "title": "Comece com o que precisa hoje.",
-      "description": "Cada plano começa com um período experimental Professional de 14 dias, para testar o percurso essencial do estúdio antes de escolher.",
+      "description": "Comece pelas reservas, ligue as subscrições e adicione mais ferramentas à medida que o seu espaço cresce. Todos os planos começam com um teste Professional de 14 dias, sem cartão de crédito.",
       "sectionEyebrow": "Diferenças claras entre planos",
       "sectionTitle": "Compare capacidade, fluxos e créditos de IA.",
       "sectionDescription": "Escolha pelo número de localizações, contas de equipa e profundidade operacional de que o seu estúdio precisa.",
       "closingTitle": "Não sabe qual é o plano certo?",
       "closingDescription": "Inicie o período experimental sem cartão ou fale connosco sobre uma implementação à medida.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Configure ao seu ritmo.",
+      "onboardingDescription": "Adicione o seu espaço, configure as ofertas e os pagamentos e publique o site quando quiser."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Reservas, subscrições e um site bonito à sua medida. Tudo o que precisa para partilhar o seu espaço e fazer crescer a sua comunidade, reunido no Shario."
     },
     "pricing": {
       "eyebrow": "Preços transparentes",
-      "title": "Escolha o plano que corresponde à forma como o seu estúdio trabalha.",
-      "description": "Comece com cursos, avance para a operação completa do estúdio e adicione depois automações avançadas e ferramentas para vários espaços. Todos os planos começam com 14 dias de teste Professional, sem cartão.",
+      "title": "Escolha o plano adequado ao seu espaço.",
+      "description": "Comece pelas reservas, ligue as subscrições e adicione mais ferramentas à medida que o seu espaço cresce. Todos os planos começam com um teste Professional de 14 dias, sem cartão de crédito.",
       "billingIntervalLabel": "Escolha um período de faturação",
       "monthly": "Mensal",
       "yearly": "Anual",
@@ -1207,7 +1207,7 @@
       "mostPopular": "Mais popular",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Comece com reservas, pagamentos, aulas e eventos para o seu espaço.",
         "feature1": "1 espaço de estúdio · 1 conta de equipa",
         "feature2": "Cursos, eventos privados e vales",
         "feature3": "500 e-mails incluídos por mês",
@@ -1216,16 +1216,16 @@
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Ligue subscrições, espaços partilhados e a gestão do dia a dia.",
         "feature1": "1 espaço de estúdio · 3 contas de equipa",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Subscrições, reservas e recursos partilhados",
         "feature3": "3 automações ativas · 2 500 e-mails por mês",
         "feature4": "Shario AI completa · 2 000 créditos por mês",
         "cta": "Começar avaliação gratuita"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Automatize o trabalho e ligue vários locais.",
         "feature1": "Até 2 espaços de estúdio · 6 contas de equipa",
         "feature2": "Códigos de acesso e domínio personalizado",
         "feature3": "Automações avançadas · 5 000 e-mails por mês",
@@ -1239,7 +1239,7 @@
         "feature2": "Limites personalizados de automação, e-mail e IA",
         "feature3": "SSO/SCIM, API, webhooks e registos de auditoria",
         "feature4": "Onboarding, migração e SLA dedicados",
-        "cta": "Start free trial"
+        "cta": "Iniciar teste gratuito"
       },
       "note": "Os preços não incluem os impostos aplicáveis. Os planos anuais self-service incluem dois meses grátis. Os e-mails essenciais do sistema não contam para o limite, e a utilização de IA para ao atingir a franquia incluída, sem cobranças automáticas.",
       "loading": "A carregar preços…",
@@ -1348,7 +1348,7 @@
     "signIn": "Iniciar sessão"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Abra espaço a mais possibilidades.",
     "checking": "A verificar o estado do site…",
     "owner": {
       "eyebrow": "Site público",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Os bons espaços aproximam as pessoas",
+      "title": "O seu espaço.",
+      "highlight": "Mais possibilidades.",
+      "description": "Reservas, subscrições e um site bonito à sua medida. Tudo o que precisa para partilhar o seu espaço e fazer crescer a sua comunidade, reunido no Shario.",
+      "cta": "Iniciar teste gratuito",
+      "secondary": "Descobrir o Shario",
+      "note": "Teste de 14 dias · Sem cartão de crédito",
+      "imageAlt": "Pessoas a conviver num espaço partilhado luminoso, rodeadas por formas fluidas e coloridas",
+      "cardTitle": "Um pouco menos de gestão. Muito mais proximidade.",
+      "cardText": "Dê espaço às pessoas que dão vida ao seu espaço."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "O dia a dia num só lugar",
+      "title": "Mais tempo para a sua comunidade.",
+      "description": "Ligue todas as atividades do seu espaço, desde a primeira visita até à próxima renovação da subscrição.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Reservas sem complicações",
+        "description": "Permita reservar salas, equipamentos, aulas e eventos. Mantenha a lotação, a disponibilidade e o calendário sincronizados."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Subscrições à medida",
+        "description": "Ofereça subscrições, créditos e benefícios para membros que se adaptem à forma como utilizam o seu espaço."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Um site com a sua identidade",
+        "description": "Dê vida à sua marca com páginas personalizáveis, conteúdos próprios e reservas integradas."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Pagamentos num só lugar",
+        "description": "Integre os pagamentos, acompanhe as encomendas e ofereça vales de oferta. Consulte as compras e o estado dos pagamentos numa vista clara."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Cada espaço, organizado",
+        "description": "Gira locais, salas, postos de trabalho, equipamentos partilhados e consumíveis a partir de uma única área de gestão."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Mantenha todos em contacto",
+        "description": "Envie novidades, lembretes de reservas e mensagens automáticas úteis à sua comunidade."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Uma equipa em sintonia",
+        "description": "Coordene horários e tarefas, com funções e permissões para as pessoas que gerem o seu espaço."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Uma visão mais clara",
+        "description": "Acompanhe reservas, receitas e atividade. Receba ajuda nas tarefas do dia a dia do seu assistente de IA."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "O seu espaço. A sua identidade.",
+      "title": "A sua comunidade começa com boas-vindas calorosas.",
+      "description": "Crie um site público que reflita a sua identidade. Torne fácil descobrir o seu espaço, escolher uma subscrição e reservar algo que apeteça desfrutar.",
+      "one": "Escolha as cores, os tipos de letra e a disposição das páginas",
+      "two": "Ligue as suas ofertas, o calendário e a conta de cliente",
+      "three": "Use um domínio próprio nos planos que o incluem",
+      "cta": "Descobrir as ferramentas para o seu site",
+      "example": "Exemplo de site de um espaço",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "O nosso espaço   ·   Subscrições",
+      "previewEyebrow": "Um lugar onde se sentir parte",
+      "previewTitle": "Bom trabalho. Ótima companhia.",
+      "previewCta": "Descobrir o nosso espaço",
+      "imageAlt": "Um espaço de trabalho partilhado acolhedor, com luz natural e pessoas a trabalhar em conjunto"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Para os espaços que nos aproximam",
+      "title": "Espaços diferentes. Possibilidades partilhadas.",
+      "description": "De um espaço de trabalho de bairro a um centro comunitário cheio de vida, adapte o Shario à forma como o seu espaço funciona.",
+      "cta": "Dê espaço à sua comunidade",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Espaços de coworking",
+        "description": "Secretárias, salas de reunião e subscrições para dias de trabalho flexíveis."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Estúdios criativos",
+        "description": "Equipamentos partilhados, oficinas e espaço para a sua próxima ideia."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Salas de ensaio",
+        "description": "Salas disponíveis para reserva, sessões recorrentes e horários coordenados."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Centros comunitários",
+        "description": "Eventos, subscrições e locais partilhados para criar laços de proximidade."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Oficinas e aulas",
+        "description": "Aulas, formadores, eventos com bilhete e participantes que regressam."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Algumas boas perguntas",
+      "title": "Vamos simplificar.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "O que posso gerir com o Shario?",
+        "answer": "Gira reservas, subscrições, pagamentos, locais, recursos partilhados, a sua equipa e o seu site público. Ative os módulos adequados ao seu espaço."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Posso usar a minha própria identidade visual?",
+        "answer": "Sim. Personalize as cores, a tipografia, os conteúdos e a disposição do seu site público. Os domínios próprios estão disponíveis nos planos que os incluem."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Os meus clientes podem reservar e gerir as suas subscrições?",
+        "answer": "Sim. O seu site público e o portal de clientes ligam reservas, compras, subscrições, créditos e faturas."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Como posso começar?",
+        "answer": "Crie a sua área de gestão e inicie um teste de 14 dias. Adicione o seu espaço, configure as ofertas e os pagamentos e publique o seu site de reservas quando quiser."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Abra espaço a mais possibilidades.",
+      "description": "Mais proximidade. Mais possibilidades. Mais tempo para o espaço de que gosta. Comece a construir a sua comunidade com o Shario.",
+      "secondary": "Ver planos"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Descubra as suas ferramentas para o dia a dia",
+      "title": "Tudo para o seu espaço, a funcionar em conjunto.",
+      "description": "Ligue reservas, membros, pagamentos, equipa e site público. Concentre-se nas pessoas enquanto o Shario ajuda a organizar o dia.",
+      "panelEyebrow": "A sua área de gestão ligada a tudo",
+      "panelTitle": "Um só lugar para reunir tudo",
+      "solutions": "Encontre a solução para o seu espaço"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Mais liberdade para os seus membros",
+      "title": "Adapte o seu espaço às pessoas.",
+      "description": "Ofereça reservas online, contas de cliente e acesso autónomo. Configure códigos de acesso, horários e a integração com uma fechadura compatível nos planos e locais equipados que o permitam."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Conheça o Shario AI",
+      "title": "Uma ajuda no trabalho de todos os dias.",
+      "description": "Faça perguntas sobre a sua área de gestão, prepare conteúdos e receba ajuda nas tarefas suportadas. A sua equipa mantém o controlo das alterações e decisões.",
+      "panelEyebrow": "Ligada à sua área de gestão",
+      "panelTitle": "Contexto útil. Próximos passos claros.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "O contexto que importa",
+        "description": "Trabalhe com informação relevante da sua área de gestão sem ter de começar do zero a cada pergunta."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "Um primeiro rascunho útil",
+        "description": "Prepare mensagens para clientes, textos para o site e ideias para o próximo evento."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "O controlo continua nas suas mãos",
+        "heading": "O seu assistente. As suas decisões.",
+        "description": "Analise as sugestões e confirme as ações quando necessário. As funcionalidades de IA dependem das permissões da sua área de gestão, das integrações ativas e dos limites do seu plano."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Abra espaço a mais possibilidades.",
+      "product": "Produto",
+      "overview": "Descobrir o Shario",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Preços",
+      "spaces": "Para o seu espaço",
+      "company": "Começar",
+      "about": "Como funciona",
+      "login": "Iniciar sessão",
+      "register": "Iniciar teste gratuito",
+      "copyright": "© {year} Shario. Todos os direitos reservados."
     }
   }
 }

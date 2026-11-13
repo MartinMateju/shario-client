@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "Váš priestor. Viac možností.",
+    "homeDescription": "Rezervácie, členstvá a vaša vlastná krásna webová stránka. Všetko, čo potrebujete na zdieľanie priestoru a rozvoj komunity, spolu v Shario."
   },
   "Common": {
     "skipToContent": "Prejsť na obsah",
@@ -101,8 +101,8 @@
   "Header": {
     "mobile": {
       "navigation": "Mobilná navigácia",
-      "publicEyebrow": "Operačný systém pre kreatívne štúdiá.",
-      "publicTitle": "Veďte svoje štúdio. Robte každý deň lepšie rozhodnutia.",
+      "publicEyebrow": "Dobré priestory spájajú ľudí",
+      "publicTitle": "Váš priestor. Viac možností.",
       "adminEyebrow": "Správa štúdia",
       "adminTitle": "Všetko, čo sa deje vo vašom štúdiu. Prehľadne.",
       "moduleOverview": "Prehľad modulov",
@@ -110,7 +110,7 @@
       "admin": "Administrácia",
       "myAccount": "Môj účet",
       "language": "Jazyk",
-      "tagline": "Viac času na tvorbu. Menej času na administratívu."
+      "tagline": "Vytvorte miesto pre viac."
     },
     "booking": "Rezervácia",
     "cart": {
@@ -171,7 +171,7 @@
       "payments": "Platby",
       "memberships": "Členstvá",
       "automatedCommunication": "Automatizovaná komunikácia",
-      "studioOperations": "Prevádzka štúdia a výroba",
+      "studioOperations": "Priestory, zdroje a tím",
       "analytics": "AI, analýzy a rozhodnutia",
       "viewAll": "Preskúmať celý produkt"
     },
@@ -183,7 +183,7 @@
       "multiLocationStudios": "Štúdiá s viacerými prevádzkami",
       "viewAll": "Preskúmať všetky riešenia"
     },
-    "forStudios": "Pre štúdiá",
+    "forStudios": "Pre priestory",
     "pricing": "Cenník",
     "membershipCatalog": "Členstvá",
     "resources": {
@@ -221,7 +221,7 @@
         "workspaceHelp": {
           "open": "Čo je adresa pracovného priestoru?",
           "title": "Adresa vášho štúdia na Shario",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Je to jedinečná adresa, cez ktorú otvárate svoj pracovný priestor, napríklad common-ground.shario.io. Nájdete ju v uvítacom e-maile alebo v pozvánke."
         },
         "findWorkspace": "Nájsť pracovný priestor",
         "emailLabel": "E-mailová adresa",
@@ -343,47 +343,47 @@
       "startTrial": "Spustiť 14-dňovú skúšobnú verziu",
       "noCreditCard": "Bez platobnej karty",
       "exploreProduct": "Preskúmať produkt",
-      "exploreAi": "Preskúmať AI pre štúdio",
+      "exploreAi": "Spoznajte Shario AI",
       "exploreStudios": "Preskúmať riešenia pre štúdiá",
       "explorePricing": "Pozrieť cenník",
       "builtWithStudios": "Vzniká spolu s fungujúcimi kreatívnymi štúdiami",
       "currencyLabel": "Vyberte menu"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Všetko, čo váš priestor potrebuje. Prepojené.",
+      "metaDescription": "Prepojte rezervácie, členov, platby, tím a verejný web. Venujte sa svojim ľuďom, kým vám Shario pomáha organizovať deň."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "Pomocná ruka pri každodennej práci.",
+      "metaDescription": "Pýtajte sa na svoj pracovný priestor, pripravujte obsah a nechajte si pomôcť s podporovanými úlohami. Váš tím si zachováva kontrolu nad zmenami a rozhodnutiami."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Rôzne priestory. Spoločné možnosti.",
+      "metaDescription": "Od susedského pracovného priestoru až po rušné komunitné centrum – prispôsobte Shario tomu, ako váš priestor funguje."
     },
     "pricing": {
-      "metaTitle": "Programy a ceny pre kreatívne štúdiá",
-      "metaDescription": "Porovnajte programy Shario, kapacitu štúdia a AI kredity a začnite 14-dňovou skúšobnou verziou bez platobnej karty.",
-      "eyebrow": "Programy pre rastúce štúdiá",
+      "metaTitle": "Plány a ceny pre zdieľané priestory",
+      "metaDescription": "Začnite rezerváciami, prepojte členstvá a pridávajte ďalšie nástroje podľa toho, ako váš priestor rastie. Každý plán sa začína 14-dňovým skúšobným obdobím Professional bez platobnej karty.",
+      "eyebrow": "Plány pre váš priestor",
       "title": "Začnite s tým, čo potrebujete dnes.",
-      "description": "Každý program začína 14-dňovou skúšobnou verziou Professional, aby ste pred výberom otestovali základnú cestu štúdiom.",
+      "description": "Začnite rezerváciami, prepojte členstvá a pridávajte ďalšie nástroje podľa toho, ako váš priestor rastie. Každý plán sa začína 14-dňovým skúšobným obdobím Professional bez platobnej karty.",
       "sectionEyebrow": "Jasné rozdiely medzi programami",
       "sectionTitle": "Porovnajte kapacitu, procesy a AI kredity.",
       "sectionDescription": "Vyberajte podľa počtu pobočiek, tímových účtov a úrovne prevádzky, ktorú vaše štúdio potrebuje.",
       "closingTitle": "Nie ste si istí správnym programom?",
       "closingDescription": "Spustite skúšobnú verziu bez platobnej karty alebo sa s nami poraďte o nasadení na mieru.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Nastavujte vlastným tempom.",
+      "onboardingDescription": "Pridajte svoj priestor, nastavte ponuku a platby a zverejnite web, keď budete pripravení."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Rezervácie, členstvá a vaša vlastná krásna webová stránka. Všetko, čo potrebujete na zdieľanie priestoru a rozvoj komunity, spolu v Shario."
     },
     "pricing": {
       "eyebrow": "Prehľadné ceny",
-      "title": "Vyberte si plán podľa toho, ako funguje vaše štúdio.",
-      "description": "Začnite s kurzami, prejdite na kompletnú prevádzku štúdia a potom pridajte pokročilé automatizácie a nástroje pre viac prevádzok. Každý plán začína 14-dňovým skúšobným obdobím Professional — bez karty.",
+      "title": "Vyberte si plán, ktorý sa hodí pre váš priestor.",
+      "description": "Začnite rezerváciami, prepojte členstvá a pridávajte ďalšie nástroje podľa toho, ako váš priestor rastie. Každý plán sa začína 14-dňovým skúšobným obdobím Professional bez platobnej karty.",
       "billingIntervalLabel": "Vyberte fakturačné obdobie",
       "monthly": "Mesačne",
       "yearly": "Ročne",
@@ -395,25 +395,25 @@
       "mostPopular": "Najobľúbenejší",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Začnite rezerváciami, platbami, kurzmi a podujatiami pre svoj priestor.",
         "feature1": "1 prevádzka štúdia · 1 tímový účet",
         "feature2": "Kurzy, súkromné podujatia a poukazy",
         "feature3": "500 zahrnutých e-mailov mesačne",
-        "feature4": "Obmedzená Shario AI · 200 kreditov mesačne",
+        "feature4": "Shario AI v obmedzenom rozsahu · 200 kreditov mesačne",
         "cta": "Vyskúšať zadarmo"
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Prepojte členstvá, zdieľané priestory a každodennú prevádzku.",
         "feature1": "1 prevádzka štúdia · 3 tímové účty",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Členstvá, rezervácie a zdieľané zdroje",
         "feature3": "3 aktívne automatizácie · 2 500 e-mailov mesačne",
-        "feature4": "Plná Shario AI · 2 000 kreditov mesačne",
+        "feature4": "Shario AI v plnom rozsahu · 2 000 kreditov mesačne",
         "cta": "Vyskúšať zadarmo"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Automatizujte prácu a prepojte viacero lokalít.",
         "feature1": "Až 2 prevádzky štúdia · 6 tímových účtov",
         "feature2": "Prístupové kódy a vlastná doména",
         "feature3": "Pokročilé automatizácie · 5 000 e-mailov mesačne",
@@ -427,7 +427,7 @@
         "feature2": "Individuálne limity automatizácií, e-mailov a AI",
         "feature3": "SSO/SCIM, API, webhooky a auditné záznamy",
         "feature4": "Dedikovaný onboarding, migrácia a SLA",
-        "cta": "Start free trial"
+        "cta": "Vyskúšať zadarmo"
       },
       "note": "Ceny nezahŕňajú príslušné dane. Ročné samoobslužné plány zahŕňajú dva mesiace zadarmo. Nevyhnutné systémové e-maily sa do limitu nezapočítavajú a používanie AI sa po vyčerpaní zahrnutých kreditov zastaví — bez automatických doplatkov.",
       "loading": "Načítanie cien…",
@@ -536,7 +536,7 @@
     "signIn": "Prihlásiť sa"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Vytvorte miesto pre viac.",
     "checking": "Kontroluje sa stav webovej stránky…",
     "owner": {
       "eyebrow": "Verejná webová stránka",
@@ -1338,8 +1338,8 @@
         "calmHeadline": "Vaše štúdio funguje bez problémov.",
         "attentionHeadline": "Niekoľko vecí vyžaduje vašu pozornosť.",
         "partialHeadline": "Tu je to, čo môžeme overiť práve teraz.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "Na kontrolu: {bookings, plural, one {# rezervácia} few {# rezervácie} many {# rezervácie} other {# rezervácií}} a {attention, plural, one {# priorita} few {# priority} many {# priority} other {# priorít}}.",
+        "countsUnavailableSummary": "Počty rezervácií nie sú úplne dostupné. Neoverené hodnoty sa nezobrazujú.",
         "partialSummary": "Súhrn má momentálne {count, plural, one {# dostupný zdroj} few {# dostupné zdroje} many {# dostupných zdrojov} other {# dostupného zdroja}}. Nedostupné hodnoty zostávajú neznáme a nezobrazujú sa ako nula.",
         "coverageComplete": "Na základe {count, plural, one {# signálu zo štúdia} few {# signálov zo štúdia} many {# signálov zo štúdia} other {# signálu zo štúdia}}",
         "coveragePartial": "Na základe {count, plural, one {# dostupného signálu zo štúdia} few {# dostupných signálov zo štúdia} many {# dostupných signálov zo štúdia} other {# dostupného signálu zo štúdia}} · čiastočné pokrytie",
@@ -1555,7 +1555,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Zapnite iba aktivity, ktoré ponúkate, a nastavte kapacitné limity zdrojov, napríklad pracovných miest a spoločných stolov."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -1847,7 +1847,7 @@
       "steps": {
         "overview": {
           "title": "Vitajte vo svojom Prehľade",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Toto je živé centrum vášho pracovného priestoru. Kým začnú prichádzať rezervácie, úlohy a správy, môže tu byť pokoj. Každá karta vysvetľuje, čo sa tu zobrazí."
         },
         "launch_center": {
           "title": "Nastavenie v Launch Center",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Dobré priestory spájajú ľudí",
+      "title": "Váš priestor.",
+      "highlight": "Viac možností.",
+      "description": "Rezervácie, členstvá a vaša vlastná krásna webová stránka. Všetko, čo potrebujete na zdieľanie priestoru a rozvoj komunity, spolu v Shario.",
+      "cta": "Vyskúšať zadarmo",
+      "secondary": "Spoznajte Shario",
+      "note": "14 dní na skúšku · Bez platobnej karty",
+      "imageAlt": "Ľudia sa stretávajú vo svetlom zdieľanom priestore obklopení farebnými plynulými tvarmi",
+      "cardTitle": "Menej administratívy. Viac stretnutí.",
+      "cardText": "Vytvorte miesto pre ľudí, ktorí dávajú vášmu priestoru život."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "Jedno miesto pre každodenné záležitosti",
+      "title": "Viac času pre vašich ľudí.",
+      "description": "Prepojte všetko, čo váš priestor potrebuje, od prvej návštevy až po ďalšie obnovenie členstva.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Jednoduché rezervácie",
+        "description": "Umožnite ľuďom rezervovať miestnosti, vybavenie, kurzy a podujatia. Udržujte kapacity, dostupnosť a kalendár v súlade."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Členstvá, ktoré vyhovujú",
+        "description": "Ponúkajte predplatné, kredity a členské výhody podľa toho, ako ľudia využívajú váš priestor."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Webová stránka podľa vás",
+        "description": "Vdýchnite svojej značke život vďaka upraviteľným stránkam, vlastnému obsahu a integrovaným rezerváciám."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Platby na jednom mieste",
+        "description": "Prepojte platby, sledujte objednávky a ponúkajte darčekové poukazy. Majte nákupy a stav platieb v jednom prehľade."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Každý priestor pod kontrolou",
+        "description": "Spravujte lokality, miestnosti, pracovné miesta, zdieľané vybavenie a zásoby z jedného pracovného priestoru."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Zostaňte všetci v spojení",
+        "description": "Posielajte svojej komunite novinky, pripomienky rezervácií a užitočné automatické správy."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Zladený tím",
+        "description": "Koordinujte rozvrhy a úlohy s rolami a oprávneniami pre ľudí, ktorí sa starajú o váš priestor."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Jasnejší prehľad",
+        "description": "Sledujte rezervácie, príjmy a aktivitu. Pri každodennej práci vám pomôže AI asistent."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "Váš priestor. Vaša identita.",
+      "title": "Vaša komunita sa začína srdečným privítaním.",
+      "description": "Vytvorte verejný web, ktorý vás vystihuje. Uľahčite ľuďom objavovanie vášho priestoru, výber členstva a rezerváciu niečoho, na čo sa môžu tešiť.",
+      "one": "Vyberte si farby, písma a rozloženie stránky",
+      "two": "Prepojte ponuku, kalendár a zákaznícky účet",
+      "three": "Používajte vlastnú doménu v podporovaných plánoch",
+      "cta": "Preskúmať nástroje pre váš web",
+      "example": "Ukážkový web priestoru",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "Náš priestor   ·   Členstvá",
+      "previewEyebrow": "Miesto, kam patríte",
+      "previewTitle": "Dobrá práca. Skvelá spoločnosť.",
+      "previewCta": "Spoznajte náš priestor",
+      "imageAlt": "Príjemný zdieľaný pracovný priestor s denným svetlom a ľuďmi, ktorí spolu pracujú"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Pre priestory, ktoré nás spájajú",
+      "title": "Rôzne priestory. Spoločné možnosti.",
+      "description": "Od susedského pracovného priestoru až po rušné komunitné centrum – prispôsobte Shario tomu, ako váš priestor funguje.",
+      "cta": "Vytvorte miesto pre svoju komunitu",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Coworkingové priestory",
+        "description": "Pracovné stoly, zasadacie miestnosti a členstvá pre flexibilné pracovné dni."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Kreatívne štúdiá",
+        "description": "Zdieľané vybavenie, workshopy a miesto pre váš ďalší nápad."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Skúšobne",
+        "description": "Rezervovateľné miestnosti, pravidelné stretnutia a zladené rozvrhy."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Komunitné centrá",
+        "description": "Podujatia, členstvá a spoločné miesta na vytváranie miestnych vzťahov."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Workshopy a kurzy",
+        "description": "Kurzy, lektori, podujatia so vstupenkami a vracajúci sa účastníci."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Pár dobrých otázok",
+      "title": "Poďme si to zjednodušiť.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Čo môžem spravovať v Shario?",
+        "answer": "Spravujte rezervácie, členstvá, platby, lokality, zdieľané zdroje, svoj tím aj verejný web. Zapnite moduly, ktoré sa hodia pre váš priestor."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Môžem používať vlastnú značku?",
+        "answer": "Áno. Prispôsobte farby, typografiu, obsah a rozloženie verejného webu. Vlastné domény sú dostupné v podporovaných plánoch."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Môžu zákazníci rezervovať a spravovať svoje členstvá?",
+        "answer": "Áno. Váš verejný web a zákaznícky portál prepájajú rezervácie, nákupy, členstvá, kredity a faktúry."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Ako začať?",
+        "answer": "Vytvorte si pracovný priestor a začnite 14-dňové skúšobné obdobie. Pridajte svoj priestor, nastavte ponuku a platby a zverejnite rezervačný web, keď budete pripravení."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Vytvorte miesto pre viac.",
+      "description": "Viac stretnutí. Viac možností. Viac času pre priestor, ktorý máte radi. Začnite budovať svoju komunitu so Shario.",
+      "secondary": "Pozrieť plány"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Spoznajte nástroje na každý deň",
+      "title": "Všetko, čo váš priestor potrebuje. Prepojené.",
+      "description": "Prepojte rezervácie, členov, platby, tím a verejný web. Venujte sa svojim ľuďom, kým vám Shario pomáha organizovať deň.",
+      "panelEyebrow": "Váš prepojený pracovný priestor",
+      "panelTitle": "Jedno miesto, ktoré všetko spája",
+      "solutions": "Nájdite riešenie pre svoj priestor"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Viac slobody pre vašich členov",
+      "title": "Prispôsobte priestor potrebám svojich ľudí.",
+      "description": "Ponúknite online rezervácie, zákaznícke účty a samoobslužný prístup. Nastavte prístupové kódy, rozvrhy a podporovanú integráciu zámku v príslušných plánoch a vybavených lokalitách."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Spoznajte Shario AI",
+      "title": "Pomocná ruka pri každodennej práci.",
+      "description": "Pýtajte sa na svoj pracovný priestor, pripravujte obsah a nechajte si pomôcť s podporovanými úlohami. Váš tím si zachováva kontrolu nad zmenami a rozhodnutiami.",
+      "panelEyebrow": "Prepojené s vaším pracovným priestorom",
+      "panelTitle": "Užitočný kontext. Jasné ďalšie kroky.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "Kontext, na ktorom záleží",
+        "description": "Pracujte s relevantnými informáciami zo svojho pracovného priestoru namiesto toho, aby ste pri každej otázke začínali od nuly."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "Užitočný prvý návrh",
+        "description": "Pripravujte správy pre zákazníkov, texty na web a nápady na ďalšie podujatie."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Kontrolu máte vy",
+        "heading": "Váš asistent. Vaše rozhodnutia.",
+        "description": "Skontrolujte návrhy a potvrďte kroky, ktoré to vyžadujú. Funkcie AI závisia od oprávnení vášho pracovného priestoru, zapnutých integrácií a limitov plánu."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Vytvorte miesto pre viac.",
+      "product": "Produkt",
+      "overview": "Spoznajte Shario",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Cenník",
+      "spaces": "Pre váš priestor",
+      "company": "Začať",
+      "about": "Ako to funguje",
+      "login": "Prihlásiť sa",
+      "register": "Vyskúšať zadarmo",
+      "copyright": "© {year} Shario. Všetky práva vyhradené."
     }
   }
 }

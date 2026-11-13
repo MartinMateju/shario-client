@@ -8,21 +8,23 @@ The Express API and its queue workers belong to the separate `shario-server` dep
 
 Set these project environment variables for **Production** before building:
 
-| Variable                              | Production value or requirement                                     |
-| ------------------------------------- | ------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`                | `https://shario.io`                                                 |
-| `NEXT_PUBLIC_ROOT_DOMAIN`             | `shario.io`                                                         |
-| `TENANT_ROOT_DOMAIN`                  | `shario.io` — must match the public root                            |
-| `NEXT_PUBLIC_API_URL`                 | `https://api.shario.io` once the separately hosted API is reachable |
-| `NEXT_PUBLIC_DEFAULT_TIME_ZONE`       | `Europe/Prague`                                                     |
-| `NEXT_PUBLIC_NATIVE_INVOICES_ENABLED` | `false` until its backend rollout is enabled                        |
-| `NEXT_PUBLIC_ENABLE_PREVIEW_LOCALES`  | `false` until translation QA is complete                            |
-| `NEXT_PUBLIC_ENABLED_LOCALES`         | Leave empty for English and Czech                                   |
-| `PLATFORM_HOSTNAMES`                  | Optional comma-separated additional platform hostnames              |
-| `CUSTOM_DOMAIN_TENANTS`               | `{}` initially; verified customer hostname-to-slug mappings later   |
-| `LEGACY_TENANT_SLUGS`                 | Leave empty for the independent Shario installation                 |
+| Variable                              | Production value or requirement                                                              |
+| ------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`                | `https://shario.io`                                                                          |
+| `NEXT_PUBLIC_ROOT_DOMAIN`             | `shario.io`                                                                                  |
+| `TENANT_ROOT_DOMAIN`                  | `shario.io` — must match the public root                                                     |
+| `NEXT_PUBLIC_API_URL`                 | `https://api.shario.io` once the separately hosted API is reachable                          |
+| `NEXT_PUBLIC_DEFAULT_TIME_ZONE`       | `Europe/Prague`                                                                              |
+| `NEXT_PUBLIC_NATIVE_INVOICES_ENABLED` | `false` until its backend rollout is enabled                                                 |
+| `NEXT_PUBLIC_ENABLE_PREVIEW_LOCALES`  | `true` to enable the full language selection                                                 |
+| `NEXT_PUBLIC_ENABLED_LOCALES`         | `de,pl,sk,da,fr,es,it,pt-PT,sv,nb,fi,hu,el,tr,nl,ro` (English and Czech are always included) |
+| `PLATFORM_HOSTNAMES`                  | Optional comma-separated additional platform hostnames                                       |
+| `CUSTOM_DOMAIN_TENANTS`               | `{}` initially; verified customer hostname-to-slug mappings later                            |
+| `LEGACY_TENANT_SLUGS`                 | Leave empty for the independent Shario installation                                          |
 
 Keep **Automatically expose System Environment Variables** enabled. The proxy accepts this project's exact `VERCEL_URL`, `VERCEL_BRANCH_URL` and `VERCEL_PROJECT_PRODUCTION_URL`; other unknown hosts still return 404. Do not put generated Vercel URLs in the tenant-root variables.
+
+Both language settings are required for all 18 languages in production. The marketing copy is translated for each language; incomplete product catalogs keep their existing English fallback and preview/noindex status. Set these variables separately for a staging environment if needed. Changing the variables requires a new build.
 
 The build checks the four required URL/root settings when `VERCEL=1`. It rejects local-only values, insecure URLs, mismatched tenant roots and a generated `vercel.app` tenant root. This validates configuration shape; it does not prove that the API, DNS or provider accounts are ready. `NEXT_PUBLIC_*` values are built into the browser bundle: redeploy after changing them.
 

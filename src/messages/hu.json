@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "A te tered. Több lehetőség.",
+    "homeDescription": "Foglalások, tagságok és egy saját, szép weboldal. Minden, amire a tered megosztásához és közösséged bővítéséhez szükséged van, egy helyen, a Sharióban."
   },
   "Common": {
     "skipToContent": "A tartalomra lépés",
@@ -275,8 +275,8 @@
         "calmHeadline": "Stúdiója zökkenőmentesen működik.",
         "attentionHeadline": "Néhány dolog figyelmet igényel.",
         "partialHeadline": "Ezt tudjuk most ellenőrizni.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "{bookings, plural, one {# foglalás} other {# foglalás}} és {attention, plural, one {# kiemelt feladat} other {# kiemelt feladat}} vár áttekintésre.",
+        "countsUnavailableSummary": "A foglalások száma nem érhető el teljes egészében. A nem ellenőrzött értékeket nem jelenítjük meg.",
         "partialSummary": "Az összefoglaló jelenleg {count, plural, one {# elérhető forrásból} other {# elérhető forrásból}} dolgozik. A nem elérhető értékek nullák helyett ismeretlenek maradnak.",
         "coverageComplete": "{count, plural, one {# stúdiójel} other {# stúdiójel}} alapján",
         "coveragePartial": "{count, plural, one {# elérhető stúdiójel} other {# elérhető stúdiójel}} alapján · részleges lefedettség",
@@ -492,7 +492,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Csak az általad kínált tevékenységeket kapcsold be, és állíts be kapacitáskorlátokat az olyan erőforrásokhoz, mint a munkaállomások és a közös asztalok."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -784,7 +784,7 @@
       "steps": {
         "overview": {
           "title": "Üdvözöljük az Áttekintésben",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Ez a munkaterületed naprakész kezdőoldala. Csendesnek tűnhet, amíg meg nem érkeznek az első foglalások, feladatok és üzenetek. Minden kártya elmagyarázza, mi fog itt megjelenni."
         },
         "launch_center": {
           "title": "Beállítás a Launch Centerben",
@@ -913,8 +913,8 @@
   "Header": {
     "mobile": {
       "navigation": "Mobil navigáció",
-      "publicEyebrow": "Kreatív stúdiók operációs rendszere.",
-      "publicTitle": "Működtesse stúdióját. Hozzon jobb döntéseket minden nap.",
+      "publicEyebrow": "A jó terek összehozzák az embereket",
+      "publicTitle": "A te tered. Több lehetőség.",
       "adminEyebrow": "Stúdiókezelés",
       "adminTitle": "Minden, ami a stúdióban történik.",
       "moduleOverview": "Moduláttekintés",
@@ -922,7 +922,7 @@
       "admin": "Admin",
       "myAccount": "Saját fiók",
       "language": "Nyelv",
-      "tagline": "Több idő az alkotásra. Kevesebb az adminisztrációra."
+      "tagline": "Adj teret a lehetőségeknek."
     },
     "booking": "Foglalás",
     "cart": {
@@ -983,7 +983,7 @@
       "payments": "Fizetések",
       "memberships": "Tagságok",
       "automatedCommunication": "Automatikus kommunikáció",
-      "studioOperations": "Stúdióműködés és gyártás",
+      "studioOperations": "Terek, erőforrások és csapat",
       "analytics": "AI, elemzések és döntések",
       "viewAll": "A teljes termék felfedezése"
     },
@@ -995,7 +995,7 @@
       "multiLocationStudios": "Több helyszínes stúdiók",
       "viewAll": "Fedezze fel az összes megoldást"
     },
-    "forStudios": "Stúdióknak",
+    "forStudios": "Közösségi tereknek",
     "pricing": "Árak",
     "membershipCatalog": "Tagságok",
     "resources": {
@@ -1033,7 +1033,7 @@
         "workspaceHelp": {
           "open": "Mi az a munkaterület URL?",
           "title": "Stúdiója Shario címe",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Ez az egyedi cím, amellyel megnyitod a munkaterületedet, például common-ground.shario.io. Az üdvözlő vagy meghívó e-mailben találod meg."
         },
         "findWorkspace": "Munkaterület megkeresése",
         "emailLabel": "E-mail cím",
@@ -1162,40 +1162,40 @@
       "currencyLabel": "Válasszon pénznemet"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Minden, amire a terednek szüksége van, összehangolva.",
+      "metaDescription": "Kapcsold össze a foglalásokat, tagokat, fizetéseket, csapatodat és nyilvános weboldaladat. Figyelj az emberekre, miközben a Shario segít megszervezni a napot."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "Segítő kéz a mindennapokban.",
+      "metaDescription": "Kérdezz a munkaterületedről, készíts elő tartalmakat és kérj segítséget a támogatott feladatokhoz. A változtatásokról és döntésekről továbbra is a csapatod rendelkezik."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Különböző terek. Közös lehetőségek.",
+      "metaDescription": "A környékbeli munkatértől a nyüzsgő közösségi központig alakítsd a Shariót a helyed működéséhez."
     },
     "pricing": {
-      "metaTitle": "Csomagok és árak kreatív stúdióknak",
-      "metaDescription": "Hasonlítsa össze a Shario csomagjait, stúdiókapacitását és AI-kreditjeit, majd kezdje el a 14 napos próbát bankkártya nélkül.",
-      "eyebrow": "Csomagok növekvő stúdióknak",
+      "metaTitle": "Csomagok és árak közösségi tereknek",
+      "metaDescription": "Kezdj a foglalásokkal, kapcsolj hozzá tagságokat, és bővítsd az eszköztáradat, ahogy a helyed növekszik. Minden csomag 14 napos Professional-próbával indul, bankkártya nélkül.",
+      "eyebrow": "Csomagok a te teredhez",
       "title": "Kezdje azzal, amire ma szüksége van.",
-      "description": "Minden csomag 14 napos Professional próbaidőszakkal indul, hogy választás előtt tesztelhesse a stúdió alapvető útját.",
+      "description": "Kezdj a foglalásokkal, kapcsolj hozzá tagságokat, és bővítsd az eszköztáradat, ahogy a helyed növekszik. Minden csomag 14 napos Professional-próbával indul, bankkártya nélkül.",
       "sectionEyebrow": "Egyértelmű csomagkülönbségek",
       "sectionTitle": "Hasonlítsa össze a kapacitást, munkafolyamatokat és AI-krediteket.",
       "sectionDescription": "Válasszon a helyszínek, csapatfiókok és a stúdió által igényelt működési mélység alapján.",
       "closingTitle": "Nem biztos benne, melyik csomag illik Önhöz?",
       "closingDescription": "Indítsa el a próbát bankkártya nélkül, vagy beszéljen velünk az egyedi bevezetésről.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Állítsd be a saját tempódban.",
+      "onboardingDescription": "Add hozzá a helyed, állítsd be az ajánlatokat és fizetéseket, majd tedd közzé a weboldaladat, amikor készen állsz."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Foglalások, tagságok és egy saját, szép weboldal. Minden, amire a tered megosztásához és közösséged bővítéséhez szükséged van, egy helyen, a Sharióban."
     },
     "pricing": {
       "eyebrow": "Átlátható árak",
-      "title": "Válassza a stúdió működéséhez illő csomagot.",
-      "description": "Kezdje a kurzusokkal, lépjen tovább a teljes stúdióműködésre, majd adjon hozzá fejlett automatizálást és több helyszínes eszközöket. Minden csomag 14 napos Professional próbaidőszakkal indul, bankkártya nélkül.",
+      "title": "Válaszd a teredhez illő csomagot.",
+      "description": "Kezdj a foglalásokkal, kapcsolj hozzá tagságokat, és bővítsd az eszköztáradat, ahogy a helyed növekszik. Minden csomag 14 napos Professional-próbával indul, bankkártya nélkül.",
       "billingIntervalLabel": "Számlázási időszak választása",
       "monthly": "Havonta",
       "yearly": "Évente",
@@ -1207,7 +1207,7 @@
       "mostPopular": "Legnépszerűbb",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Kezdd a tered foglalásaival, fizetéseivel, foglalkozásaival és eseményeivel.",
         "feature1": "1 stúdióhelyszín · 1 csapatfiók",
         "feature2": "Kurzusok, privát események és utalványok",
         "feature3": "Havi 500 e-mail a csomagban",
@@ -1216,16 +1216,16 @@
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Kapcsold össze a tagságokat, közös tereket és mindennapi működést.",
         "feature1": "1 stúdióhelyszín · 3 csapatfiók",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Tagságok, foglalások és közös erőforrások",
         "feature3": "3 aktív automatizálás · havi 2 500 e-mail",
         "feature4": "Teljes Shario AI · havi 2 000 kredit",
         "cta": "Ingyenes próba indítása"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Automatizáld a munkádat, és kapcsolj össze több helyszínt.",
         "feature1": "Legfeljebb 2 stúdióhelyszín · 6 csapatfiók",
         "feature2": "Hozzáférési kódok és saját domain",
         "feature3": "Fejlett automatizálás · havi 5 000 e-mail",
@@ -1239,7 +1239,7 @@
         "feature2": "Egyedi automatizálási, e-mail- és AI-keretek",
         "feature3": "SSO/SCIM, API, webhookok és auditnaplók",
         "feature4": "Dedikált bevezetés, migráció és SLA",
-        "cta": "Start free trial"
+        "cta": "Ingyenes próba indítása"
       },
       "note": "Az árak nem tartalmazzák az alkalmazandó adókat. Az éves önkiszolgáló csomagok két ingyenes hónapot tartalmaznak. A szükséges rendszerüzenetek nem számítanak bele az e-mail-keretbe, az AI-használat pedig a keretnél leáll — automatikus többletdíj nélkül.",
       "loading": "Árak betöltése…",
@@ -1348,7 +1348,7 @@
     "signIn": "Bejelentkezés"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Adj teret a lehetőségeknek.",
     "checking": "Webhely állapotának ellenőrzése…",
     "owner": {
       "eyebrow": "Nyilvános webhely",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "A jó terek összehozzák az embereket",
+      "title": "A te tered.",
+      "highlight": "Több lehetőség.",
+      "description": "Foglalások, tagságok és egy saját, szép weboldal. Minden, amire a tered megosztásához és közösséged bővítéséhez szükséged van, egy helyen, a Sharióban.",
+      "cta": "Ingyenes próba indítása",
+      "secondary": "Fedezd fel a Shariót",
+      "note": "14 napos próba · Bankkártya nélkül",
+      "imageAlt": "Emberek beszélgetnek egy világos közösségi térben, színes, hullámzó formák között",
+      "cardTitle": "Kevesebb adminisztráció. Több kapcsolódás.",
+      "cardText": "Adj teret azoknak, akik élettel töltik meg a helyed."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "A mindennapok egy helyen",
+      "title": "Több idő az emberekre.",
+      "description": "Kapcsold össze a tered mindennapi működését az első látogatástól a következő tagságmegújításig.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Egyszerű foglalás",
+        "description": "Tedd lehetővé termek, eszközök, foglalkozások és események foglalását. Tartsd összhangban a kapacitást, az elérhetőséget és a naptáradat."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Rugalmas tagságok",
+        "description": "Kínálj előfizetéseket, krediteket és tagsági előnyöket, amelyek illeszkednek ahhoz, ahogyan az emberek használják a tered."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Egy weboldal, ami a tiéd",
+        "description": "Keltsd életre a márkádat testreszabható oldalakkal, saját tartalommal és beépített foglalással."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Fizetések egy helyen",
+        "description": "Kapcsold össze a fizetéseket, kövesd a rendeléseket és kínálj ajándékutalványokat. Lásd át a vásárlásokat és a fizetési állapotokat egyetlen nézetben."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Minden tér rendben",
+        "description": "Kezelj helyszíneket, termeket, munkaállomásokat, közös eszközöket és kellékeket egyetlen munkaterületről."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Maradj kapcsolatban mindenkivel",
+        "description": "Küldj híreket, foglalási emlékeztetőket és hasznos automatikus üzeneteket a közösségednek."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Összehangolt csapat",
+        "description": "Hangold össze a beosztásokat és feladatokat, szerepkörökkel és jogosultságokkal a helyet működtető csapat számára."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Tisztább kép",
+        "description": "Kövesd a foglalásokat, bevételeket és aktivitást. Kérj segítséget a mindennapi munkához az AI-asszisztensedtől."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "A te tered. A te arculatod.",
+      "title": "A közösséged egy szívélyes fogadtatással kezdődik.",
+      "description": "Készíts nyilvános weboldalt, ami igazán rád vall. Legyen egyszerű felfedezni a helyed, tagságot választani és lefoglalni valamit, amit öröm várni.",
+      "one": "Válaszd ki a színeket, betűtípusokat és az oldal elrendezését",
+      "two": "Kapcsold össze az ajánlataidat, naptáradat és az ügyfélfiókot",
+      "three": "Használj saját domaint az ezt támogató csomagokkal",
+      "cta": "Fedezd fel a weboldalad eszközeit",
+      "example": "Egy közösségi tér mintaweboldala",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "A helyünk   ·   Tagságok",
+      "previewEyebrow": "Egy hely, ahová tartozhatsz",
+      "previewTitle": "Jó munka. Remek társaság.",
+      "previewCta": "Fedezd fel a helyünket",
+      "imageAlt": "Barátságos közös munkatér természetes fénnyel és együtt dolgozó emberekkel"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Azoknak a tereknek, amelyek összehoznak minket",
+      "title": "Különböző terek. Közös lehetőségek.",
+      "description": "A környékbeli munkatértől a nyüzsgő közösségi központig alakítsd a Shariót a helyed működéséhez.",
+      "cta": "Adj teret a közösségednek",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Közösségi irodák",
+        "description": "Asztalok, tárgyalók és tagságok a rugalmas munkanapokhoz."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Kreatív stúdiók",
+        "description": "Közös eszközök, workshopok és hely a következő ötletednek."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Próbatermek",
+        "description": "Foglalható termek, rendszeres alkalmak és összehangolt időbeosztás."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Közösségi központok",
+        "description": "Események, tagságok és közös helyek a helyi kapcsolatokért."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Workshopok és tanfolyamok",
+        "description": "Tanfolyamok, oktatók, jegyes események és visszatérő résztvevők."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Néhány jó kérdés",
+      "title": "Tegyük egyszerűvé.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Mit kezelhetek a Sharióval?",
+        "answer": "Kezeld a foglalásokat, tagságokat, fizetéseket, helyszíneket, közös erőforrásokat, csapatodat és nyilvános weboldaladat. Kapcsold be a teredhez illő modulokat."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Használhatom a saját arculatomat?",
+        "answer": "Igen. Szabd testre a nyilvános weboldalad színeit, tipográfiáját, tartalmát és elrendezését. Az ezt támogató csomagokkal saját domain is használható."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Foglalhatnak az ügyfeleim és kezelhetik a tagságukat?",
+        "answer": "Igen. A nyilvános weboldalad és az ügyfélportál összeköti a foglalásokat, vásárlásokat, tagságokat, krediteket és számlákat."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Hogyan kezdhetem el?",
+        "answer": "Hozd létre a munkaterületedet, és indítsd el a 14 napos próbát. Add hozzá a helyed, állítsd be az ajánlatokat és fizetéseket, majd tedd közzé a foglalási weboldaladat, amikor készen állsz."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Adj teret a lehetőségeknek.",
+      "description": "Több kapcsolat. Több lehetőség. Több idő a helyre, amit szeretsz. Kezdd el építeni a közösségedet a Sharióval.",
+      "secondary": "Csomagok felfedezése"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Ismerd meg a mindennapi eszközeidet",
+      "title": "Minden, amire a terednek szüksége van, összehangolva.",
+      "description": "Kapcsold össze a foglalásokat, tagokat, fizetéseket, csapatodat és nyilvános weboldaladat. Figyelj az emberekre, miközben a Shario segít megszervezni a napot.",
+      "panelEyebrow": "Összekapcsolt munkaterületed",
+      "panelTitle": "Egy hely, ahol minden összeér",
+      "solutions": "Találd meg a hozzád illő teret"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Nagyobb szabadság a tagjaidnak",
+      "title": "Alkalmazkodjon a tered az emberekhez.",
+      "description": "Kínálj online foglalást, ügyfélfiókokat és önkiszolgáló beléptetést. Állíts be belépőkódokat, időbeosztást és támogatott zárintegrációt az erre jogosító csomagokhoz és megfelelően felszerelt helyszínekhez."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Ismerd meg a Shario AI-t",
+      "title": "Segítő kéz a mindennapokban.",
+      "description": "Kérdezz a munkaterületedről, készíts elő tartalmakat és kérj segítséget a támogatott feladatokhoz. A változtatásokról és döntésekről továbbra is a csapatod rendelkezik.",
+      "panelEyebrow": "A munkaterületedhez kapcsolódva",
+      "panelTitle": "Hasznos háttér. Világos következő lépések.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "A lényeges háttérinformációk",
+        "description": "Dolgozz a munkaterületed releváns információival ahelyett, hogy minden kérdésnél a nulláról indulnál."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "Hasznos első vázlat",
+        "description": "Készíts elő ügyfélüzeneteket, weboldalszövegeket és ötleteket a következő eseményedhez."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Te irányítasz",
+        "heading": "A te asszisztensed. A te döntéseid.",
+        "description": "Nézd át a javaslatokat, és szükség esetén erősítsd meg a műveleteket. Az AI-funkciók a munkaterület jogosultságaitól, a bekapcsolt integrációktól és a csomagod keretétől függenek."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Adj teret a lehetőségeknek.",
+      "product": "Termék",
+      "overview": "Fedezd fel a Shariót",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Árak",
+      "spaces": "A te teredhez",
+      "company": "Kezdj bele",
+      "about": "Így működik",
+      "login": "Bejelentkezés",
+      "register": "Ingyenes próba indítása",
+      "copyright": "© {year} Shario. Minden jog fenntartva."
     }
   }
 }

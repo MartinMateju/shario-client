@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "Spațiul tău. Mai multe posibilități.",
+    "homeDescription": "Rezervări, abonamente și un site frumos, creat pe gustul tău. Tot ce îți trebuie ca să îți deschizi spațiul către oameni și să îți crești comunitatea, împreună în Shario."
   },
   "Common": {
     "skipToContent": "Sari la conținut",
@@ -287,8 +287,8 @@
         "calmHeadline": "Studioul tău funcționează fără probleme.",
         "attentionHeadline": "Câteva lucruri necesită atenția ta.",
         "partialHeadline": "Iată ce putem verifica acum.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "{bookings, plural, one {# rezervare} few {# rezervări} other {# de rezervări}} și {attention, plural, one {# prioritate} few {# priorități} other {# de priorități}} de verificat.",
+        "countsUnavailableSummary": "Numărul rezervărilor nu este disponibil în întregime. Valorile neverificate nu sunt afișate.",
         "partialSummary": "Rezumatul are momentan {count, plural, one {# sursă disponibilă} other {# surse disponibile}}. Valorile indisponibile rămân necunoscute, în loc să fie afișate ca zero.",
         "coverageComplete": "Bazat pe {count, plural, one {# semnal al studioului} other {# semnale ale studioului}}",
         "coveragePartial": "Bazat pe {count, plural, one {# semnal disponibil al studioului} other {# semnale disponibile ale studioului}} · acoperire parțială",
@@ -492,7 +492,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Activează doar activitățile pe care le oferi și stabilește limite de capacitate pentru resurse precum posturi de lucru și mese comune."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -784,7 +784,7 @@
       "steps": {
         "overview": {
           "title": "Bun venit la Prezentarea generală",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Aceasta este pagina principală a spațiului tău de lucru, actualizată în timp real. Poate părea liniștită până când încep să apară rezervări, sarcini și mesaje. Fiecare card explică ce va fi afișat aici."
         },
         "launch_center": {
           "title": "Configurează în Centrul de lansare",
@@ -913,8 +913,8 @@
   "Header": {
     "mobile": {
       "navigation": "Navigare mobilă",
-      "publicEyebrow": "Sistemul de operare pentru studiouri creative.",
-      "publicTitle": "Condu-ți studioul. Ia decizii mai bune în fiecare zi.",
+      "publicEyebrow": "Spațiile primitoare aduc oamenii împreună",
+      "publicTitle": "Spațiul tău. Mai multe posibilități.",
       "adminEyebrow": "Administrarea studioului",
       "adminTitle": "Tot ce se întâmplă în studioul tău. Clar.",
       "moduleOverview": "Prezentarea modulelor",
@@ -922,7 +922,7 @@
       "admin": "Administrare",
       "myAccount": "Contul meu",
       "language": "Limbă",
-      "tagline": "Mai mult timp pentru creație. Mai puțin timp pentru administrare."
+      "tagline": "Fă loc pentru mai mult."
     },
     "booking": "Rezervare",
     "cart": {
@@ -983,7 +983,7 @@
       "payments": "Plăți",
       "memberships": "Abonamente",
       "automatedCommunication": "Comunicare automată",
-      "studioOperations": "Operațiuni de studio și producție",
+      "studioOperations": "Spații, resurse și echipă",
       "analytics": "AI, analize și decizii",
       "viewAll": "Explorează întregul produs"
     },
@@ -995,7 +995,7 @@
       "multiLocationStudios": "Studiouri cu mai multe locații",
       "viewAll": "Explorează toate soluțiile"
     },
-    "forStudios": "Pentru studiouri",
+    "forStudios": "Pentru spații",
     "pricing": "Prețuri",
     "membershipCatalog": "Abonamente",
     "resources": {
@@ -1033,7 +1033,7 @@
         "workspaceHelp": {
           "open": "Ce este o adresă URL de spațiu de lucru?",
           "title": "Adresa Shario a studioului tău",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Este adresa unică pe care o folosești pentru a accesa spațiul de lucru, de exemplu common-ground.shario.io. O găsești în emailul de bun venit sau în invitație."
         },
         "findWorkspace": "Găsește-ți spațiul de lucru",
         "emailLabel": "Adresă de e-mail",
@@ -1162,40 +1162,40 @@
       "currencyLabel": "Alege o monedă"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Totul pentru spațiul tău. Totul conectat.",
+      "metaDescription": "Conectează rezervările, membrii, plățile, echipa și site-ul public. Concentrează-te pe oameni, iar Shario te ajută să îți organizezi ziua."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "O mână de ajutor în munca de zi cu zi.",
+      "metaDescription": "Pune întrebări despre spațiul tău de lucru, pregătește conținut și primește ajutor pentru sarcinile disponibile. Echipa ta păstrează controlul asupra modificărilor și deciziilor."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Spații diferite. Oportunități comune.",
+      "metaDescription": "De la un spațiu de lucru de cartier la un centru comunitar plin de viață, adaptează Shario la felul în care funcționează spațiul tău."
     },
     "pricing": {
-      "metaTitle": "Planuri și prețuri pentru studiouri creative",
-      "metaDescription": "Compară planurile Shario, capacitatea studioului și creditele AI, apoi începe o probă de 14 zile fără card.",
-      "eyebrow": "Planuri pentru studiouri în creștere",
+      "metaTitle": "Planuri și prețuri pentru spații comune",
+      "metaDescription": "Începe cu rezervările, conectează abonamentele și adaugă instrumente pe măsură ce spațiul tău crește. Fiecare plan începe cu o perioadă de probă Professional de 14 zile, fără card de credit.",
+      "eyebrow": "Planuri pentru spațiul tău",
       "title": "Începe cu ceea ce ai nevoie astăzi.",
-      "description": "Fiecare plan începe cu o probă Professional de 14 zile, pentru a testa parcursul esențial al studioului înainte de alegere.",
+      "description": "Începe cu rezervările, conectează abonamentele și adaugă instrumente pe măsură ce spațiul tău crește. Fiecare plan începe cu o perioadă de probă Professional de 14 zile, fără card de credit.",
       "sectionEyebrow": "Diferențe clare între planuri",
       "sectionTitle": "Compară capacitatea, fluxurile și creditele AI.",
       "sectionDescription": "Alege în funcție de numărul de locații, conturi de echipă și nivelul operațional necesar studioului tău.",
       "closingTitle": "Nu ești sigur ce plan se potrivește?",
       "closingDescription": "Începe proba fără card sau discută cu noi despre o implementare personalizată.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Configurează în ritmul tău.",
+      "onboardingDescription": "Adaugă spațiul, configurează ofertele și plățile și publică site-ul când ești gata."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Rezervări, abonamente și un site frumos, creat pe gustul tău. Tot ce îți trebuie ca să îți deschizi spațiul către oameni și să îți crești comunitatea, împreună în Shario."
     },
     "pricing": {
       "eyebrow": "Prețuri transparente",
-      "title": "Alegeți planul potrivit modului în care funcționează studioul dvs.",
-      "description": "Începeți cu cursuri, treceți la operarea completă a studioului, apoi adăugați automatizări avansate și instrumente pentru mai multe locații. Fiecare plan începe cu o perioadă de probă Professional de 14 zile, fără card.",
+      "title": "Alege planul potrivit pentru spațiul tău.",
+      "description": "Începe cu rezervările, conectează abonamentele și adaugă instrumente pe măsură ce spațiul tău crește. Fiecare plan începe cu o perioadă de probă Professional de 14 zile, fără card de credit.",
       "billingIntervalLabel": "Alege un interval de facturare",
       "monthly": "Lunar",
       "yearly": "Anual",
@@ -1207,7 +1207,7 @@
       "mostPopular": "Cel mai popular",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Începe cu rezervări, plăți, cursuri și evenimente pentru spațiul tău.",
         "feature1": "1 locație de studio · 1 cont de echipă",
         "feature2": "Cursuri, evenimente private și vouchere",
         "feature3": "500 de e-mailuri incluse pe lună",
@@ -1216,16 +1216,16 @@
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Conectează abonamentele, spațiile comune și activitățile de zi cu zi.",
         "feature1": "1 locație de studio · 3 conturi de echipă",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Abonamente, rezervări și resurse comune",
         "feature3": "3 automatizări active · 2.500 de e-mailuri pe lună",
         "feature4": "Shario AI complet · 2.000 de credite pe lună",
         "cta": "Începe perioada de probă gratuită"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Automatizează munca și conectează mai multe locații.",
         "feature1": "Până la 2 locații de studio · 6 conturi de echipă",
         "feature2": "Coduri de acces și domeniu personalizat",
         "feature3": "Automatizări avansate · 5.000 de e-mailuri pe lună",
@@ -1239,7 +1239,7 @@
         "feature2": "Limite personalizate pentru automatizări, e-mail și AI",
         "feature3": "SSO/SCIM, API, webhookuri și jurnale de audit",
         "feature4": "Onboarding, migrare și SLA dedicate",
-        "cta": "Start free trial"
+        "cta": "Începe perioada de probă gratuită"
       },
       "note": "Prețurile nu includ taxele aplicabile. Planurile anuale self-service includ două luni gratuite. E-mailurile esențiale de sistem nu sunt incluse în limită, iar utilizarea AI se oprește la alocarea inclusă, fără taxe suplimentare automate.",
       "loading": "Se încarcă prețurile…",
@@ -1348,7 +1348,7 @@
     "signIn": "Conectează-te"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Fă loc pentru mai mult.",
     "checking": "Se verifică starea site-ului…",
     "owner": {
       "eyebrow": "Site web public",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Spațiile primitoare aduc oamenii împreună",
+      "title": "Spațiul tău.",
+      "highlight": "Mai multe posibilități.",
+      "description": "Rezervări, abonamente și un site frumos, creat pe gustul tău. Tot ce îți trebuie ca să îți deschizi spațiul către oameni și să îți crești comunitatea, împreună în Shario.",
+      "cta": "Începe perioada de probă gratuită",
+      "secondary": "Descoperă Shario",
+      "note": "14 zile de probă · Fără card de credit",
+      "imageAlt": "Oameni care se cunosc într-un spațiu comun luminos, înconjurați de forme fluide și colorate",
+      "cardTitle": "Mai puțină administrare. Mult mai multă apropiere.",
+      "cardText": "Fă loc oamenilor care dau viață spațiului tău."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "Tot ce ține de zi cu zi, într-un singur loc",
+      "title": "Mai mult timp pentru comunitatea ta.",
+      "description": "Păstrează legătura între toate activitățile spațiului tău, de la prima vizită până la următoarea reînnoire a abonamentului.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Rezervări fără complicații",
+        "description": "Oferă posibilitatea de a rezerva săli, echipamente, cursuri și evenimente. Menține capacitatea, disponibilitatea și calendarul sincronizate."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Abonamente pe măsură",
+        "description": "Oferă abonamente, credite și beneficii pentru membri, adaptate felului în care aceștia folosesc spațiul tău."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Un site care te reprezintă",
+        "description": "Dă viață brandului tău cu pagini personalizabile, conținut propriu și rezervări integrate."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Plăți într-un singur loc",
+        "description": "Conectează plățile, urmărește comenzile și oferă vouchere cadou. Vezi clar cumpărăturile și starea plăților, într-un singur loc."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Fiecare spațiu, bine organizat",
+        "description": "Gestionează locații, săli, posturi de lucru, echipamente comune și consumabile dintr-un singur spațiu de lucru."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Păstrează legătura cu toată lumea",
+        "description": "Trimite noutăți, mementouri pentru rezervări și mesaje automate utile comunității tale."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "O echipă bine coordonată",
+        "description": "Coordonează programe și sarcini, cu roluri și permisiuni pentru oamenii care administrează spațiul tău."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "O imagine mai clară",
+        "description": "Urmărește rezervările, veniturile și activitatea. Primește ajutor de la asistentul tău AI în munca de zi cu zi."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "Spațiul tău. Identitatea ta.",
+      "title": "Comunitatea ta începe cu o primire călduroasă.",
+      "description": "Creează un site public care să te reprezinte. Ajută oamenii să îți descopere spațiul, să aleagă un abonament și să rezerve o experiență pe care să o aștepte cu drag.",
+      "one": "Alege culorile, fonturile și aranjarea paginilor",
+      "two": "Conectează ofertele, calendarul și contul de client",
+      "three": "Folosește un domeniu propriu cu planurile care includ această opțiune",
+      "cta": "Descoperă instrumentele pentru site-ul tău",
+      "example": "Exemplu de site pentru un spațiu",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "Spațiul nostru   ·   Abonamente",
+      "previewEyebrow": "Un loc în care te simți parte din comunitate",
+      "previewTitle": "Muncă cu spor. Companie plăcută.",
+      "previewCta": "Descoperă spațiul nostru",
+      "imageAlt": "Un spațiu de lucru comun primitor, cu lumină naturală și oameni care lucrează împreună"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Pentru spațiile care ne aduc împreună",
+      "title": "Spații diferite. Oportunități comune.",
+      "description": "De la un spațiu de lucru de cartier la un centru comunitar plin de viață, adaptează Shario la felul în care funcționează spațiul tău.",
+      "cta": "Fă loc comunității tale",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Spații de coworking",
+        "description": "Birouri, săli de ședințe și abonamente pentru zile de lucru flexibile."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Studiouri creative",
+        "description": "Echipamente comune, ateliere și loc pentru următoarea ta idee."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Săli de repetiții",
+        "description": "Săli care pot fi rezervate, sesiuni recurente și programe coordonate."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Centre comunitare",
+        "description": "Evenimente, abonamente și locuri comune pentru legături în comunitatea locală."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Ateliere și cursuri",
+        "description": "Cursuri, instructori, evenimente cu bilete și participanți care revin."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Câteva întrebări bune",
+      "title": "Să fie simplu.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Ce pot gestiona cu Shario?",
+        "answer": "Gestionează rezervări, abonamente, plăți, locații, resurse comune, echipa și site-ul tău public. Activează modulele potrivite pentru spațiul tău."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Pot folosi propria identitate vizuală?",
+        "answer": "Da. Personalizează culorile, tipografia, conținutul și aranjarea site-ului tău public. Domeniile proprii sunt disponibile cu planurile care includ această opțiune."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Clienții mei pot face rezervări și își pot gestiona abonamentele?",
+        "answer": "Da. Site-ul tău public și portalul pentru clienți conectează rezervări, cumpărături, abonamente, credite și facturi."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Cum încep?",
+        "answer": "Creează-ți spațiul de lucru și începe o perioadă de probă de 14 zile. Adaugă spațiul, configurează ofertele și plățile, apoi publică site-ul de rezervări când ești gata."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Fă loc pentru mai mult.",
+      "description": "Mai multe legături. Mai multe posibilități. Mai mult timp pentru spațiul pe care îl iubești. Începe să îți construiești comunitatea cu Shario.",
+      "secondary": "Descoperă planurile"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Descoperă instrumentele pentru fiecare zi",
+      "title": "Totul pentru spațiul tău. Totul conectat.",
+      "description": "Conectează rezervările, membrii, plățile, echipa și site-ul public. Concentrează-te pe oameni, iar Shario te ajută să îți organizezi ziua.",
+      "panelEyebrow": "Spațiul tău de lucru conectat",
+      "panelTitle": "Un singur loc care le aduce pe toate împreună",
+      "solutions": "Găsește soluția potrivită pentru spațiul tău"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Mai multă libertate pentru membrii tăi",
+      "title": "Adaptează spațiul la nevoile oamenilor.",
+      "description": "Oferă rezervări online, conturi de client și acces autonom. Configurează coduri de acces, programe și integrarea cu o încuietoare compatibilă pentru planurile și locațiile echipate care permit aceste opțiuni."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Fă cunoștință cu Shario AI",
+      "title": "O mână de ajutor în munca de zi cu zi.",
+      "description": "Pune întrebări despre spațiul tău de lucru, pregătește conținut și primește ajutor pentru sarcinile disponibile. Echipa ta păstrează controlul asupra modificărilor și deciziilor.",
+      "panelEyebrow": "Conectat la spațiul tău de lucru",
+      "panelTitle": "Context util. Pași următori clari.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "Contextul care contează",
+        "description": "Lucrează cu informații relevante din spațiul tău de lucru, fără să pornești de la zero la fiecare întrebare."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "O primă variantă utilă",
+        "description": "Pregătește mesaje pentru clienți, texte pentru site și idei pentru următorul eveniment."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Tu păstrezi controlul",
+        "heading": "Asistentul tău. Deciziile tale.",
+        "description": "Verifică sugestiile și confirmă acțiunile atunci când este necesar. Funcțiile AI depind de permisiunile din spațiul tău de lucru, de integrările activate și de limitele planului tău."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Fă loc pentru mai mult.",
+      "product": "Produs",
+      "overview": "Descoperă Shario",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Prețuri",
+      "spaces": "Pentru spațiul tău",
+      "company": "Începe aici",
+      "about": "Cum funcționează",
+      "login": "Conectează-te",
+      "register": "Începe perioada de probă gratuită",
+      "copyright": "© {year} Shario. Toate drepturile rezervate."
     }
   }
 }

@@ -98,8 +98,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "Jouw plek. Meer mogelijkheden.",
+    "homeDescription": "Boekingen, lidmaatschappen en je eigen mooie website. Alles wat je nodig hebt om je ruimte te delen en je gemeenschap te laten groeien, samen in Shario."
   },
   "Common": {
     "skipToContent": "Ga naar de inhoud",
@@ -287,8 +287,8 @@
         "calmHeadline": "Je studio draait soepel.",
         "attentionHeadline": "Een paar zaken vragen je aandacht.",
         "partialHeadline": "Dit kunnen we op dit moment verifiëren.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "{bookings, plural, one {# boeking} other {# boekingen}} en {attention, plural, one {# prioriteit} other {# prioriteiten}} om te bekijken.",
+        "countsUnavailableSummary": "De boekingsaantallen zijn niet volledig beschikbaar. Niet-geverifieerde waarden worden weggelaten.",
         "partialSummary": "De briefing heeft momenteel {count, plural, one {# beschikbare bron} other {# beschikbare bronnen}}. Niet-beschikbare waarden blijven onbekend en worden niet als nul weergegeven.",
         "coverageComplete": "Gebaseerd op {count, plural, one {# studiosignaal} other {# studiosignalen}}",
         "coveragePartial": "Gebaseerd op {count, plural, one {# beschikbaar studiosignaal} other {# beschikbare studiosignalen}} · gedeeltelijke dekking",
@@ -504,7 +504,7 @@
             },
             "activity_capacity": {
               "title": "Bescherm beperkte middelen",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Schakel alleen de activiteiten in die je aanbiedt en stel capaciteitslimieten in voor middelen zoals werkplekken en gedeelde tafels."
             },
             "overall_capacity": {
               "title": "Stel de gedeelde veiligheidslimiet in",
@@ -796,7 +796,7 @@
       "steps": {
         "overview": {
           "title": "Welkom bij je Overzicht",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Dit is het actuele overzicht van je werkomgeving. Het kan nog rustig lijken totdat er boekingen, taken en berichten binnenkomen. Elke kaart legt uit wat hier verschijnt."
         },
         "launch_center": {
           "title": "Inrichten in Launch Center",
@@ -925,8 +925,8 @@
   "Header": {
     "mobile": {
       "navigation": "Mobiele navigatie",
-      "publicEyebrow": "Het besturingssysteem voor creatieve studio's.",
-      "publicTitle": "Beheer je studio. Neem elke dag betere beslissingen.",
+      "publicEyebrow": "Fijne plekken brengen mensen samen",
+      "publicTitle": "Jouw plek. Meer mogelijkheden.",
       "adminEyebrow": "Studiobeheer",
       "adminTitle": "Alles wat er in je studio gebeurt. Overzichtelijk.",
       "moduleOverview": "Moduleoverzicht",
@@ -934,7 +934,7 @@
       "admin": "Beheer",
       "myAccount": "Mijn account",
       "language": "Taal",
-      "tagline": "Meer tijd om te creëren. Minder tijd aan administratie."
+      "tagline": "Maak ruimte voor meer."
     },
     "booking": "Boeken",
     "cart": {
@@ -995,7 +995,7 @@
       "payments": "Betalingen",
       "memberships": "Lidmaatschappen",
       "automatedCommunication": "Geautomatiseerde communicatie",
-      "studioOperations": "Studioactiviteiten en productie",
+      "studioOperations": "Ruimtes, middelen en team",
       "analytics": "AI, analyses en beslissingen",
       "viewAll": "Ontdek het volledige product"
     },
@@ -1007,7 +1007,7 @@
       "multiLocationStudios": "Studio's met meerdere locaties",
       "viewAll": "Ontdek alle oplossingen"
     },
-    "forStudios": "Voor studio's",
+    "forStudios": "Voor gedeelde ruimtes",
     "pricing": "Prijzen",
     "membershipCatalog": "Lidmaatschappen",
     "resources": {
@@ -1045,7 +1045,7 @@
         "workspaceHelp": {
           "open": "Wat is een werkruimte-URL?",
           "title": "Het Shario-adres van je studio",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Dit is het unieke adres waarmee je je werkomgeving opent, bijvoorbeeld common-ground.shario.io. Je vindt het in je welkomstmail of uitnodiging."
         },
         "findWorkspace": "Je werkruimte zoeken",
         "emailLabel": "E-mailadres",
@@ -1174,40 +1174,40 @@
       "currencyLabel": "Kies een valuta"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Alles wat jouw ruimte nodig heeft. Samen.",
+      "metaDescription": "Verbind je boekingen, leden, betalingen, team en openbare website. Houd je aandacht bij de mensen, terwijl Shario je helpt de dag te organiseren."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "Een helpende hand voor elke dag.",
+      "metaDescription": "Stel vragen over je werkomgeving, bereid inhoud voor en krijg hulp bij ondersteunde taken. Je team houdt de controle over wijzigingen en beslissingen."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Verschillende plekken. Gedeelde mogelijkheden.",
+      "metaDescription": "Van een werkplek in de buurt tot een bruisend ontmoetingscentrum: pas Shario aan op hoe jouw ruimte werkt."
     },
     "pricing": {
-      "metaTitle": "Abonnementen en prijzen voor creatieve studio’s",
-      "metaDescription": "Vergelijk Shario-abonnementen, studiocapaciteit en AI-credits en start een proefperiode van 14 dagen zonder creditcard.",
-      "eyebrow": "Abonnementen voor groeiende studio’s",
+      "metaTitle": "Abonnementen en prijzen voor gedeelde ruimtes",
+      "metaDescription": "Begin met boekingen, verbind lidmaatschappen en voeg meer tools toe naarmate je ruimte groeit. Elk abonnement begint met een Professional-proefperiode van 14 dagen, zonder creditcard.",
+      "eyebrow": "Abonnementen voor jouw ruimte",
       "title": "Begin met wat je vandaag nodig hebt.",
-      "description": "Elk abonnement begint met een Professional-proefperiode van 14 dagen, zodat je de belangrijkste studioreis kunt testen voordat je kiest.",
+      "description": "Begin met boekingen, verbind lidmaatschappen en voeg meer tools toe naarmate je ruimte groeit. Elk abonnement begint met een Professional-proefperiode van 14 dagen, zonder creditcard.",
       "sectionEyebrow": "Duidelijke verschillen tussen abonnementen",
       "sectionTitle": "Vergelijk capaciteit, workflows en AI-credits.",
       "sectionDescription": "Kies op basis van het aantal locaties, teamaccounts en de operationele diepgang die je studio nodig heeft.",
       "closingTitle": "Weet je niet welk abonnement past?",
       "closingDescription": "Start de proefperiode zonder creditcard of bespreek met ons een implementatie op maat.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Richt alles in op je eigen tempo.",
+      "onboardingDescription": "Voeg je ruimte toe, stel je aanbod en betalingen in en publiceer je website zodra je klaar bent."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Boekingen, lidmaatschappen en je eigen mooie website. Alles wat je nodig hebt om je ruimte te delen en je gemeenschap te laten groeien, samen in Shario."
     },
     "pricing": {
       "eyebrow": "Transparante prijzen",
-      "title": "Kies het abonnement dat past bij de werkwijze van je studio.",
-      "description": "Begin met cursussen, ga door naar volledige studiowerkzaamheden en voeg daarna geavanceerde automatisering en tools voor meerdere locaties toe. Elk abonnement begint met een Professional-proefperiode van 14 dagen, zonder kaart.",
+      "title": "Kies het abonnement dat bij jouw ruimte past.",
+      "description": "Begin met boekingen, verbind lidmaatschappen en voeg meer tools toe naarmate je ruimte groeit. Elk abonnement begint met een Professional-proefperiode van 14 dagen, zonder creditcard.",
       "billingIntervalLabel": "Kies een factureringsperiode",
       "monthly": "Maandelijks",
       "yearly": "Jaarlijks",
@@ -1219,7 +1219,7 @@
       "mostPopular": "Meest gekozen",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Begin met boekingen, betalingen, lessen en evenementen voor je ruimte.",
         "feature1": "1 studiolocatie · 1 teamaccount",
         "feature2": "Cursussen, privé-evenementen en cadeaubonnen",
         "feature3": "500 inbegrepen e-mails per maand",
@@ -1228,16 +1228,16 @@
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Verbind lidmaatschappen, gedeelde ruimtes en de dagelijkse bedrijfsvoering.",
         "feature1": "1 studiolocatie · 3 teamaccounts",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Lidmaatschappen, boekingen en gedeelde middelen",
         "feature3": "3 actieve automatiseringen · 2.500 e-mails per maand",
         "feature4": "Volledige Shario AI · 2.000 credits per maand",
         "cta": "Gratis proberen"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Automatiseer je werk en verbind meerdere locaties.",
         "feature1": "Tot 2 studiolocaties · 6 teamaccounts",
         "feature2": "Toegangscodes en een eigen domein",
         "feature3": "Geavanceerde automatiseringen · 5.000 e-mails per maand",
@@ -1251,7 +1251,7 @@
         "feature2": "Aangepaste limieten voor automatisering, e-mail en AI",
         "feature3": "SSO/SCIM, API, webhooks en auditlogs",
         "feature4": "Toegewijde onboarding, migratie en SLA",
-        "cta": "Start free trial"
+        "cta": "Start je gratis proefperiode"
       },
       "note": "Prijzen zijn exclusief toepasselijke belastingen. Jaarlijkse selfservice-abonnementen bevatten twee gratis maanden. Essentiële systeemmails tellen niet mee voor de e-maillimiet en AI-gebruik stopt bij de inbegrepen limiet, zonder automatische extra kosten.",
       "loading": "Prijzen laden…",
@@ -1360,7 +1360,7 @@
     "signIn": "Inloggen"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Maak ruimte voor meer.",
     "checking": "Websitestatus controleren…",
     "owner": {
       "eyebrow": "Openbare website",
@@ -2349,7 +2349,7 @@
       },
       "activityRationale": {
         "title": "Waarom moet ik activiteiten instellen?",
-        "description": "Activities let Shario calculate availability separately for limited resources, such as workstations. Use them when resources have different capacities."
+        "description": "Met activiteiten kan Shario de beschikbaarheid afzonderlijk berekenen voor middelen met een beperkte capaciteit, zoals werkplekken. Gebruik ze wanneer middelen verschillende capaciteiten hebben."
       },
       "activities": {
         "enabled": "Aangeboden op deze locatie",
@@ -2357,7 +2357,7 @@
         "customLimit": "Aangepaste activiteitslimiet gebruiken",
         "capacitySuffix": "personen tegelijk",
         "workstation": "Werkplekken",
-        "workstationDescription": "Set the capacity to match the available workstations.",
+        "workstationDescription": "Stem de capaciteit af op het aantal beschikbare werkplekken.",
         "sharedTable": "Gedeelde tafels",
         "sharedTableDescription": "Tafelwerk kan de totale capaciteit van de locatie gebruiken of een eigen limiet."
       },
@@ -2642,7 +2642,7 @@
       "classCategoryManagerTitle": "Lescategorieën",
       "classCategoryManagerHelp": "Maak hier herbruikbare categorieën aan. Categorieën die in gebruik zijn, moeten eerst van hun lessen worden verwijderd voordat je ze kunt verwijderen.",
       "classCategoryNew": "Nieuwe categorienaam",
-      "classCategoryPlaceholder": "For example, Photography",
+      "classCategoryPlaceholder": "Bijvoorbeeld Fotografie",
       "classCategoryAdd": "Categorie toevoegen",
       "classCategoryAdding": "Toevoegen…",
       "classCategoryLoading": "Categorieën laden…",
@@ -3978,7 +3978,7 @@
     "workflowQuestions": {
       "eyebrow": "Jouw studio",
       "title": "Hoe werkt jouw studio?",
-      "description": "Your answers tailor the setup checklist to your space. Existing records and prices stay unchanged.",
+      "description": "Je antwoorden stemmen de instelchecklist af op jouw ruimte. Bestaande gegevens en prijzen blijven ongewijzigd.",
       "progress": "{completed} van {total} beantwoord",
       "summaryLabel": "Keuzes voor de werkwijze van je studio",
       "current": "Huidige vraag",
@@ -3987,7 +3987,7 @@
       "edit": "Bekijken of bewerken",
       "reviewTitle": "De instellingen van je studio zijn klaar om te bekijken",
       "reviewDescription": "Sla je antwoorden op om het Startcentrum aan te passen. Je kunt ze later in de instellingen wijzigen.",
-      "editReviewDescription": "Review the modules and setup steps that fit your space. Existing records and prices stay unchanged.",
+      "editReviewDescription": "Bekijk de modules en instelstappen die bij jouw ruimte passen. Bestaande gegevens en prijzen blijven ongewijzigd.",
       "save": "Studio-instellingen opslaan",
       "applyChanges": "Wijzigingen toepassen",
       "cancel": "Annuleren",
@@ -4030,7 +4030,7 @@
         },
         "inventory": {
           "question": "Wil je materialen en benodigdheden bijhouden?",
-          "description": "Track equipment, tools and other shared supplies."
+          "description": "Houd apparatuur, gereedschap en andere gedeelde benodigdheden bij."
         }
       },
       "pricingModes": {
@@ -4058,17 +4058,17 @@
         },
         "membershipStudio": {
           "title": "Lidmaatschapsstudio",
-          "description": "Memberships and customer records for your community."
+          "description": "Lidmaatschappen en klantgegevens voor jouw gemeenschap."
         },
         "fullWorkspace": {
-          "title": "Complete workspace",
-          "description": "Bookings, memberships, resources, payments and everyday operations."
+          "title": "Volledige werkomgeving",
+          "description": "Boekingen, lidmaatschappen, middelen, betalingen en dagelijkse bedrijfsvoering."
         }
       }
     },
     "defaults": {
       "title": "Er is al een verstandige standaardinstelling toegepast",
-      "description": "Enable the modules that fit your space. You can adjust these settings at any time.",
+      "description": "Schakel de modules in die bij jouw ruimte passen. Je kunt deze instellingen op elk moment aanpassen.",
       "action": "Open Studio-producten bekijken"
     },
     "groups": {
@@ -4412,7 +4412,7 @@
     },
     "workflowIntent": {
       "title": "Een Launch Center dat past bij de manier waarop jouw studio werkt",
-      "description": "Choose Booking, Membership or Complete workspace to see the launch steps your space needs. Review the modules before saving.",
+      "description": "Kies Boekingsstudio, Lidmaatschapsstudio of Volledige werkomgeving om de benodigde startstappen te zien. Controleer de modules voordat je opslaat.",
       "action": "Kies studio-workflow"
     },
     "completion": {
@@ -4586,7 +4586,7 @@
     "appliedDefaults": {
       "eyebrow": "Standaardinstelling",
       "title": "Je open studio start all-inclusive",
-      "description": "Your workspace starts with sensible defaults. Review your offers, availability and enabled modules as you prepare to launch.",
+      "description": "Je werkomgeving begint met praktische standaardinstellingen. Controleer je aanbod, beschikbaarheid en ingeschakelde modules terwijl je de start voorbereidt.",
       "action": "Bekijk de werkwijze"
     },
     "health": {
@@ -5390,7 +5390,7 @@
     },
     "knowledge": {
       "title": "Studio-kennisbank",
-      "description": "Give AI and staff one approved source for policies, locations, bookings and common questions.",
+      "description": "Geef AI en medewerkers één goedgekeurde bron voor beleid, locaties, boekingen en veelgestelde vragen.",
       "add": "Kennis toevoegen",
       "createTitle": "Kennisartikel toevoegen",
       "editTitle": "Kennisartikel bewerken",
@@ -5420,7 +5420,7 @@
         "effectiveFrom": "Geldig vanaf (optioneel)",
         "effectiveUntil": "Geldig tot (optioneel)"
       },
-      "tagsPlaceholder": "booking, access, membership",
+      "tagsPlaceholder": "boeking, toegang, lidmaatschap",
       "locationsHint": "Laat alle locaties uitgevinkt om dit artikel voor de hele werkruimte te laten gelden.",
       "audiences": {
         "staff": "Alleen medewerkers",
@@ -5459,7 +5459,7 @@
       "createTitle": "Routeringsregel aanmaken",
       "editTitle": "Routeringsregel bewerken",
       "dialogDescription": "AI begrijpt de intentie; voorspelbare regels bepalen de uiteindelijke toewijzing.",
-      "namePlaceholder": "e.g. Main workspace booking questions",
+      "namePlaceholder": "bijv. Boekingsvragen voor de hoofdlocatie",
       "when": "Wanneer een bericht overeenkomt met",
       "then": "Wijs toe aan",
       "any": "Alle",
@@ -5958,7 +5958,7 @@
         "location": "Kies een studio voor deze automatisering.",
         "locationScopedTrigger": "Deze trigger vereist toegang tot alle studio's, omdat de doelgroep niet aan een studio-evenement is gekoppeld.",
         "unsupportedPurpose": "Marketingautomatisering is pas beschikbaar zodra uitschrijven met één klik wordt ondersteund.",
-        "unsupportedTrigger": "This trigger is not supported in Shario.",
+        "unsupportedTrigger": "Deze trigger wordt niet ondersteund in Shario.",
         "offset": "Voer een geheel getal in van 0 tot 525.600 minuten.",
         "recipients": "Kies ten minste één ontvanger of verstuur naar alle klanten.",
         "content": "Vul het onderwerp en de inhoud in de standaardtaal en in elke begonnen vertaling in.",
@@ -6780,7 +6780,7 @@
     "welcome": {
       "public": {
         "title": "Waarmee kunnen we je helpen?",
-        "description": "Ask about opening hours, classes, bookings or memberships. Answers use information published by the space."
+        "description": "Stel vragen over openingstijden, lessen, boekingen of lidmaatschappen. Antwoorden gebruiken informatie die door de locatie is gepubliceerd."
       },
       "customer": {
         "title": "Welkom terug",
@@ -7929,7 +7929,7 @@
     },
     "operations": {
       "unavailable": "Er zijn geen operationele bronnen beschikbaar",
-      "unavailableDescription": "Inventory and staff task reports appear when their modules and data are available.",
+      "unavailableDescription": "Voorraadrapporten en rapporten over teamtaken verschijnen zodra de bijbehorende modules en gegevens beschikbaar zijn.",
       "snapshot": "Huidige statuswaarden zijn een momentopname per {time}. Periodetotalen volgen nog steeds de geselecteerde periode.",
       "inventory": {
         "title": "Voorraadactiviteiten",
@@ -8391,7 +8391,7 @@
       "summaryPlaceholder": "Een korte omschrijving die op de bronkaart wordt getoond.",
       "contentPlaceholder": "Schrijf duidelijke, feitelijke studio-instructies…",
       "transcriptPlaceholder": "Plak het gecontroleerde video-transcript voor zoeken en AI-context…",
-      "tagsPlaceholder": "first visit, equipment, safety",
+      "tagsPlaceholder": "eerste bezoek, apparatuur, veiligheid",
       "youtubeHint": "Gebruik een standaard HTTPS-link van YouTube, Shorts of youtu.be.",
       "invalidYoutube": "Voer een geldige HTTPS YouTube-URL in.",
       "faqContentRequired": "Voeg FAQ-inhoud toe of minstens één volledige vraag met antwoord.",
@@ -8590,7 +8590,7 @@
           "name": "Warm Organic",
           "description": "Zachte vormen, natuurlijk ritme en tactiele details geïnspireerd op materialen.",
           "sample": "Langzaam creëren.",
-          "sampleText": "An inviting layout inspired by natural shapes and community."
+          "sampleText": "Een uitnodigende indeling, geïnspireerd op natuurlijke vormen en gemeenschap."
         }
       },
       "identityTitle": "Studio-identiteit",
@@ -8887,7 +8887,7 @@
         "helpDescription": "Vind goedgekeurde studiogidsen, video's, antwoorden en nuttige bronnen.",
         "loginEyebrow": "Jouw creatieve plek",
         "loginHeadline": "Welkom terug.",
-        "loginDescription": "Sign in to manage your bookings, memberships and credits in one place.",
+        "loginDescription": "Log in om je boekingen, lidmaatschappen en tegoeden op één plek te beheren.",
         "registerEyebrow": "Eén account voor deze studio",
         "registerHeadline": "Alles wat je maakt, overzichtelijk bij elkaar.",
         "registerDescription": "Een eenvoudige manier om toegang te krijgen tot je boekingen, werkstukken, lessen en tegoeden bij deze studio.",
@@ -8966,7 +8966,7 @@
         },
         "adaptive": {
           "title": "Alleen relevante resultaten",
-          "description": "Bookings, payments and other tools appear when enabled."
+          "description": "Boekingen, betalingen en andere tools verschijnen wanneer ze zijn ingeschakeld."
         }
       },
       "steps": {
@@ -8984,7 +8984,7 @@
     "studio": {
       "name": "Studionaam",
       "namePlaceholder": "Naam van je studio",
-      "typeQuestion": "What kind of space do you run?",
+      "typeQuestion": "Wat voor ruimte beheer je?",
       "teamSize": "Teamgrootte",
       "types": {
         "art_studio": "Kunststudio",
@@ -9021,7 +9021,7 @@
     },
     "booking": {
       "question": "Gaan klanten iets boeken?",
-      "hint": "Choose what customers can book in your space.",
+      "hint": "Kies wat klanten in jouw ruimte kunnen boeken.",
       "confirmation": "Boekingsbevestiging",
       "types": {
         "open_studio": {
@@ -11491,7 +11491,7 @@
   "CustomOrders": {
     "title": "Maatwerkopdrachten",
     "sales": "Verkoop",
-    "description": "Manage custom projects, follow progress and keep every specification in one place.",
+    "description": "Beheer maatwerkprojecten, volg de voortgang en bewaar alle specificaties op één plek.",
     "new": "Nieuwe maatwerkopdracht",
     "editTitle": "Maatwerkopdracht bewerken",
     "formDescription": "Beschrijf wat je maakt, voor wie en wanneer het klaar moet zijn. Verplichte velden zijn gemarkeerd met een sterretje.",
@@ -11548,7 +11548,7 @@
       "description": "Gedetailleerde beschrijving",
       "pieceCount": "Aantal stuks",
       "materials": "Materialen",
-      "finish": "Finishing requirements (optional)",
+      "finish": "Afwerkingsvereisten (optioneel)",
       "startDate": "Startdatum",
       "deadline": "Deadline",
       "locationId": "Atelierlocatie",
@@ -11666,166 +11666,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Fijne plekken brengen mensen samen",
+      "title": "Jouw plek.",
+      "highlight": "Meer mogelijkheden.",
+      "description": "Boekingen, lidmaatschappen en je eigen mooie website. Alles wat je nodig hebt om je ruimte te delen en je gemeenschap te laten groeien, samen in Shario.",
+      "cta": "Start je gratis proefperiode",
+      "secondary": "Ontdek Shario",
+      "note": "14 dagen proberen · Geen creditcard nodig",
+      "imageAlt": "Mensen ontmoeten elkaar in een lichte gedeelde ruimte, omringd door kleurrijke, vloeiende vormen",
+      "cardTitle": "Minder administratie. Meer verbinding.",
+      "cardText": "Maak ruimte voor de mensen die jouw plek bijzonder maken."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "Eén plek voor de dagelijkse gang van zaken",
+      "title": "Meer tijd voor jouw mensen.",
+      "description": "Verbind alles wat er in je ruimte gebeurt, van het eerste bezoek tot de volgende verlenging van het lidmaatschap.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Eenvoudig boeken",
+        "description": "Laat mensen ruimtes, apparatuur, lessen en evenementen boeken. Houd capaciteit, beschikbaarheid en je agenda op elkaar afgestemd."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Lidmaatschappen die passen",
+        "description": "Bied abonnementen, tegoeden en ledenvoordelen die aansluiten op hoe mensen jouw ruimte gebruiken."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Een website die bij je past",
+        "description": "Breng je merk tot leven met aanpasbare pagina's, je eigen inhoud en geïntegreerde boekingen."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Betalingen op één plek",
+        "description": "Verbind betalingen, volg bestellingen en bied cadeaubonnen aan. Houd aankopen en betaalstatussen in één helder overzicht."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Elke ruimte goed georganiseerd",
+        "description": "Beheer locaties, ruimtes, werkplekken, gedeelde apparatuur en voorraden vanuit één werkomgeving."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Houd iedereen verbonden",
+        "description": "Stuur je gemeenschap nieuws, boekingsherinneringen en nuttige automatische berichten."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Een team dat samenwerkt",
+        "description": "Stem roosters en taken op elkaar af, met rollen en rechten voor de mensen die jouw ruimte beheren."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Een helderder beeld",
+        "description": "Volg boekingen, omzet en activiteit. Krijg hulp bij je dagelijkse werk van je AI-assistent."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "Jouw plek. Jouw identiteit.",
+      "title": "Je gemeenschap begint met een warm welkom.",
+      "description": "Maak een openbare website die bij je past. Maak het gemakkelijk om je ruimte te ontdekken, een lidmaatschap te vinden en iets te boeken om naar uit te kijken.",
+      "one": "Kies je kleuren, lettertypen en pagina-indeling",
+      "two": "Verbind je aanbod, agenda en klantaccount",
+      "three": "Gebruik een eigen domein bij abonnementen die dit ondersteunen",
+      "cta": "Ontdek de tools voor je website",
+      "example": "Voorbeeldwebsite van een gedeelde ruimte",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "Onze plek   ·   Lidmaatschappen",
+      "previewEyebrow": "Een plek waar je thuishoort",
+      "previewTitle": "Goed werk. Fijn gezelschap.",
+      "previewCta": "Ontdek onze plek",
+      "imageAlt": "Een uitnodigende gedeelde werkruimte met daglicht en mensen die samenwerken"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Voor plekken die ons samenbrengen",
+      "title": "Verschillende plekken. Gedeelde mogelijkheden.",
+      "description": "Van een werkplek in de buurt tot een bruisend ontmoetingscentrum: pas Shario aan op hoe jouw ruimte werkt.",
+      "cta": "Maak ruimte voor je gemeenschap",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Coworkingruimtes",
+        "description": "Bureaus, vergaderruimtes en lidmaatschappen voor flexibele werkdagen."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Creatieve studio's",
+        "description": "Gedeelde apparatuur, workshops en ruimte voor je volgende idee."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Repetitieruimtes",
+        "description": "Boekbare ruimtes, terugkerende sessies en op elkaar afgestemde roosters."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Ontmoetingscentra",
+        "description": "Evenementen, lidmaatschappen en gedeelde plekken voor verbinding in de buurt."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Workshops en lessen",
+        "description": "Lessen, docenten, evenementen met tickets en terugkerende deelnemers."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Een paar goede vragen",
+      "title": "Laten we het eenvoudig maken.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Wat kan ik beheren met Shario?",
+        "answer": "Beheer boekingen, lidmaatschappen, betalingen, locaties, gedeelde middelen, je team en je openbare website. Schakel de modules in die bij jouw ruimte passen."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Kan ik mijn eigen huisstijl gebruiken?",
+        "answer": "Ja. Pas de kleuren, typografie, inhoud en indeling van je openbare website aan. Eigen domeinen zijn beschikbaar bij abonnementen die dit ondersteunen."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Kunnen mijn klanten boeken en hun lidmaatschappen beheren?",
+        "answer": "Ja. Je openbare website en het klantportaal verbinden boekingen, aankopen, lidmaatschappen, tegoeden en facturen."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Hoe begin ik?",
+        "answer": "Maak je werkomgeving aan en start een proefperiode van 14 dagen. Voeg je ruimte toe, stel je aanbod en betalingen in en publiceer je boekingswebsite zodra je klaar bent."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Maak ruimte voor meer.",
+      "description": "Meer verbinding. Meer mogelijkheden. Meer tijd voor de plek waar je van houdt. Bouw aan je gemeenschap met Shario.",
+      "secondary": "Bekijk abonnementen"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Ontdek je gereedschap voor elke dag",
+      "title": "Alles wat jouw ruimte nodig heeft. Samen.",
+      "description": "Verbind je boekingen, leden, betalingen, team en openbare website. Houd je aandacht bij de mensen, terwijl Shario je helpt de dag te organiseren.",
+      "panelEyebrow": "Je verbonden werkomgeving",
+      "panelTitle": "Eén plek die alles samenbrengt",
+      "solutions": "Vind de oplossing voor jouw ruimte"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Meer vrijheid voor je leden",
+      "title": "Laat je ruimte aansluiten op jouw mensen.",
+      "description": "Bied onlineboekingen, klantaccounts en zelfstandig toegangsbeheer. Stel toegangscodes, roosters en je ondersteunde slotintegratie in voor geschikte abonnementen en uitgeruste locaties."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Maak kennis met Shario AI",
+      "title": "Een helpende hand voor elke dag.",
+      "description": "Stel vragen over je werkomgeving, bereid inhoud voor en krijg hulp bij ondersteunde taken. Je team houdt de controle over wijzigingen en beslissingen.",
+      "panelEyebrow": "Verbonden met je werkomgeving",
+      "panelTitle": "Nuttige context. Duidelijke volgende stappen.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "Context die ertoe doet",
+        "description": "Werk met relevante informatie uit je werkomgeving in plaats van bij elke vraag opnieuw te beginnen."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "Een bruikbare eerste versie",
+        "description": "Bereid klantberichten, websiteteksten en ideeën voor je volgende evenement voor."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Jij houdt de controle",
+        "heading": "Jouw assistent. Jouw beslissingen.",
+        "description": "Bekijk suggesties en bevestig acties wanneer dat nodig is. AI-functies hangen af van de rechten in je werkomgeving, ingeschakelde integraties en de limieten van je abonnement."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
+      "tagline": "Maak ruimte voor meer.",
       "product": "Product",
-      "overview": "Explore Shario",
+      "overview": "Ontdek Shario",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Prijzen",
+      "spaces": "Voor jouw ruimte",
+      "company": "Aan de slag",
+      "about": "Zo werkt het",
+      "login": "Inloggen",
+      "register": "Start je gratis proefperiode",
+      "copyright": "© {year} Shario. Alle rechten voorbehouden."
     }
   }
 }

@@ -49,7 +49,7 @@ See [the Vercel setup guide](docs/VERCEL.md) for project settings, required envi
 
 ## Brand and tenant customization
 
-The platform uses Manrope, Shario Blue `#2563EB`, Ink `#182333`, white surfaces and aqua/coral/yellow/lilac accents. Canonical artwork is in `public/brand/`; the Manrope font and license are in `src/fonts/` (`Manrope-OFL.txt`). Marketing is localized in English and Czech; new marketing copy falls back to English in preview locales. Existing generic product translations remain available.
+The platform uses Manrope, Shario Blue `#2563EB`, Ink `#182333`, white surfaces and aqua/coral/yellow/lilac accents. Canonical artwork is in `public/brand/`; the Manrope font and license are in `src/fonts/` (`Manrope-OFL.txt`). Shario marketing is translated into all 18 registered languages. Enable the locale list and rollout switch from `.env.example` in the deployment environment. Existing generic product translations remain available, with English fallback on deeper screens in incomplete catalogs; see [localization coverage](docs/localization-rollout.md).
 
 Tenant websites keep their own colors, logo, typography choices, pages, domain and booking surfaces. Some internal `SkabLogo` component names and `--skab-*` CSS aliases are retained to preserve the copied component contracts; their rendered identity is Shario.
 

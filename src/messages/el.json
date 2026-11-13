@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "Ο χώρος σου. Περισσότερες δυνατότητες.",
+    "homeDescription": "Κρατήσεις, συνδρομές και ο δικός σου όμορφος ιστότοπος. Όλα όσα χρειάζεσαι για να μοιράζεσαι τον χώρο σου και να μεγαλώνεις την κοινότητά σου, μαζί στο Shario."
   },
   "Common": {
     "skipToContent": "Μετάβαση στο περιεχόμενο",
@@ -275,8 +275,8 @@
         "calmHeadline": "Το στούντιό σας λειτουργεί ομαλά.",
         "attentionHeadline": "Μερικά θέματα χρειάζονται την προσοχή σας.",
         "partialHeadline": "Αυτά μπορούμε να επαληθεύσουμε αυτή τη στιγμή.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "{bookings, plural, one {# κράτηση} other {# κρατήσεις}} και {attention, plural, one {# προτεραιότητα} other {# προτεραιότητες}} για έλεγχο.",
+        "countsUnavailableSummary": "Οι αριθμοί κρατήσεων δεν είναι πλήρως διαθέσιμοι. Οι μη επαληθευμένες τιμές παραλείπονται.",
         "partialSummary": "Η ενημέρωση διαθέτει αυτή τη στιγμή {count, plural, one {# διαθέσιμη πηγή} other {# διαθέσιμες πηγές}}. Οι μη διαθέσιμες τιμές παραμένουν άγνωστες αντί να εμφανίζονται ως μηδενικές.",
         "coverageComplete": "Βάσει {count, plural, one {# ένδειξης στούντιο} other {# ενδείξεων στούντιο}}",
         "coveragePartial": "Βάσει {count, plural, one {# διαθέσιμης ένδειξης στούντιο} other {# διαθέσιμων ενδείξεων στούντιο}} · μερική κάλυψη",
@@ -492,7 +492,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Ενεργοποίησε μόνο τις δραστηριότητες που προσφέρεις και όρισε όρια χωρητικότητας για πόρους όπως θέσεις εργασίας και κοινόχρηστα τραπέζια."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -784,7 +784,7 @@
       "steps": {
         "overview": {
           "title": "Καλώς ήρθατε στην Επισκόπησή σας",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Αυτή είναι η ζωντανή αρχική σελίδα του περιβάλλοντος εργασίας σου. Μπορεί να φαίνεται ήσυχη μέχρι να αρχίσουν να φτάνουν κρατήσεις, εργασίες και μηνύματα. Κάθε κάρτα εξηγεί τι θα εμφανίζεται εδώ."
         },
         "launch_center": {
           "title": "Ρύθμιση στο Launch Center",
@@ -913,8 +913,8 @@
   "Header": {
     "mobile": {
       "navigation": "Πλοήγηση για κινητά",
-      "publicEyebrow": "Το λειτουργικό σύστημα για δημιουργικά στούντιο.",
-      "publicTitle": "Διαχειριστείτε το στούντιό σας. Πάρτε καλύτερες αποφάσεις κάθε μέρα.",
+      "publicEyebrow": "Οι όμορφοι χώροι φέρνουν τους ανθρώπους κοντά",
+      "publicTitle": "Ο χώρος σου. Περισσότερες δυνατότητες.",
       "adminEyebrow": "Διαχείριση στούντιο",
       "adminTitle": "Όλα όσα συμβαίνουν στο στούντιό σας. Με σαφήνεια.",
       "moduleOverview": "Επισκόπηση ενοτήτων",
@@ -922,7 +922,7 @@
       "admin": "Διαχείριση",
       "myAccount": "Ο λογαριασμός μου",
       "language": "Γλώσσα",
-      "tagline": "Περισσότερος χρόνος για δημιουργία. Λιγότερος χρόνος για διαχείριση."
+      "tagline": "Δώσε χώρο για περισσότερα."
     },
     "booking": "Κράτηση",
     "cart": {
@@ -983,7 +983,7 @@
       "payments": "Πληρωμές",
       "memberships": "Συνδρομές",
       "automatedCommunication": "Αυτοματοποιημένη επικοινωνία",
-      "studioOperations": "Λειτουργίες στούντιο και παραγωγή",
+      "studioOperations": "Χώροι, πόροι και ομάδα",
       "analytics": "AI, αναλύσεις και αποφάσεις",
       "viewAll": "Εξερευνήστε ολόκληρο το προϊόν"
     },
@@ -995,7 +995,7 @@
       "multiLocationStudios": "Στούντιο με πολλές τοποθεσίες",
       "viewAll": "Εξερευνήστε όλες τις λύσεις"
     },
-    "forStudios": "Για στούντιο",
+    "forStudios": "Για κοινόχρηστους χώρους",
     "pricing": "Τιμές",
     "membershipCatalog": "Συνδρομές",
     "resources": {
@@ -1033,7 +1033,7 @@
         "workspaceHelp": {
           "open": "Τι είναι το URL χώρου εργασίας;",
           "title": "Η διεύθυνση Shario του στούντιό σας",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Είναι η μοναδική διεύθυνση που χρησιμοποιείς για να ανοίξεις το περιβάλλον εργασίας σου, για παράδειγμα common-ground.shario.io. Θα τη βρεις στο email καλωσορίσματος ή πρόσκλησης."
         },
         "findWorkspace": "Εύρεση χώρου εργασίας",
         "emailLabel": "Διεύθυνση email",
@@ -1162,40 +1162,40 @@
       "currencyLabel": "Επιλέξτε νόμισμα"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Όλα όσα χρειάζεται ο χώρος σου, σε συνεργασία.",
+      "metaDescription": "Σύνδεσε τις κρατήσεις, τα μέλη, τις πληρωμές, την ομάδα και τον δημόσιο ιστότοπό σου. Εστίασε στους ανθρώπους σου, ενώ το Shario σε βοηθά να οργανώσεις τη μέρα."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "Ένα χέρι βοηθείας στην καθημερινή δουλειά.",
+      "metaDescription": "Κάνε ερωτήσεις για το περιβάλλον εργασίας σου, προετοίμασε περιεχόμενο και βρες βοήθεια για υποστηριζόμενες εργασίες. Η ομάδα σου διατηρεί τον έλεγχο των αλλαγών και των αποφάσεων."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Διαφορετικοί χώροι. Κοινές δυνατότητες.",
+      "metaDescription": "Από έναν χώρο εργασίας στη γειτονιά μέχρι ένα ζωντανό κέντρο κοινότητας, προσάρμοσε το Shario στον τρόπο που λειτουργεί ο χώρος σου."
     },
     "pricing": {
-      "metaTitle": "Προγράμματα και τιμές για δημιουργικά στούντιο",
-      "metaDescription": "Συγκρίνετε προγράμματα Shario, χωρητικότητα στούντιο και πιστώσεις AI και ξεκινήστε δοκιμή 14 ημερών χωρίς κάρτα.",
-      "eyebrow": "Προγράμματα για αναπτυσσόμενα στούντιο",
+      "metaTitle": "Προγράμματα και τιμές για κοινόχρηστους χώρους",
+      "metaDescription": "Ξεκίνα με κρατήσεις, σύνδεσε συνδρομές και πρόσθεσε περισσότερα εργαλεία καθώς μεγαλώνει ο χώρος σου. Κάθε πρόγραμμα ξεκινά με δοκιμή 14 ημερών του Professional, χωρίς κάρτα.",
+      "eyebrow": "Προγράμματα για τον χώρο σου",
       "title": "Ξεκινήστε με ό,τι χρειάζεστε σήμερα.",
-      "description": "Κάθε πρόγραμμα ξεκινά με δοκιμή Professional 14 ημερών, ώστε να δοκιμάσετε τη βασική διαδρομή του στούντιο πριν επιλέξετε.",
+      "description": "Ξεκίνα με κρατήσεις, σύνδεσε συνδρομές και πρόσθεσε περισσότερα εργαλεία καθώς μεγαλώνει ο χώρος σου. Κάθε πρόγραμμα ξεκινά με δοκιμή 14 ημερών του Professional, χωρίς κάρτα.",
       "sectionEyebrow": "Σαφείς διαφορές προγραμμάτων",
       "sectionTitle": "Συγκρίνετε χωρητικότητα, ροές και πιστώσεις AI.",
       "sectionDescription": "Επιλέξτε με βάση τον αριθμό τοποθεσιών, λογαριασμών ομάδας και το λειτουργικό βάθος που χρειάζεται το στούντιό σας.",
       "closingTitle": "Δεν είστε βέβαιοι ποιο πρόγραμμα ταιριάζει;",
       "closingDescription": "Ξεκινήστε τη δοκιμή χωρίς κάρτα ή μιλήστε μαζί μας για προσαρμοσμένη υλοποίηση.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Ρύθμισέ το με τον ρυθμό σου.",
+      "onboardingDescription": "Πρόσθεσε τον χώρο σου, ρύθμισε τις προσφορές και τις πληρωμές και δημοσίευσε τον ιστότοπό σου όταν είσαι έτοιμος."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Κρατήσεις, συνδρομές και ο δικός σου όμορφος ιστότοπος. Όλα όσα χρειάζεσαι για να μοιράζεσαι τον χώρο σου και να μεγαλώνεις την κοινότητά σου, μαζί στο Shario."
     },
     "pricing": {
       "eyebrow": "Διαφανείς τιμές",
-      "title": "Επιλέξτε το πλάνο που ταιριάζει στον τρόπο λειτουργίας του στούντιό σας.",
-      "description": "Ξεκινήστε με μαθήματα, περάστε στην πλήρη λειτουργία του στούντιο και προσθέστε προηγμένους αυτοματισμούς και εργαλεία πολλαπλών τοποθεσιών. Κάθε πλάνο ξεκινά με δοκιμή Professional 14 ημερών, χωρίς κάρτα.",
+      "title": "Διάλεξε το πρόγραμμα που ταιριάζει στον χώρο σου.",
+      "description": "Ξεκίνα με κρατήσεις, σύνδεσε συνδρομές και πρόσθεσε περισσότερα εργαλεία καθώς μεγαλώνει ο χώρος σου. Κάθε πρόγραμμα ξεκινά με δοκιμή 14 ημερών του Professional, χωρίς κάρτα.",
       "billingIntervalLabel": "Επιλέξτε διάστημα χρέωσης",
       "monthly": "Μηνιαία",
       "yearly": "Ετήσια",
@@ -1207,7 +1207,7 @@
       "mostPopular": "Δημοφιλέστερο",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Ξεκίνα με κρατήσεις, πληρωμές, μαθήματα και εκδηλώσεις για τον χώρο σου.",
         "feature1": "1 τοποθεσία στούντιο · 1 λογαριασμός ομάδας",
         "feature2": "Μαθήματα, ιδιωτικές εκδηλώσεις και δωροεπιταγές",
         "feature3": "500 e-mail τον μήνα",
@@ -1216,16 +1216,16 @@
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Σύνδεσε συνδρομές, κοινόχρηστους χώρους και καθημερινές λειτουργίες.",
         "feature1": "1 τοποθεσία στούντιο · 3 λογαριασμοί ομάδας",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Συνδρομές, κρατήσεις και κοινόχρηστοι πόροι",
         "feature3": "3 ενεργοί αυτοματισμοί · 2.500 e-mail τον μήνα",
         "feature4": "Πλήρες Shario AI · 2.000 πιστώσεις τον μήνα",
         "cta": "Έναρξη δωρεάν δοκιμής"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "Αυτοματοποίησε τη δουλειά σου και σύνδεσε πολλές τοποθεσίες.",
         "feature1": "Έως 2 τοποθεσίες στούντιο · 6 λογαριασμοί ομάδας",
         "feature2": "Κωδικοί πρόσβασης και προσαρμοσμένο domain",
         "feature3": "Προηγμένοι αυτοματισμοί · 5.000 e-mail τον μήνα",
@@ -1239,7 +1239,7 @@
         "feature2": "Προσαρμοσμένα όρια αυτοματισμών, e-mail και AI",
         "feature3": "SSO/SCIM, API, webhooks και αρχεία ελέγχου",
         "feature4": "Αποκλειστικό onboarding, μεταφορά και SLA",
-        "cta": "Start free trial"
+        "cta": "Ξεκίνα δωρεάν δοκιμή"
       },
       "note": "Οι τιμές δεν περιλαμβάνουν τους ισχύοντες φόρους. Τα ετήσια πλάνα αυτοεξυπηρέτησης περιλαμβάνουν δύο δωρεάν μήνες. Τα απαραίτητα e-mail συστήματος δεν υπολογίζονται στο όριο και η χρήση AI σταματά στο διαθέσιμο πακέτο, χωρίς αυτόματες επιπλέον χρεώσεις.",
       "loading": "Φόρτωση τιμών…",
@@ -1348,7 +1348,7 @@
     "signIn": "Σύνδεση"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Δώσε χώρο για περισσότερα.",
     "checking": "Έλεγχος κατάστασης ιστοτόπου…",
     "owner": {
       "eyebrow": "Δημόσιος ιστότοπος",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Οι όμορφοι χώροι φέρνουν τους ανθρώπους κοντά",
+      "title": "Ο χώρος σου.",
+      "highlight": "Περισσότερες δυνατότητες.",
+      "description": "Κρατήσεις, συνδρομές και ο δικός σου όμορφος ιστότοπος. Όλα όσα χρειάζεσαι για να μοιράζεσαι τον χώρο σου και να μεγαλώνεις την κοινότητά σου, μαζί στο Shario.",
+      "cta": "Ξεκίνα δωρεάν δοκιμή",
+      "secondary": "Γνώρισε το Shario",
+      "note": "Δοκιμή 14 ημερών · Χωρίς πιστωτική κάρτα",
+      "imageAlt": "Άνθρωποι συναντιούνται σε έναν φωτεινό κοινόχρηστο χώρο, ανάμεσα σε πολύχρωμα κυματιστά σχήματα",
+      "cardTitle": "Λιγότερη διαχείριση. Περισσότερη επαφή.",
+      "cardText": "Δώσε χώρο στους ανθρώπους που δίνουν ζωή στον χώρο σου."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "Η καθημερινότητα σε ένα μέρος",
+      "title": "Περισσότερος χρόνος για τους ανθρώπους σου.",
+      "description": "Κράτησε συνδεδεμένες όλες τις πλευρές της λειτουργίας του χώρου σου, από την πρώτη επίσκεψη μέχρι την επόμενη ανανέωση συνδρομής.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Οι κρατήσεις γίνονται απλές",
+        "description": "Δώσε τη δυνατότητα κράτησης για αίθουσες, εξοπλισμό, μαθήματα και εκδηλώσεις. Κράτησε συγχρονισμένα τη χωρητικότητα, τη διαθεσιμότητα και το ημερολόγιό σου."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "Συνδρομές που ταιριάζουν",
+        "description": "Πρόσφερε συνδρομές, πιστωτικές μονάδες και προνόμια μελών που ταιριάζουν στον τρόπο χρήσης του χώρου σου."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Ένας ιστότοπος στα μέτρα σου",
+        "description": "Δώσε ζωή στην ταυτότητα της επιχείρησής σου με προσαρμόσιμες σελίδες, δικό σου περιεχόμενο και ενσωματωμένες κρατήσεις."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Πληρωμές σε ένα μέρος",
+        "description": "Σύνδεσε τις πληρωμές, παρακολούθησε τις παραγγελίες και πρόσφερε δωροεπιταγές. Δες ξεκάθαρα τις αγορές και την κατάσταση πληρωμής τους σε μία προβολή."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Κάθε χώρος οργανωμένος",
+        "description": "Διαχειρίσου τοποθεσίες, αίθουσες, θέσεις εργασίας, κοινόχρηστο εξοπλισμό και αναλώσιμα από ένα περιβάλλον εργασίας."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Κράτησε όλους σε επαφή",
+        "description": "Στείλε ενημερώσεις, υπενθυμίσεις κρατήσεων και χρήσιμα αυτοματοποιημένα μηνύματα στην κοινότητά σου."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Μια συντονισμένη ομάδα",
+        "description": "Συντόνισε προγράμματα και εργασίες, με ρόλους και δικαιώματα για όσους διαχειρίζονται τον χώρο σου."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Μια πιο καθαρή εικόνα",
+        "description": "Παρακολούθησε κρατήσεις, έσοδα και δραστηριότητα. Βρες βοήθεια για την καθημερινή δουλειά από τον βοηθό τεχνητής νοημοσύνης σου."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "Ο χώρος σου. Η ταυτότητά σου.",
+      "title": "Η κοινότητά σου ξεκινά με ένα ζεστό καλωσόρισμα.",
+      "description": "Δημιούργησε έναν δημόσιο ιστότοπο που σε εκφράζει. Κάνε εύκολη την ανακάλυψη του χώρου σου, την επιλογή συνδρομής και την κράτηση για κάτι που αξίζει να περιμένεις.",
+      "one": "Διάλεξε χρώματα, γραμματοσειρές και διάταξη σελίδας",
+      "two": "Σύνδεσε τις προσφορές σου, το ημερολόγιο και τον λογαριασμό πελάτη",
+      "three": "Χρησιμοποίησε δικό σου domain στα προγράμματα που το υποστηρίζουν",
+      "cta": "Δες τα εργαλεία του ιστοτόπου σου",
+      "example": "Παράδειγμα ιστοτόπου ενός χώρου",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "Ο χώρος μας   ·   Συνδρομές",
+      "previewEyebrow": "Ένας τόπος όπου ανήκεις",
+      "previewTitle": "Καλή δουλειά. Υπέροχη παρέα.",
+      "previewCta": "Γνώρισε τον χώρο μας",
+      "imageAlt": "Ένας φιλόξενος κοινόχρηστος χώρος εργασίας με φυσικό φως και ανθρώπους που δουλεύουν μαζί"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Για χώρους που μας φέρνουν κοντά",
+      "title": "Διαφορετικοί χώροι. Κοινές δυνατότητες.",
+      "description": "Από έναν χώρο εργασίας στη γειτονιά μέχρι ένα ζωντανό κέντρο κοινότητας, προσάρμοσε το Shario στον τρόπο που λειτουργεί ο χώρος σου.",
+      "cta": "Δώσε χώρο στην κοινότητά σου",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Χώροι συνεργασίας",
+        "description": "Γραφεία, αίθουσες συσκέψεων και συνδρομές για ευέλικτες εργάσιμες ημέρες."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Δημιουργικά στούντιο",
+        "description": "Κοινόχρηστος εξοπλισμός, εργαστήρια και χώρος για την επόμενη ιδέα σου."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Χώροι για πρόβες",
+        "description": "Αίθουσες με δυνατότητα κράτησης, τακτικές συναντήσεις και συντονισμένα προγράμματα."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Κέντρα κοινότητας",
+        "description": "Εκδηλώσεις, συνδρομές και κοινόχρηστοι χώροι για τοπικές συναντήσεις."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Εργαστήρια και μαθήματα",
+        "description": "Μαθήματα, εκπαιδευτές, εκδηλώσεις με εισιτήριο και συμμετέχοντες που επιστρέφουν."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Μερικές καλές ερωτήσεις",
+      "title": "Ας το κάνουμε απλό.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Τι μπορώ να διαχειριστώ με το Shario;",
+        "answer": "Διαχειρίσου κρατήσεις, συνδρομές, πληρωμές, τοποθεσίες, κοινόχρηστους πόρους, την ομάδα σου και τον δημόσιο ιστότοπό σου. Ενεργοποίησε τις ενότητες που ταιριάζουν στον χώρο σου."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Μπορώ να χρησιμοποιήσω τη δική μου εταιρική ταυτότητα;",
+        "answer": "Ναι. Προσάρμοσε τα χρώματα, την τυπογραφία, το περιεχόμενο και τη διάταξη του δημόσιου ιστοτόπου σου. Τα δικά σου domain διατίθενται στα προγράμματα που τα υποστηρίζουν."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Μπορούν οι πελάτες μου να κάνουν κρατήσεις και να διαχειρίζονται τις συνδρομές τους;",
+        "answer": "Ναι. Ο δημόσιος ιστότοπος και η πύλη πελατών συνδέουν κρατήσεις, αγορές, συνδρομές, πιστωτικές μονάδες και τιμολόγια."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Πώς ξεκινάω;",
+        "answer": "Δημιούργησε το περιβάλλον εργασίας σου και ξεκίνα μια δοκιμή 14 ημερών. Πρόσθεσε τον χώρο σου, ρύθμισε τις προσφορές και τις πληρωμές και δημοσίευσε τον ιστότοπο κρατήσεων όταν είσαι έτοιμος."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Δώσε χώρο για περισσότερα.",
+      "description": "Περισσότερες επαφές. Περισσότερες δυνατότητες. Περισσότερος χρόνος για τον χώρο που αγαπάς. Ξεκίνα να χτίζεις την κοινότητά σου με το Shario.",
+      "secondary": "Δες τα προγράμματα"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Γνώρισε τα καθημερινά σου εργαλεία",
+      "title": "Όλα όσα χρειάζεται ο χώρος σου, σε συνεργασία.",
+      "description": "Σύνδεσε τις κρατήσεις, τα μέλη, τις πληρωμές, την ομάδα και τον δημόσιο ιστότοπό σου. Εστίασε στους ανθρώπους σου, ενώ το Shario σε βοηθά να οργανώσεις τη μέρα.",
+      "panelEyebrow": "Το συνδεδεμένο περιβάλλον εργασίας σου",
+      "panelTitle": "Ένα μέρος που τα συνδέει όλα",
+      "solutions": "Βρες τον δικό σου τύπο χώρου"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Περισσότερη ελευθερία για τα μέλη σου",
+      "title": "Άφησε τον χώρο σου να προσαρμοστεί στους ανθρώπους σου.",
+      "description": "Πρόσφερε online κρατήσεις, λογαριασμούς πελατών και πρόσβαση αυτοεξυπηρέτησης. Ρύθμισε κωδικούς πρόσβασης, προγράμματα και υποστηριζόμενη διασύνδεση κλειδαριάς για κατάλληλα προγράμματα και εξοπλισμένες τοποθεσίες."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Γνώρισε το Shario AI",
+      "title": "Ένα χέρι βοηθείας στην καθημερινή δουλειά.",
+      "description": "Κάνε ερωτήσεις για το περιβάλλον εργασίας σου, προετοίμασε περιεχόμενο και βρες βοήθεια για υποστηριζόμενες εργασίες. Η ομάδα σου διατηρεί τον έλεγχο των αλλαγών και των αποφάσεων.",
+      "panelEyebrow": "Συνδεδεμένο με το περιβάλλον εργασίας σου",
+      "panelTitle": "Χρήσιμες πληροφορίες. Ξεκάθαρα επόμενα βήματα.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "Πληροφορίες που έχουν σημασία",
+        "description": "Αξιοποίησε σχετικές πληροφορίες από το περιβάλλον εργασίας σου αντί να ξεκινάς κάθε ερώτηση από το μηδέν."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "Ένα χρήσιμο πρώτο προσχέδιο",
+        "description": "Προετοίμασε μηνύματα πελατών, κείμενα για τον ιστότοπο και ιδέες για την επόμενη εκδήλωση."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Ο έλεγχος παραμένει σε εσένα",
+        "heading": "Ο βοηθός σου. Οι αποφάσεις σου.",
+        "description": "Έλεγξε τις προτάσεις και επιβεβαίωσε ενέργειες όταν απαιτείται. Οι λειτουργίες AI εξαρτώνται από τα δικαιώματα του περιβάλλοντος εργασίας, τις ενεργές διασυνδέσεις και τα όρια του προγράμματός σου."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Δώσε χώρο για περισσότερα.",
+      "product": "Προϊόν",
+      "overview": "Γνώρισε το Shario",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Τιμές",
+      "spaces": "Για τον χώρο σου",
+      "company": "Ξεκίνα εδώ",
+      "about": "Πώς λειτουργεί",
+      "login": "Σύνδεση",
+      "register": "Ξεκίνα δωρεάν δοκιμή",
+      "copyright": "© {year} Shario. Με επιφύλαξη παντός δικαιώματος."
     }
   }
 }

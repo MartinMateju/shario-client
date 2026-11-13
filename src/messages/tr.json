@@ -86,8 +86,8 @@
     }
   },
   "Metadata": {
-    "homeTitle": "Your space. More possibilities.",
-    "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+    "homeTitle": "Sizin mekânınız. Daha fazla olanak.",
+    "homeDescription": "Rezervasyonlar, üyelikler ve size ait şık bir web sitesi. Mekânınızı paylaşmak ve topluluğunuzu büyütmek için ihtiyacınız olan her şey Shario’da bir arada."
   },
   "Common": {
     "skipToContent": "İçeriğe geç",
@@ -275,8 +275,8 @@
         "calmHeadline": "Stüdyonuz sorunsuz çalışıyor.",
         "attentionHeadline": "Birkaç konu ilgilenmenizi bekliyor.",
         "partialHeadline": "Şu anda doğrulayabildiklerimiz bunlar.",
-        "deterministicSummary": "{bookings, plural, one {# booking} other {# bookings}} and {attention, plural, one {# priority} other {# priorities}} to review.",
-        "countsUnavailableSummary": "Booking counts are not fully available. Unverified values are omitted.",
+        "deterministicSummary": "İncelenecek {bookings, plural, one {# rezervasyon} other {# rezervasyon}} ve {attention, plural, one {# öncelikli konu} other {# öncelikli konu}} var.",
+        "countsUnavailableSummary": "Rezervasyon sayıları tam olarak kullanılamıyor. Doğrulanmamış değerler gösterilmez.",
         "partialSummary": "Özet şu anda {count, plural, one {# kullanılabilir kaynak} other {# kullanılabilir kaynak}} içeriyor. Kullanılamayan değerler sıfır olarak gösterilmek yerine bilinmiyor olarak kalır.",
         "coverageComplete": "{count, plural, one {# stüdyo sinyali} other {# stüdyo sinyali}} temel alınmıştır",
         "coveragePartial": "{count, plural, one {# kullanılabilir stüdyo sinyali} other {# kullanılabilir stüdyo sinyali}} temel alınmıştır · kısmi kapsam",
@@ -492,7 +492,7 @@
             },
             "activity_capacity": {
               "title": "Protect limited resources",
-              "description": "Enable only the activities you offer and set capacity limits for resources such as workstations and shared tables."
+              "description": "Yalnızca sunduğunuz etkinlikleri etkinleştirin ve çalışma istasyonları ile ortak masalar gibi kaynaklar için kapasite sınırları belirleyin."
             },
             "overall_capacity": {
               "title": "Set the shared safety limit",
@@ -784,7 +784,7 @@
       "steps": {
         "overview": {
           "title": "Genel Bakış'a hoş geldiniz",
-          "description": "This is your workspace’s live home base. It may look quiet until bookings, tasks and messages start arriving. Each card explains what will appear here."
+          "description": "Burası çalışma alanınızın güncel ana sayfasıdır. Rezervasyonlar, görevler ve mesajlar gelmeye başlayana kadar sakin görünebilir. Her kart burada nelerin görüneceğini açıklar."
         },
         "launch_center": {
           "title": "Launch Center'da kurulum yapın",
@@ -913,8 +913,8 @@
   "Header": {
     "mobile": {
       "navigation": "Mobil menü",
-      "publicEyebrow": "Yaratıcı stüdyolar için işletim sistemi.",
-      "publicTitle": "Stüdyonuzu yönetin. Her gün daha iyi kararlar alın.",
+      "publicEyebrow": "Güzel mekânlar insanları bir araya getirir",
+      "publicTitle": "Sizin mekânınız. Daha fazla olanak.",
       "adminEyebrow": "Stüdyo yönetimi",
       "adminTitle": "Stüdyonuzda olup biten her şey. Net bir şekilde.",
       "moduleOverview": "Modüle genel bakış",
@@ -922,7 +922,7 @@
       "admin": "Yönetim",
       "myAccount": "Hesabım",
       "language": "Dil",
-      "tagline": "Üretmeye daha çok, yönetime daha az zaman."
+      "tagline": "Daha fazlasına yer açın."
     },
     "booking": "Rezervasyon",
     "cart": {
@@ -983,7 +983,7 @@
       "payments": "Ödemeler",
       "memberships": "Üyelikler",
       "automatedCommunication": "Otomatik iletişim",
-      "studioOperations": "Stüdyo operasyonları ve üretim",
+      "studioOperations": "Mekânlar, kaynaklar ve ekip",
       "analytics": "Yapay zekâ, analizler ve kararlar",
       "viewAll": "Ürünün tamamını keşfedin"
     },
@@ -995,7 +995,7 @@
       "multiLocationStudios": "Çok konumlu stüdyolar",
       "viewAll": "Tüm çözümleri keşfedin"
     },
-    "forStudios": "Stüdyolar için",
+    "forStudios": "Ortak mekânlar için",
     "pricing": "Fiyatlandırma",
     "membershipCatalog": "Üyelikler",
     "resources": {
@@ -1033,7 +1033,7 @@
         "workspaceHelp": {
           "open": "Çalışma alanı URL'si nedir?",
           "title": "Stüdyonuzun Shario adresi",
-          "description": "It’s the unique address you use to open your workspace, for example common-ground.shario.io. You can find it in your welcome or invitation email."
+          "description": "Çalışma alanınızı açmak için kullandığınız benzersiz adrestir; örneğin common-ground.shario.io. Bu adresi hoş geldiniz veya davet e-postanızda bulabilirsiniz."
         },
         "findWorkspace": "Çalışma alanınızı bulun",
         "emailLabel": "E-posta adresi",
@@ -1162,40 +1162,40 @@
       "currencyLabel": "Para birimi seçin"
     },
     "product": {
-      "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaTitle": "Mekânınızın ihtiyaç duyduğu her şey, birlikte çalışır.",
+      "metaDescription": "Rezervasyonları, üyeleri, ödemeleri, ekibinizi ve herkese açık web sitenizi birbirine bağlayın. Shario gününüzü düzenlemenize yardımcı olurken siz insanlara odaklanın."
     },
     "studioAi": {
-      "metaTitle": "A helping hand for everyday work.",
-      "metaDescription": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions."
+      "metaTitle": "Günlük işlerde yardım eli.",
+      "metaDescription": "Çalışma alanınızla ilgili sorular sorun, içerik hazırlayın ve desteklenen görevler için yardım alın. Değişiklikler ve kararlar ekibinizin kontrolünde kalır."
     },
     "forStudios": {
-      "metaTitle": "Different spaces. Shared possibilities.",
-      "metaDescription": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works."
+      "metaTitle": "Farklı mekânlar. Ortak olanaklar.",
+      "metaDescription": "Mahalledeki bir çalışma alanından hareketli bir topluluk merkezine kadar Shario’yu mekânınızın işleyişine göre şekillendirin."
     },
     "pricing": {
-      "metaTitle": "Yaratıcı stüdyolar için planlar ve fiyatlar",
-      "metaDescription": "Shario planlarını, stüdyo kapasitesini ve yapay zekâ kredilerini karşılaştırın; kart olmadan 14 günlük denemeye başlayın.",
-      "eyebrow": "Büyüyen stüdyolar için planlar",
+      "metaTitle": "Ortak mekânlar için planlar ve fiyatlar",
+      "metaDescription": "Rezervasyonlarla başlayın, üyelikleri ekleyin ve mekânınız büyüdükçe daha fazla araç kullanın. Her plan, kart gerektirmeyen 14 günlük Professional denemesiyle başlar.",
+      "eyebrow": "Mekânınız için planlar",
       "title": "Bugün ihtiyacınız olanla başlayın.",
-      "description": "Her plan, seçim yapmadan önce temel stüdyo yolculuğunuzu deneyebilmeniz için 14 günlük Professional denemesiyle başlar.",
+      "description": "Rezervasyonlarla başlayın, üyelikleri ekleyin ve mekânınız büyüdükçe daha fazla araç kullanın. Her plan, kart gerektirmeyen 14 günlük Professional denemesiyle başlar.",
       "sectionEyebrow": "Planlar arasında net farklar",
       "sectionTitle": "Kapasiteyi, iş akışlarını ve yapay zekâ kredilerini karşılaştırın.",
       "sectionDescription": "Stüdyonuzun ihtiyaç duyduğu konum, ekip hesabı ve operasyonel derinliğe göre seçim yapın.",
       "closingTitle": "Hangi planın uygun olduğundan emin değil misiniz?",
       "closingDescription": "Kart olmadan denemeyi başlatın veya size özel kurulum için bizimle görüşün.",
-      "onboardingTitle": "Set up at your pace.",
-      "onboardingDescription": "Add your space, configure offers and payments, and publish your website when you are ready."
+      "onboardingTitle": "Kendi hızınızda kurun.",
+      "onboardingDescription": "Mekânınızı ekleyin, teklifleri ve ödemeleri ayarlayın, hazır olduğunuzda web sitenizi yayınlayın."
     }
   },
   "MarketingHome": {
     "hero": {
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
+      "description": "Rezervasyonlar, üyelikler ve size ait şık bir web sitesi. Mekânınızı paylaşmak ve topluluğunuzu büyütmek için ihtiyacınız olan her şey Shario’da bir arada."
     },
     "pricing": {
       "eyebrow": "Şeffaf fiyatlandırma",
-      "title": "Stüdyonuzun çalışma biçimine uygun planı seçin.",
-      "description": "Kurslarla başlayın, tam stüdyo operasyonlarına geçin ve ardından gelişmiş otomasyon ile çok lokasyonlu araçları ekleyin. Her plan, kart gerektirmeyen 14 günlük Professional denemesiyle başlar.",
+      "title": "Mekânınıza uygun planı seçin.",
+      "description": "Rezervasyonlarla başlayın, üyelikleri ekleyin ve mekânınız büyüdükçe daha fazla araç kullanın. Her plan, kart gerektirmeyen 14 günlük Professional denemesiyle başlar.",
       "billingIntervalLabel": "Faturalandırma dönemini seçin",
       "monthly": "Aylık",
       "yearly": "Yıllık",
@@ -1207,7 +1207,7 @@
       "mostPopular": "En popüler",
       "starter": {
         "name": "Starter",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync.",
+        "description": "Mekânınız için rezervasyonlar, ödemeler, dersler ve etkinliklerle başlayın.",
         "feature1": "1 stüdyo lokasyonu · 1 ekip hesabı",
         "feature2": "Kurslar, özel etkinlikler ve hediye çekleri",
         "feature3": "Ayda 500 e-posta dahil",
@@ -1216,16 +1216,16 @@
       },
       "professional": {
         "name": "Professional",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "description": "Üyelikleri, ortak mekânları ve günlük işleri birbirine bağlayın.",
         "feature1": "1 stüdyo lokasyonu · 3 ekip hesabı",
-        "feature2": "Offer subscriptions, credits and member benefits that match how people use your space.",
+        "feature2": "Üyelikler, rezervasyonlar ve ortak kaynaklar",
         "feature3": "3 aktif otomasyon · ayda 2.500 e-posta",
         "feature4": "Tam Shario AI · ayda 2.000 kredi",
         "cta": "Ücretsiz denemeyi başlat"
       },
       "studioPlus": {
         "name": "Space Plus",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace.",
+        "description": "İşlerinizi otomatikleştirin ve birden fazla konumu birbirine bağlayın.",
         "feature1": "En fazla 2 stüdyo lokasyonu · 6 ekip hesabı",
         "feature2": "Erişim kodları ve özel alan adı",
         "feature3": "Gelişmiş otomasyonlar · ayda 5.000 e-posta",
@@ -1239,7 +1239,7 @@
         "feature2": "Özel otomasyon, e-posta ve AI limitleri",
         "feature3": "SSO/SCIM, API, webhook'lar ve denetim kayıtları",
         "feature4": "Özel onboarding, taşıma ve SLA",
-        "cta": "Start free trial"
+        "cta": "Ücretsiz denemeyi başlatın"
       },
       "note": "Fiyatlara geçerli vergiler dahil değildir. Yıllık self servis planlara iki ücretsiz ay dahildir. Gerekli sistem e-postaları limite dahil edilmez ve AI kullanımı dahil olan sınırda durur; otomatik ek ücret uygulanmaz.",
       "loading": "Fiyatlar yükleniyor…",
@@ -1348,7 +1348,7 @@
     "signIn": "Giriş yap"
   },
   "PublicSiteNotFound": {
-    "brandLabel": "Make room for more.",
+    "brandLabel": "Daha fazlasına yer açın.",
     "checking": "Web sitesi durumu kontrol ediliyor…",
     "owner": {
       "eyebrow": "Herkese açık web sitesi",
@@ -2376,166 +2376,166 @@
   },
   "SharioMarketing": {
     "hero": {
-      "eyebrow": "Good spaces bring people together",
-      "title": "Your space.",
-      "highlight": "More possibilities.",
-      "description": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario.",
-      "cta": "Start free trial",
-      "secondary": "Explore Shario",
-      "note": "14-day trial · No credit card required",
-      "imageAlt": "People connecting in a bright shared space, surrounded by colorful flowing shapes",
-      "cardTitle": "A little less admin. A lot more connection.",
-      "cardText": "Make room for the people who make your space."
+      "eyebrow": "Güzel mekânlar insanları bir araya getirir",
+      "title": "Sizin mekânınız.",
+      "highlight": "Daha fazla olanak.",
+      "description": "Rezervasyonlar, üyelikler ve size ait şık bir web sitesi. Mekânınızı paylaşmak ve topluluğunuzu büyütmek için ihtiyacınız olan her şey Shario’da bir arada.",
+      "cta": "Ücretsiz denemeyi başlatın",
+      "secondary": "Shario’yu keşfedin",
+      "note": "14 günlük deneme · Kredi kartı gerekmez",
+      "imageAlt": "Renkli, akıcı şekillerle çevrili aydınlık bir ortak mekânda bir araya gelen insanlar",
+      "cardTitle": "Daha az yönetim işi. Daha çok paylaşım.",
+      "cardText": "Mekânınıza hayat veren insanlara yer açın."
     },
     "features": {
-      "eyebrow": "One place for the everyday",
-      "title": "More time for your people.",
-      "description": "Keep the moving parts of your space connected, from someone’s first visit to their next membership renewal.",
+      "eyebrow": "Günlük işler tek bir yerde",
+      "title": "İnsanlara daha fazla zaman.",
+      "description": "İlk ziyaretten bir sonraki üyelik yenilemesine kadar mekânınızın tüm işleyişini birbirine bağlayın.",
       "bookings": {
-        "title": "Bookings made simple",
-        "description": "Let people book rooms, equipment, classes and events. Keep capacity, availability and your calendar in sync."
+        "title": "Rezervasyon artık kolay",
+        "description": "Oda, ekipman, ders ve etkinlik rezervasyonlarını kolaylaştırın. Kapasiteyi, uygunluğu ve takviminizi birbiriyle uyumlu tutun."
       },
       "memberships": {
-        "title": "Memberships that fit",
-        "description": "Offer subscriptions, credits and member benefits that match how people use your space."
+        "title": "İhtiyaca uygun üyelikler",
+        "description": "İnsanların mekânınızı kullanma biçimine uygun abonelikler, krediler ve üye avantajları sunun."
       },
       "website": {
-        "title": "A website that’s yours",
-        "description": "Bring your brand to life with customizable pages, your own content and integrated booking."
+        "title": "Size ait bir web sitesi",
+        "description": "Özelleştirilebilir sayfalar, kendi içerikleriniz ve entegre rezervasyonlarla markanızı hayata geçirin."
       },
       "payments": {
-        "title": "Payments in one place",
-        "description": "Connect payments, track orders and offer gift vouchers. Keep purchases and payment status in one clear view."
+        "title": "Ödemeler tek bir yerde",
+        "description": "Ödemeleri birleştirin, siparişleri takip edin ve hediye çekleri sunun. Satın alımları ve ödeme durumlarını tek bir anlaşılır görünümde izleyin."
       },
       "resources": {
-        "title": "Every space, organized",
-        "description": "Manage locations, rooms, workstations, shared equipment and supplies from one workspace."
+        "title": "Her mekân düzenli",
+        "description": "Konumları, odaları, çalışma istasyonlarını, ortak ekipmanları ve malzemeleri tek bir çalışma alanından yönetin."
       },
       "communication": {
-        "title": "Keep everyone connected",
-        "description": "Send updates, booking reminders and useful automated messages to your community."
+        "title": "Herkesle iletişimde kalın",
+        "description": "Topluluğunuza güncellemeler, rezervasyon hatırlatmaları ve yararlı otomatik mesajlar gönderin."
       },
       "team": {
-        "title": "A team in sync",
-        "description": "Coordinate schedules and tasks, with roles and permissions for the people running your space."
+        "title": "Uyum içinde bir ekip",
+        "description": "Mekânınızı yöneten kişilere roller ve izinler atayarak programları ve görevleri koordine edin."
       },
       "insights": {
-        "title": "A clearer view",
-        "description": "Follow bookings, revenue and activity. Get help with everyday work from your AI assistant."
+        "title": "Daha net bir görünüm",
+        "description": "Rezervasyonları, geliri ve etkinliği takip edin. Günlük işlerinizde yapay zekâ asistanınızdan destek alın."
       }
     },
     "website": {
-      "eyebrow": "Your space. Your identity.",
-      "title": "Your community starts with a warm welcome.",
-      "description": "Create a public website that feels like you. Make it easy to discover your space, find a membership and book something to look forward to.",
-      "one": "Choose your colors, fonts and page layout",
-      "two": "Connect your offers, calendar and customer account",
-      "three": "Use a custom domain on eligible plans",
-      "cta": "Explore your website tools",
-      "example": "Example space website",
+      "eyebrow": "Sizin mekânınız. Sizin kimliğiniz.",
+      "title": "Topluluğunuz sıcak bir karşılamayla başlar.",
+      "description": "Sizi yansıtan bir web sitesi oluşturun. Mekânınızı keşfetmeyi, üyelik seçmeyi ve heyecanla beklenecek bir deneyim için rezervasyon yapmayı kolaylaştırın.",
+      "one": "Renklerinizi, yazı tiplerinizi ve sayfa düzeninizi seçin",
+      "two": "Tekliflerinizi, takviminizi ve müşteri hesabını birbirine bağlayın",
+      "three": "Destekleyen planlarda kendi alan adınızı kullanın",
+      "cta": "Web sitesi araçlarınızı keşfedin",
+      "example": "Örnek mekân web sitesi",
       "spaceName": "Common Ground",
-      "nav": "Our space   ·   Memberships",
-      "previewEyebrow": "A place to belong",
-      "previewTitle": "Good work. Great company.",
-      "previewCta": "Explore our space",
-      "imageAlt": "A welcoming shared workspace with natural light and people working together"
+      "nav": "Mekânımız   ·   Üyelikler",
+      "previewEyebrow": "Kendinizi ait hissedeceğiniz bir yer",
+      "previewTitle": "İyi işler. Güzel insanlar.",
+      "previewCta": "Mekânımızı keşfedin",
+      "imageAlt": "Doğal ışık alan, insanların birlikte çalıştığı sıcak bir ortak çalışma alanı"
     },
     "spaces": {
-      "eyebrow": "For spaces that bring us together",
-      "title": "Different spaces. Shared possibilities.",
-      "description": "From a neighborhood workspace to a busy community hub, shape Shario around the way your space works.",
-      "cta": "Make room for your community",
+      "eyebrow": "Bizi bir araya getiren mekânlar için",
+      "title": "Farklı mekânlar. Ortak olanaklar.",
+      "description": "Mahalledeki bir çalışma alanından hareketli bir topluluk merkezine kadar Shario’yu mekânınızın işleyişine göre şekillendirin.",
+      "cta": "Topluluğunuza yer açın",
       "coworking": {
-        "title": "Coworking spaces",
-        "description": "Desks, meeting rooms and memberships for flexible working days."
+        "title": "Ortak çalışma alanları",
+        "description": "Esnek çalışma günleri için masalar, toplantı odaları ve üyelikler."
       },
       "creative": {
-        "title": "Creative studios",
-        "description": "Shared equipment, workshops and room for your next idea."
+        "title": "Yaratıcı stüdyolar",
+        "description": "Ortak ekipmanlar, atölyeler ve bir sonraki fikrinize yer."
       },
       "rehearsal": {
-        "title": "Rehearsal spaces",
-        "description": "Bookable rooms, repeat sessions and coordinated schedules."
+        "title": "Prova alanları",
+        "description": "Rezerve edilebilir odalar, düzenli seanslar ve uyumlu programlar."
       },
       "community": {
-        "title": "Community hubs",
-        "description": "Events, memberships and shared places for local connections."
+        "title": "Topluluk merkezleri",
+        "description": "Yerel bağları güçlendiren etkinlikler, üyelikler ve ortak mekânlar."
       },
       "workshops": {
-        "title": "Workshops & classes",
-        "description": "Classes, instructors, ticketed events and returning participants."
+        "title": "Atölyeler ve dersler",
+        "description": "Dersler, eğitmenler, biletli etkinlikler ve tekrar gelen katılımcılar."
       }
     },
     "faq": {
-      "eyebrow": "A few good questions",
-      "title": "Let’s make it simple.",
+      "eyebrow": "Birkaç güzel soru",
+      "title": "İşi kolaylaştıralım.",
       "one": {
-        "question": "What can I manage with Shario?",
-        "answer": "Manage bookings, memberships, payments, locations, shared resources, your team and your public website. Enable the modules that fit your space."
+        "question": "Shario ile neleri yönetebilirim?",
+        "answer": "Rezervasyonları, üyelikleri, ödemeleri, konumları, ortak kaynakları, ekibinizi ve herkese açık web sitenizi yönetin. Mekânınıza uygun modülleri etkinleştirin."
       },
       "two": {
-        "question": "Can I use my own branding?",
-        "answer": "Yes. Customize your public website’s colors, typography, content and layout. Custom domains are available on eligible plans."
+        "question": "Kendi marka kimliğimi kullanabilir miyim?",
+        "answer": "Evet. Herkese açık web sitenizin renklerini, tipografisini, içeriğini ve düzenini özelleştirin. Destekleyen planlarda kendi alan adınızı kullanabilirsiniz."
       },
       "three": {
-        "question": "Can my customers book and manage their memberships?",
-        "answer": "Yes. Your public website and customer portal connect bookings, purchases, memberships, credits and invoices."
+        "question": "Müşterilerim rezervasyon yapıp üyeliklerini yönetebilir mi?",
+        "answer": "Evet. Herkese açık web siteniz ve müşteri portalınız rezervasyonları, satın alımları, üyelikleri, kredileri ve faturaları bir araya getirir."
       },
       "four": {
-        "question": "How do I get started?",
-        "answer": "Create your workspace and start a 14-day trial. Add your space, configure your offers and payments, then publish your booking website when you are ready."
+        "question": "Nasıl başlayabilirim?",
+        "answer": "Çalışma alanınızı oluşturun ve 14 günlük denemeyi başlatın. Mekânınızı ekleyin, tekliflerinizi ve ödemeleri ayarlayın, ardından hazır olduğunuzda rezervasyon web sitenizi yayınlayın."
       }
     },
     "closing": {
-      "title": "Make room for more.",
-      "description": "More connections. More possibilities. More time for the space you love. Start building your community with Shario.",
-      "secondary": "Explore plans"
+      "title": "Daha fazlasına yer açın.",
+      "description": "Daha çok bağlantı. Daha fazla olanak. Sevdiğiniz mekân için daha fazla zaman. Topluluğunuzu Shario ile oluşturmaya başlayın.",
+      "secondary": "Planları keşfedin"
     },
     "product": {
-      "eyebrow": "Meet your everyday toolkit",
-      "title": "Everything your space needs, working together.",
-      "description": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
-      "panelEyebrow": "Your connected workspace",
-      "panelTitle": "One place to bring it all together",
-      "solutions": "Find your kind of space"
+      "eyebrow": "Günlük araçlarınızla tanışın",
+      "title": "Mekânınızın ihtiyaç duyduğu her şey, birlikte çalışır.",
+      "description": "Rezervasyonları, üyeleri, ödemeleri, ekibinizi ve herkese açık web sitenizi birbirine bağlayın. Shario gününüzü düzenlemenize yardımcı olurken siz insanlara odaklanın.",
+      "panelEyebrow": "Birbirine bağlı çalışma alanınız",
+      "panelTitle": "Her şeyi bir araya getiren tek bir yer",
+      "solutions": "Size uygun mekânı bulun"
     },
     "access": {
-      "eyebrow": "More freedom for your members",
-      "title": "Let your space work around your people.",
-      "description": "Offer online booking, customer accounts and self-service access workflows. Configure access codes, schedules and your supported lock integration for eligible plans and equipped locations."
+      "eyebrow": "Üyeleriniz için daha fazla özgürlük",
+      "title": "Mekânınız insanlara uyum sağlasın.",
+      "description": "Online rezervasyon, müşteri hesapları ve kendi kendine giriş süreçleri sunun. Uygun planlar ve gerekli donanıma sahip konumlar için giriş kodlarını, programları ve desteklenen kilit entegrasyonunuzu yapılandırın."
     },
     "ai": {
-      "eyebrow": "Meet Shario AI",
-      "title": "A helping hand for everyday work.",
-      "description": "Ask questions about your workspace, prepare content and get help with supported tasks. Your team stays in control of changes and decisions.",
-      "panelEyebrow": "Connected to your workspace",
-      "panelTitle": "Helpful context. Clear next steps.",
+      "eyebrow": "Shario AI ile tanışın",
+      "title": "Günlük işlerde yardım eli.",
+      "description": "Çalışma alanınızla ilgili sorular sorun, içerik hazırlayın ve desteklenen görevler için yardım alın. Değişiklikler ve kararlar ekibinizin kontrolünde kalır.",
+      "panelEyebrow": "Çalışma alanınıza bağlı",
+      "panelTitle": "Yararlı bağlam. Net sonraki adımlar.",
       "context": {
-        "title": "Context that counts",
-        "description": "Work with relevant information from your workspace instead of starting every question from scratch."
+        "title": "Fark yaratan bağlam",
+        "description": "Her soruya sıfırdan başlamak yerine çalışma alanınızdaki ilgili bilgilerden yararlanın."
       },
       "drafts": {
-        "title": "A useful first draft",
-        "description": "Prepare customer messages, website copy and ideas for your next event."
+        "title": "İşe yarayan bir ilk taslak",
+        "description": "Müşteri mesajları, web sitesi metinleri ve bir sonraki etkinliğiniz için fikirler hazırlayın."
       },
       "control": {
-        "title": "You stay in control",
-        "heading": "Your assistant. Your decisions.",
-        "description": "Review suggestions and confirm actions when required. AI features depend on your workspace permissions, enabled integrations and plan allowance."
+        "title": "Kontrol sizde kalır",
+        "heading": "Sizin asistanınız. Sizin kararlarınız.",
+        "description": "Önerileri inceleyin ve gerektiğinde işlemleri onaylayın. AI özellikleri çalışma alanınızın izinlerine, etkinleştirilen entegrasyonlara ve planınızın kullanım sınırlarına bağlıdır."
       }
     },
     "footer": {
-      "tagline": "Make room for more.",
-      "product": "Product",
-      "overview": "Explore Shario",
+      "tagline": "Daha fazlasına yer açın.",
+      "product": "Ürün",
+      "overview": "Shario’yu keşfedin",
       "ai": "Shario AI",
-      "pricing": "Pricing",
-      "spaces": "For your space",
-      "company": "Get started",
-      "about": "How it works",
-      "login": "Log in",
-      "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "pricing": "Fiyatlandırma",
+      "spaces": "Mekânınız için",
+      "company": "Başlayın",
+      "about": "Nasıl çalışır?",
+      "login": "Giriş yapın",
+      "register": "Ücretsiz denemeyi başlatın",
+      "copyright": "© {year} Shario. Tüm hakları saklıdır."
     }
   }
 }
