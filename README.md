@@ -43,6 +43,10 @@ npx playwright test --config=playwright.marketing.config.js
 
 The full-stack Playwright configuration expects the sibling `shario-server` checkout and a disposable Redis instance on `127.0.0.1:6381` (database 15). It starts a temporary MongoDB replica set and mocks Stripe/R2. The larger release smoke also needs Mailpit and a local Postmark stub; see `e2e/README.md`. Never point the test harness at a production database.
 
+## Vercel deployment
+
+See [the Vercel setup guide](docs/VERCEL.md) for project settings, required environment variables, wildcard tenant domains and staging. The frontend uses the normal Next.js deployment on Node 22; its API and workers run separately from this repository. Vercel builds validate deployment URLs and tenant-root settings before compiling.
+
 ## Brand and tenant customization
 
 The platform uses Manrope, Shario Blue `#2563EB`, Ink `#182333`, white surfaces and aqua/coral/yellow/lilac accents. Canonical artwork is in `public/brand/`; the Manrope font and license are in `src/fonts/` (`Manrope-OFL.txt`). Marketing is localized in English and Czech; new marketing copy falls back to English in preview locales. Existing generic product translations remain available.

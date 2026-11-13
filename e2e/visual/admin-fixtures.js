@@ -101,8 +101,8 @@ const visualPublicSite = {
     stylePreset: "classic-editorial-v1",
     fontPreset: "shario-sans-v1",
     description: {
-      en: "A calm ceramics studio for making, learning and meeting.",
-      cs: "Klidné keramické studio pro tvorbu, učení a setkávání.",
+      en: "A welcoming shared space for making, learning and meeting.",
+      cs: "Příjemný sdílený prostor pro tvorbu, učení a setkávání.",
     },
     accentColor: "#4056D6",
     secondaryColor: "#D9806E",

@@ -65,6 +65,18 @@ const getConfiguredPlatformHostnames = (rootDomain) => {
     .split(",")
     .map(normalizeHostname)
     .filter(Boolean);
+  // Vercel provides exact hostnames for this project. Do not accept every
+  // *.vercel.app host: unrelated deployments must still return 404.
+  const deploymentHostnames =
+    process.env.VERCEL === "1"
+      ? [
+          process.env.VERCEL_URL,
+          process.env.VERCEL_BRANCH_URL,
+          process.env.VERCEL_PROJECT_PRODUCTION_URL,
+        ]
+          .map(normalizeHostname)
+          .filter(Boolean)
+      : [];
 
   return new Set([
     rootDomain,
@@ -73,6 +85,7 @@ const getConfiguredPlatformHostnames = (rootDomain) => {
     "127.0.0.1",
     "::1",
     ...configuredHostnames,
+    ...deploymentHostnames,
   ]);
 };
 

@@ -143,10 +143,14 @@ describe("Headless UI backport installation", () => {
     const { scripts } = JSON.parse(
       readFileSync(path.join(process.cwd(), "package.json"), "utf8"),
     );
-    for (const hook of ["postinstall", "prebuild", "prebuild:turbopack"]) {
-      expect(scripts[hook]).toBe(
-        "node scripts/apply-headlessui-transition-backport.mjs",
-      );
+    const backportCommand =
+      "node scripts/apply-headlessui-transition-backport.mjs";
+    expect(scripts.postinstall).toBe(backportCommand);
+    for (const hook of ["prebuild", "prebuild:turbopack"]) {
+      expect(scripts[hook].split(" && ")).toEqual([
+        "node scripts/validate-vercel-env.mjs",
+        backportCommand,
+      ]);
     }
     expect(scripts.build).toBe("next build --webpack");
     expect(scripts["build:turbopack"]).toBe("next build");
