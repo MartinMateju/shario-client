@@ -79,6 +79,7 @@ describe("locale validator readiness requirements", () => {
     ]);
   });
 
+  // Four subprocesses each validate every full catalog; allow for shared CI CPU.
   it("fails the CLI for any missing locale, including Czech and previews", () => {
     const fixtureRoot = fs.mkdtempSync(
       path.join(os.tmpdir(), "shario-locale-validator-"),
@@ -145,7 +146,7 @@ describe("locale validator readiness requirements", () => {
       }
       fs.rmSync(resolved, { recursive: true, force: true });
     }
-  });
+  }, 15_000);
 });
 
 describe("complete message catalogs without English overlays", () => {
