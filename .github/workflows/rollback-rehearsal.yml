@@ -21,12 +21,12 @@ on:
       server_target:
         description: Previous compatible server full commit SHA
         required: true
-        default: 1b5e3a1f7c8277fd2f7e623b2fdffd91bda6528f
+        default: a4cedc2d1d45da552c6a7bae0bb8cf15bfb2bb7f
         type: string
       client_target:
         description: Previous compatible client full commit SHA
         required: true
-        default: d895b6dd3933db9b43ff787a8be5b8b7f2095422
+        default: ca3ee1a67b27d5031e8a5ccf1648277c1b291e93
         type: string
 
 permissions:
@@ -75,13 +75,13 @@ jobs:
       - uses: actions/checkout@v7
         with:
           repository: MartinMateju/shario-server
-          ref: ${{ inputs.server_ref || 'f90c33580a23f347f6f40e5de14a22ca949b65c5' }}
+          ref: ${{ inputs.server_ref || 'main' }}
           path: backend
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/checkout@v7
         with:
-          ref: ${{ inputs.client_target || 'd895b6dd3933db9b43ff787a8be5b8b7f2095422' }}
+          ref: ${{ inputs.client_target || 'ca3ee1a67b27d5031e8a5ccf1648277c1b291e93' }}
           path: rollback-client-dependencies
           persist-credentials: false
       - uses: actions/setup-node@v7
@@ -108,8 +108,8 @@ jobs:
       - name: Switch all five real processes back to pinned versions
         working-directory: frontend
         env:
-          SERVER_TARGET: ${{ inputs.server_target || '1b5e3a1f7c8277fd2f7e623b2fdffd91bda6528f' }}
-          CLIENT_TARGET: ${{ inputs.client_target || 'd895b6dd3933db9b43ff787a8be5b8b7f2095422' }}
+          SERVER_TARGET: ${{ inputs.server_target || 'a4cedc2d1d45da552c6a7bae0bb8cf15bfb2bb7f' }}
+          CLIENT_TARGET: ${{ inputs.client_target || 'ca3ee1a67b27d5031e8a5ccf1648277c1b291e93' }}
         run: node scripts/rollback-rehearsal.mjs --server-target "$SERVER_TARGET" --client-target "$CLIENT_TARGET" --rollback-client-dependencies "$GITHUB_WORKSPACE/rollback-client-dependencies" --dedicated-redis isolated-rehearsal --output "$GITHUB_WORKSPACE/rollback-evidence"
       - name: Upload local rehearsal evidence
         if: always()

@@ -67,7 +67,7 @@ test("public courses reuse server data and keep workspace translations out of pu
     .click();
   await expect(page).toHaveURL(/\/login\?/);
   await expect(
-    page.getByRole("textbox", { name: "E-mail", exact: true }),
+    page.getByRole("textbox", { name: "Email", exact: true }),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Sign in", exact: true }),

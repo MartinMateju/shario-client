@@ -8,24 +8,24 @@ The baseline predates the protected operations endpoint. Rolling back to it remo
 
 ## Run
 
-Use Node 22 with installed dependencies in sibling `frontend` and `backend` checkouts. Provide a fresh **dedicated** local Redis on `127.0.0.1:6379` with database 15 empty, and optionally Mailpit SMTP on `127.0.0.1:1025` with the fixture account `mail@shario-e2e.test` / `e2e-no-smtp`. The workflow provisions both services. Ports 3000, 4001 and 4100 must be free. The runner provisions Mongo itself and binds its Postmark capture server to loopback. It refuses nonempty Redis databases or another run's ownership marker, and never flushes Redis. Recreate the dedicated Redis instance between rehearsals; do not delete unrelated jobs to make this guard pass.
+Use Node 22 with installed dependencies in sibling `frontend` and `backend` checkouts. Provide a fresh **dedicated** local Redis on `127.0.0.1:6379` with database 15 empty, and optionally Mailpit SMTP on `127.0.0.1:1025` with the fixture account `mail@shario-e2e.test` / `e2e-no-smtp`. The workflow provisions both services. Ports 4310, 4311 and 4100 must be free. The runner provisions Mongo itself and binds its Postmark capture server to loopback. It refuses nonempty Redis databases or another run's ownership marker, and never flushes Redis. Recreate the dedicated Redis instance between rehearsals; do not delete unrelated jobs to make this guard pass.
 
 ```sh
 node --test ../backend/tests/rollback/safety.test.mjs
 node --test tests/rollback-processes.test.mjs
 node --test tests/rollback-dependencies.test.mjs
 node scripts/rollback-rehearsal.mjs \
-  --server-target 1b5e3a1f7c8277fd2f7e623b2fdffd91bda6528f \
-  --client-target d895b6dd3933db9b43ff787a8be5b8b7f2095422 \
+  --server-target a4cedc2d1d45da552c6a7bae0bb8cf15bfb2bb7f \
+  --client-target ca3ee1a67b27d5031e8a5ccf1648277c1b291e93 \
   --dedicated-redis isolated-rehearsal \
   --output /absolute/path/to/disposable-rehearsal-evidence
 ```
 
-The default client target resolves the full commit beginning `d895b6d`; both defaults are the merged release baseline before these operational changes. The workflow requires an explicit full client SHA. The older pre-release pair is not implicitly considered compatible. Before choosing another pair, review schema/index/data compatibility. The runner requires matching dependency lockfiles before reusing installed dependencies; it fails with a bounded diagnostic rather than silently using incompatible target dependencies.
+Both defaults are the Shario `main` commits immediately before the skab.io feature port that introduced this harness. The workflow requires an explicit full client SHA. The older pre-release pair is not implicitly considered compatible. Before choosing another pair, review schema/index/data compatibility. The runner requires matching dependency lockfiles before reusing installed dependencies; it fails with a bounded diagnostic rather than silently using incompatible target dependencies.
 
 When the client target has a different dependency lock from the candidate, prepare a separate checkout of that exact target and run `npm ci` there before the rehearsal. Pass its checkout root with `--rollback-client-dependencies /absolute/path/to/pinned-client-checkout`. Its `package.json` and `package-lock.json` must both match the archived target byte for byte, and its installed `node_modules` must be a real directory separate from the candidate's dependencies. The workflow checks out the pinned client target and installs its dependencies separately, then supplies this path automatically. The harness never installs dependencies itself. Candidate and server snapshots retain their existing lock-match requirement; the new option applies only to the rollback client.
 
-The GitHub workflow is **Isolated rollback rehearsal**. Before its first merge, it runs on same-repository pull requests changing the harness, docs, workflow or package scripts, using the pinned server candidate in the workflow. Fork pull requests are excluded. Once the workflow exists on the default branch, it also supports manual dispatch: set `server_ref` to the candidate server commit and the two target inputs to the reviewed immutable rollback pair. It uses the existing read-only `SHARIO_CI_SERVER_DEPLOY_KEY`; no production environment secrets are passed to application processes.
+The GitHub workflow is **Isolated rollback rehearsal**. It runs on same-repository pull requests changing the harness, docs, workflow or package scripts, using the server's `main` branch as the candidate. The server must already contain `tests/rollback`, so merge the companion server change first. Fork pull requests are excluded. Once the workflow exists on the default branch, it also supports manual dispatch: set `server_ref` to the candidate server commit and the two target inputs to the reviewed immutable rollback pair. The server repository is public, so no deploy key is needed; no production environment secrets are passed to application processes.
 
 ## What is exercised
 
@@ -48,10 +48,6 @@ Child processes do not inherit `.env`, provider keys, Mongo/Redis URLs, proxy se
 
 No automatic deployment, PR merge, production rollback or database restore is performed by this workflow.
 
-## Recorded local rehearsal
+## Recorded rehearsals
 
-The [14 November 2026 evidence](evidence/rollback-rehearsal-2026-11-14.json) records a successful switch from server `7dde1a673325da66e868d4dd57d1738e18b7c8a4` to `1b5e3a1f7c8277fd2f7e623b2fdffd91bda6528f`, with the client baseline `d895b6dd3933db9b43ff787a8be5b8b7f2095422`. The client candidate contained this uncommitted tooling; its application runtime matched the baseline, and both snapshots were built and restarted independently. Source hashes and Next build IDs are recorded in the evidence.
-
-The local interval from starting rollback to verifying restored data and resumed jobs was **4.8 seconds**. This is not a hosted recovery-time estimate. The candidate aggregate returned 200 with three actual worker heartbeats and 18 registered critical crons in startup grace; the separate scheduler scan completed.
-
-The [first GitHub rehearsal](https://github.com/MartinMateju/shario-client/actions/runs/43581373292) also passed, in **23.928 seconds** through data verification, with server `b6128e2711d85c3595c33d4701700af1361df722` and the merge tree identical to client `25dec6539fbe61298c6e3d4a9d18293cfdc000d2`. That server follow-up changed only a workflow path. Later monitoring changes require a new server pin and a fresh passing rehearsal; use the latest **Isolated rollback rehearsal** check on the PR and its retained artifact for the final committed pair. Historical local and CI timings do not certify a newer revision.
+No Shario rehearsal has been recorded yet. Use the latest **Isolated rollback rehearsal** check and its retained artifact as evidence for a committed candidate/target pair. Historical timings do not certify a newer revision.

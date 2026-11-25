@@ -29,13 +29,17 @@ if (Object.hasOwn(args, "--rollback-client-dependencies")) {
   );
 }
 const serverTarget =
-  args["--server-target"] || "1b5e3a1f7c8277fd2f7e623b2fdffd91bda6528f";
+  args["--server-target"] || "a4cedc2d1d45da552c6a7bae0bb8cf15bfb2bb7f";
 const clientTarget =
   args["--client-target"] ||
-  execFileSync("git", ["rev-parse", "d895b6d^{commit}"], {
-    cwd: frontend,
-    encoding: "utf8",
-  }).trim();
+  execFileSync(
+    "git",
+    ["rev-parse", "ca3ee1a67b27d5031e8a5ccf1648277c1b291e93^{commit}"],
+    {
+      cwd: frontend,
+      encoding: "utf8",
+    },
+  ).trim();
 for (const ref of [serverTarget, clientTarget])
   assert.match(
     ref,
