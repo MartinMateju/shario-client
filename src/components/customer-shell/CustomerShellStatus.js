@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 export default function CustomerShellStatus({ kind = "loading", onRetry }) {
   const t = useTranslations("CustomerShell.status");
   const isError = kind === "error";
+  const Heading = isError ? "h1" : "p";
   const Icon = isError ? ExclamationTriangleIcon : ArrowPathIcon;
 
   return (
@@ -23,9 +24,9 @@ export default function CustomerShellStatus({ kind = "loading", onRetry }) {
             className={isError ? "h-6 w-6" : "h-6 w-6 animate-spin"}
           />
         </span>
-        <h1 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-[var(--tenant-text-on-surface)]">
+        <Heading className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-[var(--tenant-text-on-surface)]">
           {t(isError ? "errorTitle" : "loadingTitle")}
-        </h1>
+        </Heading>
         <p
           className="mt-3 text-sm leading-6 text-[var(--tenant-muted-on-surface)]"
           role={isError ? "alert" : "status"}

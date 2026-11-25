@@ -2,6 +2,7 @@ import { routing } from "@/i18n/routing";
 import { getPublicTenantConfig } from "@/lib/publicTenant/server";
 import {
   buildPublicRobotsText,
+  getTenantPublicCanonicalOrigin,
   resolvePublicSeoSite,
 } from "@/lib/publicTenant/seo";
 
@@ -53,7 +54,7 @@ export async function GET(request) {
 
   return response(
     buildPublicRobotsText({
-      origin: site.origin,
+      origin: getTenantPublicCanonicalOrigin(result.tenant, site),
       locales: routing.locales,
       indexable,
     }),

@@ -20,35 +20,33 @@ import {
 
 import {
   cx,
-  formatMoney,
   formatOrderTimestamp,
   getCartItems,
   getCustomerEmail,
   getCustomerInitials,
   getCustomerName,
-  getOrderCurrency,
   getOrderId,
   getOrderNumber,
   getOrderStatusKey,
-  getOrderTotal,
   getPaymentMethodKey,
   getPaymentReference,
   getPaymentStatusKey,
   getProductName,
 } from "./sales.utils";
+import OrderAmount from "./OrderAmount";
 
 const STATUS_CLASSES = {
-  awaitingPayment: "bg-[#FBF0DF] text-[#A56500]",
-  processing: "bg-cobalt-50 text-cobalt-600",
-  completed: "bg-[#E8F3E3] text-[#315D2D]",
-  failed: "bg-coral-50 text-terracotta-700",
-  cancelled: "bg-[#EEEDE9] text-[#696965]",
+  awaitingPayment: "border-warning/40 bg-warning-soft text-warning",
+  processing: "border-cobalt-200 bg-cobalt-50 text-cobalt-700",
+  completed: "border-success/40 bg-success-soft text-success",
+  failed: "border-danger/40 bg-danger-soft text-danger",
+  cancelled: "border-line bg-surface-muted text-ink-soft",
 };
 
 const PAYMENT_DOT_CLASSES = {
-  paid: "bg-[#287432]",
-  unpaid: "bg-[#C47A00]",
-  failed: "bg-[#D7472F]",
+  paid: "bg-success",
+  unpaid: "bg-warning",
+  failed: "bg-danger",
 };
 
 function CustomerAvatar({ order }) {
@@ -65,7 +63,7 @@ function StatusPill({ order, t }) {
   return (
     <span
       className={cx(
-        "inline-flex rounded-[9px] px-2.5 py-1.5 text-[10px] font-medium",
+        "inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 text-[12px] font-semibold leading-4",
         STATUS_CLASSES[status] || STATUS_CLASSES.cancelled,
       )}
     >
@@ -83,12 +81,12 @@ function PaymentSummary({ order, t }) {
     <div className="min-w-[120px]">
       <p
         className={cx(
-          "flex items-center gap-1.5 text-[12px] font-medium",
+          "flex items-center gap-1.5 text-[13px] font-semibold",
           paymentStatus === "failed"
-            ? "text-terracotta-600"
+            ? "text-danger"
             : paymentStatus === "unpaid"
-              ? "text-[#A56500]"
-              : "text-[#315D2D]",
+              ? "text-warning"
+              : "text-success",
         )}
       >
         <span
@@ -99,7 +97,7 @@ function PaymentSummary({ order, t }) {
         />
         {t(`payments.${paymentStatus}`)}
       </p>
-      <p className="mt-1 truncate text-[12px] text-ink-muted">
+      <p className="mt-1 truncate text-[13px] text-ink-muted">
         {t(`paymentMethods.${method}`)}
         {reference ? ` •••• ${reference}` : ""}
       </p>
@@ -117,18 +115,18 @@ function ProductSummary({ order, locale, t }) {
       }`
     : "";
 
-  if (!items.length) return <span className="text-[#969691]">—</span>;
+  if (!items.length) return <span className="text-ink-muted">—</span>;
 
   return (
     <div className="min-w-[170px] max-w-[250px]">
       <WorkspaceTruncatedText
         as="p"
-        className="text-[12px] font-medium text-ink-soft"
+        className="text-[13px] font-medium text-ink-soft"
       >
         {productLabel}
       </WorkspaceTruncatedText>
       {items.length > 1 && (
-        <p className="mt-1 truncate text-[12px] text-ink-muted">
+        <p className="mt-1 truncate text-[13px] text-ink-muted">
           {t("table.moreItems", { count: items.length - 1 })}
         </p>
       )}
@@ -140,7 +138,7 @@ function OrderActions({ order, onView, onCopy, t }) {
   return (
     <Menu as="div" className="relative">
       <MenuButton
-        className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-line bg-white text-[#555553] transition hover:border-line-strong hover:text-[#171717] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/35"
+        className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-line bg-white text-ink-soft transition hover:border-line-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500"
         aria-label={t("actions.open", { order: getOrderNumber(order) })}
       >
         <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
@@ -155,7 +153,7 @@ function OrderActions({ order, onView, onCopy, t }) {
           <button
             type="button"
             onClick={() => onView(order)}
-            className="flex w-full items-center gap-2.5 rounded-[9px] px-3 py-2.5 text-left text-[12px] text-ink-soft transition data-focus:bg-sand-50"
+            className="flex w-full items-center gap-2.5 rounded-[9px] px-3 py-2.5 text-left text-[13px] text-ink-soft transition data-focus:bg-sand-50"
           >
             <EyeIcon className="h-4 w-4" aria-hidden="true" />
             {t("actions.view")}
@@ -165,7 +163,7 @@ function OrderActions({ order, onView, onCopy, t }) {
           <button
             type="button"
             onClick={() => onCopy(order)}
-            className="flex w-full items-center gap-2.5 rounded-[9px] px-3 py-2.5 text-left text-[12px] text-ink-soft transition data-focus:bg-sand-50"
+            className="flex w-full items-center gap-2.5 rounded-[9px] px-3 py-2.5 text-left text-[13px] text-ink-soft transition data-focus:bg-sand-50"
           >
             <ClipboardDocumentIcon className="h-4 w-4" aria-hidden="true" />
             {t("actions.copyId")}
@@ -193,10 +191,10 @@ function OrderCard({ order, locale, selected, onSelect, onView, onCopy, t }) {
             className="mt-1 h-4 w-4 rounded border-line-strong text-cobalt-500 focus:ring-cobalt-500/25"
           />
           <span className="min-w-0">
-            <span className="block text-[12px] font-semibold text-ink">
+            <span className="block text-[14px] font-semibold text-ink">
               {getOrderNumber(order)}
             </span>
-            <span className="mt-1 block text-[12px] text-ink-muted">
+            <span className="mt-1 block text-[13px] text-ink-muted">
               {formatOrderTimestamp(order?.createdAt, locale, t)}
             </span>
           </span>
@@ -210,13 +208,13 @@ function OrderCard({ order, locale, selected, onSelect, onView, onCopy, t }) {
         <div className="min-w-0 flex-1">
           <WorkspaceTruncatedText
             as="p"
-            className="text-[12px] font-semibold text-ink"
+            className="text-[14px] font-semibold text-ink"
           >
             {getCustomerName(order)}
           </WorkspaceTruncatedText>
           <WorkspaceTruncatedText
             as="p"
-            className="mt-0.5 text-[12px] text-ink-muted"
+            className="mt-0.5 text-[13px] text-ink-muted"
           >
             {getCustomerEmail(order) || "—"}
           </WorkspaceTruncatedText>
@@ -224,9 +222,9 @@ function OrderCard({ order, locale, selected, onSelect, onView, onCopy, t }) {
         <StatusPill order={order} t={t} />
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-4 rounded-[14px] bg-[#FAF9F6] p-3.5">
+      <div className="mt-4 grid grid-cols-2 gap-4 rounded-[14px] bg-surface-muted p-3.5">
         <div className="col-span-2">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.products")}
           </p>
           <div className="mt-1.5">
@@ -234,15 +232,15 @@ function OrderCard({ order, locale, selected, onSelect, onView, onCopy, t }) {
           </div>
         </div>
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.total")}
           </p>
-          <p className="mt-1.5 text-[12px] font-semibold text-ink">
-            {formatMoney(getOrderTotal(order), getOrderCurrency(order), locale)}
-          </p>
+          <div className="mt-1.5 text-[14px] font-semibold text-ink">
+            <OrderAmount order={order} locale={locale} t={t} />
+          </div>
         </div>
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.payment")}
           </p>
           <div className="mt-1.5">
@@ -335,7 +333,7 @@ export default function OrdersCatalog({
                 return (
                   <tr
                     key={orderId}
-                    className="group transition hover:bg-[#FBFAF7]"
+                    className="group transition hover:bg-surface-muted"
                   >
                     <td
                       className={cx(
@@ -361,11 +359,11 @@ export default function OrdersCatalog({
                         <button
                           type="button"
                           onClick={() => onView(order)}
-                          className="text-left text-[12px] font-semibold text-ink transition hover:text-cobalt-600"
+                          className="text-left text-[14px] font-semibold text-ink transition hover:text-cobalt-600"
                         >
                           {getOrderNumber(order)}
                         </button>
-                        <p className="mt-1 text-[12px] text-ink-muted">
+                        <p className="mt-1 text-[13px] text-ink-muted">
                           {formatOrderTimestamp(order?.createdAt, locale, t)}
                         </p>
                       </div>
@@ -379,13 +377,13 @@ export default function OrdersCatalog({
                         <div className="min-w-0">
                           <WorkspaceTruncatedText
                             as="p"
-                            className="text-[12px] font-semibold text-ink"
+                            className="text-[14px] font-semibold text-ink"
                           >
                             {getCustomerName(order)}
                           </WorkspaceTruncatedText>
                           <WorkspaceTruncatedText
                             as="p"
-                            className="mt-1 max-w-[180px] text-[12px] text-ink-muted"
+                            className="mt-1 max-w-[180px] text-[13px] text-ink-muted"
                           >
                             {getCustomerEmail(order) || "—"}
                           </WorkspaceTruncatedText>
@@ -401,17 +399,11 @@ export default function OrdersCatalog({
 
                     <td
                       className={cx(
-                        "border-b border-line px-4 text-[12px] font-semibold text-ink",
+                        "border-b border-line px-4 text-[14px] font-semibold text-ink",
                         cellPadding,
                       )}
                     >
-                      <span className="whitespace-nowrap">
-                        {formatMoney(
-                          getOrderTotal(order),
-                          getOrderCurrency(order),
-                          locale,
-                        )}
-                      </span>
+                      <OrderAmount order={order} locale={locale} t={t} />
                     </td>
 
                     <td

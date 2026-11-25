@@ -13,6 +13,7 @@ import portugueseMessages from "@/messages/pt-PT.json";
 
 const mocks = vi.hoisted(() => ({
   dispatch: vi.fn(),
+  degraded: false,
   currentCustomerLocale: null,
   getCustomerCurrentLocale: vi.fn(),
   getUserAccess: vi.fn(),
@@ -26,6 +27,7 @@ const mocks = vi.hoisted(() => ({
   router: {
     push: vi.fn(),
     replace: vi.fn(),
+    refresh: vi.fn(),
   },
   searchNext: "",
   tenant: {
@@ -77,6 +79,7 @@ vi.mock("next-intl", async (...args) => {
       useLocale: () => mocks.locale,
       useTranslations: () => (key) => key,
     }))(...args),
+    ["PublicTenant.unavailable"],
   );
 });
 
@@ -86,6 +89,7 @@ vi.mock("@/i18n/customerLocalePreference", () => ({
 }));
 
 vi.mock("next/navigation", () => ({
+  useRouter: () => mocks.router,
   useParams: () => ({ tenantSlug: "Studio-Olivie" }),
   useSearchParams: () => ({
     get: (key) => (key === "next" ? mocks.searchNext : null),
@@ -108,8 +112,11 @@ vi.mock("@/i18n/navigation", async () => {
 });
 
 vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
-  useOptionalPublicTenant: () => ({ tenant: mocks.tenant, degraded: false }),
-  usePublicTenant: () => ({ tenant: mocks.tenant, degraded: false }),
+  useOptionalPublicTenant: () => ({
+    tenant: mocks.tenant,
+    degraded: mocks.degraded,
+  }),
+  usePublicTenant: () => ({ tenant: mocks.tenant, degraded: mocks.degraded }),
 }));
 
 vi.mock("@/components/public-tenant/PublicCapabilityGate", async () => {
@@ -191,6 +198,8 @@ const expectedAuthHref = (pathname, next) =>
   `${pathname}?next=${encodeURIComponent(next)}`;
 
 beforeEach(() => {
+  mocks.degraded = false;
+  mocks.router.refresh.mockReset();
   delete mocks.tenant.publicSite.branding.logoRedirectEnabled;
   delete mocks.tenant.publicSite.branding.logoRedirectUrl;
   delete mocks.tenant.settings;
@@ -264,6 +273,22 @@ describe("customer authentication logo destination", () => {
 });
 
 describe("end-customer login page", () => {
+  it("offers explicit recovery when studio branding is unavailable while preserving the login draft", async () => {
+    mocks.degraded = true;
+    renderLogin("/courses/wheel?intent=saved-booking");
+    const email = screen.getByLabelText(/^e-?mail/i);
+    fireEvent.change(email, { target: { value: "customer@example.test" } });
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "The studio details could not be loaded right now.",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    expect(mocks.router.refresh).toHaveBeenCalledExactlyOnceWith();
+    expect(mocks.router.push).not.toHaveBeenCalled();
+    expect(mocks.router.replace).not.toHaveBeenCalled();
+    expect(mocks.login).not.toHaveBeenCalled();
+    expect(email).toHaveValue("customer@example.test");
+  });
+
   it("uses the customized login eyebrow and page label colour", () => {
     const originalLogin = mocks.tenant.publicSite.login;
     mocks.tenant.publicSite.login = {

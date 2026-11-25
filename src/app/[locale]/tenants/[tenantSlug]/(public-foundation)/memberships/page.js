@@ -1,3 +1,5 @@
+import PublicCommerceCatalogHydration from "@/components/public-tenant/PublicCommerceCatalogHydration";
+import { getPublicCommerceCatalog } from "@/lib/publicTenant/commerceCatalog.server";
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 
@@ -31,12 +33,21 @@ export async function generateMetadata({ params }) {
 
 export default async function MembershipCatalogPage({ params }) {
   const { tenantSlug } = await params;
-  await requirePublicTenantPageVisible(tenantSlug, "memberships");
+  const [visibility, snapshot] = await Promise.all([
+    requirePublicTenantPageVisible(tenantSlug, "memberships"),
+    getPublicCommerceCatalog(tenantSlug, "memberships"),
+  ]);
+  const initialData =
+    visibility.tenant?.publicCapabilities?.memberships === true
+      ? snapshot
+      : null;
 
   return (
     <Suspense fallback={null}>
       <PublicCapabilityGate capability="memberships">
-        <PublicMembershipCatalog />
+        <PublicCommerceCatalogHydration initialData={initialData}>
+          <PublicMembershipCatalog />
+        </PublicCommerceCatalogHydration>
       </PublicCapabilityGate>
     </Suspense>
   );

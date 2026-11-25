@@ -1265,6 +1265,21 @@ describe("Launch Center requirement model", () => {
       }),
     ).toBe(2);
   });
+
+  it("normalizes legacy communication actions while preserving guided context", () => {
+    expect(
+      getSetupActionHref(
+        { id: "communications" },
+        {
+          href: "/app/communications?section=automations&tab=senders&compose=1&source=launch#sender",
+          enabled: true,
+        },
+      ),
+    ).toBe(
+      "/app/settings/communications?source=launch&setupStep=communications#sender",
+    );
+  });
+
   const scenarioStep = ({
     id,
     requirement,

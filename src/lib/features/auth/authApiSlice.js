@@ -242,6 +242,16 @@ export const authApiSlice = apiSlice.injectEndpoints({
         validateAuthResponse(response, AUTH_CONTEXTS.CUSTOMER),
     }),
 
+    exchangeCustomerSessionHandoff: builder.mutation({
+      query: (sessionHandoff) => ({
+        url: "/auth/customer/session-handoff",
+        method: "POST",
+        body: { sessionHandoff },
+      }),
+      transformResponse: (response) =>
+        validateAuthResponse(response, AUTH_CONTEXTS.CUSTOMER),
+    }),
+
     getCustomerSocialProviders: builder.query({
       query: ({ tenantSlug }) => ({
         url: "/auth/customer/social/providers",
@@ -276,6 +286,7 @@ export const {
   useSendCustomerLogoutMutation,
   useRefreshMutation,
   useCustomerRefreshMutation,
+  useExchangeCustomerSessionHandoffMutation,
   useGetCustomerSocialProvidersQuery,
   useRequestCustomerEmailVerificationMutation,
   useResendCustomerEmailVerificationMutation,

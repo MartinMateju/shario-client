@@ -47,13 +47,19 @@ export default function WorkspaceRouteScrollReset() {
   useLayoutEffect(() => {
     let secondAnimationFrame = null;
 
-    resetWorkspaceScroll();
+    // Next handles hash destinations itself. A later top reset would undo
+    // that scroll, including when the hash is committed between frames.
+    const resetUnlessAnchored = () => {
+      if (!window.location.hash) resetWorkspaceScroll();
+    };
+
+    resetUnlessAnchored();
 
     const firstAnimationFrame = window.requestAnimationFrame(() => {
-      resetWorkspaceScroll();
+      resetUnlessAnchored();
 
       secondAnimationFrame = window.requestAnimationFrame(() => {
-        resetWorkspaceScroll();
+        resetUnlessAnchored();
       });
     });
 

@@ -160,6 +160,42 @@ describe("booking editor request boundary", () => {
     });
   });
 
+  it("sends valid historical studio times only through the revision-bearing staff editor endpoint", () => {
+    const editor = {
+      revision: "2030-01-22T12:00:00.000Z",
+      location: { timeZone: "Europe/Prague" },
+      booking: {
+        start: "2030-01-23T10:00:00.000Z",
+        end: "2030-01-23T11:00:00.000Z",
+        paymentStatus: "CONFIRMED",
+        totalPrice: 250,
+      },
+      participants: [{ id: "existing-seat" }],
+      capabilities: { canReschedule: true, canEditParticipants: false },
+    };
+    const payload = buildBookingEditorPayload(editor, {
+      ...createBookingEditorDraft(editor),
+      start: "2020-01-19T10:00",
+      end: "2020-01-19T11:00",
+    });
+    expect(
+      captured.endpoints.saveBookingEditor.query({
+        id: "booking-1",
+        ...payload,
+      }),
+    ).toEqual({
+      url: "/bookings/booking-1/editor",
+      method: "PUT",
+      body: {
+        revision: editor.revision,
+        lecturer: "",
+        note: "",
+        start: "2020-01-19T09:00:00.000Z",
+        end: "2020-01-19T10:00:00.000Z",
+      },
+    });
+  });
+
   it("detects current member identities while not confusing reassigned old custom IDs", () => {
     const customer = { id: "new-owner", memberNumber: 9, customId: "9" };
     expect(isCustomerAlreadyAttending([{ memberNumber: 9 }], customer)).toBe(

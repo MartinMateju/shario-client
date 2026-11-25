@@ -638,7 +638,7 @@ export const getSetupActionHref = (step, action = getPrimaryAction(step)) => {
 
   const [hrefWithoutHash, hash = ""] = href.split("#", 2);
   const [pathname, query = ""] = hrefWithoutHash.split("?", 2);
-  const resolvedPathname =
+  let resolvedPathname =
     step.id === "studio" && pathname === "/app/settings"
       ? "/app/settings/general"
       : pathname;
@@ -647,7 +647,10 @@ export const getSetupActionHref = (step, action = getPrimaryAction(step)) => {
     step.id === "communications" &&
     resolvedPathname === "/app/communications"
   ) {
-    searchParams.set("section", "setup");
+    resolvedPathname = "/app/settings/communications";
+    searchParams.delete("section");
+    searchParams.delete("tab");
+    searchParams.delete("compose");
   }
   searchParams.set("setupStep", step.id);
 

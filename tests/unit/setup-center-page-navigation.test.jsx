@@ -1659,7 +1659,7 @@ describe("Launch Center route state", () => {
       }),
     ).toHaveAttribute(
       "href",
-      "/app/communications?section=setup&setupStep=communications",
+      "/app/settings/communications?setupStep=communications",
     );
   });
   it("uses booking permission rather than product permission for a scheduling repair", () => {
@@ -1919,7 +1919,7 @@ describe("Launch Center route state", () => {
       }),
     ).toHaveAttribute(
       "href",
-      "/app/communications?section=setup&setupStep=communications",
+      "/app/settings/communications?setupStep=communications",
     );
     expect(
       emailReadiness.querySelector('[data-readiness-action="emails"]'),
@@ -3104,7 +3104,7 @@ describe("Launch Center route state", () => {
       }),
     ).toHaveAttribute(
       "href",
-      "/app/communications?section=setup&setupStep=communications",
+      "/app/settings/communications?setupStep=communications",
     );
     expect(
       screen.getByRole("link", {
@@ -3112,7 +3112,7 @@ describe("Launch Center route state", () => {
       }),
     ).toHaveAttribute(
       "href",
-      "/app/communications?section=setup&guide=customer_communications",
+      "/app/settings/communications?guide=customer_communications",
     );
     expect(
       screen.getByRole("link", {
@@ -3213,7 +3213,7 @@ describe("Launch Center route state", () => {
       container.querySelector('[data-launch-step-action="communications"]'),
     ).toHaveAttribute(
       "href",
-      "/app/communications?section=setup&setupStep=communications",
+      "/app/settings/communications?setupStep=communications",
     );
     expect(
       container.querySelector(
@@ -3221,7 +3221,7 @@ describe("Launch Center route state", () => {
       ),
     ).toHaveAttribute(
       "href",
-      "/app/communications?section=setup&guide=customer_communications",
+      "/app/settings/communications?guide=customer_communications",
     );
   });
   it("does not offer the new-location tour for an existing-location review", () => {

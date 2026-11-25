@@ -259,6 +259,115 @@ test("existing customer proves their current password and keeps it after accepti
   }
 });
 
+test("an existing teammate's role can be edited, then removed and reinvited with different access", async ({
+  browser,
+  page,
+  request,
+  e2eState,
+}) => {
+  await openTeam(page);
+  const member = page
+    .locator('[data-contextual-guide-target="team-list"]')
+    .getByRole("article")
+    .filter({ hasText: USERS.viewer });
+  await expect(member).toContainText("Viewer");
+  await member
+    .getByRole("button", { name: "Edit team member", exact: true })
+    .click();
+  const editor = page.getByTestId("team-member-dialog");
+  const role = editor.getByRole("combobox", { name: "Role", exact: true });
+  await expect(role).toHaveValue("viewer");
+  await role.selectOption("manager");
+  await editor
+    .getByLabel("All current and future locations", { exact: true })
+    .check();
+  const updated = page.waitForResponse(
+    (response) =>
+      response.request().method() === "PATCH" &&
+      /\/access\/team\/[^/]+$/.test(new URL(response.url()).pathname),
+  );
+  await editor
+    .getByRole("button", { name: "Save changes", exact: true })
+    .click();
+  const updateResponse = await updated;
+  expect(updateResponse.status(), await updateResponse.text()).toBe(200);
+  const { membership } = await updateResponse.json();
+  expect(membership.roleKey).toBe("manager");
+  await expect(editor).not.toBeVisible();
+  await expect(member).toContainText("Manager");
+  await page.reload();
+  await expect(member).toContainText("Manager");
+
+  const existingMemberContext = await browser.newContext();
+  try {
+    const existingMemberPage = await existingMemberContext.newPage();
+    const response = await loginWorkspaceAs(existingMemberPage, {
+      slug: E2E.alphaSlug,
+      email: USERS.viewer,
+      password: PASSWORD,
+    });
+    const session = await response.json();
+    expect(session.workspaceAccess.roleKey).toBe("manager");
+    expect(session.workspaceAccess.locationAccess).toEqual({
+      mode: "all",
+      locationIds: [],
+    });
+  } finally {
+    await existingMemberContext.close();
+  }
+
+  page.once("dialog", (dialog) => dialog.accept());
+  const removed = page.waitForResponse((response) =>
+    isApiResponse(
+      response,
+      `/tenants/current/access/team/${membership.membershipId}`,
+      "DELETE",
+    ),
+  );
+  await member
+    .getByRole("button", { name: "Remove team member", exact: true })
+    .click();
+  expect((await removed).status()).toBe(200);
+  await expect(member).toHaveCount(0);
+
+  await invite(page, USERS.viewer, {
+    role: "staff",
+    location: e2eState.locations.alpha,
+  });
+  // Sending a fresh invitation must not restore access before acceptance.
+  await expect(member).toHaveCount(0);
+  const message = await capturedInvitation(request, USERS.viewer);
+  const recipient = await openEmail(browser, message.url);
+  try {
+    await recipient.page
+      .getByLabel("Current password", { exact: true })
+      .fill(PASSWORD);
+    const session = await acceptAndLogin(recipient.page);
+    expect(session.workspaceAccess.membershipId).toBe(membership.membershipId);
+    expect(session.workspaceAccess.roleKey).toBe("staff");
+    expect(session.workspaceAccess.locationAccess).toEqual({
+      mode: "selected",
+      locationIds: [e2eState.locations.alpha.id],
+    });
+  } finally {
+    await recipient.context.close();
+  }
+
+  await page.reload();
+  await expect(member).toHaveCount(1);
+  await expect(member).toContainText("Staff");
+  await member
+    .getByRole("button", { name: "Edit team member", exact: true })
+    .click();
+  await expect(role).toHaveValue("staff");
+  await expect(
+    editor.getByLabel("Only selected locations", { exact: true }),
+  ).toBeChecked();
+  await expect(
+    editor.getByLabel(e2eState.locations.alpha.name, { exact: true }),
+  ).toBeChecked();
+});
+
 test("resending rotates the emailed link and revocation prevents acceptance", async ({
   browser,
   page,

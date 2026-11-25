@@ -102,6 +102,7 @@ export function WorkspaceDialogPanel({
       transition
       data-dialog-layout={resolvedLayout}
       data-dialog-tone={tone}
+      data-skab-workspace-surface={tone === "workspace" ? "true" : undefined}
       data-workspace-dialog={resolvedLayout === "form" ? "form" : undefined}
       className={cx(
         "flex w-full origin-bottom flex-col overflow-hidden text-ink shadow-floating transition duration-200 ease-out data-closed:translate-y-4 data-closed:opacity-0 motion-reduce:transform-none motion-reduce:transition-none",
@@ -128,7 +129,7 @@ export function WorkspaceDialogCloseButton({
       type="button"
       aria-label={label}
       className={cx(
-        "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-white text-ink-muted shadow-xs transition hover:border-line-strong hover:bg-surface-muted hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-white text-ink-muted shadow-xs transition hover:border-line-strong hover:bg-surface-muted hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
       {...props}
@@ -158,7 +159,7 @@ export function WorkspaceDialogHeader({
     >
       <div className="min-w-0">
         {eyebrow ? (
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-terracotta-600">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-terracotta-600">
             {eyebrow}
           </p>
         ) : null}
@@ -166,7 +167,7 @@ export function WorkspaceDialogHeader({
           {title}
         </DialogTitle>
         {description ? (
-          <DialogDescription className="mt-1 max-w-2xl text-[12px] leading-5 text-ink-muted sm:text-[13px]">
+          <DialogDescription className="mt-1 max-w-2xl text-[14px] leading-6 text-ink-muted">
             {description}
           </DialogDescription>
         ) : null}

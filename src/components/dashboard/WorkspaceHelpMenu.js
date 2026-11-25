@@ -242,7 +242,7 @@ export default function WorkspaceHelpMenu({ canReplayProductTour = false }) {
         aria-label={t("help.open")}
         data-workspace-help-trigger
         onClick={openHelp}
-        className="group/topbar-action relative inline-flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-[13px] border border-line bg-coral-100 text-ink-soft shadow-xs transition active:scale-[0.97] active:border-cobalt-200 active:bg-cobalt-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-panel motion-reduce:transform-none md:rounded-full md:hover:-translate-y-0.5 md:hover:border-cobalt-200 md:hover:bg-cobalt-50 md:hover:text-cobalt-700"
+        className="group/topbar-action relative inline-flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-[13px] border border-line bg-white text-ink-soft shadow-xs transition active:scale-[0.97] active:border-cobalt-200 active:bg-cobalt-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-panel motion-reduce:transform-none md:rounded-full md:hover:-translate-y-0.5 md:hover:border-cobalt-200 md:hover:bg-cobalt-50 md:hover:text-cobalt-700"
       >
         <UtilityTooltip>{t("help.open")}</UtilityTooltip>
         <QuestionMarkCircleIcon className="h-5 w-5" aria-hidden="true" />

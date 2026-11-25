@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { useEffect, useState } from "react";
 import { Provider, useSelector } from "react-redux";
 
 import { useTokenRefresh } from "../hooks/useTokenRefresh";
@@ -26,10 +27,16 @@ function SessionRestore() {
  * redux-persist (PersistGate) left the server HTML empty until the client
  * bundle had loaded and rehydrated.
  */
-function StoreProvider({ children, legacyLanguage = "EN" }) {
+function StoreProvider({
+  children,
+  legacyLanguage = "EN",
+  authTransportConfig,
+}) {
   const [{ store, serverState }] = useState(() =>
-    makeStore({ legacyLanguage }),
+    makeStore({ legacyLanguage, authTransportConfig }),
   );
+  // A render can be discarded during hydration. Subscribe only the mounted store.
+  useEffect(() => setupListeners(store.dispatch), [store]);
 
   return (
     <Provider store={store} serverState={serverState}>

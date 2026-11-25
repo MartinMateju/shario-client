@@ -193,6 +193,57 @@ const presetTenants = {
   }),
 };
 
+// Independent design fixtures exercise real palette differences without changing
+// the established portal contract scenarios above.
+for (const [palette, branding] of Object.entries({
+  blue: {
+    stylePreset: "modern-minimal-v1",
+    accentColor: "#2748D8",
+    secondaryColor: "#D9785D",
+    backgroundColor: "#F5F1EA",
+    textColor: "#22221F",
+  },
+  olive: {
+    stylePreset: "classic-editorial-v1",
+    accentColor: "#24483E",
+    secondaryColor: "#C29852",
+    backgroundColor: "#F7F4E9",
+    textColor: "#21332A",
+  },
+  clay: {
+    stylePreset: "warm-organic-v1",
+    accentColor: "#A14A35",
+    secondaryColor: "#DC9974",
+    backgroundColor: "#F8E9DD",
+    textColor: "#352720",
+  },
+})) {
+  const slug = `studio-portal-design-${palette}`;
+  const designTenant = createPresetTenant({
+    id: TENANT_ID,
+    slug,
+    name: "Atelier Nami",
+    stylePreset: branding.stylePreset,
+  });
+  presetTenants[slug] = {
+    ...designTenant,
+    publicSite: {
+      ...designTenant.publicSite,
+      branding: { ...designTenant.publicSite.branding, ...branding },
+      customerPortal: {
+        ...designTenant.publicSite.customerPortal,
+        pageImages: {
+          courses: "/images/DSC09001.webp",
+          memberships: "/images/OLD03142.webp",
+          vouchers: "/images/OLD02753.webp",
+          knowledge: "/images/DSC09328.webp",
+          bookings: "/images/OLD03050.webp",
+        },
+      },
+    },
+  };
+}
+
 presetTenants["studio-language"] = {
   ...createPresetTenant({
     id: "64b000000000000000000003",
@@ -663,6 +714,115 @@ const logoSvg = `
     <text x="116" y="72" font-family="Georgia, serif" font-size="34" fill="#22221F">Nami</text>
   </svg>`;
 
+const designPlans = [
+  { name: "Čas pro sebe", amount: 89000, minutes: 240 },
+  { name: "Pravidelný rytmus", amount: 169000, minutes: 480 },
+  { name: "Vlastní tvorba", amount: 329000, minutes: 960 },
+].map((plan, index) => ({
+  id: `64b00000000000000000010${index}`,
+  status: "published",
+  publishedVersion: {
+    id: `64b00000000000000000020${index}`,
+    name: plan.name,
+    description:
+      "Váš pravidelný čas na tvoření. Prostor, vybavení a podpora ateliéru.",
+    prices: [{ currency: "CZK", amountMinor: plan.amount }],
+    billing: { type: "recurring", interval: "month", intervalCount: 1 },
+    locationScope: { type: "shared_selected", locationIds: [LOCATION_ID] },
+    terms: "Osobní členství pro tvoření v ateliéru.",
+    benefits: [
+      {
+        key: "studio_hours",
+        label: "Čas v otevřeném ateliéru",
+        type: "allowance",
+        unit: "minute",
+        quantity: plan.minutes,
+        usageScope: "open_studio",
+        memberOnly: true,
+        rolloverPercent: 25,
+      },
+    ],
+  },
+}));
+const designMembership = {
+  id: "64b000000000000000000301",
+  status: "active",
+  planId: designPlans[1].id,
+  planSnapshot: designPlans[1].publishedVersion,
+  amountMinor: 169000,
+  currency: "CZK",
+  currentPeriodStart: "2026-08-01T00:00:00.000Z",
+  currentPeriodEnd: "2026-09-01T00:00:00.000Z",
+  balances: [
+    {
+      benefitKey: "studio_hours",
+      unit: "minute",
+      available: 360,
+      currentPeriodAvailable: 360,
+      carryoverAvailable: 0,
+    },
+  ],
+};
+const designLedger = [
+  {
+    id: "design-redemption",
+    type: "redemption",
+    amount: -60,
+    reason: "benefit_redemption",
+    createdAt: "2026-08-10T09:00:00.000Z",
+  },
+  {
+    id: "design-reversal",
+    type: "reversal",
+    amount: 60,
+    reason: "booking_cancelled",
+    createdAt: "2026-08-09T09:00:00.000Z",
+  },
+  {
+    id: "design-grant",
+    type: "grant",
+    amount: 480,
+    reason: "period_grant",
+    createdAt: "2026-08-01T09:00:00.000Z",
+  },
+].map((entry) => ({ ...entry, benefitKey: "studio_hours" }));
+const designKnowledge = [
+  {
+    id: "64b000000000000000000401",
+    type: "guide",
+    category: "getting_started",
+    title: "První návštěva ateliéru",
+    summary: "Jak se připravit, kde najdete nástroje a co si vzít s sebou.",
+    content:
+      "Přijďte v pohodlném oblečení. S hlínou i prvními kroky vám rádi pomůžeme.",
+    featured: true,
+    tags: ["Začínáme", "Ateliér"],
+  },
+  {
+    id: "64b000000000000000000402",
+    type: "faq",
+    category: "general",
+    title: "Co vás zajímá o tvoření",
+    summary: "Odpovědi na časté otázky o rezervacích a práci s hlínou.",
+    content: "Svůj termín najdete v přehledu rezervací.",
+    tags: ["Rezervace", "Hlína"],
+  },
+  {
+    id: "64b000000000000000000403",
+    type: "guide",
+    category: "firing",
+    title: "Od hlíny k hotovému výrobku",
+    summary: "Sušení, první výpal a glazování — každý krok má svůj čas.",
+    content: "Výrobky nechte před výpalem zcela vyschnout.",
+    tags: ["Výpal", "Glazování"],
+  },
+].map((resource) => ({
+  ...resource,
+  status: "published",
+  audience: "customer",
+  locationIds: [LOCATION_ID],
+}));
+
 export const handleCustomerPortalFixtureRequest = async (request, response) => {
   const url = new URL(request.url || "/", `http://127.0.0.1:${port}`);
   const pathname = url.pathname.replace(/\/+$/, "") || "/";
@@ -695,6 +855,110 @@ export const handleCustomerPortalFixtureRequest = async (request, response) => {
   if (method === "GET" && publicTenant) {
     sendJson(request, response, 200, { tenant: publicTenant });
     return;
+  }
+
+  const designPublicMatch = pathname.match(
+    /^\/public\/tenants\/(studio-portal-design-[a-z]+)\/(.+)$/,
+  );
+  const designScope =
+    getRequestTenant(request).slug.startsWith("studio-portal-design-") ||
+    Boolean(designPublicMatch);
+  const designPath = designPublicMatch?.[2] || pathname;
+  if (method === "GET" && designScope) {
+    if (["/memberships/catalog", "memberships"].includes(designPath)) {
+      sendJson(request, response, 200, {
+        tenant: { name: "Atelier Nami", currency: "CZK" },
+        locations: [location, secondaryLocation],
+        plans: designPlans,
+      });
+      return;
+    }
+    if (designPath === "/memberships/mine") {
+      sendJson(request, response, 200, { membership: designMembership });
+      return;
+    }
+    if (designPath === "/memberships/mine/ledger") {
+      sendJson(request, response, 200, { entries: designLedger });
+      return;
+    }
+    if (["/knowledge/customer", "knowledge"].includes(designPath)) {
+      sendJson(request, response, 200, designKnowledge);
+      return;
+    }
+    if (
+      ["booking/locations", "products/courses/locations"].includes(designPath)
+    ) {
+      sendJson(request, response, 200, {
+        locations: [location, secondaryLocation],
+      });
+      return;
+    }
+    if (designPath === "products") {
+      const requestedLocation = url.searchParams.get("locationId");
+      const products = catalogProducts.filter(
+        (entry) =>
+          entry.kind === "open-studio" &&
+          (!requestedLocation || entry.locationId === requestedLocation),
+      );
+      sendJson(request, response, 200, {
+        products,
+        currentPage: 1,
+        totalPages: 1,
+        totalCount: products.length,
+      });
+      return;
+    }
+    if (designPath === "booking/occupancy") {
+      const selectedLocation =
+        url.searchParams.get("locationId") === SECONDARY_LOCATION_ID
+          ? secondaryLocation
+          : location;
+      sendJson(request, response, 200, {
+        location: selectedLocation,
+        from: url.searchParams.get("from"),
+        to: url.searchParams.get("to"),
+        timeZone: "Europe/Prague",
+        blocks: [],
+      });
+      return;
+    }
+    if (
+      ["products/courses", "/products/customer-catalog/courses"].includes(
+        designPath,
+      )
+    ) {
+      const products = [
+        {
+          ...courseProduct,
+          name: { CZ: "Kurz točení", EN: "Wheel Course" },
+          description: {
+            CZ: "Najděte svůj rytmus na hrnčířském kruhu. Kurz pro první i další dotek s hlínou.",
+            EN: "Find your rhythm at the pottery wheel.",
+          },
+          classCategory: "Točení na kruhu",
+          durationMinutes: 120,
+        },
+        {
+          ...courseProduct,
+          id: "64b000000000000000000037",
+          _id: "64b000000000000000000037",
+          name: { CZ: "Miska podle vás", EN: "Make your own bowl" },
+          description: {
+            CZ: "Od kousku hlíny k vlastní misce. Věnujte odpoledne ručnímu modelování.",
+            EN: "Shape a bowl by hand, at your own pace.",
+          },
+          classCategory: "Modelování",
+          durationMinutes: 90,
+        },
+      ];
+      sendJson(request, response, 200, {
+        products,
+        currentPage: 1,
+        totalPages: 1,
+        totalCount: products.length,
+      });
+      return;
+    }
   }
 
   const voucherProductsMatch = pathname.match(

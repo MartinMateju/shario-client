@@ -63,6 +63,7 @@ function HighlightSection({ icon: Icon, title, description, href, children }) {
             </p>
           </div>
           <Link
+            prefetch={false}
             href={href}
             data-tenant-button="secondary"
             className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--tenant-accent-link)]"
@@ -106,6 +107,7 @@ function HighlightCard({ title, description, detail, href }) {
       )}
       {detail ? <p className="mt-4 text-sm font-semibold">{detail}</p> : null}
       <Link
+        prefetch={false}
         href={href}
         data-tenant-button="secondary"
         className="mt-5 inline-flex min-h-10 items-center justify-center rounded-full border border-[var(--tenant-border)] px-4 text-xs font-semibold transition hover:border-[var(--tenant-accent-on-surface)] hover:text-[var(--tenant-accent-on-surface)]"

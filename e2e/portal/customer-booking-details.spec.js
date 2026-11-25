@@ -1,4 +1,8 @@
 import { expect, test } from "@playwright/test";
+import {
+  CUSTOMER_PORTAL_TOUR_VERSION,
+  getCustomerPortalTourStorageKey,
+} from "../../src/components/customer-shell/customerPortalProductTour.config.js";
 
 const BOOKING_ID = "64b000000000000000000043";
 const COMPACT_BOOKING_ID = "64b000000000000000000051";
@@ -92,6 +96,10 @@ async function dragVertically(page, target, distance, isMobile, body = false) {
           touchPoints: point((distance * step) / 6),
         });
       }
+      // Finish the drag with a stationary finger before lifting, matching
+      // Chromium's non-flinging touch gesture. An immediate moving release
+      // suppresses the following native tap on Linux, even on plain controls.
+      await page.waitForTimeout(100);
       await cdp.send("Input.dispatchTouchEvent", {
         type: "touchEnd",
         touchPoints: [],
@@ -114,6 +122,116 @@ async function settleScroll(page) {
         requestAnimationFrame(() => requestAnimationFrame(resolve)),
       ),
   );
+}
+
+async function withCalendarInputDiagnostics(page, testInfo, action) {
+  await page.evaluate(() => {
+    const events = [];
+    const elementIds = new WeakMap();
+    let nextElementId = 0;
+    const describe = (node) => {
+      if (!(node instanceof Element)) return null;
+      if (!elementIds.has(node)) elementIds.set(node, ++nextElementId);
+      return {
+        nodeId: elementIds.get(node),
+        tag: node.tagName,
+        id: node.id,
+        data: { ...node.dataset },
+        isConnected: node.isConnected,
+        disabled: "disabled" in node ? node.disabled : undefined,
+      };
+    };
+    const types = [
+      "pointerdown",
+      "pointerup",
+      "pointercancel",
+      "touchstart",
+      "touchend",
+      "touchcancel",
+      "mousedown",
+      "mouseup",
+      "click",
+      "scroll",
+    ];
+    const record = (event) => {
+      const point = event.changedTouches?.[0] || event;
+      events.push({
+        time: performance.now(),
+        eventTimeStamp: event.timeStamp,
+        type: event.type,
+        eventPhase: event.eventPhase,
+        defaultPrevented: event.defaultPrevented,
+        target: describe(event.target),
+        path: event.composedPath().slice(0, 5).map(describe),
+        x: point.clientX,
+        y: point.clientY,
+        pointerId: event.pointerId,
+        pointerType: event.pointerType,
+        isPrimary: event.isPrimary,
+        touches: Array.from(event.touches || [], (touch) => ({
+          id: touch.identifier,
+          x: touch.clientX,
+          y: touch.clientY,
+        })),
+        hit:
+          event.type === "pointerdown" && Number.isFinite(point.clientX)
+            ? describe(document.elementFromPoint(point.clientX, point.clientY))
+            : null,
+        scrollX,
+        scrollY,
+        viewport: {
+          width: visualViewport?.width,
+          height: visualViewport?.height,
+          offsetTop: visualViewport?.offsetTop,
+          offsetLeft: visualViewport?.offsetLeft,
+          scale: visualViewport?.scale,
+        },
+        phase: document.querySelector("[data-calendar-slot-preview]")?.dataset
+          .calendarSlotPhase,
+        summary: Boolean(
+          document.querySelector("[data-calendar-mobile-selection-summary]"),
+        ),
+      });
+      if (events.length > 100) events.shift();
+    };
+    for (const type of types) {
+      window.addEventListener(type, record, { capture: true, passive: true });
+      window.addEventListener(type, record, { passive: true });
+    }
+    window.__calendarInputDiagnostics = {
+      events,
+      dispose: () => {
+        for (const type of types) {
+          window.removeEventListener(type, record, true);
+          window.removeEventListener(type, record);
+        }
+      },
+    };
+  });
+  let failed = false;
+  try {
+    return await action();
+  } catch (error) {
+    failed = true;
+    throw error;
+  } finally {
+    const events = await page
+      .evaluate(() => {
+        const diagnostics = window.__calendarInputDiagnostics;
+        diagnostics?.dispose();
+        delete window.__calendarInputDiagnostics;
+        return diagnostics?.events;
+      })
+      .catch(() => null);
+    if (failed && events) {
+      await testInfo
+        .attach("calendar-native-input-events", {
+          body: JSON.stringify(events, null, 2),
+          contentType: "application/json",
+        })
+        .catch(() => {});
+    }
+  }
 }
 
 async function clickSlotSurface(page, surface, isMobile) {
@@ -175,10 +293,21 @@ async function expectBookingMaker(
 
 test.beforeEach(async ({ page }) => {
   await page.clock.setFixedTime(new Date(FIXED_TIME));
-  await page.addLocatorHandler(
-    page.locator("[data-customer-portal-tour-dismiss]"),
-    async (dismiss) => {
-      await dismiss.click();
+  // These booking interactions represent a returning customer. Dismissing the
+  // first-visit tour from a locator handler can move focus/scroll after a hover
+  // or between pointer actions. Tour onboarding has its own browser coverage.
+  await page.addInitScript(
+    ({ key, version }) =>
+      localStorage.setItem(
+        key,
+        JSON.stringify({ version, status: "completed" }),
+      ),
+    {
+      key: getCustomerPortalTourStorageKey({
+        tenantKey: "64b000000000000000000001",
+        customerKey: "64b000000000000000000011",
+      }),
+      version: CUSTOMER_PORTAL_TOUR_VERSION,
     },
   );
   await page.route("https://visual-assets.example.test/**", (route) =>
@@ -796,6 +925,83 @@ for (const view of ["Week", "Day"]) {
     await expect(dialog).toBeHidden();
     await expect(event).toBeFocused();
   });
+  test(`${view.toLowerCase()} newly revealed booking controls stay stationary and reachable`, async ({
+    page,
+    isMobile,
+  }, testInfo) => {
+    await page.goto(PORTAL_PATH);
+    await expect(ownBooking(page)).toBeVisible();
+    if (view === "Day") {
+      await calendar(page)
+        .getByRole("button", { name: "Month", exact: true })
+        .click();
+      await calendar(page)
+        .locator('[data-calendar-month-day="2026-08-12"]')
+        .click();
+      await calendar(page)
+        .locator('[data-calendar-month-view-day="true"]')
+        .click();
+    }
+    const event = view === "Day" ? ownBooking(page) : otherBooking(page);
+    await event.scrollIntoViewIfNeeded();
+    await event.evaluate((element) => {
+      element.focus({ preventScroll: true });
+      const bounds = element.getBoundingClientRect();
+      // The start of this booking is visible near the viewport's bottom.
+      // Its preview must clear the fixed summary before accepting a gesture.
+      window.scrollTo({
+        top: scrollY + bounds.top - (innerHeight - 130),
+        behavior: "instant",
+      });
+    });
+    await withCalendarInputDiagnostics(page, testInfo, async () => {
+      await page.keyboard.press("Enter");
+      await expect(bookingDraft(page)).toHaveCount(1);
+      const frames = await bookingDraft(page).evaluate(async (preview) => {
+        const measurements = [];
+        for (let index = 0; index < 5; index += 1) {
+          await new Promise(requestAnimationFrame);
+          const handle = preview.querySelector(
+            '[data-calendar-slot-resize="end"]',
+          );
+          const bounds = handle.getBoundingClientRect();
+          const hit = document.elementFromPoint(
+            bounds.left + bounds.width / 2,
+            bounds.top + bounds.height / 2,
+          );
+          measurements.push({
+            scrollY,
+            top: bounds.top,
+            reachable: handle === hit || handle.contains(hit),
+          });
+        }
+        return measurements;
+      });
+      expect(
+        frames.every(({ reachable }) => reachable),
+        JSON.stringify(frames),
+      ).toBe(true);
+      expect(
+        Math.max(...frames.map(({ top }) => top)) -
+          Math.min(...frames.map(({ top }) => top)),
+        JSON.stringify(frames),
+      ).toBeLessThanOrEqual(1);
+
+      // The exposed control must actually receive and complete the gesture.
+      const draft = await expectBookingDraft(page);
+      const originalHeight = (await draft.boundingBox()).height;
+      await dragVertically(
+        page,
+        draft.locator('[data-calendar-slot-resize="end"]'),
+        originalHeight / 2,
+        isMobile,
+      );
+      await expectBookingDraft(page, /10:00\s*[–-]\s*11:30/);
+      await confirmBookingDraft(page, isMobile);
+      await expectBookingMaker(page, { duration: "1 h 30 min" });
+    });
+  });
+
   test(`${view.toLowerCase()} private booking click creates a gray editable preview that can move into free time`, async ({
     page,
     isMobile,

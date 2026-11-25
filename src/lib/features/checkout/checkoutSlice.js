@@ -115,6 +115,21 @@ export const checkoutApiSlice = apiSlice.injectEndpoints({
         { type: "Order", id: String(orderId) },
       ],
     }),
+    cancelPendingBookingCheckout: builder.mutation({
+      query: ({ orderId }) => ({
+        url: `/checkout/orders/${encodeOrderIdPathSegment(orderId)}/cancel`,
+        method: "POST",
+        body: {},
+      }),
+      invalidatesTags: (_result, _error, { orderId }) => [
+        { type: "Order", id: String(orderId) },
+        { type: "Order", id: "LIST" },
+        { type: "Booking", id: "MINE" },
+        { type: "Booking", id: "LIST" },
+        { type: "Booking", id: "MINE-AVAILABILITY" },
+        "Credits",
+      ],
+    }),
     getMyOrderConfirmation: builder.query({
       query: ({ orderId }) => ({
         url: `/orders/mine/${encodeOrderIdPathSegment(orderId)}/confirmation`,
@@ -137,6 +152,7 @@ export const {
   useGetGuestCheckoutOrderStatusQuery,
   useGetCheckoutOrderStatusQuery,
   useLazyGetCheckoutOrderStatusQuery,
+  useCancelPendingBookingCheckoutMutation,
   useGetMyOrderConfirmationQuery,
   useLazyGetMyOrderConfirmationQuery,
 } = checkoutApiSlice;

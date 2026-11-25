@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Onaylandı",
-      "pending": "Beklemede",
+      "pending": "Onay bekleniyor",
       "awaitingPayment": "Ödeme bekleniyor",
-      "processed": "Teslimat bekleniyor",
-      "delivered": "Teslim edildi",
+      "processed": "Onaylandı",
+      "delivered": "Başladı",
       "completed": "Tamamlandı",
       "cancelled": "İptal edildi"
     },
     "payment": {
       "paid": "Ödendi",
-      "pending": "Beklemede",
+      "pending": "Ödeme bekleniyor",
       "failed": "Başarısız",
       "expired": "Süresi doldu",
       "refunded": "İade edildi",
       "credits": "Krediler"
+    },
+    "refreshing": "Rezervasyonlar güncelleniyor…",
+    "retry": "Tekrar dene",
+    "errors": {
+      "load": "Rezervasyonlar yüklenemedi. Lütfen tekrar deneyin.",
+      "filters": "Bazı filtre seçenekleri yüklenemedi."
     },
     "edit": {
       "details": "Rezervasyon ayrıntıları",
@@ -121,7 +127,9 @@
       "deletedTitle": "Rezervasyon silindi",
       "deletedText": "Rezervasyon başarıyla silindi.",
       "errorTitle": "Rezervasyon oluşturulamadı",
-      "errorText": "Lütfen rezervasyon bilgilerini kontrol edip tekrar deneyin."
+      "errorText": "Lütfen rezervasyon bilgilerini kontrol edip tekrar deneyin.",
+      "cancelError": "Rezervasyon iptal edilemedi. Lütfen tekrar deneyin.",
+      "extensionRefund": "Eklenen rezervasyon süresi için ek {amount} müşterinin stüdyo kredilerine iade edildi."
     },
     "exportColumns": {
       "customer": "Müşteri",
@@ -193,6 +201,7 @@
       "spotsAvailable": "{capacity} yerin {remaining} tanesi müsait"
     },
     "week": {
+      "schedule": "Haftalık program",
       "privacyNote": "Mor özel rezervasyonları, turkuaz ise herkese açık rezervasyonları gösterir. Rezervasyonlarınızda mavi bir rozet bulunur."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Rezervasyonlar, üyelikler ve size ait şık bir web sitesi. Mekânınızı paylaşmak ve topluluğunuzu büyütmek için ihtiyacınız olan her şey Shario’da bir arada."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Banner tercihiniz kaydedilemedi. Lütfen tekrar deneyin.",
     "skipToContent": "İçeriğe geç",
     "learnMore": "Daha fazla bilgi",
     "viewAll": "Tümünü görüntüle",
@@ -434,7 +444,8 @@
       "notifications": "Bildirimler",
       "events": "Etkinlikler",
       "lostFound": "Kayıp eşya",
-      "customOrders": "Özel siparişler"
+      "customOrders": "Özel siparişler",
+      "communicationSettings": "Mesaj ayarları"
     },
     "stats": {
       "bookings": "Bugünkü rezervasyonlar",
@@ -1439,7 +1450,8 @@
     },
     "product": {
       "metaTitle": "Mekânınızın ihtiyaç duyduğu her şey, birlikte çalışır.",
-      "metaDescription": "Rezervasyonları, üyeleri, ödemeleri, ekibinizi ve herkese açık web sitenizi birbirine bağlayın. Shario gününüzü düzenlemenize yardımcı olurken siz insanlara odaklanın."
+      "metaDescription": "Rezervasyonları, üyeleri, ödemeleri, ekibinizi ve herkese açık web sitenizi birbirine bağlayın. Shario gününüzü düzenlemenize yardımcı olurken siz insanlara odaklanın.",
+      "viewScreenshot": "Tam ekran görüntüsünü görüntüle"
     },
     "studioAi": {
       "metaTitle": "Günlük işlerde yardım eli.",
@@ -1481,13 +1493,14 @@
       "from": "başlangıç",
       "customAnnual": "Özel yıllık plan",
       "mostPopular": "En popüler",
+      "includesPrevious": "{plan} planındaki her şey ve ayrıca:",
       "starter": {
         "name": "Starter",
         "description": "Mekânınız için rezervasyonlar, ödemeler, dersler ve etkinliklerle başlayın.",
         "feature1": "1 stüdyo lokasyonu · 1 ekip hesabı",
         "feature2": "Kurslar, özel etkinlikler ve hediye çekleri",
         "feature3": "Ayda 500 e-posta dahil",
-        "feature4": "Sınırlı Shario AI · ayda 200 kredi",
+        "feature4": "Stüdyo web sitesi ve müşteri portalı",
         "cta": "Ücretsiz denemeyi başlat"
       },
       "professional": {
@@ -1495,8 +1508,9 @@
         "description": "Üyelikleri, ortak mekânları ve günlük işleri birbirine bağlayın.",
         "feature1": "1 stüdyo lokasyonu · 3 ekip hesabı",
         "feature2": "Üyelikler, rezervasyonlar ve ortak kaynaklar",
-        "feature3": "3 aktif otomasyon · ayda 2.500 e-posta",
-        "feature4": "Tam Shario AI · ayda 2.000 kredi",
+        "feature3": "Envanter ve ekip görevleri",
+        "feature4": "3 aktif otomasyon · ayda 2.500 e-posta",
+        "feature5": "Shario AI · ayda 2.000 kredi",
         "cta": "Ücretsiz denemeyi başlat"
       },
       "studioPlus": {
@@ -1505,16 +1519,16 @@
         "feature1": "En fazla 2 stüdyo lokasyonu · 6 ekip hesabı",
         "feature2": "Erişim kodları ve özel alan adı",
         "feature3": "Gelişmiş otomasyonlar · ayda 5.000 e-posta",
-        "feature4": "Tam AI paketi · ayda 10.000 kredi",
+        "feature4": "Gelişmiş Shario AI · ayda 10.000 kredi",
         "cta": "Ücretsiz denemeyi başlat"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Kuruluşunuzu özel kapasite, yönetişim ve destekle yönetin.",
-        "feature1": "Sınırsız lokasyon ve ekip hesabı",
+        "feature1": "Anlaşmaya göre konum ve ekip kapasitesi",
         "feature2": "Özel otomasyon, e-posta ve AI limitleri",
-        "feature3": "SSO/SCIM, API, webhook'lar ve denetim kayıtları",
-        "feature4": "Özel onboarding, taşıma ve SLA",
+        "feature3": "Entegrasyon ve yönetim gereksinimlerinizi görüşelim",
+        "feature4": "Anlaşmaya göre kurulum, geçiş ve destek",
         "cta": "Ücretsiz denemeyi başlatın"
       },
       "note": "Fiyatlara geçerli vergiler dahil değildir. Yıllık self servis planlara iki ücretsiz ay dahildir. Gerekli sistem e-postaları limite dahil edilmez ve AI kullanımı dahil olan sınırda durur; otomatik ek ücret uygulanmaz.",
@@ -2260,7 +2274,10 @@
     },
     "unavailable": {
       "title": "Bu seçenek kullanılamıyor",
-      "description": "Stüdyo şu anda bu seçeneği herkese açık olarak sunmuyor."
+      "description": "Stüdyo şu anda bu seçeneği herkese açık olarak sunmuyor.",
+      "retry": "Tekrar dene",
+      "retrying": "Yükleniyor…",
+      "loginDegraded": "Stüdyo bilgileri şu anda yüklenemedi."
     },
     "book": {
       "metadataTitle": "Açık Stüdyo rezervasyonu",
@@ -2318,6 +2335,7 @@
         "email": "E-posta adresi",
         "quantity": "Adet",
         "missing": "Bir hediye çeki seçin ve geçerli bir e-posta adresi girin.",
+        "reselect": "Mevcut hediye çekleri değişti. Devam etmek için yeniden bir hediye çeki seçin.",
         "error": "Ödeme başlatılamadı. Lütfen tekrar deneyin.",
         "starting": "Ödeme hazırlanıyor…",
         "continue": "Ödemeye devam et",
@@ -2353,6 +2371,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Teklifler yenilenemedi. Son yüklenen teklifler gösteriliyor.",
       "loading": "Güncel teklifler yükleniyor…",
       "error": "Güncel teklifler yüklenemedi.",
       "retry": "Tekrar dene",
@@ -2786,10 +2805,20 @@
         "headline": "Kurs sayfası başlığı",
         "intro": "Kurs sayfası giriş metni",
         "image": "Kurs sayfası fotoğrafı",
-        "inherit": "Boş alanlarda ortak kurs sayfası metni ve markanın kapak fotoğrafı kullanılır.",
+        "inherit": "Boş alanlar ortak kurs metnini ve kurs sayfası görselini, kurs görseli ayarlanmamışsa marka kapak fotoğrafını kullanır.",
         "noLocations": "Kurs sayfasını özelleştirmek için bir atölye konumu ekle.",
         "guestCheckoutEnabled": "Hesap olmadan kurs satın almaya izin ver",
         "guestCheckoutDescription": "Tüm stüdyolar için geçerlidir. Misafirler hesap oluşturmadan kurs satın alabilir; müşteriler rezervasyon için giriş yapmaya devam edebilir. Kurs sayfalarının görünür ve çevrimiçi ödemelerin hazır olması gerekir. Bu ayarı uygulamak için değişiklikleri yayımlayın."
+      },
+      "pageImages": {
+        "title": "Sayfa başlığı görselleri",
+        "description": "Her herkese açık veya müşteri sayfası için farklı bir görsel seçin. Rezervasyon takvimleri kompakt metin başlığını korur.",
+        "page": "Özelleştirilecek sayfa",
+        "image": "Sayfa başlığı görseli",
+        "hint": "Yatay bir fotoğraf kullanın. Kaldırınca yalnızca metin içeren başlık geri gelir. Stüdyoya özel kurs görseli önceliklidir.",
+        "preview": "Başlığı önizle",
+        "previewDescription": "Sayfa görselini seçilen renkler ve yazı tipleriyle önizleyin.",
+        "products": "Ürünler"
       },
       "calendarColors": "Takvim",
       "hidden": "Gizli",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Müşteri portalı kursları",
+        "portalPageHero": "Sayfa başlıkları",
         "book": "Açık Stüdyo",
         "courses": "Dersler",
         "memberships": "Üyelikler",
@@ -3275,6 +3305,31 @@
       "labelColor": "Kayıt etiket rengi · isteğe bağlı",
       "imageTitle": "Kayıt resmi",
       "imageDescription": "Hesap oluşturma için ayrı bir resim kullanın; ortak stüdyo logosu formda kalır."
+    },
+    "customLinks": {
+      "title": "Özel bağlantılar",
+      "addGroup": "Açılır menü grubu ekle",
+      "group": "Açılır menü grubu",
+      "children": "Bu gruptaki bağlantılar",
+      "button": "Ana düğme olarak göster",
+      "separator": "Bu bağlantıdan önce ayırıcı göster",
+      "layout": "Üst bilgi düzeni",
+      "defaultLayout": "Standart rezervasyon üst bilgisi",
+      "websiteLayout": "Web sitesi gezinmesi",
+      "background": "Üst bilgi arka planı",
+      "linkColor": "Üst bilgi bağlantı rengi",
+      "buttonColor": "Üst bilgi düğme rengi",
+      "header": "Standart gezinmeden sonra bağlantı ekleyin. Tamamen özel bir menü istiyorsanız yukarıdaki standart öğeleri gizleyin.",
+      "footer": "Alt bilgideki Keşfet bölümüne daha fazla bağlantı ekleyin. Üst bilgide zaten gösterilen bağlantılar otomatik olarak dahil edilir.",
+      "label": "Bağlantı metni",
+      "href": "Hedef URL",
+      "add": "Bağlantı ekle",
+      "remove": "Bağlantıyı kaldır",
+      "up": "Bağlantıyı yukarı taşı",
+      "down": "Bağlantıyı aşağı taşı",
+      "count": "bağlantı",
+      "hint": "https://… veya / ile başlayan bir yol kullanın. Metni ve URL'yi birlikte doldurun; başka bir dili kullanmak için ikisini de boş bırakın.",
+      "invalid": "En az bir dilde bağlantı metni ve geçerli bir HTTPS URL'si veya yol girin. Her dilde ya iki alan da dolu ya da ikisi de boş olmalıdır."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "awaitingPayment": "Ödeme bekleniyor",
       "processing": "İşleniyor",
       "completed": "Tamamlandı",
-      "failed": "Başarısız"
+      "failed": "Başarısız",
+      "cancelled": "İptal edildi"
     },
     "productTypes": {
       "course": "Ders",
@@ -3811,7 +3867,8 @@
       "creatingInvoice": "Oluşturuluyor…",
       "confirmCreateInvoice": "Bu siparişten bir taslak fatura oluşturulsun mu?",
       "note": "Sipariş notu",
-      "internalId": "Dahili sipariş kimliği"
+      "internalId": "Dahili sipariş kimliği",
+      "paymentDateUnknown": "Ödeme tarihi kaydedilmedi"
     },
     "fallbackStudioName": "stüdyonuz",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Bu siparişten fatura oluşturulamadı."
     },
     "csv": {
-      "createdAt": "Oluşturulma zamanı"
+      "createdAt": "Oluşturulma zamanı",
+      "currency": "Para birimi",
+      "amountStatus": "Tutar kullanılabilirliği"
+    },
+    "money": {
+      "unavailable": "Kullanılamıyor",
+      "unavailableDetail": "Siparişin nihai tutarı veya iade geçmişi doğrulanamıyor.",
+      "verified": "Kullanılabilir",
+      "refunded": "İade edildi",
+      "net": "İadeler sonrası değer",
+      "incomplete": "Bazı ödenmiş siparişlerin tutarları veya iade kayıtları eksik. Toplam kullanılamıyor.",
+      "mixedCurrencies": "Bu dönem birden fazla para birimi içeriyor. Bunlar tek bir toplamda birleştirilemez.",
+      "truncated": "Bu dönem özet sınırını aşıyor. Toplamı hesaplamak için daha kısa bir dönem seçin.",
+      "scope": "Sipariş değerleri vergiyi ve kredi ya da kupon kullanımlarını içerir. Ayrı kupon satın alımları ve üyelik faturaları hariçtir. Bu tutar, tahsil edilen nakit veya sunulan hizmetlerden elde edilen gelir değildir. Özet kartları seçilen dönemin ve stüdyonun tamamını kapsar.",
+      "multiStudio": "Birden fazla stüdyoyla bağlantılı siparişler tam değerleriyle sayılır."
     }
   },
   "VoucherShopping": {
@@ -4011,9 +4082,51 @@
         "complained": "İstenmeyen mesaj şikâyeti",
         "rejected": "Reddedildi",
         "ambiguous": "Durum belirsiz",
-        "suppressed": "Gönderim engellendi"
+        "suppressed": "Gönderilmedi"
       },
-      "description": "Planlanmış, kuyruğa alınmış, teslim edilmiş, engellenmiş, iptal edilmiş ve başarısız e-posta gönderimlerini inceleyin.",
+      "resend": {
+        "actionMenu": "E-posta işlemleri",
+        "action": "Yeniden gönder",
+        "title": "Bu e-posta yeniden gönderilsin mi?",
+        "description": "Bu mesaj aynı alıcıya yeniden gönderilmeye çalışılacak.",
+        "recipient": "Alıcı",
+        "subject": "Konu",
+        "cancel": "İptal",
+        "confirm": "Yeniden gönder",
+        "submitting": "Gönderim hazırlanıyor…",
+        "queued": "E-posta yeniden gönderilmek üzere hazırlandı.",
+        "scheduled": "Yeni bir deneme planlandı. Gönderim mümkün olduğunda e-posta gönderilecek.",
+        "error": "E-posta gönderime hazırlanamadı. Lütfen yeniden deneyin.",
+        "stale": "Bu e-postanın durumu değişti. En güncel durumu artık görüntüleniyor.",
+        "blocked": "Bu e-posta şu anda yeniden gönderilemiyor.",
+        "reasonLabel": "Neden gönderilmedi"
+      },
+      "reasons": {
+        "status_not_retryable": "Bu e-posta mevcut durumunda yeniden gönderilemiyor.",
+        "delivery_in_progress": "Bu e-posta zaten gönderiliyor.",
+        "delivery_outcome_unknown": "Bu e-postanın gönderilip gönderilmediğini doğrulayamıyoruz. Yeniden denemeden önce teslimat durumunu kontrol edin.",
+        "already_sent": "Bu e-posta zaten gönderildi.",
+        "recipient_suppressed": "Bu alıcıya gönderim engellenmişti.",
+        "consent_revoked": "Alıcı, bu e-postayı alma iznini geri çekmişti.",
+        "consent_expired": "Alıcının izninin süresi dolmuştu.",
+        "marketing_opt_in_required": "Alıcı, pazarlama e-postaları almayı kabul etmemişti.",
+        "consent_required": "Alıcının gerekli izni yoktu.",
+        "content_unavailable": "Orijinal mesaj artık mevcut değildi.",
+        "invalid_delivery_contract": "Bu e-postayı göndermek için gereken bilgiler eksikti.",
+        "source_changed": "Bu e-postanın dayandığı bilgiler değişmişti.",
+        "source_missing": "Bu e-postayla ilişkili kayıt artık mevcut değildi.",
+        "recipient_ineligible": "Bu mesaj artık bu alıcı için geçerli değildi.",
+        "automation_inactive": "Bu e-posta otomasyonu kapalıydı.",
+        "sender_not_ready": "E-posta gönderimi ayarlanmamıştı veya geçici olarak kullanılamıyordu.",
+        "workspace_disabled": "Bu çalışma alanında e-posta gönderimi devre dışıydı.",
+        "monthly_allowance_exhausted": "Çalışma alanının aylık e-posta sınırına ulaşılmıştı.",
+        "unsupported_email_type": "Bu tür e-postalar buradan yeniden gönderilemez.",
+        "delivery_failed": "E-posta teslim edilemedi.",
+        "not_sent": "E-posta gönderilmedi.",
+        "hard_bounce": "Bu adrese teslimat kalıcı olarak başarısız oldu.",
+        "spam_complaint": "Alıcı bir e-postayı spam olarak bildirdi."
+      },
+      "description": "Planlanan, teslim edilen, iptal edilen ve gönderilmeyen e-postaları inceleyin.",
       "searchLabel": "Gönderim geçmişini ara",
       "searchPlaceholder": "Alıcı e-postası veya müşteri kimliğiyle ara…",
       "statusLabel": "Gönderim durumuna göre filtrele",
@@ -4398,7 +4511,8 @@
         "module": "Çalışma alanı ayarlarından Kapı erişimi modülünü etkinleştirin.",
         "sender": "Gönderimi etkinleştirmeden önce yönetilen e-posta göndericisi kurulumunu tamamlayın.",
         "inventory": "Bu mekandaki etkin bir havuza doğrulanmış, tekrar kullanılabilir bir kod ekleyin."
-      }
+      },
+      "template": "E-posta şablonunu özelleştir"
     },
     "errors": {
       "setupRequired": "Bir otomasyonu etkinleştirmeden önce E-posta kurulumunu doğrulayın.",
@@ -4411,6 +4525,102 @@
       "message": "{name} silinsin mi? Bu işlem geri alınamaz.",
       "cancel": "Otomasyonu koru",
       "deleting": "Siliniyor…"
+    },
+    "doorTemplates": {
+      "title": "Kapı erişim e-postaları",
+      "description": "Her stüdyo konumu için otomatik kapı kodu e-postasını kişiselleştirin. Bu şablonlar mevcut kapı erişimi gönderiminde kullanılır.",
+      "locationHint": "Yalnızca bu konumdaki rezervasyonlar için kullanılır",
+      "default": "Varsayılan mesaj",
+      "customized": "Özelleştirilmiş mesaj",
+      "loading": "Kapı kodu şablonları yükleniyor…",
+      "loadError": "Kapı kodu şablonları yüklenemedi.",
+      "retry": "Tekrar dene",
+      "empty": "Kapı kodu e-postasını özelleştirmek için etkin bir stüdyo konumu ekleyin.",
+      "edit": "Şablonu düzenle",
+      "preview": "Şablonu önizle",
+      "editFor": "{location} için kapı kodu şablonunu düzenle",
+      "previewFor": "{location} için kapı kodu şablonunu önizle",
+      "eyebrow": "Kapı erişim e-postası",
+      "editorDescription": "Bu konum için konuyu ve mesajı düzenleyin. Kaydedilen değişiklikler sonraki otomatik e-postalara uygulanır; gönderim ayarları ve olağan 15 dakikalık zamanlama aynı kalır.",
+      "placeholderHint": "Shario gönderim sırasında rezervasyon ayrıntılarını ve doğru kodu doldurur. Bu yer tutucuyu mesajda bırakın:",
+      "previewHint": "Önizlemede örnek bir kod ve rezervasyon kullanılır. Stüdyonuzun kayıtlı e-posta tasarımı mesaj gönderilirken uygulanır.",
+      "variablesTitle": "Kapı erişimi ve rezervasyon ayrıntıları",
+      "variables": {
+        "entryCode": "Kapı kodu (yalnızca mesaj metni)",
+        "studioName": "Stüdyo konumu adı",
+        "studioAddress": "Stüdyo konumu adresi",
+        "bookingTime": "Yerel rezervasyon tarihi ve saat aralığı",
+        "bookingUrl": "Rezervasyonu yönetme bağlantısı"
+      },
+      "languages": {
+        "cs": "Çekçe",
+        "en": "İngilizce"
+      },
+      "errors": {
+        "incomplete": "Bu dil için bir konu (en fazla 200 karakter) ve mesaj ekleyin.",
+        "missingCode": "Kapı kodu yer tutucusunu görünür mesaja ekleyin.",
+        "codePlacement": "Kodu konu, bağlantılar ve HTML öznitelikleri dışında, mesaj metninde tutun.",
+        "unknownVariable": "Yalnızca listelenen yer tutucuları, iki açılış ve iki kapanış süslü paranteziyle kullanın."
+      },
+      "close": "Şablonu kapat",
+      "cancel": "İptal",
+      "save": "Şablonu kaydet",
+      "saving": "Kaydediliyor…",
+      "resetting": "Geri yükleniyor…",
+      "saveError": "Kapı kodu şablonu kaydedilemedi.",
+      "resetError": "Varsayılan mesaj geri yüklenemedi.",
+      "saveSuccess": "{location} için kapı kodu şablonu kaydedildi.",
+      "resetSuccess": "{location} için varsayılan kapı kodu mesajı geri yüklendi.",
+      "reset": "Varsayılan mesajı geri yükle",
+      "resetConfirm": "Bu konum için varsayılan mesaj geri yüklensin mi? Kayıtlı özelleştirmeniz ve kaydedilmemiş değişiklikleriniz değiştirilecek.",
+      "confirmReset": "Varsayılanı geri yükle",
+      "keepEditing": "Düzenlemeye devam et",
+      "discardConfirm": "Kaydedilmemiş değişiklikleriniz var. Kaydetmeden kapatılsın mı?",
+      "discard": "Değişiklikleri at",
+      "variablesHint": "Bir yer tutucuyu yazdığınız yere eklemek için üzerine tıklayın. Giriş kodu yalnızca mesaj metninde, bağlantıların dışında yer almalıdır.",
+      "help": "Şablon yardımı",
+      "codeReminder": "{code} öğesini mesajda tutun."
+    },
+    "visualEditor": {
+      "mode": "Düzenleme modu",
+      "visual": "Görsel düzenleyici",
+      "htmlSource": "HTML kaynağı",
+      "loading": "Görsel düzenleyici yükleniyor…",
+      "unsupported": "Bu şablon gelişmiş HTML biçimlendirmesi içeriyor. Özgün tasarımı HTML modunda korunur.",
+      "toolbar": "Metin ve tasarım denetimleri",
+      "body": "Gövde metni",
+      "heading1": "Başlık 1",
+      "heading2": "Başlık 2",
+      "heading3": "Başlık 3",
+      "bold": "Kalın",
+      "italic": "İtalik",
+      "underline": "Altı çizili",
+      "fontSize": "Metin boyutu",
+      "defaultSize": "Varsayılan boyut",
+      "textColor": "Metin rengi",
+      "textBackground": "Metin arka planı",
+      "alignLeft": "Sola hizala",
+      "alignCenter": "Ortala",
+      "alignRight": "Sağa hizala",
+      "bulletList": "Madde işaretli liste",
+      "orderedList": "Numaralı liste",
+      "link": "Bağlantı ekle veya düzenle",
+      "linkUrl": "Bağlantı adresi",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Bağlantıyı uygula",
+      "removeLink": "Bağlantıyı kaldır",
+      "cancelLink": "İptal",
+      "invalidLink": "Bir http, https veya mailto adresi ya da rezervasyon bağlantısı yer tutucusunu kullanın. Kapı kodları bağlantılarda kullanılamaz.",
+      "undo": "Geri al",
+      "redo": "Yinele",
+      "blockStyle": "Blok tasarımı",
+      "blockBackground": "Blok arka planı",
+      "blockPadding": "Blok boşluğu",
+      "paddingNone": "Yok",
+      "paddingSmall": "Küçük",
+      "paddingMedium": "Orta",
+      "paddingLarge": "Büyük",
+      "clearBlockStyle": "Blok arka planını ve boşluğunu temizle"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "Bu hedefin hazır olması için gerekenler"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Size uygun planı bulun",
+    "title": "Planlar arasındaki farkları görün.",
+    "description": "Yeni abonelikler için geçerli planları karşılaştırın. Mevcut abonelikler önceki plan sürümünü koruyabilir.",
+    "caption": "Güncel atölye planlarının özellik karşılaştırması",
+    "feature": "Özellik veya kota",
+    "scrollLabel": "Plan karşılaştırması — tüm planları görmek için yatay kaydırın",
+    "shared": "Her plan dersler, bekleme listeleri, hediye çekleri, markanıza uygun bir rezervasyon sitesi, müşteri portalı ve CSV içe aktarma içerir.",
+    "trialNote": "14 günlük deneme Professional özelliklerini içerir. Giriş kodları, özel alan adları ve yukarıdaki gelişmiş AI araçları için Space Plus veya üzerinde anlaşılmış bir Enterprise planı gerekir.",
+    "usageNote": "Temel sistem e-postaları e-posta kotasına dahil edilmez. AI kredileri etkin AI araçları arasında paylaşılır; kotaya ulaşıldığında kullanım otomatik aşım ücreti olmadan duraklatılır. Kullanılabilir araçlar atölye ayarlarına ve ekip izinlerine de bağlıdır.",
+    "accessNote": "Giriş kodları kendi erişim sisteminizle ve Shario’a yüklediğiniz kodlarla çalışır. Akıllı kilit donanımı ve entegrasyonları dahil değildir.",
+    "enterpriseTitle": "Size özel bir kuruluma mı ihtiyacınız var?",
+    "enterpriseDescription": "Enterprise kapasitesi, entegrasyonlar, veri taşıma ve destek hakkında bizimle görüşün. Seçim yapmadan önce atölyeniz için kapsamı ve koşulları netleştireceğiz.",
+    "enterpriseCta": "Enterprise için görüşün",
+    "rows": {
+      "locations": "Atölye konumları",
+      "teamAccounts": "Ekip hesapları",
+      "openStudioMemberships": "Açık atölye, üyelikler ve kredi paketleri",
+      "inventoryTasks": "Envanter ve ekip görevleri",
+      "automations": "Etkin özel otomasyonlar",
+      "emails": "Aylık dahil olan e-postalar",
+      "studioAssistant": "Atölye Asistanı",
+      "aiCredits": "Aylık AI kredileri",
+      "briefingKnowledge": "Günlük özetler ve bilgi merkezi",
+      "advancedAi": "Business Advisor, müşteri asistanı ve AI rapor analizleri",
+      "accessCodes": "Giriş kodu yönetimi ve e-postaları",
+      "customDomain": "Özel alan adı"
+    },
+    "values": {
+      "included": "Dahil",
+      "notIncluded": "Dahil değil",
+      "basic": "Temel",
+      "full": "Tam",
+      "limited": "Sınırlı",
+      "advanced": "Gelişmiş"
+    }
+  },
+  "RefundReviews": {
+    "title": "İade incelemeleri",
+    "description": "Stripe’tan kaydedilen iadeleri inceleyin ve ilgili müşteri haklarına ilişkin kararınızı belgeleyin.",
+    "benefitsNotice": "Bir iadeyi kaydetmek veya onaylamak rezervasyonu ya da üyeliği iptal etmez, kredileri kaldırmaz ve yeni bir ödeme yapmaz. Kararınızı kaydetmeden önce etkilenen hakları ayrı olarak inceleyin.",
+    "allLocationsRequired": "İade incelemeleri için stüdyonun tüm konumlarındaki ödemelere erişim gerekir.",
+    "refresh": "Yenile",
+    "loading": "İade incelemeleri yükleniyor…",
+    "empty": "Bu sayfada sonuçlandırılmamış inceleme yok.",
+    "loadError": "İncelemeler yüklenemedi. Yenileyip tekrar deneyin.",
+    "needsReview": "Müşteri hakları incelenmeli",
+    "needsRepair": "Ödeme mutabakatı ilgilenilmesini gerektiriyor",
+    "reference": "İnceleme referansı",
+    "order": "Sipariş",
+    "membership": "Üyelik",
+    "paid": "Asıl ödeme",
+    "refunded": "İade edildi",
+    "pending": "İade bekliyor",
+    "failed": "İade başarısız",
+    "repairNotice": "Bu ödemenin mutabakatı henüz tamamlanmadı. İncelemeyi kaydetmeden önce yenileyin veya ödeme eşleştirmesini düzeltmek için destekle iletişime geçin.",
+    "readOnly": "İade yetkisi olan bir ekip üyesi incelemeyi kaydedebilir.",
+    "review": "İncelemeyi kaydet",
+    "note": "Karar veya yapılan düzenlemeler (10–2000 karakter)",
+    "evidence": "Kararı destekleyen belge veya referans (10–2000 karakter)",
+    "confirm": "Etkilenen hakları kontrol ettim ve düzenlemeleri ya da bunları koruma kararımı belgeledim.",
+    "save": "İncelemeyi onayla",
+    "cancel": "İptal",
+    "saved": "İnceleme kaydedildi. Bu işlem müşterinin haklarını değiştirmedi.",
+    "changed": "Bu iade değişti veya mutabakatı hâlâ sürüyor. Liste yenilendi; yeniden göndermeden önce güncel bilgileri inceleyin.",
+    "saveError": "İnceleme kaydedilemedi. Notlarınız korundu; tekrar deneyin.",
+    "permissionError": "Bu incelemeyi kaydetme yetkiniz artık yok. Tüm konumlardaki iadelere erişimi olan bir ekip üyesinden yardım isteyin.",
+    "pagination": "İade inceleme sayfaları",
+    "firstPage": "İlk sayfa",
+    "nextPage": "Sonraki sayfa"
+  },
+  "PaymentRefundResult": {
+    "title": "Ödeme stüdyo tarafından incelenmeli",
+    "description": "Bir geri ödeme kaydedildi veya bu ödemenin incelenmesi gerekiyor. Bu sayfa yeni bir rezervasyonu, kredi bakiyesini veya üyelik avantajını onaylamaz.",
+    "next": "Başka bir ödeme yapmadan önce aşağıdaki referansı belirterek stüdyoyla iletişime geçin.",
+    "reference": "Referans",
+    "back": "Stüdyoya dön",
+    "refresh": "Durumu kontrol et"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Güzel mekânlar insanları bir araya getirir",
@@ -5849,7 +6138,8 @@
       "about": "Nasıl çalışır?",
       "login": "Giriş yapın",
       "register": "Ücretsiz denemeyi başlatın",
-      "copyright": "© {year} Shario. Tüm hakları saklıdır."
+      "copyright": "© {year} Shario. Tüm hakları saklıdır.",
+      "contact": "İletişim"
     }
   },
   "Waitlists": {
@@ -6801,6 +7091,22 @@
       "label": "Kişi görünümü"
     },
     "filters": {
+      "spending": "Harcama ({currency})",
+      "spendMin": "En düşük harcama",
+      "spendMax": "En yüksek harcama",
+      "spendFrom": "Ödeme başlangıç tarihi",
+      "spendTo": "Ödeme bitiş tarihi",
+      "spendingHint": "Bu dönemde yapılan ödemelerden kayıtlı iadeler düşülür.",
+      "spendingDatesHint": "Tüm zamanlar için tarihleri boş bırakın.",
+      "credits": "Mevcut krediler ({currency})",
+      "creditMin": "En düşük kredi",
+      "creditMax": "En yüksek kredi",
+      "creditsHint": "Ödeme tarihlerinden bağımsız mevcut kredi bakiyesi.",
+      "spendingUnavailable": "Harcama filtreleri tüm mali kayıtlara erişim gerektirir.",
+      "applyFinancial": "Mali filtreleri uygula",
+      "financialDraftHint": "Değişiklikler Uygula seçildiğinde geçerli olur.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Tüm zamanlar",
       "membership": "Üyelik",
       "status": "Durum",
       "button": "Filtreler",
@@ -6814,6 +7120,7 @@
       "clear": "Temizle"
     },
     "columns": {
+      "periodSpent": "Dönem içi harcama",
       "customer": "Müşteri",
       "contact": "İletişim",
       "membership": "Üyelik",
@@ -6830,6 +7137,7 @@
       "access": "Erişim"
     },
     "actions": {
+      "exporting": "Dışa aktarılıyor…",
       "addCustomer": "Müşteri ekle",
       "openCustomerActions": "{name} için işlemleri aç",
       "openStaffActions": "{name} için işlemleri aç",
@@ -6875,6 +7183,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Dönem içi harcama",
       "email": "E-posta",
       "membership": "Üyelik",
       "credits": "Krediler",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Etkin üyelikler",
       "credits": "Müşteri kredileri",
       "newThisMonth": "Bu ay yeni",
-      "monthlyChange": "Bu ay +{count}"
+      "monthlyChange": "Bu ay +{count}",
+      "unavailable": "Veri yok"
     },
     "counts": {
       "customers": "{count, plural, one {# müşteri} other {# müşteri}}",
@@ -6992,6 +7302,13 @@
       "view": "Müşteri analizlerini görüntüle"
     },
     "errors": {
+      "summary": "Müşteri toplamları ve üyelik filtreleri yüklenemedi. Lütfen tekrar deneyin.",
+      "export": "Tam müşteri dışa aktarımı indirilemedi. Hiçbir dosya kaydedilmedi. Lütfen tekrar deneyin.",
+      "invalidAmount": "Geçerli bir tutar girin.",
+      "invalidDate": "Geçerli bir tarih girin.",
+      "spendingRange": "En düşük harcama, en yüksek harcamayı aşamaz.",
+      "creditRange": "En düşük kredi, en yüksek krediyi aşamaz.",
+      "dateRange": "Başlangıç tarihi bitiş tarihinden sonra olamaz.",
       "customers": "Müşteriler yüklenemedi. Lütfen tekrar deneyin.",
       "staff": "Ekip üyeleri yüklenemedi. Lütfen tekrar deneyin."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Uygulama içi bildirimler",
           "description": "Çalışma alanı bildirimlerini Shario içinde göster."
+        },
+        "bookingCreated": {
+          "label": "Rezervasyon oluşturuldu",
+          "description": "İlgili bir rezervasyon oluşturulduğunda. Varsayılan olarak kapalı."
         }
       },
       "channelsTitle": "İletim kanalları"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "Yeni konuşma oluşturulamadı.",
       "message": "Stüdyo asistanı şu anda yanıt veremedi."
+    },
+    "guided": {
+      "title": "Ne öğrenmek istersiniz?",
+      "description": "Stüdyo verilerinize dayalı net bir yanıt almak için bir soru seçin.",
+      "back": "Başka bir soru seç",
+      "retry": "Tekrar dene",
+      "loading": "Stüdyo verileriniz kontrol ediliyor…",
+      "noAnswer": "Güvenilir bir yanıt bulamadık. Birazdan tekrar deneyin.",
+      "contextQuestion": "Bu konuda ne bilmeliyim?",
+      "contextHint": "Seçtiğiniz öğeyle ilgili bir yanıt.",
+      "allStudios": "Tüm stüdyolar",
+      "periods": {
+        "today": "Bugün",
+        "last30Days": "Son 30 gün",
+        "current": "Güncel genel bakış"
+      },
+      "report": {
+        "title": "Daha ayrıntılı bir genel bakış ister misiniz?",
+        "description": "Seçilen stüdyo için ayın başından {date} tarihine kadar aylık stüdyo raporu.",
+        "generate": "Aylık rapor oluştur",
+        "open": "Aylık raporu aç",
+        "back": "Yanıta dön",
+        "ready": "Aylık raporunuz hazır."
+      },
+      "questions": {
+        "today": {
+          "label": "Stüdyo bugün nasıl gidiyor?",
+          "hint": "Bugünkü operasyonlara hızlı bir genel bakış.",
+          "prompt": "Bugün stüdyoda neler oluyor?"
+        },
+        "bookings": {
+          "label": "Bugün kaç rezervasyonumuz var?",
+          "hint": "Bugünün onaylanmış rezervasyonları.",
+          "prompt": "Bugün kaç rezervasyonumuz var?"
+        },
+        "bookingTrend": {
+          "label": "Rezervasyonlarımız artıyor mu?",
+          "hint": "Son 30 günü önceki 30 günle karşılaştırın.",
+          "prompt": "Rezervasyonlarımız nasıl bir eğilim gösteriyor?"
+        },
+        "teamBlockers": {
+          "label": "Ekibi engelleyen bir şey var mı?",
+          "hint": "Ekibin bugün bildirdiği engelleri inceleyin.",
+          "prompt": "Bugün ekibimizi ne engelliyor?"
+        },
+        "reorders": {
+          "label": "Neyin yeniden stoklanması gerekiyor?",
+          "hint": "Envanteri yenilemek için açık talepleri kontrol edin.",
+          "prompt": "Açık yeniden sipariş talepleri var mı?"
+        },
+        "generalHelp": {
+          "label": "Hangi stüdyo verilerini inceleyebilirim?",
+          "hint": "Rolünüz için kullanılabilen bilgileri görün.",
+          "prompt": "Hangi stüdyo verilerine erişebiliyorsun?"
+        }
+      },
+      "selectedStudio": "Seçilen stüdyo"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "En iyi tamamlanan ay",
+      "completedMonths": "Yalnızca güvenilir verileri olan tam ve tamamlanmış aylar karşılaştırılır.",
+      "noBestMonth": "Bu dönemde güvenilir bir en iyi ay yok. Tamamlanmış ayları dahil edin.",
+      "showYear": "Bu yılı göster",
+      "monthRanking": "Aylara göre ödemeler",
+      "month": "Ay",
+      "coverage": "Veri kapsamı",
+      "completeMonth": "Tam ay",
+      "partialMonth": "Kısmi ay",
+      "moneyBasis": "Dönemde gerçekten alınan ödemelerden rapor tarihine kadar kaydedilen iadeler düşülür. Ücretli üyelikler, kuponlar ve bakiye yüklemeleri bir kez sayılır; kullanım yeni bir ödeme değildir. Bu kâr değildir.",
+      "asOf": "İtibarıyla",
+      "customerTable": "Müşteri analizi",
+      "customerHelp": "İletişime geçilecek müşterileri bulmak için filtreleri birleştirin.",
+      "inactiveCredit": "90 gündür etkin olmayan, bakiyesi bulunanlar:",
+      "showCustomers": "Müşterileri göster",
+      "spending": "Alınan ödemeler",
+      "credits": "Mevcut bakiye",
+      "cancellations": "İptal edilen rezervasyonlar",
+      "minimum": "En az",
+      "maximum": "En çok",
+      "actor": "İptal eden",
+      "actor_all": "Herkes",
+      "actor_customer": "Müşteri",
+      "actor_staff": "Personel",
+      "inactiveDays": "En az etkin olmayan gün sayısı",
+      "dateDefaults": "Boş tarihler yukarıdaki rapor dönemini kullanır.",
+      "cancellationCoverage": "Eski iptallerin güvenilir tarihi veya yapanı olmayabilir. + işaretli sayı bilinen alt sınırdır; bilinmeyen sıfır değildir. Üst sınır filtresi tam geçmiş gerektirir.",
+      "invalidBounds": "Geçerli sayılar ve tarihler girin; alt sınır üst sınırı aşamaz.",
+      "apply": "Filtreleri uygula",
+      "clear": "Filtreleri temizle",
+      "exportCustomers": "Eşleşen tüm müşterileri dışa aktar",
+      "noCustomers": "Filtrelerle eşleşen müşteri yok.",
+      "customer": "Müşteri",
+      "lastActivity": "Son etkinlik",
+      "locationScope": "Stüdyo toplamları güvenilir şekilde stüdyoya atanamayan ödemeleri içermez. Üyelikler, kuponlar ve yüklemeler yalnızca tüm çalışma alanı görünümüne dahil olabilir.",
+      "incompleteData": "Bazı kaynaklar eksik veya kullanılamıyor. Yalnızca doğrulanabilir kayıtlar dahil edilir; eksik değerler sıfır değildir.",
+      "paymentSources": "Ödeme kaynakları",
+      "source_external_payment": "Sipariş ödemeleri",
+      "source_voucher": "Kupon satın alımları",
+      "source_membership": "Üyelik ödemeleri",
+      "source": "Kaynak",
+      "noPaymentSources": "Ödeme kaynaklarına ilişkin veri bulunmuyor."
+    },
     "actions": {
       "retry": "Tekrar dene",
       "export": "CSV dışa aktar",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Rezervasyonlar",
-      "netSales": "Net satışlar",
+      "netSales": "Alınan ödemeler",
       "utilizationPercent": "Kapasite kullanımı",
       "returningCustomerPercent": "Geri dönen müşteriler"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Rezervasyonlar",
-        "netSales": "Net satışlar"
+        "netSales": "Alınan ödemeler"
       },
       "trendTitle": "Performans eğilimi",
       "trendDescription": "Seçilen raporlama dönemi boyunca doğrulanmış değerler.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Adet",
         "currency": "Para birimi",
-        "orders": "Siparişler",
+        "orders": "Ödemeler",
         "amount": "Tutar",
-        "net": "Net satışlar",
+        "net": "Alınan ödemeler",
         "gross": "Brüt satışlar",
         "method": "Yöntem",
         "product": "Katalog kalemi"
       },
       "metrics": {
-        "orders": "Siparişler",
-        "net": "Net satışlar",
+        "orders": "Ödemeler",
+        "net": "Alınan ödemeler",
         "gross": "Brüt satışlar",
         "tax": "Vergi / KDV",
         "discounts": "İndirimler",
         "refunds": "Para iadeleri",
         "paymentFees": "Ödeme sağlayıcısı ücretleri",
-        "averageOrder": "Ortalama sipariş değeri"
+        "averageOrder": "Ortalama ödeme"
       },
       "unavailable": "Satış verileri kullanılamıyor",
       "unavailableDescription": "Bu hesap veya raporlama kapsamı için kullanılabilir satış kaynağı yok.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Rezervasyonlar",
-        "participants": "Katılımcılar",
+        "participants": "Rezerve edilen yerler",
         "utilization": "Kapasite kullanımı",
         "cancellations": "İptaller",
         "noShows": "Gelmeyenler",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Yeni müşteriler",
-        "returning": "Geri dönen müşteriler",
-        "unique": "Aktif müşteriler",
+        "new": "Yeni ödeme yapan müşteriler",
+        "returning": "Geri dönen ödeme yapan müşteriler",
+        "unique": "Ödeme yapan müşteriler",
         "returningRate": "Geri dönüş oranı",
-        "averageSpend": "Ortalama harcama"
+        "averageSpend": "Ortalama ödenen tutar"
       },
       "unavailable": "Müşteri verileri kullanılamıyor",
       "unavailableDescription": "Bu hesap veya raporlama kapsamı için kullanılabilir müşteri kaynağı yok.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "Kapı erişimi bu plana dahil değil",
       "description": "Plan seçeneklerini inceleyin veya Kapı erişimi için çalışma alanı sahibine başvurun."
+    },
+    "emailTemplate": {
+      "title": "Kapı kodu e-postası",
+      "description": "Bu konum için otomatik kapı kodu e-postasını oluşturun veya düzenleyin. Her konumun Mesajlar → E-posta şablonları ile paylaşılan tek bir şablonu vardır.",
+      "create": "Şablon oluştur",
+      "createFor": "{location} için kapı kodu şablonu oluştur",
+      "locationUnavailable": "Bu konum için kullanılabilir bir kapı kodu e-posta şablonu yok."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "ALL_PRODUCTS": "Tüm ürünler",
     "AUTHOR_SEARCH": "Müşteri ara",
     "SEARCH_BY_NAME_OR_ID": "Ad veya kimlikle ara",
-    "PASS_RULES": "En az bir rakam dahil 8 karakter kullanın."
+    "PASS_RULES": "En az bir rakam dahil 8 karakter kullanın.",
+    "USER_EMAIL_CHANGE_WARNING": "E-postayı değiştirmek bu müşterinin tüm oturumlarını kapatır ve yeni adresi doğrulamasını gerektirir.",
+    "USER_EMAIL_VERIFICATION_SENT": "E-posta güncellendi. Mevcut oturumlar sonlandırıldı ve yeni adrese bir doğrulama bağlantısı gönderildi.",
+    "USER_EMAIL_VERIFICATION_RETRY": "E-posta güncellendi ve mevcut oturumlar sonlandırıldı. Doğrulama e-postasının teslimi onaylanamadı. Müşteri, stüdyonun e-posta doğrulama sayfasından yeni bir bağlantı isteyebilir.",
+    "USER_EMAIL_UPDATE_FAILED": "Müşteri güncellenemedi. E-postayı kontrol edip tekrar deneyin."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "Güvenilir öneri için henüz yeterli veri kapsamı yok.",
       "message042": "En yüksek öncelikli fırsatlarla başlayın",
       "message043": "Birkaç fırsatı incelemeye değer",
-      "message044": "Danışman doğrulanmış stüdyo verilerine dayanan {value1} öneri buldu."
+      "message044": "Danışman doğrulanmış stüdyo verilerine dayanan {value1} öneri buldu.",
+      "message045": "Alınan ödemelerdeki düşüşü inceleyin",
+      "message046": "İadeler sonrası alınan ödemeler, karşılaştırma dönemine göre %{value1} daha düşük.",
+      "message047": "İadeler sonrası alınan ödemeler"
     },
     "briefing": {
       "message011": "Acil görevler",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Ödeme iptal edildi",
-    "nextSteps": "Şimdi neler yapabilirsiniz",
-    "retry": "Tekrar deneyin — bazen ikinci deneme işe yarar.",
-    "card": "Apple Pay / Google Pay kullandıysanız kartla ödemeyi deneyin.",
-    "contact": "Sorun devam ederse bize mesaj gönderin; yardımcı oluruz.",
     "home": "Ana sayfaya dön",
-    "chargeNotice": "Ödeme tamamlanana kadar tahsilat yapılmaz."
+    "title": "Ödemeden geri döndünüz",
+    "description": "Ödeme sayfasından geri dönmek rezervasyonu iptal etmez. Durumunu rezervasyonlarınızda kontrol edebilirsiniz.",
+    "creditsHint": "Kredilerle ödemek için önce ödenmemiş rezervasyonunuzu açıp iptal edin. Ardından saati yeniden seçin. Bu seçenek kullanılamıyorsa stüdyoyla iletişime geçin.",
+    "backToBookings": "Rezervasyonlara dön"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Stüdyoya genel bakış",
+    "todayNumbers": "Günlük stüdyo rakamları",
+    "todayBookings": "Rezervasyonlar",
+    "selectedDate": "Seçilen günde",
+    "expectedVisitors": "Beklenen ziyaretçiler",
+    "bookedParticipants": "Planlanan rezervasyonlardaki katılımcılar",
+    "expectedNow": "Şu anda stüdyoda (tahmini)",
+    "expectedNowBasis": "Devam eden bir rezervasyonu olan kişiler; varlıkları doğrulanmadı",
+    "nextSession": "Sonraki rezervasyon",
+    "noUpcomingSession": "Yaklaşan rezervasyon yok",
+    "attentionTitle": "İlginizi gerektiriyor",
+    "review": "İncele",
+    "generateReport": "Yapay zekâ raporu oluştur",
+    "generating": "Rapor hazırlanıyor…",
+    "reportPermission": "Yapay zekâ raporları için stüdyo asistanına erişim gerekir.",
+    "reportError": "Rapor oluşturulamadı. Lütfen tekrar deneyin.",
+    "operationsError": "Günlük stüdyo verileri yüklenemedi.",
+    "managementError": "Aylık stüdyo verileri yüklenemedi.",
+    "retry": "Tekrar dene",
+    "loadingPerformance": "Stüdyo performansı yükleniyor…",
+    "performanceEyebrow": "Stüdyo performansı",
+    "monthTitle": "Bu ay şimdiye kadar",
+    "comparison": "{period} ile karşılaştırıldığında",
+    "comparedWithPrevious": "önceki döneme göre",
+    "unavailable": "Veri yok",
+    "revenue": "Sunulan hizmet geliri",
+    "revenueBasis": "Dönem içinde sunulan hizmetler ve teslim edilen ürünler",
+    "revenueUnavailable": "Toplam sunulan hizmet geliri henüz kullanılamıyor: teslim kayıtları tüm hizmetleri ve ürünleri kapsamıyor. Nakit tahsilatları ayrıca raporlanır.",
+    "confirmedRevenue": "Onaylanmış tamamlanan hizmetler: {amount}.",
+    "visits": "Geçmiş rezervasyonlardaki katılımcılar",
+    "visitsBasis": "Süresi geçmiş rezervasyonlardaki katılımcılar; katılım doğrulanmadı",
+    "newClients": "Rezervasyon yapan yeni müşteriler",
+    "newClientsBasis": "Seçilen stüdyolarda kaydedilen ilk rezervasyon; tüm işletme için yeni olmayabilir",
+    "last30Days": "Son 30 gün",
+    "arrivalTitle": "Müşteriler ne zaman geliyor",
+    "scheduledArrivalTitle": "Ziyaretler ne zaman planlanıyor",
+    "hourlyAttendance": "Başlangıç saatine göre katılımcılar",
+    "hourCount": "{hour}:00 — {count} katılımcı",
+    "busiestHour": "En yoğun planlanan saat: {from}:00–{to}:00",
+    "recordedBusiestHour": "En yoğun varış saati: {from}:00–{to}:00",
+    "recordedSample": "Kaydedilen {count} varışa göre",
+    "scheduledSample": "Planlanan {count} katılımcıya göre",
+    "scheduledCaveat": "Rezervasyon başlangıç saatleri mevcut programı gösterir. Sakin saatler tek başına yeni seanslara talep olduğunu kanıtlamaz.",
+    "noAttendance": "Henüz bir örüntü gösterecek kadar etkinlik yok.",
+    "other": "Diğer",
+    "topClients": "İlk 5 müşteri",
+    "rankingBy": "Müşterileri sıralama ölçütü",
+    "clientVisitsBasis": "Bu dönemde süresi geçmiş rezervasyonlardaki katılımcılar",
+    "clientRevenueBasis": "Bu dönemde onaylanmış tamamlanan hizmetlerden elde edilen gelir",
+    "unnamedClient": "Adsız müşteri",
+    "noClients": "Bu dönem için kayıtlı müşteri yok.",
+    "confirmedOnly": "Yalnızca onaylanmış tamamlanan hizmetler; diğer teslim kayıtları kullanılamıyor.",
+    "topProducts": "İlk 3 ürün",
+    "byQuantity": "Miktara göre",
+    "deliveredProductsBasis": "Miktara göre sıralanmış onaylanmış tamamlanan hizmetler",
+    "noProducts": "Bu dönem için kayıtlı tamamlanmış ürün yok.",
+    "unnamedProduct": "Adsız ürün",
+    "units": "adet",
+    "coverageTitle": "Veri kapsamı ve sınırlamalar",
+    "coverageDescription": "Kullanılamayan veriler kullanılamaz olarak kalır. Planlanan etkinlik ile onaylanmış teslim ayrı ayrı gösterilir.",
+    "openReports": "Ayrıntılı raporları aç",
+    "back": "Panoya dön",
+    "reportTitle": "Stüdyo raporu",
+    "exporting": "PDF hazırlanıyor…",
+    "exportPdf": "PDF olarak dışa aktar",
+    "exportError": "PDF indirilemedi. Lütfen tekrar deneyin.",
+    "aiReport": "Yapay zekâ stüdyo raporu",
+    "verifiedReport": "Stüdyo veri raporu",
+    "deterministicNote": "Yapay zekâ yorumu kullanılamıyor. Bu rapor kayıtlı stüdyo rakamlarını ve olgusal bir özeti içerir.",
+    "reportHighlights": "Öne çıkanlar",
+    "reportAttention": "İlgi gerektiriyor",
+    "reportRecommendations": "Önerilen sonraki adımlar",
+    "generatedAt": "Oluşturulma: {date}",
+    "issues": {
+      "overdueTasks": "Gecikmiş görevler: {count}",
+      "lowStock": "Stoğu azalan ürünler: {count}",
+      "failedEmails": "Başarısız e-postalar: {count}",
+      "overduePayments": "Gecikmiş ödemeler: {count}",
+      "overdueOrders": "Gecikmiş özel siparişler: {count}",
+      "other": "İncelenmesi gereken öğeler: {count}",
+      "failed_emails": "Başarısız e-postalar: {count}",
+      "overdue_custom_orders": "Gecikmiş özel siparişler: {count}",
+      "overdue_invoices": "Gecikmiş ödemeler: {count}"
+    },
+    "staleData": "Son yenileme başarısız oldu. Daha önce yüklenen veriler gösteriliyor.",
+    "refreshingData": "Stüdyo verileri yenileniyor…",
+    "coverageReportDetails": "Her metriğin kullanılabilir kaynaklarını ve sınırlamalarını görmek için bir stüdyo raporu oluşturun.",
+    "dismissAttention": "Uyarı kartını gizle",
+    "showAttention": "Uyarıları göster ({count})",
+    "customerId": "Müşteri kimliği {id}",
+    "spentMonth": "Seçilen ayda harcanan",
+    "spentTotal": "Toplam harcama",
+    "clientSpendingBasis": "Tüm stüdyolarda kaydedilen iadeler sonrası müşteri ödemeleri. Ay: {period}; seçilen tarihe kadarki toplam.",
+    "spendingUnavailable": "Bu görünüm için harcama verileri kullanılamıyor.",
+    "previousValue": "Önceki dönem: {value}",
+    "revenueUnavailableShort": "Kullanılamıyor — teslim kayıtları eksik.",
+    "totalCustomers": "Toplam müşteri",
+    "workspaceCustomersScope": "Tüm stüdyolarda kayıtlı",
+    "newRegisteredThisMonth": "Bu ay yeni",
+    "activeCustomers": "Aktif müşteriler",
+    "activeCustomersBasis": "Son 30 günde rezervasyon yaptı",
+    "selectedStudiosScope": "Seçilen stüdyolar",
+    "workspaceScope": "Tüm stüdyolar",
+    "activeSubscribers": "Aktif aboneler",
+    "newSubscribersThisMonth": "Bu ayki yeni aboneler",
+    "subscriberBasis": "Her kişi bir kez sayılır. Yeni, ilk aboneliği anlamına gelir; yenilemeler hariçtir.",
+    "missingMetric": "— Veri yok",
+    "asOfDate": "{date} itibarıyla",
+    "subscriberSelectedScope": "Seçilen stüdyolarda geçerli üyelikler",
+    "recordedPayments": "Kaydedilen ödemeler",
+    "recordedPaymentsBasis": "Seçilen ayda alınan ödemeler, kaydedilen iadeler düşülerek",
+    "paymentsUnavailable": "Ödeme verileri kullanılamıyor.",
+    "spending": "Harcanan tutar",
+    "clientPaymentsBasis": "Tüm stüdyolarda, seçilen aydaki kayıtlı müşteri ödemelerine göre, kaydedilen iadeler düşülerek sıralanmıştır",
+    "noCustomerPayments": "Bu dönem için doğrulanmış müşteri ödemesi yok.",
+    "spendingIncomplete": "Ödeme geçmişi eksik olduğu için bazı toplamlar kullanılamıyor.",
+    "paymentRankingIncomplete": "Sıralamada doğrulanmış ödeme tutarları kullanılır; eksik kayıtlar sırayı etkileyebilir.",
+    "byPurchases": "Satın alımlara göre",
+    "purchasedProductsBasis": "Her ürünü içeren ödenmiş siparişler · Son 30 gün: {period}",
+    "noPurchasedProducts": "Son 30 günde doğrulanmış ödenmiş ürün satın alımı yok.",
+    "purchases": "satın alım",
+    "purchasesIncomplete": "Bazı satın alımlar doğrulanamıyor; bu sıralama eksik olabilir.",
+    "knownAmount": "Bilinen tutar",
+    "knownPaymentsOnly": "Yalnızca bilinen ödemeler; bazı ödeme kayıtları eksik."
+  },
+  "UnifiedSettings": {
+    "title": "Ayarlar",
+    "description": "Tercihleriniz ve stüdyo ayarlarınız tek bir yerde.",
+    "navigation": "Ayar bölümleri",
+    "studioTitle": "Stüdyo",
+    "personalTitle": "Ayarlarım",
+    "studioScope": "Tüm stüdyo için",
+    "personalScope": "Yalnızca sizin için",
+    "studioDescription": "Bu stüdyo için paylaşılan ayarlar. Yalnızca erişiminiz olan alanları görürsünüz.",
+    "personalDescription": "Hesabınızı ve bu stüdyodaki çalışma şeklinizi yönetin. Bu tercihler diğer ekip üyelerinin ayarlarını değiştirmez.",
+    "personalProfileScope": "Profiliniz ve parolanız tüm stüdyolardaki hesabınız için geçerlidir.",
+    "personalPreferencesScope": "Bu tercihler yalnızca bu stüdyoda sizin için geçerlidir.",
+    "locationScope": "Yalnızca {name} konumu",
+    "newLocationScope": "Yeni konum için ayarlar",
+    "backTo": "{section} bölümüne dön",
+    "searchLabel": "Ayarlarda ara",
+    "searchStudio": "Stüdyo ayarlarında ara…",
+    "searchPersonal": "Ayarlarımda ara…",
+    "clearSearch": "Aramayı temizle",
+    "searchResults": "{count, plural, one {# ayar bulundu} other {# ayar bulundu}}",
+    "advancedTitle": "Gelişmiş ayarlar",
+    "advancedDescription": "Etkin özellikler, gezinme ve veri içe aktarma.",
+    "emptyTitle": "Eşleşen ayar yok",
+    "emptyDescription": "Başka bir terim deneyin veya bu bölümdeki tüm kullanılabilir ayarları görmek için aramayı temizleyin.",
+    "setupTitle": "Stüdyonuzun kurulumunu tamamlayın",
+    "setupProgress": "{total} zorunlu adımdan {completed} tanesi tamamlandı.",
+    "setupAction": "Kuruluma devam et",
+    "groups": {
+      "workspace": {
+        "title": "Stüdyo ve konumlar",
+        "description": "Stüdyo bilgileri, ortak dil, para birimi ve konumlar."
+      },
+      "access": {
+        "title": "Ekip ve erişim",
+        "description": "Ekip üyeleri, roller ve kapı erişimi."
+      },
+      "website": {
+        "title": "Web sitesi ve marka",
+        "description": "Herkese açık web sitesi, rezervasyon sayfaları ve görsel kimlik."
+      },
+      "payments": {
+        "title": "Müşterilerden ödemeler",
+        "description": "Ödeme yöntemleri ve müşteri ödeme ayarları."
+      },
+      "communications": {
+        "title": "Mesajlar ve otomasyon",
+        "description": "E-posta teslimi, gönderenler ve yapay zekâ desteği."
+      },
+      "account": {
+        "title": "Shario aboneliği",
+        "description": "Stüdyonuzun planı, faturaları ve fatura bilgileri."
+      },
+      "advanced": {
+        "title": "Özellikler ve veriler",
+        "description": "Modülleri yapılandırın ve verileri stüdyonuza aktarın."
+      },
+      "profile": {
+        "title": "Profil ve güvenlik",
+        "description": "Tüm stüdyolardaki adınız, iletişim bilgileriniz ve parolanız."
+      },
+      "preferences": {
+        "title": "Çalışma ortamım",
+        "description": "Bu stüdyodaki takviminiz, saat diliminiz ve varsayılan konumunuz."
+      },
+      "notifications": {
+        "title": "Bildirimlerim",
+        "description": "Bu stüdyoda alacağınız güncellemeleri seçin."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Stüdyo bilgileri",
+        "description": "Ad, dil, saat dilimi ve para birimi."
+      },
+      "locations": {
+        "title": "Konumlar",
+        "description": "Adresler, odalar ve çalışma saatleri."
+      },
+      "team": {
+        "title": "Ekip üyeleri",
+        "description": "Kişileri davet edin ve ekip üyeliğini yönetin."
+      },
+      "roles": {
+        "title": "Roller ve izinler",
+        "description": "Stüdyonun her bölümüne kimlerin erişebileceği."
+      },
+      "accessCodes": {
+        "title": "Kapı erişimi",
+        "description": "Kapı kodları ve giriş erişimi."
+      },
+      "publicSite": {
+        "title": "Web sitesi ve rezervasyon sayfaları",
+        "description": "Marka, herkese açık sayfalar ve müşteri deneyimi."
+      },
+      "payments": {
+        "title": "Ödeme yöntemleri",
+        "description": "Çevrim içi ödemeler ve Stripe bağlantısı."
+      },
+      "invoicing": {
+        "title": "Müşteri faturalandırması",
+        "description": "Faturalar ve müşteri faturalandırması."
+      },
+      "communications": {
+        "title": "E-posta ve gönderenler",
+        "description": "Teslim, gönderim alan adları ve mesaj ayarları."
+      },
+      "ai": {
+        "title": "Yapay zekâ asistanı",
+        "description": "Yapay zekâ özellikleri ve otomasyon ayarları."
+      },
+      "billing": {
+        "title": "Plan ve faturalandırma",
+        "description": "Shario aboneliği, faturalar ve fatura bilgileri."
+      },
+      "modules": {
+        "title": "Özellikler ve gezinme",
+        "description": "Modülleri etkinleştirin ve gezinme öğelerini seçin."
+      },
+      "migration": {
+        "title": "Verileri içe aktar",
+        "description": "Müşterileri, rezervasyonları ve diğer stüdyo verilerini içe aktarın."
+      },
+      "profile": {
+        "title": "Profili ve parolayı düzenle",
+        "description": "Tüm stüdyolardaki adınız, iletişim bilgileriniz ve parolanız."
+      },
+      "preferences": {
+        "title": "Takvim ve görünüm",
+        "description": "Bu stüdyodaki takviminiz, saat diliminiz ve varsayılan konumunuz."
+      },
+      "notifications": {
+        "title": "Bildirim tercihleri",
+        "description": "Rezervasyon, görev ve envanter uyarıları; e-posta ve uygulama içi güncellemeler."
+      }
+    },
+    "language": {
+      "label": "Uygulama dili",
+      "change": "Dili değiştir",
+      "sharedScope": "Tüm stüdyo ekibi tarafından paylaşılır.",
+      "managedByAdmin": "Bu dili stüdyo yöneticiniz yönetir."
+    },
+    "plan": {
+      "label": "Mevcut plan",
+      "details": "Plan ayrıntıları",
+      "loading": "Plan yükleniyor…",
+      "unavailable": "Plan kullanılamıyor",
+      "detailsUnavailable": "Plan ayrıntıları geçici olarak kullanılamıyor."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "Shario işlem komisyonu almaz. Müşteri ödemeleri için Stripe işlem ücretleri aboneliğinizden ayrıdır. Fiyatlara geçerli vergiler dahil değildir.",
+    "feeLink": "Ödeme ücretleri, deneme süresi ve iptal ayrıntıları",
+    "links": {
+      "stripePricing": "Ülkeniz için Stripe fiyatlandırmasını kontrol edin",
+      "refundContact": "Abonelik iadesi hakkında sorun",
+      "studioAi": "Shario AI'ı keşfedin",
+      "refundTerms": "Koşulların ve iade istisnalarının tamamını okuyun"
+    },
+    "faq": {
+      "title": "Plan seçmeden önce",
+      "description": "Ne ödediğinizi, değişikliklerin ne zaman geçerli olduğunu ve deneme sürenizden sonra ne olacağını öğrenin.",
+      "trial": {
+        "question": "Deneme sürem bittiğinde ne olur?",
+        "answer": "14 günlük Professional deneme süreniz, ilk kurulumu tamamladığınızda başlar. Kart gerekmez. Etkin bir ücretli abonelik yoksa deneme süresi bittiğinde yeni rezervasyonlar, çevrim içi satın alımlar ve çalışma alanı özellikleri duraklatılır. Mevcut müşteri rezervasyon geçmişi ve fatura kurtarma kullanılabilir olmaya devam eder; deneme süresinin bitmesi stüdyo verilerini silmez. Erken ücretlendirmeyi önlemek için deneme süresinin son 48 saatinde plan satın alma kullanılamaz. Deneme süresi bittikten sonra abone olabilirsiniz."
+      },
+      "cancellation": {
+        "question": "İptal ne zaman geçerli olur?",
+        "answer": "Ücretli bir aboneliği iptal etmek bir sonraki yenilemeyi durdurur. Mevcut ücretli fatura döneminizin sonuna kadar erişiminiz devam eder ve o zamana kadar iptali geri alabilirsiniz. Kartsız bir deneme süresini iptal etmek o denemeyi hemen sona erdirir. Erişim sona erdikten sonra yeni rezervasyonlar, çevrim içi satın alımlar ve çalışma alanı özellikleri kısıtlanır. Kısıtlı erişim tam bir salt okunur çalışma alanı değildir: genel raporlar ve dışa aktarmalar kullanılamayabilir. Erişim sona ermeden önce ihtiyaç duyduğunuz kayıtları dışa aktarın veya verilerin iadesi ya da silinmesi için hello@shario.io ile iletişime geçin. Kayıtlar süre dolduğunda otomatik olarak silinmez, ancak süresiz saklama vaat edilmez."
+      },
+      "refunds": {
+        "question": "İptal, kullanılmayan süreyi otomatik olarak iade eder mi?",
+        "answer": "Yıllık veya aylık bir aboneliği iptal etmek bir sonraki yenilemeyi durdurur; uygun ücretli erişim mevcut dönemin sonuna kadar devam eder. Gönüllü iptal, kullanılmayan süre ve kullanılmayan kotalar; zorunlu mevzuat, açık yazılı bir sözleşme veya Koşullarımızdaki çözüm yolları kapsamı dışında iade edilmez. Shario ücretli hizmeti kendi tercihiyle erken sonlandırırsa veya siz, yazılı bildirimden 30 gün sonra hâlâ giderilmemiş esaslı bir ihlalimiz nedeniyle sözleşmeyi feshederseniz, kullanılmayan ön ödemeli kısmı fesih tarihinden itibaren iade ederiz. Aleyhinize bir koşul değişikliğinin mevcut ön ödemeli dönem içinde yürürlüğe girmesi gerektiği için feshederseniz de kullanılmayan ön ödemeli kısmı iade ederiz. Yeni veya yerine geçen bir veri işleme sağlayıcısına (alt işleyen) yönelik haklı bir veri koruma itirazını makul bir alternatifle çözemezsek, etkilenen hizmeti sonlandırabilir ve kullanılmayan ön ödemeli kısmını geri alabilirsiniz. İptal tek başına otomatik olarak iade sağlamaz. Geçerli çözüm yolunu talep etmek için bizimle iletişime geçin."
+      },
+      "planChanges": {
+        "question": "Üst ve alt plana geçişler ne zaman geçerli olur?",
+        "answer": "Ücretli aboneliklerde daha yüksek bir plana geçiş, gerekli ödeme tamamlandığında orantılı bir faturayla hemen geçerli olur. Daha düşük bir plana geçiş, mevcut fatura döneminin sonunda geçerli olur. Aynı planda aylıktan yıllık faturalandırmaya geçiş, gerekli ödeme tamamlandığında hemen gerçekleşir; yıllıktan aylık faturalandırmaya geçiş ise bir sonraki dönemde başlar. Onaylamadan önce geçerlilik tarihini ve fatura önizlemesini inceleyin."
+      },
+      "payments": {
+        "question": "Müşteri ödeme ücretleri dahil mi?",
+        "answer": "Çevrim içi müşteri ödemeleri bağlı Stripe hesabınız üzerinden işlenir. Shario işlem komisyonu almaz. Stripe işlem ücretleri Shario aboneliğinizden ayrıdır ve ülkenize, ödeme yöntemine ve Stripe sözleşmenize bağlıdır. Stüdyo aboneliğiniz, müşterilerinizin yaptığı ödemelerden ayrı olarak faturalandırılır."
+      }
+    },
+    "definitions": {
+      "title": "Plan özellikleri ne anlama geliyor",
+      "automations": {
+        "question": "Etkin otomasyon olarak ne sayılır?",
+        "answer": "Etkin otomasyon, çalışmak üzere etkinleştirilmiş özel bir kuraldır: örneğin bir müşteri kaydolduktan bir gün sonra stüdyoya varış talimatlarının planlanması. Sınır, kayıtlı taslakları veya bir kuralın ne sıklıkla çalıştığını değil, etkin kuralları sayar. Starter özel kural içermez; Professional 3 kurala izin verir. Space Plus aynı olay tabanlı oluşturucuyu kullanır ve ayda 5.000 ölçülen e-postayla 3'ten fazla etkin kurala izin verir. Her kural otomasyon sınırına, ölçülen e-postaları da e-posta kotasına sayılır. Standart sistem e-postaları ayrıdır."
+      },
+      "studioAi": {
+        "question": "Hangi Shario AI araçlarını alıyorum?",
+        "answer": "Professional ayda 2.000 yapay zekâ kredisi sağlar ve Stüdyo Asistanı, günlük brifingler ve Bilgi Merkezi'ni içerir. Space Plus 10.000 kredi sağlar ve Business Advisor, müşteri concierge'i ve yapay zekâ rapor içgörülerini ekler. Araçlar stüdyo kurulumunuza ve ekip izinlerine bağlıdır; desteklenen işlemler onay gerektirir."
+      },
+      "aiCredits": {
+        "question": "Bir yapay zekâ kredisi bir soru anlamına mı gelir?",
+        "answer": "Yapay zekâ kredileri sabit sayıda soruyu değil, işlenen ve üretilen metni ölçer. Örneğin 750 token (metin parçası) kullanan kısa bir işlem 1 kredi kullanır; yeterli bütçeyle 2.500 tokenlık bir işlem 3 kredi kullanır. Bir soru birkaç işlem içerebilir; bilgi aramaları veya belge dizinleme kullanımı artırabilir. Bunlar örnektir, soru başına garanti edilen maliyetler değildir. Krediler her ay etkin araçlar arasında paylaşılır. Bir talebin çalışması için yeterli kalan kredi gerekir; otomatik aşım ücreti yoktur."
+      },
+      "emails": {
+        "question": "E-posta kotası dolduğunda ne olur?",
+        "answer": "Aylık kota, ölçülen otomasyon e-postalarını kapsar. Kota dolduğunda ilgili otomasyon e-postası atlanır; bir sonraki ay için otomatik olarak sıraya alınmaz. Temel hesap e-postaları ve desteklenen yerleşik operasyonel mesajlar bu kotaya sayılmaz. Kendi otomasyonunuzu işlemsel olarak etiketlemeniz onu muaf tutmaz. Daha fazla kapasiteye ihtiyacınız varsa çalışma alanı kullanımını kontrol edin ve planınızı değiştirin ya da bizimle iletişime geçin."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Ödeme yönteminizi değiştirmek mi istiyorsunuz?",
+    "explanation": "Ödenmemiş rezervasyonunuz yerinizi hâlâ tutuyor olabilir. Kart yerine kredilerle ödemek veya baştan başlamak için önce onu iptal edin. Bu düğme, bu ödemedeki tüm ödenmemiş rezervasyonları iptal eder.",
+    "action": "Ödenmemiş rezervasyonları iptal et",
+    "busy": "Ödeme kontrol ediliyor ve rezervasyon iptal ediliyor…",
+    "cancelled": "Bu ödemedeki ödenmemiş rezervasyonlar iptal edildi. Sepetinize dönün veya saati yeniden seçin, ardından stüdyo kredilerini seçin. Uygunluk ve fiyat yeniden kontrol edilecek.",
+    "paid": "Ödeme zaten tamamlandı. Rezervasyonunuz iptal edilmedi. Durumunu kontrol edin.",
+    "pending": "Ödeme hâlâ doğrulanıyor. Hiçbir şey iptal edilmedi. Aynı saat için başka bir rezervasyon yapmadan önce ödeme durumunu kontrol edin.",
+    "unsupported": "Bu ödeme burada iptal edilemez. Rezervasyonlarınızı açın veya stüdyoyla iletişime geçin.",
+    "missing": "Bu sipariş bulunamadı. Rezervasyonlarınızı açın veya stüdyoyla iletişime geçin.",
+    "error": "İptal onaylanamadı. Lütfen tekrar deneyin. Sorun devam ederse stüdyoyla iletişime geçin.",
+    "status": "Ödeme durumunu kontrol et",
+    "bookAgain": "Saati yeniden seç"
   }
 }

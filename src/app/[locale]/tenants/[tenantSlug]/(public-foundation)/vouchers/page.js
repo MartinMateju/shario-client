@@ -1,3 +1,5 @@
+import PublicCommerceCatalogHydration from "@/components/public-tenant/PublicCommerceCatalogHydration";
+import { getPublicCommerceCatalog } from "@/lib/publicTenant/commerceCatalog.server";
 import { getTranslations } from "next-intl/server";
 
 import PublicVoucherCatalogPage from "@/components/public-tenant/PublicVoucherCatalogPage";
@@ -33,7 +35,16 @@ export async function generateMetadata({ params }) {
 
 export default async function PublicVouchersPage({ params }) {
   const { tenantSlug } = await params;
-  await requirePublicTenantPageVisible(tenantSlug, "vouchers");
+  const [visibility, snapshot] = await Promise.all([
+    requirePublicTenantPageVisible(tenantSlug, "vouchers"),
+    getPublicCommerceCatalog(tenantSlug, "vouchers"),
+  ]);
+  const initialData =
+    visibility.tenant?.publicCapabilities?.vouchers === true ? snapshot : null;
 
-  return <PublicVoucherCatalogPage />;
+  return (
+    <PublicCommerceCatalogHydration initialData={initialData}>
+      <PublicVoucherCatalogPage />
+    </PublicCommerceCatalogHydration>
+  );
 }

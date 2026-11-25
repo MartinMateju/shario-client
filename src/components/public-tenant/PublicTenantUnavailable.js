@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import PublicTenantRetry from "./PublicTenantRetry";
 
 export default async function PublicTenantUnavailable({ locale = "en" }) {
   const t = await getTranslations({
@@ -6,7 +7,7 @@ export default async function PublicTenantUnavailable({ locale = "en" }) {
     namespace: "PublicTenant.unavailable",
   });
   return (
-    <main className="flex min-h-[calc(100dvh-var(--header-height))] items-center justify-center bg-brand-offset px-6 py-20 text-center text-[#1F1F1F]">
+    <main data-public-tenant-state="unavailable" className="flex min-h-[calc(100dvh-var(--header-height))] items-center justify-center bg-brand-offset px-6 py-20 text-center text-[#1F1F1F]">
       <section className="max-w-lg rounded-[28px] border border-[#E7E4DE] bg-white px-7 py-10 shadow-[0_18px_60px_rgba(17,17,15,0.06)] sm:px-10">
         <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-text">
           shario.io
@@ -17,6 +18,7 @@ export default async function PublicTenantUnavailable({ locale = "en" }) {
         <p className="mt-4 text-sm leading-6 text-[#686762]">
           {t("description")}
         </p>
+        <PublicTenantRetry />
       </section>
     </main>
   );

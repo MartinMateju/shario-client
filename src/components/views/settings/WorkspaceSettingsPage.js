@@ -2,7 +2,7 @@
 
 import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import {
   ArrowPathIcon,
   BuildingOffice2Icon,
@@ -39,15 +39,15 @@ export {
 const getErrorMessage = (error, fallback) =>
   getLocalizedApiErrorMessage(error, fallback);
 
-function Field({ label, hint, children }) {
+function Field({ label, hint, children, id, fieldRef }) {
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-xs font-semibold text-[#292925]">
+    <label id={id} ref={fieldRef} className="block scroll-mt-28">
+      <span className="mb-1.5 block text-[13px] font-semibold text-ink">
         {label}
       </span>
       {children}
       {hint && (
-        <span className="mt-1.5 block text-[10px] leading-4 text-[#858580]">
+        <span className="mt-1.5 block text-[13px] leading-5 text-ink-muted">
           {hint}
         </span>
       )}
@@ -56,7 +56,7 @@ function Field({ label, hint, children }) {
 }
 
 const controlClass =
-  "h-12 w-full min-w-0 rounded-[13px] border border-line bg-white px-4 text-[12px] text-[#292925] outline-none transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10 disabled:bg-[#F4F2ED] disabled:text-[#858580]";
+  "h-12 w-full min-w-0 rounded-[13px] border border-line bg-white px-4 text-base text-ink outline-none sm:text-[14px] transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10 disabled:bg-surface-muted disabled:text-ink-muted";
 
 function WorkspaceSettingsForm({ settings }) {
   const t = useTranslations("WorkspaceSettings");
@@ -67,6 +67,13 @@ function WorkspaceSettingsForm({ settings }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const languageFieldRef = useRef(null);
+  useLayoutEffect(() => {
+    // The form can arrive after Next's initial hash scroll has already run.
+    if (window.location.hash === "#workspace-language") {
+      languageFieldRef.current?.scrollIntoView({ block: "start" });
+    }
+  }, []);
   const initialLocaleForm = normalizeWorkspaceLocaleForm(
     settings,
     routing.locales,
@@ -149,8 +156,8 @@ function WorkspaceSettingsForm({ settings }) {
           role={notice.type === "error" ? "alert" : "status"}
           className={
             notice.type === "error"
-              ? "flex gap-3 rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
-              : "flex gap-3 rounded-[14px] border border-[#CFE0CB] bg-[#F5FAF3] px-4 py-3 text-xs text-[#47613E]"
+              ? "flex gap-3 rounded-[14px] border border-danger/40 bg-danger-soft px-4 py-3 text-[13px] text-danger"
+              : "flex gap-3 rounded-[14px] border border-success/40 bg-success-soft px-4 py-3 text-[13px] text-success"
           }
         >
           {notice.type === "error" ? (
@@ -168,10 +175,10 @@ function WorkspaceSettingsForm({ settings }) {
             <BuildingOffice2Icon className="h-5 w-5" />
           </span>
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold text-[#292925]">
+            <h2 className="text-sm font-semibold text-ink">
               {t("business.title")}
             </h2>
-            <p className="mt-1 text-xs leading-5 text-[#777773]">
+            <p className="mt-1 text-[13px] leading-5 text-ink-muted">
               {t("business.description")}
             </p>
           </div>
@@ -240,6 +247,8 @@ function WorkspaceSettingsForm({ settings }) {
             </Field>
           ) : null}
           <Field
+            id="workspace-language"
+            fieldRef={languageFieldRef}
             label={t("fields.adminLanguage")}
             hint={t("hints.adminLanguage")}
           >
@@ -336,8 +345,8 @@ function WorkspaceSettingsForm({ settings }) {
             </select>
           </Field>
           {!guidedSetup.guided ? (
-            <div className="rounded-[14px] border border-sand-200 bg-sand-50 p-4 text-[11px] leading-5 text-sand-800">
-              <strong className="block text-xs">
+            <div className="rounded-[14px] border border-sand-200 bg-sand-50 p-4 text-[13px] leading-5 text-sand-800">
+              <strong className="block text-[13px]">
                 {t("currencyNotice.title")}
               </strong>
               <span className="mt-1 block">
@@ -350,7 +359,7 @@ function WorkspaceSettingsForm({ settings }) {
 
       {!guidedSetup.guided ? (
         <section className="rounded-[20px] border border-line bg-white p-5 shadow-[0_14px_38px_rgba(17,17,15,0.04)]">
-          <h2 className="text-sm font-semibold text-[#292925]">
+          <h2 className="text-sm font-semibold text-ink">
             {t("workspaceStatus.title")}
           </h2>
           <dl className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -361,12 +370,12 @@ function WorkspaceSettingsForm({ settings }) {
             ].map(([label, value]) => (
               <div
                 key={label}
-                className="rounded-[13px] bg-[#F7F5F1] px-4 py-3"
+                className="rounded-[13px] bg-surface-muted px-4 py-3"
               >
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#8A8983]">
+                <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-soft">
                   {label}
                 </dt>
-                <dd className="mt-1 text-xs font-semibold capitalize text-[#3F3F3B]">
+                <dd className="mt-1 break-words text-[14px] font-semibold capitalize text-ink">
                   {value || "—"}
                 </dd>
               </div>
@@ -383,7 +392,7 @@ function WorkspaceSettingsForm({ settings }) {
             !form.name.trim() ||
             (guidedSetup.guided && (!form.businessType || !form.country))
           }
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cobalt-500 px-6 text-xs font-semibold text-white shadow-cobalt hover:bg-cobalt-600 disabled:opacity-50"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cobalt-500 px-6 text-[14px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2 disabled:opacity-50"
         >
           {isLoading && <ArrowPathIcon className="h-4 w-4 animate-spin" />}
           {isLoading
@@ -408,7 +417,7 @@ export default function WorkspaceSettingsPage({ showPageHeader = true }) {
     return (
       <div className="flex min-h-[320px] items-center justify-center">
         <ArrowPathIcon className="h-6 w-6 animate-spin text-cobalt-500" />
-        <span className="ml-3 text-[12px] text-[#777773]">{t("loading")}</span>
+        <span className="ml-3 text-[13px] text-ink-muted">{t("loading")}</span>
       </div>
     );
   }
@@ -417,26 +426,26 @@ export default function WorkspaceSettingsPage({ showPageHeader = true }) {
     <section className="space-y-5">
       {showPageHeader ? (
         <header>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-cobalt-600">
             {t("eyebrow")}
           </p>
-          <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[34px]">
+          <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-ink sm:text-[34px]">
             {t("title")}
           </h1>
-          <p className="mt-1 max-w-2xl text-[12px] leading-5 text-[#777773]">
+          <p className="mt-1 max-w-2xl text-[13px] leading-5 text-ink-muted">
             {t("description")}
           </p>
         </header>
       ) : null}
       {isError || !settings ? (
-        <div className="rounded-[18px] border border-coral-200 bg-coral-50 p-5">
-          <p className="text-xs text-terracotta-700">
+        <div className="rounded-[18px] border border-danger/40 bg-danger-soft p-5">
+          <p className="text-[13px] text-danger">
             {getErrorMessage(error, t("messages.loadError"))}
           </p>
           <button
             type="button"
             onClick={refetch}
-            className="mt-3 text-xs font-semibold text-terracotta-700 underline"
+            className="mt-3 text-[13px] font-semibold text-danger underline"
           >
             {t("actions.retry")}
           </button>

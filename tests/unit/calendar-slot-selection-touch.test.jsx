@@ -803,6 +803,7 @@ describe("calendar draft touch interaction", () => {
       rerender(renderPreview("ready"));
       const preview = container.querySelector("[data-calendar-slot-preview]");
       expect(scrollIntoView).toHaveBeenCalledExactlyOnceWith({
+        behavior: "instant",
         block: "nearest",
         inline: "nearest",
       });

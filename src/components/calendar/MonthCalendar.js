@@ -100,10 +100,10 @@ function DetailedMonthCalendar({
             <div
               key={label}
               className={cx(
-                "border-r px-0.5 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.04em] last:border-r-0 sm:px-3 sm:py-3 sm:tracking-[0.12em]",
+                "border-r px-0.5 py-2 text-center font-semibold uppercase tracking-[0.04em] last:border-r-0 sm:px-3 sm:py-3 sm:tracking-[0.12em]",
                 customerThemed
-                  ? "border-[var(--tenant-border)] text-[var(--tenant-muted-text)]"
-                  : "border-[#CBD5E1] text-[#475569]",
+                  ? "border-[var(--tenant-border)] text-[10px] text-[var(--tenant-muted-text)]"
+                  : "border-line-strong text-[12px] text-ink-soft",
               )}
             >
               <span className="sm:hidden">{label.slice(0, 1)}</span>
@@ -201,7 +201,10 @@ function DetailedMonthCalendar({
                   <div className="flex min-w-0 items-center justify-between gap-1">
                     <span
                       className={cx(
-                        "flex h-7 w-7 items-center justify-center rounded-full text-[12px] font-medium sm:text-[11px]",
+                        "flex h-7 w-7 items-center justify-center rounded-full",
+                        customerThemed
+                          ? "text-[12px] font-medium sm:text-[11px]"
+                          : "text-[13px] font-semibold",
                       )}
                       style={
                         isToday

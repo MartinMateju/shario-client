@@ -53,8 +53,8 @@ describe("WeekCalendar keyboard selection", () => {
     expect(firstTimeLabel).toHaveTextContent("09:00");
     expect(firstTimeLabel).toHaveClass(
       "-translate-y-1/2",
-      "text-[11px]",
-      "font-medium",
+      "text-[12px]",
+      "font-semibold",
     );
     expect(firstTimeLabel).toHaveStyle({ top: "8px" });
 

@@ -175,20 +175,20 @@ function LaunchWorkflowSaved({ progress, t }) {
       <section
         role="status"
         aria-live="polite"
-        className="rounded-[22px] border border-success/20 bg-success-soft p-5 shadow-card sm:p-7"
+        className="rounded-[22px] border border-line bg-white p-5 shadow-card sm:p-7"
       >
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-success shadow-sm">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-success-soft text-success">
           <CheckIcon className="h-5 w-5" aria-hidden="true" />
         </span>
         <h2 className="mt-4 text-[20px] font-semibold tracking-[-0.04em] text-ink">
           {t("saved")}
         </h2>
-        <p className="mt-2 text-[11px] leading-5 text-ink-muted">
+        <p className="mt-2 text-[13px] leading-5 text-ink-muted">
           {t("upToDate")}
         </p>
         <Link
           href="/app/setup"
-          className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-cobalt-500 px-5 text-[11px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 sm:w-auto"
+          className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-cobalt-500 px-5 text-[13px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 sm:w-auto"
         >
           {t("returnToLaunchCenter")}
         </Link>
@@ -245,10 +245,10 @@ function LaunchWorkflowQuestions({
                   className="h-4 w-4 shrink-0 text-ink-subtle"
                   aria-hidden="true"
                 />
-                <span className="min-w-0 flex-1 text-[11px] font-semibold text-ink-muted">
+                <span className="min-w-0 flex-1 text-[13px] font-semibold text-ink-muted">
                   {t(`workflowQuestions.items.${question.id}.question`)}
                 </span>
-                <span className="text-[9px] font-semibold uppercase tracking-[0.08em] text-ink-subtle">
+                <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-subtle">
                   {t("workflowQuestions.states.notIncluded")}
                 </span>
               </div>
@@ -260,13 +260,13 @@ function LaunchWorkflowQuestions({
                 key={question.id}
                 className="rounded-[20px] border border-cobalt-200 bg-white p-5 shadow-card sm:p-6"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cobalt-600">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-cobalt-600">
                   {t("workflowQuestions.current")}
                 </p>
                 <h2 className="mt-2 text-[22px] font-semibold tracking-[-0.04em] text-ink">
                   {t(`workflowQuestions.items.${question.id}.question`)}
                 </h2>
-                <p className="mt-2 text-[11px] leading-5 text-ink-muted">
+                <p className="mt-2 text-[13px] leading-5 text-ink-muted">
                   {t(`workflowQuestions.items.${question.id}.description`)}
                 </p>
                 <div className="mt-5 grid gap-2 sm:grid-cols-2">
@@ -277,7 +277,7 @@ function LaunchWorkflowQuestions({
                       aria-pressed={answer === option}
                       onClick={() => onAnswer(question.id, option)}
                       className={cx(
-                        "min-h-11 rounded-full px-5 text-[11px] font-semibold transition",
+                        "min-h-11 rounded-full px-5 text-[13px] font-semibold transition",
                         answer === option
                           ? "bg-cobalt-500 text-white shadow-cobalt"
                           : "border border-line bg-white text-ink-muted hover:bg-surface",
@@ -310,12 +310,12 @@ function LaunchWorkflowQuestions({
                 aria-hidden="true"
               />
               <span className="min-w-0 flex-1">
-                <span className="block text-[11px] font-semibold text-ink">
+                <span className="block text-[13px] font-semibold text-ink">
                   {t(`workflowQuestions.items.${question.id}.question`)}
                 </span>
                 <span
                   className={cx(
-                    "mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.08em]",
+                    "mt-0.5 block text-[12px] font-semibold uppercase tracking-[0.08em]",
                     answer ? "text-success" : "text-ink-subtle",
                   )}
                 >
@@ -329,7 +329,7 @@ function LaunchWorkflowQuestions({
               <button
                 type="button"
                 onClick={() => onEdit(question.id)}
-                className="shrink-0 rounded-full px-3 py-2 text-[10px] font-semibold text-cobalt-600 transition hover:bg-cobalt-50"
+                className="shrink-0 rounded-full px-3 py-2 text-[12px] font-semibold text-cobalt-600 transition hover:bg-cobalt-50"
               >
                 {t("workflowQuestions.edit")}
               </button>
@@ -339,11 +339,11 @@ function LaunchWorkflowQuestions({
       </section>
 
       {progress.complete ? (
-        <section className="rounded-[20px] border border-success/20 bg-success-soft p-5">
+        <section className="rounded-[20px] border border-line bg-white p-5">
           <h2 className="text-[16px] font-semibold text-ink">
             {t("workflowQuestions.reviewTitle")}
           </h2>
-          <p className="mt-1 text-[10px] leading-5 text-ink-muted">
+          <p className="mt-1 text-[12px] leading-5 text-ink-muted">
             {t(
               editing
                 ? "workflowQuestions.editReviewDescription"
@@ -353,13 +353,13 @@ function LaunchWorkflowQuestions({
           {editing ? (
             <div
               data-workflow-change-preview="true"
-              className="mt-4 rounded-[15px] border border-success/20 bg-white/70 p-4"
+              className="mt-4 rounded-[15px] border border-line bg-surface-muted p-4"
             >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-success">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-success">
                 {t("workflowQuestions.changePreview.title")}
               </p>
               {changeSummary.hasChanges ? (
-                <ul className="mt-2 grid gap-1.5 text-[10px] leading-5 text-ink-muted sm:grid-cols-2">
+                <ul className="mt-2 grid gap-1.5 text-[12px] leading-5 text-ink-muted sm:grid-cols-2">
                   {changeSummary.moduleChanges.map((change) => (
                     <li key={`module-${change.key}`}>
                       {t(
@@ -404,7 +404,7 @@ function LaunchWorkflowQuestions({
                   ))}
                 </ul>
               ) : (
-                <p className="mt-2 text-[10px] leading-5 text-ink-muted">
+                <p className="mt-2 text-[12px] leading-5 text-ink-muted">
                   {t("workflowQuestions.changePreview.noChanges")}
                 </p>
               )}
@@ -415,7 +415,7 @@ function LaunchWorkflowQuestions({
               type="button"
               disabled={saving || (editing && !changeSummary.hasChanges)}
               onClick={onSave}
-              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-cobalt-500 px-5 text-[11px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 disabled:opacity-50 sm:w-auto"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-cobalt-500 px-5 text-[13px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 disabled:opacity-50 sm:w-auto"
             >
               {saving ? (
                 <ArrowPathIcon
@@ -434,7 +434,7 @@ function LaunchWorkflowQuestions({
                 href="/app/setup"
                 aria-disabled={saving || undefined}
                 className={cx(
-                  "inline-flex min-h-11 w-full items-center justify-center rounded-full border border-line bg-white px-5 text-[11px] font-semibold text-ink-muted transition hover:bg-surface sm:w-auto",
+                  "inline-flex min-h-11 w-full items-center justify-center rounded-full border border-line bg-white px-5 text-[13px] font-semibold text-ink-muted transition hover:bg-surface sm:w-auto",
                   saving && "pointer-events-none opacity-50",
                 )}
               >
@@ -446,11 +446,11 @@ function LaunchWorkflowQuestions({
       ) : null}
 
       {error ? (
-        <p role="alert" className="text-[10px] font-medium text-danger">
+        <p role="alert" className="text-[12px] font-medium text-danger">
           {error}
         </p>
       ) : feedback ? (
-        <p role="status" className="text-[10px] font-medium text-success">
+        <p role="status" className="text-[12px] font-medium text-success">
           {feedback}
         </p>
       ) : null}
@@ -622,7 +622,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
         <button
           type="button"
           onClick={() => query.refetch()}
-          className="mt-4 rounded-full bg-white px-4 py-2 text-[10px] font-semibold text-danger shadow-sm"
+          className="mt-4 rounded-full bg-white px-4 py-2 text-[12px] font-semibold text-cobalt-700 shadow-sm transition hover:bg-cobalt-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30"
         >
           {t("retry")}
         </button>
@@ -779,7 +779,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
           <h1 className="text-[28px] font-semibold tracking-[-0.05em] text-ink sm:text-[32px]">
             {t("title")}
           </h1>
-          <p className="mt-1 max-w-3xl text-[11px] leading-5 text-ink-muted">
+          <p className="mt-1 max-w-3xl text-[13px] leading-5 text-ink-muted">
             {t("description")}
           </p>
         </header>
@@ -800,7 +800,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                 <Squares2X2Icon className="h-4.5 w-4.5" aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-cobalt-600">
+                <span className="block text-[12px] font-semibold uppercase tracking-[0.14em] text-cobalt-600">
                   {t("presets.eyebrow")}
                 </span>
                 <span className="mt-0.5 block text-[14px] font-semibold tracking-[-0.02em] text-ink">
@@ -820,7 +820,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                 id="workspace-template-options"
                 className="border-t border-cobalt-100 px-4 pb-4 pt-3 sm:px-5 sm:pb-5"
               >
-                <p className="max-w-3xl text-[10px] leading-5 text-ink-muted">
+                <p className="max-w-3xl text-[12px] leading-5 text-ink-muted">
                   {t("presets.description")}
                 </p>
                 <div className="mt-4 grid gap-2 md:grid-cols-2">
@@ -862,11 +862,11 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                             <span className="block text-[12px] font-semibold text-ink">
                               {t(`presets.options.${preset.id}.title`)}
                             </span>
-                            <span className="mt-1 block text-[10px] leading-5 text-ink-muted">
+                            <span className="mt-1 block text-[12px] leading-5 text-ink-muted">
                               {t(`presets.options.${preset.id}.description`)}
                             </span>
                             {!available ? (
-                              <span className="mt-1.5 block text-[9px] font-semibold text-sand-700">
+                              <span className="mt-1.5 block text-[12px] font-semibold text-sand-700">
                                 {t("presets.notAvailable")}
                               </span>
                             ) : null}
@@ -876,7 +876,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                     );
                   })}
                 </div>
-                <p className="mt-3 text-[10px] leading-5 text-ink-muted">
+                <p className="mt-3 text-[12px] leading-5 text-ink-muted">
                   {t("presets.note")}{" "}
                   <Link
                     href="/app/settings/billing"
@@ -898,7 +898,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                     className="h-4 w-4 text-cobalt-600"
                     aria-hidden="true"
                   />
-                  <h3 className="text-[11px] font-semibold uppercase tracking-[0.11em]">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.11em]">
                     {t(`groups.${group.key}`)}
                   </h3>
                 </div>
@@ -926,7 +926,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                               {t(`modules.${key}.name`)}
                             </h4>
                             {locked ? (
-                              <span className="inline-flex items-center gap-1 rounded-full bg-sand-100 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-sand-700">
+                              <span className="inline-flex items-center gap-1 rounded-full bg-sand-100 px-2 py-1 text-[12px] font-semibold uppercase tracking-[0.08em] text-sand-700">
                                 <LockClosedIcon
                                   className="h-3 w-3"
                                   aria-hidden="true"
@@ -934,22 +934,22 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                                 {t("notIncluded")}
                               </span>
                             ) : dependencyBlocked ? (
-                              <span className="rounded-full bg-amber-50 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-amber-800">
+                              <span className="rounded-full bg-amber-50 px-2 py-1 text-[12px] font-semibold uppercase tracking-[0.08em] text-amber-800">
                                 {t("requiresCommunications")}
                               </span>
                             ) : checked ? (
-                              <span className="rounded-full bg-success-soft px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-success">
+                              <span className="rounded-full bg-success-soft px-2 py-1 text-[12px] font-semibold uppercase tracking-[0.08em] text-success">
                                 {t("active")}
                               </span>
                             ) : null}
                           </div>
-                          <p className="mt-2 text-[10px] leading-5 text-ink-muted">
+                          <p className="mt-2 text-[12px] leading-5 text-ink-muted">
                             {t(`modules.${key}.description`)}
                           </p>
                           {locked ? (
                             <Link
                               href="/app/settings/billing"
-                              className="mt-2 inline-flex text-[10px] font-semibold text-cobalt-600 hover:text-cobalt-700"
+                              className="mt-2 inline-flex text-[12px] font-semibold text-cobalt-600 hover:text-cobalt-700"
                             >
                               {t("reviewPlan")}
                             </Link>
@@ -971,21 +971,21 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
             );
           })}
 
-          <div className="flex items-start gap-3 rounded-[16px] border border-coral-200 bg-coral-50/55 p-4">
+          <div className="flex items-start gap-3 rounded-[16px] border border-line bg-surface-muted p-4">
             <CheckIcon
-              className="mt-0.5 h-5 w-5 shrink-0 text-terracotta-700"
+              className="mt-0.5 h-5 w-5 shrink-0 text-success"
               aria-hidden="true"
             />
             <div className="min-w-0">
-              <p className="text-[11px] font-semibold text-terracotta-900">
+              <p className="text-[13px] font-semibold text-ink">
                 {t("defaults.title")}
               </p>
-              <p className="mt-1 text-[10px] leading-5 text-terracotta-800/80">
+              <p className="mt-1 text-[12px] leading-5 text-ink-muted">
                 {t("defaults.description")}
               </p>
               <Link
                 href="/app/products?category=openStudio"
-                className="mt-2 inline-flex text-[10px] font-semibold text-terracotta-700 hover:text-terracotta-800"
+                className="mt-2 inline-flex text-[12px] font-semibold text-cobalt-600 hover:text-cobalt-700"
               >
                 {t("defaults.action")}
               </Link>
@@ -996,14 +996,14 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
 
       <section className="overflow-hidden rounded-[24px] border border-line bg-white shadow-card">
         <div className="flex items-start gap-3 border-b border-line px-5 py-5 sm:px-6">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[13px] bg-coral-100 text-terracotta-700">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[13px] bg-accent-soft text-accent-text">
             <EyeIcon className="h-5 w-5" aria-hidden="true" />
           </span>
           <div>
             <h2 className="text-[18px] font-semibold tracking-[-0.03em] text-ink">
               {t("navigation.title")}
             </h2>
-            <p className="mt-1 max-w-2xl text-[11px] leading-5 text-ink-muted">
+            <p className="mt-1 max-w-2xl text-[13px] leading-5 text-ink-muted">
               {t("navigation.description")}
             </p>
           </div>
@@ -1035,7 +1035,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                         `nav.${isGroup ? entry.labelKey : entry.items[0].labelKey}`,
                       )}
                     </p>
-                    <p className="mt-0.5 text-[10px] text-ink-muted">
+                    <p className="mt-0.5 text-[12px] text-ink-muted">
                       {isGroup
                         ? t("navigation.sectionVisibility")
                         : t("navigation.itemVisibility")}
@@ -1086,7 +1086,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
                               aria-hidden="true"
                             />
                           )}
-                          <span className="min-w-0 flex-1 truncate text-[10px] font-medium text-ink">
+                          <span className="min-w-0 flex-1 truncate text-[12px] font-medium text-ink">
                             {dashboardT(`nav.${item.labelKey}`)}
                           </span>
                           <Toggle
@@ -1117,7 +1117,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
             className="mt-0.5 h-4 w-4 shrink-0 text-cobalt-600"
             aria-hidden="true"
           />
-          <p className="text-[10px] leading-5">{t("navigation.protected")}</p>
+          <p className="text-[12px] leading-5">{t("navigation.protected")}</p>
         </div>
       </section>
 
@@ -1125,15 +1125,15 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
         <div className="sticky bottom-3 z-20 flex flex-col gap-3 rounded-[18px] border border-line bg-white/95 p-3 shadow-[0_18px_50px_rgba(17,17,15,0.14)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
             {error ? (
-              <p role="alert" className="text-[10px] font-medium text-danger">
+              <p role="alert" className="text-[12px] font-medium text-danger">
                 {error}
               </p>
             ) : feedback ? (
-              <p role="status" className="text-[10px] font-medium text-success">
+              <p role="status" className="text-[12px] font-medium text-success">
                 {feedback}
               </p>
             ) : (
-              <p className="text-[10px] leading-5 text-ink-muted">
+              <p className="text-[12px] leading-5 text-ink-muted">
                 {intentNeedsConfirmation
                   ? t("intentUnconfirmed")
                   : t("unsaved")}
@@ -1145,7 +1145,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
               type="button"
               disabled={!dirty || updateState.isLoading}
               onClick={save}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cobalt-500 px-5 text-[11px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 disabled:cursor-not-allowed disabled:opacity-45"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cobalt-500 px-5 text-[13px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 disabled:cursor-not-allowed disabled:opacity-45"
             >
               {updateState.isLoading ? (
                 <ArrowPathIcon
@@ -1159,7 +1159,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
           {feedback && fromLaunchCenter ? (
             <Link
               href="/app/setup"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-cobalt-200 bg-cobalt-50 px-5 text-[11px] font-semibold text-cobalt-700 transition hover:bg-cobalt-100"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-cobalt-200 bg-cobalt-50 px-5 text-[13px] font-semibold text-cobalt-700 transition hover:bg-cobalt-100"
             >
               {t("returnToLaunchCenter")}
             </Link>
@@ -1170,7 +1170,7 @@ export default function WorkspaceModulesPage({ showPageHeader = true }) {
       {showSavedConfirmation && feedback && !dirty && !fromLaunchCenter ? (
         <div
           role="status"
-          className="fixed bottom-5 left-1/2 z-30 flex w-[min(90vw,420px)] -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-success/20 bg-white/95 px-4 py-3 text-[10px] font-medium text-success shadow-[0_16px_42px_rgba(17,17,15,0.12)] backdrop-blur"
+          className="fixed bottom-5 left-1/2 z-30 flex w-[min(90vw,420px)] -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-success/20 bg-white/95 px-4 py-3 text-[12px] font-medium text-success shadow-[0_16px_42px_rgba(17,17,15,0.12)] backdrop-blur"
         >
           <CheckIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
           {feedback}

@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Vahvistettu",
-      "pending": "Odottaa",
+      "pending": "Odottaa vahvistusta",
       "awaitingPayment": "Odottaa maksua",
-      "processed": "Odottaa toimitusta",
-      "delivered": "Toimitettu",
+      "processed": "Vahvistettu",
+      "delivered": "Alkanut",
       "completed": "Valmis",
       "cancelled": "Peruttu"
     },
     "payment": {
       "paid": "Maksettu",
-      "pending": "Odottaa",
+      "pending": "Odottaa maksua",
       "failed": "Epäonnistui",
       "expired": "Vanhentunut",
       "refunded": "Palautettu",
       "credits": "Saldo"
+    },
+    "refreshing": "Päivitetään varauksia…",
+    "retry": "Yritä uudelleen",
+    "errors": {
+      "load": "Varausten lataaminen epäonnistui. Yritä uudelleen.",
+      "filters": "Joidenkin suodatinvaihtoehtojen lataaminen epäonnistui."
     },
     "edit": {
       "details": "Varauksen tiedot",
@@ -121,7 +127,9 @@
       "deletedTitle": "Varaus poistettu",
       "deletedText": "Varaus poistettiin onnistuneesti.",
       "errorTitle": "Varausta ei voitu luoda",
-      "errorText": "Tarkista varauksen tiedot ja yritä uudelleen."
+      "errorText": "Tarkista varauksen tiedot ja yritä uudelleen.",
+      "cancelError": "Varausta ei voitu peruuttaa. Yritä uudelleen.",
+      "extensionRefund": "Lisätystä varausajasta palautettiin {amount} asiakkaan studiokrediitteihin."
     },
     "exportColumns": {
       "customer": "Asiakas",
@@ -193,6 +201,7 @@
       "spotsAvailable": "{remaining}/{capacity} paikkaa vapaana"
     },
     "week": {
+      "schedule": "Viikkoaikataulu",
       "privacyNote": "Violetti merkitsee yksityisiä varauksia ja turkoosi julkisia varauksia. Omat varauksesi on merkitty sinisellä tunnisteella."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Varaukset, jäsenyydet ja oma tyylikäs verkkosivusto. Kaikki, mitä tarvitset tilasi jakamiseen ja yhteisösi kasvattamiseen, yhdessä Shariossa."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Ilmoituspalkin asetusta ei voitu tallentaa. Yritä uudelleen.",
     "skipToContent": "Siirry sisältöön",
     "learnMore": "Lue lisää",
     "viewAll": "Näytä kaikki",
@@ -434,7 +444,8 @@
       "notifications": "Ilmoitukset",
       "events": "Tapahtumat",
       "lostFound": "Löytötavarat",
-      "customOrders": "Tilaustyöt"
+      "customOrders": "Tilaustyöt",
+      "communicationSettings": "Viestiasetukset"
     },
     "stats": {
       "bookings": "Tämän päivän varaukset",
@@ -1439,7 +1450,8 @@
     },
     "product": {
       "metaTitle": "Kaikki tilasi tarpeet, yhdessä.",
-      "metaDescription": "Yhdistä varaukset, jäsenet, maksut, tiimi ja julkinen verkkosivusto. Keskity ihmisiin, kun Shario auttaa päivän järjestämisessä."
+      "metaDescription": "Yhdistä varaukset, jäsenet, maksut, tiimi ja julkinen verkkosivusto. Keskity ihmisiin, kun Shario auttaa päivän järjestämisessä.",
+      "viewScreenshot": "Näytä koko kuvakaappaus"
     },
     "studioAi": {
       "metaTitle": "Apua arjen työhön.",
@@ -1481,13 +1493,14 @@
       "from": "alkaen",
       "customAnnual": "Mukautettu vuosipaketti",
       "mostPopular": "Suosituin",
+      "includesPrevious": "Kaikki {plan}-paketin ominaisuudet sekä:",
       "starter": {
         "name": "Starter",
         "description": "Aloita tilasi varauksista, maksuista, kursseista ja tapahtumista.",
         "feature1": "1 studiotoimipiste · 1 tiimitili",
         "feature2": "Kurssit, yksityistapahtumat ja lahjakortit",
         "feature3": "500 sisältyvää sähköpostia kuukaudessa",
-        "feature4": "Rajoitettu Shario AI · 200 krediittiä kuukaudessa",
+        "feature4": "Studion verkkosivusto ja asiakasportaali",
         "cta": "Aloita maksuton kokeilu"
       },
       "professional": {
@@ -1495,8 +1508,9 @@
         "description": "Yhdistä jäsenyydet, yhteiset tilat ja päivittäinen toiminta.",
         "feature1": "1 studiotoimipiste · 3 tiimitiliä",
         "feature2": "Jäsenyydet, varaukset ja yhteiset resurssit",
-        "feature3": "3 aktiivista automaatiota · 2 500 sähköpostia kuukaudessa",
-        "feature4": "Täysi Shario AI · 2 000 krediittiä kuukaudessa",
+        "feature3": "Varasto ja tiimin tehtävät",
+        "feature4": "3 aktiivista automaatiota · 2 500 sähköpostia kuukaudessa",
+        "feature5": "Shario AI · 2 000 krediittiä kuukaudessa",
         "cta": "Aloita maksuton kokeilu"
       },
       "studioPlus": {
@@ -1505,16 +1519,16 @@
         "feature1": "Enintään 2 studiotoimipistettä · 6 tiimitiliä",
         "feature2": "Pääsykoodit ja oma verkkotunnus",
         "feature3": "Edistyneet automaatiot · 5 000 sähköpostia kuukaudessa",
-        "feature4": "Täysi AI-kokonaisuus · 10 000 krediittiä kuukaudessa",
+        "feature4": "Laajennettu Shario AI · 10 000 krediittiä kuukaudessa",
         "cta": "Aloita maksuton kokeilu"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Johda organisaatiota räätälöidyllä kapasiteetilla, hallinnalla ja tuella.",
-        "feature1": "Rajoittamattomat toimipisteet ja tiimitilit",
+        "feature1": "Toimipaikkojen ja tiimin kapasiteetti sopimuksen mukaan",
         "feature2": "Räätälöidyt automaatio-, sähköposti- ja AI-kiintiöt",
-        "feature3": "SSO/SCIM, API, webhookit ja auditointilokit",
-        "feature4": "Oma käyttöönotto, siirto ja SLA",
+        "feature3": "Keskustele integraatio- ja hallintatarpeista",
+        "feature4": "Käyttöönotto, tietojen siirto ja tuki sopimuksen mukaan",
         "cta": "Aloita ilmainen kokeilu"
       },
       "note": "Hinnat eivät sisällä sovellettavia veroja. Vuosittaiset itsepalvelupaketit sisältävät kaksi ilmaista kuukautta. Välttämättömiä järjestelmäviestejä ei lasketa kiintiöön, ja AI-käyttö pysähtyy sisältyvään rajaan ilman automaattisia lisämaksuja.",
@@ -2260,7 +2274,10 @@
     },
     "unavailable": {
       "title": "Tämä vaihtoehto ei ole saatavilla",
-      "description": "Studio ei tällä hetkellä tarjoa tätä vaihtoehtoa julkisesti."
+      "description": "Studio ei tällä hetkellä tarjoa tätä vaihtoehtoa julkisesti.",
+      "retry": "Yritä uudelleen",
+      "retrying": "Ladataan…",
+      "loginDegraded": "Studion tietoja ei voitu ladata juuri nyt."
     },
     "book": {
       "metadataTitle": "Varaa Open Studio",
@@ -2318,6 +2335,7 @@
         "email": "Sähköpostiosoite",
         "quantity": "Määrä",
         "missing": "Valitse lahjakortti ja anna kelvollinen sähköpostiosoite.",
+        "reselect": "Saatavilla olevat lahjakortit ovat muuttuneet. Valitse lahjakortti uudelleen jatkaaksesi.",
         "error": "Maksua ei voitu aloittaa. Yritä uudelleen.",
         "starting": "Maksua valmistellaan…",
         "continue": "Jatka maksuun",
@@ -2353,6 +2371,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Tarjontaa ei voitu päivittää. Näet viimeksi ladatut tiedot.",
       "loading": "Nykyisiä tarjouksia ladataan…",
       "error": "Nykyisiä tarjouksia ei voitu ladata.",
       "retry": "Yritä uudelleen",
@@ -2786,10 +2805,20 @@
         "headline": "Kurssisivun otsikko",
         "intro": "Kurssisivun esittely",
         "image": "Kurssisivun kuva",
-        "inherit": "Tyhjissä kentissä käytetään yhteistä kurssisivun tekstiä ja brändin kansikuvaa.",
+        "inherit": "Tyhjät kentät käyttävät yhteisiä kurssitekstejä ja kurssisivun kuvaa tai brändin kansikuvaa, jos kurssikuvaa ei ole asetettu.",
         "noLocations": "Lisää studion sijainti, jotta voit muokata sen kurssisivua.",
         "guestCheckoutEnabled": "Salli kurssien ostaminen ilman tiliä",
         "guestCheckoutDescription": "Koskee kaikkia studioita. Vieraat voivat ostaa kurssin luomatta tiliä; asiakkaat voivat edelleen kirjautua sisään varatakseen. Edellyttää näkyviä kurssisivuja ja toimivia verkkomaksuja. Ota asetus käyttöön julkaisemalla muutokset."
+      },
+      "pageImages": {
+        "title": "Sivuotsikoiden kuvat",
+        "description": "Valitse oma kuva kullekin julkiselle sivulle tai asiakassivulle. Varauskalenterit säilyttävät tiiviin tekstiotsikkonsa.",
+        "page": "Muokattava sivu",
+        "image": "Sivuotsikon kuva",
+        "hint": "Käytä vaakakuvaa. Poistaminen palauttaa pelkän tekstiotsikon. Studiokohtainen kurssikuva on ensisijainen.",
+        "preview": "Esikatsele otsikkoa",
+        "previewDescription": "Esikatsele sivun kuvaa valituilla väreillä ja kirjasimilla.",
+        "products": "Tuotteet"
       },
       "calendarColors": "Kalenteri",
       "hidden": "Piilotettu",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Asiakasportaalin kurssit",
+        "portalPageHero": "Sivuotsikot",
         "book": "Avoin studio",
         "courses": "Kurssit",
         "memberships": "Jäsenyydet",
@@ -3275,6 +3305,31 @@
       "labelColor": "Rekisteröinnin tunnisteväri · valinnainen",
       "imageTitle": "Rekisteröintikuva",
       "imageDescription": "Käytä tilin luomiseen omaa kuvaa; studion yhteinen logo säilyy lomakkeessa."
+    },
+    "customLinks": {
+      "title": "Omat linkit",
+      "addGroup": "Lisää pudotusvalikkoryhmä",
+      "group": "Pudotusvalikkoryhmä",
+      "children": "Tämän ryhmän linkit",
+      "button": "Näytä päätoimintopainikkeena",
+      "separator": "Näytä erotin ennen tätä linkkiä",
+      "layout": "Ylätunnisteen asettelu",
+      "defaultLayout": "Tavallinen varausylätunniste",
+      "websiteLayout": "Verkkosivuston navigaatio",
+      "background": "Ylätunnisteen tausta",
+      "linkColor": "Ylätunnisteen linkkien väri",
+      "buttonColor": "Ylätunnisteen painikkeen väri",
+      "header": "Lisää linkkejä vakionavigaation jälkeen. Piilota yllä olevat vakiokohdat, jos haluat täysin oman valikon.",
+      "footer": "Lisää linkkejä alatunnisteen Tutustu-osioon. Ylätunnisteessa jo näkyvät linkit lisätään automaattisesti.",
+      "label": "Linkin teksti",
+      "href": "Kohde-URL",
+      "add": "Lisää linkki",
+      "remove": "Poista linkki",
+      "up": "Siirrä linkkiä ylös",
+      "down": "Siirrä linkkiä alas",
+      "count": "linkkiä",
+      "hint": "Käytä muotoa https://… tai polkua, joka alkaa merkillä /. Täytä teksti ja URL yhdessä; jätä molemmat tyhjiksi käyttääksesi toista kieltä.",
+      "invalid": "Anna linkin teksti ja kelvollinen HTTPS-URL tai polku vähintään yhdellä kielellä. Jokainen kieli tarvitsee molemmat kentät tai ei kumpaakaan."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "awaitingPayment": "Odottaa maksua",
       "processing": "Käsitellään",
       "completed": "Valmis",
-      "failed": "Epäonnistui"
+      "failed": "Epäonnistui",
+      "cancelled": "Peruutetut"
     },
     "productTypes": {
       "course": "Kurssi",
@@ -3811,7 +3867,8 @@
       "creatingInvoice": "Luodaan…",
       "confirmCreateInvoice": "Luodaanko tästä tilauksesta laskuluonnos?",
       "note": "Tilauksen huomautus",
-      "internalId": "Sisäinen tilaustunnus"
+      "internalId": "Sisäinen tilaustunnus",
+      "paymentDateUnknown": "Maksupäivää ei ole kirjattu"
     },
     "fallbackStudioName": "studiosi",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Tästä tilauksesta ei voitu luoda laskua."
     },
     "csv": {
-      "createdAt": "Luotu"
+      "createdAt": "Luotu",
+      "currency": "Valuutta",
+      "amountStatus": "Summan saatavuus"
+    },
+    "money": {
+      "unavailable": "Ei saatavilla",
+      "unavailableDetail": "Tilauksen lopullista summaa tai hyvityshistoriaa ei voi vahvistaa.",
+      "verified": "Saatavilla",
+      "refunded": "Hyvitetty",
+      "net": "Arvo hyvitysten jälkeen",
+      "incomplete": "Joillakin maksetuilla tilauksilla on puutteellisia summia tai hyvitystietoja. Kokonaissumma ei ole saatavilla.",
+      "mixedCurrencies": "Jakso sisältää useita valuuttoja. Niitä ei voi laskea yhteen yhdeksi summaksi.",
+      "truncated": "Jakso ylittää yhteenvedon rajan. Valitse lyhyempi jakso kokonaissumman laskemiseksi.",
+      "scope": "Tilausten arvot sisältävät verot sekä käytetyt krediitit tai lahjakortit. Erilliset lahjakorttiostot ja jäsenyyslaskut eivät sisälly. Kyse ei ole vastaanotetuista maksuista eikä toteutettujen palvelujen tuotoista. Yhteenvetokortit kattavat koko valitun jakson ja studion.",
+      "multiStudio": "Useaan studioon liitetyt tilaukset lasketaan täydellä arvollaan."
     }
   },
   "VoucherShopping": {
@@ -4011,9 +4082,51 @@
         "complained": "Roskaposti-ilmoitus",
         "rejected": "Hylätty",
         "ambiguous": "Tila epäselvä",
-        "suppressed": "Estetty"
+        "suppressed": "Ei lähetetty"
       },
-      "description": "Tarkastele ajoitettuja, jonossa olevia, toimitettuja, estettyjä, peruttuja ja epäonnistuneita sähköpostitoimituksia.",
+      "resend": {
+        "actionMenu": "Sähköpostin toiminnot",
+        "action": "Lähetä uudelleen",
+        "title": "Lähetetäänkö tämä sähköposti uudelleen?",
+        "description": "Tämä viesti yritetään lähettää uudelleen samalle vastaanottajalle.",
+        "recipient": "Vastaanottaja",
+        "subject": "Aihe",
+        "cancel": "Peruuta",
+        "confirm": "Lähetä uudelleen",
+        "submitting": "Valmistellaan lähetystä…",
+        "queued": "Sähköposti on valmis lähetettäväksi uudelleen.",
+        "scheduled": "Uusi yritys on ajastettu. Sähköposti lähetetään, kun lähettäminen on mahdollista.",
+        "error": "Sähköpostia ei voitu valmistella lähetettäväksi. Yritä uudelleen.",
+        "stale": "Sähköpostin tila on muuttunut. Sen uusin tila on nyt näkyvissä.",
+        "blocked": "Tätä sähköpostia ei voi lähettää uudelleen juuri nyt.",
+        "reasonLabel": "Miksi sitä ei lähetetty"
+      },
+      "reasons": {
+        "status_not_retryable": "Tätä sähköpostia ei voi lähettää uudelleen sen nykyisessä tilassa.",
+        "delivery_in_progress": "Tätä sähköpostia lähetetään jo.",
+        "delivery_outcome_unknown": "Emme voi vahvistaa, lähetettiinkö tämä sähköposti. Tarkista toimituksen tila ennen uutta yritystä.",
+        "already_sent": "Tämä sähköposti on jo lähetetty.",
+        "recipient_suppressed": "Lähettäminen tälle vastaanottajalle oli estetty.",
+        "consent_revoked": "Vastaanottaja oli peruuttanut suostumuksensa tämän sähköpostin vastaanottamiseen.",
+        "consent_expired": "Vastaanottajan suostumus oli vanhentunut.",
+        "marketing_opt_in_required": "Vastaanottaja ei ollut antanut suostumustaan markkinointisähköpostien vastaanottamiseen.",
+        "consent_required": "Vastaanottajan tarvittava suostumus puuttui.",
+        "content_unavailable": "Alkuperäinen viesti ei ollut enää saatavilla.",
+        "invalid_delivery_contract": "Sähköpostin lähettämiseen tarvittavat tiedot olivat puutteelliset.",
+        "source_changed": "Tiedot, joihin sähköposti perustui, olivat muuttuneet.",
+        "source_missing": "Sähköpostiin liittyvää tietuetta ei ollut enää olemassa.",
+        "recipient_ineligible": "Tämä viesti ei enää koskenut vastaanottajaa.",
+        "automation_inactive": "Tämä sähköpostiautomaatio oli pois käytöstä.",
+        "sender_not_ready": "Sähköpostien lähettämistä ei ollut määritetty tai se ei ollut tilapäisesti käytettävissä.",
+        "workspace_disabled": "Sähköpostien lähettäminen oli poistettu käytöstä tässä työtilassa.",
+        "monthly_allowance_exhausted": "Työtilan kuukausittainen sähköpostikiintiö oli käytetty loppuun.",
+        "unsupported_email_type": "Tämäntyyppistä sähköpostia ei voi lähettää uudelleen tästä näkymästä.",
+        "delivery_failed": "Sähköpostia ei voitu toimittaa.",
+        "not_sent": "Sähköpostia ei lähetetty.",
+        "hard_bounce": "Toimitus tähän osoitteeseen epäonnistui pysyvästi.",
+        "spam_complaint": "Vastaanottaja ilmoitti sähköpostin roskapostiksi."
+      },
+      "description": "Tarkastele ajastettuja, toimitettuja, peruttuja ja lähettämättä jääneitä sähköposteja.",
       "searchLabel": "Hae toimitushistoriasta",
       "searchPlaceholder": "Hae vastaanottajan sähköpostilla tai asiakastunnuksella…",
       "statusLabel": "Suodata toimitustilan mukaan",
@@ -4398,7 +4511,8 @@
         "module": "Ota Ovikulku-moduuli käyttöön työtilan asetuksissa.",
         "sender": "Viimeistele hallitun sähköpostilähettäjän asetukset ennen toimituksen käyttöönottoa.",
         "inventory": "Lisää vahvistettu uudelleenkäytettävä koodi tämän toimipisteen aktiiviseen koodipooliin."
-      }
+      },
+      "template": "Muokkaa sähköpostimallia"
     },
     "errors": {
       "setupRequired": "Tarkista sähköpostiasetukset ennen automaation aktivointia.",
@@ -4411,6 +4525,102 @@
       "message": "Poistetaanko {name}? Tätä ei voi kumota.",
       "cancel": "Säilytä automaatio",
       "deleting": "Poistetaan…"
+    },
+    "doorTemplates": {
+      "title": "Pääsykoodisähköpostit",
+      "description": "Muokkaa automaattista ovikoodisähköpostia jokaiselle studion toimipisteelle. Malleja käytetään nykyisessä pääsykoodien lähetyksessä.",
+      "locationHint": "Käytetään vain tämän toimipisteen varauksissa",
+      "default": "Oletusviesti",
+      "customized": "Muokattu viesti",
+      "loading": "Ladataan ovikoodimalleja…",
+      "loadError": "Ovikoodimalleja ei voitu ladata.",
+      "retry": "Yritä uudelleen",
+      "empty": "Lisää aktiivinen studion toimipiste muokataksesi sen ovikoodisähköpostia.",
+      "edit": "Muokkaa mallia",
+      "preview": "Esikatsele mallia",
+      "editFor": "Muokkaa toimipisteen {location} ovikoodimallia",
+      "previewFor": "Esikatsele toimipisteen {location} ovikoodimallia",
+      "eyebrow": "Pääsykoodisähköposti",
+      "editorDescription": "Muokkaa tämän toimipisteen aihetta ja viestiä. Tallennetut muutokset koskevat tulevia automaattisia sähköposteja; lähetysasetukset ja tavallinen 15 minuutin ennakko pysyvät ennallaan.",
+      "placeholderHint": "Shario lisää varauksen tiedot ja oikean koodin lähetyksen yhteydessä. Säilytä tämä paikkamerkki viestissä:",
+      "previewHint": "Esikatselu käyttää esimerkkikoodia ja -varausta. Studiosi tallennettua sähköpostiulkoasua käytetään, kun viesti lähetetään.",
+      "variablesTitle": "Pääsy ja varauksen tiedot",
+      "variables": {
+        "entryCode": "Ovikoodi (vain viestin tekstissä)",
+        "studioName": "Studion toimipisteen nimi",
+        "studioAddress": "Studion toimipisteen osoite",
+        "bookingTime": "Varauksen paikallinen päivämäärä ja aikaväli",
+        "bookingUrl": "Varauksen hallintalinkki"
+      },
+      "languages": {
+        "cs": "Tšekki",
+        "en": "Englanti"
+      },
+      "errors": {
+        "incomplete": "Lisää tälle kielelle aihe (enintään 200 merkkiä) ja viesti.",
+        "missingCode": "Lisää ovikoodin paikkamerkki viestin näkyvään tekstiin.",
+        "codePlacement": "Pidä koodi viestin tekstissä, aiheen, linkkien ja HTML-määritteiden ulkopuolella.",
+        "unknownVariable": "Käytä vain lueteltuja paikkamerkkejä, joissa on kaksi avaavaa ja kaksi sulkevaa aaltosulkua."
+      },
+      "close": "Sulje malli",
+      "cancel": "Peruuta",
+      "save": "Tallenna malli",
+      "saving": "Tallennetaan…",
+      "resetting": "Palautetaan…",
+      "saveError": "Ovikoodimallia ei voitu tallentaa.",
+      "resetError": "Oletusviestiä ei voitu palauttaa.",
+      "saveSuccess": "Toimipisteen {location} ovikoodimalli tallennettiin.",
+      "resetSuccess": "Toimipisteen {location} oletusarvoinen ovikoodiviesti palautettiin.",
+      "reset": "Palauta oletusviesti",
+      "resetConfirm": "Palautetaanko tämän toimipisteen oletusviesti? Tallennettu muokkauksesi ja tallentamattomat muutokset korvataan.",
+      "confirmReset": "Palauta oletus",
+      "keepEditing": "Jatka muokkaamista",
+      "discardConfirm": "Sinulla on tallentamattomia muutoksia. Suljetaanko tallentamatta?",
+      "discard": "Hylkää muutokset",
+      "variablesHint": "Napsauta paikkamerkkiä lisätäksesi sen kohtaan, jossa kirjoitat. Pääsykoodi kuuluu vain viestin tekstiin, linkkien ulkopuolelle.",
+      "help": "Mallin ohje",
+      "codeReminder": "Säilytä {code} viestissä."
+    },
+    "visualEditor": {
+      "mode": "Muokkaustila",
+      "visual": "Visuaalinen editori",
+      "htmlSource": "HTML-lähdekoodi",
+      "loading": "Ladataan visuaalista editoria…",
+      "unsupported": "Tämä malli sisältää edistynyttä HTML-muotoilua. Alkuperäinen ulkoasu säilyy HTML-tilassa.",
+      "toolbar": "Tekstin ja ulkoasun säätimet",
+      "body": "Leipäteksti",
+      "heading1": "Otsikko 1",
+      "heading2": "Otsikko 2",
+      "heading3": "Otsikko 3",
+      "bold": "Lihavointi",
+      "italic": "Kursivointi",
+      "underline": "Alleviivaus",
+      "fontSize": "Tekstin koko",
+      "defaultSize": "Oletuskoko",
+      "textColor": "Tekstin väri",
+      "textBackground": "Tekstin tausta",
+      "alignLeft": "Tasaa vasemmalle",
+      "alignCenter": "Keskitä",
+      "alignRight": "Tasaa oikealle",
+      "bulletList": "Luettelomerkit",
+      "orderedList": "Numeroitu luettelo",
+      "link": "Lisää tai muokkaa linkkiä",
+      "linkUrl": "Linkin osoite",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Käytä linkkiä",
+      "removeLink": "Poista linkki",
+      "cancelLink": "Peruuta",
+      "invalidLink": "Käytä http-, https- tai mailto-osoitetta tai varauslinkin paikkamerkkiä. Ovikoodeja ei voi käyttää linkeissä.",
+      "undo": "Kumoa",
+      "redo": "Tee uudelleen",
+      "blockStyle": "Lohkon ulkoasu",
+      "blockBackground": "Lohkon tausta",
+      "blockPadding": "Lohkon välistys",
+      "paddingNone": "Ei mitään",
+      "paddingSmall": "Pieni",
+      "paddingMedium": "Keskikokoinen",
+      "paddingLarge": "Suuri",
+      "clearBlockStyle": "Poista lohkon tausta ja välistys"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "Mitä tavoitteen valmistuminen edellyttää"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Löydä sopiva tilaus",
+    "title": "Katso tilausten väliset erot.",
+    "description": "Vertaa uusille asiakkaille tarjottavia tilauksia. Nykyiset tilaukset voivat säilyttää aiemman tilausversion.",
+    "caption": "Nykyisten pajatilausten ominaisuusvertailu",
+    "feature": "Ominaisuus tai kiintiö",
+    "scrollLabel": "Tilausvertailu — vieritä vaakasuunnassa nähdäksesi kaikki tilaukset",
+    "shared": "Jokaiseen tilaukseen sisältyvät kurssit, jonotuslistat, lahjakortit, oman ilmeen mukainen varaussivusto, asiakasportaali ja CSV-tuonti.",
+    "trialNote": "14 päivän kokeilu sisältää Professionalin ominaisuudet. Kulkukoodit, omat verkkotunnukset ja yllä esitetyt edistyneet tekoälytyökalut edellyttävät Space Plus- tai erikseen sovittua Enterprise-tilausta.",
+    "usageNote": "Välttämättömiä järjestelmäviestejä ei lasketa sähköpostikiintiöön. Tekoälykrediitit jaetaan käytössä olevien tekoälytyökalujen kesken; käyttö keskeytyy kiintiön täyttyessä ilman automaattisia lisämaksuja. Työkalujen saatavuus riippuu myös pajan asetuksista ja tiimin käyttöoikeuksista.",
+    "accessNote": "Kulkukoodit toimivat oman kulkujärjestelmäsi ja Sharioon ladattujen koodien kanssa. Älylukkolaitteet ja niiden integraatiot eivät sisälly tilaukseen.",
+    "enterpriseTitle": "Tarvitsetko räätälöidyn ratkaisun?",
+    "enterpriseDescription": "Keskustele kanssamme Enterprisen kapasiteetista, integraatioista, tietojen siirrosta ja tuesta. Vahvistamme pajaasi koskevan laajuuden ja ehdot ennen valintaasi.",
+    "enterpriseCta": "Keskustele Enterprisesta",
+    "rows": {
+      "locations": "Pajan toimipisteet",
+      "teamAccounts": "Tiimitilit",
+      "openStudioMemberships": "Avoin paja, jäsenyydet ja krediittipaketit",
+      "inventoryTasks": "Varasto ja tiimin tehtävät",
+      "automations": "Aktiiviset omat automaatiot",
+      "emails": "Sisältyvät sähköpostit kuukaudessa",
+      "studioAssistant": "Studio-avustaja",
+      "aiCredits": "Tekoälykrediitit kuukaudessa",
+      "briefingKnowledge": "Päivittäiset yhteenvedot ja tietopankki",
+      "advancedAi": "Business Advisor, asiakasavustaja ja tekoälyn raporttianalyysit",
+      "accessCodes": "Kulkukoodien hallinta ja lähettäminen",
+      "customDomain": "Oma verkkotunnus"
+    },
+    "values": {
+      "included": "Sisältyy",
+      "notIncluded": "Ei sisälly",
+      "basic": "Perustaso",
+      "full": "Täysi",
+      "limited": "Rajattu",
+      "advanced": "Edistynyt"
+    }
+  },
+  "RefundReviews": {
+    "title": "Maksunpalautusten tarkistukset",
+    "description": "Tarkista Stripestä kirjatut maksunpalautukset ja dokumentoi päätös niihin liittyvistä asiakaseduista.",
+    "benefitsNotice": "Maksunpalautuksen kirjaaminen tai kuittaaminen ei peru varausta tai jäsenyyttä, poista saldoa eikä tee uutta maksua. Tarkista asiaan liittyvät edut erikseen ennen päätöksen kirjaamista.",
+    "allLocationsRequired": "Maksunpalautusten tarkistaminen edellyttää pääsyä studion kaikkien toimipisteiden maksuihin.",
+    "refresh": "Päivitä",
+    "loading": "Ladataan maksunpalautusten tarkistuksia…",
+    "empty": "Tällä sivulla ei ole avoimia tarkistuksia.",
+    "loadError": "Tarkistuksia ei voitu ladata. Päivitä ja yritä uudelleen.",
+    "needsReview": "Edut on tarkistettava",
+    "needsRepair": "Maksun täsmäytys vaatii huomiota",
+    "reference": "Tarkistuksen viite",
+    "order": "Tilaus",
+    "membership": "Jäsenyys",
+    "paid": "Alkuperäinen maksu",
+    "refunded": "Palautettu",
+    "pending": "Maksunpalautus odottaa",
+    "failed": "Maksunpalautus epäonnistui",
+    "repairNotice": "Tätä maksua ei ole täysin täsmäytetty. Päivitä tai ota yhteyttä tukeen maksun kohdistuksen korjaamiseksi ennen tarkistuksen kirjaamista.",
+    "readOnly": "Tiimin jäsen, jolla on maksunpalautusoikeus, voi kirjata tarkistuksen.",
+    "review": "Kirjaa tarkistus",
+    "note": "Päätös tai tehdyt muutokset (10–2000 merkkiä)",
+    "evidence": "Päätöstä tukeva todiste tai viite (10–2000 merkkiä)",
+    "confirm": "Olen tarkistanut asiaan liittyvät edut ja dokumentoinut tehdyt muutokset tai päätökseni säilyttää ne.",
+    "save": "Kuittaa tarkistus",
+    "cancel": "Peruuta",
+    "saved": "Tarkistus kirjattu. Tämä toiminto ei muuttanut asiakkaan etuja.",
+    "changed": "Tämä maksunpalautus on muuttunut tai sen täsmäytys on vielä kesken. Luettelo on päivitetty. Tarkista nykyiset tiedot ennen uudelleenlähetystä.",
+    "saveError": "Tarkistusta ei voitu tallentaa. Muistiinpanosi ovat tallella. Yritä uudelleen.",
+    "permissionError": "Sinulla ei enää ole oikeutta kirjata tätä tarkistusta. Pyydä apua tiimin jäseneltä, jolla on maksunpalautusoikeus kaikkiin toimipisteisiin.",
+    "pagination": "Maksunpalautusten tarkistussivut",
+    "firstPage": "Ensimmäinen sivu",
+    "nextPage": "Seuraava sivu"
+  },
+  "PaymentRefundResult": {
+    "title": "Studion on tarkistettava maksu",
+    "description": "Hyvitys on kirjattu tai tämä maksu vaatii tarkistuksen. Tämä sivu ei vahvista uutta varausta, krediittisaldoa tai jäsenetua.",
+    "next": "Ota yhteyttä studioon ja ilmoita alla oleva viite ennen uuden maksun tekemistä.",
+    "reference": "Viite",
+    "back": "Takaisin studioon",
+    "refresh": "Tarkista tila"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Hyvät tilat tuovat ihmiset yhteen",
@@ -5849,7 +6138,8 @@
       "about": "Näin se toimii",
       "login": "Kirjaudu sisään",
       "register": "Aloita ilmainen kokeilu",
-      "copyright": "© {year} Shario. Kaikki oikeudet pidätetään."
+      "copyright": "© {year} Shario. Kaikki oikeudet pidätetään.",
+      "contact": "Yhteystiedot"
     }
   },
   "Waitlists": {
@@ -6801,6 +7091,22 @@
       "label": "Henkilönäkymä"
     },
     "filters": {
+      "spending": "Kulutus ({currency})",
+      "spendMin": "Vähimmäiskulutus",
+      "spendMax": "Enimmäiskulutus",
+      "spendFrom": "Maksupäivä alkaen",
+      "spendTo": "Maksupäivä asti",
+      "spendingHint": "Tämän ajanjakson maksut, joista on vähennetty kirjatut palautukset.",
+      "spendingDatesHint": "Jätä päivämäärät tyhjiksi, jos haluat mukaan koko historian.",
+      "credits": "Nykyiset krediitit ({currency})",
+      "creditMin": "Krediittien vähimmäismäärä",
+      "creditMax": "Krediittien enimmäismäärä",
+      "creditsHint": "Nykyinen krediittisaldo, johon maksupäivät eivät vaikuta.",
+      "spendingUnavailable": "Kulutuksen suodatus edellyttää pääsyä kaikkiin taloustietoihin.",
+      "applyFinancial": "Käytä taloussuodattimia",
+      "financialDraftHint": "Muutokset tulevat voimaan, kun valitset Käytä.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Koko historia",
       "membership": "Jäsenyys",
       "status": "Tila",
       "button": "Suodattimet",
@@ -6814,6 +7120,7 @@
       "clear": "Tyhjennä"
     },
     "columns": {
+      "periodSpent": "Kulutus ajanjaksolla",
       "customer": "Asiakas",
       "contact": "Yhteystiedot",
       "membership": "Jäsenyys",
@@ -6830,6 +7137,7 @@
       "access": "Käyttöoikeus"
     },
     "actions": {
+      "exporting": "Viedään…",
       "addCustomer": "Lisää asiakas",
       "openCustomerActions": "Avaa kohteen {name} toiminnot",
       "openStaffActions": "Avaa kohteen {name} toiminnot",
@@ -6875,6 +7183,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Kulutus ajanjaksolla",
       "email": "Sähköposti",
       "membership": "Jäsenyys",
       "credits": "Saldo",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Aktiiviset jäsenyydet",
       "credits": "Asiakkaiden krediitit",
       "newThisMonth": "Uudet tässä kuussa",
-      "monthlyChange": "+{count} tässä kuussa"
+      "monthlyChange": "+{count} tässä kuussa",
+      "unavailable": "Tietoja ei ole saatavilla"
     },
     "counts": {
       "customers": "{count, plural, one {# asiakas} other {# asiakasta}}",
@@ -6992,6 +7302,13 @@
       "view": "Näytä asiakasanalyysi"
     },
     "errors": {
+      "summary": "Asiakkaiden yhteenvetoa ja jäsenyyssuodattimia ei voitu ladata. Yritä uudelleen.",
+      "export": "Koko asiakasvientiä ei voitu ladata. Tiedostoa ei tallennettu. Yritä uudelleen.",
+      "invalidAmount": "Anna kelvollinen summa.",
+      "invalidDate": "Anna kelvollinen päivämäärä.",
+      "spendingRange": "Vähimmäiskulutus ei saa ylittää enimmäiskulutusta.",
+      "creditRange": "Krediittien vähimmäismäärä ei saa ylittää enimmäismäärää.",
+      "dateRange": "Alkupäivä ei saa olla loppupäivän jälkeen.",
       "customers": "Asiakkaita ei voitu ladata. Yritä uudelleen.",
       "staff": "Tiimin jäseniä ei voitu ladata. Yritä uudelleen."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Sovelluksen sisäiset ilmoitukset",
           "description": "Näytä työtilan ilmoitukset Shariossa."
+        },
+        "bookingCreated": {
+          "label": "Varaus luotu",
+          "description": "Kun asiaankuuluva varaus luodaan. Oletuksena pois päältä."
         }
       },
       "channelsTitle": "Toimituskanavat"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "Uutta keskustelua ei voitu luoda.",
       "message": "Studioavustaja ei voinut vastata juuri nyt."
+    },
+    "guided": {
+      "title": "Mitä haluaisit tietää?",
+      "description": "Valitse kysymys, niin saat selkeän vastauksen studiosi tietojen perusteella.",
+      "back": "Valitse toinen kysymys",
+      "retry": "Yritä uudelleen",
+      "loading": "Tarkistetaan studiosi tietoja…",
+      "noAnswer": "Luotettavaa vastausta ei löytynyt. Yritä hetken kuluttua uudelleen.",
+      "contextQuestion": "Mitä minun pitäisi tietää tästä?",
+      "contextHint": "Vastaus valitusta kohteesta.",
+      "allStudios": "Kaikki studiot",
+      "periods": {
+        "today": "Tänään",
+        "last30Days": "Viimeiset 30 päivää",
+        "current": "Nykyinen yleiskuva"
+      },
+      "report": {
+        "title": "Haluatko tarkemman yleiskuvan?",
+        "description": "Valitun studion kuukausiraportti kuukauden alusta {date} asti.",
+        "generate": "Luo kuukausiraportti",
+        "open": "Avaa kuukausiraportti",
+        "back": "Takaisin vastaukseen",
+        "ready": "Kuukausiraporttisi on valmis."
+      },
+      "questions": {
+        "today": {
+          "label": "Miten studiolla menee tänään?",
+          "hint": "Nopea katsaus tämänpäiväiseen toimintaan.",
+          "prompt": "Mitä studiolla tapahtuu tänään?"
+        },
+        "bookings": {
+          "label": "Montako varausta meillä on tänään?",
+          "hint": "Tämän päivän vahvistetut varaukset.",
+          "prompt": "Montako varausta meillä on tänään?"
+        },
+        "bookingTrend": {
+          "label": "Kasvavatko varauksemme?",
+          "hint": "Vertaa viimeisiä 30 päivää edellisiin 30 päivään.",
+          "prompt": "Miten varauksemme kehittyvät?"
+        },
+        "teamBlockers": {
+          "label": "Estääkö jokin tiimin työtä?",
+          "hint": "Tarkista tänään ilmoitetut tiimin esteet.",
+          "prompt": "Mikä estää tiimimme työtä tänään?"
+        },
+        "reorders": {
+          "label": "Mitä pitää tilata lisää?",
+          "hint": "Tarkista avoimet varaston täydennyspyynnöt.",
+          "prompt": "Onko avoimia täydennystilauspyyntöjä?"
+        },
+        "generalHelp": {
+          "label": "Mitä studion tietoja voin tarkastella?",
+          "hint": "Katso roolillesi saatavilla olevat tiedot.",
+          "prompt": "Mihin studion tietoihin sinulla on pääsy?"
+        }
+      },
+      "selectedStudio": "Valittu studio"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "Paras päättynyt kuukausi",
+      "completedMonths": "Vain kokonaisia päättyneitä kuukausia, joiden tiedot ovat luotettavia, verrataan.",
+      "noBestMonth": "Jaksolle ei voi määrittää luotettavaa parasta kuukautta. Valitse kokonaisia päättyneitä kuukausia.",
+      "showYear": "Näytä tämä vuosi",
+      "monthRanking": "Maksut kuukausittain",
+      "month": "Kuukausi",
+      "coverage": "Tietojen kattavuus",
+      "completeMonth": "Koko kuukausi",
+      "partialMonth": "Osittainen kuukausi",
+      "moneyBasis": "Jaksolla tosiasiallisesti saadut maksut vähennettynä raporttipäivään mennessä kirjatuilla palautuksilla. Maksetut jäsenyydet, lahjakortit ja saldolataukset lasketaan kerran; käyttö ei ole uusi maksu. Tämä ei ole voitto.",
+      "asOf": "Tilanne",
+      "customerTable": "Asiakasanalyysi",
+      "customerHelp": "Yhdistä suodattimia löytääksesi asiakkaat, joihin ottaa yhteyttä.",
+      "inactiveCredit": "90 päivää ilman toimintaa ja saldoa jäljellä:",
+      "showCustomers": "Näytä asiakkaat",
+      "spending": "Saadut maksut",
+      "credits": "Nykyinen saldo",
+      "cancellations": "Perutut varaukset",
+      "minimum": "Vähintään",
+      "maximum": "Enintään",
+      "actor": "Peruuttaja",
+      "actor_all": "Kuka tahansa",
+      "actor_customer": "Asiakas",
+      "actor_staff": "Henkilökunta",
+      "inactiveDays": "Ei toimintaa vähintään (päivää)",
+      "dateDefaults": "Tyhjät päivämäärät käyttävät yllä olevaa raporttijaksoa.",
+      "cancellationCoverage": "Vanhoilta peruutuksilta voi puuttua luotettava päivä tai tekijä. Luku ja + tarkoittavat tunnettua vähimmäismäärää; tuntematon ei ole nolla. Enimmäissuodatin vaatii täydellisen historian.",
+      "invalidBounds": "Anna kelvolliset luvut ja päivät; vähimmäisarvo ei saa ylittää enimmäisarvoa.",
+      "apply": "Käytä suodattimia",
+      "clear": "Tyhjennä suodattimet",
+      "exportCustomers": "Vie kaikki vastaavat asiakkaat",
+      "noCustomers": "Suodattimia vastaavia asiakkaita ei ole.",
+      "customer": "Asiakas",
+      "lastActivity": "Viimeisin toiminta",
+      "locationScope": "Toimipisteen summista jätetään pois maksut, joita ei voida kohdistaa luotettavasti. Jäsenyydet, lahjakortit ja lataukset voivat näkyä vain koko työtilan näkymässä.",
+      "incompleteData": "Osa lähteistä on puutteellisia tai puuttuu. Vain todennettavat tiedot sisältyvät; puuttuva arvo ei ole nolla.",
+      "paymentSources": "Maksujen lähteet",
+      "source_external_payment": "Tilausten maksut",
+      "source_voucher": "Lahjakorttien ostot",
+      "source_membership": "Jäsenmaksut",
+      "source": "Lähde",
+      "noPaymentSources": "Maksujen lähteistä ei ole tietoja saatavilla."
+    },
     "actions": {
       "retry": "Yritä uudelleen",
       "export": "Vie CSV",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Varaukset",
-      "netSales": "Nettomyynti",
+      "netSales": "Saadut maksut",
       "utilizationPercent": "Käyttöaste",
       "returningCustomerPercent": "Palaavat asiakkaat"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Varaukset",
-        "netSales": "Nettomyynti"
+        "netSales": "Saadut maksut"
       },
       "trendTitle": "Tulosten kehitys",
       "trendDescription": "Vahvistetut arvot valitulta raportointijaksolta.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Määrä",
         "currency": "Valuutta",
-        "orders": "Tilaukset",
+        "orders": "Maksut",
         "amount": "Summa",
-        "net": "Nettomyynti",
+        "net": "Saadut maksut",
         "gross": "Bruttomyynti",
         "method": "Tapa",
         "product": "Luettelotuote"
       },
       "metrics": {
-        "orders": "Tilaukset",
-        "net": "Nettomyynti",
+        "orders": "Maksut",
+        "net": "Saadut maksut",
         "gross": "Bruttomyynti",
         "tax": "Vero / ALV",
         "discounts": "Alennukset",
         "refunds": "Hyvitykset",
         "paymentFees": "Maksupalveluntarjoajan kulut",
-        "averageOrder": "Tilauksen keskiarvo"
+        "averageOrder": "Keskimääräinen maksu"
       },
       "unavailable": "Myyntitiedot eivät ole saatavilla",
       "unavailableDescription": "Tällä tilillä tai raportointirajauksella ei ole saatavilla myyntilähdettä.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Varaukset",
-        "participants": "Osallistujat",
+        "participants": "Varatut paikat",
         "utilization": "Käyttöaste",
         "cancellations": "Peruutukset",
         "noShows": "Saapumatta jääneet",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Uudet asiakkaat",
-        "returning": "Palaavat asiakkaat",
-        "unique": "Aktiiviset asiakkaat",
+        "new": "Uudet maksavat asiakkaat",
+        "returning": "Palaavat maksavat asiakkaat",
+        "unique": "Maksavat asiakkaat",
         "returningRate": "Palaavien asiakkaiden osuus",
-        "averageSpend": "Keskimääräinen ostosumma"
+        "averageSpend": "Keskimääräinen maksettu summa"
       },
       "unavailable": "Asiakastiedot eivät ole saatavilla",
       "unavailableDescription": "Tällä tilillä tai raportointirajauksella ei ole saatavilla asiakaslähdettä.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "Ovikulku ei sisälly tähän tilaukseen",
       "description": "Tarkista tilausvaihtoehdot tai kysy työtilan omistajalta Ovikulusta."
+    },
+    "emailTemplate": {
+      "title": "Ovikoodisähköposti",
+      "description": "Luo tai muokkaa tämän toimipisteen automaattista ovikoodisähköpostia. Jokaisella toimipisteellä on yksi malli, joka jaetaan kohdan Viestit → Sähköpostimallit kanssa.",
+      "create": "Luo malli",
+      "createFor": "Luo toimipisteen {location} ovikoodimalli",
+      "locationUnavailable": "Tälle toimipisteelle ei ole saatavilla ovikoodisähköpostin mallia."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "LAST_NAME": "Sukunimi",
     "PLEASE_WAIT": "Odota, kun käsittelemme ostostasi…",
     "SELECT_TIME_FIRST": "Valitse ensin alkamis- ja päättymisaika.",
-    "COURSE_BOOKING": "Kurssivaraus"
+    "COURSE_BOOKING": "Kurssivaraus",
+    "USER_EMAIL_CHANGE_WARNING": "Sähköpostiosoitteen vaihtaminen kirjaa asiakkaan ulos kaikista istunnoista ja edellyttää uuden osoitteen vahvistamista.",
+    "USER_EMAIL_VERIFICATION_SENT": "Sähköpostiosoite päivitettiin. Nykyiset istunnot päätettiin, ja uuteen osoitteeseen lähetettiin vahvistuslinkki.",
+    "USER_EMAIL_VERIFICATION_RETRY": "Sähköpostiosoite päivitettiin ja nykyiset istunnot päätettiin. Vahvistussähköpostin toimitusta ei voitu vahvistaa. Asiakas voi pyytää uuden linkin studion sähköpostin vahvistussivulta.",
+    "USER_EMAIL_UPDATE_FAILED": "Asiakasta ei voitu päivittää. Tarkista sähköpostiosoite ja yritä uudelleen."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "Tietojen kattavuus ei vielä riitä luotettavaan suositukseen.",
       "message042": "Aloita tärkeimmistä mahdollisuuksista",
       "message043": "Muutamia mahdollisuuksia kannattaa tarkastella",
-      "message044": "Neuvonantaja löysi {value1} suositusta, jotka perustuvat studion vahvistettuihin tietoihin."
+      "message044": "Neuvonantaja löysi {value1} suositusta, jotka perustuvat studion vahvistettuihin tietoihin.",
+      "message045": "Tarkista vastaanotettujen maksujen lasku",
+      "message046": "Vastaanotetut maksut hyvitysten jälkeen ovat {value1} % pienemmät kuin vertailujaksolla.",
+      "message047": "Vastaanotetut maksut hyvitysten jälkeen"
     },
     "briefing": {
       "message011": "Kiireelliset tehtävät",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Maksu peruttu",
-    "nextSteps": "Mitä voit tehdä seuraavaksi",
-    "retry": "Yritä uudelleen – joskus toinen yritys onnistuu.",
-    "card": "Jos käytit Apple Payta tai Google Payta, kokeile korttimaksua.",
-    "contact": "Jos ongelma jatkuu, lähetä meille viesti, niin autamme.",
     "home": "Takaisin etusivulle",
-    "chargeNotice": "Veloitus tehdään vasta, kun maksu on suoritettu."
+    "title": "Paluu maksusta",
+    "description": "Paluu maksusivulta ei peruuta varausta. Voit tarkistaa sen tilan varauksistasi.",
+    "creditsHint": "Jos haluat maksaa krediiteillä, avaa maksamaton varaus ja peruuta se ensin. Valitse sitten aika uudelleen. Jos vaihtoehto ei ole saatavilla, ota yhteyttä studioon.",
+    "backToBookings": "Takaisin varauksiin"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Studion yleiskuva",
+    "todayNumbers": "Studion päivän luvut",
+    "todayBookings": "Varaukset",
+    "selectedDate": "Valittuna päivänä",
+    "expectedVisitors": "Odotetut kävijät",
+    "bookedParticipants": "Osallistujat ajoitetuissa varauksissa",
+    "expectedNow": "Studiolla nyt (arvio)",
+    "expectedNowBasis": "Henkilöt, joiden varaus on käynnissä; paikallaoloa ei ole vahvistettu",
+    "nextSession": "Seuraava varaus",
+    "noUpcomingSession": "Ei tulevia varauksia",
+    "attentionTitle": "Vaatii huomiotasi",
+    "review": "Tarkista",
+    "generateReport": "Luo tekoälyraportti",
+    "generating": "Valmistellaan raporttia…",
+    "reportPermission": "Tekoälyraportit edellyttävät pääsyä studioavustajaan.",
+    "reportError": "Raporttia ei voitu luoda. Yritä uudelleen.",
+    "operationsError": "Studion päivittäisiä tietoja ei voitu ladata.",
+    "managementError": "Studion kuukausittaisia tietoja ei voitu ladata.",
+    "retry": "Yritä uudelleen",
+    "loadingPerformance": "Ladataan studion tuloksia…",
+    "performanceEyebrow": "Studion tulokset",
+    "monthTitle": "Tämä kuukausi tähän mennessä",
+    "comparison": "Verrattuna jaksoon {period}",
+    "comparedWithPrevious": "verrattuna edelliseen jaksoon",
+    "unavailable": "Tietoja ei ole saatavilla",
+    "revenue": "Toteutuneet tuotot",
+    "revenueBasis": "Jakson aikana toteutetut palvelut ja toimitetut tuotteet",
+    "revenueUnavailable": "Toteutuneiden tuottojen kokonaissumma ei ole vielä saatavilla: toimitustiedot eivät kata kaikkia palveluja ja tuotteita. Kassavirta raportoidaan erikseen.",
+    "confirmedRevenue": "Vahvistetut valmiit palvelut: {amount}.",
+    "visits": "Osallistujat menneissä varauksissa",
+    "visitsBasis": "Osallistujat päättyneissä varauksissa; läsnäoloa ei ole vahvistettu",
+    "newClients": "Uudet varanneet asiakkaat",
+    "newClientsBasis": "Ensimmäinen kirjattu varaus valituissa studioissa; ei välttämättä uusi koko yritykselle",
+    "last30Days": "Viimeiset 30 päivää",
+    "arrivalTitle": "Milloin asiakkaat saapuvat",
+    "scheduledArrivalTitle": "Milloin käynnit on ajoitettu",
+    "hourlyAttendance": "Osallistujat alkamistunnin mukaan",
+    "hourCount": "{hour}:00 — {count} osallistujaa",
+    "busiestHour": "Vilkkain ajoitettu tunti: {from}:00–{to}:00",
+    "recordedBusiestHour": "Vilkkain saapumistunti: {from}:00–{to}:00",
+    "recordedSample": "Perustuu {count} kirjattuun saapumiseen",
+    "scheduledSample": "Perustuu {count} ajoitettuun osallistujaan",
+    "scheduledCaveat": "Varausten alkamisajat näyttävät nykyisen aikataulun. Hiljaiset tunnit eivät yksinään todista kysyntää uusille kerroille.",
+    "noAttendance": "Toimintaa ei ole vielä tarpeeksi mallin näyttämiseksi.",
+    "other": "Muut",
+    "topClients": "Top 5 asiakasta",
+    "rankingBy": "Järjestä asiakkaat",
+    "clientVisitsBasis": "Osallistujat päättyneissä varauksissa tällä jaksolla",
+    "clientRevenueBasis": "Vahvistettujen valmiiden palvelujen tuotot tällä jaksolla",
+    "unnamedClient": "Nimetön asiakas",
+    "noClients": "Tältä jaksolta ei ole kirjattu asiakkaita.",
+    "confirmedOnly": "Vain vahvistetut valmiit palvelut; muut toimitustiedot eivät ole saatavilla.",
+    "topProducts": "Top 3 tuotetta",
+    "byQuantity": "Määrän mukaan",
+    "deliveredProductsBasis": "Vahvistetut valmiit palvelut määrän mukaan järjestettynä",
+    "noProducts": "Tältä jaksolta ei ole kirjattu valmiita tuotteita.",
+    "unnamedProduct": "Nimetön tuote",
+    "units": "kpl",
+    "coverageTitle": "Tietojen kattavuus ja rajoitukset",
+    "coverageDescription": "Puuttuvat tiedot pysyvät puuttuvina. Ajoitettu toiminta ja vahvistettu toimitus esitetään erikseen.",
+    "openReports": "Avaa tarkemmat raportit",
+    "back": "Takaisin koontinäyttöön",
+    "reportTitle": "Studion raportti",
+    "exporting": "Valmistellaan PDF-tiedostoa…",
+    "exportPdf": "Vie PDF",
+    "exportError": "PDF-tiedostoa ei voitu ladata. Yritä uudelleen.",
+    "aiReport": "Studion tekoälyraportti",
+    "verifiedReport": "Studion tietoraportti",
+    "deterministicNote": "Tekoälyn kommentit eivät ole saatavilla. Raportti sisältää studion tallennetut luvut ja asiallisen yhteenvedon.",
+    "reportHighlights": "Kohokohdat",
+    "reportAttention": "Vaatii huomiota",
+    "reportRecommendations": "Ehdotetut seuraavat vaiheet",
+    "generatedAt": "Luotu {date}",
+    "issues": {
+      "overdueTasks": "Myöhässä olevia tehtäviä: {count}",
+      "lowStock": "Vähissä olevia tuotteita: {count}",
+      "failedEmails": "Epäonnistuneita sähköposteja: {count}",
+      "overduePayments": "Erääntyneitä maksuja: {count}",
+      "overdueOrders": "Myöhässä olevia erikoistilauksia: {count}",
+      "other": "Tarkistettavia kohteita: {count}",
+      "failed_emails": "Epäonnistuneita sähköposteja: {count}",
+      "overdue_custom_orders": "Myöhässä olevia erikoistilauksia: {count}",
+      "overdue_invoices": "Erääntyneitä maksuja: {count}"
+    },
+    "staleData": "Viimeisin päivitys epäonnistui. Näytetään aiemmin ladatut tiedot.",
+    "refreshingData": "Päivitetään studion tietoja…",
+    "coverageReportDetails": "Luo studion raportti nähdäksesi kunkin mittarin saatavilla olevat lähteet ja rajoitukset.",
+    "dismissAttention": "Piilota huomiokortti",
+    "showAttention": "Näytä hälytykset ({count})",
+    "customerId": "Asiakastunnus {id}",
+    "spentMonth": "Käytetty valittuna kuukautena",
+    "spentTotal": "Käytetty yhteensä",
+    "clientSpendingBasis": "Asiakkaiden maksut kirjattujen hyvitysten jälkeen kaikissa studioissa. Kuukausi: {period}; yhteensä valittuun päivään asti.",
+    "spendingUnavailable": "Kulutustietoja ei ole saatavilla tässä näkymässä.",
+    "previousValue": "Edellinen jakso: {value}",
+    "revenueUnavailableShort": "Ei saatavilla – toimitustiedot ovat puutteellisia.",
+    "totalCustomers": "Asiakkaita yhteensä",
+    "workspaceCustomersScope": "Rekisteröityneet kaikissa studioissa",
+    "newRegisteredThisMonth": "Uudet tässä kuussa",
+    "activeCustomers": "Aktiiviset asiakkaat",
+    "activeCustomersBasis": "Varanneet viimeisten 30 päivän aikana",
+    "selectedStudiosScope": "Valitut studiot",
+    "workspaceScope": "Kaikki studiot",
+    "activeSubscribers": "Aktiiviset tilaajat",
+    "newSubscribersThisMonth": "Uudet tilaajat tässä kuussa",
+    "subscriberBasis": "Jokainen henkilö kerran. Uusi tarkoittaa ensimmäistä tilausta; uusimiset eivät sisälly.",
+    "missingMetric": "— Tietoja ei ole saatavilla",
+    "asOfDate": "{date} tilanne",
+    "subscriberSelectedScope": "Valituissa studioissa voimassa olevat jäsenyydet",
+    "recordedPayments": "Kirjatut maksut",
+    "recordedPaymentsBasis": "Valittuna kuukautena vastaanotetut maksut kirjatuilla hyvityksillä vähennettyinä",
+    "paymentsUnavailable": "Maksutietoja ei ole saatavilla.",
+    "spending": "Käytetty summa",
+    "clientPaymentsBasis": "Järjestetty valitun kuukauden kirjattujen asiakasmaksujen mukaan kirjatuilla hyvityksillä vähennettyinä, kaikissa studioissa",
+    "noCustomerPayments": "Tältä jaksolta ei ole vahvistettuja asiakasmaksuja.",
+    "spendingIncomplete": "Jotkin summat eivät ole saatavilla, koska maksuhistoria on puutteellinen.",
+    "paymentRankingIncomplete": "Järjestys perustuu vahvistettuihin maksusummiin; puutteelliset tiedot voivat vaikuttaa järjestykseen.",
+    "byPurchases": "Ostojen mukaan",
+    "purchasedProductsBasis": "Maksetut tilaukset, jotka sisältävät kunkin tuotteen · Viimeiset 30 päivää: {period}",
+    "noPurchasedProducts": "Ei vahvistettuja maksettuja tuoteostoja viimeisten 30 päivän ajalta.",
+    "purchases": "ostoa",
+    "purchasesIncomplete": "Kaikkia ostoja ei voi vahvistaa; tämä järjestys voi olla puutteellinen.",
+    "knownAmount": "Tunnettu summa",
+    "knownPaymentsOnly": "Vain tunnetut maksut; osa maksutiedoista on puutteellisia."
+  },
+  "UnifiedSettings": {
+    "title": "Asetukset",
+    "description": "Omat asetuksesi ja studion asetukset yhdessä paikassa.",
+    "navigation": "Asetusosiot",
+    "studioTitle": "Studio",
+    "personalTitle": "Omat asetukset",
+    "studioScope": "Koko studiolle",
+    "personalScope": "Vain sinulle",
+    "studioDescription": "Tämän studion yhteiset asetukset. Näet vain alueet, joihin sinulla on pääsy.",
+    "personalDescription": "Hallitse tiliäsi ja työskentelytapaasi tässä studiossa. Nämä asetukset eivät muuta muiden tiimin jäsenten asetuksia.",
+    "personalProfileScope": "Profiilisi ja salasanasi koskevat tiliäsi kaikissa studioissa.",
+    "personalPreferencesScope": "Nämä asetukset koskevat vain sinua tässä studiossa.",
+    "locationScope": "Vain toimipiste {name}",
+    "newLocationScope": "Uuden toimipisteen asetukset",
+    "backTo": "Takaisin: {section}",
+    "searchLabel": "Hae asetuksista",
+    "searchStudio": "Hae studion asetuksista…",
+    "searchPersonal": "Hae omista asetuksista…",
+    "clearSearch": "Tyhjennä haku",
+    "searchResults": "{count, plural, one {# asetus löytyi} other {# asetusta löytyi}}",
+    "advancedTitle": "Lisäasetukset",
+    "advancedDescription": "Käytössä olevat ominaisuudet, navigaatio ja tietojen tuonti.",
+    "emptyTitle": "Ei vastaavia asetuksia",
+    "emptyDescription": "Kokeile toista hakusanaa tai tyhjennä haku nähdäksesi kaikki tämän osion asetukset.",
+    "setupTitle": "Viimeistele studiosi käyttöönotto",
+    "setupProgress": "{completed}/{total} pakollista vaihetta valmiina.",
+    "setupAction": "Jatka käyttöönottoa",
+    "groups": {
+      "workspace": {
+        "title": "Studio ja toimipisteet",
+        "description": "Studion tiedot, yhteinen kieli, valuutta ja toimipisteet."
+      },
+      "access": {
+        "title": "Tiimi ja käyttöoikeudet",
+        "description": "Tiimin jäsenet, roolit ja oven käyttöoikeudet."
+      },
+      "website": {
+        "title": "Verkkosivusto ja brändi",
+        "description": "Julkinen verkkosivusto, varaussivut ja visuaalinen ilme."
+      },
+      "payments": {
+        "title": "Asiakkaiden maksut",
+        "description": "Maksutavat ja asiakasmaksujen asetukset."
+      },
+      "communications": {
+        "title": "Viestit ja automaatio",
+        "description": "Sähköpostien toimitus, lähettäjät ja tekoälyapu."
+      },
+      "account": {
+        "title": "Shario-tilaus",
+        "description": "Studiosi paketti, laskut ja laskutustiedot."
+      },
+      "advanced": {
+        "title": "Ominaisuudet ja tiedot",
+        "description": "Määritä moduulit ja tuo tietoja studioosi."
+      },
+      "profile": {
+        "title": "Profiili ja tietoturva",
+        "description": "Nimesi, yhteystietosi ja salasanasi kaikissa studioissa."
+      },
+      "preferences": {
+        "title": "Oma työympäristö",
+        "description": "Kalenterisi, aikavyöhykkeesi ja oletustoimipisteesi tässä studiossa."
+      },
+      "notifications": {
+        "title": "Omat ilmoitukset",
+        "description": "Valitse, mitä päivityksiä saat tässä studiossa."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Studion tiedot",
+        "description": "Nimi, kieli, aikavyöhyke ja valuutta."
+      },
+      "locations": {
+        "title": "Toimipisteet",
+        "description": "Osoitteet, tilat ja aukioloajat."
+      },
+      "team": {
+        "title": "Tiimin jäsenet",
+        "description": "Kutsu henkilöitä ja hallitse tiimin jäsenyyksiä."
+      },
+      "roles": {
+        "title": "Roolit ja käyttöoikeudet",
+        "description": "Kuka pääsee mihinkin studion osaan."
+      },
+      "accessCodes": {
+        "title": "Oven käyttöoikeudet",
+        "description": "Ovikoodit ja kulkuoikeudet."
+      },
+      "publicSite": {
+        "title": "Verkkosivusto ja varaussivut",
+        "description": "Brändi, julkiset sivut ja asiakaskokemus."
+      },
+      "payments": {
+        "title": "Maksutavat",
+        "description": "Verkkomaksut ja Stripe-yhteys."
+      },
+      "invoicing": {
+        "title": "Asiakaslaskutus",
+        "description": "Laskut ja asiakaslaskutus."
+      },
+      "communications": {
+        "title": "Sähköposti ja lähettäjät",
+        "description": "Toimitus, lähetysverkkotunnukset ja viestiasetukset."
+      },
+      "ai": {
+        "title": "Tekoälyavustaja",
+        "description": "Tekoälyominaisuudet ja automaatioasetukset."
+      },
+      "billing": {
+        "title": "Paketti ja laskutus",
+        "description": "Shario-tilaus, laskut ja laskutustiedot."
+      },
+      "modules": {
+        "title": "Ominaisuudet ja navigaatio",
+        "description": "Ota moduuleja käyttöön ja valitse navigaation kohteet."
+      },
+      "migration": {
+        "title": "Tuo tietoja",
+        "description": "Tuo asiakkaita, varauksia ja muita studion tietoja."
+      },
+      "profile": {
+        "title": "Muokkaa profiilia ja salasanaa",
+        "description": "Nimesi, yhteystietosi ja salasanasi kaikissa studioissa."
+      },
+      "preferences": {
+        "title": "Kalenteri ja näkymä",
+        "description": "Kalenterisi, aikavyöhykkeesi ja oletustoimipisteesi tässä studiossa."
+      },
+      "notifications": {
+        "title": "Ilmoitusasetukset",
+        "description": "Varaus-, tehtävä- ja varastohälytykset; päivitykset sähköpostilla ja sovelluksessa."
+      }
+    },
+    "language": {
+      "label": "Sovelluksen kieli",
+      "change": "Vaihda kieli",
+      "sharedScope": "Yhteinen koko studion tiimille.",
+      "managedByAdmin": "Studiosi järjestelmänvalvoja hallitsee tätä kieltä."
+    },
+    "plan": {
+      "label": "Nykyinen paketti",
+      "details": "Paketin tiedot",
+      "loading": "Ladataan pakettia…",
+      "unavailable": "Paketti ei ole saatavilla",
+      "detailsUnavailable": "Paketin tiedot eivät ole tilapäisesti saatavilla."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "Shario ei peri transaktiopalkkiota. Stripen käsittelymaksut asiakasmaksuista ovat tilauksestasi erillisiä. Hinnat eivät sisällä sovellettavia veroja.",
+    "feeLink": "Maksukulut, kokeilujakso ja peruutus tarkemmin",
+    "links": {
+      "stripePricing": "Tarkista Stripen hinnat maassasi",
+      "refundContact": "Kysy tilauksen hyvityksestä",
+      "studioAi": "Tutustu Shario AI:hin",
+      "refundTerms": "Lue täydelliset ehdot ja hyvitysten poikkeukset"
+    },
+    "faq": {
+      "title": "Ennen kuin valitset paketin",
+      "description": "Tiedä, mistä maksat, milloin muutokset tulevat voimaan ja mitä kokeilujakson jälkeen tapahtuu.",
+      "trial": {
+        "question": "Mitä tapahtuu, kun kokeilujaksoni päättyy?",
+        "answer": "14 päivän Professional-kokeilujaksosi alkaa, kun viimeistelet käyttöönoton. Korttia ei tarvita. Ilman aktiivista maksullista tilausta uudet varaukset, verkko-ostot ja työtilan ominaisuudet keskeytetään kokeilujakson päättyessä. Asiakkaiden varaushistoria ja laskutuksen palautus pysyvät käytettävissä; kokeilujakson päättyminen ei poista studion tietoja. Paketin ostaminen ei ole mahdollista kokeilujakson viimeisten 48 tunnin aikana, jotta vältetään ennenaikainen veloitus. Voit tilata kokeilujakson päätyttyä."
+      },
+      "cancellation": {
+        "question": "Milloin peruutus tulee voimaan?",
+        "answer": "Maksullisen tilauksen peruuttaminen lopettaa sen seuraavan uusimisen. Säilytät käyttöoikeuden nykyisen maksetun laskutusjakson loppuun ja voit perua peruutuksen sitä ennen. Korttivapaan kokeilujakson peruuttaminen päättää sen välittömästi. Kun käyttöoikeus päättyy, uusia varauksia, verkko-ostoja ja työtilan ominaisuuksia rajoitetaan. Rajoitettu käyttöoikeus ei ole täysi vain luku -työtila: yleiset raportit ja viennit voivat olla poissa käytöstä. Vie tarvitsemasi tiedot ennen käyttöoikeuden päättymistä tai ota yhteyttä osoitteeseen hello@shario.io tietojen palauttamista tai poistamista varten. Tietoja ei poisteta automaattisesti voimassaolon päättyessä, mutta rajatonta säilytystä ei luvata."
+      },
+      "refunds": {
+        "question": "Hyvittääkö peruutus automaattisesti käyttämättömän ajan?",
+        "answer": "Vuosi- tai kuukausitilauksen peruuttaminen lopettaa sen seuraavan uusimisen; oikeutettu maksullinen käyttö jatkuu nykyisen jakson loppuun. Vapaaehtoista peruutusta, käyttämätöntä aikaa ja käyttämättömiä kiintiöitä ei hyvitetä, paitsi pakottavan lainsäädännön, nimenomaisen kirjallisen sopimuksen tai ehtojemme oikeussuojakeinojen perusteella. Jos Shario lopettaa maksullisen palvelun ennenaikaisesti omasta tahdostaan tai jos irtisanot sopimuksen olennaisen sopimusrikkomuksemme vuoksi, jota ei ole korjattu 30 päivän kuluessa kirjallisesta ilmoituksesta, hyvitämme käyttämättömän ennakkoon maksetun osuuden päättymisen voimaantulopäivästä alkaen. Hyvitämme käyttämättömän ennakkoon maksetun osuuden myös, jos irtisanot sopimuksen, koska epäedullisen ehtomuutoksen pitäisi tulla voimaan jo ennakkoon maksetun jakson aikana. Jos emme pysty ratkaisemaan uutta tai korvaavaa käsittelijää (alihankkijaa) koskevaa perusteltua tietosuojavastalausetta kohtuullisella vaihtoehdolla, voit lopettaa kyseisen palvelun ja saada sen käyttämättömän ennakkoon maksetun osuuden takaisin. Peruutus itsessään ei käynnistä automaattista hyvitystä. Ota meihin yhteyttä pyytääksesi sovellettavaa oikeussuojakeinoa."
+      },
+      "planChanges": {
+        "question": "Milloin paketin korotukset ja alennukset tulevat voimaan?",
+        "answer": "Maksullisissa tilauksissa siirtyminen ylempään pakettiin tulee voimaan heti, kun mahdollinen vaadittu maksu on suoritettu, ja siitä laaditaan suhteutettu lasku. Siirtyminen alempaan pakettiin tulee voimaan nykyisen laskutusjakson lopussa. Saman paketin sisällä siirtyminen kuukausilaskutuksesta vuosilaskutukseen tapahtuu heti vaaditun maksun jälkeen, ja siirtyminen vuosilaskutuksesta kuukausilaskutukseen alkaa seuraavasta jaksosta. Tarkista voimaantulopäivä ja laskutuksen esikatselu ennen vahvistamista."
+      },
+      "payments": {
+        "question": "Sisältyvätkö asiakasmaksujen kulut hintaan?",
+        "answer": "Asiakkaiden verkkomaksut käsitellään yhdistetyn Stripe-tilisi kautta. Shario ei peri transaktiopalkkiota. Stripen käsittelymaksut ovat Shario-tilauksestasi erillisiä ja riippuvat maastasi, maksutavasta ja Stripe-sopimuksestasi. Studiosi tilaus laskutetaan erikseen asiakkaidesi maksuista."
+      }
+    },
+    "definitions": {
+      "title": "Mitä pakettien ominaisuudet tarkoittavat",
+      "automations": {
+        "question": "Mikä lasketaan aktiiviseksi automaatioksi?",
+        "answer": "Aktiivinen automaatio on oma sääntö, joka on otettu käyttöön: esimerkiksi studion saapumisohjeiden ajastaminen päivä sen jälkeen, kun asiakas on rekisteröitynyt. Raja laskee käytössä olevat säännöt, ei tallennettuja luonnoksia tai sitä, kuinka usein sääntö suoritetaan. Starter ei sisällä omia sääntöjä; Professional sallii 3. Space Plus käyttää samaa tapahtumapohjaista editoria ja sallii yli 3 aktiivista sääntöä, ja siihen sisältyy 5 000 laskettavaa sähköpostia kuukaudessa. Jokainen sääntö lasketaan automaatiorajaan ja sen laskettavat sähköpostit sähköpostikiintiöön. Tavalliset järjestelmäsähköpostit ovat erillisiä."
+      },
+      "studioAi": {
+        "question": "Mitä Shario AI -työkaluja saan?",
+        "answer": "Professional tarjoaa 2 000 tekoälykrediittiä kuukaudessa ja sisältää studioavustajan, päivittäiset katsaukset ja tietokeskuksen. Space Plus tarjoaa 10 000 krediittiä ja lisää Business Advisorin, asiakkaiden concierge-palvelun ja tekoälyn raporttinäkemykset. Työkalut riippuvat studiosi asetuksista ja tiimin käyttöoikeuksista; tuetut toiminnot vaativat vahvistuksen."
+      },
+      "aiCredits": {
+        "question": "Vastaako yksi tekoälykrediitti yhtä kysymystä?",
+        "answer": "Tekoälykrediitit mittaavat käsiteltyä ja tuotettua tekstiä, eivät kiinteää kysymysmäärää. Esimerkiksi lyhyt toiminto, joka käyttää 750 tokenia (tekstin osaa), kuluttaa 1 krediitin; 2 500 tokenin toiminto riittävällä budjetilla kuluttaa 3. Yksi kysymys voi sisältää useita toimintoja, ja tietohaut tai asiakirjojen indeksointi voivat lisätä käyttöä. Nämä ovat esimerkkejä, eivät taattuja kustannuksia kysymystä kohden. Krediitit jaetaan joka kuukausi käytössä olevien työkalujen kesken. Pyyntö tarvitsee riittävästi jäljellä olevia krediittejä; automaattisia ylitysmaksuja ei ole."
+      },
+      "emails": {
+        "question": "Mitä tapahtuu, kun sähköpostikiintiö loppuu?",
+        "answer": "Kuukausikiintiö kattaa laskettavat automaatiosähköpostit. Kun se on käytetty, kyseinen automaatiosähköposti ohitetaan; sitä ei siirretä automaattisesti seuraavalle kuukaudelle. Tärkeät tilisähköpostit ja tuetut sisäänrakennetut toimintaviestit eivät kuulu tähän kiintiöön. Oman automaation merkitseminen transaktionaaliseksi ei vapauta sitä. Tarkista työtilan käyttö ja vaihda pakettia tai ota yhteyttä, jos tarvitset enemmän kapasiteettia."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Haluatko vaihtaa maksutapaa?",
+    "explanation": "Maksamaton varauksesi saattaa yhä pitää paikkasi. Jos haluat maksaa krediiteillä kortin sijaan tai aloittaa alusta, peruuta varaus ensin. Painike peruuttaa kaikki tämän maksun maksamattomat varaukset.",
+    "action": "Peruuta maksamattomat varaukset",
+    "busy": "Tarkistetaan maksua ja peruutetaan varausta…",
+    "cancelled": "Tämän maksun maksamattomat varaukset on peruutettu. Palaa ostoskoriin tai valitse aika uudelleen ja valitse sitten studiokrediitit. Saatavuus ja hinta tarkistetaan uudelleen.",
+    "paid": "Maksu on jo suoritettu. Varaustasi ei peruutettu. Tarkista sen tila.",
+    "pending": "Maksua vahvistetaan vielä. Mitään ei ole peruutettu. Tarkista maksun tila ennen kuin teet uuden varauksen samalle ajalle.",
+    "unsupported": "Tätä maksua ei voi peruuttaa täällä. Avaa varauksesi tai ota yhteyttä studioon.",
+    "missing": "Tilausta ei löytynyt. Avaa varauksesi tai ota yhteyttä studioon.",
+    "error": "Peruutusta ei voitu vahvistaa. Yritä uudelleen. Ota yhteyttä studioon, jos ongelma jatkuu.",
+    "status": "Tarkista maksun tila",
+    "bookAgain": "Valitse aika uudelleen"
   }
 }

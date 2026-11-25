@@ -1,4 +1,7 @@
 const ROUTE_TITLE_KEYS = [
+  ["/app/settings/profile", "routeTitles.account"],
+  ["/app/settings/preferences", "routeTitles.preferences"],
+  ["/app/settings/communications", "routeTitles.communicationSettings"],
   ["/app/settings/migration", "routeTitles.migration"],
   ["/app/settings/general", "routeTitles.generalSettings"],
   ["/app/settings/modules", "routeTitles.settings"],

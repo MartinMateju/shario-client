@@ -42,6 +42,15 @@ const initialDraft = merge(baseEditor.draft, {
     helpText: { en: "Need help?", cs: "Potřebujete pomoc?" },
     backgroundImageUrl: "/images/workspace/brush-rake.webp",
   },
+  customerPortal: {
+    pageImages: {
+      courses: "/images/DSC09001.webp",
+      memberships: "/images/OLD03142.webp",
+      vouchers: "/images/OLD02753.webp",
+      knowledge: "/images/DSC09328.webp",
+      bookings: "/images/OLD03050.webp",
+    },
+  },
   pages: {
     book: {
       title: { en: "Book the studio", cs: "Rezervujte studio" },
@@ -101,6 +110,7 @@ const initialDraft = merge(baseEditor.draft, {
   },
 });
 
+let configReads;
 let draft;
 let published;
 let draftRevision;
@@ -110,6 +120,7 @@ let publicTenantSlug;
 let portalLocation;
 
 const reset = () => {
+  configReads = 0;
   draft = clone(initialDraft);
   published = clone(initialDraft);
   draftRevision = 8;
@@ -196,6 +207,7 @@ const editorResponse = ({ preview = false } = {}) => ({
 });
 
 const stateResponse = () => ({
+  configReads,
   draft: clone(draft),
   published: clone(published),
   editor: editor(),
@@ -300,6 +312,7 @@ const server = createServer(async (request, response) => {
   }
 
   if (method === "GET" && pathname === publicConfigPath) {
+    configReads += 1;
     if (publicContractMode === "malformed") {
       response.writeHead(200, {
         ...corsHeaders(request),

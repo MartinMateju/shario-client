@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import { StrictMode } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
@@ -12,6 +13,9 @@ const mocks = vi.hoisted(() => ({
   refresh: vi.fn(),
   refreshUnwrap: vi.fn(),
   refreshReset: vi.fn(),
+  exchangeHandoff: vi.fn(),
+  exchangeHandoffUnwrap: vi.fn(),
+  exchangeHandoffReset: vi.fn(),
   logout: vi.fn(),
   logoutUnwrap: vi.fn(),
 }));
@@ -42,6 +46,7 @@ vi.mock("@/i18n/navigation", () => ({
 
 vi.mock("@/lib/features/auth/authApiSlice", () => ({
   useCustomerRefreshMutation: () => [mocks.refresh],
+  useExchangeCustomerSessionHandoffMutation: () => [mocks.exchangeHandoff],
   useSendCustomerLogoutMutation: () => [mocks.logout],
 }));
 
@@ -81,14 +86,20 @@ const customerSession = {
   workspaceAccess: null,
 };
 
-const renderCallback = () => {
+const renderCallback = ({ strict = false } = {}) => {
   const store = configureStore({
     reducer: { auth: authReducer },
   });
 
   render(
     <Provider store={store}>
-      <CustomerSocialAuthComplete />
+      {strict ? (
+        <StrictMode>
+          <CustomerSocialAuthComplete />
+        </StrictMode>
+      ) : (
+        <CustomerSocialAuthComplete />
+      )}
     </Provider>,
   );
 
@@ -108,6 +119,10 @@ describe("customer social authentication callback", () => {
     mocks.refresh.mockReset();
     mocks.refreshUnwrap.mockReset();
     mocks.refreshReset.mockReset();
+    mocks.exchangeHandoff.mockReset();
+    mocks.exchangeHandoffUnwrap.mockReset();
+    mocks.exchangeHandoffReset.mockReset();
+    window.history.replaceState(null, "", "/");
     mocks.logout.mockReset();
     mocks.logoutUnwrap.mockReset();
     mocks.refresh.mockReturnValue({
@@ -115,6 +130,10 @@ describe("customer social authentication callback", () => {
       reset: mocks.refreshReset,
     });
     mocks.logout.mockReturnValue({ unwrap: mocks.logoutUnwrap });
+    mocks.exchangeHandoff.mockReturnValue({
+      unwrap: mocks.exchangeHandoffUnwrap,
+      reset: mocks.exchangeHandoffReset,
+    });
     mocks.logoutUnwrap.mockResolvedValue({});
   });
 
@@ -127,6 +146,87 @@ describe("customer social authentication callback", () => {
     expect(screen.getByText("accessDenied")).toBeInTheDocument();
     expect(mocks.refresh).not.toHaveBeenCalled();
     expect(mocks.replace).not.toHaveBeenCalled();
+  });
+
+  it("removes a custom-domain OAuth handoff before exchanging it and restores the safe booking intent", async () => {
+    mocks.search = "next=%2Fcourses%2Fwheel%23dates";
+    window.history.replaceState(
+      null,
+      "",
+      "/en/login/complete?next=%2Fcourses%2Fwheel%23dates#sessionHandoff=v1.sealed-handoff",
+    );
+    mocks.exchangeHandoff.mockImplementation((handoff) => {
+      expect(window.location.hash).toBe("");
+      expect(handoff).toBe("v1.sealed-handoff");
+      return {
+        unwrap: mocks.exchangeHandoffUnwrap,
+        reset: mocks.exchangeHandoffReset,
+      };
+    });
+    mocks.exchangeHandoffUnwrap.mockResolvedValue(customerSession);
+
+    const store = renderCallback();
+
+    await waitFor(() =>
+      expect(mocks.replace).toHaveBeenCalledWith("/courses/wheel#dates", {
+        locale: "en",
+      }),
+    );
+    expect(mocks.exchangeHandoff).toHaveBeenCalledOnce();
+    expect(mocks.refresh).not.toHaveBeenCalled();
+    expect(mocks.exchangeHandoffReset).toHaveBeenCalledOnce();
+    expect(store.getState().auth.token).toBe(customerSession.accessToken);
+    expect(window.localStorage.length).toBe(0);
+    expect(window.sessionStorage.length).toBe(0);
+  });
+
+  it("removes malformed handoffs without falling back to an unrelated existing session", async () => {
+    window.history.replaceState(
+      null,
+      "",
+      "/en/login/complete#sessionHandoff=invalid",
+    );
+    renderCallback();
+    await waitFor(() =>
+      expect(screen.getByText("sessionError")).toBeInTheDocument(),
+    );
+    expect(window.location.hash).toBe("");
+    expect(mocks.refresh).not.toHaveBeenCalled();
+    expect(mocks.exchangeHandoff).not.toHaveBeenCalled();
+    expect(mocks.replace).not.toHaveBeenCalled();
+  });
+
+  it("rejects a handoff response belonging to another studio", async () => {
+    window.history.replaceState(
+      null,
+      "",
+      "/en/login/complete#sessionHandoff=v1.sealed-handoff",
+    );
+    mocks.exchangeHandoffUnwrap.mockResolvedValue({
+      ...customerSession,
+      tenant: { id: "tenant-2", slug: "other-studio" },
+    });
+    const store = renderCallback();
+    await waitFor(() => expect(mocks.logout).toHaveBeenCalledOnce());
+    expect(store.getState().auth.token).toBeNull();
+    expect(mocks.exchangeHandoffReset).toHaveBeenCalledOnce();
+    expect(mocks.replace).not.toHaveBeenCalled();
+  });
+
+  it("redeems the handoff once and completes even when effects re-subscribe", async () => {
+    window.history.replaceState(
+      null,
+      "",
+      "/en/login/complete#sessionHandoff=v1.sealed-handoff",
+    );
+    mocks.exchangeHandoffUnwrap.mockResolvedValue(customerSession);
+    renderCallback({ strict: true });
+    await waitFor(() =>
+      expect(mocks.replace).toHaveBeenCalledWith("/portal", { locale: "en" }),
+    );
+    expect(mocks.exchangeHandoff).toHaveBeenCalledOnce();
+    expect(mocks.exchangeHandoffReset).toHaveBeenCalledOnce();
+    expect(mocks.refresh).not.toHaveBeenCalled();
   });
 
   it("accepts a signed customer audience even for underlying owner credentials and restores the exact safe intent", async () => {

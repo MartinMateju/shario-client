@@ -1,6 +1,13 @@
 "use client";
 
 import { useLegacyCopy } from "@/i18n/useLegacyCopy";
+import {
+  selectCurrentCatalog,
+  usePublicCatalogSnapshot,
+} from "@/components/public-tenant/PublicQueryHydration";
+import CatalogRefreshNotice from "@/components/public-tenant/CatalogRefreshNotice";
+import { PUBLIC_COURSE_FRESHNESS_SECONDS } from "@/lib/publicTenant/courseHydration";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowPathIcon,
@@ -40,6 +47,8 @@ import {
   getPublicTenantTheme,
 } from "@/components/public-tenant/publicTenant.config";
 import { getPublicWebsitePageCustomizationDefaults } from "@/components/customer-shell/customerFacingCustomizationDefaults";
+import CustomerPortalHero from "@/components/customer-shell/CustomerPortalHero";
+import { CustomerPortalPage } from "@/components/customer-shell/CustomerPortalPrimitives";
 import { getSafeCheckoutUrl } from "@/utils/checkoutUrl";
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
 import { retainCustomerPortalLocation } from "@/utils/customerPortalLocation";
@@ -48,6 +57,8 @@ import {
   MembershipPlanChangeDialog,
   ScheduledMembershipPlanChange,
 } from "./MembershipPlanChange";
+
+import design from "@/components/public-tenant/portalCatalog.module.css";
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
@@ -102,9 +113,19 @@ export default function PublicMembershipCatalog({
     changeIntent?.membershipIdentity === membershipIdentity && canChangePlan
       ? changeIntent
       : null;
+  const initial = usePublicCatalogSnapshot(tenantSlug, "memberships");
   const fetchedQuery = useGetPublicMembershipCatalogQuery(
     { tenantSlug },
-    { skip: previewMode || Boolean(customerContext) || !tenantSlug },
+    {
+      skip:
+        Boolean(initial) ||
+        previewMode ||
+        Boolean(customerContext) ||
+        !tenantSlug,
+      refetchOnMountOrArgChange: PUBLIC_COURSE_FRESHNESS_SECONDS,
+      refetchOnFocus: true,
+      selectFromResult: selectCurrentCatalog,
+    },
   );
   const query = previewMode
     ? {
@@ -114,7 +135,8 @@ export default function PublicMembershipCatalog({
         isError: false,
         refetch: () => undefined,
       }
-    : customerContext?.query || fetchedQuery;
+    : customerContext?.query ||
+      (initial ? { data: initial.data } : fetchedQuery);
   const [createCheckout, checkoutState] = useCreateMembershipCheckoutMutation();
   const plans = normalizePlans(query.data);
   const tenant = query.data?.tenant || {};
@@ -371,18 +393,18 @@ export default function PublicMembershipCatalog({
   };
 
   return (
-    <main
-      className="min-h-dvh px-4 pb-20 pt-12 sm:px-6 lg:px-8"
-      data-tenant-layout="section"
+    <CustomerPortalPage
       style={{
         backgroundColor: theme.backgroundColor,
         color: theme.textForeground,
       }}
     >
-      <section className="mx-auto max-w-6xl">
-        <header className="max-w-3xl">
+        <CustomerPortalHero
+          pageKey="memberships"
+          className={design.catalogHeader}
+        >
           <p
-            className="text-[10px] font-semibold uppercase tracking-[0.17em] text-[var(--tenant-label-color)]"
+            className="text-sm font-semibold uppercase tracking-[0.17em] text-[var(--tenant-label-color)]"
             data-tenant-type="eyebrow"
           >
             {t("eyebrow")}
@@ -400,7 +422,7 @@ export default function PublicMembershipCatalog({
           >
             {pageDescription}
           </p>
-        </header>
+        </CustomerPortalHero>
 
         {hasOpenMembership ? (
           <div className="mt-6 text-sm text-[var(--tenant-muted-text)]">
@@ -445,28 +467,31 @@ export default function PublicMembershipCatalog({
           </div>
         ) : null}
 
+        {query.isRefreshError ? (
+          <CatalogRefreshNotice onRetry={query.refetch} />
+        ) : null}
         {query.isLoading ? (
           <div
-            className="mt-8 flex min-h-80 items-center justify-center rounded-[25px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] text-[11px] text-[var(--tenant-muted-on-surface)]"
+            className="mt-8 flex min-h-80 items-center justify-center rounded-[25px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] text-sm text-[var(--tenant-muted-on-surface)]"
             data-tenant-surface="card"
             role="status"
           >
             <ArrowPathIcon className="mr-2 h-4 w-4 animate-spin" />{" "}
             {t("loading")}
           </div>
-        ) : query.isError ? (
+        ) : query.isError && !query.isRefreshError ? (
           <div
             className="mt-8 flex min-h-72 flex-col items-center justify-center rounded-[25px] border border-danger/20 bg-danger-soft px-6 text-center"
             data-tenant-surface="card"
           >
-            <p className="text-[11px] font-semibold text-danger">
+            <p className="text-sm font-semibold text-danger">
               {t("loadError")}
             </p>
             <button
               type="button"
               onClick={query.refetch}
               data-tenant-button="primary"
-              className="mt-4 rounded-full bg-[var(--tenant-accent)] px-5 py-2.5 text-[10px] font-semibold text-[var(--tenant-accent-foreground)]"
+              className="mt-4 rounded-full bg-[var(--tenant-accent)] px-5 py-2.5 text-sm font-semibold text-[var(--tenant-accent-foreground)]"
             >
               {commonT("retry")}
             </button>
@@ -478,13 +503,13 @@ export default function PublicMembershipCatalog({
                 className="mt-8 flex flex-col gap-3 rounded-[19px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] p-3 text-[var(--tenant-text-on-surface)] sm:flex-row sm:items-center"
                 data-tenant-surface="panel"
               >
-                <label className="flex-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-[var(--tenant-accent-on-surface)]">
+                <label className="flex-1 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--tenant-accent-on-surface)]">
                   {t("location")}
                   <select
                     value={locationId}
                     onChange={(event) => setLocationId(event.target.value)}
                     data-tenant-surface="field"
-                    className="mt-1.5 min-h-11 w-full rounded-[13px] border border-[var(--tenant-border)] bg-[var(--tenant-background)] px-3.5 text-[11px] normal-case tracking-normal text-[var(--tenant-text)] outline-none focus:border-[var(--tenant-accent-link)] focus:ring-2 focus:ring-[var(--tenant-accent-link)]/20"
+                    className="mt-1.5 min-h-11 w-full rounded-[13px] border border-[var(--tenant-border)] bg-[var(--tenant-background)] px-3.5 text-sm normal-case tracking-normal text-[var(--tenant-text)] outline-none focus:border-[var(--tenant-accent-link)] focus:ring-2 focus:ring-[var(--tenant-accent-link)]/20"
                   >
                     <option value="">{t("allLocations")}</option>
                     {locationOptions.map((location) => (
@@ -498,7 +523,7 @@ export default function PublicMembershipCatalog({
             ) : null}
             {checkoutError ? (
               <p
-                className="mt-4 rounded-[14px] border border-danger/20 bg-danger-soft px-4 py-3 text-[10px] text-danger"
+                className="mt-4 rounded-[14px] border border-danger/20 bg-danger-soft px-4 py-3 text-sm text-danger"
                 role="alert"
               >
                 {checkoutError}
@@ -556,7 +581,7 @@ export default function PublicMembershipCatalog({
               </div>
             ) : (
               <div
-                className="mt-5 flex min-h-64 items-center justify-center rounded-[22px] border border-dashed border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-6 text-center text-[11px] text-[var(--tenant-muted-on-surface)]"
+                className="mt-5 flex min-h-64 items-center justify-center rounded-[22px] border border-dashed border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-6 text-center text-sm text-[var(--tenant-muted-on-surface)]"
                 data-tenant-surface="card"
               >
                 {t("noMatch")}
@@ -575,12 +600,11 @@ export default function PublicMembershipCatalog({
             >
               {t("empty.title")}
             </h2>
-            <p className="mt-2 max-w-md text-[10px] leading-5 text-[var(--tenant-muted-on-surface)]">
+            <p className="mt-2 max-w-md text-sm leading-5 text-[var(--tenant-muted-on-surface)]">
               {t("empty.description")}
             </p>
           </div>
         )}
-      </section>
       {currentChangeIntent ? (
         <MembershipPlanChangeDialog
           intent={currentChangeIntent}
@@ -593,7 +617,7 @@ export default function PublicMembershipCatalog({
           }}
         />
       ) : null}
-    </main>
+    </CustomerPortalPage>
   );
 }
 
@@ -631,6 +655,7 @@ function CatalogCard({
     <article
       className={cx(
         "flex flex-col rounded-[24px] border bg-[var(--tenant-surface)] p-6 text-[var(--tenant-text-on-surface)] shadow-[0_14px_42px_rgba(17,17,15,0.04)]",
+        design.planCard,
         selected
           ? "border-[var(--tenant-accent-on-surface)] ring-2 ring-[var(--tenant-accent-on-surface)]/15"
           : "border-[var(--tenant-border)]",
@@ -644,12 +669,12 @@ function CatalogCard({
         </p>
       ) : null}
       {selected ? (
-        <p className="mb-3 rounded-full bg-[color-mix(in_srgb,var(--tenant-accent)_9%,transparent)] px-3 py-1.5 text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-[var(--tenant-accent-on-surface)]">
+        <p className="mb-3 rounded-full bg-[color-mix(in_srgb,var(--tenant-accent)_9%,transparent)] px-3 py-1.5 text-center text-xs font-semibold uppercase tracking-[0.12em] text-[var(--tenant-accent-on-surface)]">
           {t("selectionRestored")}
         </p>
       ) : null}
       <p
-        className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[var(--tenant-accent-on-surface)]"
+        className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--tenant-accent-on-surface)]"
         data-tenant-type="eyebrow"
       >
         {billing.type === "fixed"
@@ -663,11 +688,13 @@ function CatalogCard({
         {name}
       </h2>
       {description ? (
-        <p className="mt-3 text-[10px] leading-5 text-[var(--tenant-muted-on-surface)]">
+        <p className="mt-3 text-sm leading-5 text-[var(--tenant-muted-on-surface)]">
           {description}
         </p>
       ) : null}
-      <p className="mt-5 text-3xl font-semibold tracking-[-0.045em] text-[var(--tenant-text-on-surface)]">
+      <p
+        className={`${design.planPrice} font-semibold tracking-[-0.045em] text-[var(--tenant-text-on-surface)]`}
+      >
         {formatPlanPrice(price, locale)}
       </p>
       {billing.type === "recurring" && price ? (
@@ -684,7 +711,7 @@ function CatalogCard({
         </p>
       ) : null}
       {version?.locationScope?.type === "shared_selected" ? (
-        <p className="mt-3 text-[10px] leading-5 text-[var(--tenant-muted-on-surface)]">
+        <p className="mt-3 text-sm leading-5 text-[var(--tenant-muted-on-surface)]">
           {benefitT("sharedLocations", {
             locations: getPlanLocations(plan)
               .map(
@@ -696,11 +723,13 @@ function CatalogCard({
           })}
         </p>
       ) : null}
-      <div className="mt-5 flex-1 space-y-3 border-t border-[var(--tenant-border)] pt-5">
+      <div
+        className={`${design.planBenefits} mt-5 flex-1 space-y-3 border-t border-[var(--tenant-border)] pt-5`}
+      >
         {benefits.map((benefit) => (
           <div
             key={benefit.key}
-            className="flex items-start gap-2.5 text-[10px] leading-5 text-[var(--tenant-muted-on-surface)]"
+            className="flex items-start gap-2.5 text-sm leading-5 text-[var(--tenant-muted-on-surface)]"
           >
             <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--tenant-accent-on-surface)]" />
             <span>
@@ -718,7 +747,7 @@ function CatalogCard({
           </div>
         ))}
       </div>
-      <p className="mt-5 rounded-[14px] bg-[var(--tenant-background)] px-3.5 py-3 text-[9px] leading-4 text-[var(--tenant-muted-text)]">
+      <p className="mt-5 rounded-[14px] bg-[var(--tenant-background)] px-3.5 py-3 text-xs leading-4 text-[var(--tenant-muted-text)]">
         {benefits.some(
           (benefit) => benefit.unit === "minute" && benefit.memberOnly,
         )
@@ -727,14 +756,14 @@ function CatalogCard({
       </p>
       {terms ? (
         <>
-          <details className="mt-3 text-[9px] leading-4 text-[var(--tenant-muted-on-surface)]">
+          <details className="mt-3 text-xs leading-4 text-[var(--tenant-muted-on-surface)]">
             <summary className="cursor-pointer font-semibold text-[var(--tenant-text-on-surface)]">
               {t("terms")}
             </summary>
             <p className="mt-2 whitespace-pre-wrap">{terms}</p>
           </details>
           {!current && !scheduled && !actionDisabled ? (
-            <label className="mt-3 flex items-start gap-2.5 rounded-[13px] border border-[var(--tenant-border)] bg-[var(--tenant-background)] px-3 py-3 text-[9px] leading-4 text-[var(--tenant-text)]">
+            <label className="mt-3 flex items-start gap-2.5 rounded-[13px] border border-[var(--tenant-border)] bg-[var(--tenant-background)] px-3 py-3 text-xs leading-4 text-[var(--tenant-text)]">
               <input
                 type="checkbox"
                 className="mt-0.5"
@@ -759,7 +788,7 @@ function CatalogCard({
         }
         data-tenant-button="primary"
         className={cx(
-          "mt-5 min-h-12 rounded-full bg-[var(--tenant-accent)] px-5 text-[11px] font-semibold text-[var(--tenant-accent-foreground)] transition hover:brightness-[0.97] disabled:opacity-50",
+          "mt-5 min-h-12 rounded-full bg-[var(--tenant-accent)] px-5 text-sm font-semibold text-[var(--tenant-accent-foreground)] transition hover:brightness-[0.97] disabled:opacity-50",
         )}
       >
         {current

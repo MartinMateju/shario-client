@@ -6,7 +6,6 @@ import {
   ChevronDownIcon,
   ExclamationTriangleIcon,
   MagnifyingGlassIcon,
-  SparklesIcon,
 } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 
@@ -79,6 +78,7 @@ export default function KnowledgeBrowser({
     return (
       <CustomerPortalPage>
         <CustomerPortalPageHeader
+          pageKey="knowledge"
           eyebrow={eyebrow || t("eyebrow")}
           title={title || t("customerTitle")}
           description={description || t("customerDescription")}
@@ -204,37 +204,20 @@ export default function KnowledgeBrowser({
     );
   }
 
-  return (
-    <section className={embedded ? "px-4 py-7 sm:px-6 lg:px-10" : ""}>
-      <div className="mx-auto w-full max-w-[1480px]">
-        {!embedded ? (
-          <div
-            className="relative overflow-hidden rounded-[28px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-5 py-7 text-[var(--tenant-text-on-surface)] shadow-card sm:px-8 sm:py-9"
-            data-tenant-layout="panel"
-            data-tenant-surface="card"
-          >
-            <div className="pointer-events-none absolute -right-20 -top-28 h-72 w-72 rounded-full bg-[var(--tenant-accent)] opacity-[0.08]" />
-            <div className="relative">
-              <div
-                className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--tenant-accent-on-surface)]"
-                data-tenant-type="eyebrow"
-              >
-                <SparklesIcon className="h-4 w-4" />
-                {eyebrow || t("eyebrow")}
-              </div>
-              <h1
-                className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-[var(--tenant-text-on-surface)] sm:text-4xl"
-                data-tenant-type="display"
-              >
-                {title || t("customerTitle")}
-              </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--tenant-muted-on-surface)]">
-                {description || t("customerDescription")}
-              </p>
-            </div>
-          </div>
-        ) : null}
+  const Container = embedded ? "section" : CustomerPortalPage;
 
+  return (
+    <Container className={embedded ? "px-4 py-7 sm:px-6 lg:px-10" : ""}>
+      {!embedded ? (
+        <CustomerPortalPageHeader
+          pageKey="knowledge"
+          eyebrow={eyebrow || t("eyebrow")}
+          title={title || t("customerTitle")}
+          description={description || t("customerDescription")}
+        />
+      ) : null}
+
+      <div className="mx-auto w-full max-w-[1480px]">
         <div
           data-tenant-surface="panel"
           className={
@@ -347,6 +330,6 @@ export default function KnowledgeBrowser({
         open={Boolean(selected)}
         onClose={() => setSelectedResource(null)}
       />
-    </section>
+    </Container>
   );
 }

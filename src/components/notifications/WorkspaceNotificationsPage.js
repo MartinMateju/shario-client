@@ -183,7 +183,7 @@ export default function WorkspaceNotificationsPage() {
 
           <div className="flex flex-wrap items-center gap-2">
             <Link
-              href="/app/preferences"
+              href="/app/settings/preferences#notification-preferences"
               className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-[10px] font-semibold text-ink transition hover:border-cobalt-200 hover:text-cobalt-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/35"
             >
               <Cog6ToothIcon className="h-4 w-4" aria-hidden="true" />

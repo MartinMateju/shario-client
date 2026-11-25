@@ -1,4 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
+import { clearUnavailableCatalog } from "@/lib/publicTenant/catalogRefresh";
 import { collectPaginatedQuery } from "../api/paginatedQuery";
 
 const MEMBERSHIPS_URL = "/memberships";
@@ -237,6 +238,7 @@ export const membershipsApiSlice = apiSlice.injectEndpoints({
     }),
 
     getPublicMembershipCatalog: builder.query({
+      onQueryStarted: clearUnavailableCatalog,
       async queryFn({ tenantSlug }, { signal }) {
         const safeSlug = encodeURIComponent(String(tenantSlug || "").trim());
         return publicJsonRequest({

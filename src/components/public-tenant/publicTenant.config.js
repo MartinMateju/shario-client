@@ -1,7 +1,19 @@
+import {
+  normalizePublicSiteCustomLinks,
+  normalizePublicSiteHeaderLinks,
+  resolvePublicSiteHeaderLinks,
+} from "./publicTenantCustomLinks";
 import { formatTenantNameFromSlug } from "@/utils/tenantBrandUtils";
+import { normalizeTenantPublicOrigin } from "@/utils/tenantPublicOrigin";
 import { SKAB_BRAND_COLORS } from "@/config/brandPalette";
 import { normalizeCustomerPortalVisibility } from "@/components/customer-shell/customerPortalVisibility";
 import { normalizePortalAppearance } from "./publicTenantPortalAppearance";
+import { normalizeCustomerPortalPageImages } from "./publicTenantPageImages";
+import {
+  isSafeRelativePublicUrl,
+  normalizePublicTenantUrl,
+} from "./publicTenantUrl";
+export { normalizePublicTenantUrl } from "./publicTenantUrl";
 import {
   DEFAULT_LOCALE,
   ROLLOUT_ELIGIBLE_LOCALE_CODES,
@@ -235,12 +247,6 @@ const inferBoolean = (...values) => {
   return explicit;
 };
 
-const isSafeRelativePublicUrl = (value) =>
-  value.startsWith("/") &&
-  !value.startsWith("//") &&
-  !value.includes("\\") &&
-  !/[\u0000-\u001f\u007f]/.test(value);
-
 /**
  * Replaces only the public locale segment while preserving the requested
  * tenant page. The input comes from a proxy-owned request header; defensive
@@ -312,30 +318,6 @@ export const getLocalizedPublicTenantText = (
   }
 
   return fallback;
-};
-
-export const normalizePublicTenantUrl = (
-  value,
-  { allowRelative = true } = {},
-) => {
-  const raw = asString(value);
-  if (!raw) return "";
-
-  if (allowRelative && isSafeRelativePublicUrl(raw)) {
-    return raw;
-  }
-
-  try {
-    const url = new URL(raw);
-
-    if (url.protocol !== "https:" || url.username || url.password || url.port) {
-      return "";
-    }
-
-    return url.href;
-  } catch {
-    return "";
-  }
 };
 
 export const getPublicTenantLogoHref = (branding) =>
@@ -550,6 +532,7 @@ export const normalizePublicTenant = (value, tenantSlug = "") => {
     id: asString(rawTenant.id ?? rawTenant._id),
     name,
     slug,
+    publicOrigin: normalizeTenantPublicOrigin(rawTenant.publicOrigin),
     settings: {
       ...localeSettings,
       currency: asString(settings.currency).toUpperCase(),
@@ -612,6 +595,9 @@ export const normalizePublicTenant = (value, tenantSlug = "") => {
       },
       customerPortal: {
         ...normalizeCustomerPortalVisibility(customerPortal),
+        pageImages: normalizeCustomerPortalPageImages(
+          customerPortal.pageImages,
+        ),
         courses: {
           guestCheckoutEnabled:
             customerPortal.courses?.guestCheckoutEnabled === true,
@@ -638,6 +624,13 @@ export const normalizePublicTenant = (value, tenantSlug = "") => {
         appearance: normalizePortalAppearance(customerPortalAppearance),
       },
       header: {
+        layout: header.layout === "website" ? "website" : "default",
+        backgroundColor: normalizeOptionalPublicTenantColor(
+          header.backgroundColor,
+        ),
+        linkColor: normalizeOptionalPublicTenantColor(header.linkColor),
+        buttonColor: normalizeOptionalPublicTenantColor(header.buttonColor),
+        customLinks: normalizePublicSiteHeaderLinks(header.customLinks),
         navOrder: completePublicNavigation(navOrder),
         hiddenItems,
         primaryCta: CTA_KEYS.has(configuredPrimaryCta)
@@ -649,6 +642,7 @@ export const normalizePublicTenant = (value, tenantSlug = "") => {
         },
       },
       footer: {
+        customLinks: normalizePublicSiteCustomLinks(footer.customLinks, 12),
         description: normalizeLocalizedText(footer.description),
         openingHours: normalizeLocalizedText(footer.openingHours),
         copyright: normalizeLocalizedText(footer.copyright),
@@ -680,7 +674,7 @@ export const isPublicTenantPageVisible = (tenant, pageKey) =>
   (pageKey !== "courses" ||
     tenant?.publicSite?.customerPortal?.pages?.courses?.enabled !== false);
 
-export const getPublicTenantNavigation = (tenant) => {
+export const getPublicTenantNavigation = (tenant, locale = "cs") => {
   const normalized = normalizePublicTenant(tenant, tenant?.slug);
   const capabilities = normalized.publicCapabilities;
   const hidden = new Set(normalized.publicSite.header.hiddenItems);
@@ -694,7 +688,14 @@ export const getPublicTenantNavigation = (tenant) => {
     .map((key) => ({
       key,
       href: PUBLIC_TENANT_NAV_DEFINITIONS[key].href,
-    }));
+    }))
+    .concat(
+      resolvePublicSiteHeaderLinks(
+        normalized.publicSite.header.customLinks,
+        locale,
+        8,
+      ),
+    );
 };
 
 export const getPublicTenantPrimaryAction = (tenant) => {
@@ -886,6 +887,16 @@ export const getPublicTenantTheme = (tenant, { surface = "public" } = {}) => {
   const accentForeground = resolvePublicTenantActionForeground(
     accentColor,
     buttonTextColor,
+  );
+  const featureBackground = accentColor;
+  const featureForeground =
+    portalSurface && portalAppearance.headingColor
+      ? ensureReadableColor(preferredHeadingColor, featureBackground, 4.8)
+      : accentForeground;
+  const featureMuted = ensureReadableColor(
+    mixPublicTenantColors(featureForeground, featureBackground, 0.12),
+    featureBackground,
+    4.8,
   );
   const accentLinkColor = ensureReadableColor(accentColor, backgroundColor);
   const inheritedSurfaceColor = mixPublicTenantColors(
@@ -1318,6 +1329,10 @@ export const getPublicTenantTheme = (tenant, { surface = "public" } = {}) => {
       ...resolvedFontPreset.cssVariables,
       "--tenant-accent": accentColor,
       "--tenant-accent-foreground": accentForeground,
+      "--tenant-feature-background": featureBackground,
+      "--tenant-feature-foreground": featureForeground,
+      "--tenant-feature-muted": featureMuted,
+      "--tenant-feature-decoration": secondaryColor,
       "--tenant-accent-link": accentLinkColor,
       "--tenant-heading-color": portalSurface ? headingColor : accentLinkColor,
       "--tenant-page-heading-color": portalSurface
@@ -1400,6 +1415,8 @@ export const getPublicTenantTheme = (tenant, { surface = "public" } = {}) => {
       "--tenant-portal-calendar-heading-on-surface":
         portalCalendarHeadingOnSurfaceColor,
       "--tenant-portal-calendar-secondary": portalCalendarSecondaryColor,
+      "--tenant-portal-calendar-secondary-foreground":
+        resolvePublicTenantActionForeground(portalCalendarSecondaryColor),
       "--tenant-portal-calendar-secondary-on-surface":
         portalCalendarSecondaryOnSurfaceColor,
       "--tenant-portal-profile-background": portalProfileBackgroundColor,

@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Confirmată",
-      "pending": "În așteptare",
+      "pending": "În așteptarea confirmării",
       "awaitingPayment": "În așteptarea plății",
-      "processed": "În așteptarea livrării",
-      "delivered": "Livrată",
+      "processed": "Confirmată",
+      "delivered": "Începută",
       "completed": "Finalizată",
       "cancelled": "Anulată"
     },
     "payment": {
       "paid": "Plătită",
-      "pending": "În așteptare",
+      "pending": "În așteptarea plății",
       "failed": "Eșuată",
       "expired": "Expirată",
       "refunded": "Rambursată",
       "credits": "Credite"
+    },
+    "refreshing": "Se actualizează rezervările…",
+    "retry": "Încearcă din nou",
+    "errors": {
+      "load": "Rezervările nu au putut fi încărcate. Încearcă din nou.",
+      "filters": "Unele opțiuni de filtrare nu au putut fi încărcate."
     },
     "edit": {
       "details": "Detaliile rezervării",
@@ -121,7 +127,9 @@
       "deletedTitle": "Rezervare ștearsă",
       "deletedText": "Rezervarea a fost ștearsă cu succes.",
       "errorTitle": "Rezervarea nu a putut fi creată",
-      "errorText": "Verifică informațiile rezervării și încearcă din nou."
+      "errorText": "Verifică informațiile rezervării și încearcă din nou.",
+      "cancelError": "Rezervarea nu a putut fi anulată. Încercați din nou.",
+      "extensionRefund": "Suma suplimentară de {amount} pentru timpul de rezervare adăugat a fost returnată în creditele de studio ale clientului."
     },
     "exportColumns": {
       "customer": "Client",
@@ -193,6 +201,7 @@
       "spotsAvailable": "{remaining} din {capacity} locuri disponibile"
     },
     "week": {
+      "schedule": "Program săptămânal",
       "privacyNote": "Movul indică rezervările private, iar turcoazul pe cele publice. Rezervările tale au o etichetă albastră."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Rezervări, abonamente și un site frumos, creat pe gustul tău. Tot ce îți trebuie ca să îți deschizi spațiul către oameni și să îți crești comunitatea, împreună în Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Preferința pentru banner nu a putut fi salvată. Încercați din nou.",
     "skipToContent": "Sari la conținut",
     "learnMore": "Află mai multe",
     "viewAll": "Vezi tot",
@@ -434,7 +444,8 @@
       "notifications": "Notificări",
       "events": "Evenimente",
       "lostFound": "Obiecte pierdute și găsite",
-      "customOrders": "Comenzi personalizate"
+      "customOrders": "Comenzi personalizate",
+      "communicationSettings": "Setări mesaje"
     },
     "stats": {
       "bookings": "Rezervări astăzi",
@@ -1439,7 +1450,8 @@
     },
     "product": {
       "metaTitle": "Totul pentru spațiul tău. Totul conectat.",
-      "metaDescription": "Conectează rezervările, membrii, plățile, echipa și site-ul public. Concentrează-te pe oameni, iar Shario te ajută să îți organizezi ziua."
+      "metaDescription": "Conectează rezervările, membrii, plățile, echipa și site-ul public. Concentrează-te pe oameni, iar Shario te ajută să îți organizezi ziua.",
+      "viewScreenshot": "Vezi captura de ecran completă"
     },
     "studioAi": {
       "metaTitle": "O mână de ajutor în munca de zi cu zi.",
@@ -1481,13 +1493,14 @@
       "from": "de la",
       "customAnnual": "Plan anual personalizat",
       "mostPopular": "Cel mai popular",
+      "includesPrevious": "Tot ce include {plan}, plus:",
       "starter": {
         "name": "Starter",
         "description": "Începe cu rezervări, plăți, cursuri și evenimente pentru spațiul tău.",
         "feature1": "1 locație de studio · 1 cont de echipă",
         "feature2": "Cursuri, evenimente private și vouchere",
         "feature3": "500 de e-mailuri incluse pe lună",
-        "feature4": "Shario AI limitat · 200 de credite pe lună",
+        "feature4": "Site-ul studioului și portal pentru clienți",
         "cta": "Începe perioada de probă gratuită"
       },
       "professional": {
@@ -1495,8 +1508,9 @@
         "description": "Conectează abonamentele, spațiile comune și activitățile de zi cu zi.",
         "feature1": "1 locație de studio · 3 conturi de echipă",
         "feature2": "Abonamente, rezervări și resurse comune",
-        "feature3": "3 automatizări active · 2.500 de e-mailuri pe lună",
-        "feature4": "Shario AI complet · 2.000 de credite pe lună",
+        "feature3": "Stocuri și sarcinile echipei",
+        "feature4": "3 automatizări active · 2.500 de e-mailuri pe lună",
+        "feature5": "Shario AI · 2.000 de credite pe lună",
         "cta": "Începe perioada de probă gratuită"
       },
       "studioPlus": {
@@ -1505,16 +1519,16 @@
         "feature1": "Până la 2 locații de studio · 6 conturi de echipă",
         "feature2": "Coduri de acces și domeniu personalizat",
         "feature3": "Automatizări avansate · 5.000 de e-mailuri pe lună",
-        "feature4": "Suită AI completă · 10.000 de credite pe lună",
+        "feature4": "Shario AI avansat · 10.000 de credite pe lună",
         "cta": "Începe perioada de probă gratuită"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Gestionați organizația cu capacitate, guvernanță și asistență personalizate.",
-        "feature1": "Locații și conturi de echipă nelimitate",
+        "feature1": "Capacitate pentru locații și echipă stabilită prin acord",
         "feature2": "Limite personalizate pentru automatizări, e-mail și AI",
-        "feature3": "SSO/SCIM, API, webhookuri și jurnale de audit",
-        "feature4": "Onboarding, migrare și SLA dedicate",
+        "feature3": "Discută cerințele de integrare și administrare",
+        "feature4": "Configurare, migrare și asistență stabilite prin acord",
         "cta": "Începe perioada de probă gratuită"
       },
       "note": "Prețurile nu includ taxele aplicabile. Planurile anuale self-service includ două luni gratuite. E-mailurile esențiale de sistem nu sunt incluse în limită, iar utilizarea AI se oprește la alocarea inclusă, fără taxe suplimentare automate.",
@@ -2260,7 +2274,10 @@
     },
     "unavailable": {
       "title": "Această opțiune nu este disponibilă",
-      "description": "Studioul nu oferă momentan această opțiune publicului."
+      "description": "Studioul nu oferă momentan această opțiune publicului.",
+      "retry": "Încercați din nou",
+      "retrying": "Se încarcă…",
+      "loginDegraded": "Detaliile studioului nu au putut fi încărcate momentan."
     },
     "book": {
       "metadataTitle": "Rezervă Studio deschis",
@@ -2318,6 +2335,7 @@
         "email": "Adresă de e-mail",
         "quantity": "Cantitate",
         "missing": "Alege un voucher și introdu o adresă de e-mail validă.",
+        "reselect": "Lista voucherelor disponibile s-a schimbat. Selectează din nou un voucher pentru a continua.",
         "error": "Procesul de plată nu a putut fi inițiat. Încearcă din nou.",
         "starting": "Se pregătește plata…",
         "continue": "Continuă la plată",
@@ -2353,6 +2371,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Ofertele nu au putut fi actualizate. Sunt afișate ultimele oferte încărcate.",
       "loading": "Se încarcă ofertele actuale…",
       "error": "Ofertele actuale nu au putut fi încărcate.",
       "retry": "Încearcă din nou",
@@ -2786,10 +2805,20 @@
         "headline": "Titlul paginii de cursuri",
         "intro": "Introducerea paginii de cursuri",
         "image": "Fotografia paginii de cursuri",
-        "inherit": "Câmpurile goale folosesc textul comun al paginii de cursuri și fotografia de copertă a mărcii.",
+        "inherit": "Câmpurile goale folosesc textele comune și imaginea paginii de cursuri sau fotografia de copertă a mărcii dacă nu este setată o imagine pentru cursuri.",
         "noLocations": "Adaugă o locație de atelier pentru a-i personaliza pagina de cursuri.",
         "guestCheckoutEnabled": "Permite cumpărarea cursurilor fără cont",
         "guestCheckoutDescription": "Se aplică tuturor studiourilor. Vizitatorii pot cumpăra un curs fără a crea un cont; clienții se pot autentifica în continuare pentru rezervare. Necesită pagini de curs vizibile și plăți online pregătite. Publică modificările pentru a aplica setarea."
+      },
+      "pageImages": {
+        "title": "Imagini pentru antetele paginilor",
+        "description": "Alege o imagine diferită pentru fiecare pagină publică sau de client. Calendarele de rezervări își păstrează antetul text compact.",
+        "page": "Pagina de personalizat",
+        "image": "Imaginea antetului",
+        "hint": "Folosește o fotografie orizontală. Eliminarea ei restabilește antetul doar cu text. Imaginea cursurilor pentru un anumit studio are prioritate.",
+        "preview": "Previzualizează antetul",
+        "previewDescription": "Previzualizează imaginea paginii cu culorile și fonturile alese.",
+        "products": "Produse"
       },
       "calendarColors": "Calendar",
       "hidden": "Ascuns",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Cursuri în portalul clienților",
+        "portalPageHero": "Antetele paginilor",
         "book": "Studio deschis",
         "courses": "Cursuri",
         "memberships": "Abonamente",
@@ -3275,6 +3305,31 @@
       "labelColor": "Culoarea etichetelor de înregistrare · opțional",
       "imageTitle": "Imaginea de înregistrare",
       "imageDescription": "Folosește o imagine dedicată creării contului; sigla comună a spațiului rămâne în formular."
+    },
+    "customLinks": {
+      "title": "Linkuri personalizate",
+      "addGroup": "Adăugați un grup derulant",
+      "group": "Grup derulant",
+      "children": "Linkuri din acest grup",
+      "button": "Afișați ca buton principal",
+      "separator": "Afișați un separator înaintea acestui link",
+      "layout": "Aspectul antetului",
+      "defaultLayout": "Antet standard de rezervare",
+      "websiteLayout": "Navigarea site-ului",
+      "background": "Fundalul antetului",
+      "linkColor": "Culoarea linkurilor din antet",
+      "buttonColor": "Culoarea butonului din antet",
+      "header": "Adăugați linkuri după navigarea standard. Ascundeți elementele standard de mai sus dacă doriți un meniu complet personalizat.",
+      "footer": "Adăugați mai multe linkuri în secțiunea Explorați din subsol. Linkurile afișate deja în antet sunt incluse automat.",
+      "label": "Textul linkului",
+      "href": "URL de destinație",
+      "add": "Adăugați un link",
+      "remove": "Eliminați linkul",
+      "up": "Mutați linkul în sus",
+      "down": "Mutați linkul în jos",
+      "count": "linkuri",
+      "hint": "Folosiți https://… sau o cale care începe cu /. Completați împreună textul și URL-ul; lăsați-le pe amândouă goale pentru a folosi altă limbă.",
+      "invalid": "Introduceți textul linkului și un URL HTTPS valid sau o cale în cel puțin o limbă. Fiecare limbă are nevoie de ambele câmpuri sau de niciunul."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "awaitingPayment": "În așteptarea plății",
       "processing": "În procesare",
       "failed": "Eșuată",
-      "completed": "Finalizat"
+      "completed": "Finalizat",
+      "cancelled": "Anulate"
     },
     "productTypes": {
       "course": "Curs",
@@ -3806,7 +3862,8 @@
       "creatingInvoice": "Se creează…",
       "confirmCreateInvoice": "Creezi o ciornă de factură din această comandă?",
       "note": "Notă pentru comandă",
-      "internalId": "Identificatorul intern al comenzii"
+      "internalId": "Identificatorul intern al comenzii",
+      "paymentDateUnknown": "Data plății nu a fost înregistrată"
     },
     "fallbackStudioName": "spațiul tău",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Factura nu a putut fi creată din această comandă."
     },
     "csv": {
-      "createdAt": "Creat la"
+      "createdAt": "Creat la",
+      "currency": "Monedă",
+      "amountStatus": "Disponibilitatea sumei"
+    },
+    "money": {
+      "unavailable": "Indisponibil",
+      "unavailableDetail": "Suma finală a comenzii sau istoricul rambursărilor nu pot fi verificate.",
+      "verified": "Disponibil",
+      "refunded": "Rambursat",
+      "net": "Valoare după rambursări",
+      "incomplete": "Unele comenzi plătite au sume sau înregistrări de rambursare incomplete. Totalul nu este disponibil.",
+      "mixedCurrencies": "Această perioadă conține mai multe monede. Acestea nu pot fi adunate într-un singur total.",
+      "truncated": "Această perioadă depășește limita rezumatului. Alegeți o perioadă mai scurtă pentru a calcula totalul.",
+      "scope": "Valorile comenzilor includ taxele și utilizarea creditelor sau a voucherelor. Achizițiile separate de vouchere și facturile pentru abonamente sunt excluse. Nu este vorba de încasări sau de venituri din servicii prestate. Cardurile de rezumat acoperă întreaga perioadă și întregul studio selectat.",
+      "multiStudio": "Comenzile asociate mai multor studiouri sunt luate în calcul la valoarea lor integrală."
     }
   },
   "VoucherShopping": {
@@ -4011,9 +4082,51 @@
         "complained": "Reclamație de mesaj nedorit",
         "rejected": "Respins",
         "ambiguous": "Stare neclară",
-        "suppressed": "Blocat"
+        "suppressed": "Netrimis"
       },
-      "description": "Consultă livrările email programate, în coadă, livrate, blocate, anulate și eșuate.",
+      "resend": {
+        "actionMenu": "Acțiuni pentru e-mail",
+        "action": "Trimite din nou",
+        "title": "Trimiți din nou acest e-mail?",
+        "description": "Se va încerca din nou trimiterea acestui mesaj către același destinatar.",
+        "recipient": "Destinatar",
+        "subject": "Subiect",
+        "cancel": "Anulează",
+        "confirm": "Trimite din nou",
+        "submitting": "Se pregătește trimiterea…",
+        "queued": "E-mailul este pregătit pentru a fi trimis din nou.",
+        "scheduled": "A fost programată o nouă încercare. E-mailul va fi trimis când trimiterea va fi disponibilă.",
+        "error": "E-mailul nu a putut fi pregătit pentru trimitere. Încearcă din nou.",
+        "stale": "Starea acestui e-mail s-a schimbat. Acum este afișată cea mai recentă stare.",
+        "blocked": "Acest e-mail nu poate fi trimis din nou momentan.",
+        "reasonLabel": "De ce nu a fost trimis"
+      },
+      "reasons": {
+        "status_not_retryable": "Acest e-mail nu poate fi trimis din nou în starea sa actuală.",
+        "delivery_in_progress": "Acest e-mail este deja în curs de trimitere.",
+        "delivery_outcome_unknown": "Nu putem confirma dacă acest e-mail a fost trimis. Verifică starea livrării înainte de a încerca din nou.",
+        "already_sent": "Acest e-mail a fost deja trimis.",
+        "recipient_suppressed": "Trimiterea către acest destinatar era blocată.",
+        "consent_revoked": "Destinatarul și-a retras consimțământul pentru primirea acestui e-mail.",
+        "consent_expired": "Consimțământul destinatarului expirase.",
+        "marketing_opt_in_required": "Destinatarul nu își dăduse acordul pentru primirea e-mailurilor de marketing.",
+        "consent_required": "Lipsea consimțământul necesar al destinatarului.",
+        "content_unavailable": "Mesajul original nu mai era disponibil.",
+        "invalid_delivery_contract": "Informațiile necesare pentru trimiterea acestui e-mail erau incomplete.",
+        "source_changed": "Informațiile pe care se baza acest e-mail se schimbaseră.",
+        "source_missing": "Înregistrarea asociată acestui e-mail nu mai exista.",
+        "recipient_ineligible": "Acest mesaj nu mai era relevant pentru acest destinatar.",
+        "automation_inactive": "Această automatizare de e-mailuri era dezactivată.",
+        "sender_not_ready": "Trimiterea e-mailurilor nu era configurată sau era temporar indisponibilă.",
+        "workspace_disabled": "Trimiterea e-mailurilor era dezactivată pentru acest spațiu de lucru.",
+        "monthly_allowance_exhausted": "Spațiul de lucru își epuizase limita lunară de e-mailuri.",
+        "unsupported_email_type": "Acest tip de e-mail nu poate fi trimis din nou de aici.",
+        "delivery_failed": "E-mailul nu a putut fi livrat.",
+        "not_sent": "E-mailul nu a fost trimis.",
+        "hard_bounce": "Livrarea la această adresă a eșuat definitiv.",
+        "spam_complaint": "Destinatarul a raportat un e-mail ca spam."
+      },
+      "description": "Consultă e-mailurile programate, livrate, anulate și netrimise.",
       "searchLabel": "Caută în istoricul livrărilor",
       "searchPlaceholder": "Caută după emailul destinatarului sau ID-ul clientului…",
       "statusLabel": "Filtrează după starea livrării",
@@ -4398,7 +4511,8 @@
         "module": "Activează modulul Acces la uși în setările spațiului de lucru.",
         "sender": "Finalizează configurarea expeditorului email gestionat înainte de a activa livrarea.",
         "inventory": "Adaugă un cod reutilizabil verificat într-un grup activ la această locație."
-      }
+      },
+      "template": "Personalizați șablonul de e-mail"
     },
     "errors": {
       "setupRequired": "Verifică configurarea emailului înainte de a activa o automatizare.",
@@ -4411,6 +4525,102 @@
       "message": "Ștergi {name}? Această acțiune nu poate fi anulată.",
       "cancel": "Păstrează automatizarea",
       "deleting": "Se șterge…"
+    },
+    "doorTemplates": {
+      "title": "E-mailuri de acces la ușă",
+      "description": "Personalizați e-mailul automat cu codul de acces pentru fiecare locație a studioului. Aceste șabloane sunt folosite de trimiterea existentă a codurilor de acces.",
+      "locationHint": "Folosit doar pentru rezervările din această locație",
+      "default": "Mesaj implicit",
+      "customized": "Mesaj personalizat",
+      "loading": "Se încarcă șabloanele pentru codul de acces…",
+      "loadError": "Șabloanele pentru codul de acces nu au putut fi încărcate.",
+      "retry": "Încercați din nou",
+      "empty": "Adăugați o locație activă a studioului pentru a personaliza e-mailul cu codul de acces.",
+      "edit": "Editați șablonul",
+      "preview": "Previzualizați șablonul",
+      "editFor": "Editați șablonul codului de acces pentru {location}",
+      "previewFor": "Previzualizați șablonul codului de acces pentru {location}",
+      "eyebrow": "E-mail de acces la ușă",
+      "editorDescription": "Editați subiectul și mesajul pentru această locație. Modificările salvate se aplică următoarelor e-mailuri automate; setările de trimitere și momentul obișnuit de 15 minute rămân neschimbate.",
+      "placeholderHint": "Shario completează detaliile rezervării și codul corect la trimitere. Păstrați acest substituent în mesaj:",
+      "previewHint": "Previzualizarea folosește un cod și o rezervare exemplu. Designul de e-mail salvat al studioului se aplică la trimiterea mesajului.",
+      "variablesTitle": "Accesul la ușă și detaliile rezervării",
+      "variables": {
+        "entryCode": "Cod de acces (doar în corpul mesajului)",
+        "studioName": "Numele locației studioului",
+        "studioAddress": "Adresa locației studioului",
+        "bookingTime": "Data locală și intervalul orar al rezervării",
+        "bookingUrl": "Link pentru gestionarea rezervării"
+      },
+      "languages": {
+        "cs": "Cehă",
+        "en": "Engleză"
+      },
+      "errors": {
+        "incomplete": "Adăugați un subiect (maximum 200 de caractere) și un mesaj pentru această limbă.",
+        "missingCode": "Includeți substituentul codului de acces în textul vizibil al mesajului.",
+        "codePlacement": "Păstrați codul în textul mesajului, în afara subiectului, a linkurilor și a atributelor HTML.",
+        "unknownVariable": "Folosiți doar substituenții din listă, cu două acolade de deschidere și două de închidere."
+      },
+      "close": "Închideți șablonul",
+      "cancel": "Anulați",
+      "save": "Salvați șablonul",
+      "saving": "Se salvează…",
+      "resetting": "Se restaurează…",
+      "saveError": "Șablonul codului de acces nu a putut fi salvat.",
+      "resetError": "Mesajul implicit nu a putut fi restaurat.",
+      "saveSuccess": "Șablonul codului de acces a fost salvat pentru {location}.",
+      "resetSuccess": "Mesajul implicit cu codul de acces a fost restaurat pentru {location}.",
+      "reset": "Restaurați mesajul implicit",
+      "resetConfirm": "Restaurați mesajul implicit pentru această locație? Personalizarea salvată și modificările nesalvate vor fi înlocuite.",
+      "confirmReset": "Restaurați valoarea implicită",
+      "keepEditing": "Continuați editarea",
+      "discardConfirm": "Aveți modificări nesalvate. Închideți fără a salva?",
+      "discard": "Renunțați la modificări",
+      "variablesHint": "Faceți clic pe un substituent pentru a-l insera acolo unde scrieți. Codul de intrare trebuie să apară doar în corpul mesajului, în afara linkurilor.",
+      "help": "Ajutor pentru șablon",
+      "codeReminder": "Păstrați {code} în mesaj."
+    },
+    "visualEditor": {
+      "mode": "Mod de editare",
+      "visual": "Editor vizual",
+      "htmlSource": "Sursă HTML",
+      "loading": "Se încarcă editorul vizual…",
+      "unsupported": "Acest șablon include formatare HTML avansată. Designul original este păstrat în modul HTML.",
+      "toolbar": "Controale pentru text și design",
+      "body": "Text de bază",
+      "heading1": "Titlu 1",
+      "heading2": "Titlu 2",
+      "heading3": "Titlu 3",
+      "bold": "Aldin",
+      "italic": "Cursiv",
+      "underline": "Subliniat",
+      "fontSize": "Dimensiunea textului",
+      "defaultSize": "Dimensiune implicită",
+      "textColor": "Culoarea textului",
+      "textBackground": "Fundalul textului",
+      "alignLeft": "Aliniere la stânga",
+      "alignCenter": "Aliniere centrată",
+      "alignRight": "Aliniere la dreapta",
+      "bulletList": "Listă cu marcatori",
+      "orderedList": "Listă numerotată",
+      "link": "Adăugați sau editați linkul",
+      "linkUrl": "Adresa linkului",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Aplicați linkul",
+      "removeLink": "Eliminați linkul",
+      "cancelLink": "Anulați",
+      "invalidLink": "Folosiți o adresă http, https sau mailto ori substituentul linkului de rezervare. Codurile de acces nu pot fi folosite în linkuri.",
+      "undo": "Anulați acțiunea",
+      "redo": "Refaceți",
+      "blockStyle": "Designul blocului",
+      "blockBackground": "Fundalul blocului",
+      "blockPadding": "Spațierea blocului",
+      "paddingNone": "Niciuna",
+      "paddingSmall": "Mică",
+      "paddingMedium": "Medie",
+      "paddingLarge": "Mare",
+      "clearBlockStyle": "Ștergeți fundalul și spațierea blocului"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "Ce este necesar pentru acest obiectiv"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Găsește planul potrivit",
+    "title": "Vezi diferențele dintre planuri.",
+    "description": "Compară planurile actuale pentru abonamente noi. Abonamentele existente pot păstra o versiune anterioară a planului.",
+    "caption": "Comparația funcționalităților planurilor actuale pentru ateliere",
+    "feature": "Funcționalitate sau limită",
+    "scrollLabel": "Compară planurile — derulează orizontal pentru a vedea toate planurile",
+    "shared": "Fiecare plan include cursuri, liste de așteptare, vouchere, un site de rezervări cu identitatea ta vizuală, un portal pentru clienți și importuri CSV.",
+    "trialNote": "Perioada de probă de 14 zile include funcționalitățile Professional. Codurile de acces, domeniile personalizate și instrumentele AI avansate de mai sus necesită Space Plus sau un plan Enterprise convenit.",
+    "usageNote": "E-mailurile esențiale de sistem nu se scad din limita de e-mailuri. Creditele AI sunt partajate între instrumentele AI activate; utilizarea se oprește la atingerea limitei, fără taxe automate de depășire. Instrumentele disponibile depind și de setările atelierului și de permisiunile echipei.",
+    "accessNote": "Codurile de acces funcționează cu propriul tău sistem de acces și codurile încărcate în Shario. Echipamentele și integrările pentru încuietori inteligente nu sunt incluse.",
+    "enterpriseTitle": "Ai nevoie de o soluție personalizată?",
+    "enterpriseDescription": "Discută cu noi despre capacitatea Enterprise, integrări, migrare și asistență. Vom confirma serviciile și condițiile pentru atelierul tău înainte să alegi.",
+    "enterpriseCta": "Discută despre Enterprise",
+    "rows": {
+      "locations": "Locațiile atelierului",
+      "teamAccounts": "Conturile echipei",
+      "openStudioMemberships": "Atelier deschis, abonamente de membru și pachete de credite",
+      "inventoryTasks": "Stocuri și sarcinile echipei",
+      "automations": "Automatizări personalizate active",
+      "emails": "E-mailuri incluse pe lună",
+      "studioAssistant": "Asistentul atelierului",
+      "aiCredits": "Credite AI pe lună",
+      "briefingKnowledge": "Rezumate zilnice și bază de cunoștințe",
+      "advancedAi": "Business Advisor, asistent pentru clienți și analize AI ale rapoartelor",
+      "accessCodes": "Gestionarea și trimiterea codurilor de acces",
+      "customDomain": "Domeniu personalizat"
+    },
+    "values": {
+      "included": "Inclus",
+      "notIncluded": "Nu este inclus",
+      "basic": "De bază",
+      "full": "Complet",
+      "limited": "Limitat",
+      "advanced": "Avansat"
+    }
+  },
+  "RefundReviews": {
+    "title": "Verificarea rambursărilor",
+    "description": "Verificați rambursările înregistrate din Stripe și documentați decizia privind beneficiile asociate ale clientului.",
+    "benefitsNotice": "Înregistrarea sau confirmarea unei rambursări nu anulează o rezervare sau un abonament, nu retrage credite și nu efectuează o altă plată. Verificați separat beneficiile afectate înainte de a înregistra decizia.",
+    "allLocationsRequired": "Verificarea rambursărilor necesită acces la plățile din toate locațiile studioului.",
+    "refresh": "Reîmprospătează",
+    "loading": "Se încarcă verificările rambursărilor…",
+    "empty": "Nu există verificări nerezolvate pe această pagină.",
+    "loadError": "Verificările nu au putut fi încărcate. Reîmprospătați pentru a încerca din nou.",
+    "needsReview": "Este necesară verificarea beneficiilor",
+    "needsRepair": "Reconcilierea plății necesită atenție",
+    "reference": "Referința verificării",
+    "order": "Comandă",
+    "membership": "Abonament",
+    "paid": "Plata inițială",
+    "refunded": "Rambursat",
+    "pending": "Rambursare în așteptare",
+    "failed": "Rambursarea a eșuat",
+    "repairNotice": "Această plată nu este complet reconciliată. Reîmprospătați sau contactați asistența pentru a corecta asocierea plății înainte de a înregistra o verificare.",
+    "readOnly": "Un membru al echipei cu permisiunea de a gestiona rambursări poate înregistra verificarea.",
+    "review": "Înregistrează verificarea",
+    "note": "Decizia sau ajustările efectuate (10–2000 de caractere)",
+    "evidence": "Dovada sau referința care susține decizia (10–2000 de caractere)",
+    "confirm": "Am verificat beneficiile afectate și am documentat ajustările sau decizia mea de a le păstra.",
+    "save": "Confirmă verificarea",
+    "cancel": "Anulează",
+    "saved": "Verificarea a fost înregistrată. Această acțiune nu a modificat beneficiile clientului.",
+    "changed": "Această rambursare s-a modificat sau reconcilierea este încă în curs. Lista a fost reîmprospătată; verificați datele actuale înainte de a trimite din nou.",
+    "saveError": "Verificarea nu a putut fi salvată. Notițele au fost păstrate; încercați din nou.",
+    "permissionError": "Nu mai aveți permisiunea de a înregistra această verificare. Cereți ajutorul unui membru al echipei cu acces la rambursări în toate locațiile.",
+    "pagination": "Pagini de verificare a rambursărilor",
+    "firstPage": "Prima pagină",
+    "nextPage": "Pagina următoare"
+  },
+  "PaymentRefundResult": {
+    "title": "Plata trebuie verificată de studio",
+    "description": "A fost înregistrată o rambursare sau această plată necesită verificare. Această pagină nu confirmă o rezervare nouă, un sold de credite sau un beneficiu al abonamentului.",
+    "next": "Contactați studioul și comunicați referința de mai jos înainte de a efectua o altă plată.",
+    "reference": "Referință",
+    "back": "Înapoi la studio",
+    "refresh": "Verifică starea"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Spațiile primitoare aduc oamenii împreună",
@@ -5849,7 +6138,8 @@
       "about": "Cum funcționează",
       "login": "Conectează-te",
       "register": "Începe perioada de probă gratuită",
-      "copyright": "© {year} Shario. Toate drepturile rezervate."
+      "copyright": "© {year} Shario. Toate drepturile rezervate.",
+      "contact": "Contact"
     }
   },
   "Waitlists": {
@@ -6801,6 +7091,22 @@
       "label": "Vizualizare persoane"
     },
     "filters": {
+      "spending": "Cheltuieli ({currency})",
+      "spendMin": "Cheltuieli minime",
+      "spendMax": "Cheltuieli maxime",
+      "spendFrom": "Data plății de la",
+      "spendTo": "Data plății până la",
+      "spendingHint": "Plăți efectuate în această perioadă, după deducerea rambursărilor înregistrate.",
+      "spendingDatesHint": "Lasă datele necompletate pentru a include întregul istoric.",
+      "credits": "Credite actuale ({currency})",
+      "creditMin": "Credite minime",
+      "creditMax": "Credite maxime",
+      "creditsHint": "Soldul actual de credite, independent de datele plăților.",
+      "spendingUnavailable": "Filtrele de cheltuieli necesită acces la toate înregistrările financiare.",
+      "applyFinancial": "Aplică filtrele financiare",
+      "financialDraftHint": "Modificările intră în vigoare după selectarea opțiunii Aplică.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Întregul istoric",
       "membership": "Abonament",
       "status": "Stare",
       "button": "Filtre",
@@ -6814,6 +7120,7 @@
       "clear": "Șterge"
     },
     "columns": {
+      "periodSpent": "Cheltuieli în perioadă",
       "customer": "Client",
       "contact": "Contact",
       "membership": "Abonament",
@@ -6830,6 +7137,7 @@
       "access": "Acces"
     },
     "actions": {
+      "exporting": "Se exportă…",
       "addCustomer": "Adaugă un client",
       "openCustomerActions": "Deschide acțiunile pentru {name}",
       "openStaffActions": "Deschide acțiunile pentru {name}",
@@ -6875,6 +7183,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Cheltuieli în perioadă",
       "email": "E-mail",
       "membership": "Abonament",
       "credits": "Credite",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Abonamente active",
       "credits": "Creditele clienților",
       "newThisMonth": "Noi luna aceasta",
-      "monthlyChange": "+{count} luna aceasta"
+      "monthlyChange": "+{count} luna aceasta",
+      "unavailable": "Date indisponibile"
     },
     "counts": {
       "customers": "{count, plural, one {# client} few {# clienți} other {# de clienți}}",
@@ -6992,6 +7302,13 @@
       "view": "Vezi analizele clienților"
     },
     "errors": {
+      "summary": "Totalurile clienților și filtrele de abonament nu au putut fi încărcate. Încercați din nou.",
+      "export": "Exportul complet al clienților nu a putut fi descărcat. Nu s-a salvat niciun fișier. Încercați din nou.",
+      "invalidAmount": "Introdu o sumă validă.",
+      "invalidDate": "Introdu o dată validă.",
+      "spendingRange": "Cheltuielile minime nu pot depăși cheltuielile maxime.",
+      "creditRange": "Creditele minime nu pot depăși creditele maxime.",
+      "dateRange": "Data de început nu poate fi ulterioară datei de sfârșit.",
       "customers": "Clienții nu au putut fi încărcați. Încearcă din nou.",
       "staff": "Membrii echipei nu au putut fi încărcați. Încearcă din nou."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Notificări în aplicație",
           "description": "Afișează notificările spațiului de lucru în Shario."
+        },
+        "bookingCreated": {
+          "label": "Rezervare creată",
+          "description": "Când este creată o rezervare relevantă. Dezactivat implicit."
         }
       },
       "channelsTitle": "Canale de trimitere"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "Nu a putut fi creată o conversație nouă.",
       "message": "Asistentul spațiului nu a putut răspunde acum."
+    },
+    "guided": {
+      "title": "Ce ați dori să aflați?",
+      "description": "Alegeți o întrebare pentru un răspuns clar, bazat pe datele studioului dvs.",
+      "back": "Alegeți altă întrebare",
+      "retry": "Încercați din nou",
+      "loading": "Se verifică datele studioului…",
+      "noAnswer": "Nu am găsit un răspuns de încredere. Încercați din nou peste câteva momente.",
+      "contextQuestion": "Ce ar trebui să știu despre asta?",
+      "contextHint": "Un răspuns despre elementul selectat.",
+      "allStudios": "Toate studiourile",
+      "periods": {
+        "today": "Astăzi",
+        "last30Days": "Ultimele 30 de zile",
+        "current": "Imagine de ansamblu actuală"
+      },
+      "report": {
+        "title": "Doriți o imagine de ansamblu mai detaliată?",
+        "description": "Raport lunar pentru studioul selectat, de la începutul lunii până pe {date}.",
+        "generate": "Generați raportul lunar",
+        "open": "Deschideți raportul lunar",
+        "back": "Înapoi la răspuns",
+        "ready": "Raportul lunar este gata."
+      },
+      "questions": {
+        "today": {
+          "label": "Cum merge studioul astăzi?",
+          "hint": "O imagine rapidă asupra activității de astăzi.",
+          "prompt": "Ce se întâmplă astăzi în studio?"
+        },
+        "bookings": {
+          "label": "Câte rezervări avem astăzi?",
+          "hint": "Rezervările confirmate de astăzi.",
+          "prompt": "Câte rezervări avem astăzi?"
+        },
+        "bookingTrend": {
+          "label": "Cresc rezervările noastre?",
+          "hint": "Comparați ultimele 30 de zile cu cele 30 de zile anterioare.",
+          "prompt": "Cum evoluează rezervările noastre?"
+        },
+        "teamBlockers": {
+          "label": "Există ceva care blochează echipa?",
+          "hint": "Verificați blocajele raportate astăzi de echipă.",
+          "prompt": "Ce blochează astăzi echipa noastră?"
+        },
+        "reorders": {
+          "label": "Ce trebuie reaprovizionat?",
+          "hint": "Verificați solicitările deschise de reaprovizionare a stocului.",
+          "prompt": "Există solicitări deschise de reaprovizionare?"
+        },
+        "generalHelp": {
+          "label": "Ce date ale studioului pot consulta?",
+          "hint": "Vedeți informațiile disponibile pentru rolul dvs.",
+          "prompt": "La ce date ale studioului ai acces?"
+        }
+      },
+      "selectedStudio": "Studioul selectat"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "Cea mai bună lună încheiată",
+      "completedMonths": "Sunt comparate doar luni întregi încheiate, cu date fiabile.",
+      "noBestMonth": "Nu se poate stabili o lună câștigătoare. Includeți luni întregi încheiate.",
+      "showYear": "Arată anul curent",
+      "monthRanking": "Plăți pe luni",
+      "month": "Lună",
+      "coverage": "Acoperirea datelor",
+      "completeMonth": "Lună completă",
+      "partialMonth": "Lună parțială",
+      "moneyBasis": "Plăți efectiv primite în perioadă, minus rambursările înregistrate la data raportului. Abonamentele, voucherele și încărcările plătite se numără o dată; utilizarea nu este o plată nouă. Nu reprezintă profit.",
+      "asOf": "La data de",
+      "customerTable": "Analiza clienților",
+      "customerHelp": "Combinați filtrele pentru a găsi clienți de contactat.",
+      "inactiveCredit": "Inactivi de 90 de zile, cu credit:",
+      "showCustomers": "Arată clienții",
+      "spending": "Plăți primite",
+      "credits": "Credit actual",
+      "cancellations": "Rezervări anulate",
+      "minimum": "Minim",
+      "maximum": "Maxim",
+      "actor": "Anulată de",
+      "actor_all": "Oricine",
+      "actor_customer": "Client",
+      "actor_staff": "Personal",
+      "inactiveDays": "Inactiv de cel puțin (zile)",
+      "dateDefaults": "Datele goale folosesc perioada raportului de mai sus.",
+      "cancellationCoverage": "Anulările vechi pot să nu aibă dată sau autor siguri. Un număr cu + este un minim cunoscut; necunoscut nu înseamnă zero. Filtrul maxim necesită istoric complet.",
+      "invalidBounds": "Introduceți numere și date valide; minimul nu poate depăși maximul.",
+      "apply": "Aplică filtrele",
+      "clear": "Șterge filtrele",
+      "exportCustomers": "Exportă toți clienții corespunzători",
+      "noCustomers": "Niciun client nu corespunde filtrelor.",
+      "customer": "Client",
+      "lastActivity": "Ultima activitate",
+      "locationScope": "Totalurile locației exclud plățile fără atribuire sigură. Abonamentele, voucherele și încărcările pot apărea doar în vederea globală.",
+      "incompleteData": "Unele surse sunt incomplete sau indisponibile. Sunt incluse doar date verificabile; valorile lipsă nu sunt zero.",
+      "paymentSources": "Sursele plăților",
+      "source_external_payment": "Plăți pentru comenzi",
+      "source_voucher": "Achiziții de vouchere",
+      "source_membership": "Plăți pentru abonamente",
+      "source": "Sursă",
+      "noPaymentSources": "Nu sunt disponibile date despre sursele plăților."
+    },
     "actions": {
       "retry": "Încearcă din nou",
       "export": "Exportă CSV",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Rezervări",
-      "netSales": "Vânzări nete",
+      "netSales": "Plăți primite",
       "utilizationPercent": "Utilizare",
       "returningCustomerPercent": "Clienți care revin"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Rezervări",
-        "netSales": "Vânzări nete"
+        "netSales": "Plăți primite"
       },
       "trendTitle": "Tendința performanței",
       "trendDescription": "Valori verificate pentru perioada de raportare selectată.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Cantitate",
         "currency": "Monedă",
-        "orders": "Comenzi",
+        "orders": "Plăți",
         "amount": "Sumă",
-        "net": "Vânzări nete",
+        "net": "Plăți primite",
         "gross": "Vânzări brute",
         "method": "Metodă",
         "product": "Articol din catalog"
       },
       "metrics": {
-        "orders": "Comenzi",
-        "net": "Vânzări nete",
+        "orders": "Plăți",
+        "net": "Plăți primite",
         "gross": "Vânzări brute",
         "tax": "Taxe / TVA",
         "discounts": "Reduceri",
         "refunds": "Rambursări",
         "paymentFees": "Comisioanele furnizorului de plăți",
-        "averageOrder": "Valoarea medie a comenzii"
+        "averageOrder": "Plată medie"
       },
       "unavailable": "Datele de vânzări nu sunt disponibile",
       "unavailableDescription": "Acest cont sau domeniu de raportare nu are o sursă disponibilă de vânzări.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Rezervări",
-        "participants": "Participanți",
+        "participants": "Locuri rezervate",
         "utilization": "Utilizare",
         "cancellations": "Anulări",
         "noShows": "Neprezentări",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Clienți noi",
-        "returning": "Clienți care revin",
-        "unique": "Clienți activi",
+        "new": "Clienți plătitori noi",
+        "returning": "Clienți plătitori recurenți",
+        "unique": "Clienți plătitori",
         "returningRate": "Rata de revenire a clienților",
-        "averageSpend": "Cheltuială medie"
+        "averageSpend": "Cheltuială medie plătită"
       },
       "unavailable": "Datele clienților nu sunt disponibile",
       "unavailableDescription": "Acest cont sau domeniu de raportare nu are o sursă disponibilă de clienți.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "Accesul la uși nu este inclus în acest plan",
       "description": "Verifică opțiunile planurilor sau întreabă un proprietar al spațiului de lucru despre accesul la uși."
+    },
+    "emailTemplate": {
+      "title": "E-mail cu codul de acces",
+      "description": "Creați sau editați e-mailul automat cu codul de acces pentru această locație. Fiecare locație are un singur șablon, comun cu Mesaje → Șabloane de e-mail.",
+      "create": "Creați un șablon",
+      "createFor": "Creați șablonul codului de acces pentru {location}",
+      "locationUnavailable": "Nu există niciun șablon de e-mail cu codul de acces disponibil pentru această locație."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "ALL_PRODUCTS": "Toate produsele",
     "AUTHOR_SEARCH": "Caută un client",
     "SEARCH_BY_NAME_OR_ID": "Caută după nume sau ID",
-    "PASS_RULES": "Folosește cel puțin 8 caractere, inclusiv o cifră."
+    "PASS_RULES": "Folosește cel puțin 8 caractere, inclusiv o cifră.",
+    "USER_EMAIL_CHANGE_WARNING": "Schimbarea adresei de e-mail deconectează acest client din toate sesiunile și îi solicită să verifice noua adresă.",
+    "USER_EMAIL_VERIFICATION_SENT": "E-mailul a fost actualizat. Sesiunile existente au fost încheiate și a fost trimis un link de verificare la noua adresă.",
+    "USER_EMAIL_VERIFICATION_RETRY": "E-mailul a fost actualizat și sesiunile existente au fost încheiate. Livrarea e-mailului de verificare nu a putut fi confirmată. Clientul poate solicita un link nou pe pagina de verificare a e-mailului a studioului.",
+    "USER_EMAIL_UPDATE_FAILED": "Clientul nu a putut fi actualizat. Verificați adresa de e-mail și încercați din nou."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "Acoperirea datelor nu este încă suficientă pentru o recomandare fiabilă.",
       "message042": "Începe cu oportunitățile cu cea mai mare prioritate",
       "message043": "Câteva oportunități merită analizate",
-      "message044": "Consilierul a găsit {value1} recomandări bazate pe date verificate ale spațiului."
+      "message044": "Consilierul a găsit {value1} recomandări bazate pe date verificate ale spațiului.",
+      "message045": "Analizați scăderea plăților primite",
+      "message046": "Plățile primite după rambursări sunt cu {value1}% mai mici decât în perioada de comparație.",
+      "message047": "Plăți primite după rambursări"
     },
     "briefing": {
       "message011": "Sarcini urgente",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Plată anulată",
-    "nextSteps": "Ce poți face în continuare",
-    "retry": "Încearcă din nou — uneori a doua încercare reușește.",
-    "card": "Dacă ai folosit Apple Pay sau Google Pay, încearcă să plătești cu cardul.",
-    "contact": "Dacă problema persistă, scrie-ne și te vom ajuta.",
     "home": "Înapoi la pagina principală",
-    "chargeNotice": "Nu se debitează nicio sumă până la finalizarea plății."
+    "title": "Înapoi de la plată",
+    "description": "Revenirea de pe pagina de plată nu anulează rezervarea. Îi puteți verifica starea în rezervările dvs.",
+    "creditsHint": "Pentru a plăti cu credite, deschideți rezervarea neplătită și anulați-o mai întâi. Apoi selectați din nou ora. Dacă această opțiune nu este disponibilă, contactați studioul.",
+    "backToBookings": "Înapoi la rezervări"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Prezentarea studioului",
+    "todayNumbers": "Cifrele zilnice ale studioului",
+    "todayBookings": "Rezervări",
+    "selectedDate": "În ziua selectată",
+    "expectedVisitors": "Vizitatori așteptați",
+    "bookedParticipants": "Participanți la rezervările programate",
+    "expectedNow": "În studio acum (estimat)",
+    "expectedNowBasis": "Persoane cu o rezervare în desfășurare; prezența nu este confirmată",
+    "nextSession": "Următoarea rezervare",
+    "noUpcomingSession": "Nicio rezervare viitoare",
+    "attentionTitle": "Necesită atenția dvs.",
+    "review": "Verificați",
+    "generateReport": "Generați raportul AI",
+    "generating": "Se pregătește raportul…",
+    "reportPermission": "Rapoartele AI necesită acces la asistentul studioului.",
+    "reportError": "Raportul nu a putut fi generat. Încercați din nou.",
+    "operationsError": "Datele zilnice ale studioului nu au putut fi încărcate.",
+    "managementError": "Datele lunare ale studioului nu au putut fi încărcate.",
+    "retry": "Încercați din nou",
+    "loadingPerformance": "Se încarcă performanța studioului…",
+    "performanceEyebrow": "Performanța studioului",
+    "monthTitle": "Luna aceasta până acum",
+    "comparison": "Comparativ cu {period}",
+    "comparedWithPrevious": "comparativ cu perioada anterioară",
+    "unavailable": "Date indisponibile",
+    "revenue": "Venituri din servicii prestate",
+    "revenueBasis": "Servicii prestate și produse livrate în perioada respectivă",
+    "revenueUnavailable": "Totalul veniturilor din servicii prestate nu este încă disponibil: înregistrările de livrare nu acoperă toate serviciile și produsele. Încasările sunt raportate separat.",
+    "confirmedRevenue": "Servicii finalizate confirmate: {amount}.",
+    "visits": "Participanți la rezervările trecute",
+    "visitsBasis": "Participanți la rezervările încheiate; prezența nu este verificată",
+    "newClients": "Clienți noi cu rezervare",
+    "newClientsBasis": "Prima rezervare înregistrată în studiourile selectate; nu neapărat nou pentru întreaga afacere",
+    "last30Days": "Ultimele 30 de zile",
+    "arrivalTitle": "Când sosesc clienții",
+    "scheduledArrivalTitle": "Când sunt programate vizitele",
+    "hourlyAttendance": "Participanți în funcție de ora de începere",
+    "hourCount": "{hour}:00 — {count} participanți",
+    "busiestHour": "Cea mai aglomerată oră programată: {from}:00–{to}:00",
+    "recordedBusiestHour": "Ora cu cele mai multe sosiri: {from}:00–{to}:00",
+    "recordedSample": "Pe baza a {count} sosiri înregistrate",
+    "scheduledSample": "Pe baza a {count} participanți programați",
+    "scheduledCaveat": "Orele de începere ale rezervărilor arată programul actual. Orele liniștite nu dovedesc, singure, cererea pentru sesiuni noi.",
+    "noAttendance": "Nu există încă suficientă activitate pentru a afișa un tipar.",
+    "other": "Altele",
+    "topClients": "Top 5 clienți",
+    "rankingBy": "Clasificați clienții după",
+    "clientVisitsBasis": "Participanți la rezervările încheiate din această perioadă",
+    "clientRevenueBasis": "Venituri din serviciile finalizate confirmate din această perioadă",
+    "unnamedClient": "Client fără nume",
+    "noClients": "Nu există clienți înregistrați pentru această perioadă.",
+    "confirmedOnly": "Doar serviciile finalizate confirmate; alte înregistrări de livrare nu sunt disponibile.",
+    "topProducts": "Top 3 produse",
+    "byQuantity": "După cantitate",
+    "deliveredProductsBasis": "Servicii finalizate confirmate, ordonate după cantitate",
+    "noProducts": "Nu există produse finalizate înregistrate pentru această perioadă.",
+    "unnamedProduct": "Produs fără nume",
+    "units": "buc.",
+    "coverageTitle": "Acoperirea și limitările datelor",
+    "coverageDescription": "Datele indisponibile rămân indisponibile. Activitatea programată și livrarea confirmată sunt identificate separat.",
+    "openReports": "Deschideți rapoartele detaliate",
+    "back": "Înapoi la panou",
+    "reportTitle": "Raportul studioului",
+    "exporting": "Se pregătește PDF-ul…",
+    "exportPdf": "Exportați PDF",
+    "exportError": "PDF-ul nu a putut fi descărcat. Încercați din nou.",
+    "aiReport": "Raport AI al studioului",
+    "verifiedReport": "Raport cu datele studioului",
+    "deterministicNote": "Comentariul AI nu este disponibil. Acest raport conține cifrele salvate ale studioului și un rezumat factual.",
+    "reportHighlights": "Repere",
+    "reportAttention": "Necesită atenție",
+    "reportRecommendations": "Pași următori sugerați",
+    "generatedAt": "Generat pe {date}",
+    "issues": {
+      "overdueTasks": "Sarcini restante: {count}",
+      "lowStock": "Articole cu stoc redus: {count}",
+      "failedEmails": "E-mailuri eșuate: {count}",
+      "overduePayments": "Plăți restante: {count}",
+      "overdueOrders": "Comenzi personalizate întârziate: {count}",
+      "other": "Elemente de verificat: {count}",
+      "failed_emails": "E-mailuri eșuate: {count}",
+      "overdue_custom_orders": "Comenzi personalizate întârziate: {count}",
+      "overdue_invoices": "Plăți restante: {count}"
+    },
+    "staleData": "Ultima actualizare a eșuat. Sunt afișate datele încărcate anterior.",
+    "refreshingData": "Se actualizează datele studioului…",
+    "coverageReportDetails": "Generați un raport al studioului pentru a vedea sursele disponibile și limitările fiecărui indicator.",
+    "dismissAttention": "Ascundeți cardul de atenționare",
+    "showAttention": "Afișați alertele ({count})",
+    "customerId": "ID client {id}",
+    "spentMonth": "Cheltuit în luna selectată",
+    "spentTotal": "Total cheltuit",
+    "clientSpendingBasis": "Plățile clienților după rambursările înregistrate, în toate studiourile. Luna: {period}; total până la data selectată.",
+    "spendingUnavailable": "Datele despre cheltuieli nu sunt disponibile în această vizualizare.",
+    "previousValue": "Perioada anterioară: {value}",
+    "revenueUnavailableShort": "Indisponibil — înregistrările de livrare sunt incomplete.",
+    "totalCustomers": "Total clienți",
+    "workspaceCustomersScope": "Înregistrați în toate studiourile",
+    "newRegisteredThisMonth": "Noi luna aceasta",
+    "activeCustomers": "Clienți activi",
+    "activeCustomersBasis": "Au rezervat în ultimele 30 de zile",
+    "selectedStudiosScope": "Studiourile selectate",
+    "workspaceScope": "Toate studiourile",
+    "activeSubscribers": "Abonați activi",
+    "newSubscribersThisMonth": "Abonați noi luna aceasta",
+    "subscriberBasis": "Fiecare persoană o singură dată. Nou înseamnă primul abonament; reînnoirile sunt excluse.",
+    "missingMetric": "— Date indisponibile",
+    "asOfDate": "La data de {date}",
+    "subscriberSelectedScope": "Abonamente valabile în studiourile selectate",
+    "recordedPayments": "Plăți înregistrate",
+    "recordedPaymentsBasis": "Plăți primite în luna selectată, minus rambursările înregistrate",
+    "paymentsUnavailable": "Datele despre plăți nu sunt disponibile.",
+    "spending": "Suma cheltuită",
+    "clientPaymentsBasis": "Ordonat după plățile clienților înregistrate în luna selectată, minus rambursările înregistrate, în toate studiourile",
+    "noCustomerPayments": "Nu există plăți verificate ale clienților pentru această perioadă.",
+    "spendingIncomplete": "Unele totaluri nu sunt disponibile deoarece istoricul plăților este incomplet.",
+    "paymentRankingIncomplete": "Clasamentul folosește sumele de plată verificate; înregistrările incomplete pot influența ordinea.",
+    "byPurchases": "După achiziții",
+    "purchasedProductsBasis": "Comenzi plătite care conțin fiecare produs · Ultimele 30 de zile: {period}",
+    "noPurchasedProducts": "Nu există achiziții de produse plătite verificate în ultimele 30 de zile.",
+    "purchases": "achiziții",
+    "purchasesIncomplete": "Unele achiziții nu pot fi verificate; acest clasament poate fi incomplet.",
+    "knownAmount": "Sumă cunoscută",
+    "knownPaymentsOnly": "Doar plățile cunoscute; unele înregistrări de plată sunt incomplete."
+  },
+  "UnifiedSettings": {
+    "title": "Setări",
+    "description": "Preferințele dvs. și setările studioului într-un singur loc.",
+    "navigation": "Secțiuni de setări",
+    "studioTitle": "Studio",
+    "personalTitle": "Setările mele",
+    "studioScope": "Pentru întregul studio",
+    "personalScope": "Doar pentru dvs.",
+    "studioDescription": "Setări comune pentru acest studio. Vedeți doar zonele la care aveți acces.",
+    "personalDescription": "Gestionați-vă contul și modul în care lucrați în acest studio. Aceste preferințe nu modifică setările altor membri ai echipei.",
+    "personalProfileScope": "Profilul și parola se aplică contului dvs. în toate studiourile.",
+    "personalPreferencesScope": "Aceste preferințe se aplică doar dvs., în acest studio.",
+    "locationScope": "Doar locația {name}",
+    "newLocationScope": "Setări pentru noua locație",
+    "backTo": "Înapoi la {section}",
+    "searchLabel": "Căutați în setări",
+    "searchStudio": "Căutați în setările studioului…",
+    "searchPersonal": "Căutați în setările mele…",
+    "clearSearch": "Ștergeți căutarea",
+    "searchResults": "{count, plural, one {# setare găsită} few {# setări găsite} other {# de setări găsite}}",
+    "advancedTitle": "Setări avansate",
+    "advancedDescription": "Funcții activate, navigare și importuri de date.",
+    "emptyTitle": "Nu există setări corespunzătoare",
+    "emptyDescription": "Încercați alt termen sau ștergeți căutarea pentru a vedea toate setările disponibile din această secțiune.",
+    "setupTitle": "Finalizați configurarea studioului",
+    "setupProgress": "{completed} din {total} pași obligatorii finalizați.",
+    "setupAction": "Continuați configurarea",
+    "groups": {
+      "workspace": {
+        "title": "Studio și locații",
+        "description": "Detaliile studioului, limba comună, moneda și locațiile."
+      },
+      "access": {
+        "title": "Echipă și acces",
+        "description": "Membrii echipei, rolurile și accesul la uși."
+      },
+      "website": {
+        "title": "Site și identitate vizuală",
+        "description": "Site-ul public, paginile de rezervare și identitatea vizuală."
+      },
+      "payments": {
+        "title": "Plăți de la clienți",
+        "description": "Metode de plată și setări pentru plățile clienților."
+      },
+      "communications": {
+        "title": "Mesaje și automatizare",
+        "description": "Livrarea e-mailurilor, expeditorii și asistența AI."
+      },
+      "account": {
+        "title": "Abonament Shario",
+        "description": "Planul, facturile și datele de facturare ale studioului."
+      },
+      "advanced": {
+        "title": "Funcții și date",
+        "description": "Configurați modulele și aduceți date în studio."
+      },
+      "profile": {
+        "title": "Profil și securitate",
+        "description": "Numele, datele de contact și parola dvs. în toate studiourile."
+      },
+      "preferences": {
+        "title": "Mediul meu de lucru",
+        "description": "Calendarul, fusul orar și locația implicită în acest studio."
+      },
+      "notifications": {
+        "title": "Notificările mele",
+        "description": "Alegeți actualizările pe care le primiți în acest studio."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Detaliile studioului",
+        "description": "Nume, limbă, fus orar și monedă."
+      },
+      "locations": {
+        "title": "Locații",
+        "description": "Adrese, săli și program de funcționare."
+      },
+      "team": {
+        "title": "Membrii echipei",
+        "description": "Invitați persoane și gestionați apartenența la echipă."
+      },
+      "roles": {
+        "title": "Roluri și permisiuni",
+        "description": "Cine are acces la fiecare parte a studioului."
+      },
+      "accessCodes": {
+        "title": "Acces la uși",
+        "description": "Coduri de acces și drepturi de intrare."
+      },
+      "publicSite": {
+        "title": "Site și pagini de rezervare",
+        "description": "Identitate vizuală, pagini publice și experiența clienților."
+      },
+      "payments": {
+        "title": "Metode de plată",
+        "description": "Plăți online și conexiunea Stripe."
+      },
+      "invoicing": {
+        "title": "Facturarea clienților",
+        "description": "Facturi și facturarea clienților."
+      },
+      "communications": {
+        "title": "E-mail și expeditori",
+        "description": "Livrare, domenii de trimitere și setări pentru mesaje."
+      },
+      "ai": {
+        "title": "Asistent AI",
+        "description": "Funcții AI și setări de automatizare."
+      },
+      "billing": {
+        "title": "Plan și facturare",
+        "description": "Abonamentul Shario, facturi și date de facturare."
+      },
+      "modules": {
+        "title": "Funcții și navigare",
+        "description": "Activați module și alegeți elementele de navigare."
+      },
+      "migration": {
+        "title": "Importați date",
+        "description": "Importați clienți, rezervări și alte date ale studioului."
+      },
+      "profile": {
+        "title": "Editați profilul și parola",
+        "description": "Numele, datele de contact și parola dvs. în toate studiourile."
+      },
+      "preferences": {
+        "title": "Calendar și afișare",
+        "description": "Calendarul, fusul orar și locația implicită în acest studio."
+      },
+      "notifications": {
+        "title": "Preferințe de notificare",
+        "description": "Alerte pentru rezervări, sarcini și stocuri; actualizări prin e-mail și în aplicație."
+      }
+    },
+    "language": {
+      "label": "Limba aplicației",
+      "change": "Schimbați limba",
+      "sharedScope": "Comună pentru întreaga echipă a studioului.",
+      "managedByAdmin": "Această limbă este gestionată de administratorul studioului."
+    },
+    "plan": {
+      "label": "Planul actual",
+      "details": "Detaliile planului",
+      "loading": "Se încarcă planul…",
+      "unavailable": "Plan indisponibil",
+      "detailsUnavailable": "Detaliile planului sunt temporar indisponibile."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "Shario nu percepe comision pe tranzacții. Taxele de procesare Stripe pentru plățile clienților sunt separate de abonamentul dvs. Prețurile nu includ taxele aplicabile.",
+    "feeLink": "Taxe de plată, perioada de probă și anularea în detaliu",
+    "links": {
+      "stripePricing": "Verificați prețurile Stripe pentru țara dvs.",
+      "refundContact": "Întrebați despre rambursarea abonamentului",
+      "studioAi": "Descoperiți Shario AI",
+      "refundTerms": "Citiți Termenii compleți și excepțiile de rambursare"
+    },
+    "faq": {
+      "title": "Înainte de a alege un plan",
+      "description": "Aflați ce plătiți, când intră în vigoare modificările și ce se întâmplă după perioada de probă.",
+      "trial": {
+        "question": "Ce se întâmplă când se încheie perioada de probă?",
+        "answer": "Perioada de probă Professional de 14 zile începe când finalizați configurarea inițială. Nu este necesar un card. Fără un abonament plătit activ, rezervările noi, achizițiile online și funcțiile spațiului de lucru sunt suspendate la încheierea perioadei de probă. Istoricul rezervărilor clienților și recuperarea facturării rămân disponibile; expirarea perioadei de probă nu șterge datele studioului. Achiziția unui plan nu este disponibilă în ultimele 48 de ore ale perioadei de probă, pentru a evita o taxare anticipată. Vă puteți abona după încheierea perioadei de probă."
+      },
+      "cancellation": {
+        "question": "Când intră în vigoare anularea?",
+        "answer": "Anularea unui abonament plătit oprește următoarea reînnoire. Păstrați accesul până la sfârșitul perioadei de facturare plătite curente și puteți renunța la anulare până atunci. Anularea unei perioade de probă fără card o încheie imediat. După încetarea accesului, rezervările noi, achizițiile online și funcțiile spațiului de lucru sunt restricționate. Accesul restricționat nu înseamnă un spațiu de lucru complet în regim doar de citire: rapoartele generale și exporturile pot fi indisponibile. Exportați înregistrările necesare înainte de încetarea accesului sau contactați hello@shario.io pentru returnarea ori ștergerea datelor. Înregistrările nu sunt șterse automat la expirare, dar nu se promite păstrarea lor pe termen nelimitat."
+      },
+      "refunds": {
+        "question": "Anularea rambursează automat timpul neutilizat?",
+        "answer": "Anularea unui abonament anual sau lunar oprește următoarea reînnoire; accesul plătit eligibil continuă până la sfârșitul perioadei curente. Anularea voluntară, timpul neutilizat și cotele neutilizate nu se rambursează, cu excepția cazurilor prevăzute de legislația imperativă, de un acord scris expres sau de remediile din Termenii noștri. Dacă Shario încetează anticipat serviciul plătit din motive de oportunitate sau dacă reziliați din cauza unei încălcări semnificative din partea noastră, neremediate la 30 de zile după o notificare scrisă, rambursăm partea preplătită neutilizată de la data efectivă a încetării. Rambursăm, de asemenea, partea preplătită neutilizată dacă reziliați pentru că o modificare nefavorabilă a termenilor ar trebui să intre în vigoare în timpul unei perioade deja preplătite. Dacă nu putem soluționa, printr-o alternativă rezonabilă, o obiecție justificată privind protecția datelor față de un furnizor nou sau înlocuitor de prelucrare a datelor (subprocesator), puteți înceta serviciul afectat și primi partea sa preplătită neutilizată. Anularea în sine nu generează automat o rambursare. Contactați-ne pentru a solicita remediul aplicabil."
+      },
+      "planChanges": {
+        "question": "Când intră în vigoare trecerea la un plan superior sau inferior?",
+        "answer": "Pentru abonamentele plătite, trecerea la un plan superior intră în vigoare imediat după finalizarea plății necesare, cu o factură proporțională. Trecerea la un plan inferior intră în vigoare la sfârșitul perioadei de facturare curente. În cadrul aceluiași plan, trecerea de la facturarea lunară la cea anuală este imediată după finalizarea plății necesare, iar trecerea de la facturarea anuală la cea lunară începe din perioada următoare. Verificați data intrării în vigoare și previzualizarea facturării înainte de a confirma."
+      },
+      "payments": {
+        "question": "Sunt incluse taxele pentru plățile clienților?",
+        "answer": "Plățile online ale clienților sunt procesate prin contul Stripe conectat. Shario nu percepe comision pe tranzacții. Taxele de procesare Stripe sunt separate de abonamentul Shario și depind de țara dvs., de metoda de plată și de acordul cu Stripe. Abonamentul studioului este facturat separat de plățile efectuate de clienți."
+      }
+    },
+    "definitions": {
+      "title": "Ce înseamnă funcțiile planurilor",
+      "automations": {
+        "question": "Ce se consideră o automatizare activă?",
+        "answer": "O automatizare activă este o regulă personalizată activată pentru a rula: de exemplu, programarea instrucțiunilor de sosire la studio la o zi după înregistrarea unui client. Limita numără regulile activate, nu ciornele salvate sau frecvența cu care rulează o regulă. Starter nu include reguli personalizate; Professional permite 3. Space Plus folosește același editor bazat pe evenimente și permite mai mult de 3 reguli active, cu 5.000 de e-mailuri contorizate pe lună. Fiecare regulă se încadrează în limita de automatizări, iar e-mailurile sale contorizate în cota de e-mailuri. E-mailurile standard ale sistemului sunt separate."
+      },
+      "studioAi": {
+        "question": "Ce instrumente Shario AI primesc?",
+        "answer": "Professional oferă 2.000 de credite AI pe lună și include asistentul studioului, rezumatele zilnice și Knowledge Hub. Space Plus oferă 10.000 de credite și adaugă Business Advisor, concierge pentru clienți și analize AI ale rapoartelor. Instrumentele depind de configurarea studioului și de permisiunile echipei; acțiunile acceptate necesită confirmare."
+      },
+      "aiCredits": {
+        "question": "Un credit AI înseamnă o întrebare?",
+        "answer": "Creditele AI măsoară textul procesat și generat, nu un număr fix de întrebări. De exemplu, o operațiune scurtă care folosește 750 de tokenuri (fragmente de text) consumă 1 credit; o operațiune de 2.500 de tokenuri, cu buget suficient, consumă 3. O întrebare poate implica mai multe operațiuni, iar căutările de informații sau indexarea documentelor pot crește consumul. Acestea sunt exemple, nu costuri garantate per întrebare. Creditele sunt împărțite lunar între instrumentele activate. O solicitare are nevoie de suficiente credite rămase pentru a rula; nu există taxe automate pentru depășire."
+      },
+      "emails": {
+        "question": "Ce se întâmplă când se epuizează cota de e-mailuri?",
+        "answer": "Cota lunară acoperă e-mailurile de automatizare contorizate. Când se epuizează, e-mailul de automatizare afectat este omis; nu este pus automat în coadă pentru luna următoare. E-mailurile esențiale ale contului și mesajele operaționale integrate acceptate nu se încadrează în această cotă. Marcarea propriei automatizări ca tranzacțională nu o exceptează. Verificați utilizarea spațiului de lucru și schimbați planul sau contactați-ne dacă aveți nevoie de mai multă capacitate."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Doriți să schimbați modul de plată?",
+    "explanation": "Rezervarea neplătită vă poate păstra încă locul. Pentru a plăti cu credite în loc de card sau pentru a începe din nou, anulați-o mai întâi. Acest buton anulează toate rezervările neplătite din această plată.",
+    "action": "Anulați rezervările neplătite",
+    "busy": "Se verifică plata și se anulează rezervarea…",
+    "cancelled": "Rezervările neplătite din această plată au fost anulate. Reveniți la coș sau selectați din nou ora, apoi alegeți creditele de studio. Disponibilitatea și prețul vor fi verificate din nou.",
+    "paid": "Plata a fost deja finalizată. Rezervarea nu a fost anulată. Verificați-i starea.",
+    "pending": "Plata este încă în curs de verificare. Nu s-a anulat nimic. Verificați starea plății înainte de a face o altă rezervare pentru aceeași oră.",
+    "unsupported": "Această plată nu poate fi anulată aici. Deschideți rezervările dvs. sau contactați studioul.",
+    "missing": "Comanda nu a fost găsită. Deschideți rezervările dvs. sau contactați studioul.",
+    "error": "Anularea nu a putut fi confirmată. Încercați din nou. Contactați studioul dacă problema persistă.",
+    "status": "Verificați starea plății",
+    "bookAgain": "Selectați din nou ora"
   }
 }

@@ -14,6 +14,7 @@ const Brand = memo(function Brand({
   tenant = null,
   href = "/",
   textColor: textColorOverride,
+  flushLogo = false,
 }) {
   const commonT = useTranslations("Common");
   const [failedLogoUrl, setFailedLogoUrl] = useState("");
@@ -36,9 +37,9 @@ const Brand = memo(function Brand({
       {...wrapperProps}
       aria-label={tenantName || commonT("sharioHome")}
       onClick={onClickHome}
-      className={`group inline-flex items-center rounded-full px-1.5 ${
-        tenant ? "min-w-0 max-w-full xl:shrink-0" : "shrink-0"
-      } ${
+      className={`group inline-flex items-center rounded-full ${
+        tenant && showLogo && flushLogo ? "px-0" : "px-1.5"
+      } ${tenant ? "min-w-0 max-w-full xl:shrink-0" : "shrink-0"} ${
         showLogo ? "py-0.5" : "py-2"
       } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 ${
         tenant
@@ -56,7 +57,7 @@ const Brand = memo(function Brand({
           ref={logoRef}
           src={logoUrl}
           alt={tenantName}
-          className="w-auto min-w-0 max-h-[72px] max-w-[min(100%,52vw,204px)] rounded-[12px] object-contain sm:max-w-[min(100%,232px)]"
+          className="w-auto min-w-0 max-h-[72px] max-w-[min(100%,52vw,204px)] object-contain sm:max-w-[min(100%,232px)]"
           style={{ height: `${logoSize}px` }}
           referrerPolicy="no-referrer"
           onError={() => setFailedLogoUrl(logoUrl)}

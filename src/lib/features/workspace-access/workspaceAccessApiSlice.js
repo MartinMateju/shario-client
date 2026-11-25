@@ -299,9 +299,24 @@ export const workspaceAccessApiSlice = apiSlice.injectEndpoints({
       }),
       transformResponse: normalizeAccessMutationResponse,
       invalidatesTags: [{ type: "WorkspaceAccess", id: "CURRENT" }],
-      async onQueryStarted(body, { dispatch, queryFulfilled }) {
+      async onQueryStarted(body, { dispatch, getState, queryFulfilled }) {
+        const snapshot = createAuthRequestSnapshot(
+          getState(),
+          AUTH_CONTEXTS.WORKSPACE,
+        );
         try {
-          const data = await storeWorkspaceAccess(queryFulfilled, dispatch);
+          const { data } = await queryFulfilled;
+          const state = getState();
+          if (
+            !isAuthRequestBoundaryCurrent(state, snapshot) ||
+            !isAuthRequestForSamePrincipal(state, snapshot)
+          ) {
+            return;
+          }
+
+          if (hasOwn(data, "workspaceAccess")) {
+            dispatch(setWorkspaceAccess(data.workspaceAccess));
+          }
 
           if (
             !hasOwn(data, "workspaceAccess") &&

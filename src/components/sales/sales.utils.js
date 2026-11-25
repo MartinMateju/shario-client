@@ -2,8 +2,11 @@ import { getLocalizedPublicTenantText } from "@/components/public-tenant/publicT
 
 import { resolveIntlLocale } from "@/i18n/formatting";
 
-import { formatMajorCurrencyAmount } from "@/utils/money";
-import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
+import { formatMajorCurrencyAmount, minorUnitsToMajor } from "@/utils/money";
+import {
+  DEFAULT_STUDIO_COMMERCE_CURRENCY,
+  isStudioCommerceCurrency,
+} from "@/config/currencies";
 
 export const ORDER_TABS = [
   "all",
@@ -11,6 +14,7 @@ export const ORDER_TABS = [
   "processing",
   "completed",
   "failed",
+  "cancelled",
 ];
 
 export const PRODUCT_TYPE_OPTIONS = [
@@ -97,26 +101,95 @@ export const getCustomerInitials = (order) => {
 };
 
 export const getCartItems = (order) =>
-  Array.isArray(order?.cart?.cartItems) ? order.cart.cartItems : [];
+  Array.isArray(order?.lineItems) && order.lineItems.length
+    ? order.lineItems.map((item) => ({
+        ...item,
+        product: { name: item.description },
+      }))
+    : Array.isArray(order?.cart?.cartItems)
+      ? order.cart.cartItems
+      : [];
 
 export const getProductName = (item, locale = "en") => {
   const product = item?.product || item;
   return getLocalizedPublicTenantText(product?.name, locale, "—");
 };
 
-export const getOrderTotal = (order) => {
-  const value =
-    order?.cart?.totalPrice ?? order?.totalPrice ?? order?.total ?? 0;
-  const number = Number(value);
+const isMinorAmount = (value) => Number.isSafeInteger(value) && value >= 0;
 
-  return Number.isFinite(number) ? number : 0;
+// Financial values are verified by the server against immutable order and
+// refund records. A cart price is not a safe fallback for a missing snapshot.
+export const getSalesAmounts = (order) => {
+  const amounts = order?.salesAmounts;
+  if (
+    amounts?.status !== "available" ||
+    !isStudioCommerceCurrency(amounts.currency) ||
+    !isMinorAmount(amounts.grossAmountMinor) ||
+    !isMinorAmount(amounts.refundedAmountMinor) ||
+    !isMinorAmount(amounts.netAmountMinor) ||
+    amounts.grossAmountMinor - amounts.refundedAmountMinor !==
+      amounts.netAmountMinor
+  )
+    return null;
+  return { ...amounts, currency: amounts.currency.trim().toUpperCase() };
+};
+
+export const getOrderTotal = (order) => {
+  const amounts = getSalesAmounts(order);
+  return amounts
+    ? minorUnitsToMajor(amounts.grossAmountMinor, amounts.currency)
+    : null;
+};
+
+export const getOrderLineAmount = (order, item) => {
+  const amounts = getSalesAmounts(order);
+  const lines = order?.lineItems;
+  if (
+    !amounts ||
+    !Array.isArray(lines) ||
+    !lines.length ||
+    lines.some((line) => !isMinorAmount(line.grossAmountMinor)) ||
+    lines.reduce((total, line) => total + line.grossAmountMinor, 0) !==
+      amounts.grossAmountMinor ||
+    !isMinorAmount(item?.grossAmountMinor)
+  )
+    return null;
+  return minorUnitsToMajor(item.grossAmountMinor, amounts.currency);
+};
+
+export const summarizePaidOrderValue = (
+  orders,
+  { isTruncated = false } = {},
+) => {
+  if (isTruncated) return { amount: null, currency: null, reason: "truncated" };
+  const paid = orders.filter((order) => order?.isPaid === true);
+  const amounts = paid.map(getSalesAmounts);
+  if (amounts.some((value) => !value)) {
+    return { amount: null, currency: null, reason: "incomplete" };
+  }
+  const currencies = new Set(amounts.map((value) => value.currency));
+  if (currencies.size > 1)
+    return { amount: null, currency: null, reason: "mixedCurrencies" };
+  const totalMinor = amounts.reduce(
+    (total, value) => total + value.netAmountMinor,
+    0,
+  );
+  if (!Number.isSafeInteger(totalMinor))
+    return { amount: null, currency: null, reason: "incomplete" };
+  const currency = amounts[0]?.currency || null;
+  return {
+    amount: currency ? minorUnitsToMajor(totalMinor, currency) : 0,
+    currency,
+    reason: null,
+  };
 };
 
 export const getOrderCurrency = (order) => {
   const firstProduct = getCartItems(order)[0]?.product;
 
   return String(
-    order?.currency ||
+    order?.salesAmounts?.currency ||
+      order?.currency ||
       order?.cart?.currency ||
       firstProduct?.currency ||
       DEFAULT_STUDIO_COMMERCE_CURRENCY,
@@ -127,7 +200,10 @@ export const formatMoney = (
   value,
   currency = DEFAULT_STUDIO_COMMERCE_CURRENCY,
   locale = "en",
-) => formatMajorCurrencyAmount(value, currency, locale);
+) =>
+  value === null || value === undefined
+    ? "—"
+    : formatMajorCurrencyAmount(value, currency, locale);
 
 const isSameCalendarDay = (left, right) =>
   left.getFullYear() === right.getFullYear() &&
@@ -195,8 +271,10 @@ export const getOrderStatusKey = (order) => {
 };
 
 export const getPaymentStatusKey = (order) => {
+  // Processing an order can fail after its payment has succeeded.
+  if (order?.isPaid) return "paid";
   if (getOrderStatusKey(order) === "failed") return "failed";
-  return order?.isPaid ? "paid" : "unpaid";
+  return "unpaid";
 };
 
 export const getPaymentMethodKey = (order) => {
@@ -250,18 +328,23 @@ export const isPendingSubgroup = (statusKey) =>
 
 const csvCell = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
 
-export const downloadOrdersCsv = ({ orders, locale, t }) => {
+export const buildOrdersCsv = ({ orders, locale, t }) => {
   const header = [
     t("columns.order"),
     t("columns.customer"),
     t("columns.products"),
     t("columns.total"),
+    t("money.refunded"),
+    t("money.net"),
+    t("csv.currency"),
+    t("csv.amountStatus"),
     t("columns.payment"),
     t("columns.status"),
-    t("export.createdAt"),
+    t("csv.createdAt"),
   ];
 
   const rows = orders.map((order) => {
+    const amounts = getSalesAmounts(order);
     const products = getCartItems(order)
       .map((item) => {
         const quantity = Number(item?.quantity || 1);
@@ -274,16 +357,28 @@ export const downloadOrdersCsv = ({ orders, locale, t }) => {
       getOrderNumber(order),
       `${getCustomerName(order)} <${getCustomerEmail(order)}>`,
       products,
-      getOrderTotal(order),
+      amounts
+        ? minorUnitsToMajor(amounts.grossAmountMinor, amounts.currency)
+        : "",
+      amounts
+        ? minorUnitsToMajor(amounts.refundedAmountMinor, amounts.currency)
+        : "",
+      amounts
+        ? minorUnitsToMajor(amounts.netAmountMinor, amounts.currency)
+        : "",
+      amounts?.currency || "",
+      t(amounts ? "money.verified" : "money.unavailable"),
       t(`payments.${getPaymentStatusKey(order)}`),
       t(`statuses.${getOrderStatusKey(order)}`),
       formatFullDate(order?.createdAt, locale),
     ];
   });
 
-  const csv = [header, ...rows]
-    .map((row) => row.map(csvCell).join(","))
-    .join("\n");
+  return [header, ...rows].map((row) => row.map(csvCell).join(",")).join("\n");
+};
+
+export const downloadOrdersCsv = ({ orders, locale, t }) => {
+  const csv = buildOrdersCsv({ orders, locale, t });
   const blob = new Blob([`\uFEFF${csv}`], {
     type: "text/csv;charset=utf-8",
   });

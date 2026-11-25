@@ -36,6 +36,7 @@ const mocks = vi.hoisted(() => ({
   quoteRequest: vi.fn(),
   auth: null,
   checkoutKind: undefined,
+  bookingCheckoutAttempt: 0,
   piecePanel: vi.fn(),
   replace: vi.fn(),
 }));
@@ -49,6 +50,7 @@ vi.mock("react-redux", () => ({
         cart: mocks.cart,
         isOpen: true,
         checkoutKind: mocks.checkoutKind,
+        bookingCheckoutAttempt: mocks.bookingCheckoutAttempt,
       },
     }),
 }));
@@ -241,6 +243,7 @@ beforeEach(() => {
   mocks.cart = initialCart;
   mocks.auth = null;
   mocks.checkoutKind = undefined;
+  mocks.bookingCheckoutAttempt = 0;
   mocks.quoteData = undefined;
   mocks.quoteFetching = false;
   mocks.quoteError = false;
@@ -929,6 +932,41 @@ describe("customer cart modal interactions", () => {
     await waitFor(() => expect(window.alert).toHaveBeenCalledTimes(4));
     expect(mocks.checkout.mock.calls[2][0].idempotencyKey).not.toBe(creditsKey);
   });
+
+  it("starts a new request for the unchanged cart after its old payment was cancelled", async () => {
+    const { rerender } = render(<CartModal />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "Continue to payment" }),
+    );
+    await waitFor(() => expect(window.alert).toHaveBeenCalledOnce());
+    const original = mocks.checkout.mock.calls[0][0];
+    mocks.bookingCheckoutAttempt += 1;
+    rerender(<CartModal />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "Continue to payment" }),
+    );
+    await waitFor(() => expect(window.alert).toHaveBeenCalledTimes(2));
+    expect(mocks.checkout.mock.calls[1][0].idempotencyKey).not.toBe(
+      original.idempotencyKey,
+    );
+    expect(mocks.checkout.mock.calls[1][0].cart).toEqual(original.cart);
+  });
+
+  it("preserves an uncertain credit attempt when a different card payment is cancelled", async () => {
+    const { rerender } = render(<CartModal />);
+    fireEvent.click(screen.getByRole("radio", { name: "Studio credits" }));
+    fireEvent.click(screen.getByRole("button", { name: "Pay with credits" }));
+    await waitFor(() => expect(window.alert).toHaveBeenCalledOnce());
+    const original = mocks.creditCheckout.mock.calls[0][0];
+    mocks.bookingCheckoutAttempt += 1;
+    rerender(<CartModal />);
+    fireEvent.click(screen.getByRole("button", { name: "Pay with credits" }));
+    await waitFor(() => expect(window.alert).toHaveBeenCalledTimes(2));
+    expect(mocks.creditCheckout.mock.calls[1][0].idempotencyKey).toBe(
+      original.idempotencyKey,
+    );
+  });
+
   it("starts a fresh key after a completed credit purchase", async () => {
     mocks.creditCheckout.mockImplementation(() => ({
       unwrap: () =>

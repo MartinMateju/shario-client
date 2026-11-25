@@ -18,6 +18,31 @@ export const tenantPaymentsApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
+    getPaymentRefundReviews: builder.query({
+      query: (cursor) => ({
+        url: `${TENANT_PAYMENT_CONNECT_URL}/refund-reviews`,
+        ...(cursor ? { params: { cursor } } : {}),
+      }),
+      providesTags: [{ type: "TenantPaymentConnect", id: "REFUND_REVIEWS" }],
+    }),
+
+    resolvePaymentRefundReview: builder.mutation({
+      query: ({ id, snapshotVersion, note, evidence }) => ({
+        url: `${TENANT_PAYMENT_CONNECT_URL}/refund-reviews/${encodeURIComponent(id)}/resolve`,
+        method: "POST",
+        body: { snapshotVersion, note, evidence },
+      }),
+      invalidatesTags: (_result, error) =>
+        error
+          ? []
+          : [
+              { type: "TenantPaymentConnect", id: "REFUND_REVIEWS" },
+              "Order",
+              "StudioOrders",
+              "MembershipInvoice",
+            ],
+    }),
+
     startTenantPaymentConnectOnboarding: builder.mutation({
       query: (request = {}) => ({
         url: `${TENANT_PAYMENT_CONNECT_URL}/onboarding`,
@@ -39,6 +64,8 @@ export const tenantPaymentsApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetTenantPaymentConnectQuery,
+  useGetPaymentRefundReviewsQuery,
+  useResolvePaymentRefundReviewMutation,
   useStartTenantPaymentConnectOnboardingMutation,
   useOpenTenantPaymentConnectDashboardMutation,
 } = tenantPaymentsApiSlice;

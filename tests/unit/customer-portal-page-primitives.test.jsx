@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   CustomerPortalEmptyState,
@@ -10,6 +10,12 @@ import {
   formatCustomerPortalCurrencyAmount,
 } from "@/components/customer-shell/CustomerPortalPrimitives";
 import { getPublicTenantTheme } from "@/components/public-tenant/publicTenant.config";
+
+const context = vi.hoisted(() => ({ tenant: null }));
+vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
+  useOptionalPublicTenant: () => ({ tenant: context.tenant }),
+}));
+
 import { mergePortalAppearance } from "@/components/public-tenant/publicTenantPortalAppearance";
 
 function TestIcon(props) {
@@ -59,6 +65,108 @@ const emptyState = (
 );
 
 describe("customer portal page primitives", () => {
+  beforeEach(() => {
+    context.tenant = null;
+  });
+
+  it("lifts only full page headers above the padded content", () => {
+    const { container, rerender } = render(
+      <CustomerPortalPage>
+        <CustomerPortalPageHeader pageKey="bookings" title="Bookings" />
+        <p>Booking content</p>
+      </CustomerPortalPage>,
+    );
+    const main = screen.getByRole("main");
+    expect(
+      container.querySelector("[data-customer-portal-hero]").parentElement,
+    ).toBe(main);
+    expect(screen.getByText("Booking content").parentElement).toHaveAttribute(
+      "data-customer-portal-page-content",
+    );
+    rerender(
+      <CustomerPortalPage>
+        <CustomerPortalPageHeader
+          headingAs="h2"
+          pageKey="bookings"
+          title="Bookings"
+        />
+        <p>Booking content</p>
+      </CustomerPortalPage>,
+    );
+    expect(
+      container.querySelector("[data-customer-portal-page-header]")
+        .parentElement,
+    ).toHaveAttribute("data-customer-portal-page-content");
+    expect(container.querySelector("[data-customer-portal-hero]")).toBeNull();
+  });
+
+  it("uses each page's own image and collapses removed or broken images", () => {
+    context.tenant = {
+      publicSite: {
+        customerPortal: {
+          pageImages: {
+            memberships: "https://media.example.com/memberships.webp",
+            vouchers: "https://media.example.com/vouchers.webp",
+          },
+        },
+      },
+    };
+    const { container, rerender } = render(
+      <CustomerPortalPageHeader pageKey="memberships" title="Memberships" />,
+    );
+    const image = container.querySelector("img");
+    expect(image).toHaveAttribute(
+      "src",
+      "https://media.example.com/memberships.webp",
+    );
+    expect(container.querySelector("header")).toHaveAttribute(
+      "data-customer-portal-hero-layout",
+      "split",
+    );
+    fireEvent.error(image);
+    expect(container.querySelector("img")).toBeNull();
+    expect(container.querySelector("header")).toHaveAttribute(
+      "data-customer-portal-hero-layout",
+      "text",
+    );
+    rerender(<CustomerPortalPageHeader pageKey="vouchers" title="Vouchers" />);
+    expect(container.querySelector("img")).toHaveAttribute(
+      "src",
+      "https://media.example.com/vouchers.webp",
+    );
+    context.tenant.publicSite.customerPortal.pageImages.vouchers = "";
+    rerender(<CustomerPortalPageHeader pageKey="vouchers" title="Vouchers" />);
+    expect(
+      container.querySelector("[data-customer-portal-hero-media]"),
+    ).toBeNull();
+  });
+
+  it("does not assign images to booking-calendar or embedded headers", () => {
+    context.tenant = {
+      publicSite: {
+        branding: { coverImageUrl: "https://media.example.com/cover.webp" },
+        customerPortal: {
+          pageImages: {
+            calendar: "https://media.example.com/calendar.webp",
+            courses: "https://media.example.com/course.webp",
+          },
+        },
+      },
+    };
+    const { container, rerender } = render(
+      <CustomerPortalPageHeader pageKey="calendar" title="Book a visit" />,
+    );
+    expect(container.querySelector("img")).toBeNull();
+    rerender(
+      <CustomerPortalPageHeader
+        pageKey="courses"
+        title="Courses"
+        headingAs="h2"
+      />,
+    );
+    expect(container.querySelector("img")).toBeNull();
+  });
+
   it("provides one premium, semantic page frame with stable QA hooks", () => {
     render(
       <CustomerPortalPage>

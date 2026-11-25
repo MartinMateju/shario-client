@@ -12,8 +12,16 @@ import {
 } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
+import { useSelector } from "react-redux";
 import { Link } from "@/i18n/navigation";
 import { normalizeEmailLogResponse } from "@/components/communications/email/emailLogResponse";
+import {
+  EmailLogActions,
+  EmailLogResendDialog,
+  emailLogReason,
+} from "@/components/communications/email/EmailLogResendControls";
+import { PERMISSIONS, hasAnyPermission } from "@/config/permissions";
+import { selectCurrentWorkspaceAccess } from "@/lib/features/auth/authSlice";
 import {
   WorkspaceEmptyState,
   WorkspaceMobileCard,
@@ -32,7 +40,11 @@ import {
   workspaceInputClass,
   workspaceLabelClass,
 } from "@/components/dashboard/WorkspaceFormSurface";
-import { useGetCommunicationEmailLogsQuery } from "@/lib/features/communicationEmailLogs/communicationEmailLogsApiSlice";
+import {
+  useGetCommunicationEmailLogsQuery,
+  useRetryCommunicationEmailLogMutation,
+} from "@/lib/features/communicationEmailLogs/communicationEmailLogsApiSlice";
+
 const STATUS_CONFIG = {
   pending: {
     tone: "warning",
@@ -129,6 +141,18 @@ function EmailHistory() {
   const [page, setPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const workspaceAccess = useSelector(selectCurrentWorkspaceAccess);
+  const canSend = hasAnyPermission(workspaceAccess, [
+    PERMISSIONS.COMMUNICATIONS_SEND,
+    PERMISSIONS.COMMUNICATIONS_MANAGE,
+  ]);
+  const [retryEmailLog] = useRetryCommunicationEmailLogMutation();
+  const retryLock = useRef(false);
+  const [selectedLog, setSelectedLog] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [retryError, setRetryError] = useState("");
+  const [retryBlocked, setRetryBlocked] = useState(false);
+  const [feedback, setFeedback] = useState("");
   const {
     currentData: data,
     data: previousData,
@@ -177,8 +201,64 @@ function EmailHistory() {
     disabled: isFetching,
     t,
   };
+
+  const openResend = (log) => {
+    if (!canSend || log.canRetry !== true || retryLock.current) return;
+    // Keep the reviewed recipient, subject and retry version stable while polling.
+    setSelectedLog({ ...log });
+    setRetryError("");
+    setRetryBlocked(false);
+    setFeedback("");
+  };
+  const confirmResend = async () => {
+    if (!selectedLog || !canSend || retryBlocked || retryLock.current) return;
+    retryLock.current = true;
+    setSubmitting(true);
+    setRetryError("");
+    try {
+      const result = await retryEmailLog({
+        id: selectedLog._id ?? selectedLog.id,
+        expectedManualRetryCount: selectedLog.manualRetryCount ?? 0,
+      }).unwrap();
+      setFeedback(t(result.queued ? "resend.queued" : "resend.scheduled"));
+      setSelectedLog(null);
+    } catch (error) {
+      const code = error?.data?.code;
+      if (code === "COMMUNICATION_EMAIL_RETRY_STALE") {
+        setRetryError(t("resend.stale"));
+        setRetryBlocked(true);
+      } else if (code === "COMMUNICATION_EMAIL_RETRY_BLOCKED") {
+        const reason = emailLogReason(error?.data?.details?.reason, t);
+        setRetryError([t("resend.blocked"), reason].filter(Boolean).join(" "));
+        setRetryBlocked(true);
+      } else {
+        setRetryError(t("resend.error"));
+      }
+    } finally {
+      retryLock.current = false;
+      setSubmitting(false);
+    }
+  };
+  const actionsFor = (log) =>
+    canSend && log.canRetry === true ? (
+      <EmailLogActions
+        log={log}
+        disabled={submitting}
+        onResend={openResend}
+        t={t}
+      />
+    ) : null;
+
   return (
     <section ref={tableRef} className="scroll-mt-24" aria-busy={isFetching}>
+      {feedback ? (
+        <p
+          role="status"
+          className="mb-3 rounded-xl border border-success/20 bg-success-soft px-4 py-3 text-sm text-success"
+        >
+          {feedback}
+        </p>
+      ) : null}
       <WorkspaceTableFrame className="overflow-hidden">
         <WorkspaceToolbar contained className="bg-sand-50/80">
           <div>
@@ -287,6 +367,7 @@ function EmailHistory() {
                   log={log}
                   t={t}
                   locale={locale}
+                  actions={actionsFor(log)}
                 />
               ))}
             </div>
@@ -300,12 +381,13 @@ function EmailHistory() {
                 className="min-w-[900px] table-fixed [&_thead_th]:px-3 [&_thead_th]:py-2.5 [&_tbody_tr>*]:px-3 [&_tbody_tr>*]:py-2 [&_tbody_tr>*]:leading-5"
               >
                 <colgroup>
-                  <col className="w-[23%]" />
-                  <col className="w-[25%]" />
-                  <col className="w-[16%]" />
-                  <col className="w-[14%]" />
-                  <col className="w-[11%]" />
-                  <col className="w-[11%]" />
+                  <col className="w-[21%]" />
+                  <col />
+                  <col className="w-[15%]" />
+                  <col className="w-[15%]" />
+                  <col className="w-[10%]" />
+                  <col className="w-[10%]" />
+                  <col className="w-[68px]" />
                 </colgroup>
                 <WorkspaceTableHeader>
                   <tr>
@@ -327,6 +409,9 @@ function EmailHistory() {
                     <WorkspaceTableHeadCell>
                       {t("columns.scheduledFor")}
                     </WorkspaceTableHeadCell>
+                    <WorkspaceTableHeadCell>
+                      <span className="sr-only">{t("resend.actionMenu")}</span>
+                    </WorkspaceTableHeadCell>
                   </tr>
                 </WorkspaceTableHeader>
                 <WorkspaceTableBody>
@@ -336,6 +421,7 @@ function EmailHistory() {
                       log={log}
                       t={t}
                       locale={locale}
+                      actions={actionsFor(log)}
                     />
                   ))}
                 </WorkspaceTableBody>
@@ -349,6 +435,17 @@ function EmailHistory() {
           className="border-t border-line"
         />
       </WorkspaceTableFrame>
+      {selectedLog ? (
+        <EmailLogResendDialog
+          log={selectedLog}
+          submitting={submitting}
+          error={retryError}
+          blocked={retryBlocked || !canSend}
+          onClose={() => setSelectedLog(null)}
+          onConfirm={confirmResend}
+          t={t}
+        />
+      ) : null}
     </section>
   );
 }
@@ -410,7 +507,8 @@ function StatusBadge({ status, t }) {
 }
 const emailTypeLabel = (type, t) =>
   type && t.has(`types.${type}`) ? t(`types.${type}`) : type || "—";
-function EmailLogRow({ log, t, locale }) {
+
+function EmailLogRow({ log, t, locale, actions }) {
   return (
     <WorkspaceTableRow>
       <WorkspaceTableCell
@@ -444,6 +542,7 @@ function EmailLogRow({ log, t, locale }) {
       </WorkspaceTableCell>
       <WorkspaceTableCell>
         <StatusBadge status={log.status} t={t} />
+        <EmailLogReason log={log} t={t} />
       </WorkspaceTableCell>
       <WorkspaceTableCell>
         <EmailLogDate value={log.sentAt} locale={locale} />
@@ -451,6 +550,7 @@ function EmailLogRow({ log, t, locale }) {
       <WorkspaceTableCell>
         <EmailLogDate value={log.scheduledFor} locale={locale} />
       </WorkspaceTableCell>
+      <WorkspaceTableCell>{actions}</WorkspaceTableCell>
     </WorkspaceTableRow>
   );
 }
@@ -475,13 +575,16 @@ function EmailLogDate({ value, locale }) {
     </time>
   );
 }
-function EmailLogCard({ log, t, locale }) {
+
+function EmailLogCard({ log, t, locale, actions }) {
   return (
     <WorkspaceMobileCard
       title={log.recipientEmail || "—"}
       subtitle={log.subject || "—"}
       status={<StatusBadge status={log.status} t={t} />}
+      actions={actions}
     >
+      <EmailLogReason log={log} t={t} />
       <dl className="grid gap-2">
         <InfoLine
           label={t("columns.type")}
@@ -499,6 +602,27 @@ function EmailLogCard({ log, t, locale }) {
     </WorkspaceMobileCard>
   );
 }
+
+function EmailLogReason({ log, t }) {
+  const preferCurrentBlock = ["failed", "canceled", "suppressed"].includes(
+    log.status,
+  );
+  const specificSuppression =
+    log.retryBlockedReason === "recipient_suppressed" &&
+    ["hard_bounce", "spam_complaint"].includes(log.reasonCode);
+  const reasonCode =
+    preferCurrentBlock && !specificSuppression
+      ? log.retryBlockedReason || log.reasonCode
+      : log.reasonCode;
+  const reason = emailLogReason(reasonCode, t);
+  return reason ? (
+    <p className="my-1 text-[11px] leading-5 text-ink-muted [overflow-wrap:anywhere]">
+      <span className="sr-only">{t("resend.reasonLabel")}: </span>
+      {reason}
+    </p>
+  ) : null;
+}
+
 function InfoLine({ label, value }) {
   return (
     <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-3">

@@ -41,7 +41,7 @@ export function OverviewError({ onRetry }) {
       <h2 className="mt-4 text-[24px] font-medium tracking-[-0.035em] text-[var(--studio-ink)]">
         {t("error.title")}
       </h2>
-      <p className="mt-2 max-w-md text-[12px] leading-5 text-[var(--studio-muted)]">
+      <p className="mt-2 max-w-md text-[13px] leading-5 text-[var(--studio-muted)]">
         {t("error.description")}
       </p>
       <button

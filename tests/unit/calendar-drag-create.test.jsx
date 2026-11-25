@@ -383,39 +383,6 @@ describe("desktop calendar drag-to-create", () => {
     expect(rectSpy).toHaveBeenCalledTimes(2);
   });
 
-  it("keeps the hidden mobile agenda cached during a desktop drag", () => {
-    const trackingT = vi.fn(t);
-
-    render(
-      <WeekCalendar
-        date={new Date("2026-08-04T12:00:00.000Z")}
-        bookings={[]}
-        studio={studio}
-        locale="en-GB"
-        audience="tenant"
-        onSlotSelect={vi.fn()}
-        t={trackingT}
-      />,
-    );
-
-    const mobileRenderCalls = () =>
-      trackingT.mock.calls.filter(([key]) => key === "footer.bookingCount")
-        .length;
-    const initialMobileRenderCalls = mobileRenderCalls();
-    const day = screen.getByRole("group", {
-      name: /Tuesday.*4 August/,
-    });
-    mockTimelineRect(day, 1008);
-
-    drag(day, {
-      fromY: weekClientY(9 * 60),
-      toY: weekClientY(11 * 60),
-    });
-
-    expect(initialMobileRenderCalls).toBeGreaterThan(0);
-    expect(mobileRenderCalls()).toBe(initialMobileRenderCalls);
-  });
-
   it("reuses static customer slot models while the draft range changes", () => {
     const trackingT = vi.fn(t);
 

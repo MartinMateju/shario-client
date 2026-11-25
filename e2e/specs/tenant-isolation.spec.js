@@ -53,11 +53,14 @@ test("returns an authenticated user to their own tenant", async ({ page }) => {
       exact: true,
     }),
   ).toBeVisible();
+  const dashboard = page.locator("[data-owner-manager-dashboard]");
+  await expect(dashboard).toBeVisible();
   await expect(
-    page.getByRole("heading", {
-      level: 2,
-      name: "Studio operations",
-      exact: true,
-    }),
+    dashboard.getByRole("button", { name: "Generate AI report", exact: true }),
+  ).toBeVisible();
+  // This section is rendered only after the scoped management API succeeds;
+  // the report button alone also exists while metrics are unavailable.
+  await expect(
+    dashboard.getByRole("heading", { name: "This month so far", exact: true }),
   ).toBeVisible();
 });

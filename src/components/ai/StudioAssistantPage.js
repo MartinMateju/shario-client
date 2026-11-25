@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  ChatBubbleLeftRightIcon,
+  ChartBarIcon,
   ClipboardDocumentCheckIcon,
   LightBulbIcon,
   SparklesIcon,
@@ -15,7 +15,7 @@ import { useGetAiActionsQuery } from "@/lib/features/ai/aiApiSlice";
 
 import AiActionActivity from "./AiActionActivity";
 import BusinessAdvisorPanel from "./BusinessAdvisorPanel";
-import StudioAssistantConversation from "./StudioAssistantConversation";
+import StudioAssistantQuestions from "./StudioAssistantQuestions";
 import { cx } from "./ai.utils";
 import { getStudioAssistantIntent } from "./studio-assistant-intents";
 
@@ -109,7 +109,7 @@ export default function StudioAssistantPage({ showPageHeader = true }) {
         {[
           {
             id: "assistant",
-            icon: ChatBubbleLeftRightIcon,
+            icon: ChartBarIcon,
             label: t("commandCenter.tabs.assistant"),
           },
           {
@@ -169,9 +169,8 @@ export default function StudioAssistantPage({ showPageHeader = true }) {
               <span className="h-6 w-6 motion-safe:animate-spin rounded-full border-2 border-cobalt-100 border-t-cobalt-500" />
             </div>
           ) : assistantAccess.available ? (
-            <StudioAssistantConversation
+            <StudioAssistantQuestions
               key={`${intentKey || "default"}:${sourceId || ""}:${recommendationId}`}
-              showHistory
               starterPrompt={intent ? t(intent.promptKey) : ""}
               assistantContext={
                 intent?.context ?? {

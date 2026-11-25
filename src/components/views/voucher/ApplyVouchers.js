@@ -194,6 +194,7 @@ export default function VoucherForm({ embedded = false }) {
       <Container>
         {!embedded && (
           <CustomerPortalPageHeader
+            pageKey="vouchers"
             eyebrow={legacyText("VoucherForm_Studio_benefits_735a6")}
             title={legacyText("VoucherForm_Gift_vouchers_e8ee2")}
             description={legacyText(

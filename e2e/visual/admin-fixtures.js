@@ -125,7 +125,7 @@ const visualPublicSite = {
     eyebrow: { en: "Your creative place", cs: "Váš prostor pro tvoření" },
     headline: { en: "Welcome back.", cs: "Vítejte zpět." },
     supportingText: {
-      en: "Your bookings and pieces in one calm place.",
+      en: "Your bookings and memberships in one calm place.",
       cs: "Rezervace a členství na jednom klidném místě.",
     },
     helpText: { en: "We are here if you need help.", cs: "Rádi vám pomůžeme." },
@@ -139,7 +139,7 @@ const visualPublicSite = {
       cs: "Vše, co tvoříte, spolu.",
     },
     supportingText: {
-      en: "Create an account for bookings, classes and pieces.",
+      en: "Create an account for bookings, classes and memberships.",
       cs: "Vytvořte si účet pro rezervace, kurzy a členství.",
     },
     helpText: { en: "It only takes a minute.", cs: "Zabere to jen chvilku." },
@@ -1207,6 +1207,253 @@ const buildDashboardOverview = (url, overviewScenario) => {
   return overview;
 };
 
+const visualManagementKpi = (value, previous) => ({
+  value,
+  previous,
+  changePercent:
+    value == null || previous == null || previous === 0
+      ? null
+      : Math.round(((value - previous) / previous) * 100),
+});
+
+const buildDashboardManagement = (url) => {
+  const date = url.searchParams.get("date") || "2026-07-30";
+  const metric = visualManagementKpi;
+  const unavailable = metric(null, null);
+  return {
+    metadata: {
+      generatedAt: "2026-07-30T08:25:00.000Z",
+      snapshotAsOf: "2026-07-30T08:25:00.000Z",
+      timezone: "Europe/Prague",
+      currency: "CZK",
+      locationId: url.searchParams.get("locationId") || null,
+      locationIds: [VISUAL_IDS.location],
+      period: { from: "2026-07-01", to: date },
+      comparisonPeriod: { from: "2026-06-01", to: "2026-06-30" },
+      arrivalPeriod: { from: "2026-07-01", to: date },
+      activeCustomerPeriod: { from: "2026-07-01", to: date },
+      activeCustomersBasis: "booking_created",
+      visitsBasis: "elapsed_scheduled_bookings",
+      newCustomersBasis: "first_recorded_scheduled_booking",
+      revenueBasis: "confirmed_delivery",
+    },
+    summary: {
+      deliveredRevenueMinor: unavailable,
+      visits: metric(168, 140),
+      uniqueCustomers: metric(72, 65),
+      newCustomers: metric(18, 15),
+      activeMemberships: metric(24, null),
+    },
+    customers: {
+      available: true,
+      scope: "workspace",
+      activeScope: "selected_locations",
+      total: metric(1601, 1572),
+      new: metric(29, 21),
+      activeLast30Days: metric(217, 191),
+    },
+    memberships: {
+      available: true,
+      scope: "selected_locations",
+      new: metric(7, 5),
+      newSubscribers: metric(4, 3),
+      cancelled: metric(2, 1),
+    },
+    revenueBreakdown: {
+      available: true,
+      complete: false,
+      confirmedServicesMinor: metric(1480000, 1200000),
+      reason: "missing_fulfillment_evidence",
+    },
+    attendance: {
+      available: true,
+      source: "scheduled",
+      sampleSize: 168,
+      hours: Array.from({ length: 24 }, (_, hour) => ({
+        hour,
+        count:
+          hour === 15
+            ? 64
+            : hour === 17
+              ? 52
+              : hour === 10
+                ? 32
+                : hour === 12
+                  ? 20
+                  : 0,
+      })),
+      openStudio: metric(106, 90),
+      courses: metric(62, 50),
+    },
+    topClients: {
+      available: true,
+      revenueAvailable: true,
+      revenueComplete: false,
+      spendingAvailable: true,
+      spendingScope: "workspace",
+      spendingBasis: "recorded_net_payments",
+      byVisits: [
+        {
+          id: "client-anna",
+          name: "Anna Nováková",
+          memberNumber: 127,
+          spentMonthMinor: 240000,
+          spentTotalMinor: 1845000,
+          visits: 12,
+          revenueMinor: 240000,
+        },
+        {
+          id: "client-petr",
+          name: "Petr Svoboda",
+          memberNumber: 28,
+          spentMonthMinor: 320000,
+          spentTotalMinor: 2910000,
+          visits: 8,
+          revenueMinor: 320000,
+        },
+      ],
+      byRevenue: [
+        {
+          id: "client-petr",
+          name: "Petr Svoboda",
+          memberNumber: 28,
+          spentMonthMinor: 320000,
+          spentTotalMinor: 2910000,
+          visits: 8,
+          revenueMinor: 320000,
+        },
+        {
+          id: "client-anna",
+          name: "Anna Nováková",
+          memberNumber: 127,
+          spentMonthMinor: 240000,
+          spentTotalMinor: 1845000,
+          visits: 12,
+          revenueMinor: 240000,
+        },
+      ],
+    },
+    topProducts: {
+      available: true,
+      complete: false,
+      basis: "confirmed_completed_services",
+      items: [
+        {
+          id: "product-wheel",
+          name: "Wheel throwing basics",
+          quantity: 24,
+          revenueMinor: 960000,
+        },
+        {
+          id: "product-open",
+          name: "Open studio",
+          quantity: 18,
+          revenueMinor: 360000,
+        },
+        {
+          id: "product-workshop",
+          name: "Weekend workshop",
+          quantity: 8,
+          revenueMinor: 160000,
+        },
+      ],
+    },
+    issues: [
+      {
+        key: "failed_emails",
+        count: 2,
+        href: "/app/communications?section=history",
+      },
+    ],
+    coverage: {
+      available: ["bookings", "sales"],
+      unavailable: [
+        { source: "deliveredRevenue", reason: "missing_fulfillment_evidence" },
+      ],
+      limitations: [],
+      complete: false,
+    },
+  };
+};
+
+const visualStudioReport = () => ({
+  id: "64e000000000000000000099",
+  generatedAt: "2026-07-30T08:25:00.000Z",
+  locale: "en",
+  sourceLocale: "en",
+  locationLabel: "Studio Olivie",
+  snapshot: buildDashboardManagement(new URL(VISUAL_TENANT_ORIGIN)),
+  narrative: {
+    mode: "deterministic",
+    headline: "Your studio report",
+    summary:
+      "168 elapsed booked visits are recorded. Complete delivered revenue is unavailable.",
+    highlights: ["72 customers booked during the period."],
+    attention: ["2 failed emails need review."],
+    recommendations: [],
+    dataLimitations: [
+      "Attendance is based on scheduled bookings; confirmed service revenue is partial.",
+    ],
+  },
+  sections: [
+    {
+      key: "revenue",
+      title: "Revenue from delivered services and products",
+      columns: ["Metric", "July", "June"],
+      rows: [
+        {
+          label: "Delivered revenue",
+          value: "Unavailable",
+          previous: "Unavailable",
+        },
+        {
+          label: "Documented service revenue (partial)",
+          value: "CZK 14,800.00",
+          previous: "CZK 12,000.00",
+        },
+      ],
+      notes: ["Delivery records do not cover all services and products."],
+    },
+    {
+      key: "customers",
+      title: "Customers",
+      columns: ["Metric", "Current", "Previous"],
+      rows: [
+        {
+          label: "Registered customers — all studios",
+          value: "1,601",
+          previous: "1,572",
+        },
+        {
+          label: "New registered customers this month",
+          value: "29",
+          previous: "21",
+        },
+        {
+          label: "Active customers — last 30 days",
+          value: "217",
+          previous: "191",
+        },
+      ],
+      notes: [
+        "Active customers are unique people who created a booking during 1–30 July in the selected studios. Visit dates may be later. New and active customers may overlap.",
+      ],
+    },
+    {
+      key: "subscribers",
+      title: "Subscribers",
+      columns: ["Metric", "Current", "Previous"],
+      rows: [
+        { label: "Active subscribers", value: "24", previous: "Unavailable" },
+        { label: "New subscribers this month", value: "4", previous: "3" },
+      ],
+      notes: [
+        "Each subscriber is counted once. Renewals are not new subscribers.",
+      ],
+    },
+  ],
+});
+
 const visualWorkspaceNotifications = [
   {
     id: "65c000000000000000000091",
@@ -1606,6 +1853,13 @@ export const responseForRequest = ({
     };
   }
 
+  if (method === "GET" && pathname === "/tenants/current/subscription") {
+    return {
+      tenant: { id: tenant.id, plan: tenant.plan },
+      subscription: { status: "active" },
+    };
+  }
+
   if (method === "GET" && pathname === "/tenants/current/settings") {
     return {
       settings: {
@@ -1644,6 +1898,14 @@ export const responseForRequest = ({
 
   if (method === "GET" && pathname === "/dashboard/overview") {
     return buildDashboardOverview(url, overviewScenario);
+  }
+
+  if (method === "GET" && pathname === "/dashboard/management") {
+    return { data: buildDashboardManagement(url) };
+  }
+
+  if (method === "POST" && pathname === "/dashboard/reports") {
+    return { data: visualStudioReport() };
   }
 
   if (method === "GET" && pathname === "/reports/overview") {
@@ -1734,6 +1996,14 @@ export const responseForRequest = ({
     };
   }
 
+  if (method === "GET" && pathname === "/users/summary") {
+    return {
+      activeMemberships: 23,
+      membershipScope: "workspace",
+      asOf: VISUAL_FIXED_TIME,
+    };
+  }
+
   if (method === "GET" && pathname === "/users") {
     return {
       users: visualCustomers,
@@ -1745,6 +2015,63 @@ export const responseForRequest = ({
         needsAttention: 2,
       },
       totalCount: 48,
+    };
+  }
+
+  if (method === "GET" && pathname === "/users/directory/summary") {
+    return {
+      summary: {
+        totalCustomers: visualCustomers.length,
+        activeMemberships: 4,
+        credits: 5300,
+        newThisMonth: 3,
+        needsAttention: 2,
+      },
+      membershipOptions: [
+        { value: "10_hour_pack", label: "10 hour pack" },
+        { value: "creative_club", label: "Creative Club" },
+        { value: "studio_pass", label: "Studio Pass" },
+      ],
+    };
+  }
+
+  if (method === "GET" && pathname === "/users/directory") {
+    const normalize = (value) =>
+      String(value ?? "")
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+    const search = normalize(url.searchParams.get("search")).trim();
+    const membership = url.searchParams.get("membership") || "";
+    const status = url.searchParams.get("status") || "";
+    const records = visualCustomers.filter((customer) => {
+      const membershipKey = (
+        customer.activeMembership?.slug || "none"
+      ).replaceAll("-", "_");
+      return (
+        (!search ||
+          normalize(
+            `${customer.firstname} ${customer.lastname} ${customer.email} ${customer.customId} ${customer.phone}`,
+          ).includes(search)) &&
+        (!membership || membershipKey === membership.replaceAll("-", "_")) &&
+        (!status || customer.status === status)
+      );
+    });
+    const pageSize = Math.min(
+      200,
+      Math.max(1, Number(url.searchParams.get("limit") || 10)),
+    );
+    const totalPages = Math.ceil(records.length / pageSize);
+    const currentPage = Math.min(
+      Math.max(1, Number(url.searchParams.get("page") || 1)),
+      Math.max(1, totalPages),
+    );
+    return {
+      data: records.slice((currentPage - 1) * pageSize, currentPage * pageSize),
+      totalCount: records.length,
+      currentPage,
+      pageSize,
+      totalPages,
     };
   }
 
@@ -1841,7 +2168,12 @@ export const getVisualSidebarStorageKey = () =>
 
 export async function installAdminApiMocks(
   page,
-  { overviewScenario, workspaceAccess, workspaceLocale = "en" } = {},
+  {
+    overviewScenario,
+    workspaceAccess,
+    workspaceRole,
+    workspaceLocale = "en",
+  } = {},
 ) {
   const unexpectedRequests = new Set();
   const handledRequests = new Set();
@@ -1855,10 +2187,20 @@ export async function installAdminApiMocks(
       title: { ...notification.title },
     }),
   );
-  let currentWorkspaceAccess = workspaceAccess
+  const scopedAccess =
+    workspaceAccess ??
+    (workspaceRole
+      ? {
+          ...(overviewScenarioFixtures[overviewScenario]?.workspaceAccess ??
+            visualWorkspaceAccess),
+          role: workspaceRole,
+          roleKey: workspaceRole,
+        }
+      : null);
+  let currentWorkspaceAccess = scopedAccess
     ? {
-        ...workspaceAccess,
-        preferences: { ...(workspaceAccess.preferences ?? {}) },
+        ...scopedAccess,
+        preferences: { ...(scopedAccess.preferences ?? {}) },
       }
     : null;
 
@@ -1872,6 +2214,7 @@ export async function installAdminApiMocks(
       const corsHeaders = {
         "access-control-allow-origin": requestOrigin,
         "access-control-allow-credentials": "true",
+        "access-control-expose-headers": "content-disposition",
         "access-control-allow-headers": "authorization,content-type",
         "access-control-allow-methods": "GET,POST,PATCH,PUT,DELETE,OPTIONS",
         "cache-control": "no-store",
@@ -1890,6 +2233,23 @@ export async function installAdminApiMocks(
         url.pathname.length > 1
           ? url.pathname.replace(/\/+$/, "")
           : url.pathname;
+      if (
+        method === "GET" &&
+        pathname === "/dashboard/reports/64e000000000000000000099/pdf"
+      ) {
+        handledRequests.add(`${method} ${pathname}`);
+        await route.fulfill({
+          status: 200,
+          headers: {
+            ...corsHeaders,
+            "content-type": "application/pdf",
+            "content-disposition":
+              'attachment; filename="studio-report-2026-07-30.pdf"',
+          },
+          body: "%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF",
+        });
+        return;
+      }
       let responseStatus = 200;
       let response;
 
@@ -1917,6 +2277,9 @@ export async function installAdminApiMocks(
         };
         response = { workspaceAccess: currentWorkspaceAccess };
       } else {
+        if (method === "POST" && pathname === "/dashboard/reports") {
+          responseStatus = 201;
+        }
         if (method === "POST" && pathname === "/auth/customer/refresh") {
           responseStatus = 401;
         }

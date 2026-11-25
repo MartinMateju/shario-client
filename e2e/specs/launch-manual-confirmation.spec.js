@@ -50,8 +50,8 @@ test("an owner manually confirms a stale trial booking, persists it, reconfirms 
   expect(ready.launchReview.required.incompleteStepIds).toEqual([]);
   expect(ready.launchReview.testBooking.canStart).toBe(true);
 
-  // Reproduce the exact reported state: an old completed walkthrough followed
-  // by a location change, without inventing successful walkthrough artifacts.
+  // A completed walkthrough becomes stale after a booking-setting change,
+  // without inventing successful walkthrough artifacts.
   let practice = await api("post", `${SETUP}/practice`, {
     idempotencyKey: "manual-confirmation-browser-regression",
   });
@@ -69,7 +69,11 @@ test("an owner manually confirms a stale trial booking, persists it, reconfirms 
   expect(practice.practice.status).toBe("complete");
   const originalArtifacts = practice.practice.artifacts;
   const locationPath = `/locations/${ready.diagnostics.activeLocationId}`;
-  await api("patch", locationPath, { name: "Alpha revised booking location" });
+  const location = await api("get", locationPath);
+  const originalCapacity = location.booking.globalCapacity;
+  await api("patch", locationPath, {
+    booking: { ...location.booking, globalCapacity: originalCapacity + 1 },
+  });
 
   await page.setViewportSize({ width: 390, height: 740 });
   await page.goto(tenantUrl(E2E.alphaSlug, "/app/setup"));
@@ -129,8 +133,20 @@ test("an owner manually confirms a stale trial booking, persists it, reconfirms 
     fullPage: false,
   });
 
+  // Cosmetic edits do not require repeating a successful booking check.
+  await api("patch", locationPath, { name: "Alpha renamed booking location" });
+  await page.reload();
+  await expect(card).toHaveAttribute("data-readiness-status", "ready");
+  await expect(manual).toContainText("Manually confirmed on");
+  const renamed = await api("get", SETUP);
+  expect(renamed.practice.manualConfirmation).toEqual(
+    confirmed.practice.manualConfirmation,
+  );
+
   // An unseen settings change cannot be confirmed from an outdated page.
-  await api("patch", locationPath, { name: "Alpha changed settings again" });
+  await api("patch", locationPath, {
+    booking: { ...location.booking, globalCapacity: originalCapacity + 2 },
+  });
   await page.reload();
   await expect(card).toHaveAttribute(
     "data-readiness-status",
@@ -140,7 +156,9 @@ test("an owner manually confirms a stale trial booking, persists it, reconfirms 
   await expect(manual).toContainText(
     "Settings have changed since your confirmation",
   );
-  await api("patch", locationPath, { name: "Alpha changed while reviewing" });
+  await api("patch", locationPath, {
+    booking: { ...location.booking, globalCapacity: originalCapacity + 3 },
+  });
   await confirmThroughUi(409);
   await expect(manual.getByRole("alert")).toContainText(
     "Settings changed during your check",

@@ -788,7 +788,7 @@ function SummaryCard({ label, value, attention = false }) {
         </p>
         {attention ? (
           <ExclamationTriangleIcon
-            className="h-4 w-4 text-terracotta-600"
+            className="h-4 w-4 text-warning"
             aria-hidden="true"
           />
         ) : null}

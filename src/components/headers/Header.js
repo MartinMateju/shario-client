@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import { publicNavigationNeedsMenu } from "@/components/public-tenant/publicTenantCustomLinks";
 import { useParams, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,6 +62,7 @@ import DesktopActions from "./DesktopActions";
 import DesktopNavAdmin from "./DesktopNavAdmin";
 import DesktopNavPublic from "./DesktopNavPublic";
 import DesktopNavTenant from "./DesktopNavTenant";
+import PublicWebsiteHeader from "./PublicWebsiteHeader";
 import MobileMenu from "./MobileMenu";
 import MobileRight from "./MobileRight";
 import MobileUserActionsSheet from "./MobileUserActionsSheet";
@@ -233,12 +235,12 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
                   customerPortalLocationReference,
                 )
               : item.href,
-            label: publicTenantT(`nav.${item.key}`),
+            label: item.custom ? item.label : publicTenantT(`nav.${item.key}`),
           }))
         : []
     : protectedTenantNavigation.map((item) => ({
         ...item,
-        label: publicTenantT(`nav.${item.key}`),
+        label: item.custom ? item.label : publicTenantT(`nav.${item.key}`),
       }));
   const tenantPrimaryAction =
     isCustomerShell && customerSurface === CUSTOMER_SHELL_SURFACES.PUBLIC
@@ -403,6 +405,7 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
         window.location.assign(
           buildTenantUrl({
             slug: currentTenantSlug,
+            tenant: publicTenant || currentTenant,
             locale: targetLocale,
             pathname: surfacePath,
           }),
@@ -413,13 +416,13 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
     },
     [
       closeAllOverlays,
-      currentTenant?.settings,
+      currentTenant,
       currentUser?.customerDefaultLanguage,
       currentTenantSlug,
       isTenantRoute,
       isCustomerShell,
       locale,
-      publicTenant?.settings,
+      publicTenant,
       router,
     ],
   );
@@ -444,6 +447,7 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
       : currentTenantSlug
         ? buildTenantUrl({
             slug: currentTenantSlug,
+            tenant: publicTenant || currentTenant,
             locale: targetLocale,
             pathname: "/?from=workspace",
           })
@@ -455,13 +459,13 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
     window.open(target, "_blank", "noopener,noreferrer");
   }, [
     closeAllOverlays,
-    currentTenant?.settings,
+    currentTenant,
     currentUser?.customerDefaultLanguage,
     currentTenantSlug,
     isTenantRoute,
     isCustomerShell,
     locale,
-    publicTenant?.settings,
+    publicTenant,
     router,
   ]);
   const handleLogout = useCallback(() => {
@@ -530,10 +534,50 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
   const hasCustomerPortalAppearance =
     (publicTenantContext?.appearanceSurface || customerSurface) ===
     CUSTOMER_SHELL_SURFACES.PORTAL;
-  const desktopNavigationBreakpointClass = "xl:flex";
-  const desktopActionsBreakpointClass = isTenantRoute ? "xl:flex" : "lg:flex";
-  const fullMobileBreakpointClass = isTenantRoute ? "xl:hidden" : "lg:hidden";
+  const hasCustomNavigation = tenantNavigation.some((item) => item.custom);
+  const useCompactNavigation = publicNavigationNeedsMenu(tenantNavigation);
+  const desktopNavigationBreakpointClass = useCompactNavigation
+    ? "hidden"
+    : hasCustomNavigation
+      ? "2xl:flex"
+      : "xl:flex";
+  const desktopActionsBreakpointClass = useCompactNavigation
+    ? "hidden"
+    : hasCustomNavigation
+      ? "2xl:flex"
+      : isTenantRoute
+        ? "xl:flex"
+        : "lg:flex";
+  const fullMobileBreakpointClass = useCompactNavigation
+    ? "flex"
+    : hasCustomNavigation
+      ? "2xl:hidden"
+      : isTenantRoute
+        ? "xl:hidden"
+        : "lg:hidden";
+
   const elevated = isScrolled || !isHomeRoute || isAdminRoute;
+
+  if (
+    customerSurface === CUSTOMER_SHELL_SURFACES.PUBLIC &&
+    publicTenant?.publicSite?.header?.layout === "website"
+  ) {
+    return (
+      <PublicWebsiteHeader
+        tenant={publicTenant}
+        items={tenantNavigation}
+        locale={locale}
+        localeCodes={headerLanguageCodes}
+        onLocaleChange={(code) => {
+          if (code !== locale && headerLanguageCodes.includes(code)) {
+            router.replace(fullPathname, { locale: code, scroll: false });
+          }
+        }}
+        homeHref={tenantBrandHref}
+      />
+    );
+  }
+
   return (
     <>
       <header
@@ -627,13 +671,19 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
           data-studio-home-inner={isWorkingStudioMarketing || undefined}
           className={classNames(
             "relative mx-auto w-full items-center px-5 sm:px-8 lg:px-10",
-            isCustomerShell ? "xl:px-3" : "xl:px-12",
+            hasCustomerPortalAppearance
+              ? "xl:px-8"
+              : isCustomerShell
+                ? "xl:px-3"
+                : "xl:px-12",
             isTenantRoute ? "h-[78px]" : isHomeRoute ? "h-16" : "h-[72px]",
             isAdminRoute
               ? "flex max-w-[1600px]"
               : classNames(
                   "flex",
-                  "max-w-[1536px] xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]",
+                  hasCustomNavigation
+                    ? "max-w-[1536px] 2xl:grid 2xl:grid-cols-[auto_minmax(0,1fr)_auto]"
+                    : "max-w-[1536px] xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]",
                 ),
           )}
         >
@@ -651,6 +701,7 @@ export default function Header({ tenantScoped = false, pathnameOverride }) {
               <Brand
                 onClickHome={closeAllOverlays}
                 tenant={isTenantRoute ? tenantBrand : null}
+                flushLogo={hasCustomerPortalAppearance}
                 href={isCustomerShell ? tenantBrandHref : "/"}
               />
               {!isTenantRoute && !isWorkingStudioMarketing ? (

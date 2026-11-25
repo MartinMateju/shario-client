@@ -1,5 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+
+import czechMessages from "@/messages/cs.json";
 
 import BookingsToolbar from "@/components/tables/bookings/BookingsToolbar";
 import { INITIAL_BOOKING_FILTERS } from "@/components/tables/bookings/booking-table.constants";
@@ -39,9 +41,9 @@ const labels = {
   "payment.failed": "Failed",
   "payment.expired": "Expired",
   "status.confirmed": "Confirmed",
-  "status.pending": "Pending",
-  "status.processed": "Processed",
-  "status.delivered": "Delivered",
+  "status.pending": "Awaiting confirmation",
+  "status.processed": "Confirmed",
+  "status.delivered": "Started",
   "status.completed": "Completed",
   "status.cancelled": "Cancelled",
   export: "Export",
@@ -66,7 +68,7 @@ const baseProps = {
   showFilters: false,
   locations: [{ _id: "studio-1", name: "The Pottery House" }],
   products: [{ _id: "product-1", name: "Wheel throwing" }],
-  lecturers: [{ _id: "lecturer-1", firstname: "Anna", lastname: "Nováková" }],
+  lecturers: [{ value: "Anna Nováková", label: "Anna Nováková" }],
   t,
 };
 
@@ -181,6 +183,72 @@ describe("BookingsToolbar", () => {
 
     expect(handlers.onClearFilters).toHaveBeenCalledOnce();
     expect(handlers.onApplyFilters).toHaveBeenCalledOnce();
+  });
+
+  it("offers only persisted booking and payment states with clear labels and correct values", () => {
+    const handlers = renderToolbar({ showFilters: true });
+    const bookingStatus = screen.getByRole("combobox", {
+      name: "Booking status",
+    });
+    const paymentStatus = screen.getByRole("combobox", {
+      name: "Payment status",
+    });
+    expect(
+      within(bookingStatus)
+        .getAllByRole("option")
+        .map((option) => [option.value, option.textContent]),
+    ).toEqual([
+      ["", "All booking statuses"],
+      ["pending", "Awaiting confirmation"],
+      ["processed", "Confirmed"],
+      ["delivered", "Started"],
+      ["completed", "Completed"],
+      ["cancelled", "Cancelled"],
+    ]);
+    expect(
+      within(paymentStatus)
+        .getAllByRole("option")
+        .map((option) => option.value),
+    ).toEqual(["", "PENDING_PAYMENT", "CONFIRMED", "FAILED", "EXPIRED"]);
+    fireEvent.change(bookingStatus, { target: { value: "processed" } });
+    fireEvent.change(paymentStatus, { target: { value: "CONFIRMED" } });
+    fireEvent.change(screen.getByRole("combobox", { name: "Lecturer" }), {
+      target: { value: "Anna Nováková" },
+    });
+    expect(handlers.onFilterChange.mock.calls).toEqual([
+      ["status", "processed"],
+      ["paymentStatus", "CONFIRMED"],
+      ["lecturerName", "Anna Nováková"],
+    ]);
+  });
+
+  it("uses clear Czech lifecycle/payment labels without impossible refund or credit statuses", () => {
+    const translate = (key) =>
+      key
+        .split(".")
+        .reduce((source, part) => source?.[part], czechMessages.Bookings) ||
+      key;
+    renderToolbar({ showFilters: true, t: translate });
+    const statuses = screen.getByRole("combobox", { name: "Stav rezervace" });
+    expect(
+      within(statuses).getByRole("option", { name: "Potvrzená" }),
+    ).toHaveValue("processed");
+    expect(
+      within(statuses).getByRole("option", { name: "Zahájená" }),
+    ).toHaveValue("delivered");
+    expect(
+      within(statuses).getByRole("option", { name: "Čeká na potvrzení" }),
+    ).toHaveValue("pending");
+    const payment = screen.getByRole("combobox", { name: "Stav platby" });
+    expect(
+      within(payment).getByRole("option", { name: "Zaplaceno" }),
+    ).toHaveValue("CONFIRMED");
+    expect(
+      within(payment).queryByRole("option", { name: "Kredity" }),
+    ).not.toBeInTheDocument();
+    expect(
+      within(payment).queryByRole("option", { name: "Vráceno" }),
+    ).not.toBeInTheDocument();
   });
 
   it("does not count the required studio scope as an advanced filter", () => {

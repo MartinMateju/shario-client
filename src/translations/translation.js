@@ -1,4 +1,20 @@
 const translation = {
+  USER_EMAIL_CHANGE_WARNING: {
+    EN: "Changing the email signs this customer out of all sessions and requires them to verify the new address.",
+    CZ: "Změna e-mailu odhlásí zákazníka ze všech relací a vyžádá si ověření nové adresy.",
+  },
+  USER_EMAIL_VERIFICATION_SENT: {
+    EN: "Email updated. Existing sessions were ended and a verification link was sent to the new address.",
+    CZ: "E-mail byl změněn. Dosavadní relace byly ukončeny a na novou adresu byl odeslán ověřovací odkaz.",
+  },
+  USER_EMAIL_VERIFICATION_RETRY: {
+    EN: "Email updated and existing sessions ended. Verification email delivery could not be confirmed. The customer can request another link on the studio's email verification page.",
+    CZ: "E-mail byl změněn a dosavadní relace ukončeny. Doručení ověřovacího e-mailu se nepodařilo potvrdit. Zákazník si může vyžádat nový odkaz na stránce ověření e-mailu studia.",
+  },
+  USER_EMAIL_UPDATE_FAILED: {
+    EN: "The customer could not be updated. Check the email and try again.",
+    CZ: "Zákazníka se nepodařilo upravit. Zkontrolujte e-mail a zkuste to znovu.",
+  },
   CUSTOMER_PAYMENTS_UNAVAILABLE: {
     EN: "Online payments for this studio are currently unavailable. Please contact the studio or try again later.",
     CZ: "Online platby tohoto studia jsou momentálně nedostupné. Kontaktujte prosím studio nebo to zkuste později.",

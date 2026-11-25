@@ -1,5 +1,7 @@
 "use client";
+import CustomNavigationGroup from "./CustomNavigationGroup";
 
+import { publicNavigationNeedsMenu } from "@/components/public-tenant/publicTenantCustomLinks";
 import { Fragment, memo, useCallback } from "react";
 import {
   Dialog,
@@ -265,13 +267,23 @@ function TenantNavigation({
       data-customer-portal-mobile-navigation={portalThemed || undefined}
     >
       {items.map((item) => {
-        const active = isActivePath(pathname, item.href);
+        if (item.children)
+          return (
+            <CustomNavigationGroup
+              key={item.key}
+              item={item}
+              mobile
+              onNavigate={closeMobileMenu}
+            />
+          );
+        const active = !item.custom && isActivePath(pathname, item.href);
+        const ItemLink = item.custom ? "a" : Link;
         const Icon = PORTAL_NAVIGATION_ICONS[item.key];
 
         if (portalThemed) {
           return (
-            <Link
-              key={item.href}
+            <ItemLink
+              key={item.key || item.href}
               href={item.href}
               onClick={closeMobileMenu}
               aria-current={active ? "page" : undefined}
@@ -288,13 +300,13 @@ function TenantNavigation({
                 aria-hidden="true"
                 className={styles.navigationChevron}
               />
-            </Link>
+            </ItemLink>
           );
         }
 
         return (
-          <Link
-            key={item.href}
+          <ItemLink
+            key={item.key || item.href}
             href={item.href}
             onClick={closeMobileMenu}
             aria-current={active ? "page" : undefined}
@@ -305,6 +317,7 @@ function TenantNavigation({
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--tenant-heading-color)]/30",
               "motion-reduce:transition-none",
               active ? "opacity-100" : "opacity-80 hover:opacity-100",
+              item.emphasis === "button" ? "my-2 justify-center" : "",
             )}
             style={{
               fontFamily: "var(--tenant-font-label)",
@@ -313,6 +326,15 @@ function TenantNavigation({
               letterSpacing: "-0.02em",
               minHeight: "3.625rem",
               textTransform: "var(--tenant-header-text-transform, none)",
+              ...(item.emphasis === "button"
+                ? {
+                    backgroundColor: "var(--tenant-accent)",
+                    color: "var(--tenant-accent-foreground)",
+                    border: "none",
+                    borderRadius: "8px",
+                    paddingInline: "16px",
+                  }
+                : {}),
             }}
           >
             <span className="relative min-w-0 py-1">
@@ -329,7 +351,7 @@ function TenantNavigation({
                 )}
               />
             </span>
-          </Link>
+          </ItemLink>
         );
       })}
     </div>
@@ -435,7 +457,11 @@ const MobileMenu = memo(function MobileMenu({
     onOpenCustomerHelp?.();
   }, [closeMobileMenu, onOpenCustomerHelp]);
 
-  const mobileBreakpointClass = "xl:hidden";
+  const mobileBreakpointClass = publicNavigationNeedsMenu(tenantNavigation)
+    ? ""
+    : tenantNavigation.some((item) => item.custom)
+      ? "2xl:hidden"
+      : "xl:hidden";
 
   return (
     <Transition show={open} as={Fragment}>

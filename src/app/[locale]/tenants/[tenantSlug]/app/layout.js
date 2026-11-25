@@ -1,4 +1,5 @@
 import TenantSurfaceBoundary from "@/components/auth/TenantSurfaceBoundary";
+import FullMessagesProvider from "@/components/i18n/FullMessagesProvider";
 
 export const metadata = {
   robots: {
@@ -7,10 +8,13 @@ export const metadata = {
   },
 };
 
-export default function TenantAppLayout({ children }) {
+export default async function TenantAppLayout({ children, params }) {
+  const { locale } = await params;
   return (
-    <div className="-mt-[var(--header-height)] min-h-dvh">
-      <TenantSurfaceBoundary surface="app">{children}</TenantSurfaceBoundary>
-    </div>
+    <FullMessagesProvider locale={locale}>
+      <div className="-mt-[var(--header-height)] min-h-dvh">
+        <TenantSurfaceBoundary surface="app">{children}</TenantSurfaceBoundary>
+      </div>
+    </FullMessagesProvider>
   );
 }

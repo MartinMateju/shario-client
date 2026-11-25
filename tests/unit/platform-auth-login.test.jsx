@@ -626,6 +626,7 @@ describe("post-login route decisions", () => {
       locale: "en",
       pathname: "/app",
       slug: "studio-alpha",
+      tenant: mocks.auth.currentTenant,
     });
   });
 
@@ -733,6 +734,10 @@ describe("post-login route decisions", () => {
       locale: "sk",
       pathname: "/app",
       slug: "studio-alpha",
+      tenant: {
+        slug: "studio-alpha",
+        settings: { defaultLanguage: "en", adminLanguage: "sk" },
+      },
     });
   });
 
@@ -758,6 +763,7 @@ describe("post-login route decisions", () => {
       locale: "de",
       pathname: "/portal",
       slug: "studio-alpha",
+      tenant,
     });
 
     getPostLoginUrl({ ...input, locale: "en" });
@@ -766,6 +772,7 @@ describe("post-login route decisions", () => {
       locale: "de",
       pathname: "/portal",
       slug: "studio-alpha",
+      tenant,
     });
 
     getPostLoginUrl({
@@ -777,6 +784,7 @@ describe("post-login route decisions", () => {
       locale: "en",
       pathname: "/portal",
       slug: "studio-alpha",
+      tenant,
     });
     getPostLoginUrl({
       ...input,
@@ -787,6 +795,7 @@ describe("post-login route decisions", () => {
       locale: "de",
       pathname: "/portal",
       slug: "studio-alpha",
+      tenant,
     });
   });
 
@@ -804,6 +813,7 @@ describe("post-login route decisions", () => {
       locale: "en",
       pathname: "/portal",
       slug: "studio-alpha",
+      tenant: { slug: "studio-alpha" },
     });
   });
 });

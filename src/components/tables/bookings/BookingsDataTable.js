@@ -93,7 +93,7 @@ function BookingRowActions({ booking, canDelete, t, onEdit, onDelete }) {
             <button
               type="button"
               onClick={() => onDelete(booking._id || booking.id)}
-              className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-terracotta-600 transition data-[focus]:bg-coral-50"
+              className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-danger transition data-[focus]:bg-danger-soft"
             >
               <TrashIcon className="h-4 w-4 stroke-[1.7]" aria-hidden="true" />
               {t("actions.delete")}

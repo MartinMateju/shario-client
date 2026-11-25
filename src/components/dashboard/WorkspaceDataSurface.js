@@ -90,7 +90,7 @@ export function WorkspaceTableHeadCell({
     <th
       scope={scope}
       className={cx(
-        "border-b border-line px-4 py-3.5 text-left text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted",
+        "border-b border-line px-4 py-3.5 text-left text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-soft",
         className,
       )}
       {...props}
@@ -189,7 +189,7 @@ export function WorkspaceMobileCard({
             {title}
           </h3>
           {subtitle ? (
-            <p className="mt-0.5 break-words text-[12px] leading-5 text-ink-muted">
+            <p className="mt-0.5 break-words text-[13px] leading-5 text-ink-muted">
               {subtitle}
             </p>
           ) : null}
@@ -213,9 +213,9 @@ export function WorkspaceMobileCard({
 const STATUS_TONES = Object.freeze({
   neutral: "border-line bg-sand-50 text-ink-soft",
   info: "border-cobalt-200 bg-cobalt-50 text-cobalt-700",
-  success: "border-success/20 bg-success-soft text-success",
-  warning: "border-warning/25 bg-warning-soft text-warning",
-  danger: "border-danger/20 bg-danger-soft text-danger",
+  success: "border-success/40 bg-success-soft text-success",
+  warning: "border-warning/40 bg-warning-soft text-warning",
+  danger: "border-danger/40 bg-danger-soft text-danger",
 });
 
 export function WorkspaceStatusPill({
@@ -227,7 +227,7 @@ export function WorkspaceStatusPill({
   return (
     <span
       className={cx(
-        "inline-flex min-h-6 items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold leading-4",
+        "inline-flex min-h-7 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-semibold leading-4",
         STATUS_TONES[tone] || STATUS_TONES.neutral,
         className,
       )}
@@ -276,7 +276,7 @@ export function WorkspacePagination({
       )}
       {...props}
     >
-      <p className="text-center text-[12px] font-medium text-ink-muted sm:text-left">
+      <p className="text-center text-[13px] font-medium text-ink-muted sm:text-left">
         {resolvedPage} / {resolvedPageCount}
       </p>
       <div className="grid grid-cols-2 gap-2 sm:flex">
@@ -284,7 +284,7 @@ export function WorkspacePagination({
           type="button"
           onClick={onPrevious}
           disabled={resolvedPage <= 1}
-          className="min-h-11 rounded-full border border-line bg-white px-4 text-[12px] font-semibold text-ink-soft transition hover:border-line-strong disabled:cursor-not-allowed disabled:opacity-45"
+          className="min-h-11 rounded-full border border-line bg-white px-4 text-[13px] font-semibold text-ink-soft transition hover:border-line-strong hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
         >
           {previousLabel ?? commonT("previousPage")}
         </button>
@@ -292,7 +292,7 @@ export function WorkspacePagination({
           type="button"
           onClick={onNext}
           disabled={resolvedPage >= resolvedPageCount}
-          className="min-h-11 rounded-full border border-line bg-white px-4 text-[12px] font-semibold text-ink-soft transition hover:border-line-strong disabled:cursor-not-allowed disabled:opacity-45"
+          className="min-h-11 rounded-full border border-line bg-white px-4 text-[13px] font-semibold text-ink-soft transition hover:border-line-strong hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
         >
           {nextLabel ?? commonT("nextPage")}
         </button>
@@ -330,7 +330,7 @@ export function WorkspaceEmptyState({
           {title}
         </h2>
         {description ? (
-          <p className="mt-1.5 break-words text-[12px] leading-5 text-ink-muted">
+          <p className="mt-1.5 break-words text-[13px] leading-5 text-ink-muted">
             {description}
           </p>
         ) : null}

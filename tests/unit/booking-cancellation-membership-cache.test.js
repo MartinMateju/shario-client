@@ -10,7 +10,7 @@ vi.mock("@/lib/features/api/apiSlice", async () => {
   return {
     apiSlice: createApi({
       reducerPath: "membershipCancellationTestApi",
-      baseQuery: fetchBaseQuery({ baseUrl: "https://api.skab.test" }),
+      baseQuery: fetchBaseQuery({ baseUrl: "https://api.shario.test" }),
       tagTypes: [
         "Booking",
         "Credits",
@@ -51,7 +51,7 @@ const mockMembershipCancellation = ({ fails = false } = {}) => {
   let cancelled = false;
   const calls = { membership: 0, ledger: 0, bookings: 0 };
   server.use(
-    http.get("https://api.skab.test/memberships/mine", () => {
+    http.get("https://api.shario.test/memberships/mine", () => {
       calls.membership += 1;
       return HttpResponse.json({
         membership: {
@@ -60,17 +60,17 @@ const mockMembershipCancellation = ({ fails = false } = {}) => {
         },
       });
     }),
-    http.get("https://api.skab.test/memberships/mine/ledger", () => {
+    http.get("https://api.shario.test/memberships/mine/ledger", () => {
       calls.ledger += 1;
       return HttpResponse.json({
         entries: cancelled ? [reversal, redemption] : [redemption],
       });
     }),
-    http.get("https://api.skab.test/bookings/mine", () => {
+    http.get("https://api.shario.test/bookings/mine", () => {
       calls.bookings += 1;
       return HttpResponse.json({ bookings: [] });
     }),
-    http.patch("https://api.skab.test/bookings/mine/booking-1/cancel", () => {
+    http.patch("https://api.shario.test/bookings/mine/booking-1/cancel", () => {
       if (fails) {
         return HttpResponse.json(
           { message: "The access code has already been issued." },

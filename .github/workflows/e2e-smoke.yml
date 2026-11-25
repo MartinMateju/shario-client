@@ -33,6 +33,11 @@ jobs:
       TZ: Europe/Prague
       NODE_OPTIONS: --max-old-space-size=4096
       NEXT_TELEMETRY_DISABLED: "1"
+      # Both production smoke builds retain the preview-locale compilation
+      # coverage previously provided by the separate build job.
+      NEXT_PUBLIC_ENABLED_LOCALES: de,pl,sk,da,fr,es,it,pt-PT,sv,nb,fi,hu,el,tr,nl,ro
+      NEXT_PUBLIC_ENABLE_PREVIEW_LOCALES: "true"
+      NEXT_PUBLIC_DEFAULT_TIME_ZONE: Europe/Prague
       E2E_TEST_KEY: shario-e2e-ci-loopback-key
       MONGOMS_DOWNLOAD_DIR: ${{ github.workspace }}/.cache/mongodb-binaries
 
@@ -119,7 +124,7 @@ jobs:
 
       - name: Run the canonical backend-first release smoke
         working-directory: frontend
-        run: npx playwright test --config=playwright.smoke.config.js
+        run: npm run test:e2e:smoke
 
       - name: Upload release-smoke results and revision evidence
         if: always()
@@ -131,5 +136,8 @@ jobs:
             frontend/test-results/critical-smoke-artifacts
             frontend/test-results/critical-smoke-results.xml
             frontend/playwright-report/critical-smoke
+            frontend/test-results/custom-domain-auth-artifacts
+            frontend/test-results/custom-domain-auth-results.xml
+            frontend/playwright-report/custom-domain-auth
           if-no-files-found: ignore
           retention-days: 14

@@ -329,7 +329,7 @@ function VersionHistoryPanel({
             type="button"
             disabled={busy}
             onClick={() => query.refetch()}
-            className="min-h-10 rounded-full border border-coral-200 bg-white px-4 text-[10px] font-semibold disabled:opacity-40"
+            className="min-h-10 rounded-full border border-primary/35 bg-white px-4 text-[13px] font-semibold text-primary hover:bg-primary-soft disabled:opacity-40"
           >
             {copy.retryHistory}
           </button>
@@ -444,6 +444,7 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
   const [previewDevice, setPreviewDevice] = useState("desktop");
   const [previewLocale, setPreviewLocale] = useState(locale);
   const [courseLocationId, setCourseLocationId] = useState("");
+  const [pageImageKey, setPageImageKey] = useState("courses");
   const [workspaceView, setWorkspaceView] = useState("editor");
   const [localHistory, setLocalHistory] = useState(EMPTY_LOCAL_HISTORY);
   const [historyOpen, setHistoryOpen] = useState(false);
@@ -884,7 +885,10 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
       }
       const state = await publish({ revision: targetRevision }).unwrap();
       applyServerState(state, { submittedDraft });
-      notifyPublicSitePublished(tenantSlug);
+      notifyPublicSitePublished(
+        tenantSlug,
+        state.published?.branding?.faviconUrl || "",
+      );
       void previewQuery.refetch();
       setNotice({ type: "success", message: t("messages.published") });
       setConfirmMode(null);
@@ -929,7 +933,10 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
       applyServerState(publishedState, { submittedDraft });
       const setup = await setupQuery.refetch().unwrap();
       await publishStudio(setup.definitionVersion).unwrap();
-      notifyPublicSitePublished(tenantSlug);
+      notifyPublicSitePublished(
+        tenantSlug,
+        publishedState.published?.branding?.faviconUrl || "",
+      );
       const state = await query.refetch().unwrap();
       applyServerState(state);
       await Promise.all([
@@ -1054,7 +1061,30 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
       }
       if (nextTab === "login") setPreviewPage("login");
       if (nextTab === "register") setPreviewPage("register");
-      if (nextTab === "customerPortal") setPreviewPage("portal");
+      if (nextTab === "customerPortal") {
+        if (pathParts[1] === "pageImages") {
+          setPageImageKey(pathParts[2]);
+          setPreviewPage((current) =>
+            pathParts[2] === "courses" &&
+            ["courses", "portalCourses"].includes(current)
+              ? current
+              : "portalPageHero",
+          );
+        } else if (pathParts[1] === "courses" && pathParts[2] === "locations") {
+          const locationId =
+            draft?.customerPortal?.courses?.locations?.[Number(pathParts[3])]
+              ?.locationId;
+          if (locationId) setCourseLocationId(locationId);
+          setPageImageKey("courses");
+          setPreviewPage((current) =>
+            ["courses", "portalCourses", "portalPageHero"].includes(current)
+              ? current
+              : "portalCourses",
+          );
+        } else {
+          setPreviewPage("portal");
+        }
+      }
       if (workspaceView === "preview") changeWorkspaceView("editor");
 
       window.setTimeout(() => {
@@ -1072,7 +1102,7 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
         control?.focus?.({ preventScroll: true });
       }, 80);
     },
-    [availablePreviewPages, changeWorkspaceView, workspaceView],
+    [availablePreviewPages, changeWorkspaceView, draft, workspaceView],
   );
 
   const handleReset = useCallback(async () => {
@@ -1107,7 +1137,7 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
           type="button"
           disabled={reloadBusy}
           onClick={handleReload}
-          className="mt-3 text-[11px] font-semibold text-terracotta-700 underline"
+          className="mt-3 text-[13px] font-semibold text-primary underline"
         >
           {t("actions.retry")}
         </button>
@@ -1178,6 +1208,11 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
         locations={courseLocations}
         selectedCourseLocationId={selectedCourseLocationId}
         onCourseLocationChange={setCourseLocationId}
+        selectedPageImageKey={pageImageKey}
+        onPageImageChange={(key) => {
+          setPageImageKey(key);
+          setPreviewPage("portalPageHero");
+        }}
         onUpload={handleUpload}
         onClearUpload={clearUploadFeedback}
         disabled={busy}
@@ -1319,6 +1354,7 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
               <Link
                 href="/"
                 locale={editorLocaleCodes[0]}
+                prefetch={false}
                 target="_blank"
                 data-contextual-guide-target="customer-journey-open-site"
                 rel="noopener noreferrer"
@@ -1537,7 +1573,10 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
                   </option>
                 ))}
               </PreviewSelectField>
-              {normalizedPreviewPage === "portalCourses" &&
+              {(normalizedPreviewPage === "portalCourses" ||
+                normalizedPreviewPage === "courses" ||
+                (normalizedPreviewPage === "portalPageHero" &&
+                  pageImageKey === "courses")) &&
               courseLocations.length > 0 ? (
                 <PreviewSelectField
                   icon={BuildingStorefrontIcon}
@@ -1612,6 +1651,7 @@ export default function PublicSiteEditorPage({ showPageHeader = true }) {
             device={previewDevice}
             previewData={previewQuery.data?.preview?.data}
             previewLocationId={selectedCourseLocationId}
+            previewPageImageKey={pageImageKey}
             onEditPath={handlePreviewEditPath}
           />
           <p className="mt-3 text-center text-[10px] leading-4 text-[#777773]">

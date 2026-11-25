@@ -520,7 +520,7 @@ function CommunicationsSettingsForm({
                   disabled={!canManage || !instagramUsable}
                 />
 
-                <div className="mt-4 rounded-[15px] bg-gradient-to-br from-fuchsia-50 via-white to-coral-50 p-3 ring-1 ring-inset ring-fuchsia-100">
+                <div className="mt-4 rounded-[15px] bg-surface-muted p-3 ring-1 ring-inset ring-line">
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
                       <ChannelBadge channel="instagram" />
@@ -547,7 +547,7 @@ function CommunicationsSettingsForm({
                   </div>
 
                   {instagramStatus !== "disconnected" ? (
-                    <div className="mt-3 space-y-1 border-t border-fuchsia-100 pt-3 text-[10px] text-ink-muted">
+                    <div className="mt-3 space-y-1 border-t border-line pt-3 text-[10px] text-ink-muted">
                       {form.channels.instagram.connectedAt ? (
                         <p>
                           {t("settings.instagram.connectedAt", {

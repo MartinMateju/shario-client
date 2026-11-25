@@ -103,19 +103,9 @@ describe("workspace brush integration", () => {
     expect(overview).toContain("relative z-10 grid");
     expect(overview).not.toContain("function BriefingContours");
 
-    expect(settingsShell).toContain(
-      'isOverview ? null : <WorkspaceBrushField variant="settingsShell" />',
-    );
-
-    expect(settingsOverview).toContain(
-      '<WorkspaceBrushField variant="settingsHero" />',
-    );
-    expect(settingsOverview).toContain(
-      '<WorkspaceBrushField variant="settingsLaunch" />',
-    );
-    expect(settingsOverview).not.toMatch(
-      /rounded-full bg-(?:coral|cobalt)-200\/\d+ blur-3xl/,
-    );
+    // Settings use a compact, task-focused header without a decorative hero.
+    expect(settingsShell).not.toContain("WorkspaceBrushField");
+    expect(settingsOverview).not.toContain("WorkspaceBrushField");
 
     expect(editor).toContain('<WorkspaceBrushField variant="editorHero" />');
     const editorHeaderClasses = editor

@@ -405,11 +405,11 @@ function MigrationCenterContent({ initialEntity }) {
         />
       </div>
 
-      <aside className="flex items-start gap-3 rounded-[18px] border border-coral-200 bg-coral-50/55 p-4 text-terracotta-900 sm:p-5">
+      <aside className="flex items-start gap-3 rounded-[18px] border border-line bg-white p-4 text-ink sm:p-5">
         <ClockIcon className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
         <div>
           <p className="text-[11px] font-semibold">{t("support.title")}</p>
-          <p className="mt-1 text-[10px] leading-5 text-terracotta-800/80">
+          <p className="mt-1 text-[13px] leading-5 text-ink-muted">
             {entityT("support.description")}
           </p>
         </div>

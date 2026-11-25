@@ -750,11 +750,13 @@ export default function ProductFormDialog({
               role={
                 openStudioOccupied || openStudioCheckFailed ? "alert" : "status"
               }
-              className="rounded-[14px] border border-coral-200 bg-coral-50 p-4 text-[12px] leading-5 text-ink sm:col-span-2"
+              className={`rounded-[14px] border p-4 text-[13px] leading-5 sm:col-span-2 ${openStudioCheckFailed ? "border-danger/35 bg-danger-soft text-danger" : "border-line bg-white text-ink"}`}
             >
               {openStudioOccupied ? (
                 <>
-                  <p className="font-semibold">{t("openStudioLimit.title")}</p>
+                  <p className="font-semibold text-warning">
+                    {t("openStudioLimit.title")}
+                  </p>
                   <p className="mt-1">{t("openStudioLimit.existing")}</p>
                   {existingOpenStudioId && (
                     <Link
@@ -1242,7 +1244,7 @@ export default function ProductFormDialog({
                 accept="application/pdf,.pdf"
                 onChange={handleFileChange}
                 aria-describedby="voucher-template-pdf-help"
-                className="mt-2 block w-full rounded-[13px] border border-line bg-white px-3 py-2 text-[10px] text-[#777773] file:mr-3 file:rounded-[9px] file:border-0 file:bg-coral-50 file:px-3 file:py-2 file:text-[10px] file:font-semibold file:text-terracotta-600"
+                className="mt-2 block w-full rounded-[13px] border border-line bg-white px-3 py-2 text-[13px] text-ink-muted file:mr-3 file:rounded-[9px] file:border-0 file:bg-primary-soft file:px-3 file:py-2 file:text-[13px] file:font-semibold file:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
               <span
                 id="voucher-template-pdf-help"

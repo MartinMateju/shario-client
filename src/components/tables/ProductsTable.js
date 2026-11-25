@@ -189,11 +189,7 @@ export default function ProductsTable({ activeStudio }) {
                   className={`
                     inline-flex min-h-[48px] items-center justify-center gap-2 rounded-[18px]
                     px-5 py-3 text-sm font-medium text-white transition-all duration-200
-                    ${
-                      showCreateForm
-                        ? "bg-[var(--unnamed-color-b3a292)] hover:opacity-90"
-                        : "bg-black hover:bg-[var(--unnamed-color-b3a292)]"
-                    }
+                    bg-cobalt-500 hover:bg-cobalt-600
                   `}
                 >
                   <PlusIcon className="h-4 w-4" />

@@ -54,6 +54,7 @@ import AccessCodeAuditLog from "./AccessCodeAuditLog";
 import BulkAccessCodesDialog from "./BulkAccessCodesDialog";
 import RevealAccessCodeDialog from "./RevealAccessCodeDialog";
 import RetireAccessCodeDialog from "./RetireAccessCodeDialog";
+import DoorAccessEmailSettings from "./DoorAccessEmailSettings";
 import {
   ACCESS_CODE_STATUSES,
   ACCESS_CODE_TYPES,
@@ -99,7 +100,7 @@ function StatusBadge({ status, t }) {
   return (
     <span
       className={cx(
-        "inline-flex rounded-full px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.11em]",
+        "inline-flex rounded-full px-2.5 py-1 text-[12px] font-semibold uppercase tracking-[0.11em]",
         STATUS_TONES[status] || STATUS_TONES.draft,
       )}
     >
@@ -111,7 +112,7 @@ function StatusBadge({ status, t }) {
 function SummaryCard({ icon: Icon, label, tone, value }) {
   const toneClasses = {
     cobalt: "bg-cobalt-50 text-cobalt-600",
-    coral: "bg-coral-100 text-terracotta-700",
+    coral: "bg-accent-soft text-accent-text",
     green: "bg-success-soft text-success",
     neutral: "bg-surface text-ink-muted",
   };
@@ -131,7 +132,7 @@ function SummaryCard({ icon: Icon, label, tone, value }) {
           {value}
         </strong>
       </div>
-      <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-subtle">
+      <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.11em] text-ink-subtle">
         {label}
       </p>
     </div>
@@ -156,7 +157,7 @@ function CodeActions({
     card ? "min-w-0 flex-1" : "min-w-10 2xl:px-3",
   );
   const labelClass = cx(
-    "text-[10px] font-semibold",
+    "text-[12px] font-semibold",
     card ? "inline" : "hidden 2xl:inline",
   );
 
@@ -245,19 +246,19 @@ function AccessCodeRows({
         <WorkspaceTable className="table-fixed">
           <thead className="bg-surface-muted text-left">
             <tr>
-              <th className="w-[23%] px-4 py-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
+              <th className="w-[23%] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
                 {t("inventory.columns.code")}
               </th>
-              <th className="w-[18%] px-4 py-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
+              <th className="w-[18%] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
                 {t("inventory.columns.type")}
               </th>
-              <th className="w-[17%] px-4 py-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
+              <th className="w-[17%] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
                 {t("inventory.columns.status")}
               </th>
-              <th className="w-[20%] px-4 py-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
+              <th className="w-[20%] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
                 {t("inventory.columns.validUntil")}
               </th>
-              <th className="w-[22%] px-3 py-3 text-right text-[9px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
+              <th className="w-[22%] px-3 py-3 text-right text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-subtle">
                 {t("inventory.columns.actions")}
               </th>
             </tr>
@@ -275,17 +276,17 @@ function AccessCodeRows({
                     <p className="truncate font-mono text-[13px] font-semibold tracking-[0.13em] text-ink">
                       {formatMaskedCode(code)}
                     </p>
-                    <p className="mt-1 truncate text-[10px] text-ink-muted">
+                    <p className="mt-1 truncate text-[12px] text-ink-muted">
                       {code.label || t("inventory.noLabel")}
                     </p>
                   </td>
-                  <td className="px-4 py-3.5 text-[11px] font-medium text-ink-muted">
+                  <td className="px-4 py-3.5 text-[13px] font-medium text-ink-muted">
                     {t(`types.${type}.label`)}
                   </td>
                   <td className="px-4 py-3.5">
                     <StatusBadge status={status} t={t} />
                     {code.verifiedAt ? (
-                      <span className="mt-1.5 flex items-center gap-1 text-[9px] font-medium text-success">
+                      <span className="mt-1.5 flex items-center gap-1 text-[12px] font-medium text-success">
                         <CheckCircleIcon
                           aria-hidden="true"
                           className="size-3"
@@ -294,7 +295,7 @@ function AccessCodeRows({
                       </span>
                     ) : null}
                   </td>
-                  <td className="px-4 py-3.5 text-[10px] leading-4 text-ink-muted">
+                  <td className="px-4 py-3.5 text-[12px] leading-4 text-ink-muted">
                     {validity(code)}
                   </td>
                   <td className="px-3 py-3.5">
@@ -329,7 +330,7 @@ function AccessCodeRows({
                   <p className="font-mono text-sm font-semibold tracking-[0.14em] text-ink">
                     {formatMaskedCode(code)}
                   </p>
-                  <p className="mt-1 truncate text-[11px] text-ink-muted">
+                  <p className="mt-1 truncate text-[13px] text-ink-muted">
                     {code.label || t("inventory.noLabel")}
                   </p>
                 </div>
@@ -337,24 +338,24 @@ function AccessCodeRows({
               </div>
               <dl className="mt-4 grid grid-cols-2 gap-3 border-y border-line py-3">
                 <div>
-                  <dt className="text-[9px] uppercase tracking-[0.1em] text-ink-subtle">
+                  <dt className="text-[12px] uppercase tracking-[0.1em] text-ink-subtle">
                     {t("inventory.columns.type")}
                   </dt>
-                  <dd className="mt-1 text-[11px] font-semibold text-ink">
+                  <dd className="mt-1 text-[13px] font-semibold text-ink">
                     {t(`types.${type}.label`)}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-[9px] uppercase tracking-[0.1em] text-ink-subtle">
+                  <dt className="text-[12px] uppercase tracking-[0.1em] text-ink-subtle">
                     {t("inventory.columns.validUntil")}
                   </dt>
-                  <dd className="mt-1 text-[11px] font-semibold text-ink">
+                  <dd className="mt-1 text-[13px] font-semibold text-ink">
                     {validity(code)}
                   </dd>
                 </div>
               </dl>
               <div className="mt-3">
-                <span className="text-[10px] text-ink-muted">
+                <span className="text-[12px] text-ink-muted">
                   {code.verifiedAt
                     ? t("inventory.verified")
                     : t("inventory.notVerified")}
@@ -390,6 +391,12 @@ export default function AccessCodesPage() {
     workspaceAccess,
     PERMISSIONS.ACCESS_CODES_MANAGE,
   );
+  const canViewEmailTemplate =
+    hasPermission(workspaceAccess, PERMISSIONS.ACCESS_CODES_VIEW) &&
+    hasPermission(workspaceAccess, PERMISSIONS.COMMUNICATIONS_VIEW);
+  const canManageEmailTemplate =
+    canManage &&
+    hasPermission(workspaceAccess, PERMISSIONS.COMMUNICATIONS_MANAGE);
   const canReveal = hasPermission(
     workspaceAccess,
     PERMISSIONS.ACCESS_CODES_REVEAL,
@@ -437,6 +444,15 @@ export default function AccessCodesPage() {
   );
 
   useEffect(() => {
+    // Keep a deep-linked location until the permitted location list is ready.
+    // An empty loading/error response cannot establish a valid fallback.
+    if (
+      !locationsQuery.data ||
+      locationsQuery.isLoading ||
+      locationsQuery.isError
+    ) {
+      return;
+    }
     if (
       selectedLocationId &&
       locations.some((location) => location.id === selectedLocationId)
@@ -444,7 +460,13 @@ export default function AccessCodesPage() {
       return;
     }
     setSelectedLocationId(locations[0]?.id || "");
-  }, [locations, selectedLocationId]);
+  }, [
+    locations,
+    locationsQuery.data,
+    locationsQuery.isLoading,
+    locationsQuery.isError,
+    selectedLocationId,
+  ]);
 
   const poolsQuery = useGetAccessCodePoolsQuery(
     { locationId: selectedLocationId, includeArchived: false },
@@ -645,7 +667,7 @@ export default function AccessCodesPage() {
     >
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
             {t("eyebrow")}
           </p>
           <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-ink sm:text-[34px]">
@@ -658,7 +680,7 @@ export default function AccessCodesPage() {
         <div className="w-full sm:w-[260px]">
           <label
             htmlFor="access-code-location"
-            className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-subtle"
+            className="mb-1.5 block text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-subtle"
           >
             {t("location")}
           </label>
@@ -696,7 +718,7 @@ export default function AccessCodesPage() {
           <p className="text-xs font-semibold text-cobalt-950">
             {t("scopeNotice.title")}
           </p>
-          <p className="mt-1 text-[11px] leading-5 text-cobalt-900/75">
+          <p className="mt-1 text-[13px] leading-5 text-cobalt-900/75">
             {t("scopeNotice.description")}
           </p>
         </div>
@@ -710,7 +732,7 @@ export default function AccessCodesPage() {
           <button
             type="button"
             onClick={() => locationsQuery.refetch()}
-            className="mt-3 inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-[11px] font-semibold text-cobalt-700"
+            className="mt-3 inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-[13px] font-semibold text-cobalt-700"
           >
             <ArrowPathIcon aria-hidden="true" className="size-4" />
             {t("actions.retry")}
@@ -735,6 +757,18 @@ export default function AccessCodesPage() {
         </div>
       ) : null}
 
+      {selectedLocationId &&
+      canViewEmailTemplate &&
+      !locationsQuery.isError &&
+      locations.some((location) => location.id === selectedLocationId) ? (
+        <DoorAccessEmailSettings
+          key={selectedLocationId}
+          locationId={selectedLocationId}
+          canView={canViewEmailTemplate}
+          canManage={canManageEmailTemplate}
+        />
+      ) : null}
+
       {selectedLocationId ? (
         <div
           data-contextual-guide-target="access-codes-pools"
@@ -742,7 +776,7 @@ export default function AccessCodesPage() {
         >
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-subtle">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-subtle">
                 {t("pools.eyebrow")}
               </p>
               <h2 className="mt-1 text-[17px] font-semibold tracking-[-0.035em] text-ink">
@@ -753,7 +787,7 @@ export default function AccessCodesPage() {
               <button
                 type="button"
                 onClick={() => setPoolDialog({})}
-                className="inline-flex h-10 items-center gap-2 rounded-full border border-cobalt-200 bg-cobalt-50 px-4 text-[11px] font-semibold text-cobalt-700 transition hover:bg-cobalt-100"
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-cobalt-200 bg-cobalt-50 px-4 text-[13px] font-semibold text-cobalt-700 transition hover:bg-cobalt-100"
               >
                 <PlusIcon aria-hidden="true" className="size-4" />
                 {t("actions.addPool")}
@@ -818,7 +852,7 @@ export default function AccessCodesPage() {
                     <p className="mt-3 truncate text-sm font-semibold text-ink">
                       {pool.name}
                     </p>
-                    <p className="mt-1 text-[10px] text-ink-muted">
+                    <p className="mt-1 text-[12px] text-ink-muted">
                       {t("pools.availableCount", {
                         count: poolCounts.available,
                       })}
@@ -847,19 +881,19 @@ export default function AccessCodesPage() {
       {selectedPool ? (
         <>
           {isPoolLowStock(selectedPool) ? (
-            <div className="flex flex-col gap-4 rounded-[20px] border border-amber-300 bg-amber-50 px-5 py-5 shadow-[0_12px_36px_rgba(180,112,20,0.08)] sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4 rounded-[20px] border border-line bg-white px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-3">
-                <span className="grid size-11 shrink-0 place-items-center rounded-[14px] bg-white text-amber-700 shadow-xs">
+                <span className="mt-0.5 grid size-5 shrink-0 place-items-center text-warning">
                   <ExclamationTriangleIcon
                     aria-hidden="true"
                     className="size-5"
                   />
                 </span>
                 <div>
-                  <h2 className="text-base font-semibold tracking-[-0.025em] text-amber-950">
+                  <h2 className="text-base font-semibold tracking-[-0.025em] text-ink">
                     {t("warning.title")}
                   </h2>
-                  <p className="mt-1 text-xs leading-5 text-amber-900/80">
+                  <p className="mt-1 text-[13px] leading-5 text-ink-muted">
                     {t("warning.description", {
                       count: counts.available,
                       threshold: Number(selectedPool.lowStockThreshold || 0),
@@ -871,7 +905,7 @@ export default function AccessCodesPage() {
                 <button
                   type="button"
                   onClick={() => setBulkOpen(true)}
-                  className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-amber-900 px-4 text-[11px] font-semibold text-white"
+                  className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-full px-4 text-[13px] font-semibold text-cobalt-700 transition hover:bg-cobalt-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30"
                 >
                   <PlusIcon aria-hidden="true" className="size-4" />
                   {t("warning.action")}
@@ -917,12 +951,12 @@ export default function AccessCodesPage() {
                   <h2 className="truncate text-[18px] font-semibold tracking-[-0.04em] text-ink">
                     {selectedPool.name}
                   </h2>
-                  <span className="rounded-full bg-surface px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+                  <span className="rounded-full bg-surface px-2 py-1 text-[12px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
                     {t(`poolStatuses.${selectedPool.status || "active"}`)}
                   </span>
                 </div>
                 {selectedPool.description ? (
-                  <p className="mt-1 truncate text-[11px] text-ink-muted">
+                  <p className="mt-1 truncate text-[13px] text-ink-muted">
                     {selectedPool.description}
                   </p>
                 ) : null}
@@ -932,7 +966,7 @@ export default function AccessCodesPage() {
                   <button
                     type="button"
                     onClick={() => setPoolDialog(selectedPool)}
-                    className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-3.5 text-[10px] font-semibold text-ink-muted transition hover:border-cobalt-200 hover:text-cobalt-700"
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-3.5 text-[12px] font-semibold text-ink-muted transition hover:border-cobalt-200 hover:text-cobalt-700"
                   >
                     <PencilSquareIcon aria-hidden="true" className="size-4" />
                     {t("actions.editPool")}
@@ -943,7 +977,7 @@ export default function AccessCodesPage() {
                     type="button"
                     onClick={handleArchivePool}
                     disabled={archivePoolState.isLoading}
-                    className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-3.5 text-[10px] font-semibold text-ink-muted transition hover:border-danger/25 hover:text-danger"
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-3.5 text-[12px] font-semibold text-ink-muted transition hover:border-danger/25 hover:text-danger"
                   >
                     <ArchiveBoxIcon aria-hidden="true" className="size-4" />
                     {t("actions.archivePool")}
@@ -960,10 +994,11 @@ export default function AccessCodesPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab("codes")}
+                  aria-pressed={activeTab === "codes"}
                   className={cx(
-                    "h-9 rounded-full px-4 text-[10px] font-semibold transition",
+                    "h-9 rounded-full px-4 text-[12px] font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30",
                     activeTab === "codes"
-                      ? "bg-white text-ink shadow-xs"
+                      ? "bg-cobalt-500 text-white shadow-xs"
                       : "text-ink-muted",
                   )}
                 >
@@ -973,10 +1008,11 @@ export default function AccessCodesPage() {
                   <button
                     type="button"
                     onClick={() => setActiveTab("audit")}
+                    aria-pressed={activeTab === "audit"}
                     className={cx(
-                      "h-9 rounded-full px-4 text-[10px] font-semibold transition",
+                      "h-9 rounded-full px-4 text-[12px] font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30",
                       activeTab === "audit"
-                        ? "bg-white text-ink shadow-xs"
+                        ? "bg-cobalt-500 text-white shadow-xs"
                         : "text-ink-muted",
                     )}
                   >
@@ -994,7 +1030,7 @@ export default function AccessCodesPage() {
                     <button
                       type="button"
                       onClick={() => setBulkOpen(true)}
-                      className="inline-flex h-10 items-center gap-2 rounded-full border border-cobalt-200 bg-cobalt-50 px-4 text-[10px] font-semibold text-cobalt-700 transition hover:bg-cobalt-100"
+                      className="inline-flex h-10 items-center gap-2 rounded-full border border-cobalt-200 bg-cobalt-50 px-4 text-[12px] font-semibold text-cobalt-700 transition hover:bg-cobalt-100"
                     >
                       <EllipsisHorizontalIcon
                         aria-hidden="true"
@@ -1007,7 +1043,7 @@ export default function AccessCodesPage() {
                     <button
                       type="button"
                       onClick={() => setCodeDialog({})}
-                      className="inline-flex h-10 items-center gap-2 rounded-full bg-cobalt-500 px-4 text-[10px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600"
+                      className="inline-flex h-10 items-center gap-2 rounded-full bg-cobalt-500 px-4 text-[12px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600"
                     >
                       <PlusIcon aria-hidden="true" className="size-4" />
                       {t("actions.addCode")}
@@ -1089,7 +1125,7 @@ export default function AccessCodesPage() {
                       <button
                         type="button"
                         onClick={() => codesQuery.refetch()}
-                        className="mt-3 inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-[11px] font-semibold text-cobalt-700"
+                        className="mt-3 inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-[13px] font-semibold text-cobalt-700"
                       >
                         <ArrowPathIcon aria-hidden="true" className="size-4" />
                         {t("actions.retry")}

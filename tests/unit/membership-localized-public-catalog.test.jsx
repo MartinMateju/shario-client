@@ -110,6 +110,17 @@ describe("localized public membership catalogue", () => {
     });
   });
 
+  it("renders the configured membership photo in a direct page header and keeps editable localized copy", () => {
+    mocks.tenant.publicSite.customerPortal.pageImages.memberships = "https://cdn.example.test/memberships.webp";
+    const { container } = render(page());
+    const pageElement = container.querySelector("[data-customer-portal-page]");
+    const hero = pageElement.querySelector('[data-customer-portal-hero="memberships"]');
+    expect(hero.parentElement).toBe(pageElement);
+    expect(hero).toHaveAttribute("data-customer-portal-hero-layout", "split");
+    expect(hero.querySelector("img")).toHaveAttribute("src", "https://cdn.example.test/memberships.webp");
+    expect(hero.querySelector('[data-public-site-edit-path="pages.memberships.title.en"]')).not.toBeNull();
+  });
+
   it("renders translated names, descriptions, terms and benefit labels with per-field fallback", () => {
     const version = mocks.data.plans[0].publishedVersion;
     version.terms = "České podmínky";

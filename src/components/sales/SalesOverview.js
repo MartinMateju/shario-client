@@ -12,46 +12,25 @@ const cards = [
     key: "revenue",
     icon: BanknotesIcon,
     iconClass: "bg-cobalt-50 text-cobalt-600",
-    sparkline: true,
   },
   {
     key: "orders",
     icon: ShoppingBagIcon,
-    iconClass: "bg-[#EDF3E6] text-[#527043]",
-    sparkline: true,
+    iconClass: "bg-[var(--studio-orange-soft)] text-[var(--studio-orange-ink)]",
   },
   {
     key: "awaitingPayment",
     icon: CreditCardIcon,
-    iconClass: "bg-[#FBF0DF] text-[#B86C00]",
+    iconClass: "bg-warning-soft text-warning",
     action: "awaitingPayment",
   },
   {
     key: "failed",
     icon: ExclamationTriangleIcon,
-    iconClass: "bg-coral-50 text-terracotta-600",
+    iconClass: "bg-danger-soft text-danger",
     action: "failed",
   },
 ];
-
-function Sparkline() {
-  return (
-    <svg
-      viewBox="0 0 58 20"
-      className="h-5 w-14 text-cobalt-500"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M1 17 8 13l7 2 8-8 7 4 7-7 7 4 13-7"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export default function SalesOverview({
   stats,
@@ -59,6 +38,8 @@ export default function SalesOverview({
   isLoading = false,
   error = false,
   onRetry,
+  amountReason = null,
+  hasMultiStudioOrders = false,
   t,
 }) {
   return (
@@ -74,20 +55,20 @@ export default function SalesOverview({
       )}
       {error && !isLoading && (
         <div
-          className="flex flex-wrap items-center justify-between gap-3 rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-[12px] text-terracotta-700 sm:col-span-2 xl:col-span-4"
+          className="flex flex-wrap items-center justify-between gap-3 rounded-[14px] border border-danger/40 bg-danger-soft px-4 py-3 text-[12px] text-danger sm:col-span-2 xl:col-span-4"
           role="alert"
         >
           <p>{t("overview.error")}</p>
           <button
             type="button"
             onClick={onRetry}
-            className="min-h-11 rounded-full border border-current px-4 font-semibold"
+            className="min-h-11 rounded-full border border-primary/35 bg-white px-4 font-semibold text-primary transition hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             {t("overview.retry")}
           </button>
         </div>
       )}
-      {cards.map(({ key, icon: Icon, iconClass, sparkline, action }) => (
+      {cards.map(({ key, icon: Icon, iconClass, action }) => (
         <WorkspaceCard key={key} className="flex min-w-0 flex-col p-4 sm:p-5">
           <div className="flex min-w-0 items-center justify-between gap-3">
             <p className="min-w-0 text-[12px] font-medium leading-5 text-ink-soft">
@@ -109,7 +90,7 @@ export default function SalesOverview({
               <button
                 type="button"
                 onClick={() => onStatusChange(action)}
-                className="text-left text-[12px] font-medium text-terracotta-600 transition hover:text-terracotta-700"
+                className="text-left text-[12px] font-semibold text-primary underline-offset-4 transition hover:underline"
               >
                 {t(`overview.${key}Action`)} →
               </button>
@@ -118,11 +99,20 @@ export default function SalesOverview({
                 {t(`overview.${key}Detail`)}
               </span>
             )}
-
-            {sparkline && <Sparkline />}
           </div>
+          {key === "revenue" && !isLoading && !error && amountReason && (
+            <p className="mt-2 text-[12px] leading-5 text-terracotta-700">
+              {t(`money.${amountReason}`)}
+            </p>
+          )}
         </WorkspaceCard>
       ))}
+      <p className="text-[12px] leading-5 text-ink-muted sm:col-span-2 xl:col-span-4">
+        {t("money.scope")}
+        {!isLoading && !error && hasMultiStudioOrders && (
+          <> {t("money.multiStudio")}</>
+        )}
+      </p>
     </section>
   );
 }

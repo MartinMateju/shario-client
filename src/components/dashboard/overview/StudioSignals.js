@@ -14,10 +14,12 @@ import { Link } from "@/i18n/navigation";
 import { cx, formatSignalDate } from "./overview.utils";
 
 const priorityTone = {
-  urgent: "bg-[var(--overview-danger-soft)] text-[var(--overview-danger)]",
-  high: "bg-[var(--overview-warning-soft)] text-[var(--overview-warning)]",
-  normal: "bg-[var(--overview-blue-soft)] text-[var(--studio-blue)]",
-  low: "bg-[var(--studio-soft)] text-[var(--studio-muted)]",
+  urgent:
+    "border-[var(--studio-danger-line)] bg-[var(--overview-danger-soft)] text-[var(--overview-danger)]",
+  high: "border-[var(--studio-warning-line)] bg-[var(--overview-warning-soft)] text-[var(--overview-warning)]",
+  normal:
+    "border-[var(--studio-blue-line)] bg-[var(--overview-blue-soft)] text-[var(--studio-blue)]",
+  low: "border-[var(--studio-rule)] bg-[var(--studio-soft)] text-[var(--studio-muted)]",
 };
 
 function SignalCard({
@@ -39,7 +41,7 @@ function SignalCard({
     <section className={`${styles.module} ${styles.card}`}>
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--overview-blue-soft)] text-[var(--studio-blue)]">
+          <span className={styles.sectionIcon}>
             <Icon className="h-5 w-5" aria-hidden="true" />
           </span>
           <div className="min-w-0">
@@ -47,7 +49,7 @@ function SignalCard({
               {title}
             </h2>
             {available ? (
-              <p className="mt-0.5 text-[12px] text-[var(--studio-muted)]">
+              <p className="mt-0.5 text-[13px] text-[var(--studio-muted)]">
                 {countLabel}
               </p>
             ) : null}
@@ -56,7 +58,7 @@ function SignalCard({
         {available ? (
           <Link
             href={href}
-            className="inline-flex min-h-11 shrink-0 items-center gap-1 text-[12px] font-medium text-[var(--studio-blue)] transition hover:text-[var(--studio-blue)]"
+            className="inline-flex min-h-11 shrink-0 items-center gap-1 rounded-lg px-2 text-[13px] font-semibold text-[var(--studio-blue)] transition hover:bg-[var(--overview-blue-soft)]"
           >
             {t("signals.open")}
             <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -117,24 +119,24 @@ export default function StudioSignals({ signals, timezone, modules }) {
                 className={styles.signalRow}
               >
                 <div className="min-w-0">
-                  <p className="break-words text-[14px] font-medium text-[var(--studio-ink)]">
+                  <p className="break-words text-[14px] font-semibold text-[var(--studio-ink)]">
                     {task.title || t("signals.tasks.untitled")}
                   </p>
-                  <p className="mt-1 break-words text-[12px] text-[var(--studio-muted)]">
+                  <p className="mt-1 break-words text-[13px] text-[var(--studio-muted)]">
                     {task.assigneeName || t("signals.tasks.unassigned")}
                   </p>
                 </div>
-                <div className="flex shrink-0 items-center gap-2">
+                <div className="flex min-w-0 flex-wrap items-center gap-2">
                   <span
                     className={cx(
-                      "rounded-full px-2 py-1 text-[12px] font-medium uppercase tracking-[0.08em]",
+                      "rounded-full border px-2.5 py-1 text-[13px] font-semibold",
                       priorityTone[task.priority] ?? priorityTone.normal,
                     )}
                   >
                     {t(`signals.tasks.priorities.${task.priority || "normal"}`)}
                   </span>
                   {task.dueDate ? (
-                    <span className="text-[12px] text-[var(--studio-muted)]">
+                    <span className="text-[13px] font-semibold tabular-nums text-[var(--studio-ink)]">
                       {formatSignalDate(task.dueDate, locale, timezone, {
                         day: "numeric",
                         month: "short",

@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({
   searchParams: new URLSearchParams(),
   navigation: [],
+  customLinks: [],
 }));
 
 vi.mock("next/navigation", () => ({
@@ -54,6 +55,7 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
           displayName: "The Pottery House",
         },
         footer: {
+          customLinks: mocks.customLinks,
           address: "",
           copyright: "",
           description: "",
@@ -74,6 +76,7 @@ describe("PublicTenantFooter platform navigation", () => {
   beforeEach(() => {
     mocks.searchParams = new URLSearchParams();
     mocks.navigation = [];
+    mocks.customLinks = [];
   });
 
   it.each([
@@ -113,6 +116,55 @@ describe("PublicTenantFooter platform navigation", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("flattens header groups into real footer destinations and removes repeated hrefs", () => {
+    mocks.navigation = [
+      {
+        key: "custom-studios",
+        custom: true,
+        label: "Studios",
+        children: [
+          {
+            key: "custom-group:studios:grohova",
+            custom: true,
+            label: "Grohova",
+            href: "https://www.example.com/en/grohova/",
+          },
+          {
+            key: "custom-group:studios:about",
+            custom: true,
+            label: "About",
+            href: "/en/about",
+          },
+        ],
+      },
+      {
+        key: "custom-about",
+        custom: true,
+        label: "About again",
+        href: "/en/about",
+      },
+    ];
+    mocks.customLinks = [
+      {
+        id: "about-footer",
+        label: { en: "Footer about" },
+        href: { en: "/en/about" },
+      },
+    ];
+    render(<PublicTenantFooter />);
+    expect(screen.getByRole("link", { name: "Grohova" })).toHaveAttribute(
+      "href",
+      "https://www.example.com/en/grohova/",
+    );
+    expect(screen.getByRole("link", { name: "About" })).toHaveAttribute(
+      "href",
+      "/en/about",
+    );
+    expect(screen.queryByRole("link", { name: "Studios" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "About again" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Footer about" })).toBeNull();
+  });
+
   it("returns to the configured platform origin in local development", () => {
     vi.stubEnv("NEXT_PUBLIC_ROOT_DOMAIN", "shario.localhost");
 
@@ -126,5 +178,48 @@ describe("PublicTenantFooter platform navigation", () => {
 
     expect(target.hostname).toBe("shario.localhost");
     expect(target.pathname).toBe("/en");
+  });
+
+  it("localizes extra footer links, preserves their destinations, and deduplicates inherited and extra hrefs", () => {
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+    mocks.navigation = [
+      {
+        key: "custom-shared-id",
+        custom: true,
+        label: "Courses",
+        href: "/cs/courses?location=vaclavska",
+      },
+    ];
+    mocks.customLinks = [
+      {
+        id: "shared-id",
+        label: { cs: "O nás", en: "About us" },
+        href: { cs: "/cs/about", en: "https://www.commonground.example/en/about/" },
+      },
+      {
+        id: "courses-again",
+        label: { en: "Duplicate courses" },
+        href: { en: "/cs/courses?location=vaclavska" },
+      },
+      {
+        id: "about-again",
+        label: { en: "Duplicate about" },
+        href: { en: "https://www.commonground.example/en/about/" },
+      },
+    ];
+
+    render(<PublicTenantFooter />);
+
+    expect(screen.getByRole("link", { name: "Courses" })).toHaveAttribute(
+      "href",
+      "/cs/courses?location=vaclavska",
+    );
+    expect(screen.getByRole("link", { name: "About us" })).toHaveAttribute(
+      "href",
+      "https://www.commonground.example/en/about/",
+    );
+    expect(screen.queryByRole("link", { name: /Duplicate/ })).toBeNull();
+    expect(error).not.toHaveBeenCalled();
+    error.mockRestore();
   });
 });

@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   guided: true,
+  settingsLoading: false,
   refreshAndContinue: vi.fn(),
   replace: vi.fn(),
   search: "",
@@ -70,7 +71,7 @@ vi.mock("@/lib/features/workspace-access/workspaceAccessApiSlice", () => ({
   useGetWorkspaceSettingsQuery: () => ({
     data: { settings: mocks.settings },
     isError: false,
-    isLoading: false,
+    isLoading: mocks.settingsLoading,
     refetch: vi.fn(),
   }),
   useUpdateWorkspaceSettingsMutation: () => [
@@ -85,6 +86,7 @@ describe("guided workspace settings", () => {
   beforeEach(() => {
     window.location.hash = "";
     mocks.guided = true;
+    mocks.settingsLoading = false;
     mocks.search = "";
     mocks.refreshAndContinue.mockReset().mockResolvedValue(true);
     mocks.replace.mockReset();
@@ -199,5 +201,36 @@ describe("guided workspace settings", () => {
       "WorkspaceSettings.messages.error",
     );
     expect(mocks.refreshAndContinue).not.toHaveBeenCalled();
+  });
+  it("restores the language field after its settings finish loading", () => {
+    mocks.guided = false;
+    mocks.settingsLoading = true;
+    window.history.replaceState(
+      null,
+      "",
+      "/app/settings/general#workspace-language",
+    );
+    const scroll = vi.spyOn(Element.prototype, "scrollIntoView");
+    const view = render(<WorkspaceSettingsPage />);
+    expect(scroll).not.toHaveBeenCalled();
+    mocks.settingsLoading = false;
+    view.rerender(<WorkspaceSettingsPage />);
+    expect(scroll).toHaveBeenCalledOnce();
+    expect(scroll.mock.instances[0]).toBe(
+      document.getElementById("workspace-language"),
+    );
+    expect(scroll).toHaveBeenCalledWith({ block: "start" });
+    expect(
+      document.getElementById("workspace-language").querySelector("select"),
+    ).toHaveValue("en");
+    view.rerender(<WorkspaceSettingsPage />);
+    expect(scroll).toHaveBeenCalledOnce();
+  });
+
+  it.each(["", "#unrelated"])("keeps the normal form scroll for %s", (hash) => {
+    window.history.replaceState(null, "", `/app/settings/general${hash}`);
+    const scroll = vi.spyOn(Element.prototype, "scrollIntoView");
+    render(<WorkspaceSettingsPage />);
+    expect(scroll).not.toHaveBeenCalled();
   });
 });

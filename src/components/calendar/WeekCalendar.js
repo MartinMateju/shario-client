@@ -6,7 +6,6 @@ import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import CalendarEventCard from "./CalendarEventCard";
 import CalendarSlotSelection from "./CalendarSlotSelection";
 import CustomerSlotSurfaces from "./CustomerSlotSurfaces";
-import MobileAgendaCalendar from "./MobileAgendaCalendar";
 import NowMarker from "./NowMarker";
 import {
   getBookingPreviewAvailability,
@@ -88,10 +87,10 @@ function WeekDayHeaders({ dayModels, customerThemed }) {
         aria-current={isToday ? "date" : undefined}
         data-tenant-hover={customerThemed ? "preserve" : undefined}
         className={cx(
-          "flex h-11 items-center justify-center gap-1.5 border-r text-[10px] font-medium uppercase tracking-[0.07em] last:border-r-0",
+          "flex h-11 items-center justify-center gap-1.5 border-r uppercase tracking-[0.07em] last:border-r-0",
           customerThemed
-            ? "border-[var(--tenant-border)] text-[var(--tenant-text-on-surface)]"
-            : "border-[#CBD5E1] text-[#475569]",
+            ? "border-[var(--tenant-border)] text-[10px] font-medium text-[var(--tenant-text-on-surface)]"
+            : "border-line-strong text-[12px] font-semibold text-ink-soft",
         )}
         style={
           customerThemed
@@ -101,7 +100,7 @@ function WeekDayHeaders({ dayModels, customerThemed }) {
             : isToday
               ? {
                   backgroundColor:
-                    "color-mix(in srgb, var(--color-brand-primary) 8%, white)",
+                    "color-mix(in srgb, var(--color-brand-primary) 12%, var(--studio-white, white))",
                 }
               : undefined
         }
@@ -190,7 +189,6 @@ export default function WeekCalendar({
   locale,
   audience,
   selectedActivityId,
-  onDateChange,
   onBookingClick,
   onSlotSelect,
   bookingPreviewRequest,
@@ -376,16 +374,6 @@ export default function WeekCalendar({
         bookingTrigger || document.activeElement;
     }
   }, [days, end, matchingPreviewRequest, seedSelection, start, studio]);
-  const selectedMobileDate =
-    days.find((day) => localDateKey(day) === localDateKey(date)) ||
-    days.find((day) => localDateKey(day) === todayKey) ||
-    days[0];
-  const handleMobileDateChange = useCallback(
-    (day) => {
-      onDateChange?.(day);
-    },
-    [onDateChange],
-  );
   const {
     handleBodyScroll: handleWeekScroll,
     handleHeaderScroll: handleMobileHeaderScroll,
@@ -500,7 +488,11 @@ export default function WeekCalendar({
       );
       if (!preview) return;
       scrolledBookingPreviewRef.current = requestId;
-      preview.scrollIntoView?.({ block: "nearest", inline: "nearest" });
+      preview.scrollIntoView?.({
+        behavior: "instant",
+        block: "nearest",
+        inline: "nearest",
+      });
       syncScrollFromBody();
     });
     return () => cancelAnimationFrame(frame);
@@ -636,77 +628,66 @@ export default function WeekCalendar({
       className={`flex min-h-0 flex-col ${pageScroll ? "overflow-visible" : "flex-1 overflow-hidden"}`}
     >
       <div
-        data-calendar-mobile-week-grid={customerThemed ? "true" : undefined}
+        data-calendar-mobile-week-grid="true"
         className={cx(
           "calendar-week-grid-layout min-h-0 min-w-0",
           pageScroll ? "overflow-visible" : "flex flex-1 flex-col",
         )}
       >
-        {!customerThemed && (
-          <MobileAgendaCalendar
-            days={days}
-            selectedDate={selectedMobileDate}
-            onDateChange={handleMobileDateChange}
-            bookings={bookings}
-            availabilityBookings={availabilityBookings}
-            studio={sourceStudio}
-            locale={locale}
-            audience={audience}
-            selectedActivityId={selectedActivityId}
-            onBookingClick={onBookingClick}
-            onSlotSelect={onSlotSelect}
-            selectionCopy={selectionCopy}
-            mobileOverlayBlocked={mobileOverlayBlocked}
-            t={t}
-            pageScroll={pageScroll}
-          />
-        )}
-
-        {customerThemed && (
+        <div
+          ref={mobileHeaderScrollRef}
+          data-calendar-grid-header="true"
+          data-calendar-mobile-grid-header="true"
+          data-calendar-header-scroll="true"
+          role="region"
+          aria-label={t("views.week")}
+          tabIndex={0}
+          onScroll={handleMobileHeaderScroll}
+          onPointerDownCapture={handleScrollInputCapture}
+          onFocusCapture={handleScrollInputCapture}
+          onWheelCapture={handleScrollInputCapture}
+          onKeyDownCapture={handleScrollKeyDownCapture}
+          className={cx(
+            "calendar-week-header-scroll sticky z-40 h-11 shrink-0 overflow-x-auto overflow-y-hidden overscroll-x-contain border-b touch-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 lg:hidden",
+            customerThemed
+              ? "border-[var(--tenant-border)] bg-[var(--tenant-surface)] focus-visible:outline-[var(--tenant-accent-on-surface)]"
+              : "border-[#CBD5E1] bg-white focus-visible:outline-brand-primary",
+          )}
+          style={{
+            top: pageScroll
+              ? "calc(var(--calendar-command-toolbar-sticky-top, var(--header-height, 4.875rem)) + var(--calendar-command-toolbar-sticky-height, 0px))"
+              : "0px",
+          }}
+        >
           <div
-            ref={mobileHeaderScrollRef}
-            data-calendar-grid-header="true"
-            data-calendar-mobile-grid-header="true"
-            data-calendar-header-scroll="true"
-            role="region"
-            aria-label={t("views.week")}
-            tabIndex={0}
-            onScroll={handleMobileHeaderScroll}
-            onPointerDownCapture={handleScrollInputCapture}
-            onFocusCapture={handleScrollInputCapture}
-            onWheelCapture={handleScrollInputCapture}
-            onKeyDownCapture={handleScrollKeyDownCapture}
-            className={cx(
-              "calendar-week-header-scroll sticky z-40 h-11 overflow-x-auto overflow-y-hidden overscroll-x-contain border-b border-[var(--tenant-border)] bg-[var(--tenant-surface)] touch-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--tenant-accent-on-surface)] lg:hidden",
-            )}
-            style={{
-              top: pageScroll
-                ? "calc(var(--calendar-command-toolbar-sticky-top, var(--header-height, 4.875rem)) + var(--calendar-command-toolbar-sticky-height, 0px))"
-                : "0px",
-            }}
+            className="calendar-week-grid-canvas calendar-week-grid-columns"
+            style={{ ...WEEK_GRID_CANVAS_STYLE, ...WEEK_GRID_TRACK_STYLE }}
           >
             <div
-              className="calendar-week-grid-canvas calendar-week-grid-columns"
-              style={{ ...WEEK_GRID_CANVAS_STYLE, ...WEEK_GRID_TRACK_STYLE }}
-            >
-              <div
-                data-calendar-header-time-rail="true"
-                className="sticky left-0 z-10 border-r border-[var(--tenant-border)] bg-[var(--tenant-surface)]"
-                style={{ left: 0 }}
-              />
-              <WeekDayHeaders
-                dayModels={dayModels}
-                customerThemed={customerThemed}
-              />
-            </div>
+              data-calendar-header-time-rail="true"
+              className={cx(
+                "sticky left-0 z-10 border-r",
+                customerThemed
+                  ? "border-[var(--tenant-border)] bg-[var(--tenant-surface)]"
+                  : "border-[#CBD5E1] bg-white",
+              )}
+              style={{ left: 0 }}
+            />
+            <WeekDayHeaders
+              dayModels={dayModels}
+              customerThemed={customerThemed}
+            />
           </div>
-        )}
+        </div>
 
         <div
           ref={weekScrollRef}
           data-calendar-desktop-week="true"
           data-calendar-desktop-grid="true"
           data-calendar-week-scroll="true"
+          role="region"
+          aria-label={t("week.schedule")}
+          tabIndex={0}
           data-calendar-start-minute={start * 60}
           data-calendar-end-minute={end * 60}
           onScroll={handleWeekScroll}
@@ -715,8 +696,10 @@ export default function WeekCalendar({
           onWheelCapture={handleScrollInputCapture}
           onKeyDownCapture={handleScrollKeyDownCapture}
           className={cx(
-            "min-h-0",
-            customerThemed ? "block" : "hidden lg:block",
+            "block min-h-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+            customerThemed
+              ? "focus-visible:outline-[var(--tenant-accent-on-surface)]"
+              : "focus-visible:outline-brand-primary",
             pageScroll
               ? "overflow-x-auto overscroll-x-contain overscroll-y-auto overflow-y-clip touch-auto"
               : "flex-1 overflow-auto overscroll-contain",
@@ -730,7 +713,7 @@ export default function WeekCalendar({
               data-calendar-grid-header="true"
               className={cx(
                 `${pageScroll ? "relative" : "sticky top-0"} z-30 border-b backdrop-blur calendar-week-grid-columns`,
-                customerThemed ? "hidden lg:grid" : "grid",
+                "hidden lg:grid",
                 customerThemed
                   ? "border-[var(--tenant-border)] bg-[var(--tenant-surface)]"
                   : "border-[#CBD5E1] bg-white/95",
@@ -773,7 +756,10 @@ export default function WeekCalendar({
                       slot.minute === start * 60 ? "true" : undefined
                     }
                     className={cx(
-                      "absolute right-2 -translate-y-1/2 tabular-nums text-[11px] font-medium",
+                      "absolute right-2 -translate-y-1/2 tabular-nums",
+                      customerThemed
+                        ? "text-[11px] font-medium"
+                        : "text-[12px] font-semibold",
                       customerThemed
                         ? slot.isHour
                           ? "text-[var(--tenant-text)]"

@@ -11,6 +11,16 @@ const mocks = vi.hoisted(() => ({
   testSetup: vi.fn(),
 }));
 
+vi.mock("react-redux", () => ({ useSelector: () => ({}) }));
+vi.mock("@/hooks/useWorkspaceBannerDismissal", () => ({
+  default: () => ({
+    dismissed: false,
+    setDismissed: vi.fn(),
+    isSaving: false,
+    saveError: false,
+  }),
+}));
+
 vi.mock("next-intl", () => ({
   useTranslations: () => {
     const messages = {

@@ -22,7 +22,7 @@ vi.mock("next-intl", async (...args) => {
       useLocale: () => mocks.locale,
       useTranslations: () => (key) => key,
     }))(...args),
-    [undefined],
+    [undefined, "PaymentCancellation", "PendingBookingPayment"],
   );
 });
 vi.mock("react-redux", () => ({
@@ -48,6 +48,7 @@ vi.mock("@/i18n/navigation", () => ({
   }),
 }));
 vi.mock("@/lib/features/checkout/checkoutSlice", () => ({
+  useCancelPendingBookingCheckoutMutation: () => [vi.fn(), {}],
   useLazyGetMyOrderConfirmationQuery: () => [
     mocks.loadBooking,
     mocks.bookingQuery,
@@ -150,6 +151,7 @@ describe("portal payment results follow personal colors", () => {
     );
     mocks.bookingQuery = {
       data: {
+        orderId,
         status: "processed_order",
         isPaid: true,
         terminal: true,
@@ -235,14 +237,17 @@ describe("portal payment results follow personal colors", () => {
     expect(style.getPropertyValue("--tenant-portal-button")).toBe("#112299");
     expect(mocks.dispatch).toHaveBeenCalledTimes(reconciliations);
   });
-  it.each(["pending", "failed", "unavailable", "invalid"])(
+
+  it.each(["pending", "failed", "unavailable", "invalid", "refund"])(
     "themes the %s booking result and preserves retry behavior",
     (state) => {
       if (state === "invalid") mocks.searchParams.delete("orderId");
       mocks.bookingQuery = {
         data: {
+          orderId,
           status: state === "failed" ? "failed_order" : "pending_order",
           terminal: state === "failed",
+          ...(state === "refund" ? { refundReviewRequired: true } : {}),
         },
         isError: state === "unavailable",
       };

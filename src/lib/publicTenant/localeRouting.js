@@ -1,5 +1,5 @@
 import { cookies, headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { permanentRedirect, redirect } from "next/navigation";
 
 import {
   buildPublicTenantLocaleRedirectPath,
@@ -9,6 +9,7 @@ import {
 import { routing } from "@/i18n/routing";
 import { getCustomerLocaleCookieName } from "@/i18n/customerLocalePreference";
 import { normalizeLocaleCode } from "@/i18n/locales";
+import { getPublicTenantOriginRedirect, resolvePublicSeoSite } from "./seo";
 
 const PUBLIC_PATHNAME_HEADER = "x-shario-public-pathname";
 const PUBLIC_SEARCH_HEADER = "x-shario-public-search";
@@ -21,6 +22,18 @@ export const enforcePublicTenantRouteLocale = async ({
   const requestHeaders = await headers();
   const publicPathname = requestHeaders.get(PUBLIC_PATHNAME_HEADER);
   const publicSearch = requestHeaders.get(PUBLIC_SEARCH_HEADER);
+  const site = resolvePublicSeoSite({
+    host: requestHeaders.get("host"),
+    forwardedHost: requestHeaders.get("x-forwarded-host"),
+    forwardedProto: requestHeaders.get("x-forwarded-proto"),
+  });
+  const canonicalRedirect = getPublicTenantOriginRedirect({
+    tenant,
+    site,
+    pathname: publicPathname,
+    search: publicSearch || "",
+  });
+  if (canonicalRedirect) permanentRedirect(canonicalRedirect);
   const implicitLocale =
     Boolean(publicPathname) &&
     !normalizeLocaleCode(publicPathname.split("/")[1]);

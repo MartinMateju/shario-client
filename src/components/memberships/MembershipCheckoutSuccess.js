@@ -13,6 +13,8 @@ import { Link } from "@/i18n/navigation";
 import { useGetMembershipCheckoutStatusQuery } from "@/lib/features/memberships/membershipsApiSlice";
 import { buildTenantAuthHref } from "@/utils/tenantAuthRouting";
 import useCustomerPortalReturnHref from "@/components/customer-shell/useCustomerPortalReturnHref";
+import PaymentRefundResult from "@/components/customer-shell/PaymentRefundResult";
+import { hasPaymentRefundOutcome } from "@/utils/paymentRefundOutcome";
 
 const SUCCESS_STATUSES = new Set(["paid", "activated", "membership_active"]);
 const FAILURE_STATUSES = new Set([
@@ -48,18 +50,25 @@ function CheckoutStatus({ sessionId }) {
       initialQuery.data?.status ||
       "pending",
   ).toLowerCase();
+  const refund = initialQuery.data?.refund;
+  const refundOutcome = hasPaymentRefundOutcome(
+    refund,
+    initialQuery.data?.refundReviewRequired,
+  );
   const success =
-    SUCCESS_STATUSES.has(status) ||
-    initialQuery.data?.membership?.status === "active";
+    !refundOutcome &&
+    (SUCCESS_STATUSES.has(status) ||
+      initialQuery.data?.membership?.status === "active");
   const failed =
-    FAILURE_STATUSES.has(status) ||
-    initialQuery.data?.membership?.status === "past_due";
+    !refundOutcome &&
+    (FAILURE_STATUSES.has(status) ||
+      initialQuery.data?.membership?.status === "past_due");
 
   useEffect(() => {
-    if (!success && !failed && !timedOut) return;
+    if (!success && !failed && !timedOut && !refundOutcome) return;
     const timeout = window.setTimeout(() => setTerminal(true), 0);
     return () => window.clearTimeout(timeout);
-  }, [failed, success, timedOut]);
+  }, [failed, success, timedOut, refundOutcome]);
 
   useEffect(() => {
     // A confirmed success or terminal Stripe state closes this checkout
@@ -83,10 +92,10 @@ function CheckoutStatus({ sessionId }) {
   }, [failed, success]);
 
   useEffect(() => {
-    if (!sessionId || success || failed) return;
+    if (!sessionId || success || failed || refundOutcome) return;
     const timeout = window.setTimeout(() => setTimedOut(true), 120_000);
     return () => window.clearTimeout(timeout);
-  }, [failed, sessionId, success]);
+  }, [failed, sessionId, success, refundOutcome]);
 
   const state =
     !sessionId || initialQuery.isError
@@ -102,6 +111,20 @@ function CheckoutStatus({ sessionId }) {
     ? `/memberships/checkout/success?session_id=${encodeURIComponent(sessionId)}`
     : "/memberships/checkout/success";
   const signInHref = buildTenantAuthHref("/login", recoveryPath);
+
+  if (sessionId && refundOutcome && !initialQuery.isError)
+    return (
+      <PaymentRefundResult
+        refund={refund}
+        currency={
+          initialQuery.data?.currency ?? initialQuery.data?.membership?.currency
+        }
+        reference={initialQuery.data?.membership?.id}
+        returnHref={returnHref}
+        onRefresh={initialQuery.refetch}
+        isRefreshing={initialQuery.isFetching}
+      />
+    );
 
   return (
     <main className="flex min-h-[72vh] items-center justify-center bg-brand-offset px-4 py-14 sm:px-6">

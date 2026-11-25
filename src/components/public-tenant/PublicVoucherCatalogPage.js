@@ -2,10 +2,15 @@
 
 import { useLegacyCopy } from "@/i18n/useLegacyCopy";
 import {
+  selectCurrentCatalog,
+  usePublicCatalogSnapshot,
+} from "@/components/public-tenant/PublicQueryHydration";
+import { PUBLIC_COURSE_FRESHNESS_SECONDS } from "@/lib/publicTenant/courseHydration";
+
+import {
   ArrowLongRightIcon,
   ArrowPathIcon,
   CheckCircleIcon,
-  GiftIcon,
 } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
@@ -19,6 +24,8 @@ import {
   getProductName,
 } from "@/components/products/products.utils";
 import { getPublicWebsitePageCustomizationDefaults } from "@/components/customer-shell/customerFacingCustomizationDefaults";
+import CustomerPortalHero from "@/components/customer-shell/CustomerPortalHero";
+import { CustomerPortalPage } from "@/components/customer-shell/CustomerPortalPrimitives";
 import {
   useCreateCouponOrderMutation,
   useGetCouponsQuery,
@@ -35,7 +42,9 @@ import VoucherDeliveryChoice, {
   isVoucherAddressValid,
 } from "@/components/vouchers/VoucherDeliveryChoice";
 
+import CatalogRefreshNotice from "./CatalogRefreshNotice";
 import PublicCapabilityGate from "./PublicCapabilityGate";
+import design from "./portalCatalog.module.css";
 import { usePublicTenant } from "./PublicTenantProvider";
 import { getLocalizedPublicTenantText } from "./publicTenant.config";
 
@@ -58,6 +67,30 @@ const isVoucher = (product) =>
 
 const redirectToCheckout = (url) => window.location.assign(url);
 
+function VoucherCatalogImage({ product }) {
+  const imageSrc =
+    String(product?.imageSrc || "").trim() ||
+    String(product?.imageUrl || "").trim();
+  const [failedSource, setFailedSource] = useState("");
+
+  if (!imageSrc || imageSrc === failedSource) return null;
+
+  return (
+    // Voucher photos can be hosted on tenant-managed image hosts.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={imageSrc}
+      alt=""
+      className={design.voucherImage}
+      data-tenant-surface="media"
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      onError={() => setFailedSource(imageSrc)}
+    />
+  );
+}
+
 function VoucherCatalogGate({ portal, children }) {
   // Portal visibility is enforced by CustomerPortalPageGate. Studios can keep
   // their public website hidden while still selling to signed-in customers.
@@ -70,7 +103,13 @@ function VoucherCatalogGate({ portal, children }) {
   );
 }
 
-export default function PublicVoucherCatalogPage({
+export default function PublicVoucherCatalogPage(props) {
+  const tenantSlug = getValidatedTenantSlugParam(useParams());
+  return <VoucherShop key={tenantSlug} {...props} tenantSlug={tenantSlug} />;
+}
+
+function VoucherShop({
+  tenantSlug,
   onCheckoutRedirect = redirectToCheckout,
   previewData,
   portal = false,
@@ -81,8 +120,6 @@ export default function PublicVoucherCatalogPage({
   const locale = useLocale();
   const t = useTranslations("PublicTenant");
   const shopping = useTranslations("VoucherShopping");
-  const params = useParams();
-  const tenantSlug = getValidatedTenantSlugParam(params);
   const { tenant } = usePublicTenant();
   const vouchersEnabled = portal
     ? tenant.modules?.vouchers !== false
@@ -97,9 +134,15 @@ export default function PublicVoucherCatalogPage({
       : "var(--tenant-accent-foreground)",
   };
   const page = tenant.publicSite.pages.vouchers;
+  const initial = usePublicCatalogSnapshot(tenantSlug, "vouchers");
   const fetchedQuery = useGetCouponsQuery(
     { tenantSlug },
-    { skip: previewMode || !tenantSlug || !vouchersEnabled },
+    {
+      skip: Boolean(initial) || previewMode || !tenantSlug || !vouchersEnabled,
+      refetchOnMountOrArgChange: PUBLIC_COURSE_FRESHNESS_SECONDS,
+      refetchOnFocus: true,
+      selectFromResult: selectCurrentCatalog,
+    },
   );
   const query = previewMode
     ? {
@@ -109,7 +152,9 @@ export default function PublicVoucherCatalogPage({
         isError: false,
         refetch: () => undefined,
       }
-    : fetchedQuery;
+    : initial
+      ? { data: initial.data }
+      : fetchedQuery;
   const [createOrder, orderState] = useCreateCouponOrderMutation();
   const checkoutInFlight = useRef(false);
   const [submitting, setSubmitting] = useState(false);
@@ -118,17 +163,28 @@ export default function PublicVoucherCatalogPage({
     () => unwrapProducts(query.data).filter(isVoucher),
     [query.data],
   );
-  const [selectedProductId, setSelectedProductId] = useState("");
+  const firstProductId = products.length ? getProductId(products[0]) : "";
+  const [selectedProductId, setSelectedProductId] = useState(firstProductId);
   const [quantity, setQuantity] = useState(1);
   const [email, setEmail] = useState(initialEmail);
   const [giftMessage, setGiftMessage] = useState("");
   const [error, setError] = useState("");
   const [deliveryChoice, setDeliveryChoice] = useState(null);
   const [postalAddress, setPostalAddress] = useState(EMPTY_VOUCHER_ADDRESS);
-  const selectedProduct =
-    products.find((product) => getProductId(product) === selectedProductId) ||
-    products[0] ||
-    null;
+  const selectedProduct = products.find(
+    (product) => getProductId(product) === selectedProductId,
+  );
+  const catalogueUnavailable = query.isError && !query.isRefreshError;
+  // An empty string is waiting for the first offer. After a withdrawal, only
+  // the buyer can choose another voucher, even if the original one returns.
+  if (selectedProductId === "" && firstProductId && !catalogueUnavailable) {
+    setSelectedProductId(firstProductId);
+  } else if (
+    selectedProductId &&
+    (catalogueUnavailable || (query.data != null && !selectedProduct))
+  ) {
+    setSelectedProductId(null);
+  }
   const selectedId = selectedProduct ? getProductId(selectedProduct) : "";
   const physicalSettings = selectedProduct?.voucherSettings?.physicalDelivery;
   const physicalAvailable =
@@ -166,10 +222,10 @@ export default function PublicVoucherCatalogPage({
 
   const submitOrder = async (event) => {
     event.preventDefault();
-    if (previewMode || checkoutInFlight.current) return;
+    if (previewMode || checkoutInFlight.current || !selectedId) return;
     setError("");
 
-    if (!selectedId || !email.trim()) {
+    if (!email.trim()) {
       setError(t("vouchers.checkout.missing"));
       return;
     }
@@ -228,71 +284,70 @@ export default function PublicVoucherCatalogPage({
 
   return (
     <VoucherCatalogGate portal={portal}>
-      <main
+      <CustomerPortalPage
         data-public-voucher-catalog
-        data-customer-portal-page={portal || undefined}
-        data-tenant-layout="section"
-        className="min-h-[70vh] px-5 py-14 sm:px-8 sm:py-18 lg:px-12 lg:py-20"
         style={{
           backgroundColor: "var(--tenant-background)",
           color: "var(--tenant-text)",
         }}
       >
-        <div className="mx-auto max-w-[1320px]">
-          <header className="max-w-3xl">
-            <span
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full"
-              style={{
-                backgroundColor: "var(--tenant-accent)",
-                color: "var(--tenant-accent-foreground)",
-              }}
+          <CustomerPortalHero
+            pageKey="vouchers"
+            className={design.catalogHeader}
+          >
+            <p
+              className="text-sm font-semibold uppercase tracking-[0.17em] text-[var(--tenant-label-color)]"
+              data-tenant-type="eyebrow"
             >
-              <GiftIcon className="h-5 w-5" />
-            </span>
+              {t("nav.vouchers")}
+            </p>
             <h1
-              className="mt-6 max-w-[14ch] text-balance font-serif text-5xl font-normal leading-[0.98] tracking-[-0.05em] [overflow-wrap:anywhere] sm:text-6xl"
+              className="mt-3 text-4xl font-semibold tracking-[-0.055em] text-[var(--tenant-text)] sm:text-6xl"
               data-tenant-type="display"
               data-public-site-edit-path={`pages.vouchers.title.${locale}`}
             >
               {title}
             </h1>
             <p
-              className="mt-5 max-w-2xl text-base leading-7 text-[color:var(--tenant-text-muted)]"
+              className="mt-4 max-w-2xl text-[12px] leading-6 text-[var(--tenant-muted-text)] sm:text-sm"
               data-public-site-edit-path={`pages.vouchers.description.${locale}`}
             >
               {description}
             </p>
-            <nav
-              aria-label={shopping("buy")}
-              className="mt-6 flex flex-wrap gap-3"
-            >
-              <a
-                href="#voucher-shop"
-                data-tenant-button="primary"
-                style={primaryButtonStyle}
-                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[var(--tenant-accent)] px-6 text-sm font-semibold text-[var(--tenant-accent-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-link)] focus-visible:ring-offset-2"
-              >
-                {shopping("buy")}
-                <ArrowLongRightIcon className="h-4 w-4" aria-hidden="true" />
-              </a>
-              {children ? (
-                <a
-                  href="#my-vouchers"
-                  data-tenant-button="secondary"
-                  className="inline-flex min-h-12 items-center rounded-full border border-[var(--tenant-border)] px-6 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-link)] focus-visible:ring-offset-2"
-                >
-                  {shopping("manage")}
-                </a>
-              ) : null}
-            </nav>
-          </header>
+          </CustomerPortalHero>
 
-          <ol className="mt-9 grid gap-5 border-y border-[var(--tenant-border)] py-6 sm:grid-cols-3">
+          <nav
+            aria-label={shopping("buy")}
+            className="mt-6 flex flex-wrap gap-3"
+          >
+            <a
+              href="#voucher-shop"
+              data-tenant-button="primary"
+              style={primaryButtonStyle}
+              className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[var(--tenant-accent)] px-6 text-sm font-semibold text-[var(--tenant-accent-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-link)] focus-visible:ring-offset-2"
+            >
+              {shopping("buy")}
+              <ArrowLongRightIcon className="h-4 w-4" aria-hidden="true" />
+            </a>
+            {children ? (
+              <a
+                href="#my-vouchers"
+                data-tenant-button="secondary"
+                className="inline-flex min-h-12 items-center rounded-full border border-[var(--tenant-border)] px-6 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-link)] focus-visible:ring-offset-2"
+              >
+                {shopping("manage")}
+              </a>
+            ) : null}
+          </nav>
+
+          <ol
+            className={`${design.voucherSteps} mt-9 grid gap-5 border-y border-[var(--tenant-border)] py-6 sm:grid-cols-3`}
+          >
             {["choose", "delivery", "redeem"].map((step, index) => (
               <li key={step} className="flex items-start gap-3">
                 <span
                   aria-hidden="true"
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--tenant-surface)] text-sm font-semibold text-[var(--tenant-accent-on-surface)]"
+                  className={`${design.stepNumber} flex shrink-0 items-center justify-center font-semibold`}
                 >
                   {index + 1}
                 </span>
@@ -312,7 +367,10 @@ export default function PublicVoucherCatalogPage({
             aria-label={shopping("buy")}
             className="scroll-mt-28"
           >
-            {query.isLoading || query.isFetching ? (
+            {query.isRefreshError && (
+              <CatalogRefreshNotice onRetry={query.refetch} />
+            )}
+            {query.isLoading ? (
               <div
                 className="mt-10 flex min-h-72 items-center justify-center rounded-[26px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] text-sm text-[color:var(--tenant-muted-on-surface)]"
                 data-tenant-surface="card"
@@ -321,7 +379,7 @@ export default function PublicVoucherCatalogPage({
                 <ArrowPathIcon className="mr-2 h-5 w-5 animate-spin motion-reduce:animate-none" />
                 {t("catalog.loading")}
               </div>
-            ) : query.isError ? (
+            ) : catalogueUnavailable ? (
               <div
                 className="mt-10 flex min-h-72 flex-col items-center justify-center rounded-[26px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] px-6 text-center text-[color:var(--tenant-text-on-surface)]"
                 data-tenant-surface="card"
@@ -362,44 +420,47 @@ export default function PublicVoucherCatalogPage({
                         }}
                         data-tenant-layout="card"
                         data-tenant-surface="card"
-                        className="group min-h-56 rounded-[24px] border bg-[color:var(--tenant-surface)] p-6 text-left text-[color:var(--tenant-text-on-surface)] shadow-[0_14px_40px_rgba(17,17,15,0.04)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_22px_52px_rgba(17,17,15,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-on-surface)] focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
+                        className={`${design.voucherCard} group min-h-56 rounded-[24px] border bg-[color:var(--tenant-surface)] text-left text-[color:var(--tenant-text-on-surface)] shadow-[0_14px_40px_rgba(17,17,15,0.04)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_22px_52px_rgba(17,17,15,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-on-surface)] focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none`}
                         style={{
                           borderColor: selected
                             ? "var(--tenant-accent-on-surface)"
                             : "var(--tenant-border)",
                         }}
                       >
-                        <span className="flex items-start justify-between gap-4">
-                          <GiftIcon
-                            className="h-6 w-6"
-                            style={{ color: "var(--tenant-accent-on-surface)" }}
-                          />
-                          {selected ? (
-                            <CheckCircleIcon
-                              className="h-6 w-6"
-                              style={{
-                                color: "var(--tenant-accent-on-surface)",
-                              }}
-                            />
-                          ) : null}
-                        </span>
-                        <span className="mt-7 block text-lg font-semibold tracking-[-0.025em] [overflow-wrap:anywhere]">
-                          {getProductName(product, locale)}
-                        </span>
-                        {productDescription ? (
-                          <span className="mt-2 line-clamp-3 block text-sm leading-6 text-[color:var(--tenant-muted-on-surface)]">
-                            {productDescription}
+                        <VoucherCatalogImage product={product} />
+                        <span className={design.voucherFace}>
+                          <span className="flex items-start justify-between gap-4">
+                            <span
+                              className={`${design.voucherName} block font-semibold`}
+                            >
+                              {getProductName(product, locale)}
+                            </span>
+                            {selected ? (
+                              <CheckCircleIcon
+                                className="h-6 w-6 shrink-0"
+                                aria-hidden="true"
+                              />
+                            ) : null}
                           </span>
-                        ) : null}
-                        <span className="mt-5 block text-xl font-semibold">
-                          {formatProductPrice(product, locale)}
+                          <span className={design.voucherPrice}>
+                            {formatProductPrice(product, locale)}
+                          </span>
                         </span>
-                        <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--tenant-accent-on-surface)]">
-                          {shopping(selected ? "selected" : "selection")}
-                          <ArrowLongRightIcon
-                            className="h-4 w-4"
-                            aria-hidden="true"
-                          />
+                        <span className={design.voucherBody}>
+                          {productDescription ? (
+                            <span className="line-clamp-3 block text-sm leading-6 text-[color:var(--tenant-muted-on-surface)]">
+                              {productDescription}
+                            </span>
+                          ) : null}
+                          <span
+                            className={`${design.voucherAction} inline-flex items-center justify-between gap-2 text-sm font-semibold text-[var(--tenant-accent-on-surface)]`}
+                          >
+                            {shopping(selected ? "selected" : "selection")}
+                            <ArrowLongRightIcon
+                              className="h-4 w-4"
+                              aria-hidden="true"
+                            />
+                          </span>
                         </span>
                       </button>
                     );
@@ -408,7 +469,7 @@ export default function PublicVoucherCatalogPage({
 
                 <form
                   onSubmit={submitOrder}
-                  className="rounded-[26px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] p-6 text-[color:var(--tenant-text-on-surface)] shadow-[0_18px_55px_rgba(17,17,15,0.055)] lg:sticky lg:top-[calc(var(--header-height,78px)+1.5rem)]"
+                  className={`${design.checkoutPanel} rounded-[26px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] p-6 text-[color:var(--tenant-text-on-surface)] shadow-[0_18px_55px_rgba(17,17,15,0.055)] lg:sticky lg:top-[calc(var(--header-height,78px)+1.5rem)]`}
                   data-tenant-layout="card"
                   data-tenant-surface="panel"
                 >
@@ -427,6 +488,11 @@ export default function PublicVoucherCatalogPage({
                   <p className="mt-3 text-sm leading-6 text-[color:var(--tenant-muted-on-surface)]">
                     {t("vouchers.checkout.description")}
                   </p>
+                  {selectedProductId === null && (
+                    <p className="mt-4 font-semibold" role="status">
+                      {t("vouchers.checkout.reselect")}
+                    </p>
+                  )}
 
                   <label className="mt-6 block text-sm font-semibold">
                     {t("vouchers.checkout.email")}
@@ -461,7 +527,7 @@ export default function PublicVoucherCatalogPage({
                   <VoucherDeliveryChoice
                     enabled={physicalAvailable}
                     postageFeeMinor={physicalSettings?.postageFeeMinor || 0}
-                    currency={selectedProduct.currency}
+                    currency={selectedProduct?.currency}
                     physical={sendPost}
                     address={postalAddress}
                     onPhysicalChange={(physical) =>
@@ -484,88 +550,94 @@ export default function PublicVoucherCatalogPage({
                       onChange={(event) => setGiftMessage(event.target.value)}
                       maxLength={240}
                       rows={3}
-                      aria-describedby="voucher-gift-message-help"
+                      aria-describedby={
+                        selectedProduct ? "voucher-gift-message-help" : undefined
+                      }
                       data-tenant-surface="field"
                       className="mt-2 w-full resize-y rounded-[14px] border border-[color:var(--tenant-border)] bg-transparent px-4 py-3 font-normal outline-none transition focus:border-[color:var(--tenant-accent-on-surface)] focus:ring-2 focus:ring-[var(--tenant-accent-on-surface)]/15"
                     />
                   </label>
-                  <p
-                    id="voucher-gift-message-help"
-                    className="mt-2 text-xs leading-5 text-[color:var(--tenant-muted-on-surface)]"
-                  >
-                    {t(
-                      selectedProduct?.hasVoucherDesign === true
-                        ? "vouchers.checkout.giftMessageHelp"
-                        : "vouchers.checkout.giftMessageLegacyHelp",
-                    )}
-                  </p>
-
-                  <dl className="mt-5 space-y-3 border-t border-[color:var(--tenant-border)] pt-5 text-sm">
-                    {sendPost && (
-                      <>
-                        <div className="flex items-baseline justify-between gap-4">
-                          <dt>{t("vouchers.postal.subtotal")}</dt>
-                          <dd className="text-right tabular-nums">
-                            {formatMinorCurrencyAmount(
-                              subtotalMinor,
-                              selectedProduct.currency,
-                              locale,
-                            )}
-                          </dd>
-                        </div>
-                        <div className="flex items-baseline justify-between gap-4">
-                          <dt>{t("vouchers.postal.fee")}</dt>
-                          <dd className="text-right tabular-nums">
-                            {formatMinorCurrencyAmount(
-                              postageFeeMinor,
-                              selectedProduct.currency,
-                              locale,
-                            )}
-                          </dd>
-                        </div>
-                      </>
-                    )}
-                    <div className="flex items-baseline justify-between gap-4">
-                      <dt>{t("vouchers.checkout.total")}</dt>
-                      <dd className="text-right text-lg font-semibold">
-                        {formatProductPrice(
-                          {
-                            ...selectedProduct,
-                            price: minorUnitsToMajor(
-                              subtotalMinor + postageFeeMinor,
-                              selectedProduct.currency,
-                            ),
-                          },
-                          locale,
+                  {selectedProduct && (
+                    <>
+                      <p
+                        id="voucher-gift-message-help"
+                        className="mt-2 text-xs leading-5 text-[color:var(--tenant-muted-on-surface)]"
+                      >
+                        {t(
+                          selectedProduct?.hasVoucherDesign === true
+                            ? "vouchers.checkout.giftMessageHelp"
+                            : "vouchers.checkout.giftMessageLegacyHelp",
                         )}
-                      </dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-4">
-                      <dt>{t("vouchers.checkout.validity")}</dt>
-                      <dd className="max-w-[70%] text-right text-[color:var(--tenant-muted-on-surface)]">
-                        {selectedProduct?.voucherSettings?.validity?.mode ===
-                        "none"
-                          ? t("vouchers.checkout.noExpiry")
-                          : selectedProduct?.voucherSettings?.validity?.mode ===
-                              "date"
-                            ? t("vouchers.checkout.validUntil", {
-                                date: new Intl.DateTimeFormat(locale, {
-                                  dateStyle: "medium",
-                                  timeZone: "UTC",
-                                }).format(
-                                  new Date(
-                                    `${selectedProduct.voucherSettings.validity.date}T00:00:00Z`,
-                                  ),
+                      </p>
+
+                      <dl className="mt-5 space-y-3 border-t border-[color:var(--tenant-border)] pt-5 text-sm">
+                        {sendPost && (
+                          <>
+                            <div className="flex items-baseline justify-between gap-4">
+                              <dt>{t("vouchers.postal.subtotal")}</dt>
+                              <dd className="text-right tabular-nums">
+                                {formatMinorCurrencyAmount(
+                                  subtotalMinor,
+                                  selectedProduct.currency,
+                                  locale,
+                                )}
+                              </dd>
+                            </div>
+                            <div className="flex items-baseline justify-between gap-4">
+                              <dt>{t("vouchers.postal.fee")}</dt>
+                              <dd className="text-right tabular-nums">
+                                {formatMinorCurrencyAmount(
+                                  postageFeeMinor,
+                                  selectedProduct.currency,
+                                  locale,
+                                )}
+                              </dd>
+                            </div>
+                          </>
+                        )}
+                        <div className="flex items-baseline justify-between gap-4">
+                          <dt>{t("vouchers.checkout.total")}</dt>
+                          <dd className="text-right text-lg font-semibold">
+                            {formatProductPrice(
+                              {
+                                ...selectedProduct,
+                                price: minorUnitsToMajor(
+                                  subtotalMinor + postageFeeMinor,
+                                  selectedProduct.currency,
                                 ),
-                              })
-                            : t("vouchers.checkout.validMonths", {
-                                months:
-                                  selectedProduct?.voucherSettings?.validity
-                                    ?.months || 12,
-                              })}
-                      </dd>
-                    </div>
-                  </dl>
+                              },
+                              locale,
+                            )}
+                          </dd>
+                        </div>
+                        <div className="flex items-baseline justify-between gap-4">
+                          <dt>{t("vouchers.checkout.validity")}</dt>
+                          <dd className="max-w-[70%] text-right text-[color:var(--tenant-muted-on-surface)]">
+                            {selectedProduct?.voucherSettings?.validity?.mode ===
+                            "none"
+                              ? t("vouchers.checkout.noExpiry")
+                              : selectedProduct?.voucherSettings?.validity?.mode ===
+                                  "date"
+                                ? t("vouchers.checkout.validUntil", {
+                                    date: new Intl.DateTimeFormat(locale, {
+                                      dateStyle: "medium",
+                                      timeZone: "UTC",
+                                    }).format(
+                                      new Date(
+                                        `${selectedProduct.voucherSettings.validity.date}T00:00:00Z`,
+                                      ),
+                                    ),
+                                  })
+                                : t("vouchers.checkout.validMonths", {
+                                    months:
+                                      selectedProduct?.voucherSettings?.validity
+                                        ?.months || 12,
+                                  })}
+                          </dd>
+                        </div>
+                      </dl>
+                    </>
+                  )}
 
                   {error ? (
                     <p className="mt-4 text-sm text-red-700" role="alert">
@@ -575,9 +647,9 @@ export default function PublicVoucherCatalogPage({
 
                   <button
                     type="submit"
-                    disabled={checkoutBusy}
+                    disabled={checkoutBusy || !selectedProduct}
                     data-tenant-button="primary"
-                    className="group mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full px-5 text-sm font-semibold shadow-[0_14px_32px_rgba(17,17,15,0.12)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-on-surface)] focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-60 motion-reduce:transform-none motion-reduce:transition-none"
+                    className="group mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full px-5 text-sm font-semibold shadow-[0_14px_32px_rgba(17,17,15,0.12)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-on-surface)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transform-none motion-reduce:transition-none"
                     style={primaryButtonStyle}
                   >
                     {checkoutBusy
@@ -608,8 +680,7 @@ export default function PublicVoucherCatalogPage({
               {children}
             </section>
           ) : null}
-        </div>
-      </main>
+      </CustomerPortalPage>
     </VoucherCatalogGate>
   );
 }

@@ -4,6 +4,7 @@ import { PERMISSIONS } from "@/config/permissions";
 import { dashboardNavigation } from "@/components/dashboard/dashboard.data";
 import {
   formatReportDate,
+  formatReportMoney,
   getReportDateRange,
   isCsvDownloadPayload,
   normalizeReportOverview,
@@ -11,6 +12,8 @@ import {
 import {
   normalizeReportFilters,
   reportsApiRoutes,
+  normalizeCustomerReportFilters,
+  reportSourceTags,
   unwrapReportsEnvelope,
 } from "@/lib/features/reports/reportsApiSlice";
 
@@ -20,6 +23,8 @@ describe("reports API contract", () => {
       overview: "/reports/overview",
       exportCsv: "/reports/export.csv",
       aiBriefing: "/ai/reports/briefing",
+      customers: "/reports/customers",
+      customersCsv: "/reports/customers/export.csv",
     });
   });
 
@@ -147,5 +152,70 @@ describe("reports navigation", () => {
       href: "/app/operations?section=statistics",
       permissions: [PERMISSIONS.REPORTS_VIEW],
     });
+  });
+});
+
+describe("customer report query and freshness", () => {
+  it("keeps all combined filters and uses the identical non-paginated CSV scope", () => {
+    const input = {
+      from: "2026-01-01",
+      to: "2026-12-31",
+      locationId: "studio",
+      locale: "cs",
+      spendMin: "3000",
+      spendMax: "6000",
+      spendFrom: "2026-02-01",
+      spendTo: "2026-02-28",
+      creditMin: "100",
+      creditMax: "200",
+      cancelledMin: "2",
+      cancelledMax: "4",
+      cancellationFrom: "2026-03-01",
+      cancellationTo: "2026-03-31",
+      cancellationActor: "customer",
+      inactiveDays: "90",
+      page: 2,
+      limit: 10,
+      cacheScope: "private-principal",
+      unsupported: "ignored",
+    };
+    const { page, limit, cacheScope, unsupported, ...expected } = input;
+    expect(normalizeCustomerReportFilters(input)).toEqual({
+      ...expected,
+      page,
+      limit,
+    });
+    expect(normalizeCustomerReportFilters(input, true)).toEqual(expected);
+    expect(JSON.stringify(normalizeCustomerReportFilters(input))).not.toContain(
+      cacheScope,
+    );
+    expect(
+      normalizeCustomerReportFilters({
+        spendMin: 0,
+        creditMax: "",
+        cancelledMax: null,
+      }),
+    ).toEqual({ spendMin: 0 });
+  });
+  it("depends on sources whose mutations alter report data and entitlements", () => {
+    for (const tag of [
+      "Reports",
+      "Booking",
+      "Order",
+      "CouponOrder",
+      "Membership",
+      "MembershipInvoice",
+      "Credits",
+      "User",
+      "Tenant",
+    ])
+      expect(reportSourceTags).toContain(tag);
+  });
+  it("keeps unknown cash distinct from a verified zero", () => {
+    expect(formatReportMoney(null, "CZK", "en-GB", "Unknown")).toBe("Unknown");
+    expect(formatReportMoney(undefined, "CZK", "en-GB", "Unknown")).toBe(
+      "Unknown",
+    );
+    expect(formatReportMoney(0, "CZK", "en-GB", "Unknown")).not.toBe("Unknown");
   });
 });

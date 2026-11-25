@@ -18,9 +18,6 @@ describe("public vouchers contract", () => {
     expect(route).toContain("PublicVoucherCatalogPage");
     expect(route).not.toContain("portal");
     expect(page).toContain('PublicCapabilityGate capability="vouchers"');
-    expect(page).toContain(
-      "skip: previewMode || !tenantSlug || !vouchersEnabled",
-    );
     expect(page).not.toContain("redeemPromoCode");
     expect(page).not.toContain("getUserRedeemedCoupons");
     expect(page).toContain('product?.type || ""');

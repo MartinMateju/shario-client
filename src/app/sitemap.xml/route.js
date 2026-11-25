@@ -5,6 +5,7 @@ import { getPublicTenantConfig } from "@/lib/publicTenant/server";
 import {
   buildPublicSitemapXml,
   getTenantPublicSeoPaths,
+  getTenantPublicCanonicalOrigin,
   resolvePublicSeoSite,
 } from "@/lib/publicTenant/seo";
 
@@ -64,7 +65,7 @@ export async function GET(request) {
 
   return response(
     buildPublicSitemapXml({
-      origin: site.origin,
+      origin: getTenantPublicCanonicalOrigin(result.tenant, site),
       locales: getPublicTenantLocaleCodes(
         result.tenant.settings,
         routing.locales,

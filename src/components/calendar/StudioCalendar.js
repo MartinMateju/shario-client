@@ -74,6 +74,10 @@ const CUSTOMER_CALENDAR_THEME_STYLE = Object.freeze({
   "--tenant-accent-foreground": "var(--tenant-portal-button-foreground)",
   "--tenant-accent-on-surface": "var(--tenant-portal-calendar-accent)",
   "--tenant-secondary": "var(--tenant-portal-calendar-secondary)",
+  "--tenant-secondary-foreground":
+    "var(--tenant-portal-calendar-secondary-foreground)",
+  "--tenant-interactive-hover-foreground":
+    "var(--tenant-portal-calendar-secondary-foreground)",
   "--tenant-secondary-on-surface":
     "var(--tenant-portal-calendar-secondary-on-surface)",
   backgroundColor: "var(--tenant-background)",
@@ -178,7 +182,6 @@ export default function StudioCalendar({
   const filterTriggerRef = useRef(null);
   const calendarViewportRef = useRef(null);
   const focusDateDrilldownRef = useRef(false);
-  const responsiveDefaultApplied = useRef(false);
   const mobileFilterDefaultApplied = useRef(false);
   const handledSuggestionRequest = useRef(0);
   const suggestionRef = useRef(null);
@@ -191,32 +194,6 @@ export default function StudioCalendar({
       setInternalView(view);
     }
   }, [controlledView, requestedView, setInternalView, view]);
-
-  useEffect(() => {
-    if (
-      responsiveDefaultApplied.current ||
-      controlledView !== undefined ||
-      typeof window === "undefined"
-    ) {
-      return;
-    }
-
-    responsiveDefaultApplied.current = true;
-    if (
-      !["customer", "public"].includes(audience) &&
-      window.matchMedia("(max-width: 639px)").matches &&
-      defaultView === "week" &&
-      normalizedAvailableViews.includes("day")
-    ) {
-      setView("day");
-    }
-  }, [
-    controlledView,
-    audience,
-    defaultView,
-    normalizedAvailableViews,
-    setView,
-  ]);
 
   useEffect(() => {
     if (

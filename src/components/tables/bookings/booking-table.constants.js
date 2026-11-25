@@ -9,7 +9,7 @@ export const INITIAL_BOOKING_FILTERS = {
   search: "",
   dateFrom: "",
   dateTo: "",
-  lecturerId: "",
+  lecturerName: "",
   productId: "",
   authorId: "",
   locationId: "",
@@ -17,17 +17,16 @@ export const INITIAL_BOOKING_FILTERS = {
   status: "",
 };
 
+// These are persisted Booking.paymentStatus values. Credits are a payment
+// method, and refunds are recorded separately from this booking field.
 export const PAYMENT_STATUS_OPTIONS = [
   { value: "PENDING_PAYMENT", labelKey: "payment.pending" },
   { value: "CONFIRMED", labelKey: "payment.paid" },
-  { value: "CREDITS", labelKey: "payment.credits" },
-  { value: "REFUNDED", labelKey: "payment.refunded" },
   { value: "FAILED", labelKey: "payment.failed" },
   { value: "EXPIRED", labelKey: "payment.expired" },
 ];
 
 export const BOOKING_STATUS_OPTIONS = [
-  { value: "confirmed", labelKey: "status.confirmed" },
   { value: "pending", labelKey: "status.pending" },
   { value: "processed", labelKey: "status.processed" },
   { value: "delivered", labelKey: "status.delivered" },

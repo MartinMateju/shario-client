@@ -1,10 +1,14 @@
 import { expect, test } from "@playwright/test";
+import { readFileSync } from "node:fs";
 
 import {
   VISUAL_FIXED_TIME,
   VISUAL_TENANT_ORIGIN,
   installAdminApiMocks,
 } from "./admin-fixtures.js";
+
+const historyCopy = JSON.parse(readFileSync("src/messages/cs.json", "utf8"))
+  .EmailAutomations.history;
 
 const deliveries = Array.from({ length: 45 }, (_, index) => {
   const number = 45 - index;
@@ -23,6 +27,168 @@ const deliveries = Array.from({ length: 45 }, (_, index) => {
     sentAt: number % 3 === 0 ? null : timestamp,
     scheduledFor: timestamp,
   };
+});
+
+test("email history confirms a single retry and explains blocked deliveries", async ({
+  page,
+  context,
+}) => {
+  const requests = [];
+  const { unexpectedRequests } = await installAdminApiMocks(page, {
+    workspaceLocale: "cs",
+  });
+  await context.addCookies([
+    {
+      name: "shario_language",
+      value: "CS",
+      url: VISUAL_TENANT_ORIGIN,
+      sameSite: "Lax",
+    },
+  ]);
+  const records = [
+    {
+      _id: "64f200000000000000000001",
+      recipientEmail: "retry@example.test",
+      status: "suppressed",
+      canRetry: true,
+      reasonCode: "recipient_suppressed",
+      retryBlockedReason: null,
+    },
+    {
+      _id: "64f200000000000000000002",
+      recipientEmail: "blocked@example.test",
+      status: "suppressed",
+      canRetry: false,
+      reasonCode: "hard_bounce",
+      retryBlockedReason: "hard_bounce",
+    },
+    {
+      _id: "64f200000000000000000003",
+      recipientEmail: "delivered@example.test",
+      status: "delivered",
+      canRetry: false,
+      reasonCode: null,
+      retryBlockedReason: "already_sent",
+    },
+  ].map((record) => ({
+    ...record,
+    recipientName: "Zákazník studia",
+    subject: "Václavská | Výrobky jsou připravené ke glazování",
+    emailType: "firingReady",
+    scheduledFor: VISUAL_FIXED_TIME,
+    manualRetryCount: 0,
+  }));
+  await page.route(
+    /^http:\/\/api\.shario\.localhost:4311\/communication-email-logs(?:\/|\?|$)/,
+    async (route) => {
+      const request = route.request();
+      const headers = {
+        "access-control-allow-origin": VISUAL_TENANT_ORIGIN,
+        "access-control-allow-credentials": "true",
+        "access-control-allow-headers": "authorization,content-type",
+        "access-control-allow-methods": "GET,POST,OPTIONS",
+        "cache-control": "no-store",
+      };
+      if (request.method() === "OPTIONS") {
+        await route.fulfill({ status: 204, headers });
+        return;
+      }
+      if (request.method() === "GET") {
+        await route.fulfill({
+          status: 200,
+          headers,
+          contentType: "application/json",
+          body: JSON.stringify({ logs: records, totalCount: records.length }),
+        });
+        return;
+      }
+      requests.push({
+        path: new URL(request.url()).pathname,
+        body: request.postDataJSON(),
+      });
+      Object.assign(records[0], {
+        status: "queued",
+        canRetry: false,
+        reasonCode: null,
+        retryBlockedReason: "delivery_in_progress",
+        manualRetryCount: 1,
+      });
+      await route.fulfill({
+        status: 202,
+        headers,
+        contentType: "application/json",
+        body: JSON.stringify({ log: records[0], queued: true }),
+      });
+    },
+  );
+  await page.goto(
+    `${VISUAL_TENANT_ORIGIN}/cs/app/communications?section=history`,
+  );
+  const history = page.locator("[data-outbound-email-history]");
+  const mobile = page.viewportSize().width < 768;
+  const entries = mobile
+    ? history.getByRole("article")
+    : history.locator("tbody tr");
+  const retryEntry = entries.filter({ hasText: "retry@example.test" });
+  const blockedEntry = entries.filter({ hasText: "blocked@example.test" });
+  await expect(
+    retryEntry.getByText(historyCopy.statuses.suppressed),
+  ).toBeVisible();
+  await expect(blockedEntry).toContainText(historyCopy.reasons.hard_bounce);
+  await expect(blockedEntry.getByRole("button")).toHaveCount(0);
+  await expect(
+    entries.filter({ hasText: "delivered@example.test" }).getByRole("button"),
+  ).toHaveCount(0);
+  const actions = retryEntry.getByRole("button", {
+    name: `${historyCopy.resend.actionMenu}: retry@example.test`,
+    exact: true,
+  });
+  await expect(actions).toBeVisible();
+  const actionBox = await actions.boundingBox();
+  expect(actionBox.width).toBeGreaterThanOrEqual(44);
+  expect(actionBox.height).toBeGreaterThanOrEqual(44);
+  await actions.click();
+  await page.getByRole("menuitem", { name: historyCopy.resend.action }).click();
+  const dialog = page.getByRole("dialog", { name: historyCopy.resend.title });
+  await expect(dialog).toContainText("retry@example.test");
+  await expect(dialog).toContainText(records[0].subject);
+  const dialogBox = await dialog
+    .locator('[data-dialog-layout="compact"]')
+    .boundingBox();
+  expect(dialogBox.x).toBeGreaterThanOrEqual(0);
+  expect(dialogBox.x + dialogBox.width).toBeLessThanOrEqual(
+    page.viewportSize().width + 1,
+  );
+  await dialog
+    .getByRole("button", { name: historyCopy.resend.cancel, exact: true })
+    .last()
+    .click();
+  await expect(dialog).toBeHidden();
+  expect(requests).toEqual([]);
+  await actions.click();
+  await page.getByRole("menuitem", { name: historyCopy.resend.action }).click();
+  await dialog
+    .getByRole("button", { name: historyCopy.resend.confirm, exact: true })
+    .click();
+  await expect(dialog).toBeHidden();
+  await expect(history.getByRole("status")).toHaveText(
+    historyCopy.resend.queued,
+  );
+  await expect(
+    retryEntry.getByText(historyCopy.statuses.queued, { exact: true }),
+  ).toBeVisible();
+  await expect(retryEntry.getByRole("button")).toHaveCount(0);
+  expect(requests).toEqual([
+    {
+      path: "/communication-email-logs/64f200000000000000000001/retry",
+      body: { expectedManualRetryCount: 0 },
+    },
+  ]);
+  const overflowing = await page.evaluate(
+    () => document.documentElement.scrollWidth > window.innerWidth + 1,
+  );
+  expect(overflowing).toBe(false);
+  expect([...unexpectedRequests]).toEqual([]);
 });
 
 test("delivery history pages through 20 recent messages and resets filters", async ({

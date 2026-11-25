@@ -44,10 +44,7 @@ import {
   isCustomerPortalPageEnabled,
 } from "@/components/customer-shell/customerPortalVisibility";
 import { resolveWorkspaceRouteLocale } from "@/components/views/settings/workspaceLocaleSettings";
-import {
-  getPublicTenantLocaleCodes,
-  resolvePublicTenantRouteLocale,
-} from "@/components/public-tenant/publicTenant.config";
+import { getPublicTenantLocaleCodes } from "@/components/public-tenant/publicTenant.config";
 import LanguageSelector from "./LanguageSelector";
 import { retainCustomerPortalLocation } from "@/utils/customerPortalLocation";
 import {
@@ -331,7 +328,6 @@ export default function UserActionsMenuContent({
   isAdminRoute = false,
   onLogout,
   onSwitchToAdminMode,
-  onOpenBookingSite,
   toggleLanguage,
   languageTargetLocale,
   onClose,
@@ -340,6 +336,7 @@ export default function UserActionsMenuContent({
   const locale = useLocale();
   const pathname = usePathname();
   const t = useTranslations("Header.account");
+  const settingsT = useTranslations("UnifiedSettings");
   const currentUser = useSelector(selectCurrentUser);
   const currentTenant = useSelector(selectCurrentTenant);
   const portalTenant = useOptionalPublicTenant()?.tenant || currentTenant;
@@ -348,11 +345,9 @@ export default function UserActionsMenuContent({
   const userAccess = getUserAccess(currentUser, workspaceAccess);
   const isTenantUser = userAccess.isTenantUser || isAdminRoute;
   const isEndCustomer = portalThemed || !isTenantUser;
+  const isWorkspaceMenu = isAdminRoute && !isEndCustomer;
   const useCustomerPortalPresentation = portalThemed;
   const tenantModules = currentTenant?.modules;
-  const hasPublicWorkspace = ["bookings", "courses", "memberships"].some(
-    (module) => tenantModules?.[module] !== false,
-  );
   const canOpenSettings = hasAnyPermission(
     workspaceAccess,
     SETTINGS_ACCESS_PERMISSIONS,
@@ -385,17 +380,6 @@ export default function UserActionsMenuContent({
       hardNavigation: false,
     };
   };
-  const publicSiteHref = tenantSlug
-    ? buildTenantUrl({
-        slug: tenantSlug,
-        locale: resolvePublicTenantRouteLocale(
-          currentTenant?.settings,
-          currentUser?.customerDefaultLanguage,
-          routing.locales,
-        ),
-        pathname: "/?from=workspace",
-      })
-    : null;
   const canManageWorkspaceLanguage = hasPermission(
     workspaceAccess,
     PERMISSIONS.WORKSPACE_UPDATE,
@@ -475,20 +459,31 @@ export default function UserActionsMenuContent({
       section: "personal",
     },
   ];
-  const tenantPersonalLinks = [
-    {
-      ...resolveWorkspaceLink("/app/account"),
-      label: t("tenantLinks.account"),
-      icon: UserCircleIcon,
-      tone: "ink",
-    },
-    {
-      ...resolveWorkspaceLink("/app/preferences"),
-      label: t("tenantLinks.preferences"),
-      icon: AdjustmentsHorizontalIcon,
-      tone: "olive",
-    },
-  ];
+
+  const tenantPersonalLinks = isWorkspaceMenu
+    ? [
+        {
+          href: "/app/settings?section=personal",
+          label: settingsT("personalTitle"),
+          icon: UserCircleIcon,
+          tone: "ink",
+        },
+      ]
+    : [
+        {
+          ...resolveWorkspaceLink("/app/account"),
+          label: t("tenantLinks.account"),
+          icon: UserCircleIcon,
+          tone: "ink",
+        },
+        {
+          ...resolveWorkspaceLink("/app/preferences"),
+          label: t("tenantLinks.preferences"),
+          icon: AdjustmentsHorizontalIcon,
+          tone: "olive",
+        },
+      ];
+
   const tenantWorkspaceLinks = [
     ...(!isAdminRoute
       ? [
@@ -517,25 +512,6 @@ export default function UserActionsMenuContent({
             label: t("tenantLinks.settings"),
             icon: Cog6ToothIcon,
             tone: "coral",
-          },
-        ]
-      : []),
-    ...(isAdminRoute && hasPublicWorkspace
-      ? [
-          {
-            opensInNewTab: true,
-            ariaLabel: t("tenantLinks.bookingSiteNewTab"),
-            ...(publicSiteHref
-              ? {
-                  href: publicSiteHref,
-                  hardNavigation: true,
-                }
-              : {
-                  onClick: onOpenBookingSite,
-                }),
-            label: t("tenantLinks.bookingSite"),
-            icon: BuildingStorefrontIcon,
-            tone: "sand",
           },
         ]
       : []),
@@ -589,10 +565,14 @@ export default function UserActionsMenuContent({
           label: t("sections.personal"),
           items: tenantPersonalLinks,
         },
-        {
-          label: t("sections.workspace"),
-          items: tenantWorkspaceLinks,
-        },
+        ...(!isWorkspaceMenu
+          ? [
+              {
+                label: t("sections.workspace"),
+                items: tenantWorkspaceLinks,
+              },
+            ]
+          : []),
       ];
   return (
     <div
@@ -686,7 +666,8 @@ export default function UserActionsMenuContent({
 
       <div
         className={classNames(
-          "grid shrink-0 grid-cols-2 gap-2 border-t p-2.5 sm:p-2",
+          "grid shrink-0 gap-2 border-t p-2.5 sm:p-2",
+          isWorkspaceMenu ? "grid-cols-1" : "grid-cols-2",
           useCustomerPortalPresentation
             ? "border-[var(--tenant-border)] bg-[var(--tenant-surface)]"
             : "border-[#E7E4DE] bg-[#F7F5F1]",
@@ -713,7 +694,7 @@ export default function UserActionsMenuContent({
               onLocaleChange={onClose}
             />
           </div>
-        ) : (
+        ) : !isWorkspaceMenu ? (
           <LanguageUtility
             badge={languageBadge}
             hardNavigation={languageSettingsLink?.hardNavigation}
@@ -728,7 +709,7 @@ export default function UserActionsMenuContent({
             }
             portalThemed={useCustomerPortalPresentation}
           />
-        )}
+        ) : null}
 
         <button
           type="button"

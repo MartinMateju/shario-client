@@ -21,15 +21,15 @@ import {
 const TONES = {
   cobalt: "border-[var(--studio-rule)] bg-[var(--overview-blue-soft)]",
   sand: "border-[var(--studio-rule)] bg-[var(--overview-sand-soft)]",
-  sage: "border-[#DCE7D8] bg-[#F1F6EF]",
+  sage: "border-[var(--studio-success-line)] bg-[var(--overview-success-soft)]",
   coral: "border-[var(--studio-rule)] bg-[var(--overview-clay-soft)]",
 };
 
 const DOTS = {
   cobalt: "bg-[var(--studio-blue)]",
-  sand: "bg-[var(--overview-sand-soft)]",
-  sage: "bg-[#8EB09B]",
-  coral: "bg-[var(--overview-clay-soft)]",
+  sand: "bg-[var(--studio-muted)]",
+  sage: "bg-[var(--overview-success)]",
+  coral: "bg-[var(--studio-clay)]",
 };
 
 export default function TodayRhythm({
@@ -53,21 +53,21 @@ export default function TodayRhythm({
         <h2 className="text-[20px] font-medium tracking-[-0.035em] text-[var(--studio-ink)]">
           {isToday ? t("rhythm.title") : formatOverviewDate(dateValue, locale)}
         </h2>
-        <p className="mt-1 text-[12px] text-[var(--studio-muted)]">
+        <p className="mt-1 text-[13px] text-[var(--studio-muted)]">
           {t("rhythm.subtitle")}
         </p>
       </div>
 
       {!today.available || schedule === null ? (
-        <div className="mt-5 rounded-[16px] border border-dashed border-[var(--studio-rule)] bg-[var(--studio-paper)] px-4 py-8 text-center text-[12px] text-[var(--studio-muted)]">
+        <div className="mt-5 rounded-[16px] border border-dashed border-[var(--studio-rule)] bg-[var(--studio-paper)] px-4 py-8 text-center text-[13px] text-[var(--studio-muted)]">
           {t("rhythm.unavailable")}
         </div>
       ) : schedule.length === 0 ? (
         <div className="mt-5 rounded-[16px] border border-dashed border-[var(--studio-rule)] bg-[var(--studio-paper)] px-4 py-8 text-center">
-          <p className="text-[12px] font-medium text-[var(--studio-ink)]">
+          <p className="text-[13px] font-medium text-[var(--studio-ink)]">
             {t("rhythm.emptyTitle")}
           </p>
-          <p className="mt-1 text-[12px] text-[var(--studio-muted)]">
+          <p className="mt-1 text-[13px] text-[var(--studio-muted)]">
             {t("rhythm.emptyDescription")}
           </p>
         </div>
@@ -94,7 +94,7 @@ export default function TodayRhythm({
                 className="group grid gap-2 sm:grid-cols-[76px_minmax(0,1fr)] sm:items-center"
               >
                 <div className="relative hidden pr-3 text-right sm:block">
-                  <span className="text-[12px] font-medium text-[var(--studio-muted)]">
+                  <span className="text-[14px] font-semibold tabular-nums text-[var(--studio-ink)]">
                     {formatOverviewTime(item.start, locale, timezone)}
                   </span>
                   <span
@@ -107,26 +107,26 @@ export default function TodayRhythm({
                 </div>
                 <div
                   className={cx(
-                    "flex min-h-[68px] flex-wrap items-center gap-x-4 gap-y-2 rounded-[16px] border px-4 py-3 transition",
+                    "flex min-h-[68px] flex-wrap items-center gap-x-4 gap-y-2 rounded-[16px] border px-4 py-3 transition group-hover:border-[var(--studio-blue)]",
                     TONES[tone],
                   )}
                 >
                   <div className="min-w-0 flex-1 basis-[180px]">
-                    <p className="break-words text-[14px] font-medium text-[var(--studio-ink)]">
+                    <p className="break-words text-[14px] font-semibold text-[var(--studio-ink)]">
                       {item.title || t("rhythm.untitled")}
                     </p>
-                    <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-[var(--studio-muted)] sm:hidden">
+                    <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-semibold tabular-nums text-[var(--studio-ink)] sm:hidden">
                       <span>
                         {formatOverviewTime(item.start, locale, timezone)}–
                         {formatOverviewTime(item.end, locale, timezone)}
                       </span>
                     </p>
                   </div>
-                  <span className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[var(--studio-rule)] bg-[var(--studio-white)] px-2 py-1 text-[12px] text-[var(--studio-muted)]">
+                  <span className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[var(--studio-rule)] bg-[var(--studio-white)] px-2 py-1 text-[13px] text-[var(--studio-muted)]">
                     <MapPinIcon className="h-3 w-3" />
                     {item.locationName || t("rhythm.locationFallback")}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--studio-muted)]">
+                  <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold tabular-nums text-[var(--studio-ink)]">
                     <UserGroupIcon className="h-3.5 w-3.5" />
                     {capacity !== null
                       ? `${participants}/${capacity}`

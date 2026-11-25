@@ -434,7 +434,7 @@ export default function BookingSessionComposer() {
         <div className="space-y-5">
           <section className="rounded-[22px] border border-line bg-white p-5 shadow-card sm:p-6">
             <div className="flex items-start gap-3 border-b border-line pb-5">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-coral-100 text-terracotta-700">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-accent-soft text-accent-text">
                 <CalendarDaysIcon className="h-5 w-5" aria-hidden="true" />
               </span>
               <div>

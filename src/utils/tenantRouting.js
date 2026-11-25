@@ -2,6 +2,11 @@ import {
   DEFAULT_LOCALE,
   normalizeRolloutEligibleLocaleCode,
 } from "@/i18n/locales";
+import {
+  isMigratablePublicTenantPath,
+  normalizeTenantPublicOrigin,
+} from "@/utils/tenantPublicOrigin";
+export { normalizeTenantPublicOrigin } from "@/utils/tenantPublicOrigin";
 
 const DEFAULT_PLATFORM_URL = "https://shario.io";
 const TENANT_SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -405,8 +410,41 @@ export const buildTenantUrl = ({
   locale = DEFAULT_LOCALE,
   pathname = "/",
   baseUrl,
+  tenant,
 } = {}) => {
   const resolvedBaseUrl = getBaseUrl(baseUrl);
+  // Only API-provided context for this exact tenant may choose a custom host.
+  // Workspace sign-in remains on the platform's existing session surface.
+  const publicOrigin =
+    normalizeTenantSlug(tenant?.slug) === normalizeTenantSlug(slug) &&
+    !/^\/(?:app|admin|onboarding)(?:\/|[?#]|$)/.test(pathname)
+      ? normalizeTenantPublicOrigin(tenant?.publicOrigin)
+      : "";
+  const [pathWithoutHash] = String(pathname).split("#");
+  const queryIndex = pathWithoutHash.indexOf("?");
+  const isPublicLandingPath = isMigratablePublicTenantPath(
+    queryIndex < 0 ? pathWithoutHash : pathWithoutHash.slice(0, queryIndex),
+    queryIndex < 0 ? "" : pathWithoutHash.slice(queryIndex),
+  );
+  const currentOrigin = baseUrl
+    ? resolvedBaseUrl.origin
+    : getBrowserUrl()?.origin || resolvedBaseUrl.origin;
+  // Private sessions/payment returns cannot cross origins without a handoff.
+  // Keep them local when already on the configured custom host; a platform
+  // login must still land on the Shario host where its cookie can be refreshed.
+  if (
+    publicOrigin &&
+    isValidTenantSlug(slug) &&
+    (isPublicLandingPath || currentOrigin === publicOrigin)
+  ) {
+    const publicUrl = new URL(publicOrigin);
+    return buildLocalizedUrl({
+      baseUrl: publicUrl,
+      hostname: publicUrl.hostname,
+      locale,
+      pathname,
+    });
+  }
   const hostname = getTenantHostname({
     slug,
     baseUrl: resolvedBaseUrl,

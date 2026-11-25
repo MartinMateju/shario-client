@@ -30,6 +30,10 @@ export default defineConfig({
       "tests/unit/**/*.test.{js,jsx,mjs}",
     ],
     exclude: ["e2e/**", "node_modules/**", ".next/**"],
+    // Shared CI runners with coverage instrumentation can be more than ten
+    // times slower than a laptop; the 5-second default then fails healthy
+    // tests. Local runs keep the default so real slowness stays visible.
+    testTimeout: process.env.CI ? 20_000 : 5_000,
     clearMocks: true,
     restoreMocks: true,
     mockReset: false,

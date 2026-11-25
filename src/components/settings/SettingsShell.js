@@ -1,93 +1,45 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import {
   ArrowLeftIcon,
-  ChevronRightIcon,
-  Squares2X2Icon,
+  BuildingOffice2Icon,
+  UserCircleIcon,
 } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 
-import WorkspaceBrushField from "@/components/decorations/WorkspaceBrushField";
-import { revealElementHorizontally } from "@/components/ui/horizontalScroll";
+import SettingsLanguageSummary from "./SettingsLanguageSummary";
+import SettingsPlanSummary from "./SettingsPlanSummary";
+
 import { Link, usePathname } from "@/i18n/navigation";
 import {
   selectCurrentTenant,
   selectCurrentWorkspaceAccess,
 } from "@/lib/features/auth/authSlice";
-
 import {
   SETTINGS_OVERVIEW_PATH,
-  canAccessSettingsItem,
-  getActiveSettingsGroup,
+  PERSONAL_SETTINGS_PATH,
+  getSettingsSection,
   getVisibleSettingsGroups,
-  isSettingsItemActive,
-  launchCenterItem,
 } from "./settingsNavigation";
 
-const cx = (...classes) => classes.filter(Boolean).join(" ");
-
-const activeLinkClass =
-  "bg-coral-100 font-semibold text-[#292925] ring-1 ring-inset ring-coral-200/70";
-const idleLinkClass =
-  "font-medium text-[#686762] hover:bg-[#F7F5F1] hover:text-[#292925]";
-
-function NavigationLink({ active, children, icon: Icon, linkRef, ...props }) {
-  return (
-    <Link
-      ref={linkRef}
-      aria-current={active ? "page" : undefined}
-      className={cx(
-        "flex min-h-11 max-w-[min(76vw,260px)] items-center gap-2.5 rounded-[13px] px-3 text-[11px] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30 xl:max-w-none xl:gap-3",
-        active ? activeLinkClass : idleLinkClass,
-      )}
-      {...props}
-    >
-      <Icon
-        className={cx(
-          "h-4 w-4 shrink-0",
-          active ? "text-terracotta-600" : "text-[#777773]",
-        )}
-        aria-hidden="true"
-      />
-      <span className="min-w-0 flex-1 truncate">{children}</span>
-    </Link>
-  );
-}
-
 export default function SettingsShell({ children }) {
-  const t = useTranslations("WorkspaceSettingsNav");
+  const t = useTranslations("UnifiedSettings");
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const access = useSelector(selectCurrentWorkspaceAccess);
   const tenant = useSelector(selectCurrentTenant);
   const normalizedPathname =
-    pathname?.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+    pathname?.replace(/\/+$/, "") || SETTINGS_OVERVIEW_PATH;
   const isLocationCreateRoute =
     normalizedPathname === "/app/settings/locations/new";
   const isLocationEditRoute = /^\/app\/settings\/locations\/[^/]+\/edit$/.test(
-    normalizedPathname || "",
+    normalizedPathname,
   );
   const isLocationFormRoute = isLocationCreateRoute || isLocationEditRoute;
-  const activeItemRef = useRef(null);
-  const navigationRef = useRef(null);
-  const visibleGroups = getVisibleSettingsGroups({ access, tenant });
-  const activeGroup = getActiveSettingsGroup(visibleGroups, normalizedPathname);
-  const isOverview = normalizedPathname === SETTINGS_OVERVIEW_PATH;
-  const launchCenterVisible = canAccessSettingsItem(
-    launchCenterItem,
-    access,
-    tenant,
-  );
-  const detailItems = activeGroup?.items ?? [];
-
-  useEffect(() => {
-    revealElementHorizontally(navigationRef.current, activeItemRef.current, 8);
-  }, [normalizedPathname]);
-
   const guidedSetupStep = searchParams?.get("setupStep");
+
   if (guidedSetupStep || isLocationFormRoute) {
     return (
       <div
@@ -99,119 +51,114 @@ export default function SettingsShell({ children }) {
               : undefined
         }
         data-guided-settings-mode={guidedSetupStep || undefined}
-        className={cx(
-          "relative z-10 mx-auto min-w-0",
-          isLocationFormRoute ? "w-full max-w-none" : "max-w-[1040px]",
-        )}
+        className={`relative z-10 mx-auto min-w-0 ${isLocationFormRoute ? "w-full max-w-none" : "max-w-[1040px]"}`}
       >
         {children}
       </div>
     );
   }
 
+  const studioGroups = getVisibleSettingsGroups({ access, tenant });
+  const section = getSettingsSection({
+    pathname: normalizedPathname,
+    requestedSection: searchParams?.get("section"),
+    studioGroups,
+  });
+  const isPersonal = section === "personal";
+  const isOverview = normalizedPathname === SETTINGS_OVERVIEW_PATH;
+  const sectionTitle = t(isPersonal ? "personalTitle" : "studioTitle");
+  const tabs = [
+    ...(studioGroups.length
+      ? [
+          {
+            key: "studio",
+            title: t("studioTitle"),
+            href: `${SETTINGS_OVERVIEW_PATH}?section=studio`,
+            icon: BuildingOffice2Icon,
+          },
+        ]
+      : []),
+    {
+      key: "personal",
+      title: t("personalTitle"),
+      href: PERSONAL_SETTINGS_PATH,
+      icon: UserCircleIcon,
+    },
+  ];
+
   return (
-    <div className="relative isolate grid min-w-0 gap-5 xl:grid-cols-[224px_minmax(0,1fr)] xl:gap-5">
-      {isOverview ? null : <WorkspaceBrushField variant="settingsShell" />}
-
-      <aside className="relative z-10 min-w-0 max-w-full self-start overflow-hidden rounded-[22px] border border-line bg-white p-3 shadow-[0_16px_42px_rgba(17,17,15,0.05)] xl:sticky xl:top-[112px] xl:overflow-visible xl:p-4">
-        <div className="min-w-0 px-2 pb-2 pt-1 xl:px-2 xl:pb-4 xl:pt-2">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
-            {t("eyebrow")}
-          </p>
-          <h2 className="mt-1 truncate text-[16px] font-semibold tracking-[-0.04em] text-[#292925] xl:mt-1.5 xl:text-[19px]">
-            {t("title")}
-          </h2>
-          {isOverview ? (
-            <p className="mt-1 hidden text-[10px] leading-5 text-ink-muted xl:block">
-              {t("overviewDescription")}
+    <div
+      data-settings-hub
+      data-settings-section={section}
+      className="relative z-10 mx-auto w-full min-w-0 max-w-[1280px] space-y-5 pb-8"
+    >
+      <header className="min-w-0 rounded-[var(--studio-radius)] border border-line bg-white px-4 pt-4 sm:px-6 sm:pt-5">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h2 className="text-[22px] leading-tight font-medium tracking-[-0.026em] text-ink sm:text-[24px]">
+              {t("title")}
+            </h2>
+            <p className="mt-1 hidden max-w-2xl text-[14px] leading-6 text-ink-muted sm:block">
+              {t("description")}
             </p>
-          ) : null}
+          </div>
         </div>
-
+        <div className="mt-4 grid min-w-0 gap-2.5 sm:grid-cols-2">
+          <SettingsPlanSummary />
+          <SettingsLanguageSummary />
+        </div>
         <nav
-          ref={navigationRef}
-          aria-label={t("label")}
-          className="max-w-full scroll-px-2 overflow-x-auto overscroll-x-contain xl:overflow-visible"
+          aria-label={t("navigation")}
+          className="mt-3 flex min-w-0 flex-wrap gap-2"
         >
-          <ul className="flex min-w-max gap-1 xl:block xl:min-w-0 xl:space-y-1">
-            <li className="min-w-0 shrink-0 xl:w-full">
-              <NavigationLink
-                href={SETTINGS_OVERVIEW_PATH}
-                active={isOverview}
-                icon={isOverview ? Squares2X2Icon : ArrowLeftIcon}
-                linkRef={isOverview ? activeItemRef : undefined}
-                title={t("overview")}
-              >
-                {t("overview")}
-              </NavigationLink>
-            </li>
-
-            {launchCenterVisible ? (
-              <li className="min-w-0 shrink-0 xl:w-full">
-                <NavigationLink
-                  href={launchCenterItem.href}
-                  active={false}
-                  icon={launchCenterItem.icon}
-                  title={t("items.setup")}
-                >
-                  {t("items.setup")}
-                </NavigationLink>
-              </li>
-            ) : null}
-
-            <li
-              aria-hidden="true"
-              className="mx-2 hidden h-px bg-line xl:block"
-            />
-
-            {isOverview
-              ? visibleGroups.map((group) => {
-                  const GroupIcon = group.icon;
-                  return (
-                    <li key={group.key} className="min-w-0 shrink-0 xl:w-full">
-                      <Link
-                        href={group.items[0].href}
-                        aria-label={t("openCategory", {
-                          category: t(group.labelKey ?? `groups.${group.key}`),
-                        })}
-                        className="group flex min-h-11 max-w-[min(76vw,260px)] items-center gap-2.5 rounded-[13px] px-3 text-[11px] font-medium text-[#686762] transition hover:bg-[#F7F5F1] hover:text-[#292925] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30 xl:max-w-none xl:gap-3"
-                      >
-                        <GroupIcon
-                          className="h-4 w-4 shrink-0 text-[#777773] transition group-hover:text-cobalt-600"
-                          aria-hidden="true"
-                        />
-                        <span className="min-w-0 flex-1 truncate">
-                          {t(group.labelKey ?? `groups.${group.key}`)}
-                        </span>
-                        <ChevronRightIcon
-                          className="hidden h-3.5 w-3.5 shrink-0 text-ink-subtle xl:block"
-                          aria-hidden="true"
-                        />
-                      </Link>
-                    </li>
-                  );
-                })
-              : detailItems.map((item) => {
-                  const active = isSettingsItemActive(item, normalizedPathname);
-                  return (
-                    <li key={item.key} className="min-w-0 shrink-0 xl:w-full">
-                      <NavigationLink
-                        href={item.href}
-                        active={active}
-                        icon={item.icon}
-                        linkRef={active ? activeItemRef : undefined}
-                        title={t(`items.${item.key}`)}
-                      >
-                        {t(`items.${item.key}`)}
-                      </NavigationLink>
-                    </li>
-                  );
-                })}
-          </ul>
+          {tabs.map(({ key, title, href, icon: Icon }) => (
+            <Link
+              key={key}
+              href={href}
+              aria-current={section === key ? "page" : undefined}
+              className={`flex min-h-12 min-w-0 items-center gap-2 border-b-2 px-3 py-2 text-[14px] font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 ${section === key ? "border-cobalt-600 text-cobalt-700" : "border-transparent text-ink-muted hover:border-line hover:text-ink"}`}
+            >
+              <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>{title}</span>
+            </Link>
+          ))}
         </nav>
-      </aside>
-
-      <div className="relative z-10 min-w-0">{children}</div>
+      </header>
+      <div className="min-w-0 space-y-4">
+        <span
+          data-settings-scope
+          className="inline-flex max-w-full rounded-full bg-surface-muted px-3 py-1 text-[12px] font-medium leading-5 text-ink-soft break-words"
+        >
+          {t(isPersonal ? "personalScope" : "studioScope")}
+        </span>
+        {isOverview ? (
+          <p className="px-1 text-sm leading-6 text-ink-muted">
+            {t(isPersonal ? "personalDescription" : "studioDescription")}
+          </p>
+        ) : (
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+            <Link
+              href={
+                isPersonal ? PERSONAL_SETTINGS_PATH : SETTINGS_OVERVIEW_PATH
+              }
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl px-2 text-sm font-medium text-cobalt-700 hover:bg-cobalt-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500"
+            >
+              <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              {t("backTo", { section: sectionTitle })}
+            </Link>
+            {isPersonal ? (
+              <p className="px-2 text-xs leading-5 text-ink-muted">
+                {t(
+                  normalizedPathname === "/app/settings/profile"
+                    ? "personalProfileScope"
+                    : "personalPreferencesScope",
+                )}
+              </p>
+            ) : null}
+          </div>
+        )}
+        {children}
+      </div>
     </div>
   );
 }

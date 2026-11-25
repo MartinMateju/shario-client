@@ -24,6 +24,9 @@ const mocks = vi.hoisted(() => ({
   appearanceSurface: undefined,
   portalAppearance: {},
   publicNavigation: [],
+  headerLayout: "default",
+  websiteHeader: vi.fn(),
+  publicLanguageCodes: null,
 }));
 vi.mock("next-intl", async (...args) => {
   const { withMessageCatalogs } = await import("@/test/withMessageCatalogs");
@@ -99,18 +102,12 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
         supportedPublicLanguages: ["en"],
       },
       publicSite: {
-        branding: {
-          displayName: "The Pottery House",
-        },
+        branding: { displayName: "The Pottery House" },
         header: {
-          announcement: {
-            text: {},
-            url: "",
-          },
+          layout: mocks.headerLayout,
+          announcement: { text: {}, url: "" },
         },
-        customerPortal: {
-          appearance: mocks.portalAppearance,
-        },
+        customerPortal: { appearance: mocks.portalAppearance },
       },
     },
     navigation: mocks.publicNavigation,
@@ -122,9 +119,30 @@ vi.mock("@/components/customer-shell/CustomerPortalLocationProvider", () => ({
 vi.mock("@/components/customer-shell/useCustomerPieceAccess", () => ({
   useCustomerPieceAccess: () => mocks.pieceAccess,
 }));
+
+vi.mock(
+  "@/components/public-tenant/publicTenant.config",
+  async (importOriginal) => {
+    const actual = await importOriginal();
+    return {
+      ...actual,
+      getPublicTenantLocaleCodes: (...args) =>
+        mocks.publicLanguageCodes || actual.getPublicTenantLocaleCodes(...args),
+    };
+  },
+);
+
 vi.mock("@/components/headers/DesktopNavPublic", () => ({
   default: () => null,
 }));
+
+vi.mock("@/components/headers/PublicWebsiteHeader", () => ({
+  default: (props) => {
+    mocks.websiteHeader(props);
+    return <header data-testid="website-header" data-public-website-header />;
+  },
+}));
+
 vi.mock("@/components/headers/DesktopNavTenant", () => ({
   default: ({ items = [] }) => (
     <nav aria-label="Desktop studio links">
@@ -186,6 +204,10 @@ describe("customer header actions", () => {
     mocks.customerAuthenticated = false;
     mocks.customerSessionReady = true;
     mocks.publicNavigation = [];
+    mocks.headerLayout = "default";
+    mocks.websiteHeader.mockClear();
+    mocks.publicLanguageCodes = null;
+    mocks.router.replace.mockClear();
     mocks.sessionTenantSlug = "the-pottery-house";
     mocks.searchParams = new URLSearchParams();
     mocks.cart = [];
@@ -198,6 +220,57 @@ describe("customer header actions", () => {
     mocks.appearanceSurface = undefined;
     mocks.portalAppearance = {};
   });
+
+  it("uses website navigation only for configured public pages", () => {
+    mocks.headerLayout = "website";
+    mocks.publicNavigation = [
+      {
+        key: "custom-main",
+        custom: true,
+        label: "Main website",
+        href: "https://www.example.com/",
+      },
+    ];
+    const view = render(<Header tenantScoped pathnameOverride="/courses" />);
+    expect(screen.getByTestId("website-header")).toBeInTheDocument();
+    expect(mocks.websiteHeader).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        items: expect.arrayContaining([
+          expect.objectContaining({
+            label: "Main website",
+            href: "https://www.example.com/",
+          }),
+        ]),
+        locale: "en",
+      }),
+    );
+    expect(
+      screen.queryByRole("navigation", { name: "Desktop studio links" }),
+    ).toBeNull();
+    mocks.customerSurface = "portal";
+    view.rerender(<Header tenantScoped pathnameOverride="/portal" />);
+    expect(screen.queryByTestId("website-header")).toBeNull();
+    mocks.customerSurface = "transaction";
+    view.rerender(<Header tenantScoped pathnameOverride="/checkout/success" />);
+    expect(screen.queryByTestId("website-header")).toBeNull();
+  });
+
+  it("routes to the selected website language instead of cycling a multi-language menu", () => {
+    mocks.headerLayout = "website";
+    mocks.publicLanguageCodes = ["en", "cs", "de"];
+    render(<Header tenantScoped pathnameOverride="/courses" />);
+    const headerProps = mocks.websiteHeader.mock.calls.at(-1)[0];
+    headerProps.onLocaleChange("de");
+    expect(mocks.router.replace).toHaveBeenCalledWith("/courses", {
+      locale: "de",
+      scroll: false,
+    });
+    mocks.router.replace.mockClear();
+    headerProps.onLocaleChange("en");
+    headerProps.onLocaleChange("fr");
+    expect(mocks.router.replace).not.toHaveBeenCalled();
+  });
+
   it("keeps personal header colours on portal results without restoring cart or portal navigation", () => {
     mocks.customerAuthenticated = true;
     mocks.customerSurface = "transaction";

@@ -462,7 +462,7 @@ export default function StudioSwitcher({
           >
             {canManageStudios ? (
               <PlusIcon
-                className="h-5 w-5 text-[var(--studio-clay)]"
+                className="h-5 w-5 text-[var(--studio-blue)]"
                 strokeWidth={1.75}
                 aria-hidden="true"
               />

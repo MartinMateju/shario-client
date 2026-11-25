@@ -8,6 +8,7 @@ vi.mock("@/lib/features/api/apiSlice", () => ({
         captured.endpoints,
         endpoints({
           query: (definition) => definition,
+          infiniteQuery: (definition) => definition,
           mutation: (definition) => definition,
         }),
       );
@@ -29,7 +30,10 @@ describe("authenticated course catalog requests", () => {
     });
     const baseQuery = vi.fn().mockResolvedValue({ data: { products: [] } });
     await captured.endpoints.getPublicCourseProducts.queryFn(
-      { tenantSlug: "klei", locationId: "vaclavska" },
+      {
+        queryArg: { tenantSlug: "klei", locationId: "vaclavska" },
+        pageParam: 1,
+      },
       {},
       {},
       baseQuery,

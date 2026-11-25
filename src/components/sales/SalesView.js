@@ -43,11 +43,10 @@ import {
   downloadOrdersCsv,
   formatMoney,
   getBackendStatus,
-  getOrderCurrency,
   getOrderId,
   getOrderStatusKey,
-  getOrderTotal,
   isPendingSubgroup,
+  summarizePaidOrderValue,
 } from "./sales.utils";
 
 const DEFAULT_PAGE_SIZE = 5;
@@ -144,11 +143,13 @@ export default function SalesView({ showPageHeader = true }) {
     orders: 0,
     revenue: 0,
     currency: null,
-    revenueTruncated: false,
+    amountReason: null,
+    hasMultiStudioOrders: false,
     awaitingPayment: 0,
     processing: 0,
     completed: 0,
     failed: 0,
+    cancelled: 0,
   });
 
   const pageRequestRef = useRef(0);
@@ -346,31 +347,42 @@ export default function SalesView({ showPageHeader = true }) {
       };
 
       try {
-        const [allResult, pendingResult, completedResult, failedResult] =
-          await Promise.all([
-            fetchAllPages({
-              trigger: loadSummary,
-              query: summaryQuery,
-              maxPages: 10,
-            }),
-            fetchAllPages({
-              trigger: loadSummary,
-              query: { ...summaryQuery, status: "pending_order" },
-              maxPages: 10,
-            }),
-            loadSummary({
-              ...summaryQuery,
-              status: "processed_order",
-              page: 1,
-              limit: 1,
-            }).unwrap(),
-            loadSummary({
-              ...summaryQuery,
-              status: "failed_order",
-              page: 1,
-              limit: 1,
-            }).unwrap(),
-          ]);
+        const [
+          allResult,
+          pendingResult,
+          completedResult,
+          failedResult,
+          cancelledResult,
+        ] = await Promise.all([
+          fetchAllPages({
+            trigger: loadSummary,
+            query: summaryQuery,
+            maxPages: 10,
+          }),
+          fetchAllPages({
+            trigger: loadSummary,
+            query: { ...summaryQuery, status: "pending_order" },
+            maxPages: 10,
+          }),
+          loadSummary({
+            ...summaryQuery,
+            status: "processed_order",
+            page: 1,
+            limit: 1,
+          }).unwrap(),
+          loadSummary({
+            ...summaryQuery,
+            status: "failed_order",
+            page: 1,
+            limit: 1,
+          }).unwrap(),
+          loadSummary({
+            ...summaryQuery,
+            status: "cancelled_order",
+            page: 1,
+            limit: 1,
+          }).unwrap(),
+        ]);
 
         if (cancelled) return;
 
@@ -383,19 +395,29 @@ export default function SalesView({ showPageHeader = true }) {
           { awaitingPayment: 0, processing: 0 },
         );
 
+        const paidValue = summarizePaidOrderValue(allResult.orders, allResult);
         setSummary({
           orders: allResult.totalCount,
-          revenue: allResult.orders
-            .filter((order) => order?.isPaid)
-            .reduce((total, order) => total + getOrderTotal(order), 0),
-          currency: allResult.orders.some((order) => order?.isPaid)
-            ? getOrderCurrency(allResult.orders.find((order) => order?.isPaid))
-            : null,
-          revenueTruncated: allResult.isTruncated,
-          awaitingPayment: pendingGroups.awaitingPayment,
-          processing: pendingGroups.processing,
+          revenue: paidValue.amount,
+          currency: paidValue.currency,
+          amountReason: paidValue.reason,
+          hasMultiStudioOrders: allResult.orders.some(
+            (order) =>
+              new Set(
+                (order.locationIds || []).map((location) =>
+                  String(location?._id || location?.id || location),
+                ),
+              ).size > 1,
+          ),
+          awaitingPayment: pendingResult.isTruncated
+            ? null
+            : pendingGroups.awaitingPayment,
+          processing: pendingResult.isTruncated
+            ? null
+            : pendingGroups.processing,
           completed: Number(completedResult?.totalCount || 0),
           failed: Number(failedResult?.totalCount || 0),
+          cancelled: Number(cancelledResult?.totalCount || 0),
         });
       } catch {
         if (!cancelled) setSummaryError(true);
@@ -426,24 +448,27 @@ export default function SalesView({ showPageHeader = true }) {
       processing: summary.processing,
       completed: summary.completed,
       failed: summary.failed,
+      cancelled: summary.cancelled,
     }),
     [summary],
   );
 
   const overviewStats = useMemo(
     () => ({
-      revenue: `${summary.revenueTruncated ? "≥ " : ""}${formatMoney(
-        summary.revenue,
-        summary.currency ||
-          currentTenant?.settings?.currency ||
-          DEFAULT_STUDIO_COMMERCE_CURRENCY,
-        locale,
-      )}`,
+      revenue: summary.amountReason
+        ? t("money.unavailable")
+        : formatMoney(
+            summary.revenue,
+            summary.currency ||
+              currentTenant?.settings?.currency ||
+              DEFAULT_STUDIO_COMMERCE_CURRENCY,
+            locale,
+          ),
       orders: summary.orders,
-      awaitingPayment: summary.awaitingPayment,
+      awaitingPayment: summary.awaitingPayment ?? "—",
       failed: summary.failed,
     }),
-    [currentTenant?.settings?.currency, locale, summary],
+    [currentTenant?.settings?.currency, locale, summary, t],
   );
 
   const handleStatusChange = useCallback((status) => {
@@ -618,6 +643,8 @@ export default function SalesView({ showPageHeader = true }) {
           onRetry={() => setRetryToken((current) => current + 1)}
           stats={overviewStats}
           onStatusChange={handleStatusChange}
+          amountReason={summary.amountReason}
+          hasMultiStudioOrders={summary.hasMultiStudioOrders}
           t={t}
         />
 

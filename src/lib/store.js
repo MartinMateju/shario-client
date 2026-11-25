@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
 import {
   createMigrate,
   createTransform,
@@ -17,6 +16,7 @@ import createWebStorage from "redux-persist/es/storage/createWebStorage";
 import { apiSlice } from "@/lib/features/api/apiSlice";
 import { authCacheIsolationMiddleware } from "@/lib/features/auth/authCacheIsolationMiddleware";
 import authReducer from "@/lib/features/auth/authSlice";
+import { createAuthTransportConfig } from "@/lib/features/auth/authTransportConfig";
 import cartReducer from "@/lib/features/cart/cartSlice";
 import configReducer from "@/lib/features/config/configSlice";
 import creditsReducer from "@/lib/features/credits/creditsSlice";
@@ -213,7 +213,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
  * state between requests. The route locale, not a browser-only cookie, seeds
  * the legacy CZ/EN slice before any connected child renders.
  */
-export const makeStore = ({ legacyLanguage = "EN" } = {}) => {
+export const makeStore = ({
+  legacyLanguage = "EN",
+  authTransportConfig,
+} = {}) => {
   const store = configureStore({
     reducer: persistedReducer,
     preloadedState: {
@@ -223,14 +226,19 @@ export const makeStore = ({ legacyLanguage = "EN" } = {}) => {
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
+        // Runtime routing is seeded before children/session restore mount and
+        // cannot be replaced by redux-persist or another request's store.
+        thunk: {
+          extraArgument: Object.freeze({
+            authTransportConfig: createAuthTransportConfig(authTransportConfig),
+          }),
+        },
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
       }).concat(authCacheIsolationMiddleware, apiSlice.middleware),
     devTools: process.env.NODE_ENV !== "production",
   });
-
-  const teardownListeners = setupListeners(store.dispatch);
 
   /*
    * The server renders before anything is rehydrated from localStorage, so
@@ -243,7 +251,6 @@ export const makeStore = ({ legacyLanguage = "EN" } = {}) => {
     store,
     serverState,
     persistor: persistStore(store),
-    teardownListeners,
   };
 };
 

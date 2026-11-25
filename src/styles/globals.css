@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./customerStudioPages.css";
 
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
@@ -432,6 +433,17 @@ header[data-platform-auth-header] ~ #page-content {
 /* The homepage header (h-16, see Header.js) is shorter still. */
 header[data-home-header] ~ #page-content {
   padding-top: 4rem;
+}
+
+#page-content:has([data-public-website-header]) {
+  --header-height: 92px;
+  padding-top: var(--header-height);
+}
+
+@media (max-width: 1099px) {
+  #page-content:has([data-public-website-header]) {
+    --header-height: 76px;
+  }
 }
 
 /* ==========================================================================
@@ -999,8 +1011,8 @@ header[data-home-header] ~ #page-content {
    ========================================================================== */
 
 [data-workspace-ui="true"] {
-  --color-ink-muted: #66635e;
-  --color-ink-subtle: #73736e;
+  --color-ink-muted: var(--studio-muted, #66635e);
+  --color-ink-subtle: var(--studio-muted, #73736e);
 }
 
 /* Dialog geometry belongs to the explicit panel variant, never the Headless UI
@@ -1108,7 +1120,7 @@ header[data-home-header] ~ #page-content {
 :where([data-workspace-ui="true"], [role="dialog"])
   :where(table:not([data-ui-unstyled="true"]))
   thead {
-  background: var(--color-sand-50);
+  background: var(--workspace-table-header-background, var(--color-sand-50));
 }
 
 :where([data-workspace-ui="true"], [role="dialog"])
@@ -1118,9 +1130,9 @@ header[data-home-header] ~ #page-content {
   border-bottom: 1px solid var(--border);
   padding: 0.875rem 1rem;
   color: var(--text-secondary);
-  font-size: 0.625rem;
+  font-size: var(--workspace-table-header-size, 0.625rem);
   font-weight: 650;
-  letter-spacing: 0.11em;
+  letter-spacing: var(--workspace-table-header-tracking, 0.11em);
   line-height: 1rem;
   text-align: left;
   text-transform: uppercase;
@@ -1171,7 +1183,7 @@ header[data-home-header] ~ #page-content {
   ) {
   width: 100%;
   min-height: 3rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--workspace-control-border, var(--border));
   border-radius: 0.875rem;
   background-color: #ffffff;
   color: var(--text-primary);
@@ -1274,7 +1286,7 @@ header[data-home-header] ~ #page-content {
     :where(table:not([data-ui-unstyled="true"]))
     tbody
     tr:hover {
-    background: var(--color-sand-50);
+    background: var(--workspace-table-row-hover, var(--color-sand-50));
   }
 }
 
@@ -1382,7 +1394,7 @@ header[data-home-header] ~ #page-content {
       textarea
     ) {
     min-height: 2.75rem;
-    font-size: 0.8125rem;
+    font-size: var(--workspace-control-size, 0.8125rem);
   }
 
   :where([data-workspace-ui="true"], [role="dialog"])
@@ -2931,11 +2943,7 @@ body:has([data-customer-portal-mobile-menu])
     [data-customer-portal-surface]
   ) {
   border-color: color-mix(in srgb, var(--tenant-text) 10%, transparent);
-  background-color: color-mix(
-    in srgb,
-    var(--tenant-surface) 96%,
-    var(--tenant-secondary) 4%
-  );
+  background-color: var(--tenant-surface);
 }
 
 [data-tenant-style="warm-organic-v1"]

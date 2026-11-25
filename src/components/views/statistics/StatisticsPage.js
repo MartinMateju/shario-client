@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowDownTrayIcon,
   ArrowPathIcon,
@@ -13,7 +12,6 @@ import {
   CubeIcon,
   InformationCircleIcon,
   SparklesIcon,
-  UserGroupIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
@@ -26,6 +24,7 @@ import WorkspaceTabs, {
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
 import { PERMISSIONS, hasPermission } from "@/config/permissions";
 import {
+  getAuthCacheIdentity,
   selectCurrentTenant,
   selectCurrentWorkspaceAccess,
 } from "@/lib/features/auth/authSlice";
@@ -54,7 +53,6 @@ import {
   UnavailableState,
 } from "./ReportsPrimitives";
 import {
-  downloadCsvFile,
   formatReportDate,
   formatReportDateTime,
   formatReportMoney,
@@ -66,7 +64,6 @@ import {
   getOperationSections,
   getReportDateRange,
   getReportErrorMessage,
-  isCsvDownloadPayload,
   isFiniteReportNumber,
   normalizeReportInsights,
   normalizeReportOverview,
@@ -74,6 +71,10 @@ import {
   REPORT_GRANULARITIES,
   REPORT_TABS,
 } from "./reports.utils";
+
+import ReportCustomers from "./ReportCustomers";
+import useReportSearchParams from "./useReportSearchParams";
+import useReportDownload from "./useReportDownload";
 
 const controlClass =
   "h-11 w-full rounded-[13px] border border-line bg-white px-3.5 text-[12px] text-ink outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10";
@@ -193,15 +194,15 @@ function Limitations({ items, title, empty = false }) {
   }
 
   return (
-    <div className="border-t border-line bg-warning-soft/55 px-5 py-4 sm:px-6">
+    <div className="border-t border-line bg-sand-50/60 px-5 py-4 sm:px-6">
       <div className="flex items-start gap-2.5">
         <InformationCircleIcon
           className="mt-0.5 h-4 w-4 shrink-0 text-warning"
           aria-hidden="true"
         />
         <div>
-          <p className="text-[12px] font-semibold text-warning">{title}</p>
-          <ul className="mt-1.5 space-y-1 text-[12px] leading-5 text-sand-800">
+          <p className="text-[13px] font-semibold text-ink">{title}</p>
+          <ul className="mt-1.5 space-y-1 text-[13px] leading-5 text-ink-muted">
             {items.map((item, index) => (
               <li key={`${item}-${index}`}>{String(item)}</li>
             ))}
@@ -352,7 +353,9 @@ function OverviewTab({
       ) : null}
 
       <div className="grid gap-5 lg:grid-cols-2">
-        {sales && Array.isArray(sales.topProducts) ? (
+        {sales &&
+        sales.topProductsComplete !== false &&
+        Array.isArray(sales.topProducts) ? (
           <ReportSection
             title={t("overview.topProducts")}
             description={t("overview.topProductsDescription")}
@@ -538,7 +541,7 @@ function AiBriefingPanel({
   );
 }
 
-function SalesTab({ sales, locale, currency, t }) {
+function SalesTab({ sales, locale, currency, t, onThisYear }) {
   if (!sales) {
     return (
       <UnavailableState
@@ -556,38 +559,8 @@ function SalesTab({ sales, locale, currency, t }) {
     <div className="space-y-5">
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <CompactMetric
-          label={t("sales.metrics.gross")}
-          value={sales.grossSalesMinor}
-          formatter={(value) => money(value)}
-          unavailableLabel={t("common.unavailable")}
-        />
-        <CompactMetric
           label={t("sales.metrics.net")}
           value={sales.netSalesMinor}
-          formatter={(value) => money(value)}
-          unavailableLabel={t("common.unavailable")}
-        />
-        <CompactMetric
-          label={t("sales.metrics.tax")}
-          value={sales.taxMinor}
-          formatter={(value) => money(value)}
-          unavailableLabel={t("common.unavailable")}
-        />
-        <CompactMetric
-          label={t("sales.metrics.discounts")}
-          value={sales.discountsMinor}
-          formatter={(value) => money(value)}
-          unavailableLabel={t("common.unavailable")}
-        />
-        <CompactMetric
-          label={t("sales.metrics.refunds")}
-          value={sales.refundsMinor}
-          formatter={(value) => money(value)}
-          unavailableLabel={t("common.unavailable")}
-        />
-        <CompactMetric
-          label={t("sales.metrics.paymentFees")}
-          value={sales.paymentFeesMinor}
           formatter={(value) => money(value)}
           unavailableLabel={t("common.unavailable")}
         />
@@ -605,18 +578,89 @@ function SalesTab({ sales, locale, currency, t }) {
         />
       </div>
 
+      <ReportSection
+        title={t("analytics.bestMonth")}
+        description={t("analytics.completedMonths")}
+      >
+        <div className="p-5">
+          {sales.bestMonth ? (
+            <p className="text-xl font-semibold text-ink">
+              {formatReportDate(sales.bestMonth.periodStart, locale, {
+                month: "long",
+                year: "numeric",
+              })}{" "}
+              · {money(sales.bestMonth.cashReceivedMinor)}
+            </p>
+          ) : (
+            <p className="text-sm text-ink-muted">
+              {t("analytics.noBestMonth")}
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={onThisYear}
+            className="mt-3 rounded-full border border-line px-4 py-2 text-sm font-semibold focus-visible:ring-2"
+          >
+            {t("analytics.showYear")}
+          </button>
+        </div>
+        <DataTable
+          caption={t("analytics.monthRanking")}
+          rows={sales.monthlyRanking}
+          getRowKey={(row) => row.month}
+          emptyLabel={t("analytics.noBestMonth")}
+          columns={[
+            {
+              key: "month",
+              label: t("analytics.month"),
+              render: (row) =>
+                formatReportDate(row.periodStart, locale, {
+                  month: "long",
+                  year: "numeric",
+                }),
+            },
+            {
+              key: "cash",
+              label: t("metrics.netSales"),
+              align: "right",
+              render: (row) => money(row.cashReceivedMinor),
+            },
+            {
+              key: "payments",
+              label: t("sales.metrics.orders"),
+              align: "right",
+              render: (row) => formatReportNumber(row.paymentCount, locale),
+            },
+            {
+              key: "coverage",
+              label: t("analytics.coverage"),
+              render: (row) =>
+                !row.dataComplete
+                  ? t("common.unavailable")
+                  : row.completeMonth
+                    ? t("analytics.completeMonth")
+                    : t("analytics.partialMonth"),
+            },
+          ]}
+        />
+      </ReportSection>
       <div className="grid gap-5 lg:grid-cols-2">
-        <ReportSection title={t("sales.paymentMethods")}>
+        <ReportSection title={t("analytics.paymentSources")}>
           <DataTable
-            caption={t("sales.paymentMethods")}
+            caption={t("analytics.paymentSources")}
             rows={sales.paymentMethods}
             getRowKey={(row, index) => `${row.method}-${index}`}
-            emptyLabel={t("sales.noPaymentMethods")}
+            emptyLabel={t("analytics.noPaymentSources")}
             columns={[
               {
                 key: "method",
-                label: t("sales.table.method"),
-                render: (row) => humanize(row.method),
+                label: t("analytics.source"),
+                render: (row) =>
+                  ["external_payment", "voucher", "membership"].includes(
+                    row.method,
+                  )
+                    ? t(`analytics.source_${row.method}`)
+                    : humanize(row.method),
               },
               {
                 key: "amount",
@@ -663,7 +707,8 @@ function SalesTab({ sales, locale, currency, t }) {
       </div>
 
       <ReportSection title={t("sales.topProducts")}>
-        {Array.isArray(sales.topProducts) ? (
+        {sales.topProductsComplete !== false &&
+        Array.isArray(sales.topProducts) ? (
           <DataTable
             caption={t("sales.topProducts")}
             rows={sales.topProducts}
@@ -687,12 +732,6 @@ function SalesTab({ sales, locale, currency, t }) {
                   ),
               },
               {
-                key: "gross",
-                label: t("sales.table.gross"),
-                align: "right",
-                render: (row) => money(row.grossSalesMinor),
-              },
-              {
                 key: "net",
                 label: t("sales.table.net"),
                 align: "right",
@@ -704,7 +743,7 @@ function SalesTab({ sales, locale, currency, t }) {
           <div className="p-5">
             <UnavailableState
               title={t("sales.topProductsUnavailable")}
-              description={t("sales.topProductsUnavailableDescription")}
+              description={t("analytics.incompleteData")}
               compact
             />
           </div>
@@ -752,12 +791,6 @@ function BookingsTab({ bookings, locale, t }) {
         <CompactMetric
           label={t("bookings.metrics.cancellations")}
           value={bookings.cancellations}
-          formatter={(value) => formatReportNumber(value, locale)}
-          unavailableLabel={t("common.unavailable")}
-        />
-        <CompactMetric
-          label={t("bookings.metrics.noShows")}
-          value={bookings.noShows}
           formatter={(value) => formatReportNumber(value, locale)}
           unavailableLabel={t("common.unavailable")}
         />
@@ -948,41 +981,10 @@ function CustomersTab({ customers, locale, currency, t }) {
         />
       </div>
 
-      <ReportSection
-        title={t("customers.contextTitle")}
-        description={t("customers.contextDescription")}
-      >
-        <div className="grid gap-4 p-5 md:grid-cols-2">
-          <div className="rounded-[18px] border border-line bg-sand-50 p-5">
-            <UserGroupIcon
-              className="h-5 w-5 text-cobalt-600"
-              aria-hidden="true"
-            />
-            <p className="mt-4 text-[12px] font-semibold text-ink">
-              {t("customers.newVsReturning")}
-            </p>
-            <p className="mt-1 text-[12px] leading-5 text-ink-muted">
-              {t("customers.newVsReturningDescription")}
-            </p>
-          </div>
-          <div className="rounded-[18px] border border-line bg-sand-50 p-5">
-            <BanknotesIcon
-              className="h-5 w-5 text-cobalt-600"
-              aria-hidden="true"
-            />
-            <p className="mt-4 text-[12px] font-semibold text-ink">
-              {t("customers.spendTitle")}
-            </p>
-            <p className="mt-1 text-[12px] leading-5 text-ink-muted">
-              {t("customers.spendDescription")}
-            </p>
-          </div>
-        </div>
-        <Limitations
-          items={customers.limitations}
-          title={t("coverage.limitations")}
-        />
-      </ReportSection>
+      <Limitations
+        items={customers.limitations}
+        title={t("coverage.limitations")}
+      />
     </div>
   );
 }
@@ -1271,11 +1273,34 @@ function CoveragePanel({ coverage, metadata, locale, t }) {
   );
 }
 
-export default function StatisticsPage({ showPageHeader = false }) {
+export default function StatisticsPage(props) {
+  const principal = useSelector(getAuthCacheIdentity);
+  const tenant = useSelector(selectCurrentTenant);
+  const access = useSelector(selectCurrentWorkspaceAccess);
+  const locationAccess = normalizeLocationAccess(access);
+  const cacheScope = JSON.stringify({
+    principal,
+    tenant: tenant?.id || tenant?._id,
+    locations: [...locationAccess.ids].sort(),
+    locationMode: locationAccess.mode,
+    plan: tenant?.plan,
+    planVersion: tenant?.planVersion,
+    modules: tenant?.modules,
+    timeZone: tenant?.settings?.timezone,
+  });
+  return (
+    <StatisticsWorkspace
+      key={cacheScope || "reports-unresolved"}
+      cacheScope={cacheScope}
+      {...props}
+    />
+  );
+}
+
+function StatisticsWorkspace({ showPageHeader = false, cacheScope }) {
   const t = useTranslations("Reports");
   const locale = useLocale();
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const { searchParams, updateSearchParams } = useReportSearchParams();
   const currentTenant = useSelector(selectCurrentTenant);
   const workspaceAccess = useSelector(selectCurrentWorkspaceAccess);
   const activeStudioId = useSelector(selectActiveStudioId);
@@ -1346,11 +1371,42 @@ export default function StatisticsPage({ showPageHeader = false }) {
       ? searchParams.get("granularity")
       : "auto",
   }));
+  const [customerRefreshVersion, setCustomerRefreshVersion] = useState(0);
   const [requestedTab, setRequestedTab] = useState(() => {
     const value = searchParams.get("reportTab");
     return REPORT_TABS.includes(value) ? value : "overview";
   });
-  const [chartNotice, setChartNotice] = useState(null);
+  const urlKey = searchParams.toString();
+  const lastUrl = useRef(urlKey);
+  useEffect(() => {
+    if (lastUrl.current === urlKey) return;
+    lastUrl.current = urlKey;
+    const params = new URLSearchParams(urlKey);
+    const preset = REPORT_DATE_PRESETS.includes(params.get("period"))
+      ? params.get("period")
+      : "thisMonth";
+    const range = getReportDateRange(preset, new Date(), reportingTimeZone);
+    setFilters({
+      preset,
+      from: params.get("from") || range.from,
+      to: params.get("to") || range.to,
+      locationId: params.get("locationId") || "",
+      scope:
+        params.get("locationScope") === "all" ||
+        params.get("locationId") === "all"
+          ? "all"
+          : "location",
+      compare: params.get("compare") !== "false",
+      granularity: REPORT_GRANULARITIES.includes(params.get("granularity"))
+        ? params.get("granularity")
+        : "auto",
+    });
+    setRequestedTab(
+      REPORT_TABS.includes(params.get("reportTab"))
+        ? params.get("reportTab")
+        : "overview",
+    );
+  }, [urlKey, reportingTimeZone]);
   const [briefingResult, setBriefingResult] = useState({
     filterKey: "",
     data: null,
@@ -1378,6 +1434,7 @@ export default function StatisticsPage({ showPageHeader = false }) {
   const canRequestReport =
     locationsResolved && Boolean(selectedReportLocationId) && !invalidDates;
   const queryFilters = {
+    cacheScope,
     from: filters.from,
     to: filters.to,
     ...(effectiveLocationId ? { locationId: effectiveLocationId } : {}),
@@ -1388,11 +1445,13 @@ export default function StatisticsPage({ showPageHeader = false }) {
   const reportFilterKey = JSON.stringify(queryFilters);
   const reportQuery = useGetReportsOverviewQuery(queryFilters, {
     skip: !canRequestReport,
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
+    refetchOnReconnect: true,
   });
   const reportResponse =
     canRequestReport && !reportQuery.isError
-      ? (reportQuery.currentData ??
-        (!reportQuery.isFetching ? reportQuery.data : undefined))
+      ? reportQuery.currentData
       : undefined;
   const report = useMemo(
     () => normalizeReportOverview(reportResponse),
@@ -1435,11 +1494,11 @@ export default function StatisticsPage({ showPageHeader = false }) {
         (consolidatedAccess.key === capabilityKey &&
           !consolidatedAccess.allowed));
     if (!invalidLocation && !deniedAll) return;
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("locationId", selectedReportLocationId);
-    if (deniedAll || requestedLocationId === "all")
-      params.delete("locationScope");
-    router.replace(`?${params.toString()}`, { scroll: false });
+    updateSearchParams((params) => {
+      params.set("locationId", selectedReportLocationId);
+      if (deniedAll || requestedLocationId === "all")
+        params.delete("locationScope");
+    });
     if (deniedAll)
       setFilters((previous) =>
         previous.scope === "all"
@@ -1456,11 +1515,16 @@ export default function StatisticsPage({ showPageHeader = false }) {
     consolidatedAccess.key,
     consolidatedAccess.allowed,
     capabilityKey,
-    router,
+    updateSearchParams,
     searchParams,
   ]);
 
   const [exportReportsCsv, exportState] = useExportReportsCsvMutation();
+  const {
+    download,
+    notice: chartNotice,
+    clearNotice,
+  } = useReportDownload(exportReportsCsv, reportFilterKey, t);
   const [generateBriefing, briefingState] =
     useGenerateReportsBriefingMutation();
   const currency =
@@ -1472,7 +1536,10 @@ export default function StatisticsPage({ showPageHeader = false }) {
     "overview",
     ...(report.sales ? ["sales"] : []),
     ...(report.bookings ? ["bookings"] : []),
-    ...(report.customers ? ["customers"] : []),
+    ...(report.customers ||
+    report.metadata.customerSegmentationAvailable === true
+      ? ["customers"]
+      : []),
     ...(operationSections.length > 0 ? ["operations"] : []),
   ];
   const activeTab = visibleTabs.includes(requestedTab)
@@ -1485,33 +1552,33 @@ export default function StatisticsPage({ showPageHeader = false }) {
     briefingResult.filterKey === briefingReportKey ? briefingResult.error : "";
 
   const syncUrl = (nextFilters, nextTab = requestedTab) => {
-    const params = new URLSearchParams(searchParams.toString());
-    const nextAll = nextFilters.scope === "all" && canConsolidate;
-    const nextLocationId = nextAll
-      ? ""
-      : locations.some((location) => location.id === nextFilters.locationId)
-        ? nextFilters.locationId
-        : fallbackLocationId;
-    if (nextAll) params.set("locationScope", "all");
-    else params.delete("locationScope");
-    params.set("period", nextFilters.preset);
-    params.set("from", nextFilters.from);
-    params.set("to", nextFilters.to);
-    params.set("compare", String(nextFilters.compare));
-    params.set("granularity", nextFilters.granularity);
-    params.set("reportTab", nextTab);
-    if (nextLocationId) {
-      params.set("locationId", nextLocationId);
-    } else {
-      params.delete("locationId");
-    }
-    router.replace(`?${params.toString()}`, { scroll: false });
+    updateSearchParams((params) => {
+      const nextAll = nextFilters.scope === "all" && canConsolidate;
+      const nextLocationId = nextAll
+        ? ""
+        : locations.some((location) => location.id === nextFilters.locationId)
+          ? nextFilters.locationId
+          : fallbackLocationId;
+      if (nextAll) params.set("locationScope", "all");
+      else params.delete("locationScope");
+      params.set("period", nextFilters.preset);
+      params.set("from", nextFilters.from);
+      params.set("to", nextFilters.to);
+      params.set("compare", String(nextFilters.compare));
+      params.set("granularity", nextFilters.granularity);
+      params.set("reportTab", nextTab);
+      if (nextLocationId) {
+        params.set("locationId", nextLocationId);
+      } else {
+        params.delete("locationId");
+      }
+    });
   };
 
   const updateFilters = (update) => {
     const next = { ...filters, ...update };
     setFilters(next);
-    setChartNotice(null);
+    clearNotice();
     syncUrl(next);
   };
 
@@ -1532,23 +1599,8 @@ export default function StatisticsPage({ showPageHeader = false }) {
     syncUrl(filters, tab);
   };
 
-  const handleExport = async () => {
-    if (!canRequestReport) return;
-    setChartNotice(null);
-
-    try {
-      const payload = await exportReportsCsv(queryFilters).unwrap();
-      if (!isCsvDownloadPayload(payload)) {
-        throw new Error(t("export.invalidResponse"));
-      }
-      downloadCsvFile(payload);
-      setChartNotice({ tone: "success", message: t("export.success") });
-    } catch (error) {
-      setChartNotice({
-        tone: "error",
-        message: getReportErrorMessage(error, t("export.error")),
-      });
-    }
+  const handleExport = () => {
+    if (canRequestReport && canExport) return download(queryFilters);
   };
 
   const handleGenerateBriefing = async () => {
@@ -1622,7 +1674,24 @@ export default function StatisticsPage({ showPageHeader = false }) {
                     data: null,
                     error: "",
                   });
-                  reportQuery.refetch();
+                  const nextRange =
+                    filters.preset === "custom"
+                      ? null
+                      : getReportDateRange(
+                          filters.preset,
+                          new Date(),
+                          reportingTimeZone,
+                        );
+                  if (
+                    nextRange &&
+                    (nextRange.from !== filters.from ||
+                      nextRange.to !== filters.to)
+                  )
+                    updateFilters(nextRange);
+                  else {
+                    reportQuery.refetch();
+                    setCustomerRefreshVersion((version) => version + 1);
+                  }
                 }}
                 disabled={!canRequestReport || reportQuery.isFetching}
                 className={secondaryButtonClass}
@@ -1660,7 +1729,7 @@ export default function StatisticsPage({ showPageHeader = false }) {
 
           <div
             data-contextual-guide-target="report-filters"
-            className="mt-5 grid gap-3 border-t border-line pt-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-[1fr_1.35fr_1fr_0.9fr_auto]"
+            className="mt-5 grid gap-3 border-t border-line pt-4 sm:grid-cols-2 2xl:grid-cols-[1fr_minmax(308px,1.35fr)_1fr_0.9fr_auto]"
           >
             <FilterField label={t("filters.period")}>
               <select
@@ -1676,7 +1745,7 @@ export default function StatisticsPage({ showPageHeader = false }) {
               </select>
             </FilterField>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid gap-2 sm:col-span-2 sm:grid-cols-2 2xl:col-span-1">
               <FilterField label={t("filters.from")}>
                 <input
                   type="date"
@@ -1760,6 +1829,7 @@ export default function StatisticsPage({ showPageHeader = false }) {
               <button
                 type="button"
                 role="switch"
+                aria-label={t("filters.comparison")}
                 aria-checked={filters.compare}
                 onClick={() => updateFilters({ compare: !filters.compare })}
                 className={cx(
@@ -1796,6 +1866,12 @@ export default function StatisticsPage({ showPageHeader = false }) {
             </p>
           ) : null}
 
+          <p className="mt-3 max-w-4xl text-xs leading-5 text-ink-muted">
+            {t("analytics.moneyBasis")}
+            {report.metadata.cashAsOf
+              ? ` · ${t("analytics.asOf")}: ${formatReportDateTime(report.metadata.cashAsOf, locale, report.metadata.timezone)}`
+              : ""}
+          </p>
           {invalidDates ? (
             <p
               className="mt-3 rounded-[12px] bg-danger-soft px-3 py-2 text-[12px] text-danger"
@@ -1894,6 +1970,7 @@ export default function StatisticsPage({ showPageHeader = false }) {
                   locale={locale}
                   currency={currency}
                   t={t}
+                  onThisYear={() => changePreset("thisYear")}
                 />
               ) : null}
               {activeTab === "bookings" ? (
@@ -1904,6 +1981,21 @@ export default function StatisticsPage({ showPageHeader = false }) {
                   customers={report.customers}
                   locale={locale}
                   currency={currency}
+                  t={t}
+                />
+              ) : null}
+              {activeTab === "customers" &&
+              report.metadata.customerSegmentationAvailable === true ? (
+                <ReportCustomers
+                  key={`${cacheScope}:${effectiveLocationId}`}
+                  reportFilters={queryFilters}
+                  currency={currency}
+                  locale={locale}
+                  canExport={canExport}
+                  enabled={canRequestReport}
+                  refreshVersion={customerRefreshVersion}
+                  searchParams={searchParams}
+                  updateSearchParams={updateSearchParams}
                   t={t}
                 />
               ) : null}

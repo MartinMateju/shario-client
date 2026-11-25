@@ -25,6 +25,7 @@ const mocks = vi.hoisted(() => ({
   latestOnChange: null,
   latestOnUpload: null,
   latestPortalProps: null,
+  latestPreviewEditPath: null,
   saveLoading: false,
   persistedStyle: "classic-editorial-v1",
 }));
@@ -220,22 +221,35 @@ vi.mock("@/components/public-site-editor/PublicSiteEditorFields", () => ({
 }));
 
 vi.mock("@/components/public-site-editor/PublicSiteLivePreview", () => ({
-  default: ({ device, locale, page, publicSite }) => (
-    <>
-      <output data-testid="preview-page">{page}</output>
-      <output data-testid="preview-device">{device}</output>
-      <output data-testid="preview-locale">{locale}</output>
-      <output data-testid="preview-draft-name">
-        {publicSite.branding.displayName}
-      </output>
-      <output data-testid="preview-style">
-        {publicSite.branding.stylePreset}
-      </output>
-      <output data-testid="preview-portal-settings">
-        {JSON.stringify(publicSite.customerPortal)}
-      </output>
-    </>
-  ),
+  default: ({
+    device,
+    locale,
+    page,
+    publicSite,
+    previewPageImageKey,
+    onEditPath,
+  }) => {
+    mocks.latestPreviewEditPath = onEditPath;
+    return (
+      <>
+        <output data-testid="preview-page">{page}</output>
+        <output data-testid="preview-page-image-key">
+          {previewPageImageKey}
+        </output>
+        <output data-testid="preview-device">{device}</output>
+        <output data-testid="preview-locale">{locale}</output>
+        <output data-testid="preview-draft-name">
+          {publicSite.branding.displayName}
+        </output>
+        <output data-testid="preview-style">
+          {publicSite.branding.stylePreset}
+        </output>
+        <output data-testid="preview-portal-settings">
+          {JSON.stringify(publicSite.customerPortal)}
+        </output>
+      </>
+    );
+  },
 }));
 
 vi.mock("@/lib/features/setup-center/setupCenterApiSlice", () => ({
@@ -324,6 +338,67 @@ const deferred = () => {
 };
 
 describe("public-site editor page state", () => {
+  it.each(["courses", "portalCourses", "portalPageHero"])(
+    "opens the displayed course image source while retaining the %s preview",
+    (page) => {
+      mocks.editorResult.data.draft.customerPortal = {
+        courses: {
+          locations: [
+            { locationId: "studio-a", heroImageUrl: "/studio-a.webp" },
+            { locationId: "studio-b", heroImageUrl: "/studio-b.webp" },
+          ],
+        },
+      };
+      mocks.previewResult.data.preview = {
+        data: {
+          courseLocations: [
+            { id: "studio-a", name: "Studio A" },
+            { id: "studio-b", name: "Studio B" },
+          ],
+        },
+      };
+      render(<PublicSiteEditorPage />);
+      fireEvent.change(screen.getByLabelText("preview.page"), {
+        target: { value: page },
+      });
+      act(() =>
+        mocks.latestPreviewEditPath(
+          "customerPortal.courses.locations.1.heroImageUrl",
+        ),
+      );
+      expect(mocks.latestPortalProps.selectedCourseLocationId).toBe("studio-b");
+      expect(screen.getByTestId("preview-page")).toHaveTextContent(page);
+      expect(screen.getByTestId("preview-page-image-key")).toHaveTextContent(
+        "courses",
+      );
+      act(() =>
+        mocks.latestPreviewEditPath("customerPortal.pageImages.courses"),
+      );
+      expect(screen.getByTestId("preview-page")).toHaveTextContent(page);
+      act(() => mocks.latestPreviewEditPath("branding.coverImageUrl"));
+      expect(screen.getByTestId("preview-page")).toHaveTextContent(page);
+      expect(mocks.saveDraft).not.toHaveBeenCalled();
+      expect(mocks.publish).not.toHaveBeenCalled();
+    },
+  );
+
+  it("switches the live preview to the chosen page header without changing another page image", () => {
+    render(<PublicSiteEditorPage />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "customer portal editor" }),
+    );
+    act(() => mocks.latestPortalProps.onPageImageChange("vouchers"));
+    expect(screen.getByTestId("preview-page")).toHaveTextContent(
+      "portalPageHero",
+    );
+    expect(screen.getByTestId("preview-page-image-key")).toHaveTextContent(
+      "vouchers",
+    );
+    expect(mocks.latestPortalProps.selectedPageImageKey).toBe("vouchers");
+    expect(mocks.saveDraft).not.toHaveBeenCalled();
+    expect(mocks.publish).not.toHaveBeenCalled();
+  });
+
   beforeEach(() => {
     vi.stubGlobal("scrollTo", vi.fn());
     mocks.dispatch.mockReset();
@@ -332,6 +407,7 @@ describe("public-site editor page state", () => {
     mocks.latestOnChange = null;
     mocks.latestOnUpload = null;
     mocks.latestPortalProps = null;
+    mocks.latestPreviewEditPath = null;
     mocks.saveLoading = false;
     mocks.persistedStyle = "classic-editorial-v1";
     const state = editorState();
@@ -863,6 +939,7 @@ describe("public-site editor page state", () => {
     await waitFor(() =>
       expect(mocks.notifyPublished).toHaveBeenCalledExactlyOnceWith(
         "studio-olivka",
+        "",
       ),
     );
     expect(screen.getByTestId("preview-style")).toHaveTextContent(
@@ -1012,6 +1089,7 @@ describe("public-site editor page state", () => {
     await waitFor(() => expect(dialog).not.toBeInTheDocument());
     expect(mocks.notifyPublished).toHaveBeenCalledExactlyOnceWith(
       "studio-olivka",
+      "",
     );
     expect(mocks.saveDraft).not.toHaveBeenCalled();
     expect(confirmSpy).not.toHaveBeenCalled();
@@ -1197,6 +1275,7 @@ describe("public-site editor page state", () => {
       expect(mocks.publishStudio).toHaveBeenCalled();
       expect(mocks.notifyPublished).toHaveBeenCalledExactlyOnceWith(
         "studio-olivka",
+        "",
       );
     },
   );

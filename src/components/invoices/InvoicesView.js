@@ -291,7 +291,7 @@ export default function InvoicesView({ showPageHeader = true }) {
                   type="button"
                   onClick={openCreate}
                   disabled={!settingsReady}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-[13px] bg-[#111111] px-4 text-[11px] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-[13px] bg-primary px-4 text-[13px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <PlusIcon className="h-4 w-4" />
                   {t("newInvoice")}
@@ -446,7 +446,7 @@ export default function InvoicesView({ showPageHeader = true }) {
           <button
             type="button"
             onClick={invoicesQuery.refetch}
-            className="mt-4 rounded-full bg-[#111111] px-4 py-2 text-[10px] font-semibold text-white"
+            className="mt-4 min-h-11 rounded-full bg-primary px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             {t("retry")}
           </button>

@@ -130,13 +130,16 @@ vi.mock("@/lib/features/locations/locationApiSlice", () => ({
   ],
 }));
 const completeRequiredDetails = async (user) => {
-  await user.type(screen.getByLabelText(/Location name/), "Klei Atelier");
-  await user.type(
-    screen.getByLabelText(/Street and building number/),
-    "Václavská 237/6",
-  );
-  await user.type(screen.getByLabelText(/^City/), "Brno");
-  await user.type(screen.getByLabelText(/Postal code/), "60300");
+  // These fields set up the scenario; per-keystroke behavior is not under test.
+  for (const [label, value] of [
+    [/Location name/, "Klei Atelier"],
+    [/Street and building number/, "Václavská 237/6"],
+    [/^City/, "Brno"],
+    [/Postal code/, "60300"],
+  ]) {
+    await user.click(screen.getByLabelText(label));
+    await user.paste(value);
+  }
 };
 describe("StudioLocationCreatePage", () => {
   beforeEach(() => {
@@ -268,6 +271,8 @@ describe("StudioLocationCreatePage", () => {
     expect(thumb).toHaveClass("translate-x-5");
     expect(thumb).not.toHaveClass("translate-x-1");
   });
+
+  // Coverage on shared CI runners can exceed Vitest's default five-second limit.
   it("normalizes the phone and posts a valid guided required-activity location", async () => {
     searchParams.value = new URLSearchParams("setupStep=location");
     unwrap.mockResolvedValue({
@@ -329,5 +334,5 @@ describe("StudioLocationCreatePage", () => {
       }),
     );
     expect(replace).not.toHaveBeenCalled();
-  });
+  }, 10_000);
 });

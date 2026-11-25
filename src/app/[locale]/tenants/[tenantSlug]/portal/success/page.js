@@ -30,6 +30,8 @@ import { useLazyGetMyOrderConfirmationQuery } from "@/lib/features/checkout/chec
 import { selectCurrentLanguage } from "@/lib/features/language/languageSlice";
 import { selectIsAuthenticated } from "@/lib/features/auth/authSlice";
 import { useLegacyTranslation } from "@/i18n/useLegacyTranslation";
+import PaymentRefundResult from "@/components/customer-shell/PaymentRefundResult";
+import { hasPaymentRefundOutcome } from "@/utils/paymentRefundOutcome";
 import { formatMinorCurrencyAmount } from "@/utils/money";
 import { getConfirmedOrderLocationReference } from "@/utils/customerCheckoutLocation";
 import {
@@ -38,6 +40,8 @@ import {
 } from "@/utils/customerPortalLocation";
 const ORDER_ID_REGEX = /^[a-zA-Z0-9_-]{8,128}$/;
 const getOrderState = (data) => {
+  if (hasPaymentRefundOutcome(data?.refund, data?.refundReviewRequired))
+    return "refund";
   const status = String(data?.status ?? "")
     .trim()
     .toLowerCase();
@@ -79,10 +83,14 @@ function BookingSuccess() {
   const orderId = ORDER_ID_REGEX.test(rawOrderId) ? rawOrderId : "";
   const [
     loadOrderStatus,
-    { data, isLoading, isFetching, isError, isUninitialized },
+    { data: responseData, isLoading, isFetching, isError, isUninitialized },
   ] = useLazyGetMyOrderConfirmationQuery();
+  // A lazy query retains the previous result while another return order loads.
+  // Only this order's response can stop polling or expose payment amounts.
+  const data = responseData?.orderId === orderId ? responseData : undefined;
   const orderState = useMemo(() => getOrderState(data), [data]);
-  const isTerminal = data?.terminal === true;
+  const isTerminal = data?.terminal === true || orderState === "refund";
+
   useEffect(() => {
     if (!orderId || isTerminal) {
       return undefined;
@@ -206,6 +214,18 @@ function BookingSuccess() {
       ? t("SUCCESS_BUTTON")
       : legacyText("BookingSuccess_Back_to_portal_0633f")
     : legacyText("BookingSuccess_Back_to_home_34ac3");
+
+  if (state === "refund")
+    return (
+      <PaymentRefundResult
+        refund={data.refund}
+        currency={data.currency}
+        reference={orderId}
+        returnHref={primaryHref}
+        onRefresh={retryStatus}
+        isRefreshing={isFetching}
+      />
+    );
   return (
     <main className="relative flex min-h-[calc(100dvh-var(--header-height,78px))] items-center bg-[var(--tenant-background)] text-[var(--tenant-text)] px-4 py-4 sm:px-6">
       <div

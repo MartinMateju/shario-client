@@ -1,6 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+vi.mock("@/components/views/payments/RefundReviewPanel", () => ({
+  default: () => <div data-testid="refund-review-panel" />,
+}));
+
 const apiMocks = vi.hoisted(() => ({
   getConnect: vi.fn(),
   locale: "en",
@@ -67,6 +71,17 @@ describe("payment Connect settings actions", () => {
       { isLoading: false },
     ]);
     apiMocks.openDashboardHook.mockReturnValue([vi.fn(), { isLoading: false }]);
+  });
+
+  it("mounts staff refund reviews on the active payments settings screen", () => {
+    render(<PaymentConnectSettingsPage />);
+    expect(screen.getByTestId("refund-review-panel")).toBeInTheDocument();
+  });
+
+  it("keeps refund reviews reachable when the Connect status request fails", () => {
+    apiMocks.getConnect.mockReturnValue({ isError: true, refetch: vi.fn() });
+    render(<PaymentConnectSettingsPage />);
+    expect(screen.getByTestId("refund-review-panel")).toBeInTheDocument();
   });
 
   it.each([

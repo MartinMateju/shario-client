@@ -911,7 +911,7 @@ export default function PlanEditorDialog({
                 <button
                   type="submit"
                   disabled={saving}
-                  className="min-h-11 rounded-full bg-[#171717] px-6 text-[12px] font-semibold text-white disabled:opacity-50"
+                  className="min-h-11 rounded-full bg-primary px-6 text-[13px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50"
                 >
                   {saving
                     ? t("saving")

@@ -3,13 +3,15 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import LoginPage from "@/app/[locale]/tenants/[tenantSlug]/(tenant-auth)/login/page";
 import RegisterPage from "@/app/[locale]/tenants/[tenantSlug]/(tenant-auth)/register/page";
 import PublicMembershipCatalog from "@/components/memberships/PublicMembershipCatalog";
 import Menu from "@/components/menu/Menu";
-import CustomerCoursesPage from "@/components/courses/CustomerCoursesPage";
+import CustomerCoursesPage, {
+  PublicCustomerCoursesPage,
+} from "@/components/courses/CustomerCoursesPage";
 import { CustomerPortalPageUnavailable } from "@/components/customer-shell/CustomerPortalPageGate";
 import {
   getCustomerPortalFallbackHref,
@@ -18,11 +20,22 @@ import {
 import PublicBookingAvailabilityPage from "@/components/public-tenant/PublicBookingAvailabilityPage";
 import PublicCapabilityGate from "@/components/public-tenant/PublicCapabilityGate";
 import PublicHelpPage from "@/components/public-tenant/PublicHelpPage";
-import PublicProductCatalogPage from "@/components/public-tenant/PublicProductCatalogPage";
 import PublicTenantChrome from "@/components/public-tenant/PublicTenantChrome";
 import PublicTenantHomePage from "@/components/public-tenant/PublicTenantHomePage";
 import PublicVoucherCatalogPage from "@/components/public-tenant/PublicVoucherCatalogPage";
 import { normalizePublicTenant } from "@/components/public-tenant/publicTenant.config";
+import {
+  PUBLIC_TENANT_PAGE_IMAGE_KEYS,
+  getCustomerPortalCourseImageSource,
+} from "@/components/public-tenant/publicTenantPageImages";
+import {
+  CustomerPortalPage,
+  CustomerPortalPageHeader,
+} from "@/components/customer-shell/CustomerPortalPrimitives";
+import {
+  PUBLIC_SITE_PAGE_IMAGE_LABEL_KEYS,
+  PUBLIC_SITE_PAGE_IMAGE_PREVIEW_PATHS,
+} from "./publicSitePageImages";
 
 const MESSAGE_UPDATE = "shario:public-site-preview:update";
 const MESSAGE_READY = "shario:public-site-preview:ready";
@@ -59,6 +72,30 @@ function PortalPreview({ data, tenant, previewModules }) {
   );
 }
 
+function PortalPageHeroPreview({ pageKey, tenant, data, previewLocationId }) {
+  const t = useTranslations("PublicSiteEditor.customerPortal");
+  const locations = data?.courseLocations ?? data?.locations ?? [];
+  const location =
+    locations.find(
+      (entry) => String(entry.id || entry._id) === previewLocationId,
+    ) || locations[0];
+  return (
+    <CustomerPortalPage data-customer-portal-page-image-preview={pageKey}>
+      <CustomerPortalPageHeader
+        pageKey={pageKey}
+        {...(pageKey === "courses"
+          ? getCustomerPortalCourseImageSource(
+              tenant,
+              location?.id || location?._id,
+            )
+          : {})}
+        title={t(PUBLIC_SITE_PAGE_IMAGE_LABEL_KEYS[pageKey])}
+        description={t("pageImages.previewDescription")}
+      />
+    </CustomerPortalPage>
+  );
+}
+
 const PREVIEW_PATHS = Object.freeze({
   home: "/",
   book: "/book",
@@ -72,7 +109,7 @@ const PREVIEW_PATHS = Object.freeze({
   portalCourses: "/portal/courses",
 });
 
-function PreviewPageContent({ page, data }) {
+function PreviewPageContent({ page, data, previewLocationId }) {
   const normalizedData = data && typeof data === "object" ? data : {};
 
   switch (page) {
@@ -80,9 +117,13 @@ function PreviewPageContent({ page, data }) {
       return <PublicBookingAvailabilityPage previewData={normalizedData} />;
     case "courses":
       return (
-        <PublicProductCatalogPage
-          kind="courses"
-          previewData={normalizedData.courses || []}
+        <PublicCustomerCoursesPage
+          previewLocationId={previewLocationId}
+          previewData={{
+            ...normalizedData,
+            locations:
+              normalizedData.courseLocations ?? normalizedData.locations ?? [],
+          }}
         />
       );
     case "memberships":
@@ -106,8 +147,14 @@ function PreviewPageContent({ page, data }) {
   }
 }
 
-function PreviewPage({ page, data }) {
-  const content = <PreviewPageContent page={page} data={data} />;
+function PreviewPage({ page, data, previewLocationId }) {
+  const content = (
+    <PreviewPageContent
+      page={page}
+      data={data}
+      previewLocationId={previewLocationId}
+    />
+  );
 
   if (["book", "courses", "memberships", "vouchers", "help"].includes(page)) {
     return (
@@ -218,9 +265,15 @@ export default function PublicSitePreviewRoute({ tenantSlug }) {
   }
 
   const page = payload?.page || "home";
+  const pageImageKey = PUBLIC_TENANT_PAGE_IMAGE_KEYS.includes(
+    payload?.previewPageImageKey,
+  )
+    ? payload.previewPageImageKey
+    : "courses";
   const surface = ["login", "register"].includes(page)
     ? "auth"
-    : ["portal", "portalCourses"].includes(page)
+    : ["portal", "portalCourses"].includes(page) ||
+        (page === "portalPageHero" && pageImageKey !== "products")
       ? "portal"
       : "public";
 
@@ -241,10 +294,21 @@ export default function PublicSitePreviewRoute({ tenantSlug }) {
       <PublicTenantChrome
         tenant={tenant}
         surface={surface}
-        previewPathname={PREVIEW_PATHS[page] || "/"}
+        previewPathname={
+          page === "portalPageHero"
+            ? PUBLIC_SITE_PAGE_IMAGE_PREVIEW_PATHS[pageImageKey]
+            : PREVIEW_PATHS[page] || "/"
+        }
         previewModules={payload?.previewModules}
       >
-        {page === "login" ? (
+        {page === "portalPageHero" ? (
+          <PortalPageHeroPreview
+            pageKey={pageImageKey}
+            tenant={tenant}
+            data={payload?.data}
+            previewLocationId={payload?.previewLocationId}
+          />
+        ) : page === "login" ? (
           <div data-public-site-edit-path={`login.headline.${locale}`}>
             <LoginPage />
           </div>
@@ -279,7 +343,11 @@ export default function PublicSitePreviewRoute({ tenantSlug }) {
             previewModules={payload?.previewModules}
           />
         ) : (
-          <PreviewPage page={page} data={payload?.data} />
+          <PreviewPage
+            page={page}
+            data={payload?.data}
+            previewLocationId={payload?.previewLocationId}
+          />
         )}
       </PublicTenantChrome>
     </>

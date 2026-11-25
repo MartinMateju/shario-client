@@ -82,7 +82,7 @@ describe("WorkspaceDataSurface", () => {
     );
     expect(region.parentElement).toHaveClass("min-w-0", "max-w-full");
     expect(header).toHaveAttribute("scope", "col");
-    expect(header).toHaveClass("text-[10px]", "uppercase", "text-ink-muted");
+    expect(header).toHaveClass("text-[12px]", "uppercase", "text-ink-soft");
   });
 
   it("gives table rows and cells one semantic, extensible visual contract", () => {
@@ -171,7 +171,7 @@ describe("WorkspaceDataSurface", () => {
     );
     expect(status).toHaveClass(
       "rounded-full",
-      "border-success/20",
+      "border-success/40",
       "bg-success-soft",
       "text-success",
     );
@@ -266,7 +266,7 @@ describe("WorkspaceDataSurface", () => {
     ).toHaveClass("break-words", "text-[16px]");
     expect(screen.getByText("Create the first catalog item.")).toHaveClass(
       "break-words",
-      "text-[12px]",
+      "text-[13px]",
     );
     expect(screen.getByTestId("empty-icon")).toHaveAttribute(
       "aria-hidden",

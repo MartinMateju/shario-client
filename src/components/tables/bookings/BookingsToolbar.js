@@ -20,10 +20,18 @@ import { cx } from "./booking-table.utils";
 const controlClass =
   "h-11 w-full rounded-[12px] border border-line bg-white px-3.5 text-[12px] font-medium text-ink-soft outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10";
 
-function SelectControl({ value, onChange, ariaLabel, children, className }) {
+function SelectControl({
+  value,
+  onChange,
+  ariaLabel,
+  children,
+  className,
+  disabled,
+}) {
   return (
     <select
       value={value}
+      disabled={disabled}
       onChange={onChange}
       aria-label={ariaLabel}
       className={cx(controlClass, className)}
@@ -61,6 +69,8 @@ export default function BookingsToolbar({
   onApplyFilters,
   onClearFilters,
   onExport,
+  exportDisabled = false,
+  optionsLoading = false,
 }) {
   const tabCounts = {
     all: summary.total,
@@ -93,7 +103,9 @@ export default function BookingsToolbar({
                 className={cx(
                   "relative inline-flex min-h-12 shrink-0 items-center px-4 text-[12px] font-medium transition",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cobalt-500/25",
-                  active ? "text-ink" : "text-ink-muted hover:text-ink",
+                  active
+                    ? "text-cobalt-700"
+                    : "text-ink-muted hover:text-cobalt-700",
                 )}
               >
                 {t(`views.${view}`)}
@@ -102,7 +114,7 @@ export default function BookingsToolbar({
                     className={cx(
                       "ml-2 inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-0.5 text-[10px] font-semibold",
                       view === "awaitingPayment"
-                        ? "bg-[#FFE3DA] text-[#D64C30]"
+                        ? "bg-warning-soft text-warning"
                         : "bg-surface-muted text-ink-muted",
                     )}
                   >
@@ -208,6 +220,7 @@ export default function BookingsToolbar({
             <button
               type="button"
               onClick={onExport}
+              disabled={exportDisabled}
               className={cx(
                 "inline-flex h-11 items-center justify-center gap-2 rounded-[12px] border border-line bg-white px-4",
                 "text-[12px] font-medium text-ink-soft transition hover:border-line-strong hover:bg-canvas",
@@ -266,16 +279,17 @@ export default function BookingsToolbar({
 
               <FilterField label={t("filters.lecturer")}>
                 <SelectControl
-                  value={filters.lecturerId}
+                  value={filters.lecturerName}
+                  disabled={optionsLoading}
                   onChange={(event) =>
-                    onFilterChange("lecturerId", event.target.value)
+                    onFilterChange("lecturerName", event.target.value)
                   }
                   ariaLabel={t("filters.lecturer")}
                 >
                   <option value="">{t("filters.allLecturers")}</option>
                   {lecturers.map((lecturer) => (
-                    <option key={lecturer._id} value={lecturer._id}>
-                      {lecturer.firstname} {lecturer.lastname}
+                    <option key={lecturer.value} value={lecturer.value}>
+                      {lecturer.label}
                     </option>
                   ))}
                 </SelectControl>
@@ -284,6 +298,7 @@ export default function BookingsToolbar({
               <FilterField label={t("filters.activity")}>
                 <SelectControl
                   value={filters.productId}
+                  disabled={optionsLoading}
                   onChange={(event) =>
                     onFilterChange("productId", event.target.value)
                   }

@@ -10,7 +10,6 @@ import {
 } from "./workspaceTourGeometry";
 
 const SPOTLIGHT_PADDING = 8;
-const TARGET_REVEAL_WINDOW_MS = 500;
 const SCROLL_KEYS = new Set([
   "ArrowDown",
   "ArrowUp",
@@ -96,7 +95,8 @@ export default function useWorkspaceTourLayout({
 
     let frame = null;
     let observedTarget = null;
-    let revealUntil = 0;
+    let previousGeometry = null;
+    let attemptedGeometry = null;
     let userInteracted = false;
     const scheduleFrame =
       window.requestAnimationFrame?.bind(window) ??
@@ -104,32 +104,64 @@ export default function useWorkspaceTourLayout({
     const cancelFrame =
       window.cancelAnimationFrame?.bind(window) ??
       window.clearTimeout.bind(window);
+    const readGeometry = (target) => {
+      const rect = target.getBoundingClientRect();
+      return {
+        top: rect.top,
+        bottom: rect.bottom,
+        left: rect.left,
+        right: rect.right,
+        ...getWorkspaceTourViewport(),
+      };
+    };
+    const intersectsViewport = (geometry) =>
+      geometry.bottom > geometry.offsetTop &&
+      geometry.top < geometry.offsetTop + geometry.height &&
+      geometry.right > geometry.offsetLeft &&
+      geometry.left < geometry.offsetLeft + geometry.width;
 
     const revealTarget = (target) => {
       const targetChanged = target !== observedTarget;
 
       if (targetChanged) {
         observedTarget = target;
-        revealUntil = performance.now() + TARGET_REVEAL_WINDOW_MS;
+        previousGeometry = null;
+        attemptedGeometry = null;
       }
-      if (!target || userInteracted || performance.now() > revealUntil) return;
+      if (!target || userInteracted) return;
 
-      const rect = target.getBoundingClientRect();
-      const viewport = getWorkspaceTourViewport();
-      const targetIntersectsViewport =
-        rect.bottom > viewport.offsetTop &&
-        rect.top < viewport.offsetTop + viewport.height &&
-        rect.right > viewport.offsetLeft &&
-        rect.left < viewport.offsetLeft + viewport.width;
+      const geometry = readGeometry(target);
+      const targetIntersectsViewport = intersectsViewport(geometry);
 
-      if (targetChanged || !targetIntersectsViewport) {
+      const settled = rectanglesMatch(previousGeometry, geometry);
+      previousGeometry = geometry;
+      if (targetIntersectsViewport) attemptedGeometry = null;
+
+      // Route hydration can move the same target long after the guide opens.
+      // Recover once its geometry settles, until the user takes over scrolling.
+      // Do not repeatedly scroll an unreachable target or chase moving content.
+      if (
+        targetChanged ||
+        (!targetIntersectsViewport &&
+          settled &&
+          !rectanglesMatch(attemptedGeometry, geometry))
+      ) {
         target.scrollIntoView?.({
           // Reveal atomically: route layout can interrupt a smooth scroll
           // while the modal is opening and leave its target offscreen.
           behavior: "instant",
-          block: getWorkspaceTourScrollBlock(panelSize.height),
+          block: getWorkspaceTourScrollBlock(
+            panelRef.current?.getBoundingClientRect().height || 0,
+          ),
           inline: "nearest",
         });
+        // Remember what the instantaneous scroll actually achieved. Route or
+        // modal layout can restore the pre-scroll position before the next RAF;
+        // that must not be mistaken for an attempt which never made progress.
+        previousGeometry = readGeometry(target);
+        attemptedGeometry = intersectsViewport(previousGeometry)
+          ? null
+          : previousGeometry;
       }
     };
 
@@ -169,7 +201,7 @@ export default function useWorkspaceTourLayout({
       window.removeEventListener("pointerdown", stopReveal);
       window.removeEventListener("keydown", stopReveal);
     };
-  }, [active, defaultSelectorsKey, panelSize.height, step]);
+  }, [active, defaultSelectorsKey, step]);
 
   const resolvedSelectors = step
     ? getWorkspaceTourResponsiveSelectors(step)

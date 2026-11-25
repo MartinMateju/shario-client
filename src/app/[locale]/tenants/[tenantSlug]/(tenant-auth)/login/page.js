@@ -3,7 +3,7 @@
 import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 import { useLegacyCopy, useLegacyText } from "@/i18n/useLegacyCopy";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams, useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 
@@ -17,6 +17,7 @@ import CustomerSocialAuthButtons from "@/components/auth/CustomerSocialAuthButto
 import { resolveCustomerAuthLocale } from "@/components/auth/customerAuthLocale";
 import { getCustomerAuthCustomizationDefaults } from "@/components/customer-shell/customerFacingCustomizationDefaults";
 import { usePublicTenant } from "@/components/public-tenant/PublicTenantProvider";
+import PublicTenantRetry from "@/components/public-tenant/PublicTenantRetry";
 import {
   getLocalizedPublicTenantText,
   getPublicTenantTheme,
@@ -59,6 +60,7 @@ export default function Login() {
   // /cs.
   const language = locale === "cs" ? "CZ" : "EN";
   const [login, { isLoading }] = useCustomerLoginMutation();
+  const unavailableT = useTranslations("PublicTenant.unavailable");
 
   const t = useMemo(() => {
     return (key, fallback = "") => translation?.[key]?.[language] ?? fallback;
@@ -253,6 +255,17 @@ export default function Login() {
       themeStyle={tenantTheme.style}
       title={configuredHeadline || customizationDefaults.headline}
     >
+      {degraded ? (
+        <div
+          role="status"
+          className="mb-4 rounded-2xl border border-current/20 p-4 text-sm"
+        >
+          <p>
+            {unavailableT("loginDegraded")}
+          </p>
+          <PublicTenantRetry />
+        </div>
+      ) : null}
       <form
         className="space-y-3"
         onSubmit={handleSubmit}

@@ -1,9 +1,14 @@
 import { render } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import PlatformTelemetry, {
   filterPrivateTelemetry,
 } from "@/components/analytics/PlatformTelemetry";
-const capture = vi.hoisted(() => ({ analytics: vi.fn(), speed: vi.fn() }));
+const capture = vi.hoisted(() => ({
+  analytics: vi.fn(),
+  speed: vi.fn(),
+  pathname: "/en/pricing",
+}));
+vi.mock("next/navigation", () => ({ usePathname: () => capture.pathname }));
 vi.mock("@vercel/analytics/next", () => ({
   Analytics: (props) => {
     capture.analytics(props);
@@ -18,6 +23,9 @@ vi.mock("@vercel/speed-insights/next", () => ({
 }));
 
 describe("invitation URL privacy", () => {
+  beforeEach(() => {
+    capture.pathname = "/en/pricing";
+  });
   it.each([
     "https://shario.io/en/team-invitation?token=private-token",
     "https://shario.io/cs/team-invitation?token=private-token",
@@ -35,4 +43,22 @@ describe("invitation URL privacy", () => {
     const event = { type: "pageview", url: "https://shario.io/en/pricing" };
     expect(filterPrivateTelemetry(event)).toBe(event);
   });
+
+  it.each([
+    "https://booking.commonground.example/cs/login/complete#sessionHandoff=v1.secret",
+    "https://booking.commonground.example/cs/login/complete?next=%2Fcourses",
+    "https://booking.commonground.example/cs/courses#sessionHandoff=v1.secret",
+  ])("never sends OAuth handoff URLs to collectors: %s", (url) => {
+    expect(filterPrivateTelemetry({ type: "pageview", url })).toBeNull();
+  });
+
+  it.each(["/cs/login/complete", "/en/team-invitation"])(
+    "does not initialize telemetry on %s",
+    (pathname) => {
+      capture.pathname = pathname;
+      render(<PlatformTelemetry />);
+      expect(capture.analytics).not.toHaveBeenCalled();
+      expect(capture.speed).not.toHaveBeenCalled();
+    },
+  );
 });

@@ -8,12 +8,18 @@ import {
   getCurrentPlanPrice,
   getCurrentPlanPriceSpec,
 } from "@/config/subscriptionPlans";
+import {
+  PRICING_CARD_PREVIOUS_PLAN,
+  getPricingCardFeatureIndexes,
+} from "@/config/marketingPlanComparison";
 import { Link } from "@/i18n/navigation";
 import PricingCurrencySelect from "@/components/Marketing/PricingCurrencySelect";
 import useCurrencyPreference from "@/hooks/useCurrencyPreference";
 import usePublicSubscriptionCatalog from "@/hooks/usePublicSubscriptionCatalog";
 import { formatMinorCurrencyAmount } from "@/utils/money";
 
+import MarketingPlanComparison from "./MarketingPlanComparison";
+import { PricingBuyerFaq, PricingFeeNote } from "./PricingDetails";
 import {
   ArrowIcon,
   CheckIcon,
@@ -40,9 +46,10 @@ function PricingCard({
   const messageKey = getPlanMessageKey(planKey);
   const featured = planKey === "professional";
   const enterprise = planKey === "enterprise";
-  const features = [1, 2, 3, 4].map((index) =>
+  const features = getPricingCardFeatureIndexes(messageKey).map((index) =>
     home(`pricing.${messageKey}.feature${index}`),
   );
+  const previousPlanKey = PRICING_CARD_PREVIOUS_PLAN[messageKey];
   const price = getCurrentPlanPrice(
     planKey,
     billingInterval,
@@ -55,6 +62,7 @@ function PricingCard({
 
   return (
     <article
+      aria-labelledby={`pricing-plan-${planKey}`}
       className={`relative flex h-full flex-col rounded-xl border p-6 sm:p-7 ${
         featured
           ? "border-[var(--studio-blue)] bg-[var(--studio-blue)] text-white shadow-[0_5px_18px_rgb(32_40_36/0.05)]"
@@ -105,20 +113,29 @@ function PricingCard({
         {home(`pricing.${messageKey}.description`)}
       </p>
 
-      <ul
-        className={`mt-7 space-y-3 border-t pt-6 ${featured ? "border-white/18" : "border-[var(--studio-rule)]"}`}
+      <div
+        className={`mt-7 flex-1 border-t pt-6 ${featured ? "border-white/18" : "border-[var(--studio-rule)]"}`}
       >
-        {features.map((feature) => (
-          <li className="flex gap-3 text-sm leading-6" key={feature}>
-            <span
-              className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-xl ${featured ? "bg-white/14 text-white" : "bg-[var(--studio-soft)] text-[var(--studio-blue)]"}`}
-            >
-              <CheckIcon className="h-3.5 w-3.5" />
-            </span>
-            {feature}
-          </li>
-        ))}
-      </ul>
+        {previousPlanKey ? (
+          <p className="mb-4 text-sm font-medium leading-6">
+            {home("pricing.includesPrevious", {
+              plan: home(`pricing.${previousPlanKey}.name`),
+            })}
+          </p>
+        ) : null}
+        <ul className="space-y-3">
+          {features.map((feature) => (
+            <li className="flex gap-3 text-sm leading-6" key={feature}>
+              <span
+                className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-xl ${featured ? "bg-white/14 text-white" : "bg-[var(--studio-soft)] text-[var(--studio-blue)]"}`}
+              >
+                <CheckIcon className="h-3.5 w-3.5" />
+              </span>
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {enterprise ? (
         <Link
@@ -128,7 +145,7 @@ function PricingCard({
               ? "bg-white text-[var(--studio-blue)] hover:bg-[var(--studio-soft)]"
               : "bg-[var(--studio-blue)] text-white hover:bg-[var(--studio-blue-hover)]"
           }`}
-          href="/register"
+          href="mailto:hello@shario.io?subject=Shario%20Enterprise"
         >
           {home(`pricing.${messageKey}.cta`)}
           <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -289,7 +306,13 @@ export default function PricingMarketingPage() {
         <p className="mx-auto mt-8 max-w-4xl text-center text-xs leading-6 text-[var(--studio-muted)]">
           {home("pricing.note")}
         </p>
+        <PricingFeeNote />
+        <PricingBuyerFaq />
       </section>
+
+      <div className="mx-auto max-w-[1380px] px-5 pb-20 sm:px-8 lg:pb-28">
+        <MarketingPlanComparison />
+      </div>
 
       <section className="border-y border-[var(--studio-rule)] bg-[var(--studio-white)] py-20 lg:py-28">
         <div className="mx-auto max-w-[1380px] px-5 sm:px-8">

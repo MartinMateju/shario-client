@@ -1,6 +1,7 @@
 "use client";
 
 import SkabLogo from "@/components/brand/SkabLogo";
+import PlatformLegalLinks from "@/components/legal/PlatformLegalLinks";
 import { useCurrentYear } from "@/hooks/useCurrentYear";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
@@ -437,6 +438,7 @@ function MarketingFooter() {
       title: t("footer.company"),
       links: [
         [t("footer.about"), "/product"],
+        [t("footer.contact"), "mailto:hello@shario.io"],
         [t("footer.login"), "/login"],
         [t("footer.register"), "/register"],
       ],
@@ -461,23 +463,34 @@ function MarketingFooter() {
           <nav aria-label={column.title} key={column.title}>
             <h2 className="text-sm font-semibold">{column.title}</h2>
             <div className="mt-5 space-y-2">
-              {column.links.map(([label, href]) => (
-                <Link
-                  className="block text-sm text-[var(--studio-muted)] transition hover:text-[var(--studio-blue)]"
-                  href={href}
-                  key={label}
-                >
-                  {label}
-                </Link>
-              ))}
+              {column.links.map(([label, href]) =>
+                href.startsWith("mailto:") ? (
+                  <a
+                    className="block text-sm text-[var(--studio-muted)] transition hover:text-[var(--studio-blue)]"
+                    href={href}
+                    key={label}
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <Link
+                    className="block text-sm text-[var(--studio-muted)] transition hover:text-[var(--studio-blue)]"
+                    href={href}
+                    key={label}
+                  >
+                    {label}
+                  </Link>
+                ),
+              )}
             </div>
           </nav>
         ))}
       </div>
-      <div className="mx-auto mt-12 max-w-[1320px] border-t border-[var(--studio-rule)] pt-6 text-xs text-[var(--studio-muted)]">
+      <div className="mx-auto mt-12 flex max-w-[1320px] flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-[var(--studio-rule)] pt-6 text-xs text-[var(--studio-muted)]">
         <span key={yearKey} suppressHydrationWarning>
           {t("footer.copyright", { year })}
         </span>
+        <PlatformLegalLinks />
       </div>
     </footer>
   );

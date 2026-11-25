@@ -35,6 +35,8 @@ import {
   getProductName,
 } from "@/components/products/products.utils";
 import { getPublicWebsitePageCustomizationDefaults } from "@/components/customer-shell/customerFacingCustomizationDefaults";
+import CustomerPortalHero from "@/components/customer-shell/CustomerPortalHero";
+import { CustomerPortalPage } from "@/components/customer-shell/CustomerPortalPrimitives";
 import { Link } from "@/i18n/navigation";
 import {
   useGetPublicCourseProductsQuery,
@@ -43,6 +45,7 @@ import {
 import { getValidatedTenantSlugParam } from "@/utils/tenantRouting";
 
 import PublicCapabilityGate from "./PublicCapabilityGate";
+import design from "./portalCatalog.module.css";
 import { usePublicTenant } from "./PublicTenantProvider";
 import {
   getLocalizedPublicTenantText,
@@ -161,7 +164,7 @@ function CatalogCard({
 
   return (
     <article
-      className="flex h-full flex-col overflow-hidden rounded-[24px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] text-[color:var(--tenant-text-on-surface)] shadow-[0_14px_45px_rgba(17,17,15,0.05)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(17,17,15,0.08)] motion-reduce:transform-none motion-reduce:transition-none"
+      className={`${design.courseCard} flex h-full flex-col overflow-hidden rounded-[24px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] text-[color:var(--tenant-text-on-surface)] shadow-[0_14px_45px_rgba(17,17,15,0.05)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(17,17,15,0.08)] motion-reduce:transform-none motion-reduce:transition-none`}
       data-tenant-surface="card"
     >
       {course ? (
@@ -189,7 +192,7 @@ function CatalogCard({
             {description}
           </p>
         ) : null}
-        <p className="mt-5 text-lg font-semibold">
+        <p className="mt-5 text-2xl font-semibold tracking-tight">
           {formatProductPrice(product, locale)}
         </p>
         {durationLabel ? (
@@ -203,6 +206,7 @@ function CatalogCard({
           </p>
         ) : null}
         <Link
+          prefetch={false}
           href={actionHref}
           data-tenant-button="primary"
           className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full px-5 text-xs font-semibold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-on-surface)] focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
@@ -458,20 +462,14 @@ export default function PublicProductCatalogPage({ kind, previewData }) {
 
   return (
     <PublicCapabilityGate capability={capability}>
-      <main
-        className="min-h-[70vh] px-5 py-14 sm:px-8 lg:px-12 lg:py-20"
-        data-tenant-layout="section"
+      <CustomerPortalPage
         style={{ backgroundColor, color: textForeground }}
       >
-        <section className="mx-auto max-w-[1320px]">
-          <div className="max-w-3xl">
-            <span
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full"
-              style={{
-                backgroundColor: accentColor,
-                color: accentForeground,
-              }}
-            >
+          <CustomerPortalHero
+            pageKey={courses ? "courses" : "products"}
+            className={design.catalogHeader}
+          >
+            <span className={design.headerIcon} aria-hidden="true">
               <Icon className="h-5 w-5" />
             </span>
             <h1
@@ -487,7 +485,7 @@ export default function PublicProductCatalogPage({ kind, previewData }) {
             >
               {description}
             </p>
-          </div>
+          </CustomerPortalHero>
 
           {!query.isLoading &&
           !query.isFetching &&
@@ -596,8 +594,7 @@ export default function PublicProductCatalogPage({ kind, previewData }) {
               {t("catalog.empty")}
             </div>
           )}
-        </section>
-      </main>
+      </CustomerPortalPage>
     </PublicCapabilityGate>
   );
 }

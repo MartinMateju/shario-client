@@ -115,7 +115,13 @@ describe("locale validator readiness requirements", () => {
       const run = () =>
         spawnSync(
           process.execPath,
-          [path.join(fixtureRoot, "scripts/validate-locales.mjs")],
+          // macOS exposes temp paths through /var -> /private/var. The CLI's
+          // main-module guard must receive the same canonical path as import.meta.url.
+          [
+            fs.realpathSync(
+              path.join(fixtureRoot, "scripts/validate-locales.mjs"),
+            ),
+          ],
           { encoding: "utf8" },
         );
       const incomplete = run();

@@ -11,14 +11,14 @@ const statConfig = [
   {
     key: "totalCustomers",
     icon: UserGroupIcon,
-    iconClass: "bg-[#FFE7DF] text-[#B34A34]",
-    valueClass: "text-[#292925]",
+    iconClass: "bg-accent-soft text-accent-text",
+    valueClass: "text-ink",
   },
   {
     key: "activeMemberships",
     icon: IdentificationIcon,
-    iconClass: "bg-[#E8F0E3] text-[#506242]",
-    valueClass: "text-[#292925]",
+    iconClass: "bg-success-soft text-success",
+    valueClass: "text-ink",
   },
   {
     key: "credits",
@@ -29,12 +29,18 @@ const statConfig = [
   {
     key: "newThisMonth",
     icon: UserPlusIcon,
-    iconClass: "bg-[#FFF0EA] text-[#D65338]",
-    valueClass: "text-[#292925]",
+    iconClass: "bg-accent-soft text-accent-text",
+    valueClass: "text-ink",
   },
 ];
 
-export default function PeopleOverview({ summary, locale, t }) {
+export default function PeopleOverview({
+  summary,
+  locale,
+  t,
+  loading = false,
+  currency,
+}) {
   return (
     <section
       aria-label={t("overview.label")}
@@ -42,16 +48,22 @@ export default function PeopleOverview({ summary, locale, t }) {
     >
       {statConfig.map((item) => {
         const Icon = item.icon;
-        const rawValue = summary[item.key] || 0;
+        const rawValue = summary[item.key];
         const value =
-          item.key === "credits" ? formatMoney(rawValue, locale) : rawValue;
+          loading || rawValue === null || rawValue === undefined
+            ? "—"
+            : item.key === "credits"
+              ? currency === null
+                ? "—"
+                : formatMoney(rawValue, locale, currency)
+              : rawValue;
 
         return (
           <article
             key={item.key}
-            className="grid min-h-[108px] min-w-0 grid-cols-[minmax(0,1fr)_auto] content-start items-center gap-x-3 gap-y-2 rounded-[18px] border border-[#E7E4DE] bg-white px-5 py-4 shadow-[0_10px_30px_rgba(17,17,15,0.04)]"
+            className="grid min-h-[108px] min-w-0 grid-cols-[minmax(0,1fr)_auto] content-start items-center gap-x-3 gap-y-2 rounded-[18px] border border-line bg-white px-5 py-4 shadow-[0_10px_30px_rgba(17,17,15,0.04)]"
           >
-            <p className="text-[12px] leading-5 text-ink-muted">
+            <p className="text-[13px] font-semibold leading-5 text-ink-soft">
               {t(`overview.${item.key}`)}
             </p>
             <span
@@ -62,12 +74,17 @@ export default function PeopleOverview({ summary, locale, t }) {
 
             <div className="col-span-2 min-w-0">
               <p
-                className={`break-words text-[25px] font-medium leading-tight tabular-nums tracking-[-0.045em] ${item.valueClass}`}
+                className={`break-words text-[28px] font-semibold leading-tight tabular-nums tracking-[-0.045em] ${item.valueClass}`}
               >
                 {value}
               </p>
+              {item.key === "activeMemberships" && rawValue == null && (
+                <p className="mt-1 text-[10px] text-ink-muted">
+                  {t("overview.unavailable")}
+                </p>
+              )}
               {item.key === "totalCustomers" && summary.newThisMonth > 0 && (
-                <p className="mt-1 inline-flex max-w-full rounded-full bg-[#E8F0E3] px-2 py-0.5 text-[10px] font-medium text-[#506242]">
+                <p className="mt-1 inline-flex max-w-full rounded-full border border-success/40 bg-success-soft px-2.5 py-0.5 text-[12px] font-semibold text-success">
                   {t("overview.monthlyChange", {
                     count: summary.newThisMonth,
                   })}

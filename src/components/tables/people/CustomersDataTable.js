@@ -50,7 +50,7 @@ function CustomerRowActions({
   return (
     <Menu as="div" className="relative flex justify-end">
       <MenuButton
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#777771] transition hover:bg-[#F0EFEC] hover:text-[#11110F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/25 sm:h-8 sm:w-8"
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink-soft transition hover:bg-[#F0EFEC] hover:text-[#11110F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary sm:h-9 sm:w-9"
         aria-label={t("actions.openCustomerActions", {
           name: getFullName(customer),
         })}
@@ -62,14 +62,14 @@ function CustomerRowActions({
         transition
         anchor="bottom end"
         portal
-        className="z-[140] mt-1.5 w-48 origin-top-right rounded-[14px] border border-[#E7E4DE] bg-white p-1.5 shadow-[0_18px_50px_rgba(17,17,15,0.15)] outline-none transition duration-150 data-[closed]:scale-95 data-[closed]:opacity-0"
+        className="z-[140] mt-1.5 w-48 origin-top-right rounded-[14px] border border-line bg-white p-1.5 shadow-[0_18px_50px_rgba(17,17,15,0.15)] outline-none transition duration-150 data-[closed]:scale-95 data-[closed]:opacity-0"
       >
         {(onOpenCustomer || profileHref) && (
           <MenuItem>
             {profileHref && !onOpenCustomer ? (
               <Link
                 href={profileHref}
-                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-ink-soft transition data-[focus]:bg-sand-50"
+                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[13px] font-semibold text-ink transition data-[focus]:bg-sand-50"
               >
                 <EyeIcon className="h-4 w-4" aria-hidden="true" />
                 {t("actions.viewProfile")}
@@ -78,7 +78,7 @@ function CustomerRowActions({
               <button
                 type="button"
                 onClick={() => onOpenCustomer?.(customer)}
-                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-ink-soft transition data-[focus]:bg-sand-50"
+                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[13px] font-semibold text-ink transition data-[focus]:bg-sand-50"
               >
                 <EyeIcon className="h-4 w-4" aria-hidden="true" />
                 {t("actions.viewProfile")}
@@ -92,7 +92,7 @@ function CustomerRowActions({
             <button
               type="button"
               onClick={() => onAddCredits(customer)}
-              className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-ink-soft transition data-[focus]:bg-sand-50"
+              className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[13px] font-semibold text-ink transition data-[focus]:bg-sand-50"
             >
               <WalletIcon className="h-4 w-4" aria-hidden="true" />
               {t("actions.addCredits")}
@@ -108,7 +108,7 @@ function StatusPill({ status, t }) {
   return (
     <span
       className={cx(
-        "inline-flex min-h-6 items-center rounded-[7px] px-2 py-1 text-[10px] font-medium leading-none",
+        "inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 text-[12px] font-semibold leading-4",
         getStatusTone(status),
       )}
     >
@@ -137,6 +137,8 @@ function MobileCustomerCard({
   getCustomerHref,
   onOpenCustomer,
   onAddCredits,
+  spendingPeriod,
+  currency,
 }) {
   const membership = getCustomerMembership(customer);
   const status = getCustomerStatus(customer);
@@ -147,7 +149,7 @@ function MobileCustomerCard({
         "rounded-[18px] border p-4 transition",
         selected
           ? "border-brand-primary/35 bg-skab-blue-50"
-          : "border-[#E7E4DE] bg-white",
+          : "border-line bg-white",
       )}
     >
       <div className="flex items-start gap-3">
@@ -162,17 +164,17 @@ function MobileCustomerCard({
         <div className="min-w-0 flex-1">
           <WorkspaceTruncatedText
             as="p"
-            className="text-[13px] font-semibold text-ink"
+            className="text-[14px] font-semibold text-ink"
           >
             {getFullName(customer)}
           </WorkspaceTruncatedText>
           <WorkspaceTruncatedText
             as="p"
-            className="mt-0.5 text-[12px] text-ink-muted"
+            className="mt-0.5 text-[13px] text-ink-muted"
           >
             {customer?.email || "—"}
           </WorkspaceTruncatedText>
-          <p className="mt-0.5 text-[11px] font-medium tabular-nums text-ink-soft">
+          <p className="mt-0.5 text-[12px] font-medium tabular-nums text-ink-soft">
             {t("columns.memberId")}: {formatMakerId(customer?.memberNumber)}
           </p>
         </div>
@@ -185,45 +187,47 @@ function MobileCustomerCard({
         />
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-3 rounded-[14px] bg-[#F8F6F2] p-3.5">
+      <dl className="mt-4 grid grid-cols-2 gap-3 rounded-[14px] bg-surface-muted p-3.5">
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.membership")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
             {membership.label || t("membership.none")}
           </dd>
         </div>
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.credits")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
-            {formatMoney(getCustomerCredits(customer), locale)}
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
+            {currency === null
+              ? "—"
+              : formatMoney(getCustomerCredits(customer), locale, currency)}
           </dd>
         </div>
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.lastBooking")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
             {formatRelativeDate(getCustomerLastBooking(customer), locale, t, {
               never: false,
             })}
           </dd>
         </div>
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
-            {t("columns.totalSpent")}
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
+            {t(spendingPeriod ? "columns.periodSpent" : "columns.totalSpent")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
-            {formatCustomerTotalSpent(customer, locale)}
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
+            {formatCustomerTotalSpent(customer, locale, spendingPeriod)}
           </dd>
         </div>
       </dl>
 
       <div className="mt-3 flex items-center justify-between gap-3">
-        <p className="truncate text-[12px] text-ink-muted">
+        <p className="truncate text-[13px] text-ink-muted">
           {customer?.phone || customer?.phoneNumber || "—"}
         </p>
         <StatusPill status={status} t={t} />
@@ -249,12 +253,14 @@ function SelectionBar({
   onAddCreditsSelected,
   onExportSelected,
   onClearSelection,
+  exporting,
+  exportDisabled,
 }) {
   if (selectedCount === 0) return null;
 
   return (
     <div className="flex flex-wrap items-center gap-2 border-t border-skab-cobalt-100 bg-skab-blue-50 px-4 py-2.5 sm:px-5">
-      <span className="mr-2 text-[12px] font-semibold text-ink">
+      <span className="mr-2 text-[14px] font-semibold text-ink">
         {t("selection.selected", { count: selectedCount })}
       </span>
 
@@ -262,7 +268,7 @@ function SelectionBar({
         <button
           type="button"
           onClick={onAddCreditsSelected}
-          className="inline-flex h-8 items-center gap-2 rounded-[9px] px-3 text-[12px] font-medium text-ink-soft transition hover:bg-white"
+          className="inline-flex h-8 items-center gap-2 rounded-[9px] px-3 text-[13px] font-semibold text-ink transition hover:bg-white"
         >
           <WalletIcon className="h-4 w-4" aria-hidden="true" />
           {t("actions.addCredits")}
@@ -272,9 +278,10 @@ function SelectionBar({
       <button
         type="button"
         onClick={onExportSelected}
-        className="inline-flex h-8 items-center rounded-[9px] px-3 text-[12px] font-medium text-ink-soft transition hover:bg-white"
+        disabled={exporting || exportDisabled}
+        className="inline-flex h-8 items-center rounded-[9px] px-3 text-[13px] font-semibold text-ink transition hover:bg-white"
       >
-        {t("selection.exportSelected")}
+        {t(exporting ? "actions.exporting" : "selection.exportSelected")}
       </button>
 
       <button
@@ -302,6 +309,10 @@ export default function CustomersDataTable({
   onAddCredits,
   onAddCreditsSelected,
   onExportSelected,
+  exporting = false,
+  spendingPeriod = false,
+  currency = "CZK",
+  exportDisabled = false,
 }) {
   const allSelected =
     customers.length > 0 &&
@@ -325,6 +336,8 @@ export default function CustomersDataTable({
               getCustomerHref={getCustomerHref}
               onOpenCustomer={onOpenCustomer}
               onAddCredits={onAddCredits}
+              spendingPeriod={spendingPeriod}
+              currency={currency}
             />
           );
         })}
@@ -352,7 +365,7 @@ export default function CustomersDataTable({
                 "membership",
                 "credits",
                 "lastBooking",
-                "totalSpent",
+                spendingPeriod ? "periodSpent" : "totalSpent",
                 "status",
               ].map((column) => (
                 <WorkspaceTableHeadCell key={column}>
@@ -381,7 +394,7 @@ export default function CustomersDataTable({
                       : "bg-white hover:bg-surface-muted",
                   )}
                 >
-                  <td className="border-b border-[#EDEAE4] px-5 py-3">
+                  <td className="border-b border-line px-5 py-3">
                     <input
                       type="checkbox"
                       checked={selected}
@@ -392,46 +405,52 @@ export default function CustomersDataTable({
                       className="h-4 w-4 rounded border-[#CFCBC2] text-primary-text focus:ring-brand-primary/25"
                     />
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3">
+                  <td className="border-b border-line px-4 py-3">
                     <div className="flex items-center gap-3">
                       <PersonAvatar person={customer} />
                       <div className="min-w-0">
                         <WorkspaceTruncatedText
                           as="p"
-                          className="max-w-[170px] text-[12px] font-semibold text-ink"
+                          className="max-w-[170px] text-[14px] font-semibold text-ink"
                         >
                           {getFullName(customer)}
                         </WorkspaceTruncatedText>
                         <WorkspaceTruncatedText
                           as="p"
-                          className="mt-0.5 max-w-[170px] text-[12px] text-ink-muted"
+                          className="mt-0.5 max-w-[170px] text-[13px] text-ink-muted"
                         >
                           {customer?.email || "—"}
                         </WorkspaceTruncatedText>
-                        <p className="mt-0.5 max-w-[170px] truncate text-[11px] font-medium tabular-nums text-ink-soft">
+                        <p className="mt-0.5 max-w-[170px] truncate text-[12px] font-medium tabular-nums text-ink-soft">
                           {t("columns.memberId")}:{" "}
                           {formatMakerId(customer?.memberNumber)}
                         </p>
                       </div>
                     </div>
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3 text-[12px] text-ink-soft">
+                  <td className="border-b border-line px-4 py-3 text-[13px] text-ink-soft">
                     {customer?.phone || customer?.phoneNumber || "—"}
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3">
+                  <td className="border-b border-line px-4 py-3">
                     <span
                       className={cx(
-                        "inline-flex min-h-6 items-center rounded-[7px] px-2 py-1 text-[10px] font-medium",
+                        "inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 text-[12px] font-semibold",
                         getMembershipTone(membership.key),
                       )}
                     >
                       {membership.label || t("membership.none")}
                     </span>
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3 text-[12px] font-medium text-ink-soft">
-                    {formatMoney(getCustomerCredits(customer), locale)}
+                  <td className="border-b border-line px-4 py-3 text-[13px] font-semibold tabular-nums text-ink">
+                    {currency === null
+                      ? "—"
+                      : formatMoney(
+                          getCustomerCredits(customer),
+                          locale,
+                          currency,
+                        )}
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3 text-[12px] text-ink-soft">
+                  <td className="border-b border-line px-4 py-3 text-[13px] text-ink-soft">
                     {formatRelativeDate(
                       getCustomerLastBooking(customer),
                       locale,
@@ -439,13 +458,13 @@ export default function CustomersDataTable({
                       { never: false },
                     )}
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3 text-[12px] font-medium text-ink-soft">
-                    {formatCustomerTotalSpent(customer, locale)}
+                  <td className="border-b border-line px-4 py-3 text-[13px] font-semibold tabular-nums text-ink">
+                    {formatCustomerTotalSpent(customer, locale, spendingPeriod)}
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3">
+                  <td className="border-b border-line px-4 py-3">
                     <StatusPill status={status} t={t} />
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3">
+                  <td className="border-b border-line px-4 py-3">
                     <CustomerRowActions
                       customer={customer}
                       t={t}
@@ -462,12 +481,14 @@ export default function CustomersDataTable({
       </WorkspaceTableScroller>
 
       <SelectionBar
+        exportDisabled={exportDisabled}
         selectedCount={selectedIds.size}
         t={t}
         canAddCredits={Boolean(onAddCreditsSelected)}
         onAddCreditsSelected={onAddCreditsSelected}
         onExportSelected={onExportSelected}
         onClearSelection={onClearSelection}
+        exporting={exporting}
       />
     </>
   );

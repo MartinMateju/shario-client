@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react";
+import { act, render, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import useWorkspaceTourLayout from "@/components/tours/useWorkspaceTourLayout";
@@ -86,6 +86,7 @@ describe("workspace tour target tracking", () => {
     top = 702;
     now = 100;
     flushFrame();
+    flushFrame();
 
     expect(target.scrollIntoView).toHaveBeenCalledTimes(2);
     expect(target.scrollIntoView).toHaveBeenLastCalledWith({
@@ -96,17 +97,73 @@ describe("workspace tour target tracking", () => {
     expect(result.current.targetRect.top).toBe(92);
   });
 
-  it("does not keep scrolling offscreen targets after initial reveal", () => {
-    renderLayout();
+  it("reveals the same target after a late hydration shift without user input", () => {
+    const { result } = renderLayout();
     flushFrame();
     top = 900;
     now = 1000;
     flushFrame();
     expect(target.scrollIntoView).toHaveBeenCalledTimes(1);
+    flushFrame();
+    expect(target.scrollIntoView).toHaveBeenCalledTimes(2);
+    expect(result.current.targetRect.top).toBe(92);
+  });
+
+  it("recovers when layout restores the original offscreen position before the next frame", () => {
+    top = 900;
+    const { result } = renderLayout();
+    flushFrame();
+    expect(result.current.targetRect.top).toBe(92);
+
+    // The reveal succeeded synchronously, but route/modal layout restored the
+    // exact pre-scroll position before tracking could sample the visible state.
+    top = 900;
+    now = 1000;
+    flushFrame();
+    flushFrame();
+
+    expect(target.scrollIntoView).toHaveBeenCalledTimes(2);
+    expect(result.current.targetRect.top).toBe(92);
+  });
+
+  it("does not repeat a partially effective reveal at unchanged unreachable geometry", () => {
+    top = 900;
+    target.scrollIntoView.mockImplementation(() => {
+      top = 800;
+    });
+    renderLayout();
+    for (let index = 0; index < 10; index += 1) flushFrame();
+    expect(target.scrollIntoView).toHaveBeenCalledTimes(1);
+  });
+
+  it("waits for moving layout to settle before revealing the target again", () => {
+    renderLayout();
+    flushFrame();
+    now = 1000;
+    for (const position of [900, 920, 940, 960]) {
+      top = position;
+      flushFrame();
+      expect(target.scrollIntoView).toHaveBeenCalledTimes(1);
+    }
+    flushFrame();
+    expect(target.scrollIntoView).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not repeatedly scroll unreachable geometry, but retries changed layout", () => {
+    target.scrollIntoView.mockImplementation(() => {});
+    top = 900;
+    renderLayout();
+    for (let index = 0; index < 10; index += 1) flushFrame();
+    expect(target.scrollIntoView).toHaveBeenCalledTimes(1);
+
+    now = 1000;
+    top = 950;
+    for (let index = 0; index < 10; index += 1) flushFrame();
+    expect(target.scrollIntoView).toHaveBeenCalledTimes(2);
   });
 
   it.each(["wheel", "touchmove", "pointerdown", "keydown"])(
-    "respects deliberate %s input during initial reveal",
+    "respects deliberate %s input instead of correcting a later offscreen target",
     (eventName) => {
       renderLayout();
       flushFrame();
@@ -118,11 +175,44 @@ describe("workspace tour target tracking", () => {
         ),
       );
       top = 900;
-      now = 100;
+      now = 1000;
+      flushFrame();
       flushFrame();
       expect(target.scrollIntoView).toHaveBeenCalledTimes(1);
     },
   );
+
+  it("preserves user scrolling when the guide panel changes height", () => {
+    let resizePanel;
+    let panelHeight = 250;
+    vi.spyOn(globalThis, "ResizeObserver").mockImplementation(
+      function (callback) {
+        resizePanel = callback;
+        return { observe: vi.fn(), disconnect: vi.fn() };
+      },
+    );
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      () => ({ height: panelHeight, width: 296 }),
+    );
+    function Layout() {
+      const { panelRef } = useWorkspaceTourLayout({
+        active: true,
+        selectors: ["[data-layout-target]"],
+      });
+      return <div ref={panelRef} />;
+    }
+    render(<Layout />);
+    flushFrame();
+    act(() => window.dispatchEvent(new Event("wheel")));
+
+    panelHeight = 400;
+    act(() => resizePanel());
+    top = 900;
+    flushFrame();
+    flushFrame();
+
+    expect(target.scrollIntoView).toHaveBeenCalledTimes(1);
+  });
 
   it("replaces the previous frame when a step selects a new target", () => {
     const { rerender } = renderLayout();

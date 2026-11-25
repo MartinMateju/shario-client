@@ -53,16 +53,13 @@ export default function StripeConnectSetupBanner({
   return (
     <aside
       className={`${styles.module} ${styles.card} flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between`}
-      style={{
-        borderInlineStart: `3px solid var(${restricted ? "--studio-clay" : "--studio-blue"})`,
-      }}
       aria-labelledby="stripe-connect-banner-title"
     >
       <div className="flex min-w-0 items-start gap-3.5">
         <span
           className={
             restricted
-              ? "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-coral-100 text-terracotta-700"
+              ? "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-warning-soft text-warning"
               : "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cobalt-100 text-cobalt-700"
           }
         >

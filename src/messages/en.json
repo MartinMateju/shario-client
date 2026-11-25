@@ -9,6 +9,7 @@
     "homeDescription": "Bookings, memberships and your own beautiful website. Everything you need to share your space and grow your community, together in Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Your banner preference could not be saved. Please try again.",
     "skipToContent": "Skip to content",
     "learnMore": "Learn more",
     "viewAll": "View all",
@@ -59,44 +60,44 @@
       "refunded": "Refunded"
     },
     "stateDescriptions": {
-      "waiting": "You are on the waitlist. We will email you if a seat becomes available.",
+      "waiting": "You are on the waiting list. We will email you if a seat becomes available.",
       "offered": "A seat is being held for you until the deadline below. Complete payment to book it.",
       "payment_pending": "Your payment is still being processed. The booking is not confirmed until payment succeeds.",
       "confirmed": "Payment succeeded and your place is booked.",
       "declined": "You declined this seat offer.",
       "expired": "The payment deadline passed and this offer is no longer valid.",
-      "withdrawn": "You left this waitlist.",
-      "cancelled": "The studio removed this waitlist entry.",
-      "refunded": "Your payment was returned and this seat offer is closed. No booking remains for this waitlist entry."
+      "withdrawn": "You left this waiting list.",
+      "cancelled": "The studio removed this waiting list entry.",
+      "refunded": "Your payment was returned and this seat offer is closed. No booking remains for this waiting list entry."
     },
     "refund": {
       "title": "Refund completed",
       "refundedAt": "Returned on {date}"
     },
     "joinedAt": "Joined {date}",
-    "join": "Join waitlist",
+    "join": "Join waiting list",
     "joining": "Joining…",
-    "withdraw": "Leave waitlist",
+    "withdraw": "Leave waiting list",
     "bookingAvailable": "A seat is available now. Availability has been refreshed so you can book normally.",
     "publicReasons": {
       "available": "A place is currently available—choose this date to book it.",
-      "disabled": "This class is full and does not have a waitlist.",
-      "join_closed": "This class is full and its waitlist has closed.",
+      "disabled": "This class is full and does not have a waiting list.",
+      "join_closed": "This class is full and its waiting list has closed.",
       "session_started": "This class has already started."
     },
     "guest": {
-      "formLabel": "Join this class waitlist by email",
+      "formLabel": "Join this class waiting list by email",
       "title": "Get notified if a seat opens",
-      "description": "We will email a verification link first. Your waitlist request becomes active only after you verify it.",
-      "close": "Close waitlist form",
+      "description": "We will email a verification link first. Your waiting list request becomes active only after you verify it.",
+      "close": "Close waiting list form",
       "firstName": "First name",
       "lastName": "Last name",
       "email": "Email",
       "send": "Email verification link",
       "sending": "Sending…",
-      "sent": "If the address can join this waitlist, a verification email is on its way. Check your inbox and spam folder.",
+      "sent": "If the address can join this waiting list, a verification email is on its way. Check your inbox and spam folder.",
       "validation": "Enter your name and a valid email address.",
-      "privacy": "We use this email only to verify and manage this waitlist request.",
+      "privacy": "We use this email only to verify and manage this waiting list request.",
       "signIn": "Or sign in and keep this selection"
     },
     "offer": {
@@ -108,56 +109,56 @@
       "startingCheckout": "Opening payment…"
     },
     "errors": {
-      "closed": "This waitlist is no longer accepting requests.",
+      "closed": "This waiting list is no longer accepting requests.",
       "offerExpired": "This seat offer has expired.",
       "price": "The saved offer price could not be verified. Contact the studio before paying.",
       "checkout": "Secure payment could not be opened. Please try again.",
-      "generic": "The waitlist could not be updated. Please try again."
+      "generic": "The waiting list could not be updated. Please try again."
     },
     "portal": {
       "eyebrow": "Your studio activity",
-      "title": "Waitlists",
+      "title": "Waiting list",
       "description": "Review waiting requests, time-limited seat offers and past outcomes. Queue positions are kept private.",
       "browse": "Browse classes",
       "sessionFallback": "Class session {id}",
-      "loading": "Loading your waitlists…",
+      "loading": "Loading your waiting lists…",
       "unavailable": {
-        "title": "Waitlists are not available",
-        "description": "The classes and payments modules must both be available for waitlists."
+        "title": "Waiting lists are not available",
+        "description": "The classes and payments modules must both be available for waiting lists."
       },
       "paused": {
-        "title": "Waitlist checkout is temporarily unavailable",
-        "description": "You can still review or leave existing waitlists. New joins and offer checkout resume when classes and payments are available."
+        "title": "Waiting list checkout is temporarily unavailable",
+        "description": "You can still review or leave existing waiting lists. New joins and offer checkout resume when classes and payments are available."
       },
       "loadError": {
-        "title": "Waitlists could not be loaded",
+        "title": "Waiting lists could not be loaded",
         "description": "Your account is unchanged. Try loading it again.",
         "retry": "Try again"
       },
       "verificationRequired": {
         "title": "Verify your email",
-        "description": "Verify your email to manage waitlist requests and accept seat offers. You can request a verification email on the next page.",
+        "description": "Verify your email to manage waiting list requests and accept seat offers. You can request a verification email on the next page.",
         "action": "Verify email"
       },
       "empty": {
-        "title": "No waitlists yet",
-        "description": "When a published class is full and its waitlist is open, you can join from the class date."
+        "title": "No waiting lists yet",
+        "description": "When a published class is full and its waiting list is open, you can join from the class date."
       }
     },
     "management": {
-      "title": "Manage your waitlist request",
-      "description": "This private email link lets you review or withdraw one verified waitlist request.",
+      "title": "Manage your waiting list request",
+      "description": "This private email link lets you review or withdraw one verified waiting list request.",
       "loading": "Verifying your secure link…",
-      "sessionLabel": "Waitlist for",
+      "sessionLabel": "Waiting list for",
       "sessionFallback": "Class session",
       "emailNotice": "Keep the latest management email. We will also email you if a seat is offered, expires or is confirmed after payment.",
       "available": {
         "title": "A seat is available now",
-        "description": "The waitlist was not created. Return to the current class dates and book the available seat normally.",
+        "description": "The waiting list was not created. Return to the current class dates and book the available seat normally.",
         "action": "View class dates"
       },
       "invalid": {
-        "title": "This waitlist link is not valid",
+        "title": "This waiting list link is not valid",
         "description": "The link may be incomplete, expired or already used. Open the newest email from the studio.",
         "action": "Browse classes"
       }
@@ -172,7 +173,7 @@
       "priceLabel": "Saved offer price",
       "priceSnapshot": "This server-saved amount is used at checkout; the current catalog price is not recomputed.",
       "email": "Verified email",
-      "verifiedEmail": "Use the same email address that verified the waitlist request.",
+      "verifiedEmail": "Use the same email address that verified the waiting list request.",
       "pay": "Continue to secure payment",
       "resumePayment": "Resume payment",
       "starting": "Opening payment…",
@@ -191,20 +192,20 @@
     },
     "admin": {
       "eyebrow": "Session attendance",
-      "title": "Booked & waitlist roster",
+      "title": "Booked & waiting list roster",
       "tabs": {
         "label": "Roster views",
         "booked": "Booked",
-        "waitlist": "Waitlist"
+        "waitlist": "Waiting list"
       },
-      "loading": "Loading waitlist…",
-      "loadError": "The waitlist could not be loaded.",
+      "loading": "Loading waiting list…",
+      "loadError": "The waiting list could not be loaded.",
       "retry": "Try again",
       "emptyBooked": "No confirmed bookings for this session.",
       "emptyWaitlist": "Nobody is waiting for this session.",
-      "orderedList": "Waitlist in FIFO order",
-      "position": "Waitlist order {position}",
-      "customerFallback": "Waitlist customer",
+      "orderedList": "Waiting list in FIFO order",
+      "position": "Waiting list order {position}",
+      "customerFallback": "Waiting list customer",
       "auditReason": "Reason for this audited action",
       "fifoOverride": "I understand this skips people ahead in the FIFO queue and want the audit log to record the override.",
       "bookedActions": {
@@ -238,13 +239,13 @@
         "generic": "The audited action could not be completed."
       },
       "settings": {
-        "title": "Session waitlist settings",
-        "description": "Waitlists are off for existing sessions until you enable them here.",
+        "title": "Session waiting list settings",
+        "description": "Waiting lists are off for existing sessions until you enable them here.",
         "loading": "Loading settings…",
         "loadError": "Settings could not be loaded.",
         "retry": "Try again",
-        "enabled": "Enable waitlist for this session",
-        "enabledHint": "The public Join waitlist action appears only when this session is full and still inside its cutoff.",
+        "enabled": "Enable waiting list for this session",
+        "enabledHint": "The public Join waiting list action appears only when this session is full and still inside its cutoff.",
         "autoPromote": "Automatically offer the next seat",
         "autoPromoteHint": "The server promotes one FIFO entry when one seat becomes available.",
         "offerWindow": "Offer window (hours)",
@@ -303,7 +304,7 @@
         "bookings": "My bookings",
         "services": "Services",
         "work": "My work",
-        "waitlists": "Waitlists",
+        "waitlists": "Waiting list",
         "knowledge": "Knowledge Hub",
         "credits": "Credits",
         "membership": "Membership",
@@ -700,7 +701,8 @@
       "notifications": "Notifications",
       "events": "Events",
       "lostFound": "Lost & Found",
-      "customOrders": "Custom orders"
+      "customOrders": "Custom orders",
+      "communicationSettings": "Message settings"
     },
     "stats": {
       "bookings": "Bookings today",
@@ -1094,7 +1096,7 @@
           "steps": {
             "scope": {
               "title": "Know what Shario controls",
-              "description": "This is a secure inventory for codes already programmed into your physical locks. Shario does not program the lock or send codes by email in this phase."
+              "description": "Keep an inventory of codes already programmed and tested on your physical locks. Manage automatic email delivery for eligible bookings in Messages → Automations; Shario does not configure the locks."
             },
             "entrances": {
               "title": "Choose a location and entrance",
@@ -1904,7 +1906,7 @@
   "Sales": {
     "eyebrow": "Sales management",
     "title": "Sales & orders",
-    "description": "Track orders, payments and revenue at {studio}.",
+    "description": "Track orders and their payment status at {studio}.",
     "fallbackStudioName": "your studio",
     "newOrder": "New order",
     "export": "Export",
@@ -1915,11 +1917,11 @@
     "retry": "Try again",
     "overview": {
       "label": "Sales overview",
-      "revenue": "Revenue in period",
+      "revenue": "Paid order value after refunds",
       "orders": "Orders",
       "awaitingPayment": "Awaiting payment",
       "failed": "Failed orders",
-      "revenueDetail": "Paid orders created in this period",
+      "revenueDetail": "Orders created in this period, less refunds recorded to date",
       "ordersDetail": "Orders created in this period",
       "updating": "Updating summary…",
       "error": "We couldn’t load the sales summary for this period.",
@@ -1932,7 +1934,8 @@
       "awaitingPayment": "Awaiting payment",
       "processing": "Processing",
       "completed": "Completed",
-      "failed": "Failed"
+      "failed": "Failed",
+      "cancelled": "Cancelled"
     },
     "toolbar": {
       "statusFiltersLabel": "Order status filters",
@@ -1990,7 +1993,7 @@
       "order": "Order",
       "customer": "Customer",
       "products": "Products",
-      "total": "Total",
+      "total": "Order value",
       "payment": "Payment",
       "status": "Status",
       "actions": "Actions"
@@ -2046,7 +2049,7 @@
       "items": "Products",
       "quantity": "Quantity: {count}",
       "noItems": "No product details are available.",
-      "total": "Order total",
+      "total": "Order value after discounts",
       "paymentAndStatus": "Payment & status",
       "method": "Payment method",
       "paidAt": "Paid at",
@@ -2057,7 +2060,8 @@
       "creatingInvoice": "Creating…",
       "confirmCreateInvoice": "Create a draft invoice from this order?",
       "note": "Order note",
-      "internalId": "Internal order ID"
+      "internalId": "Internal order ID",
+      "paymentDateUnknown": "Payment date not recorded"
     },
     "notices": {
       "copied": "Order ID copied.",
@@ -2067,7 +2071,21 @@
       "invoiceError": "The invoice couldn’t be created from this order."
     },
     "csv": {
-      "createdAt": "Created at"
+      "createdAt": "Created at",
+      "currency": "Currency",
+      "amountStatus": "Amount availability"
+    },
+    "money": {
+      "unavailable": "Unavailable",
+      "unavailableDetail": "The order’s final amount or refund history cannot be verified.",
+      "verified": "Available",
+      "refunded": "Refunded",
+      "net": "Value after refunds",
+      "incomplete": "Some paid orders have incomplete amounts or refund records. The total is unavailable.",
+      "mixedCurrencies": "This period contains multiple currencies. They cannot be added into one total.",
+      "truncated": "This period exceeds the summary limit. Choose a shorter period to calculate the total.",
+      "scope": "Order values include tax and credit or voucher redemptions. Separate voucher purchases and membership invoices are excluded. This is not cash received or revenue from delivered services. Summary cards cover the entire selected period and studio.",
+      "multiStudio": "Orders linked to multiple studios are counted at their full value."
     }
   },
   "Finance": {
@@ -2448,7 +2466,7 @@
     },
     "payment": {
       "paid": "Paid",
-      "pending": "Pending",
+      "pending": "Awaiting payment",
       "credits": "Credits",
       "refunded": "Refunded",
       "failed": "Failed",
@@ -2456,10 +2474,10 @@
     },
     "status": {
       "confirmed": "Confirmed",
-      "pending": "Pending",
+      "pending": "Awaiting confirmation",
       "awaitingPayment": "Awaiting payment",
-      "processed": "Awaiting delivery",
-      "delivered": "Delivered",
+      "processed": "Confirmed",
+      "delivered": "Started",
       "completed": "Completed",
       "cancelled": "Cancelled"
     },
@@ -2467,7 +2485,7 @@
     "actions": {
       "open": "Open booking actions",
       "edit": "Edit booking",
-      "delete": "Delete booking"
+      "delete": "Cancel booking"
     },
     "selection": {
       "all": "Select all visible bookings",
@@ -2494,12 +2512,14 @@
       "createdText": "The new booking was created successfully.",
       "updatedTitle": "Booking updated",
       "updatedText": "The booking was updated successfully.",
-      "deleteTitle": "Delete booking",
-      "deleteText": "Are you sure you want to permanently delete this booking? This action cannot be undone.",
-      "deletedTitle": "Booking deleted",
-      "deletedText": "The booking was deleted successfully.",
+      "deleteTitle": "Cancel booking",
+      "deleteText": "Cancel this booking and apply any refund automatically? Depending on the payment, this may return studio credit, restore membership or voucher value, or queue a card refund. The booking will remain in the history.",
+      "deletedTitle": "Booking cancelled",
+      "deletedText": "The booking was cancelled.",
       "errorTitle": "Booking could not be created",
-      "errorText": "Please review the booking information and try again."
+      "errorText": "Please review the booking information and try again.",
+      "cancelError": "The booking could not be cancelled. Please try again.",
+      "extensionRefund": "An additional {amount} for added booking time was returned to the customer's studio credits."
     },
     "exportColumns": {
       "id": "Booking ID",
@@ -2513,6 +2533,12 @@
       "payment": "Payment",
       "status": "Status",
       "amount": "Amount"
+    },
+    "refreshing": "Refreshing bookings…",
+    "retry": "Try again",
+    "errors": {
+      "load": "Could not load bookings. Please try again.",
+      "filters": "Some filter options could not be loaded."
     }
   },
   "BookingComposer": {
@@ -2806,10 +2832,11 @@
     "overview": {
       "label": "Customer overview",
       "totalCustomers": "Total customers",
-      "activeMemberships": "Active memberships",
+      "activeMemberships": "Active subscribers",
       "credits": "Customer credits",
       "newThisMonth": "New this month",
-      "monthlyChange": "+{count} this month"
+      "monthlyChange": "+{count} this month",
+      "unavailable": "Data unavailable"
     },
     "tabs": {
       "label": "People view",
@@ -2831,7 +2858,23 @@
       "status": "Status",
       "allStatuses": "All statuses",
       "button": "Filters",
-      "clear": "Clear"
+      "clear": "Clear",
+      "spending": "Spending ({currency})",
+      "spendMin": "Minimum spent",
+      "spendMax": "Maximum spent",
+      "spendFrom": "Payment date from",
+      "spendTo": "Payment date to",
+      "spendingHint": "Payments made in this period, after recorded refunds.",
+      "spendingDatesHint": "Leave dates empty for all time.",
+      "credits": "Current credits ({currency})",
+      "creditMin": "Minimum credits",
+      "creditMax": "Maximum credits",
+      "creditsHint": "Current credit balance, unaffected by payment dates.",
+      "spendingUnavailable": "Spending filters require access to all financial records.",
+      "applyFinancial": "Apply financial filters",
+      "financialDraftHint": "Changes apply when you select Apply.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "All time"
     },
     "membership": {
       "none": "None"
@@ -2850,7 +2893,8 @@
       "lastActive": "Last active",
       "status": "Status",
       "actions": "Actions",
-      "memberId": "Member ID"
+      "memberId": "Member ID",
+      "periodSpent": "Spent in period"
     },
     "table": {
       "label": "Customers and team table"
@@ -2863,7 +2907,8 @@
       "addCredits": "Add credits",
       "removeStaff": "Remove team member",
       "openCustomerActions": "Open actions for {name}",
-      "openStaffActions": "Open actions for {name}"
+      "openStaffActions": "Open actions for {name}",
+      "exporting": "Exporting…"
     },
     "status": {
       "active": "Active",
@@ -2939,7 +2984,14 @@
     },
     "errors": {
       "customers": "Customers could not be loaded. Please try again.",
-      "staff": "Team members could not be loaded. Please try again."
+      "staff": "Team members could not be loaded. Please try again.",
+      "summary": "Customer totals and membership filters could not be loaded. Please try again.",
+      "export": "The complete customer export could not be downloaded. No file was saved. Please try again.",
+      "invalidAmount": "Enter a valid amount.",
+      "invalidDate": "Enter a valid date.",
+      "spendingRange": "Minimum spending must not exceed maximum spending.",
+      "creditRange": "Minimum credits must not exceed maximum credits.",
+      "dateRange": "The start date must not be after the end date."
     },
     "exportColumns": {
       "name": "Name",
@@ -2954,7 +3006,8 @@
       "location": "Location",
       "lastActive": "Last active",
       "status": "Status",
-      "memberId": "Member ID"
+      "memberId": "Member ID",
+      "periodSpent": "Spent in period"
     }
   },
   "Billing": {
@@ -3229,6 +3282,7 @@
       "past": "Past"
     },
     "week": {
+      "schedule": "Weekly schedule",
       "privacyNote": "Purple marks private bookings; teal marks public bookings. Your bookings have a blue badge."
     },
     "day": {
@@ -3903,6 +3957,10 @@
       "title": "Notifications",
       "description": "Choose what reaches you and through which channels.",
       "items": {
+        "bookingCreated": {
+          "label": "Booking created",
+          "description": "When a relevant booking is created. Off by default."
+        },
         "bookingAssigned": {
           "label": "Booking rescheduled",
           "description": "When a relevant booking is rescheduled."
@@ -5545,7 +5603,7 @@
       "failed": "Failed"
     },
     "history": {
-      "description": "Review scheduled, queued, delivered, suppressed, canceled, and failed email deliveries.",
+      "description": "Review scheduled, delivered, canceled, and unsent emails.",
       "searchLabel": "Search delivery history",
       "searchPlaceholder": "Search by recipient email or customer ID…",
       "statusLabel": "Filter by delivery status",
@@ -5581,7 +5639,7 @@
         "ambiguous": "Status unclear",
         "unknown": "Unknown",
         "canceled": "Canceled",
-        "suppressed": "Suppressed"
+        "suppressed": "Not sent"
       },
       "types": {
         "beforeBooking": "Before booking",
@@ -5606,6 +5664,48 @@
         "next": "Next",
         "showing": "Showing {from}–{to} of {total} email deliveries",
         "newestFirst": "Newest first · 20 per page"
+      },
+      "resend": {
+        "actionMenu": "Email actions",
+        "action": "Send again",
+        "title": "Send this email again?",
+        "description": "A new attempt will be made to send this message to the same recipient.",
+        "recipient": "Recipient",
+        "subject": "Subject",
+        "cancel": "Cancel",
+        "confirm": "Send again",
+        "submitting": "Queueing…",
+        "queued": "Email queued to send again.",
+        "scheduled": "Retry scheduled. The email will be sent when delivery is available.",
+        "error": "The email could not be queued. Please try again.",
+        "stale": "This email has changed. Its latest status has been refreshed.",
+        "blocked": "This email cannot be sent again right now.",
+        "reasonLabel": "Why it wasn’t sent"
+      },
+      "reasons": {
+        "status_not_retryable": "This email cannot be sent again in its current state.",
+        "delivery_in_progress": "This email is already being sent.",
+        "delivery_outcome_unknown": "We cannot confirm whether this email was sent. Check its delivery status before trying again.",
+        "already_sent": "This email has already been sent.",
+        "recipient_suppressed": "Sending to this recipient was blocked.",
+        "consent_revoked": "The recipient had withdrawn consent to receive this email.",
+        "consent_expired": "The recipient’s consent had expired.",
+        "marketing_opt_in_required": "The recipient had not agreed to receive marketing emails.",
+        "consent_required": "The recipient’s required consent was missing.",
+        "content_unavailable": "The original message was no longer available.",
+        "invalid_delivery_contract": "The information needed to send this email was incomplete.",
+        "source_changed": "The information this email was based on had changed.",
+        "source_missing": "The record linked to this email no longer existed.",
+        "recipient_ineligible": "This message no longer applied to this recipient.",
+        "automation_inactive": "This email automation was turned off.",
+        "sender_not_ready": "Email sending was not set up or was temporarily unavailable.",
+        "workspace_disabled": "Email sending was disabled for this workspace.",
+        "monthly_allowance_exhausted": "The workspace had used its monthly email allowance.",
+        "unsupported_email_type": "This type of email cannot be sent again here.",
+        "delivery_failed": "The email could not be delivered.",
+        "not_sent": "The email was not sent.",
+        "hard_bounce": "Delivery to this address failed permanently.",
+        "spam_complaint": "The recipient reported an email as spam."
       }
     },
     "errors": {
@@ -5981,17 +6081,114 @@
         "cancelled": "Cancelled",
         "pending": "Pending",
         "processing": "Sending"
-      }
+      },
+      "template": "Customize email template"
+    },
+    "doorTemplates": {
+      "title": "Door access emails",
+      "description": "Personalize the automatic door-code email for each studio location. These templates are used by the existing door-access sendout.",
+      "locationHint": "Used only for bookings at this location",
+      "default": "Default message",
+      "customized": "Customized message",
+      "loading": "Loading door-code templates…",
+      "loadError": "Door-code templates could not be loaded.",
+      "retry": "Try again",
+      "empty": "Add an active studio location to customize its door-code email.",
+      "edit": "Edit template",
+      "preview": "Preview template",
+      "editFor": "Edit door-code template for {location}",
+      "previewFor": "Preview door-code template for {location}",
+      "eyebrow": "Door access email",
+      "editorDescription": "Edit the subject and message for this location. Saved changes apply to upcoming automatic emails; sending settings and the usual 15-minute timing stay the same.",
+      "placeholderHint": "Shario fills in the booking details and the correct code when sending. Keep this placeholder in the message:",
+      "previewHint": "The preview uses an example code and booking. Your studio’s saved email design is applied when the message is sent.",
+      "variablesTitle": "Door access and booking details",
+      "variables": {
+        "entryCode": "Door code (message body only)",
+        "studioName": "Studio location name",
+        "studioAddress": "Studio location address",
+        "bookingTime": "Local booking date and time range",
+        "bookingUrl": "Manage booking link"
+      },
+      "languages": {
+        "cs": "Czech",
+        "en": "English"
+      },
+      "errors": {
+        "incomplete": "Add a subject (up to 200 characters) and message for this language.",
+        "missingCode": "Include the door-code placeholder in the visible message.",
+        "codePlacement": "Keep the code in the message text, outside the subject, links and HTML attributes.",
+        "unknownVariable": "Use only the listed placeholders, with two opening and closing braces."
+      },
+      "close": "Close template",
+      "cancel": "Cancel",
+      "save": "Save template",
+      "saving": "Saving…",
+      "resetting": "Restoring…",
+      "saveError": "The door-code template could not be saved.",
+      "resetError": "The default message could not be restored.",
+      "saveSuccess": "Door-code template saved for {location}.",
+      "resetSuccess": "Default door-code message restored for {location}.",
+      "reset": "Restore default message",
+      "resetConfirm": "Restore the default message for this location? Your saved customization and unsaved changes will be replaced.",
+      "confirmReset": "Restore default",
+      "keepEditing": "Keep editing",
+      "discardConfirm": "You have unsaved changes. Close without saving?",
+      "discard": "Discard changes",
+      "variablesHint": "Click a placeholder to insert it where you are typing. The entry code belongs only in the message body, outside links.",
+      "help": "Template help",
+      "codeReminder": "Keep {code} in the message."
+    },
+    "visualEditor": {
+      "mode": "Editing mode",
+      "visual": "Visual editor",
+      "htmlSource": "HTML source",
+      "loading": "Loading visual editor…",
+      "unsupported": "This template includes advanced HTML formatting. Its original design is preserved in HTML mode.",
+      "toolbar": "Text and design controls",
+      "body": "Body text",
+      "heading1": "Heading 1",
+      "heading2": "Heading 2",
+      "heading3": "Heading 3",
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "fontSize": "Text size",
+      "defaultSize": "Default size",
+      "textColor": "Text colour",
+      "textBackground": "Text background",
+      "alignLeft": "Align left",
+      "alignCenter": "Align centre",
+      "alignRight": "Align right",
+      "bulletList": "Bullet list",
+      "orderedList": "Numbered list",
+      "link": "Add or edit link",
+      "linkUrl": "Link address",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Apply link",
+      "removeLink": "Remove link",
+      "cancelLink": "Cancel",
+      "invalidLink": "Use an http, https or mailto address, or the booking link placeholder. Door codes cannot be used in links.",
+      "undo": "Undo",
+      "redo": "Redo",
+      "blockStyle": "Block design",
+      "blockBackground": "Block background",
+      "blockPadding": "Block spacing",
+      "paddingNone": "None",
+      "paddingSmall": "Small",
+      "paddingMedium": "Medium",
+      "paddingLarge": "Large",
+      "clearBlockStyle": "Clear block background and spacing"
     }
   },
   "AI": {
     "eyebrow": "Studio command layer",
     "commandCenter": {
       "title": "AI Command Center",
-      "description": "Ask about live studio operations, review proposed commands and keep a clear record of every AI-assisted change.",
+      "description": "Choose a relevant question, review studio insights and generate a monthly report when you need more detail.",
       "tabs": {
         "label": "AI Command Center views",
-        "assistant": "Assistant",
+        "assistant": "Overview",
         "advisor": "Advisor",
         "activity": "Action activity"
       },
@@ -6024,8 +6221,8 @@
     },
     "assistant": {
       "name": "Studio Assistant",
-      "title": "AI Command Center",
-      "subtitle": "Answers grounded in your live workspace",
+      "title": "Studio insights",
+      "subtitle": "Pick a question. Get a clear answer.",
       "pageDescription": "Ask operational questions and turn clear instructions into reviewable studio commands.",
       "newConversation": "New conversation",
       "recent": "Recent conversations",
@@ -6478,6 +6675,63 @@
       },
       "defaultLocale": "Default AI language",
       "briefingTime": "Daily briefing time"
+    },
+    "guided": {
+      "title": "What would you like to know?",
+      "description": "Pick a question for a clear answer based on your studio data.",
+      "back": "Choose another question",
+      "retry": "Try again",
+      "loading": "Checking your studio data…",
+      "noAnswer": "We could not find a reliable answer. Try again in a moment.",
+      "contextQuestion": "What should I know about this?",
+      "contextHint": "An answer about the item you selected.",
+      "allStudios": "All studios",
+      "periods": {
+        "today": "Today",
+        "last30Days": "Last 30 days",
+        "current": "Current overview"
+      },
+      "report": {
+        "title": "Want a more detailed overview?",
+        "description": "Monthly studio report for the selected studio, from the start of the month through {date}.",
+        "generate": "Generate monthly report",
+        "open": "Open monthly report",
+        "back": "Back to answer",
+        "ready": "Your monthly report is ready."
+      },
+      "questions": {
+        "today": {
+          "label": "How is the studio doing today?",
+          "hint": "A quick overview of today’s operations.",
+          "prompt": "What is happening in the studio today?"
+        },
+        "bookings": {
+          "label": "How many bookings do we have today?",
+          "hint": "Today’s confirmed reservations.",
+          "prompt": "How many bookings do we have today?"
+        },
+        "bookingTrend": {
+          "label": "Are our bookings growing?",
+          "hint": "Compare the last 30 days with the previous 30.",
+          "prompt": "How are our bookings trending?"
+        },
+        "teamBlockers": {
+          "label": "Is anything blocking the team?",
+          "hint": "Review today’s reported team blockers.",
+          "prompt": "What is blocking our team today?"
+        },
+        "reorders": {
+          "label": "What needs restocking?",
+          "hint": "Check open requests to replenish inventory.",
+          "prompt": "Are there any open reorder requests?"
+        },
+        "generalHelp": {
+          "label": "Which studio data can I review?",
+          "hint": "See the information available to your role.",
+          "prompt": "What studio data can you access?"
+        }
+      },
+      "selectedStudio": "Selected studio"
     }
   },
   "DailyBriefing": {
@@ -6623,7 +6877,10 @@
     },
     "unavailable": {
       "title": "This space is temporarily unavailable",
-      "description": "The space could not be loaded. Please try again in a moment."
+      "description": "The space could not be loaded. Please try again in a moment.",
+      "retry": "Try again",
+      "retrying": "Loading…",
+      "loginDegraded": "The studio details could not be loaded right now."
     },
     "book": {
       "metadataTitle": "Book Open Studio",
@@ -6681,6 +6938,7 @@
         "email": "Email address",
         "quantity": "Quantity",
         "missing": "Choose a voucher and enter a valid email address.",
+        "reselect": "The available vouchers have changed. Select a voucher again to continue.",
         "error": "Checkout could not be started. Please try again.",
         "starting": "Preparing checkout…",
         "continue": "Continue to payment",
@@ -6716,6 +6974,7 @@
       }
     },
     "catalog": {
+      "refreshError": "We couldn’t refresh the offers. You’re viewing the last loaded offers.",
       "loading": "Loading current offers…",
       "error": "The current offers could not be loaded.",
       "retry": "Try again",
@@ -6725,7 +6984,7 @@
       "viewDetails": "Choose a date",
       "continue": "Continue to booking",
       "availability": {
-        "fullWaitlistOpen": "Full · waitlist open"
+        "fullWaitlistOpen": "Full · waiting list open"
       }
     },
     "details": {
@@ -8040,7 +8299,7 @@
       "time": "Time"
     },
     "metrics": {
-      "netSales": "Net sales",
+      "netSales": "Payments received",
       "bookings": "Bookings",
       "utilizationPercent": "Utilization",
       "returningCustomerPercent": "Returning customers"
@@ -8054,7 +8313,7 @@
       "trendDescription": "Verified values across the selected reporting period.",
       "chartMetric": "Chart metric",
       "chartMetrics": {
-        "netSales": "Net sales",
+        "netSales": "Payments received",
         "bookings": "Bookings"
       },
       "chartAccessibleDescription": "{metric} over the selected reporting period. A data table follows the chart for assistive technology.",
@@ -8091,13 +8350,13 @@
       "unavailableDescription": "This account or reporting scope does not have an available sales source.",
       "metrics": {
         "gross": "Gross sales",
-        "net": "Net sales",
+        "net": "Payments received",
         "tax": "Tax / VAT",
         "discounts": "Discounts",
         "refunds": "Refunds",
         "paymentFees": "Payment-provider fees",
-        "orders": "Orders",
-        "averageOrder": "Average order value"
+        "orders": "Payments",
+        "averageOrder": "Average payment"
       },
       "paymentMethods": "Payment methods",
       "currencyTotals": "Totals by currency",
@@ -8110,8 +8369,8 @@
         "method": "Method",
         "amount": "Amount",
         "currency": "Currency",
-        "net": "Net sales",
-        "orders": "Orders",
+        "net": "Payments received",
+        "orders": "Payments",
         "product": "Catalog item",
         "quantity": "Quantity",
         "gross": "Gross sales"
@@ -8122,7 +8381,7 @@
       "unavailableDescription": "This account or reporting scope does not have an available booking source.",
       "metrics": {
         "total": "Bookings",
-        "participants": "Participants",
+        "participants": "Booked seats",
         "cancellations": "Cancellations",
         "noShows": "No-shows",
         "bookedHours": "Booked hours",
@@ -8149,11 +8408,11 @@
       "unavailable": "Customer data is unavailable",
       "unavailableDescription": "This account or reporting scope does not have an available customer source.",
       "metrics": {
-        "unique": "Active customers",
-        "new": "New customers",
-        "returning": "Returning customers",
+        "unique": "Paying customers",
+        "new": "New paying customers",
+        "returning": "Returning paying customers",
         "returningRate": "Returning rate",
-        "averageSpend": "Average spend"
+        "averageSpend": "Average paid spend"
       },
       "contextTitle": "Customer context",
       "contextDescription": "A concise view of acquisition, retention and verified spend.",
@@ -8228,6 +8487,50 @@
       "fri": "Fri",
       "sat": "Sat",
       "sun": "Sun"
+    },
+    "analytics": {
+      "bestMonth": "Best completed month",
+      "completedMonths": "Only fully included, completed months with reliable data can be ranked.",
+      "noBestMonth": "No reliable winning month in this period. Include completed months to compare.",
+      "showYear": "Show this year",
+      "monthRanking": "Monthly payments",
+      "month": "Month",
+      "coverage": "Data coverage",
+      "completeMonth": "Complete month",
+      "partialMonth": "Partial month",
+      "moneyBasis": "Actual payments received in the period, less refunds recorded as of this report. Includes paid memberships, vouchers and credit top-ups once; redemption is not another payment. This is not profit.",
+      "asOf": "As of",
+      "customerTable": "Customer analysis",
+      "customerHelp": "Combine filters to find customers to follow up with.",
+      "inactiveCredit": "Inactive for 90 days with credit:",
+      "showCustomers": "Show customers",
+      "spending": "Payments received",
+      "credits": "Current credit",
+      "cancellations": "Cancelled bookings",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "actor": "Cancelled by",
+      "actor_all": "Anyone",
+      "actor_customer": "Customer",
+      "actor_staff": "Staff",
+      "inactiveDays": "Inactive for at least (days)",
+      "dateDefaults": "Empty date fields use the report period above.",
+      "cancellationCoverage": "Older cancellations may lack a reliable date or initiator. A count with + is a known minimum; unknown does not mean zero. Maximum-count filters require complete history.",
+      "invalidBounds": "Enter valid numbers and date ranges, with minimum no greater than maximum.",
+      "apply": "Apply filters",
+      "clear": "Clear filters",
+      "exportCustomers": "Export all matching customers",
+      "noCustomers": "No customers match these filters.",
+      "customer": "Customer",
+      "lastActivity": "Last activity",
+      "locationScope": "Studio totals exclude payments without a reliable studio allocation. Memberships, vouchers and credit top-ups may only be included in the workspace view.",
+      "incompleteData": "Some sources are incomplete or unavailable. Only verifiable records are included; missing values are not zero.",
+      "paymentSources": "Payment sources",
+      "source_external_payment": "Order payments",
+      "source_voucher": "Voucher purchases",
+      "source_membership": "Membership payments",
+      "source": "Source",
+      "noPaymentSources": "No payment source data is available."
     }
   },
   "Inventory": {
@@ -9036,7 +9339,7 @@
         "invoices": "Invoices",
         "account": "Account",
         "notifications": "Notifications",
-        "waitlists": "Waitlists",
+        "waitlists": "Waiting list",
         "courses": "Courses"
       },
       "navigationLabels": {
@@ -9067,10 +9370,20 @@
         "headline": "Course page heading",
         "intro": "Course page introduction",
         "image": "Course page photo",
-        "inherit": "Empty fields use your shared course page text and brand cover photo.",
+        "inherit": "Empty fields use shared course text, the course page image, or the brand cover photo when no course image is set.",
         "noLocations": "Add a studio location to customize its course page.",
         "guestCheckoutEnabled": "Allow course purchases without an account",
         "guestCheckoutDescription": "Applies to all studios. Guests can buy a course without creating an account; customers can still sign in to book. Requires visible course pages and ready online payments. Publish changes to apply this setting."
+      },
+      "pageImages": {
+        "title": "Page header images",
+        "description": "Choose a different image for each public or customer page. Booking calendars keep their compact text header.",
+        "page": "Page to customize",
+        "image": "Page header image",
+        "hint": "Use a landscape photo. Removing it restores a text-only header. A studio-specific course image still takes priority.",
+        "preview": "Preview this header",
+        "previewDescription": "Preview your page image with the selected colors and typography.",
+        "products": "Products"
       }
     },
     "preview": {
@@ -9090,7 +9403,8 @@
         "login": "Login",
         "register": "Registration",
         "portal": "Customer dashboard",
-        "portalCourses": "Customer courses"
+        "portalCourses": "Customer courses",
+        "portalPageHero": "Page headers"
       },
       "nav": {
         "book": "Open Studio",
@@ -9212,6 +9526,31 @@
         "team": "Team",
         "faq": "FAQ"
       }
+    },
+    "customLinks": {
+      "title": "Custom links",
+      "addGroup": "Add dropdown group",
+      "group": "Dropdown group",
+      "children": "Links in this group",
+      "button": "Show as the main button",
+      "separator": "Show a divider before this link",
+      "layout": "Header layout",
+      "defaultLayout": "Standard booking header",
+      "websiteLayout": "Website navigation",
+      "background": "Header background",
+      "linkColor": "Header link color",
+      "buttonColor": "Header button color",
+      "header": "Add links after the standard navigation. Hide standard items above if you want a fully custom menu.",
+      "footer": "Add more links to Explore in the footer. Links already shown in the header are included automatically.",
+      "label": "Link text",
+      "href": "Destination URL",
+      "add": "Add link",
+      "remove": "Remove link",
+      "up": "Move link up",
+      "down": "Move link down",
+      "count": "links",
+      "hint": "Use https://… or a path starting with /. Fill in text and URL together; leave both empty to use another language.",
+      "invalid": "Enter link text and a valid HTTPS URL or path in at least one language. Each language needs both fields, or both empty."
     }
   },
   "Onboarding": {
@@ -9445,7 +9784,8 @@
     },
     "product": {
       "metaTitle": "Everything your space needs, working together.",
-      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day."
+      "metaDescription": "Connect your bookings, members, payments, team and public website. Keep your attention on your people while Shario helps you organize the day.",
+      "viewScreenshot": "View full screenshot"
     },
     "studioAi": {
       "metaTitle": "A helping hand for everyday work.",
@@ -9487,13 +9827,14 @@
       "from": "from",
       "customAnnual": "Custom annual plan",
       "mostPopular": "Most popular",
+      "includesPrevious": "Everything in {plan}, plus:",
       "starter": {
         "name": "Starter",
         "description": "Start with bookings, payments, classes and events for your space.",
         "feature1": "1 studio location · 1 team account",
         "feature2": "Classes, private events and vouchers",
         "feature3": "500 included emails per month",
-        "feature4": "Limited Shario AI · 200 credits per month",
+        "feature4": "Studio website and customer portal",
         "cta": "Start free trial"
       },
       "professional": {
@@ -9501,8 +9842,9 @@
         "description": "Connect memberships, shared spaces and everyday operations.",
         "feature1": "1 studio location · 3 team accounts",
         "feature2": "Memberships, bookings and shared resources",
-        "feature3": "3 active automations · 2,500 emails per month",
-        "feature4": "Full Shario AI · 2,000 credits per month",
+        "feature3": "Inventory and staff tasks",
+        "feature4": "3 active automations · 2,500 emails per month",
+        "feature5": "Shario AI · 2,000 credits per month",
         "cta": "Start free trial"
       },
       "studioPlus": {
@@ -9511,16 +9853,16 @@
         "feature1": "Up to 2 studio locations · 6 team accounts",
         "feature2": "Access codes and a custom domain",
         "feature3": "Advanced automations · 5,000 emails per month",
-        "feature4": "Full AI suite · 10,000 credits per month",
+        "feature4": "Advanced Shario AI · 10,000 credits per month",
         "cta": "Start free trial"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Run your organization with tailored capacity, governance and support.",
-        "feature1": "Unlimited locations and team accounts",
+        "feature1": "Location and team capacity by agreement",
         "feature2": "Custom automation, email and AI allowances",
-        "feature3": "SSO/SCIM, API, webhooks and audit logs",
-        "feature4": "Dedicated onboarding, migration and SLA",
+        "feature3": "Discuss integration and governance requirements",
+        "feature4": "Onboarding, migration and support by agreement",
         "cta": "Start free trial"
       },
       "note": "Prices exclude applicable taxes. Annual self-serve plans include two months free. Essential system emails do not count toward plan email allowances, and AI usage stops at the included allowance—there are no automatic overage charges.",
@@ -10830,7 +11172,7 @@
       "all": "All categories",
       "bookings": "Bookings",
       "payments": "Payments",
-      "waitlist": "Waitlist",
+      "waitlist": "Waiting list",
       "tasks": "Tasks",
       "inventory": "Inventory",
       "migration": "Migration",
@@ -10978,7 +11320,7 @@
       "all": "All categories",
       "bookings": "Bookings",
       "payments": "Payments",
-      "waitlist": "Waitlist",
+      "waitlist": "Waiting list",
       "memberships": "Memberships",
       "credits_vouchers": "Credits and vouchers",
       "account": "Account"
@@ -11114,8 +11456,8 @@
     "location": "Studio location",
     "chooseLocation": "Choose a location",
     "scopeNotice": {
-      "title": "Inventory only — your lock stays manual",
-      "description": "Shario stores readiness and sending eligibility. It cannot program, test, disable or expire a code on the physical lock, and this phase does not send codes by email."
+      "title": "Manage physical locks manually",
+      "description": "Program and test codes on your physical lock yourself. Shario cannot change, disable or expire codes on the lock. Manage automatic email delivery for eligible bookings in Messages → Automations."
     },
     "disabled": {
       "title": "Door access is turned off",
@@ -11181,7 +11523,7 @@
     "types": {
       "single_booking": {
         "label": "Single booking",
-        "description": "Reserved for one booking by a future automation. This does not make the physical lock code one-time."
+        "description": "Reserved for one booking. This does not make the physical lock code one-time."
       },
       "reusable": {
         "label": "Reusable",
@@ -11272,7 +11614,7 @@
       "programmedAndTested": "I confirm this code is programmed and tested",
       "programmedAndTestedHint": "Confirmed codes can become available. Shario cannot verify the physical lock itself.",
       "notes": "Internal notes",
-      "emergencyExplanation": "Emergency reserve codes stay outside the normal pool. Automatic fallback and email delivery will be added in a later phase.",
+      "emergencyExplanation": "Emergency reserve codes stay outside the normal pool and are not sent automatically. Automatic emergency fallback is not available.",
       "errors": {
         "codeRequired": "Enter a door code.",
         "expiryRequired": "Choose an expiry date or select Never expires.",
@@ -11342,6 +11684,13 @@
     "notEntitled": {
       "title": "Door access is not included in this plan",
       "description": "Review plan options or ask a workspace owner about Door access."
+    },
+    "emailTemplate": {
+      "title": "Door-code email",
+      "description": "Create or edit the automatic door-code email for this location. Each location has one template, shared with Messages → Email templates.",
+      "create": "Create template",
+      "createFor": "Create door-code template for {location}",
+      "locationUnavailable": "No door-code email template is available for this location."
     }
   },
   "VoucherFoundation": {
@@ -12135,6 +12484,413 @@
     "acceptError": "The invitation could not be accepted. Check your details or ask for a new invitation.",
     "passwordReady": "I have set my password"
   },
+  "StudioManagement": {
+    "todayEyebrow": "Studio overview",
+    "todayNumbers": "Daily studio numbers",
+    "todayBookings": "Bookings",
+    "selectedDate": "On the selected day",
+    "expectedVisitors": "Expected visitors",
+    "bookedParticipants": "Participants in scheduled bookings",
+    "expectedNow": "In the studio now (estimated)",
+    "expectedNowBasis": "People with a booking in progress; presence is not confirmed",
+    "nextSession": "Next booking",
+    "noUpcomingSession": "No upcoming booking",
+    "attentionTitle": "Needs your attention",
+    "review": "Review",
+    "generateReport": "Generate AI report",
+    "generating": "Preparing report…",
+    "reportPermission": "AI reports require access to the studio assistant.",
+    "reportError": "The report could not be generated. Please try again.",
+    "operationsError": "Daily studio data could not be loaded.",
+    "managementError": "Monthly studio data could not be loaded.",
+    "retry": "Try again",
+    "loadingPerformance": "Loading studio performance…",
+    "performanceEyebrow": "Studio performance",
+    "monthTitle": "This month so far",
+    "comparison": "Compared with {period}",
+    "comparedWithPrevious": "compared with the previous period",
+    "unavailable": "Data unavailable",
+    "revenue": "Delivered revenue",
+    "revenueBasis": "Services provided and products delivered during the period",
+    "revenueUnavailable": "Total delivered revenue is not yet available: delivery records do not cover all services and products. Cash receipts are reported separately.",
+    "confirmedRevenue": "Confirmed completed services: {amount}.",
+    "visits": "Participants in past bookings",
+    "visitsBasis": "Participants in elapsed bookings; attendance is not verified",
+    "newClients": "New booked customers",
+    "newClientsBasis": "First recorded booking in the selected studios; not necessarily new to the whole business",
+    "last30Days": "Last 30 days",
+    "arrivalTitle": "When clients arrive",
+    "scheduledArrivalTitle": "When visits are scheduled",
+    "hourlyAttendance": "Participants by start hour",
+    "hourCount": "{hour}:00 — {count} participants",
+    "busiestHour": "Busiest scheduled hour: {from}:00–{to}:00",
+    "recordedBusiestHour": "Busiest arrival hour: {from}:00–{to}:00",
+    "recordedSample": "Based on {count} recorded arrivals",
+    "scheduledSample": "Based on {count} scheduled participants",
+    "scheduledCaveat": "Booking start times show the current schedule. Quiet hours alone do not prove demand for new sessions.",
+    "noAttendance": "Not enough activity to show a pattern yet.",
+    "other": "Other",
+    "topClients": "Top 5 clients",
+    "rankingBy": "Rank clients by",
+    "clientVisitsBasis": "Participants in elapsed bookings in this period",
+    "clientRevenueBasis": "Revenue from confirmed completed services in this period",
+    "unnamedClient": "Unnamed client",
+    "noClients": "No clients recorded for this period.",
+    "confirmedOnly": "Confirmed completed services only; other delivery records are unavailable.",
+    "topProducts": "Top 3 products",
+    "byQuantity": "By quantity",
+    "deliveredProductsBasis": "Confirmed completed services, ranked by quantity",
+    "noProducts": "No completed products recorded for this period.",
+    "unnamedProduct": "Unnamed product",
+    "units": "units",
+    "coverageTitle": "Data coverage and limitations",
+    "coverageDescription": "Unavailable data stays unavailable. Scheduled activity and confirmed delivery are identified separately.",
+    "openReports": "Open detailed reports",
+    "back": "Back to dashboard",
+    "reportTitle": "Studio report",
+    "exporting": "Preparing PDF…",
+    "exportPdf": "Export PDF",
+    "exportError": "The PDF could not be downloaded. Please try again.",
+    "aiReport": "AI studio report",
+    "verifiedReport": "Studio data report",
+    "deterministicNote": "AI commentary is unavailable. This report contains the saved studio figures and a factual summary.",
+    "reportHighlights": "Highlights",
+    "reportAttention": "Needs attention",
+    "reportRecommendations": "Suggested next steps",
+    "generatedAt": "Generated {date}",
+    "issues": {
+      "overdueTasks": "{count} overdue tasks",
+      "lowStock": "{count} low-stock items",
+      "failedEmails": "{count} failed emails",
+      "overduePayments": "{count} overdue payments",
+      "overdueOrders": "{count} overdue custom orders",
+      "other": "{count} items need review",
+      "failed_emails": "{count} failed emails",
+      "overdue_custom_orders": "{count} overdue custom orders",
+      "overdue_invoices": "{count} overdue payments"
+    },
+    "staleData": "The latest refresh failed. Previously loaded data is shown.",
+    "refreshingData": "Refreshing studio data…",
+    "coverageReportDetails": "Generate a studio report to see the available sources and limitations for each metric.",
+    "dismissAttention": "Hide attention card",
+    "showAttention": "Show alerts ({count})",
+    "customerId": "Customer ID {id}",
+    "spentMonth": "Spent in selected month",
+    "spentTotal": "Total spent",
+    "clientSpendingBasis": "Customer payments after recorded refunds across all studios. Month: {period}; total through the selected date.",
+    "spendingUnavailable": "Spending data is unavailable for this view.",
+    "previousValue": "Previous period: {value}",
+    "revenueUnavailableShort": "Unavailable — delivery records are incomplete.",
+    "totalCustomers": "Total customers",
+    "workspaceCustomersScope": "Registered across all studios",
+    "newRegisteredThisMonth": "New this month",
+    "activeCustomers": "Active customers",
+    "activeCustomersBasis": "Booked in the last 30 days",
+    "selectedStudiosScope": "Selected studios",
+    "workspaceScope": "All studios",
+    "activeSubscribers": "Active subscribers",
+    "newSubscribersThisMonth": "New subscribers this month",
+    "subscriberBasis": "Each person once. New means their first subscription; renewals are excluded.",
+    "missingMetric": "— Data unavailable",
+    "asOfDate": "As of {date}",
+    "subscriberSelectedScope": "Memberships valid at the selected studios",
+    "recordedPayments": "Recorded payments",
+    "recordedPaymentsBasis": "Payments received in the selected month, net of recorded refunds",
+    "paymentsUnavailable": "Payment data unavailable.",
+    "spending": "Amount spent",
+    "clientPaymentsBasis": "Ranked by recorded customer payments in the selected month, net of recorded refunds, across all studios",
+    "noCustomerPayments": "No verified customer payments for this period.",
+    "spendingIncomplete": "Some totals are unavailable because the payment history is incomplete.",
+    "paymentRankingIncomplete": "Ranking uses verified payment amounts; incomplete records may affect the order.",
+    "byPurchases": "By purchases",
+    "purchasedProductsBasis": "Paid orders containing each product · Last 30 days: {period}",
+    "noPurchasedProducts": "No verified paid product purchases in the last 30 days.",
+    "purchases": "purchases",
+    "purchasesIncomplete": "Some purchases cannot be verified; this ranking may be incomplete.",
+    "knownAmount": "Known amount",
+    "knownPaymentsOnly": "Known payments only; some payment records are incomplete."
+  },
+  "UnifiedSettings": {
+    "title": "Settings",
+    "description": "Your preferences and studio settings in one place.",
+    "navigation": "Settings sections",
+    "studioTitle": "Studio",
+    "personalTitle": "My settings",
+    "studioScope": "For the whole studio",
+    "personalScope": "Only for you",
+    "studioDescription": "Shared settings for this studio. You only see the areas you have access to.",
+    "personalDescription": "Manage your account and how you work in this studio. These preferences do not change other team members’ settings.",
+    "personalProfileScope": "Your profile and password apply to your account across studios.",
+    "personalPreferencesScope": "These preferences apply only to you in this studio.",
+    "locationScope": "Only the {name} location",
+    "newLocationScope": "Settings for the new location",
+    "backTo": "Back to {section}",
+    "searchLabel": "Search settings",
+    "searchStudio": "Search studio settings…",
+    "searchPersonal": "Search my settings…",
+    "clearSearch": "Clear search",
+    "searchResults": "{count, plural, one {# setting found} other {# settings found}}",
+    "advancedTitle": "Advanced settings",
+    "advancedDescription": "Enabled features, navigation and data imports.",
+    "emptyTitle": "No matching settings",
+    "emptyDescription": "Try another term, or clear the search to see all available settings in this section.",
+    "setupTitle": "Finish setting up your studio",
+    "setupProgress": "{completed} of {total} required steps complete.",
+    "setupAction": "Continue setup",
+    "groups": {
+      "workspace": {
+        "title": "Studio & locations",
+        "description": "Studio details, shared language, currency and locations."
+      },
+      "access": {
+        "title": "Team & access",
+        "description": "Team members, roles and door access."
+      },
+      "website": {
+        "title": "Website & branding",
+        "description": "Public website, booking pages and visual identity."
+      },
+      "payments": {
+        "title": "Payments from customers",
+        "description": "Payment methods and customer payment settings."
+      },
+      "communications": {
+        "title": "Messages & automation",
+        "description": "Email delivery, senders and AI assistance."
+      },
+      "account": {
+        "title": "Shario subscription",
+        "description": "Your studio’s plan, invoices and billing details."
+      },
+      "advanced": {
+        "title": "Features & data",
+        "description": "Configure modules and bring data into your studio."
+      },
+      "profile": {
+        "title": "Profile & security",
+        "description": "Your name, contact details and password across studios."
+      },
+      "preferences": {
+        "title": "My working environment",
+        "description": "Your calendar, time zone and default location in this studio."
+      },
+      "notifications": {
+        "title": "My notifications",
+        "description": "Choose the updates you receive in this studio."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Studio details",
+        "description": "Name, language, time zone and currency."
+      },
+      "locations": {
+        "title": "Locations",
+        "description": "Addresses, rooms and opening hours."
+      },
+      "team": {
+        "title": "Team members",
+        "description": "Invite people and manage team membership."
+      },
+      "roles": {
+        "title": "Roles & permissions",
+        "description": "Who can access each part of the studio."
+      },
+      "accessCodes": {
+        "title": "Door access",
+        "description": "Door codes and entry access."
+      },
+      "publicSite": {
+        "title": "Website & booking pages",
+        "description": "Branding, public pages and customer experience."
+      },
+      "payments": {
+        "title": "Payment methods",
+        "description": "Online payments and Stripe connection."
+      },
+      "invoicing": {
+        "title": "Customer invoicing",
+        "description": "Invoices and customer billing."
+      },
+      "communications": {
+        "title": "Email & senders",
+        "description": "Delivery, sending domains and message settings."
+      },
+      "ai": {
+        "title": "AI assistant",
+        "description": "AI features and automation settings."
+      },
+      "billing": {
+        "title": "Plan & billing",
+        "description": "Shario subscription, invoices and billing details."
+      },
+      "modules": {
+        "title": "Features & navigation",
+        "description": "Enable modules and choose navigation items."
+      },
+      "migration": {
+        "title": "Import data",
+        "description": "Import customers, bookings and other studio data."
+      },
+      "profile": {
+        "title": "Edit profile & password",
+        "description": "Your name, contact details and password across studios."
+      },
+      "preferences": {
+        "title": "Calendar & display",
+        "description": "Your calendar, time zone and default location in this studio."
+      },
+      "notifications": {
+        "title": "Notification preferences",
+        "description": "Booking, task and inventory alerts; email and in-app updates."
+      }
+    },
+    "language": {
+      "label": "App language",
+      "change": "Change language",
+      "sharedScope": "Shared by the whole studio team.",
+      "managedByAdmin": "Your studio administrator manages this language."
+    },
+    "plan": {
+      "label": "Current plan",
+      "details": "Plan details",
+      "loading": "Loading plan…",
+      "unavailable": "Plan unavailable",
+      "detailsUnavailable": "Plan details are temporarily unavailable."
+    }
+  },
+  "MarketingPlanComparison": {
+    "eyebrow": "Find your fit",
+    "title": "See what changes between plans.",
+    "description": "Compare current plans for new subscriptions. Existing subscriptions may retain an earlier plan version.",
+    "caption": "Current studio plan feature comparison",
+    "feature": "Feature or allowance",
+    "scrollLabel": "Plan comparison — scroll horizontally to see every plan",
+    "shared": "Every plan includes classes, waiting lists, vouchers, a branded booking website, a customer portal and CSV imports.",
+    "rows": {
+      "locations": "Studio locations",
+      "teamAccounts": "Team accounts",
+      "openStudioMemberships": "Open Studio, memberships and credit packs",
+      "inventoryTasks": "Inventory and staff tasks",
+      "automations": "Active custom automations",
+      "emails": "Included emails per month",
+      "studioAssistant": "Studio Assistant",
+      "aiCredits": "AI credits per month",
+      "briefingKnowledge": "Daily briefings and Knowledge Hub",
+      "advancedAi": "Business Advisor, customer concierge and AI report insights",
+      "accessCodes": "Entry-code management and emails",
+      "customDomain": "Custom domain"
+    },
+    "values": {
+      "included": "Included",
+      "notIncluded": "Not included",
+      "basic": "Basic",
+      "full": "Full",
+      "limited": "Limited",
+      "advanced": "Advanced"
+    },
+    "trialNote": "The 14-day trial includes Professional features. Entry codes, custom domains and the advanced AI tools shown above require Space Plus or an agreed Enterprise plan.",
+    "usageNote": "Essential system emails do not count toward the email allowance. AI credits are shared across enabled AI tools; usage pauses at the allowance without automatic overage charges. Available tools also depend on your studio settings and team permissions.",
+    "accessNote": "Entry codes work with your own access system and codes uploaded to Shario. Smart-lock hardware and integrations are not included.",
+    "enterpriseTitle": "Need a tailored setup?",
+    "enterpriseDescription": "Talk to us about Enterprise capacity, integrations, migration and support. We will confirm the scope and terms for your studio before you choose.",
+    "enterpriseCta": "Discuss Enterprise"
+  },
+  "PricingDetails": {
+    "feeNote": "Shario charges no transaction commission. Stripe processing fees for customer payments are separate from your subscription. Prices exclude applicable taxes.",
+    "feeLink": "Payment fees, trial and cancellation details",
+    "links": {
+      "stripePricing": "Check Stripe pricing for your country",
+      "refundContact": "Ask about a subscription refund",
+      "studioAi": "Explore Shario AI",
+      "refundTerms": "Read the full Terms and refund exceptions"
+    },
+    "faq": {
+      "title": "Before you choose a plan",
+      "description": "Know what you pay, when changes take effect and what happens after your trial.",
+      "trial": {
+        "question": "What happens when my trial ends?",
+        "answer": "Your 14-day Professional trial starts when you complete onboarding. No card is required. Without an active paid subscription, new bookings, online purchases and workspace features pause when the trial ends. Existing customer booking history and billing recovery remain available; trial expiry does not delete studio data. Plan checkout is unavailable in the final 48 hours of a trial to prevent an early charge. You can subscribe after the trial ends."
+      },
+      "cancellation": {
+        "question": "When does cancellation take effect?",
+        "answer": "Cancelling a paid subscription stops its next renewal. You keep access until the end of your current paid billing period, and can undo the cancellation before then. Cancelling a card-free trial ends that trial immediately. After access ends, new bookings, online purchases and workspace features are restricted. Restricted access is not a full read-only workspace: general reports and exports may be unavailable. Export needed records before access ends, or contact hello@shario.io about data return or deletion. Records are not automatically deleted at expiry, but indefinite retention is not promised."
+      },
+      "refunds": {
+        "question": "Does cancellation automatically refund unused time?",
+        "answer": "Cancelling an annual or monthly subscription stops its next renewal; eligible paid access continues until the current period ends. Voluntary cancellation, unused time and unused allowances are not refundable, except under mandatory law, an express written agreement or the remedies in our Terms. If Shario ends paid service early for convenience, or you terminate for our material breach that remains unremedied 30 days after written notice, we refund the unused prepaid portion from the effective termination date. We also refund the unused prepaid portion if you terminate because an adverse terms change must take effect during an existing prepaid period. If we cannot resolve a justified data-protection objection to a new or replacement data-processing provider (subprocessor) with a reasonable alternative, you may end the affected service and receive its unused prepaid portion. Cancellation itself does not automatically issue a refund. Contact us to request the applicable remedy."
+      },
+      "planChanges": {
+        "question": "When do upgrades and downgrades take effect?",
+        "answer": "For paid subscriptions, moving to a higher plan takes effect immediately once any required payment is completed, with a prorated invoice. Moving to a lower plan takes effect at the end of the current billing period. On the same plan, monthly to yearly billing is immediate once any required payment completes, and yearly to monthly billing starts next period. Review the effective date and billing preview before confirming."
+      },
+      "payments": {
+        "question": "Are customer payment fees included?",
+        "answer": "Online customer payments are processed through your connected Stripe account. Shario does not charge a transaction commission. Stripe processing fees are separate from your Shario subscription and depend on your country, payment method and Stripe agreement. Your studio subscription is billed separately from the payments your customers make."
+      }
+    },
+    "definitions": {
+      "title": "What the plan features mean",
+      "automations": {
+        "question": "What counts as an active automation?",
+        "answer": "An active automation is a custom rule that is enabled to run: for example, scheduling studio arrival instructions one day after a customer registers. The limit counts enabled rules, not saved drafts or how often a rule runs. Starter includes no custom rules; Professional allows 3. Space Plus uses the same event-based builder and allows more than 3 active rules, with 5,000 metered emails per month. Each rule counts toward the automation limit and its metered emails count toward the email allowance. Standard system emails are separate."
+      },
+      "studioAi": {
+        "question": "Which Shario AI tools do I get?",
+        "answer": "Professional provides 2,000 AI credits per month and includes Studio Assistant, daily briefings and Knowledge Hub. Space Plus provides 10,000 credits and adds Business Advisor, customer concierge and AI report insights. Tools depend on your studio setup and team permissions; supported actions require confirmation."
+      },
+      "aiCredits": {
+        "question": "Does one AI credit mean one question?",
+        "answer": "AI credits measure text processed and generated, not a fixed number of questions. For example, a short operation using 750 tokens (pieces of text) uses 1 credit; a 2,500-token operation with sufficient budget uses 3. A question can involve several operations, and knowledge lookups or document indexing can add usage. These are examples, not guaranteed costs per question. Credits are shared across enabled tools each month. A request needs enough remaining credits to run; there are no automatic overage charges."
+      },
+      "emails": {
+        "question": "What happens when the email allowance runs out?",
+        "answer": "The monthly allowance covers metered automation emails. When it is used up, an affected automation email is skipped; it is not automatically queued for next month. Essential account emails and supported built-in operational messages do not count toward this allowance. Labelling your own automation transactional does not make it exempt. Check workspace usage and change plan or contact us if you need more capacity."
+      }
+    }
+  },
+  "RefundReviews": {
+    "title": "Refund reviews",
+    "description": "Review refunds recorded from Stripe and document what happens to the related customer benefits.",
+    "benefitsNotice": "Recording or acknowledging a refund does not cancel a booking or membership, remove credits, or make another payment. Review the affected benefits separately before recording your decision.",
+    "allLocationsRequired": "Refund reviews require payment access to all studio locations.",
+    "refresh": "Refresh",
+    "loading": "Loading refund reviews…",
+    "empty": "No unresolved refund reviews on this page.",
+    "loadError": "Refund reviews could not be loaded. Refresh to try again.",
+    "needsReview": "Benefit review required",
+    "needsRepair": "Payment reconciliation needs attention",
+    "reference": "Review reference",
+    "order": "Order",
+    "membership": "Membership",
+    "paid": "Original payment",
+    "refunded": "Refunded",
+    "pending": "Refund pending",
+    "failed": "Refund failed",
+    "repairNotice": "This payment is not fully reconciled. Refresh or contact support to repair the payment association before recording a review.",
+    "readOnly": "A team member with refund permission can record the review.",
+    "review": "Record review",
+    "note": "Decision or adjustments made (10–2000 characters)",
+    "evidence": "Evidence or reference supporting the decision (10–2000 characters)",
+    "confirm": "I checked the affected benefits and documented any adjustments or my decision to retain them.",
+    "save": "Acknowledge review",
+    "cancel": "Cancel",
+    "saved": "Review recorded. Customer benefits have not been changed by this action.",
+    "changed": "This refund changed or is still being reconciled. The list has been refreshed; review the current details before submitting again.",
+    "saveError": "The review could not be saved. Your notes are still here; try again.",
+    "permissionError": "You no longer have permission to record this review. Ask a team member with refund access to all locations.",
+    "pagination": "Refund review pages",
+    "firstPage": "First page",
+    "nextPage": "Next page"
+  },
+  "PaymentRefundResult": {
+    "title": "Payment needs studio review",
+    "description": "A refund has been recorded or this payment requires review. This page does not confirm a new booking, credit balance or membership benefit.",
+    "next": "Contact the studio with the reference below before making another payment.",
+    "reference": "Reference",
+    "back": "Back to studio",
+    "refresh": "Check status"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Good spaces bring people together",
@@ -12296,7 +13052,8 @@
       "about": "How it works",
       "login": "Log in",
       "register": "Start free trial",
-      "copyright": "© {year} Shario. All rights reserved."
+      "copyright": "© {year} Shario. All rights reserved.",
+      "contact": "Contact"
     }
   },
   "Legacy": {
@@ -13314,7 +14071,11 @@
       "loginDescription": "Sign in to your {studio} account.",
       "registerDescription": "Create your account to book at {studio}.",
       "studioFallback": "Your studio"
-    }
+    },
+    "USER_EMAIL_CHANGE_WARNING": "Changing the email signs this customer out of all sessions and requires them to verify the new address.",
+    "USER_EMAIL_VERIFICATION_SENT": "Email updated. Existing sessions were ended and a verification link was sent to the new address.",
+    "USER_EMAIL_VERIFICATION_RETRY": "Email updated and existing sessions ended. Verification email delivery could not be confirmed. The customer can request another link on the studio's email verification page.",
+    "USER_EMAIL_UPDATE_FAILED": "The customer could not be updated. Check the email and try again."
   },
   "AIProduct": {
     "briefing": {
@@ -13395,16 +14156,31 @@
       "message041": "There is not yet enough data coverage for a reliable recommendation.",
       "message042": "Start with the highest-priority opportunities",
       "message043": "A few opportunities are worth reviewing",
-      "message044": "The advisor found {value1} recommendations grounded in verified studio data."
+      "message044": "The advisor found {value1} recommendations grounded in verified studio data.",
+      "message045": "Review the decline in received payments",
+      "message046": "Received payments after refunds are {value1}% lower than the comparison period.",
+      "message047": "Received payments after refunds"
     }
   },
   "PaymentCancellation": {
-    "badge": "Payment cancelled",
-    "nextSteps": "What you can do next",
-    "retry": "Try again — sometimes a second attempt works.",
-    "card": "If you used Apple Pay / Google Pay, try paying by card instead.",
-    "contact": "If it keeps happening, message us and we’ll help.",
     "home": "Back to home",
-    "chargeNotice": "No charge is made until the payment is completed."
+    "title": "Back from payment",
+    "description": "Returning from the payment page does not cancel a booking. You can check its status in your bookings.",
+    "creditsHint": "To pay with credits, open your unpaid booking and cancel it first. Then select the time again. If this option is unavailable, contact the studio.",
+    "backToBookings": "Back to bookings"
+  },
+  "PendingBookingPayment": {
+    "title": "Want to change how you pay?",
+    "explanation": "Your unpaid booking may still hold your place. To pay with credits instead of a card, or to start again, cancel it first. This button cancels all unpaid bookings in this payment.",
+    "action": "Cancel unpaid bookings",
+    "busy": "Checking payment and cancelling the booking…",
+    "cancelled": "The unpaid bookings in this payment are cancelled. Return to your cart or select the time again, then choose studio credits. Availability and price will be checked again.",
+    "paid": "Payment has already completed. Your booking was not cancelled. Check its status.",
+    "pending": "Payment is still being verified. Nothing has been cancelled. Check the payment status before making another booking for the same time.",
+    "unsupported": "This payment cannot be cancelled here. Open your bookings or contact the studio.",
+    "missing": "This order could not be found. Open your bookings or contact the studio.",
+    "error": "Cancellation could not be confirmed. Please try again. Contact the studio if the problem continues.",
+    "status": "Check payment status",
+    "bookAgain": "Select a time again"
   }
 }

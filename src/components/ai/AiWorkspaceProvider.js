@@ -30,7 +30,7 @@ import {
 } from "@/lib/features/auth/authSlice";
 import { selectActiveStudioId } from "@/lib/features/studio/studioContextSlice";
 
-import StudioAssistantConversation from "./StudioAssistantConversation";
+import StudioAssistantQuestions from "./StudioAssistantQuestions";
 import {
   buildWorkspaceAssistantContext,
   getWorkspaceAssistantContextScope,
@@ -140,7 +140,7 @@ export default function AiWorkspaceProvider({ children }) {
               data-dialog-layout="drawer"
               data-ai-assistant-drawer
               transition
-              className="flex h-full w-full max-w-[440px] transform flex-col border-l border-line/80 bg-canvas shadow-[-12px_0_40px_rgb(31_31_31/0.08)] transition duration-300 ease-out data-closed:translate-x-full"
+              className="flex h-full w-full max-w-[520px] transform flex-col border-l border-line/80 bg-canvas shadow-[-12px_0_40px_rgb(31_31_31/0.08)] transition duration-300 ease-out data-closed:translate-x-full"
             >
               <header className="flex min-h-[72px] items-center gap-3 border-b border-line/80 bg-white px-4">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-cobalt-50 text-cobalt-600">
@@ -174,7 +174,7 @@ export default function AiWorkspaceProvider({ children }) {
                   starterPrompt={assistantRequest?.starterPrompt}
                 />
               ) : (
-                <StudioAssistantConversation
+                <StudioAssistantQuestions
                   key={assistantRequest?.requestId ?? "general"}
                   compact
                   assistantContext={

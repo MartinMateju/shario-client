@@ -235,7 +235,10 @@ describe("WorkspaceNotificationsPage", () => {
 
     expect(
       screen.getByRole("link", { name: "Notification preferences" }),
-    ).toHaveAttribute("href", "/app/preferences");
+    ).toHaveAttribute(
+      "href",
+      "/app/settings/preferences#notification-preferences",
+    );
     expect(
       screen.getByRole("navigation", { name: "Notification pages" }),
     ).toBeVisible();

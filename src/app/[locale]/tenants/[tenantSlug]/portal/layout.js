@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import TenantSurfaceBoundary from "@/components/auth/TenantSurfaceBoundary";
+import FullMessagesProvider from "@/components/i18n/FullMessagesProvider";
 import CustomerStudioConcierge from "@/components/ai/CustomerStudioConcierge";
 import CustomerTenantShell from "@/components/customer-shell/CustomerTenantShell";
 import CustomerPortalLocationProvider, {
@@ -43,21 +44,27 @@ export default async function CustomerPortalLayout({ children, params }) {
    * it loads the customer's studios.
    */
   return (
-    <CustomerPortalLocationProvider>
-      <CustomerTenantShell tenant={tenant} degraded={degraded} surface="portal">
-        <TenantSurfaceBoundary surface="portal">
-          <CustomerPortalLocationGate key="customer-portal-location-gate">
-            <CustomerPortalPageGate>
-              <>
-                {children}
-                <CustomerPortalProductTour enabled={!degraded} />
-              </>
-            </CustomerPortalPageGate>
-            <CustomerPortalCartHost />
-          </CustomerPortalLocationGate>
-          <CustomerStudioConcierge key="customer-studio-concierge" />
-        </TenantSurfaceBoundary>
-      </CustomerTenantShell>
-    </CustomerPortalLocationProvider>
+    <FullMessagesProvider locale={locale}>
+      <CustomerPortalLocationProvider>
+        <CustomerTenantShell
+          tenant={tenant}
+          degraded={degraded}
+          surface="portal"
+        >
+          <TenantSurfaceBoundary surface="portal">
+            <CustomerPortalLocationGate key="customer-portal-location-gate">
+              <CustomerPortalPageGate>
+                <>
+                  {children}
+                  <CustomerPortalProductTour enabled={!degraded} />
+                </>
+              </CustomerPortalPageGate>
+              <CustomerPortalCartHost />
+            </CustomerPortalLocationGate>
+            <CustomerStudioConcierge key="customer-studio-concierge" />
+          </TenantSurfaceBoundary>
+        </CustomerTenantShell>
+      </CustomerPortalLocationProvider>
+    </FullMessagesProvider>
   );
 }

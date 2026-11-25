@@ -20,13 +20,20 @@ export async function loginWorkspaceAs(
   await page.getByLabel("Email address").fill(email);
   await page.getByLabel(/^Password\s*\*?$/).fill(password);
 
-  const loginResponsePromise = page.waitForResponse((response) =>
-    isApiResponse(response, "/auth", "POST"),
-  );
+  const loginResponsePromise = page
+    .waitForResponse((response) => isApiResponse(response, "/auth", "POST"))
+    .then(async (response) => {
+      // Retain Playwright's cached body before the cross-origin redirect can
+      // discard Chromium's response resource. Callers still receive the real
+      // Response and can inspect its JSON after the workspace is ready.
+      await response.body();
+      return response;
+    });
 
-  await page.getByRole("button", { name: "Sign in", exact: true }).click();
-
-  const response = await loginResponsePromise;
+  const [response] = await Promise.all([
+    loginResponsePromise,
+    page.getByRole("button", { name: "Sign in", exact: true }).click(),
+  ]);
 
   if (!response.ok()) {
     throw new Error(

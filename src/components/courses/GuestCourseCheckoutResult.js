@@ -14,6 +14,8 @@ import { useEffect, useRef, useState } from "react";
 import { usePublicTenant } from "@/components/public-tenant/PublicTenantProvider";
 import { Link } from "@/i18n/navigation";
 import { useGetGuestCheckoutOrderStatusQuery } from "@/lib/features/checkout/checkoutSlice";
+import PaymentRefundResult from "@/components/customer-shell/PaymentRefundResult";
+import { hasPaymentRefundOutcome } from "@/utils/paymentRefundOutcome";
 import {
   getGuestCheckoutOrderId,
   getGuestCourseReturnHref,
@@ -74,9 +76,16 @@ export default function GuestCourseCheckoutResult({ cancelled = false }) {
   const mismatchedOrder = Boolean(
     canRequest && statusQuery.currentData && !data,
   );
+  const refundOutcome = hasPaymentRefundOutcome(
+    data?.refund,
+    data?.refundReviewRequired,
+  );
   if (
     canRequest &&
-    (data?.terminal === true || statusQuery.isError || mismatchedOrder) &&
+    (data?.terminal === true ||
+      refundOutcome ||
+      statusQuery.isError ||
+      mismatchedOrder) &&
     stoppedAccess !== access
   ) {
     setStoppedAccess(access);
@@ -108,10 +117,28 @@ export default function GuestCourseCheckoutResult({ cancelled = false }) {
           : ArrowPathIcon;
   const checkAgain = async () => {
     const response = await statusQuery.refetch();
-    if (!response.error && response.data?.terminal !== true) {
+    if (
+      !response.error &&
+      response.data?.terminal !== true &&
+      !hasPaymentRefundOutcome(
+        response.data?.refund,
+        response.data?.refundReviewRequired,
+      )
+    ) {
       setStoppedAccess(null);
     }
   };
+
+  if (refundOutcome && !statusQuery.isError)
+    return (
+      <PaymentRefundResult
+        refund={data.refund}
+        currency={data.currency}
+        reference={orderId}
+        onRefresh={checkAgain}
+        isRefreshing={statusQuery.isFetching}
+      />
+    );
 
   return (
     <main className="flex min-h-[78vh] items-center justify-center bg-[var(--tenant-background)] px-4 py-14 text-[var(--tenant-text)]">

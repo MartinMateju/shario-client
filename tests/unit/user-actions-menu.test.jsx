@@ -50,6 +50,7 @@ const messages = {
   "sections.activity": "Studio activity",
   "sections.payments": "Account & payments",
   "sections.personal": "Personal",
+  personalTitle: "My settings",
   "sections.workspace": "Workspace",
   "tenantLinks.dashboard": "Studio dashboard",
   "tenantLinks.account": "Account settings",
@@ -189,63 +190,38 @@ describe("UserActionsMenuContent", () => {
       effectivePermissions: ["workspace.update"],
     };
   });
-  it("separates personal and workspace actions without repeating the current dashboard", () => {
-    const { callbacks, container } = renderMenu({
-      isAdminRoute: true,
-    });
-    const personal = screen.getByRole("region", {
-      name: "Personal",
-    });
-    const workspace = screen.getByRole("region", {
-      name: "Workspace",
-    });
+
+  it("offers one personal settings shortcut in the workspace avatar", () => {
+    const { callbacks, container } = renderMenu({ isAdminRoute: true });
+    const personalSettings = screen.getByRole("link", { name: "My settings" });
+
+    expect(personalSettings).toHaveAttribute(
+      "href",
+      "/app/settings?section=personal",
+    );
+    expect(screen.getAllByRole("link")).toHaveLength(1);
     expect(
-      within(personal).getByRole("link", {
-        name: "Account settings",
-      }),
-    ).toHaveAttribute("href", "/app/account");
-    expect(
-      within(personal).getByRole("link", {
-        name: "Personal preferences",
-      }),
-    ).toHaveAttribute("href", "/app/preferences");
-    expect(
-      within(workspace).getByRole("link", {
-        name: "Launch Center",
-      }),
-    ).toHaveAttribute("href", "/app/setup");
-    expect(
-      within(workspace).getByRole("link", {
-        name: "Workspace settings",
-      }),
-    ).toHaveAttribute("href", "/app/settings");
-    const publicSiteLink = within(workspace).getByRole("link", {
-      name: "View public site in a new tab",
-    });
-    const publicSiteUrl = new URL(publicSiteLink.getAttribute("href"));
-    expect(publicSiteLink).toHaveTextContent("View public site");
-    expect(publicSiteLink).toHaveAttribute("target", "_blank");
-    expect(publicSiteLink).toHaveAttribute("rel", "noopener noreferrer");
-    expect(publicSiteUrl.hostname).toBe("the-pottery-house.shario.localhost");
-    expect(publicSiteUrl.pathname).toBe("/cs");
-    expect(publicSiteUrl.searchParams.get("from")).toBe("workspace");
-    publicSiteLink.addEventListener("click", (event) => event.preventDefault());
-    fireEvent.click(publicSiteLink);
-    expect(callbacks.onClose).toHaveBeenCalledOnce();
-    expect(callbacks.onOpenBookingSite).not.toHaveBeenCalled();
-    expect(
-      screen.queryByRole("button", {
-        name: "Studio dashboard",
-      }),
+      screen.queryByRole("region", { name: "Workspace" }),
     ).not.toBeInTheDocument();
+    expect(screen.queryByText("Language")).not.toBeInTheDocument();
+    expect(screen.queryByText("Launch Center")).not.toBeInTheDocument();
+    expect(screen.queryByText("View public site")).not.toBeInTheDocument();
+
+    fireEvent.click(personalSettings);
+    expect(callbacks.onClose).toHaveBeenCalledOnce();
     expect(container.querySelector("[data-profile-menu-scroll]")).toHaveClass(
       "min-h-0",
       "overflow-y-auto",
     );
     expect(container.querySelector("[data-profile-menu-footer]")).toHaveClass(
       "shrink-0",
-      "grid-cols-2",
+      "grid-cols-1",
     );
+
+    fireEvent.click(screen.getByRole("button", { name: "Log out" }));
+    expect(callbacks.onLogout).toHaveBeenCalledOnce();
+    expect(callbacks.onClose).toHaveBeenCalledTimes(2);
+    expect(callbacks.toggleLanguage).not.toHaveBeenCalled();
   });
   it("keeps only the useful return-to-dashboard action on the public surface", () => {
     const { callbacks } = renderMenu({
@@ -315,59 +291,20 @@ describe("UserActionsMenuContent", () => {
       ).toHaveAttribute("href", "/login");
     }
   });
-  it("keeps the legacy public-site fallback as an explicit new-tab action", () => {
-    mocks.state.auth.tenant.slug = "";
-    const { callbacks } = renderMenu({
-      isAdminRoute: true,
-    });
-    const fallbackAction = screen.getByRole("button", {
-      name: "View public site in a new tab",
-    });
-    expect(fallbackAction).toHaveTextContent("View public site");
-    fireEvent.click(fallbackAction);
-    expect(callbacks.onOpenBookingSite).toHaveBeenCalledOnce();
-    expect(callbacks.onClose).toHaveBeenCalledOnce();
-  });
-  it("links workspace language to General settings and keeps logout compact", () => {
-    const { callbacks } = renderMenu({
-      isAdminRoute: true,
-    });
-    const languageLink = screen.getByRole("link", {
-      name: /Language/,
-    });
-    expect(languageLink).toHaveAttribute("href", "/app/settings/general");
-    expect(languageLink).toHaveTextContent("CS");
-    fireEvent.click(languageLink);
-    expect(callbacks.toggleLanguage).not.toHaveBeenCalled();
-    expect(callbacks.onClose).toHaveBeenCalledOnce();
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: "Log out",
-      }),
-    );
-    expect(callbacks.onLogout).toHaveBeenCalledOnce();
-    expect(callbacks.onClose).toHaveBeenCalledTimes(2);
-  });
-  it("shows the inherited workspace language as read-only for staff", () => {
+
+  it("keeps personal settings available to staff without studio administration permissions", () => {
     mocks.state.auth.workspaceAccess.role = "staff";
     mocks.state.auth.workspaceAccess.effectivePermissions = [];
-    renderMenu({
-      isAdminRoute: true,
-    });
-    expect(
-      screen.queryByRole("link", {
-        name: /Language/,
-      }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", {
-        name: /Language/,
-      }),
-    ).not.toBeInTheDocument();
-    expect(screen.getByLabelText("Language")).toHaveAttribute(
-      "aria-disabled",
-      "true",
+
+    renderMenu({ isAdminRoute: true });
+
+    expect(screen.getByRole("link", { name: "My settings" })).toHaveAttribute(
+      "href",
+      "/app/settings?section=personal",
     );
+    expect(screen.getAllByRole("link")).toHaveLength(1);
+    expect(screen.queryByLabelText("Language")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Log out" })).toBeInTheDocument();
   });
   it("offers the studio's actual languages in customer mode even for workspace owners", () => {
     mocks.state.auth.tenant.settings.publicDefaultLanguage = "cs";
@@ -406,30 +343,8 @@ describe("UserActionsMenuContent", () => {
       },
     );
   });
-  it.each([
-    [null, "cs"],
-    ["en", "en"],
-    ["de", "cs"],
-  ])(
-    "opens the public site using saved customer default %s or Czech primary, not workspace English",
-    (preference, expectedLocale) => {
-      mocks.state.auth.tenant.settings.supportedPublicLanguages = ["cs", "en"];
-      mocks.state.auth.userInfo.customerDefaultLanguage = preference;
-      renderMenu({
-        isAdminRoute: true,
-      });
-      const url = new URL(
-        screen
-          .getByRole("link", {
-            name: "View public site in a new tab",
-          })
-          .getAttribute("href"),
-      );
-      expect(url.pathname).toBe(`/${expectedLocale}`);
-      expect(url.searchParams.get("from")).toBe("workspace");
-    },
-  );
-  it("omits unsupported specialist destinations for customers", () => {
+
+  it("removes the generic services destination while retaining My work for customers", () => {
     mocks.state.auth.workspaceAccess = null;
     renderMenu();
     expect(
@@ -660,14 +575,11 @@ describe("UserActionsMenuContent", () => {
         },
       },
     };
-    renderMenu({
-      isAdminRoute: true,
-    });
-    expect(
-      screen.getByRole("link", {
-        name: "Account settings",
-      }),
-    ).toHaveAttribute("href", "/app/account");
+    renderMenu({ isAdminRoute: true });
+    expect(screen.getByRole("link", { name: "My settings" })).toHaveAttribute(
+      "href",
+      "/app/settings?section=personal",
+    );
   });
   it("keeps the workspace menu presentation isolated from portal styling", () => {
     const { container } = renderMenu({
@@ -678,9 +590,7 @@ describe("UserActionsMenuContent", () => {
     ).toBeNull();
     expect(container.querySelector("[data-profile-menu-identity]")).toBeNull();
     expect(
-      screen.getByRole("region", {
-        name: "Workspace",
-      }),
+      screen.getByRole("region", { name: "Personal" }),
     ).toBeInTheDocument();
   });
 });

@@ -72,7 +72,7 @@ export default function CustomerPortalLinks({ locations = [] }) {
 
   return (
     <section
-      className="rounded-[22px] border border-skab-blue-200 bg-[linear-gradient(135deg,var(--color-skab-blue-50)_0%,#FFFFFF_58%,var(--color-skab-offset-50)_100%)] p-5 shadow-[0_14px_42px_rgb(var(--skab-blue-rgb)/0.05)] sm:p-6"
+      className="rounded-[22px] border border-line bg-white p-5 shadow-card sm:p-6"
       aria-labelledby="customer-portal-links-title"
       data-testid="customer-portal-links"
     >
@@ -87,7 +87,7 @@ export default function CustomerPortalLinks({ locations = [] }) {
           >
             {t("title")}
           </h2>
-          <p className="mt-1 max-w-2xl text-xs leading-5 text-[#777773]">
+          <p className="mt-1 max-w-2xl text-xs leading-5 text-ink-muted">
             {t("description")}
           </p>
         </div>
@@ -110,10 +110,10 @@ export default function CustomerPortalLinks({ locations = [] }) {
                 <p className="truncate text-[13px] font-semibold text-[#353533]">
                   {row.label}
                 </p>
-                <p className="mt-0.5 text-[11px] leading-4 text-[#858580]">
+                <p className="mt-0.5 text-[13px] leading-4 text-ink-muted">
                   {row.description}
                 </p>
-                <code className="mt-2 block truncate text-[10px] text-[#777773]">
+                <code className="mt-2 block truncate text-[12px] text-ink-muted">
                   /{localizedLocale}
                   {href}
                 </code>
@@ -124,7 +124,7 @@ export default function CustomerPortalLinks({ locations = [] }) {
                   type="button"
                   onClick={() => copyLink(row)}
                   aria-label={t("copyFor", { studio: row.label })}
-                  className="inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 rounded-full border border-line bg-white px-3.5 text-[10px] font-semibold text-[#555553] transition hover:border-cobalt-300 hover:text-cobalt-600 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-500/10 sm:flex-none"
+                  className="inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 rounded-full border border-line bg-white px-3.5 text-[12px] font-semibold text-[#555553] transition hover:border-cobalt-300 hover:text-cobalt-600 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-500/10 sm:flex-none"
                 >
                   {copied ? (
                     <CheckIcon className="h-4 w-4" aria-hidden="true" />
@@ -142,7 +142,7 @@ export default function CustomerPortalLinks({ locations = [] }) {
                   rel="noopener noreferrer"
                   aria-label={t("openFor", { studio: row.label })}
                   data-tenant-button="primary"
-                  className="inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 rounded-full bg-[#252524] px-3.5 text-[10px] font-semibold text-white transition hover:bg-cobalt-600 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-500/15 sm:flex-none"
+                  className="inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 rounded-full bg-cobalt-500 px-3.5 text-[12px] font-semibold text-white transition hover:bg-cobalt-600 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-500/15 sm:flex-none"
                 >
                   <ArrowTopRightOnSquareIcon
                     className="h-4 w-4"
@@ -155,7 +155,7 @@ export default function CustomerPortalLinks({ locations = [] }) {
               {copyFailed ? (
                 <p
                   role="alert"
-                  className="text-[10px] text-terracotta-700 sm:basis-full"
+                  className="text-[12px] text-danger sm:basis-full"
                 >
                   {t("copyError")}
                 </p>

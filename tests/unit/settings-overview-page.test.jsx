@@ -1,76 +1,34 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { createTranslator } from "next-intl";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import en from "@/messages/en.json";
+import cs from "@/messages/cs.json";
 
 const mocks = vi.hoisted(() => ({
   workspaceAccess: { role: "owner", status: "active" },
   tenant: { modules: {} },
+  params: "",
+  locale: "en",
+  setup: null,
 }));
-
-const labels = {
-  "WorkspaceSettingsOverview.eyebrow": "Settings overview",
-  "WorkspaceSettingsOverview.title":
-    "Everything your studio needs, clearly organized.",
-  "WorkspaceSettingsOverview.description":
-    "Configure the workspace one area at a time.",
-  "WorkspaceSettingsOverview.tailored": "Tailored to your workspace",
-  "WorkspaceSettingsOverview.categoryCount": "{count} categories available",
-  "WorkspaceSettingsOverview.itemCount": "{count} settings",
-  "WorkspaceSettingsOverview.empty.title": "No settings available",
-  "WorkspaceSettingsOverview.empty.description":
-    "There are no settings available for this role.",
-  "WorkspaceSettingsOverview.groups.workspace.description":
-    "Workspace details.",
-  "WorkspaceSettingsOverview.groups.features.description": "Feature controls.",
-  "WorkspaceSettingsOverview.groups.website.description": "Website controls.",
-  "WorkspaceSettingsOverview.groups.access.description": "Access controls.",
-  "WorkspaceSettingsOverview.groups.payments.description": "Payment controls.",
-  "WorkspaceSettingsOverview.groups.account.description":
-    "Subscription controls.",
-  "WorkspaceSettingsOverview.launchCenter.title":
-    "Continue setting up your studio",
-  "WorkspaceSettingsOverview.launchCenter.description":
-    "Follow your launch checklist.",
-  "WorkspaceSettingsOverview.launchCenter.action": "Open Launch Center",
-  "WorkspaceSettingsNav.groups.workspace": "Workspace",
-  "WorkspaceSettingsNav.groups.features": "Features & navigation",
-  "WorkspaceSettingsNav.groups.website": "Website & customer experience",
-  "WorkspaceSettingsNav.groups.access": "Team & access",
-  "WorkspaceSettingsNav.groups.payments": "Payments & invoicing",
-  "WorkspaceSettingsNav.groups.account": "shario.io account",
-  "WorkspaceSettingsNav.items.general": "General",
-  "WorkspaceSettingsNav.items.locations": "Locations",
-  "WorkspaceSettingsNav.items.modules": "Modules & navigation",
-  "WorkspaceSettingsNav.items.ai": "AI & automation",
-  "WorkspaceSettingsNav.items.publicSite": "Website & branding",
-  "WorkspaceSettingsNav.items.team": "Team",
-  "WorkspaceSettingsNav.items.roles": "Roles & permissions",
-  "WorkspaceSettingsNav.items.payments": "Payments from customers",
-  "WorkspaceSettingsNav.items.invoicing": "Customer invoicing",
-  "WorkspaceSettingsNav.items.billing": "Subscription & billing",
-  "WorkspaceSettingsNav.items.migration": "Migration Center",
-  "WorkspaceSettingsNav.openCategory": "Open {category} settings",
-};
-
-vi.mock("next-intl", () => ({
-  useTranslations:
-    (namespace) =>
-    (key, values = {}) =>
-      (labels[`${namespace}.${key}`] || key).replace(
-        /\{(\w+)\}/g,
-        (_, name) => values[name] ?? `{${name}}`,
-      ),
+vi.mock("next-intl", async (importOriginal) => ({
+  ...(await importOriginal()),
+  useTranslations: (namespace) =>
+    createTranslator({
+      locale: mocks.locale,
+      messages: mocks.locale === "cs" ? cs : en,
+      namespace,
+    }),
 }));
-
+vi.mock("next/navigation", () => ({
+  useSearchParams: () => new URLSearchParams(mocks.params),
+}));
 vi.mock("react-redux", () => ({
   useSelector: (selector) =>
     selector({
-      auth: {
-        workspaceAccess: mocks.workspaceAccess,
-        tenant: mocks.tenant,
-      },
+      auth: { workspaceAccess: mocks.workspaceAccess, tenant: mocks.tenant },
     }),
 }));
-
 vi.mock("@/i18n/navigation", () => ({
   Link: ({ children, href, ...props }) => (
     <a href={href} {...props}>
@@ -78,104 +36,157 @@ vi.mock("@/i18n/navigation", () => ({
     </a>
   ),
 }));
-
+vi.mock("@/lib/features/setup-center/setupCenterApiSlice", () => ({
+  useGetSetupCenterQuery: () => ({
+    data: mocks.setup,
+    isSuccess: Boolean(mocks.setup),
+  }),
+}));
+vi.mock("@/components/setup-center/setupCenter.utils", () => ({
+  getLaunchCenterNavigationStatus: (data) => data,
+}));
 import SettingsOverviewPage from "@/components/settings/SettingsOverviewPage";
 
-describe("SettingsOverviewPage", () => {
+const studio = en.UnifiedSettings;
+describe("Unified settings overview", () => {
   beforeEach(() => {
     mocks.workspaceAccess = { role: "owner", status: "active" };
     mocks.tenant = { modules: {} };
+    mocks.params = "";
+    mocks.locale = "en";
+    mocks.setup = null;
   });
-
-  it("shows every accessible category with direct destination links", () => {
+  it("groups studio settings and keeps advanced destinations discoverable", () => {
     const { container } = render(<SettingsOverviewPage />);
-
     expect(
-      container.querySelector('[data-workspace-brush-field="settingsHero"]'),
-    ).toBeInTheDocument();
+      screen.getByRole("link", { name: studio.items.general.title }),
+    ).toHaveAttribute("href", "/app/settings/general");
     expect(
-      container.querySelector('[data-workspace-brush-field="settingsLaunch"]'),
-    ).toBeInTheDocument();
-
+      screen.getByRole("link", { name: studio.items.communications.title }),
+    ).toHaveAttribute("href", "/app/settings/communications");
     expect(
-      screen.getByRole("heading", {
-        name: "Everything your studio needs, clearly organized.",
-      }),
-    ).toBeInTheDocument();
-    expect(screen.getAllByRole("article")).toHaveLength(6);
-    expect(screen.getByRole("link", { name: "General" })).toHaveAttribute(
-      "href",
-      "/app/settings/general",
-    );
+      screen.getByRole("link", { name: studio.items.billing.title }),
+    ).toHaveAttribute("href", "/app/settings/billing");
+    expect(container.querySelector("details")).not.toHaveAttribute("open");
+    fireEvent.click(screen.getByText(studio.advancedTitle));
     expect(
-      screen.getByRole("link", { name: "Migration Center" }),
+      screen.getByRole("link", { name: studio.items.modules.title }),
+    ).toHaveAttribute("href", "/app/settings/modules");
+    expect(
+      screen.getByRole("link", { name: studio.items.migration.title }),
     ).toHaveAttribute("href", "/app/settings/migration");
     expect(
-      screen.getByRole("link", { name: "Payments from customers" }),
-    ).toHaveAttribute("href", "/app/settings/payments");
-    expect(
-      screen.getByRole("link", { name: "Open Launch Center" }),
-    ).toHaveAttribute("href", "/app/setup");
+      screen.queryByRole("link", { name: studio.setupAction }),
+    ).not.toBeInTheDocument();
   });
-
-  it("removes empty module-gated categories without hiding configuration recovery", () => {
-    mocks.tenant = { modules: { payments: false, ai: false } };
-
+  it("filters permissions and disabled modules without hiding configuration recovery", () => {
+    mocks.tenant = {
+      modules: { payments: false, ai: false, communications: false },
+    };
     render(<SettingsOverviewPage />);
-
     expect(
-      screen.queryByRole("heading", { name: "Payments & invoicing" }),
+      screen.queryByRole("heading", { name: studio.groups.payments.title }),
     ).not.toBeInTheDocument();
-    const features = screen
-      .getByRole("heading", { name: "Features & navigation" })
-      .closest("article");
     expect(
-      within(features).getByRole("link", { name: "Modules & navigation" }),
+      screen.queryByRole("heading", {
+        name: studio.groups.communications.title,
+      }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByText(studio.advancedTitle));
+    expect(
+      screen.getByRole("link", { name: studio.items.modules.title }),
     ).toBeInTheDocument();
-    expect(
-      within(features).queryByRole("link", { name: "AI & automation" }),
-    ).not.toBeInTheDocument();
   });
-
-  it("supports a limited role with location access but no workspace update", () => {
+  it("shows only locations to a member with location access", () => {
     mocks.workspaceAccess = {
       role: "staff",
       status: "active",
       effectivePermissions: ["locations.view"],
     };
-
     render(<SettingsOverviewPage />);
-
     expect(screen.getAllByRole("article")).toHaveLength(1);
     expect(
-      screen.getByRole("heading", { name: "Workspace" }),
+      screen.getByRole("link", { name: studio.items.locations.title }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Locations" })).toHaveAttribute(
-      "href",
-      "/app/settings/locations",
-    );
-    expect(screen.queryByText("General")).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("link", { name: "Open Launch Center" }),
+      screen.queryByRole("link", { name: studio.items.general.title }),
     ).not.toBeInTheDocument();
   });
-
-  it("explains when every accessible destination belongs to a disabled module", () => {
+  it("opens personal settings for members with no studio administration permissions", () => {
     mocks.workspaceAccess = {
       role: "staff",
       status: "active",
-      effectivePermissions: ["ai.settings.manage"],
+      effectivePermissions: [],
     };
-    mocks.tenant = { modules: { ai: false } };
-
     render(<SettingsOverviewPage />);
-
-    expect(screen.queryAllByRole("article")).toHaveLength(0);
-    expect(screen.getByRole("status")).toHaveTextContent(
-      "No settings available",
+    expect(screen.getAllByRole("article")).toHaveLength(3);
+    expect(
+      screen.getByRole("link", { name: studio.items.profile.title }),
+    ).toHaveAttribute("href", "/app/settings/profile");
+    expect(
+      screen.getByRole("link", { name: studio.items.notifications.title }),
+    ).toHaveAttribute(
+      "href",
+      "/app/settings/preferences#notification-preferences",
     );
     expect(
-      screen.queryByRole("link", { name: "Open Launch Center" }),
+      screen.queryByRole("link", { name: studio.items.general.title }),
     ).not.toBeInTheDocument();
+  });
+  it("searches translated descriptions without accents and exposes advanced matches", () => {
+    mocks.locale = "cs";
+    const { container } = render(<SettingsOverviewPage />);
+    const search = screen.getByRole("searchbox");
+    fireEvent.change(search, { target: { value: "pobocky" } });
+    expect(
+      screen.getByRole("link", {
+        name: cs.UnifiedSettings.items.locations.title,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: cs.UnifiedSettings.items.team.title }),
+    ).not.toBeInTheDocument();
+    fireEvent.change(search, { target: { value: "import zakazniku" } });
+    expect(container.querySelector("details")).toHaveAttribute("open");
+    expect(
+      screen.getByRole("link", {
+        name: cs.UnifiedSettings.items.migration.title,
+      }),
+    ).toBeInTheDocument();
+    fireEvent.change(search, { target: { value: "nonexistent setting" } });
+    expect(screen.getByText(cs.UnifiedSettings.emptyTitle)).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: cs.UnifiedSettings.clearSearch }),
+    );
+    expect(
+      screen.getByRole("link", { name: cs.UnifiedSettings.items.team.title }),
+    ).toBeInTheDocument();
+  });
+  it("resets the section search on navigation and does not expose studio settings in personal", () => {
+    const view = render(<SettingsOverviewPage />);
+    fireEvent.change(screen.getByRole("searchbox"), {
+      target: { value: "email" },
+    });
+    mocks.params = "section=personal";
+    view.rerender(<SettingsOverviewPage />);
+    expect(screen.getByRole("searchbox")).toHaveValue("");
+    expect(
+      screen.getByRole("link", { name: studio.items.profile.title }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: studio.items.communications.title }),
+    ).not.toBeInTheDocument();
+  });
+  it.each([
+    [{ status: "progress", completed: 2, total: 5 }, true],
+    [{ status: "progress", completed: 5, total: 5 }, false],
+    [{ status: "live", completed: 2, total: 5 }, false],
+    [{ status: "attention", completed: 5, total: 5, issueCount: 1 }, false],
+  ])("only offers setup for an incomplete checklist: %j", (setup, visible) => {
+    mocks.setup = setup;
+    render(<SettingsOverviewPage />);
+    expect(
+      Boolean(screen.queryByRole("link", { name: studio.setupAction })),
+    ).toBe(visible);
   });
 });

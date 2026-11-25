@@ -67,6 +67,7 @@
       "past": "Verleden"
     },
     "week": {
+      "schedule": "Weekplanning",
       "privacyNote": "Paars geeft privéboekingen aan, turquoise openbare boekingen. Je eigen boekingen hebben een blauw label."
     },
     "day": {
@@ -105,6 +106,7 @@
     "homeDescription": "Boekingen, lidmaatschappen en je eigen mooie website. Alles wat je nodig hebt om je ruimte te delen en je gemeenschap te laten groeien, samen in Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Je bannervoorkeur kon niet worden opgeslagen. Probeer het opnieuw.",
     "skipToContent": "Ga naar de inhoud",
     "learnMore": "Meer informatie",
     "viewAll": "Alles bekijken",
@@ -274,7 +276,8 @@
       "notifications": "Meldingen",
       "events": "Evenementen",
       "lostFound": "Gevonden voorwerpen",
-      "customOrders": "Maatwerkopdrachten"
+      "customOrders": "Maatwerkopdrachten",
+      "communicationSettings": "Berichtinstellingen"
     },
     "stats": {
       "bookings": "Boekingen vandaag",
@@ -668,7 +671,7 @@
           "steps": {
             "scope": {
               "title": "Begrijp wat Shario beheert",
-              "description": "Dit is een beveiligde inventaris van codes voor fysieke sloten. In deze fase programmeert Shario het slot niet en verstuurt het geen codes per e-mail."
+              "description": "Houd een voorraad bij van codes die al op je fysieke sloten zijn geprogrammeerd en getest. Beheer automatische e-mailverzending voor boekingen die daarvoor in aanmerking komen via Berichten → Automatiseringen; Shario stelt de sloten niet in."
             },
             "entrances": {
               "title": "Kies een locatie en ingang",
@@ -1279,7 +1282,8 @@
     },
     "product": {
       "metaTitle": "Alles wat jouw ruimte nodig heeft. Samen.",
-      "metaDescription": "Verbind je boekingen, leden, betalingen, team en openbare website. Houd je aandacht bij de mensen, terwijl Shario je helpt de dag te organiseren."
+      "metaDescription": "Verbind je boekingen, leden, betalingen, team en openbare website. Houd je aandacht bij de mensen, terwijl Shario je helpt de dag te organiseren.",
+      "viewScreenshot": "Volledige schermafbeelding bekijken"
     },
     "studioAi": {
       "metaTitle": "Een helpende hand voor elke dag.",
@@ -1321,13 +1325,14 @@
       "from": "vanaf",
       "customAnnual": "Jaarabonnement op maat",
       "mostPopular": "Meest gekozen",
+      "includesPrevious": "Alles uit {plan}, plus:",
       "starter": {
         "name": "Starter",
         "description": "Begin met boekingen, betalingen, lessen en evenementen voor je ruimte.",
         "feature1": "1 studiolocatie · 1 teamaccount",
         "feature2": "Cursussen, privé-evenementen en cadeaubonnen",
         "feature3": "500 inbegrepen e-mails per maand",
-        "feature4": "Beperkte Shario AI · 200 credits per maand",
+        "feature4": "Studiowebsite en klantenportaal",
         "cta": "Gratis proberen"
       },
       "professional": {
@@ -1335,8 +1340,9 @@
         "description": "Verbind lidmaatschappen, gedeelde ruimtes en de dagelijkse bedrijfsvoering.",
         "feature1": "1 studiolocatie · 3 teamaccounts",
         "feature2": "Lidmaatschappen, boekingen en gedeelde middelen",
-        "feature3": "3 actieve automatiseringen · 2.500 e-mails per maand",
-        "feature4": "Volledige Shario AI · 2.000 credits per maand",
+        "feature3": "Voorraad en teamtaken",
+        "feature4": "3 actieve automatiseringen · 2.500 e-mails per maand",
+        "feature5": "Shario AI · 2.000 credits per maand",
         "cta": "Gratis proberen"
       },
       "studioPlus": {
@@ -1345,16 +1351,16 @@
         "feature1": "Tot 2 studiolocaties · 6 teamaccounts",
         "feature2": "Toegangscodes en een eigen domein",
         "feature3": "Geavanceerde automatiseringen · 5.000 e-mails per maand",
-        "feature4": "Volledige AI-suite · 10.000 credits per maand",
+        "feature4": "Geavanceerde Shario AI · 10.000 credits per maand",
         "cta": "Gratis proberen"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Beheer je organisatie met capaciteit, governance en ondersteuning op maat.",
-        "feature1": "Onbeperkte locaties en teamaccounts",
+        "feature1": "Capaciteit voor locaties en team in overleg",
         "feature2": "Aangepaste limieten voor automatisering, e-mail en AI",
-        "feature3": "SSO/SCIM, API, webhooks en auditlogs",
-        "feature4": "Toegewijde onboarding, migratie en SLA",
+        "feature3": "Bespreek eisen aan integraties en beheer",
+        "feature4": "Inrichting, migratie en ondersteuning in overleg",
         "cta": "Start je gratis proefperiode"
       },
       "note": "Prijzen zijn exclusief toepasselijke belastingen. Jaarlijkse selfservice-abonnementen bevatten twee gratis maanden. Essentiële systeemmails tellen niet mee voor de e-maillimiet en AI-gebruik stopt bij de inbegrepen limiet, zonder automatische extra kosten.",
@@ -2100,7 +2106,10 @@
     },
     "unavailable": {
       "title": "Deze ruimte is tijdelijk niet beschikbaar",
-      "description": "De ruimte kon niet worden geladen. Probeer het zo opnieuw."
+      "description": "De ruimte kon niet worden geladen. Probeer het zo opnieuw.",
+      "retry": "Opnieuw proberen",
+      "retrying": "Laden…",
+      "loginDegraded": "De gegevens van de studio konden nu niet worden geladen."
     },
     "book": {
       "metadataTitle": "Open Studio boeken",
@@ -2158,6 +2167,7 @@
         "email": "E-mailadres",
         "quantity": "Aantal",
         "missing": "Kies een cadeaubon en voer een geldig e-mailadres in.",
+        "reselect": "Het aanbod van cadeaubonnen is gewijzigd. Kies opnieuw een cadeaubon om verder te gaan.",
         "error": "Het afrekenen kon niet worden gestart. Probeer het opnieuw.",
         "starting": "Afrekenen voorbereiden…",
         "continue": "Doorgaan naar betalen",
@@ -2193,6 +2203,7 @@
       }
     },
     "catalog": {
+      "refreshError": "De aanbiedingen konden niet worden vernieuwd. Je ziet de laatst geladen aanbiedingen.",
       "loading": "Huidig aanbod laden…",
       "error": "Het huidige aanbod kon niet worden geladen.",
       "retry": "Opnieuw proberen",
@@ -3131,7 +3142,7 @@
   "Sales": {
     "eyebrow": "Verkoopbeheer",
     "title": "Verkoop & bestellingen",
-    "description": "Volg bestellingen, betalingen en omzet bij {studio}.",
+    "description": "Volg bestellingen en hun betaalstatus bij {studio}.",
     "fallbackStudioName": "je studio",
     "newOrder": "Nieuwe bestelling",
     "export": "Exporteren",
@@ -3142,11 +3153,11 @@
     "retry": "Probeer opnieuw",
     "overview": {
       "label": "Verkoopoverzicht",
-      "revenue": "Omzet in periode",
+      "revenue": "Waarde betaalde bestellingen na terugbetalingen",
       "orders": "Bestellingen",
       "awaitingPayment": "Wachtend op betaling",
       "failed": "Mislukte bestellingen",
-      "revenueDetail": "Betaalde bestellingen in de geselecteerde periode",
+      "revenueDetail": "Bestellingen aangemaakt in deze periode, verminderd met tot nu toe geregistreerde terugbetalingen",
       "ordersDetail": "Bestellingen bij de geselecteerde studio",
       "awaitingPaymentAction": "Bestellingen bekijken",
       "failedAction": "Details bekijken",
@@ -3159,7 +3170,8 @@
       "awaitingPayment": "Wachtend op betaling",
       "processing": "In behandeling",
       "completed": "Voltooid",
-      "failed": "Mislukt"
+      "failed": "Mislukt",
+      "cancelled": "Geannuleerd"
     },
     "toolbar": {
       "statusFiltersLabel": "Filters op bestelstatus",
@@ -3207,7 +3219,7 @@
       "order": "Bestelling",
       "customer": "Klant",
       "products": "Producten",
-      "total": "Totaal",
+      "total": "Bestelwaarde",
       "payment": "Betaling",
       "status": "Status",
       "actions": "Acties"
@@ -3263,7 +3275,7 @@
       "items": "Producten",
       "quantity": "Aantal: {count}",
       "noItems": "Er zijn geen productgegevens beschikbaar.",
-      "total": "Totaalbedrag bestelling",
+      "total": "Bestelwaarde na kortingen",
       "paymentAndStatus": "Betaling & status",
       "method": "Betaalmethode",
       "paidAt": "Betaald op",
@@ -3274,7 +3286,8 @@
       "creatingInvoice": "Bezig met aanmaken…",
       "confirmCreateInvoice": "Een conceptfactuur maken van deze bestelling?",
       "note": "Bestelnotitie",
-      "internalId": "Intern bestel-ID"
+      "internalId": "Intern bestel-ID",
+      "paymentDateUnknown": "Betaaldatum niet geregistreerd"
     },
     "notices": {
       "copied": "Bestel-ID gekopieerd.",
@@ -3284,7 +3297,9 @@
       "invoiceError": "De factuur kon niet worden gemaakt van deze bestelling."
     },
     "csv": {
-      "createdAt": "Aangemaakt op"
+      "createdAt": "Aangemaakt op",
+      "currency": "Valuta",
+      "amountStatus": "Beschikbaarheid bedragen"
     },
     "period": {
       "title": "Rapportageperiode",
@@ -3295,6 +3310,18 @@
       "reversedDates": "De einddatum moet op of na de begindatum liggen.",
       "allTime": "Alle perioden",
       "appliedRange": "Overzicht voor {period}"
+    },
+    "money": {
+      "unavailable": "Niet beschikbaar",
+      "unavailableDetail": "Het definitieve bedrag of de terugbetalingsgeschiedenis van deze bestelling kan niet worden geverifieerd.",
+      "verified": "Beschikbaar",
+      "refunded": "Terugbetaald",
+      "net": "Waarde na terugbetalingen",
+      "incomplete": "Bij sommige betaalde bestellingen ontbreken bedragen of terugbetalingsgegevens. Het totaal is niet beschikbaar.",
+      "mixedCurrencies": "Deze periode bevat meerdere valuta. Deze kunnen niet bij elkaar worden opgeteld.",
+      "truncated": "Deze periode overschrijdt de limiet van het overzicht. Kies een kortere periode om het totaal te berekenen.",
+      "scope": "Bestelwaarden zijn inclusief belasting en betalingen met tegoed of cadeaubonnen. Losse aankopen van cadeaubonnen en lidmaatschapsfacturen zijn uitgesloten. Dit zijn geen ontvangen geldbedragen of inkomsten uit geleverde diensten. De overzichtskaarten omvatten de volledige geselecteerde periode en studio.",
+      "multiStudio": "Bestellingen die aan meerdere studios zijn gekoppeld, tellen voor hun volledige waarde mee."
     }
   },
   "Invoices": {
@@ -3626,7 +3653,7 @@
     },
     "payment": {
       "paid": "Betaald",
-      "pending": "In behandeling",
+      "pending": "In afwachting van betaling",
       "credits": "Tegoeden",
       "refunded": "Terugbetaald",
       "failed": "Mislukt",
@@ -3634,10 +3661,10 @@
     },
     "status": {
       "confirmed": "Bevestigd",
-      "pending": "In behandeling",
+      "pending": "Wacht op bevestiging",
       "awaitingPayment": "In afwachting van betaling",
-      "processed": "In afwachting van levering",
-      "delivered": "Geleverd",
+      "processed": "Bevestigd",
+      "delivered": "Gestart",
       "completed": "Voltooid",
       "cancelled": "Geannuleerd"
     },
@@ -3645,7 +3672,7 @@
     "actions": {
       "open": "Boekingsacties openen",
       "edit": "Boeking bewerken",
-      "delete": "Boeking verwijderen"
+      "delete": "Boeking annuleren"
     },
     "selection": {
       "all": "Alle zichtbare boekingen selecteren",
@@ -3672,12 +3699,14 @@
       "createdText": "De nieuwe boeking is succesvol aangemaakt.",
       "updatedTitle": "Boeking bijgewerkt",
       "updatedText": "De boeking is succesvol bijgewerkt.",
-      "deleteTitle": "Boeking verwijderen",
-      "deleteText": "Weet je zeker dat je deze boeking permanent wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
-      "deletedTitle": "Boeking verwijderd",
-      "deletedText": "De boeking is succesvol verwijderd.",
+      "deleteTitle": "Boeking annuleren",
+      "deleteText": "Wil je deze boeking annuleren en een eventuele terugbetaling automatisch verwerken? Afhankelijk van de betaling kan dit studiotegoed teruggeven, lidmaatschapstegoed of voucherwaarde herstellen, of een kaartterugbetaling in gang zetten. De boeking blijft in de geschiedenis staan.",
+      "deletedTitle": "Boeking geannuleerd",
+      "deletedText": "De boeking is geannuleerd.",
       "errorTitle": "Boeking kon niet worden aangemaakt",
-      "errorText": "Controleer de boekingsgegevens en probeer het opnieuw."
+      "errorText": "Controleer de boekingsgegevens en probeer het opnieuw.",
+      "cancelError": "De boeking kon niet worden geannuleerd. Probeer het opnieuw.",
+      "extensionRefund": "Er is daarnaast {amount} voor de extra boekingstijd teruggegeven aan het studiotegoed van de klant."
     },
     "exportColumns": {
       "id": "Boekings-ID",
@@ -3716,6 +3745,12 @@
       "participants": "Deelnemers",
       "cancel": "Annuleren",
       "save": "Opslaan"
+    },
+    "refreshing": "Boekingen vernieuwen…",
+    "retry": "Opnieuw proberen",
+    "errors": {
+      "load": "Boekingen konden niet worden geladen. Probeer het opnieuw.",
+      "filters": "Sommige filteropties konden niet worden geladen."
     }
   },
   "Billing": {
@@ -4190,6 +4225,10 @@
       "title": "Meldingen",
       "description": "Kies wat je bereikt en via welke kanalen.",
       "items": {
+        "bookingCreated": {
+          "label": "Boeking aangemaakt",
+          "description": "Wanneer een relevante boeking wordt aangemaakt. Standaard uitgeschakeld."
+        },
         "bookingAssigned": {
           "label": "Boeking verzet",
           "description": "Wanneer een relevante boeking wordt verzet."
@@ -6132,7 +6171,7 @@
       "failed": "Mislukt"
     },
     "history": {
-      "description": "Bekijk geplande, in de wachtrij staande, bezorgde, onderdrukte, geannuleerde en mislukte e-mailbezorgingen.",
+      "description": "Bekijk geplande, bezorgde, geannuleerde en niet-verzonden e-mails.",
       "searchLabel": "Bezorggeschiedenis doorzoeken",
       "searchPlaceholder": "Zoek op e-mailadres van ontvanger of klant-ID…",
       "statusLabel": "Filteren op bezorgstatus",
@@ -6168,7 +6207,7 @@
         "ambiguous": "Status onduidelijk",
         "unknown": "Onbekend",
         "canceled": "Geannuleerd",
-        "suppressed": "Onderdrukt"
+        "suppressed": "Niet verzonden"
       },
       "types": {
         "beforeBooking": "Vóór boeking",
@@ -6193,6 +6232,48 @@
         "next": "Volgende",
         "showing": "{from}–{to} van {total} e-mailbezorgingen weergegeven",
         "newestFirst": "Nieuwste eerst · 20 per pagina"
+      },
+      "resend": {
+        "actionMenu": "E-mailacties",
+        "action": "Opnieuw verzenden",
+        "title": "Deze e-mail opnieuw verzenden?",
+        "description": "Er wordt opnieuw geprobeerd dit bericht naar dezelfde ontvanger te sturen.",
+        "recipient": "Ontvanger",
+        "subject": "Onderwerp",
+        "cancel": "Annuleren",
+        "confirm": "Opnieuw verzenden",
+        "submitting": "Verzending voorbereiden…",
+        "queued": "De e-mail staat klaar om opnieuw te worden verzonden.",
+        "scheduled": "Er is een nieuwe poging gepland. De e-mail wordt verzonden zodra verzending beschikbaar is.",
+        "error": "De e-mail kon niet voor verzending worden klaargezet. Probeer het opnieuw.",
+        "stale": "De status van deze e-mail is gewijzigd. De actuele status wordt nu getoond.",
+        "blocked": "Deze e-mail kan op dit moment niet opnieuw worden verzonden.",
+        "reasonLabel": "Waarom de e-mail niet is verzonden"
+      },
+      "reasons": {
+        "status_not_retryable": "Deze e-mail kan met de huidige status niet opnieuw worden verzonden.",
+        "delivery_in_progress": "Deze e-mail wordt al verzonden.",
+        "delivery_outcome_unknown": "We kunnen niet bevestigen of deze e-mail is verzonden. Controleer de bezorgstatus voordat je het opnieuw probeert.",
+        "already_sent": "Deze e-mail is al verzonden.",
+        "recipient_suppressed": "Verzenden naar deze ontvanger was geblokkeerd.",
+        "consent_revoked": "De ontvanger had de toestemming voor deze e-mail ingetrokken.",
+        "consent_expired": "De toestemming van de ontvanger was verlopen.",
+        "marketing_opt_in_required": "De ontvanger had geen toestemming gegeven voor marketingmails.",
+        "consent_required": "De vereiste toestemming van de ontvanger ontbrak.",
+        "content_unavailable": "Het oorspronkelijke bericht was niet meer beschikbaar.",
+        "invalid_delivery_contract": "De gegevens die nodig waren om deze e-mail te verzenden, waren onvolledig.",
+        "source_changed": "De gegevens waarop deze e-mail was gebaseerd, waren gewijzigd.",
+        "source_missing": "De registratie die bij deze e-mail hoorde, bestond niet meer.",
+        "recipient_ineligible": "Dit bericht was niet meer van toepassing op deze ontvanger.",
+        "automation_inactive": "Deze e-mailautomatisering was uitgeschakeld.",
+        "sender_not_ready": "E-mailverzending was niet ingesteld of was tijdelijk niet beschikbaar.",
+        "workspace_disabled": "E-mailverzending was uitgeschakeld voor deze werkruimte.",
+        "monthly_allowance_exhausted": "De werkruimte had de maandelijkse e-maillimiet bereikt.",
+        "unsupported_email_type": "Dit type e-mail kan hier niet opnieuw worden verzonden.",
+        "delivery_failed": "De e-mail kon niet worden bezorgd.",
+        "not_sent": "De e-mail is niet verzonden.",
+        "hard_bounce": "Bezorging op dit adres is definitief mislukt.",
+        "spam_complaint": "De ontvanger heeft een e-mail als spam gemeld."
       }
     },
     "errors": {
@@ -6568,17 +6649,114 @@
         "cancelled": "Geannuleerd",
         "pending": "In afwachting",
         "processing": "Bezig met verzenden"
-      }
+      },
+      "template": "E-mailsjabloon aanpassen"
+    },
+    "doorTemplates": {
+      "title": "E-mails met toegangscode",
+      "description": "Pas de automatische e-mail met de toegangscode aan voor elke studiolocatie. Deze sjablonen worden gebruikt voor de bestaande automatische verzending.",
+      "locationHint": "Alleen gebruikt voor boekingen op deze locatie",
+      "default": "Standaardbericht",
+      "customized": "Aangepast bericht",
+      "loading": "Sjablonen voor toegangscodes laden…",
+      "loadError": "De sjablonen konden niet worden geladen.",
+      "retry": "Opnieuw proberen",
+      "empty": "Voeg een actieve studiolocatie toe om de e-mail met de toegangscode aan te passen.",
+      "edit": "Sjabloon bewerken",
+      "preview": "Voorbeeld bekijken",
+      "editFor": "Sjabloon met toegangscode voor {location} bewerken",
+      "previewFor": "Voorbeeld van sjabloon met toegangscode voor {location}",
+      "eyebrow": "E-mail met toegangscode",
+      "editorDescription": "Bewerk het onderwerp en het bericht voor deze locatie. Opgeslagen wijzigingen gelden voor komende automatische e-mails; de verzendinstellingen en de gebruikelijke timing van 15 minuten blijven gelijk.",
+      "placeholderHint": "Shario vult bij het verzenden de boekingsgegevens en de juiste code in. Laat deze variabele in het bericht staan:",
+      "previewHint": "Het voorbeeld gebruikt een fictieve code en boeking. Het opgeslagen e-mailontwerp van je studio wordt bij het verzenden toegepast.",
+      "variablesTitle": "Toegang en boekingsgegevens",
+      "variables": {
+        "entryCode": "Toegangscode (alleen in berichttekst)",
+        "studioName": "Naam van studiolocatie",
+        "studioAddress": "Adres van studiolocatie",
+        "bookingTime": "Lokale boekingsdatum en tijdsperiode",
+        "bookingUrl": "Link om boeking te beheren"
+      },
+      "languages": {
+        "cs": "Tsjechisch",
+        "en": "Engels"
+      },
+      "errors": {
+        "incomplete": "Voeg voor deze taal een onderwerp (maximaal 200 tekens) en een bericht toe.",
+        "missingCode": "Neem de variabele voor de toegangscode op in de zichtbare berichttekst.",
+        "codePlacement": "Houd de code in de berichttekst, buiten het onderwerp, links en HTML-attributen.",
+        "unknownVariable": "Gebruik alleen de vermelde variabelen, met twee openende en sluitende accolades."
+      },
+      "close": "Sjabloon sluiten",
+      "cancel": "Annuleren",
+      "save": "Sjabloon opslaan",
+      "saving": "Opslaan…",
+      "resetting": "Herstellen…",
+      "saveError": "Het sjabloon met de toegangscode kon niet worden opgeslagen.",
+      "resetError": "Het standaardbericht kon niet worden hersteld.",
+      "saveSuccess": "Sjabloon met toegangscode opgeslagen voor {location}.",
+      "resetSuccess": "Standaardbericht met toegangscode hersteld voor {location}.",
+      "reset": "Standaardbericht herstellen",
+      "resetConfirm": "Het standaardbericht voor deze locatie herstellen? Je opgeslagen aanpassingen en niet-opgeslagen wijzigingen worden vervangen.",
+      "confirmReset": "Standaard herstellen",
+      "keepEditing": "Verder bewerken",
+      "discardConfirm": "Je hebt niet-opgeslagen wijzigingen. Sluiten zonder op te slaan?",
+      "discard": "Wijzigingen verwerpen",
+      "variablesHint": "Klik op een variabele om deze op de plek waar je typt in te voegen. De toegangscode hoort alleen in de berichttekst, buiten links.",
+      "help": "Hulp bij sjabloon",
+      "codeReminder": "Laat {code} in het bericht staan."
+    },
+    "visualEditor": {
+      "mode": "Bewerkingsmodus",
+      "visual": "Visuele editor",
+      "htmlSource": "HTML-bron",
+      "loading": "Visuele editor laden…",
+      "unsupported": "Dit sjabloon bevat geavanceerde HTML-opmaak. Het oorspronkelijke ontwerp blijft behouden in de HTML-modus.",
+      "toolbar": "Tekst en ontwerp aanpassen",
+      "body": "Gewone tekst",
+      "heading1": "Kop 1",
+      "heading2": "Kop 2",
+      "heading3": "Kop 3",
+      "bold": "Vet",
+      "italic": "Cursief",
+      "underline": "Onderstrepen",
+      "fontSize": "Tekstgrootte",
+      "defaultSize": "Standaardgrootte",
+      "textColor": "Tekstkleur",
+      "textBackground": "Tekstachtergrond",
+      "alignLeft": "Links uitlijnen",
+      "alignCenter": "Centreren",
+      "alignRight": "Rechts uitlijnen",
+      "bulletList": "Opsomming",
+      "orderedList": "Genummerde lijst",
+      "link": "Link toevoegen of bewerken",
+      "linkUrl": "Linkadres",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Link toepassen",
+      "removeLink": "Link verwijderen",
+      "cancelLink": "Annuleren",
+      "invalidLink": "Gebruik een http-, https- of mailto-adres, of de variabele voor de boekingslink. Toegangscodes mogen niet in links staan.",
+      "undo": "Ongedaan maken",
+      "redo": "Opnieuw",
+      "blockStyle": "Blokontwerp",
+      "blockBackground": "Blokachtergrond",
+      "blockPadding": "Blokafstand",
+      "paddingNone": "Geen",
+      "paddingSmall": "Klein",
+      "paddingMedium": "Gemiddeld",
+      "paddingLarge": "Groot",
+      "clearBlockStyle": "Blokachtergrond en afstand wissen"
     }
   },
   "AI": {
     "eyebrow": "Commandolaag voor je studio",
     "commandCenter": {
       "title": "AI-beheercentrum",
-      "description": "Stel vragen over de actuele studioactiviteiten, beoordeel voorgestelde opdrachten en houd een duidelijk overzicht bij van elke AI-ondersteunde wijziging.",
+      "description": "Kies een relevante vraag, bekijk studio-inzichten en genereer een maandrapport als je meer details wilt.",
       "tabs": {
         "label": "AI Command Center-weergaven",
-        "assistant": "Assistent",
+        "assistant": "Overzicht",
         "advisor": "Adviseur",
         "activity": "Actieoverzicht"
       },
@@ -6611,8 +6789,8 @@
     },
     "assistant": {
       "name": "Ruimteassistent",
-      "title": "AI-beheercentrum",
-      "subtitle": "Antwoorden gebaseerd op je actuele werkruimte",
+      "title": "Studio-inzichten",
+      "subtitle": "Kies een vraag. Krijg een duidelijk antwoord.",
       "pageDescription": "Stel operationele vragen en zet duidelijke instructies om in controleerbare studio-opdrachten.",
       "newConversation": "Nieuw gesprek",
       "recent": "Recente gesprekken",
@@ -7065,6 +7243,63 @@
       },
       "defaultLocale": "Standaardtaal voor AI",
       "briefingTime": "Tijdstip van de dagelijkse briefing"
+    },
+    "guided": {
+      "title": "Wat wil je weten?",
+      "description": "Kies een vraag voor een duidelijk antwoord op basis van je studiogegevens.",
+      "back": "Kies een andere vraag",
+      "retry": "Opnieuw proberen",
+      "loading": "Studiogegevens controleren…",
+      "noAnswer": "We konden geen betrouwbaar antwoord vinden. Probeer het over een moment opnieuw.",
+      "contextQuestion": "Wat moet ik hierover weten?",
+      "contextHint": "Een antwoord over het geselecteerde item.",
+      "allStudios": "Alle studio’s",
+      "periods": {
+        "today": "Vandaag",
+        "last30Days": "Afgelopen 30 dagen",
+        "current": "Actueel overzicht"
+      },
+      "report": {
+        "title": "Wil je een uitgebreider overzicht?",
+        "description": "Maandrapport voor de geselecteerde studio, van het begin van de maand tot en met {date}.",
+        "generate": "Maandrapport genereren",
+        "open": "Maandrapport openen",
+        "back": "Terug naar het antwoord",
+        "ready": "Je maandrapport is klaar."
+      },
+      "questions": {
+        "today": {
+          "label": "Hoe gaat het vandaag in de studio?",
+          "hint": "Een kort overzicht van de activiteiten van vandaag.",
+          "prompt": "What is happening in the studio today?"
+        },
+        "bookings": {
+          "label": "Hoeveel boekingen hebben we vandaag?",
+          "hint": "De bevestigde boekingen van vandaag.",
+          "prompt": "How many bookings do we have today?"
+        },
+        "bookingTrend": {
+          "label": "Neemt het aantal boekingen toe?",
+          "hint": "Vergelijk de afgelopen 30 dagen met de 30 dagen ervoor.",
+          "prompt": "How are our bookings trending?"
+        },
+        "teamBlockers": {
+          "label": "Loopt het team ergens op vast?",
+          "hint": "Bekijk de belemmeringen die het team vandaag heeft gemeld.",
+          "prompt": "What is blocking our team today?"
+        },
+        "reorders": {
+          "label": "Wat moet worden bijbesteld?",
+          "hint": "Bekijk openstaande aanvragen om voorraad aan te vullen.",
+          "prompt": "Are there any open reorder requests?"
+        },
+        "generalHelp": {
+          "label": "Welke studiogegevens kan ik bekijken?",
+          "hint": "Bekijk welke informatie beschikbaar is voor jouw rol.",
+          "prompt": "What studio data can you access?"
+        }
+      },
+      "selectedStudio": "Geselecteerde studio"
     }
   },
   "DailyBriefing": {
@@ -8207,7 +8442,7 @@
       "time": "Tijd"
     },
     "metrics": {
-      "netSales": "Netto-omzet",
+      "netSales": "Ontvangen betalingen",
       "bookings": "Boekingen",
       "utilizationPercent": "Bezetting",
       "returningCustomerPercent": "Terugkerende klanten"
@@ -8221,7 +8456,7 @@
       "trendDescription": "Geverifieerde waarden over de geselecteerde rapportageperiode.",
       "chartMetric": "Grafiekmetriek",
       "chartMetrics": {
-        "netSales": "Netto-omzet",
+        "netSales": "Ontvangen betalingen",
         "bookings": "Boekingen"
       },
       "chartAccessibleDescription": "{metric} over de geselecteerde rapportageperiode. Na de grafiek volgt een gegevenstabel voor ondersteunende technologie.",
@@ -8258,13 +8493,13 @@
       "unavailableDescription": "Voor dit account of deze rapportagereikwijdte is geen verkoopbron beschikbaar.",
       "metrics": {
         "gross": "Bruto-omzet",
-        "net": "Netto-omzet",
+        "net": "Ontvangen betalingen",
         "tax": "Belasting / btw",
         "discounts": "Kortingen",
         "refunds": "Terugbetalingen",
         "paymentFees": "Kosten betaalprovider",
-        "orders": "Bestellingen",
-        "averageOrder": "Gemiddelde orderwaarde"
+        "orders": "Betalingen",
+        "averageOrder": "Gemiddelde betaling"
       },
       "paymentMethods": "Betaalmethoden",
       "currencyTotals": "Totalen per valuta",
@@ -8277,8 +8512,8 @@
         "method": "Methode",
         "amount": "Bedrag",
         "currency": "Valuta",
-        "net": "Netto-omzet",
-        "orders": "Bestellingen",
+        "net": "Ontvangen betalingen",
+        "orders": "Betalingen",
         "product": "Catalogusitem",
         "quantity": "Aantal",
         "gross": "Bruto-omzet"
@@ -8289,7 +8524,7 @@
       "unavailableDescription": "Voor dit account of deze rapportagereikwijdte is geen boekingsbron beschikbaar.",
       "metrics": {
         "total": "Boekingen",
-        "participants": "Deelnemers",
+        "participants": "Geboekte plaatsen",
         "cancellations": "Annuleringen",
         "noShows": "No-shows",
         "bookedHours": "Geboekte uren",
@@ -8316,11 +8551,11 @@
       "unavailable": "Klantgegevens zijn niet beschikbaar",
       "unavailableDescription": "Voor dit account of deze rapportagereikwijdte is geen klantbron beschikbaar.",
       "metrics": {
-        "unique": "Actieve klanten",
-        "new": "Nieuwe klanten",
-        "returning": "Terugkerende klanten",
+        "unique": "Betalende klanten",
+        "new": "Nieuwe betalende klanten",
+        "returning": "Terugkerende betalende klanten",
         "returningRate": "Terugkeerpercentage",
-        "averageSpend": "Gemiddelde besteding"
+        "averageSpend": "Gemiddeld betaald bedrag"
       },
       "contextTitle": "Klantcontext",
       "contextDescription": "Een beknopt overzicht van acquisitie, retentie en geverifieerde bestedingen.",
@@ -8395,6 +8630,50 @@
       "fri": "Vr",
       "sat": "Za",
       "sun": "Zo"
+    },
+    "analytics": {
+      "bestMonth": "Beste afgesloten maand",
+      "completedMonths": "Alleen volledig opgenomen, afgesloten maanden met betrouwbare gegevens tellen mee.",
+      "noBestMonth": "Geen betrouwbare beste maand in deze periode. Neem volledige afgesloten maanden op.",
+      "showYear": "Dit jaar tonen",
+      "monthRanking": "Betalingen per maand",
+      "month": "Maand",
+      "coverage": "Gegevensdekking",
+      "completeMonth": "Volledige maand",
+      "partialMonth": "Gedeeltelijke maand",
+      "moneyBasis": "Werkelijk ontvangen betalingen in de periode, minus vastgelegde terugbetalingen op de rapportdatum. Betaalde lidmaatschappen, vouchers en opwaarderingen tellen eenmaal; gebruik is geen nieuwe betaling. Dit is geen winst.",
+      "asOf": "Stand op",
+      "customerTable": "Klantanalyse",
+      "customerHelp": "Combineer filters om klanten te vinden die je wilt benaderen.",
+      "inactiveCredit": "90 dagen inactief met tegoed:",
+      "showCustomers": "Klanten tonen",
+      "spending": "Ontvangen betalingen",
+      "credits": "Huidig tegoed",
+      "cancellations": "Geannuleerde boekingen",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "actor": "Geannuleerd door",
+      "actor_all": "Iedereen",
+      "actor_customer": "Klant",
+      "actor_staff": "Medewerker",
+      "inactiveDays": "Minstens inactief (dagen)",
+      "dateDefaults": "Lege datumvelden gebruiken de rapportperiode hierboven.",
+      "cancellationCoverage": "Oudere annuleringen kunnen een betrouwbare datum of uitvoerder missen. Een aantal met + is een bekend minimum; onbekend is niet nul. Een maximumfilter vereist volledige historie.",
+      "invalidBounds": "Voer geldige getallen en datums in; het minimum mag niet hoger zijn dan het maximum.",
+      "apply": "Filters toepassen",
+      "clear": "Filters wissen",
+      "exportCustomers": "Alle overeenkomende klanten exporteren",
+      "noCustomers": "Geen klanten voldoen aan deze filters.",
+      "customer": "Klant",
+      "lastActivity": "Laatste activiteit",
+      "locationScope": "Studiototalen sluiten betalingen zonder betrouwbare studiotoewijzing uit. Lidmaatschappen, vouchers en opwaarderingen kunnen alleen in het werkruimteoverzicht meetellen.",
+      "incompleteData": "Sommige bronnen zijn onvolledig of niet beschikbaar. Alleen verifieerbare gegevens tellen mee; ontbrekende waarden zijn niet nul.",
+      "paymentSources": "Betalingsbronnen",
+      "source_external_payment": "Bestelbetalingen",
+      "source_voucher": "Aankopen van vouchers",
+      "source_membership": "Lidmaatschapsbetalingen",
+      "source": "Bron",
+      "noPaymentSources": "Er zijn geen gegevens over betalingsbronnen beschikbaar."
     }
   },
   "Inventory": {
@@ -9234,10 +9513,20 @@
         "headline": "Titel van de cursuspagina",
         "intro": "Inleiding van de cursuspagina",
         "image": "Foto van de cursuspagina",
-        "inherit": "Lege velden gebruiken de gedeelde cursustekst en omslagfoto van je merk.",
+        "inherit": "Lege velden gebruiken de gedeelde cursustekst en cursusafbeelding, of de omslagfoto van je merk als er geen cursusafbeelding is ingesteld.",
         "noLocations": "Voeg een atelierlocatie toe om de cursuspagina aan te passen.",
         "guestCheckoutEnabled": "Cursussen kopen zonder account toestaan",
         "guestCheckoutDescription": "Geldt voor alle studio’s. Gasten kunnen een cursus kopen zonder account; klanten kunnen nog steeds inloggen om te boeken. Vereist zichtbare cursuspagina’s en werkende online betalingen. Publiceer de wijzigingen om deze instelling toe te passen."
+      },
+      "pageImages": {
+        "title": "Afbeeldingen in paginakoppen",
+        "description": "Kies voor elke openbare of klantpagina een andere afbeelding. Boekingskalenders behouden hun compacte tekstkop.",
+        "page": "Aan te passen pagina",
+        "image": "Afbeelding in paginakop",
+        "hint": "Gebruik een liggende foto. Verwijderen herstelt een kop met alleen tekst. Een cursusafbeelding voor een specifieke studio heeft voorrang.",
+        "preview": "Bekijk deze paginakop",
+        "previewDescription": "Bekijk je pagina-afbeelding met de gekozen kleuren en typografie.",
+        "products": "Producten"
       }
     },
     "preview": {
@@ -9257,7 +9546,8 @@
         "login": "Inloggen",
         "register": "Registratie",
         "portal": "Klantdashboard",
-        "portalCourses": "Cursussen voor klanten"
+        "portalCourses": "Cursussen voor klanten",
+        "portalPageHero": "Paginakoppen"
       },
       "nav": {
         "book": "Vrije werkruimte",
@@ -9379,6 +9669,31 @@
         "team": "Team",
         "faq": "Veelgestelde vragen"
       }
+    },
+    "customLinks": {
+      "title": "Aangepaste links",
+      "addGroup": "Dropdowngroep toevoegen",
+      "group": "Dropdowngroep",
+      "children": "Links in deze groep",
+      "button": "Weergeven als hoofdknop",
+      "separator": "Scheidingslijn vóór deze link weergeven",
+      "layout": "Indeling koptekst",
+      "defaultLayout": "Standaard boekingskoptekst",
+      "websiteLayout": "Websitenavigatie",
+      "background": "Achtergrond koptekst",
+      "linkColor": "Linkkleur koptekst",
+      "buttonColor": "Knopkleur koptekst",
+      "header": "Voeg links toe na de standaardnavigatie. Verberg de standaarditems hierboven als je een volledig aangepast menu wilt.",
+      "footer": "Voeg meer links toe aan Ontdekken in de voettekst. Links die al in de koptekst staan, worden automatisch opgenomen.",
+      "label": "Linktekst",
+      "href": "Doel-URL",
+      "add": "Link toevoegen",
+      "remove": "Link verwijderen",
+      "up": "Link omhoog verplaatsen",
+      "down": "Link omlaag verplaatsen",
+      "count": "links",
+      "hint": "Gebruik https://… of een pad dat begint met /. Vul tekst en URL samen in; laat beide leeg om een andere taal te gebruiken.",
+      "invalid": "Voer in ten minste één taal een linktekst en een geldige HTTPS-URL of een pad in. Elke taal heeft beide velden nodig, of geen van beide."
     }
   },
   "Onboarding": {
@@ -10771,8 +11086,8 @@
     "location": "Studiolocatie",
     "chooseLocation": "Kies een locatie",
     "scopeNotice": {
-      "title": "Alleen voorraadbeheer — je slot blijft handmatig",
-      "description": "Shario registreert gereedheid en verzendgeschiktheid. Het kan geen code op het fysieke slot programmeren, testen, uitschakelen of laten verlopen, en in deze fase worden er geen codes per e-mail verstuurd."
+      "title": "Beheer je fysieke sloten handmatig",
+      "description": "Programmeer en test codes zelf op je fysieke slot. Shario kan codes op het slot niet wijzigen, uitschakelen of laten verlopen. Beheer automatische e-mailverzending voor boekingen die daarvoor in aanmerking komen via Berichten → Automatiseringen."
     },
     "disabled": {
       "title": "Deurtoegang is niet beschikbaar voor deze configuratie",
@@ -10838,7 +11153,7 @@
     "types": {
       "single_booking": {
         "label": "Eenmalige boeking",
-        "description": "Gereserveerd voor één boeking via een toekomstige automatisering. Dit maakt de code op het fysieke slot niet eenmalig."
+        "description": "Gereserveerd voor één boeking. Dit maakt de code op het fysieke slot niet eenmalig."
       },
       "reusable": {
         "label": "Herbruikbaar",
@@ -10929,7 +11244,7 @@
       "programmedAndTested": "Ik bevestig dat deze code is geprogrammeerd en getest",
       "programmedAndTestedHint": "Bevestigde codes kunnen beschikbaar worden gesteld. Shario kan het fysieke slot zelf niet verifiëren.",
       "notes": "Interne notities",
-      "emergencyExplanation": "Noodreservecodes blijven buiten de normale pool. Automatische noodprocedures en verzending per e-mail worden in een latere fase toegevoegd.",
+      "emergencyExplanation": "Noodreservecodes blijven buiten de normale pool en worden niet automatisch verzonden. Automatische noodprocedures zijn niet beschikbaar.",
       "errors": {
         "codeRequired": "Voer een deurcode in.",
         "expiryRequired": "Kies een vervaldatum of selecteer Verloopt nooit.",
@@ -10999,6 +11314,13 @@
     "notEntitled": {
       "title": "Deurtoegang is niet inbegrepen in dit abonnement",
       "description": "Bekijk de abonnementsopties of vraag een eigenaar van de werkruimte naar Deurtoegang."
+    },
+    "emailTemplate": {
+      "title": "E-mail met toegangscode",
+      "description": "Maak of bewerk de automatische e-mail met toegangscode voor deze locatie. Elke locatie heeft één sjabloon, dat ook bij Berichten → E-mailsjablonen wordt gebruikt.",
+      "create": "Sjabloon maken",
+      "createFor": "Sjabloon voor toegangscodes maken voor {location}",
+      "locationUnavailable": "Er is geen toegangscodesjabloon beschikbaar voor deze locatie."
     }
   },
   "People": {
@@ -11193,10 +11515,11 @@
     "overview": {
       "label": "Klantoverzicht",
       "totalCustomers": "Totaal aantal klanten",
-      "activeMemberships": "Actieve lidmaatschappen",
+      "activeMemberships": "Actieve abonnees",
       "credits": "Klanttegoeden",
       "newThisMonth": "Nieuw deze maand",
-      "monthlyChange": "+{count} deze maand"
+      "monthlyChange": "+{count} deze maand",
+      "unavailable": "Gegevens niet beschikbaar"
     },
     "tabs": {
       "label": "Personenweergave",
@@ -11218,7 +11541,23 @@
       "status": "Status",
       "allStatuses": "Alle statussen",
       "button": "Filters",
-      "clear": "Wissen"
+      "clear": "Wissen",
+      "spending": "Bestedingen ({currency})",
+      "spendMin": "Minimale bestedingen",
+      "spendMax": "Maximale bestedingen",
+      "spendFrom": "Betaaldatum vanaf",
+      "spendTo": "Betaaldatum tot en met",
+      "spendingHint": "Betalingen in deze periode, na aftrek van geregistreerde terugbetalingen.",
+      "spendingDatesHint": "Laat de datums leeg voor de volledige periode.",
+      "credits": "Huidig tegoed ({currency})",
+      "creditMin": "Minimaal tegoed",
+      "creditMax": "Maximaal tegoed",
+      "creditsHint": "Het huidige tegoed, onafhankelijk van de betaaldatums.",
+      "spendingUnavailable": "Bestedingsfilters vereisen toegang tot alle financiële gegevens.",
+      "applyFinancial": "Financiële filters toepassen",
+      "financialDraftHint": "Wijzigingen worden verwerkt nadat je op Toepassen klikt.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Volledige periode"
     },
     "membership": {
       "none": "Geen"
@@ -11237,7 +11576,8 @@
       "lastActive": "Laatst actief",
       "status": "Status",
       "actions": "Acties",
-      "memberId": "Lidnummer"
+      "memberId": "Lidnummer",
+      "periodSpent": "Besteed in periode"
     },
     "table": {
       "label": "Tabel klanten en team"
@@ -11250,7 +11590,8 @@
       "addCredits": "Tegoed toevoegen",
       "removeStaff": "Teamlid verwijderen",
       "openCustomerActions": "Acties voor {name} openen",
-      "openStaffActions": "Acties voor {name} openen"
+      "openStaffActions": "Acties voor {name} openen",
+      "exporting": "Exporteren…"
     },
     "status": {
       "active": "Actief",
@@ -11326,7 +11667,14 @@
     },
     "errors": {
       "customers": "Klanten konden niet worden geladen. Probeer het opnieuw.",
-      "staff": "Teamleden konden niet worden geladen. Probeer het opnieuw."
+      "staff": "Teamleden konden niet worden geladen. Probeer het opnieuw.",
+      "summary": "Klanttotalen en lidmaatschapsfilters konden niet worden geladen. Probeer het opnieuw.",
+      "export": "De volledige klantenexport kon niet worden gedownload. Er is geen bestand opgeslagen. Probeer het opnieuw.",
+      "invalidAmount": "Voer een geldig bedrag in.",
+      "invalidDate": "Voer een geldige datum in.",
+      "spendingRange": "De minimale bestedingen mogen niet hoger zijn dan de maximale bestedingen.",
+      "creditRange": "Het minimale tegoed mag niet hoger zijn dan het maximale tegoed.",
+      "dateRange": "De begindatum mag niet na de einddatum liggen."
     },
     "exportColumns": {
       "name": "Naam",
@@ -11341,7 +11689,8 @@
       "location": "Locatie",
       "lastActive": "Laatst actief",
       "status": "Status",
-      "memberId": "Lidnummer"
+      "memberId": "Lidnummer",
+      "periodSpent": "Besteed in periode"
     }
   },
   "VoucherFoundation": {
@@ -12135,6 +12484,413 @@
     "acceptError": "De uitnodiging kon niet worden geaccepteerd. Controleer je gegevens of vraag een nieuwe uitnodiging.",
     "passwordReady": "Ik heb mijn wachtwoord ingesteld"
   },
+  "StudioManagement": {
+    "todayEyebrow": "Atelieroverzicht",
+    "todayNumbers": "Dagcijfers van het atelier",
+    "todayBookings": "Reserveringen",
+    "selectedDate": "Op de geselecteerde dag",
+    "expectedVisitors": "Verwachte bezoekers",
+    "bookedParticipants": "Deelnemers aan geplande reserveringen",
+    "expectedNow": "Nu in het atelier (geschat)",
+    "expectedNowBasis": "Personen met een lopende reservering; aanwezigheid is niet bevestigd",
+    "nextSession": "Volgende reservering",
+    "noUpcomingSession": "Geen volgende reservering",
+    "attentionTitle": "Vraagt je aandacht",
+    "review": "Bekijken",
+    "generateReport": "AI-rapport genereren",
+    "generating": "Rapport voorbereiden…",
+    "reportPermission": "Voor AI-rapporten heb je toegang tot de atelierassistent nodig.",
+    "reportError": "Het rapport kon niet worden gegenereerd. Probeer het opnieuw.",
+    "operationsError": "De daggegevens van het atelier konden niet worden geladen.",
+    "managementError": "De maandgegevens van het atelier konden niet worden geladen.",
+    "retry": "Opnieuw proberen",
+    "loadingPerformance": "Atelierresultaten laden…",
+    "performanceEyebrow": "Atelierresultaten",
+    "monthTitle": "Deze maand tot nu toe",
+    "comparison": "Vergeleken met {period}",
+    "comparedWithPrevious": "vergeleken met de vorige periode",
+    "unavailable": "Gegevens niet beschikbaar",
+    "revenue": "Omzet uit geleverde diensten en producten",
+    "revenueBasis": "Diensten en producten die in deze periode zijn geleverd",
+    "revenueUnavailable": "De totale omzet uit geleverde diensten en producten is nog niet beschikbaar: leveringsregistraties dekken niet alle diensten en producten. Ontvangen betalingen worden apart vermeld.",
+    "confirmedRevenue": "Bevestigde voltooide diensten: {amount}.",
+    "visits": "Deelnemers aan verstreken reserveringen",
+    "visitsBasis": "Deelnemers aan verstreken reserveringen; aanwezigheid is niet bevestigd",
+    "newClients": "Nieuwe reserverende klanten",
+    "newClientsBasis": "Eerste geregistreerde reservering in de geselecteerde ateliers; niet noodzakelijk nieuw voor het hele bedrijf",
+    "last30Days": "Afgelopen 30 dagen",
+    "arrivalTitle": "Wanneer klanten aankomen",
+    "scheduledArrivalTitle": "Wanneer bezoeken gepland staan",
+    "hourlyAttendance": "Deelnemers per startuur",
+    "hourCount": "{hour}:00 — {count} deelnemers",
+    "busiestHour": "Drukste geplande uur: {from}:00–{to}:00",
+    "recordedBusiestHour": "Drukste aankomstuur: {from}:00–{to}:00",
+    "recordedSample": "Op basis van {count} geregistreerde aankomsten",
+    "scheduledSample": "Op basis van {count} geplande deelnemers",
+    "scheduledCaveat": "Starttijden van reserveringen tonen de huidige planning. Rustige uren bewijzen op zichzelf geen vraag naar nieuwe sessies.",
+    "noAttendance": "Er is nog te weinig activiteit om een patroon te tonen.",
+    "other": "Overig",
+    "topClients": "Top 5 klanten",
+    "rankingBy": "Klanten rangschikken op",
+    "clientVisitsBasis": "Deelnemers aan verstreken reserveringen in deze periode",
+    "clientRevenueBasis": "Omzet uit bevestigde voltooide diensten in deze periode",
+    "unnamedClient": "Klant zonder naam",
+    "noClients": "Geen klanten geregistreerd voor deze periode.",
+    "confirmedOnly": "Alleen bevestigde voltooide diensten; andere leveringsregistraties zijn niet beschikbaar.",
+    "topProducts": "Top 3 producten",
+    "byQuantity": "Op aantal",
+    "deliveredProductsBasis": "Bevestigde voltooide diensten, gerangschikt op aantal",
+    "noProducts": "Geen voltooide producten geregistreerd voor deze periode.",
+    "unnamedProduct": "Product zonder naam",
+    "units": "stuks",
+    "coverageTitle": "Beschikbaarheid en beperkingen van gegevens",
+    "coverageDescription": "Ontbrekende gegevens blijven als niet beschikbaar gemarkeerd. Geplande activiteit en bevestigde levering worden apart aangeduid.",
+    "openReports": "Gedetailleerde rapporten openen",
+    "back": "Terug naar overzicht",
+    "reportTitle": "Atelierrapport",
+    "exporting": "PDF voorbereiden…",
+    "exportPdf": "Exporteren als PDF",
+    "exportError": "De PDF kon niet worden gedownload. Probeer het opnieuw.",
+    "aiReport": "AI-atelierrapport",
+    "verifiedReport": "Ateliergegevensrapport",
+    "deterministicNote": "AI-commentaar is niet beschikbaar. Dit rapport bevat de opgeslagen ateliercijfers en een feitelijke samenvatting.",
+    "reportHighlights": "Belangrijkste resultaten",
+    "reportAttention": "Aandachtspunten",
+    "reportRecommendations": "Voorgestelde vervolgstappen",
+    "generatedAt": "Gegenereerd op {date}",
+    "staleData": "De laatste vernieuwing is mislukt. Eerder geladen gegevens worden getoond.",
+    "refreshingData": "Ateliergegevens vernieuwen…",
+    "coverageReportDetails": "Genereer een atelierrapport om de beschikbare bronnen en beperkingen per cijfer te bekijken.",
+    "issues": {
+      "overdueTasks": "{count} achterstallige taken",
+      "lowStock": "{count} artikelen met lage voorraad",
+      "failedEmails": "{count} mislukte e-mails",
+      "overduePayments": "{count} achterstallige betalingen",
+      "overdueOrders": "{count} opdrachten met een verstreken deadline",
+      "other": "{count} punten moeten worden bekeken",
+      "failed_emails": "{count} mislukte e-mails",
+      "overdue_invoices": "{count} achterstallige betalingen",
+      "overdue_custom_orders": "{count} opdrachten met een verstreken deadline"
+    },
+    "dismissAttention": "Aandachtskaart verbergen",
+    "showAttention": "Meldingen tonen ({count})",
+    "customerId": "Klantnummer {id}",
+    "spentMonth": "Uitgaven geselecteerde maand",
+    "spentTotal": "Totaal uitgegeven",
+    "clientSpendingBasis": "Klantbetalingen na geregistreerde terugbetalingen bij alle ateliers. Maand: {period}; totaal tot de geselecteerde datum.",
+    "spendingUnavailable": "Uitgaven zijn niet beschikbaar in dit overzicht.",
+    "previousValue": "Vorige periode: {value}",
+    "revenueUnavailableShort": "Niet beschikbaar — leveringsgegevens zijn onvolledig.",
+    "totalCustomers": "Totaal klanten",
+    "workspaceCustomersScope": "Geregistreerd bij alle ateliers",
+    "newRegisteredThisMonth": "Nieuw deze maand",
+    "activeCustomers": "Actieve klanten",
+    "activeCustomersBasis": "Gereserveerd in de afgelopen 30 dagen",
+    "selectedStudiosScope": "Geselecteerde ateliers",
+    "workspaceScope": "Alle ateliers",
+    "activeSubscribers": "Actieve abonnees",
+    "newSubscribersThisMonth": "Nieuwe abonnees deze maand",
+    "subscriberBasis": "Elke persoon één keer. Nieuw betekent een eerste abonnement; verlengingen tellen niet mee.",
+    "missingMetric": "— Gegevens niet beschikbaar",
+    "asOfDate": "Op {date}",
+    "subscriberSelectedScope": "Lidmaatschappen die geldig zijn bij de geselecteerde studio’s",
+    "recordedPayments": "Ontvangen betalingen",
+    "recordedPaymentsBasis": "Betalingen ontvangen in de geselecteerde maand, na aftrek van geregistreerde terugbetalingen",
+    "paymentsUnavailable": "Betalingsgegevens niet beschikbaar.",
+    "spending": "Bestedingen",
+    "clientPaymentsBasis": "Gerangschikt op geregistreerde klantbetalingen in de geselecteerde maand, na aftrek van geregistreerde terugbetalingen, voor alle studio’s",
+    "noCustomerPayments": "Geen geverifieerde klantbetalingen voor deze periode.",
+    "spendingIncomplete": "Sommige totalen zijn niet beschikbaar omdat de betalingsgeschiedenis onvolledig is.",
+    "paymentRankingIncomplete": "De ranglijst gebruikt geverifieerde betalingsbedragen; onvolledige gegevens kunnen de volgorde beïnvloeden.",
+    "byPurchases": "Op aantal aankopen",
+    "purchasedProductsBasis": "Betaalde bestellingen met elk product · Laatste 30 dagen: {period}",
+    "noPurchasedProducts": "Geen geverifieerde betaalde productaankopen in de laatste 30 dagen.",
+    "purchases": "aankopen",
+    "purchasesIncomplete": "Sommige aankopen kunnen niet worden geverifieerd; deze ranglijst is mogelijk onvolledig.",
+    "knownAmount": "Bekend bedrag",
+    "knownPaymentsOnly": "Alleen bekende betalingen; sommige betalingsgegevens zijn onvolledig."
+  },
+  "UnifiedSettings": {
+    "title": "Instellingen",
+    "description": "Je voorkeuren en studio-instellingen op één plek.",
+    "navigation": "Instellingensecties",
+    "studioTitle": "Studio",
+    "personalTitle": "Mijn instellingen",
+    "studioScope": "Voor de hele studio",
+    "personalScope": "Alleen voor jou",
+    "studioDescription": "Gedeelde instellingen voor deze studio. Je ziet alleen onderdelen waartoe je toegang hebt.",
+    "personalDescription": "Beheer je account en hoe je in deze studio werkt. Deze voorkeuren wijzigen de instellingen van andere teamleden niet.",
+    "personalProfileScope": "Je profiel en wachtwoord gelden voor je account in alle studio’s.",
+    "personalPreferencesScope": "Deze voorkeuren gelden alleen voor jou in deze studio.",
+    "locationScope": "Alleen de locatie {name}",
+    "newLocationScope": "Instellingen voor de nieuwe locatie",
+    "backTo": "Terug naar {section}",
+    "searchLabel": "Instellingen zoeken",
+    "searchStudio": "Studio-instellingen zoeken…",
+    "searchPersonal": "Mijn instellingen zoeken…",
+    "clearSearch": "Zoekopdracht wissen",
+    "searchResults": "{count, plural, one {# instelling gevonden} other {# instellingen gevonden}}",
+    "advancedTitle": "Geavanceerde instellingen",
+    "advancedDescription": "Ingeschakelde functies, navigatie en gegevensimport.",
+    "emptyTitle": "Geen overeenkomende instellingen",
+    "emptyDescription": "Probeer een andere zoekterm of wis de zoekopdracht om alle beschikbare instellingen in deze sectie te zien.",
+    "setupTitle": "Rond het instellen van je studio af",
+    "setupProgress": "{completed} van {total} verplichte stappen voltooid.",
+    "setupAction": "Doorgaan met instellen",
+    "groups": {
+      "workspace": {
+        "title": "Studio en locaties",
+        "description": "Studiogegevens, gedeelde taal, valuta en locaties."
+      },
+      "access": {
+        "title": "Team en toegang",
+        "description": "Teamleden, rollen en toegangscodes."
+      },
+      "website": {
+        "title": "Website en huisstijl",
+        "description": "Openbare website, boekingspagina’s en visuele identiteit."
+      },
+      "payments": {
+        "title": "Betalingen van klanten",
+        "description": "Betaalmethoden en instellingen voor klantbetalingen."
+      },
+      "communications": {
+        "title": "Berichten en automatisering",
+        "description": "E-mailbezorging, afzenders en AI-assistentie."
+      },
+      "account": {
+        "title": "Shario-abonnement",
+        "description": "Het abonnement, de facturen en de factuurgegevens van je studio."
+      },
+      "advanced": {
+        "title": "Functies en gegevens",
+        "description": "Modules instellen en gegevens naar je studio overbrengen."
+      },
+      "profile": {
+        "title": "Profiel en beveiliging",
+        "description": "Je naam, contactgegevens en wachtwoord voor alle studio’s."
+      },
+      "preferences": {
+        "title": "Mijn werkomgeving",
+        "description": "Je agenda, tijdzone en standaardlocatie in deze studio."
+      },
+      "notifications": {
+        "title": "Mijn meldingen",
+        "description": "Kies welke meldingen je in deze studio ontvangt."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Studiogegevens",
+        "description": "Naam, taal, tijdzone en valuta."
+      },
+      "locations": {
+        "title": "Locaties",
+        "description": "Adressen, ruimtes en openingstijden."
+      },
+      "team": {
+        "title": "Teamleden",
+        "description": "Mensen uitnodigen en teamlidmaatschappen beheren."
+      },
+      "roles": {
+        "title": "Rollen en rechten",
+        "description": "Wie toegang heeft tot elk onderdeel van de studio."
+      },
+      "accessCodes": {
+        "title": "Toegangscodes",
+        "description": "Deurcodes en toegang tot ruimtes."
+      },
+      "publicSite": {
+        "title": "Website en boekingspagina’s",
+        "description": "Huisstijl, openbare pagina’s en klantervaring."
+      },
+      "payments": {
+        "title": "Betaalmethoden",
+        "description": "Online betalingen en Stripe-koppeling."
+      },
+      "invoicing": {
+        "title": "Klantfacturatie",
+        "description": "Facturen en facturatie aan klanten."
+      },
+      "communications": {
+        "title": "E-mail en afzenders",
+        "description": "Bezorging, verzenddomeinen en berichtinstellingen."
+      },
+      "ai": {
+        "title": "AI-assistent",
+        "description": "AI-functies en automatiseringsinstellingen."
+      },
+      "billing": {
+        "title": "Abonnement en facturatie",
+        "description": "Shario-abonnement, facturen en factuurgegevens."
+      },
+      "modules": {
+        "title": "Functies en navigatie",
+        "description": "Modules inschakelen en navigatie-items kiezen."
+      },
+      "migration": {
+        "title": "Gegevens importeren",
+        "description": "Klanten, boekingen en andere studiogegevens importeren."
+      },
+      "profile": {
+        "title": "Profiel en wachtwoord wijzigen",
+        "description": "Je naam, contactgegevens en wachtwoord voor alle studio’s."
+      },
+      "preferences": {
+        "title": "Agenda en weergave",
+        "description": "Je agenda, tijdzone en standaardlocatie in deze studio."
+      },
+      "notifications": {
+        "title": "Meldingsvoorkeuren",
+        "description": "Boekings-, taak- en voorraadmeldingen; e-mail en meldingen in de app."
+      }
+    },
+    "language": {
+      "label": "Taal van de app",
+      "change": "Taal wijzigen",
+      "sharedScope": "Gedeeld door het hele studioteam.",
+      "managedByAdmin": "Je studiobeheerder beheert deze taal."
+    },
+    "plan": {
+      "label": "Huidig abonnement",
+      "details": "Abonnementsdetails",
+      "loading": "Abonnement laden…",
+      "unavailable": "Abonnement niet beschikbaar",
+      "detailsUnavailable": "Abonnementsdetails zijn tijdelijk niet beschikbaar."
+    }
+  },
+  "MarketingPlanComparison": {
+    "eyebrow": "Vind het passende abonnement",
+    "title": "Bekijk de verschillen tussen abonnementen.",
+    "description": "Vergelijk de huidige abonnementen voor nieuwe klanten. Bestaande abonnementen kunnen een eerdere versie behouden.",
+    "caption": "Vergelijking van de huidige studio-abonnementen",
+    "feature": "Functie of limiet",
+    "scrollLabel": "Abonnementen vergelijken — scroll horizontaal om alle abonnementen te zien",
+    "shared": "Elk abonnement omvat cursussen, wachtlijsten, cadeaubonnen, een boekingswebsite in je huisstijl, een klantenportaal en CSV-imports.",
+    "rows": {
+      "locations": "Studiolocaties",
+      "teamAccounts": "Teamaccounts",
+      "openStudioMemberships": "Open studio, lidmaatschappen en creditpakketten",
+      "inventoryTasks": "Voorraad en teamtaken",
+      "automations": "Actieve eigen automatiseringen",
+      "emails": "Inbegrepen e-mails per maand",
+      "studioAssistant": "Studio-assistent",
+      "aiCredits": "AI-credits per maand",
+      "briefingKnowledge": "Dagelijkse overzichten en kennisbank",
+      "advancedAi": "Bedrijfsadviseur, klantenassistent en AI-rapportinzichten",
+      "accessCodes": "Toegangscodes beheren en versturen",
+      "customDomain": "Eigen domein"
+    },
+    "values": {
+      "included": "Inbegrepen",
+      "notIncluded": "Niet inbegrepen",
+      "basic": "Basis",
+      "full": "Volledig",
+      "limited": "Beperkt",
+      "advanced": "Geavanceerd"
+    },
+    "trialNote": "De proefperiode van 14 dagen omvat Professional-functies. Toegangscodes, eigen domeinen en de bovenstaande geavanceerde AI-tools vereisen Space Plus of een overeengekomen Enterprise-abonnement.",
+    "usageNote": "Essentiële systeeme-mails tellen niet mee voor de e-maillimiet. AI-credits worden gedeeld door ingeschakelde AI-tools; bij de limiet pauzeert het gebruik zonder automatische extra kosten. Beschikbare tools hangen ook af van je studio-instellingen en teamrechten.",
+    "accessNote": "Toegangscodes werken met je eigen toegangssysteem en codes die je naar Shario uploadt. Hardware en integraties voor slimme sloten zijn niet inbegrepen.",
+    "enterpriseTitle": "Een oplossing op maat nodig?",
+    "enterpriseDescription": "Bespreek Enterprise-capaciteit, integraties, migratie en ondersteuning met ons. We bevestigen de mogelijkheden en voorwaarden voor je studio voordat je kiest.",
+    "enterpriseCta": "Bespreek Enterprise"
+  },
+  "PricingDetails": {
+    "feeNote": "Shario rekent geen transactiecommissie. De verwerkingskosten van Stripe voor klantbetalingen staan los van je abonnement. Prijzen zijn exclusief toepasselijke belastingen.",
+    "feeLink": "Betaalkosten, proefperiode en opzegging",
+    "links": {
+      "stripePricing": "Bekijk de Stripe-tarieven voor jouw land",
+      "refundContact": "Vraag naar een terugbetaling van je abonnement",
+      "studioAi": "Ontdek Shario AI",
+      "refundTerms": "Lees de volledige voorwaarden en uitzonderingen op terugbetaling"
+    },
+    "faq": {
+      "title": "Voordat je een abonnement kiest",
+      "description": "Weet waarvoor je betaalt, wanneer wijzigingen ingaan en wat er na je proefperiode gebeurt.",
+      "trial": {
+        "question": "Wat gebeurt er als mijn proefperiode eindigt?",
+        "answer": "Je Professional-proefperiode van 14 dagen begint wanneer je de eerste inrichting afrondt. Je hebt geen betaalkaart nodig. Zonder actief betaald abonnement worden nieuwe boekingen, online aankopen en werkruimtefuncties na de proefperiode gepauzeerd. Klanten kunnen hun boekingsgeschiedenis nog bekijken en je kunt je abonnement herstellen; het einde van de proefperiode verwijdert geen studiogegevens. In de laatste 48 uur van de proefperiode kun je geen abonnement afrekenen, om een voortijdige betaling te voorkomen. Je kunt na afloop een abonnement afsluiten."
+      },
+      "cancellation": {
+        "question": "Wanneer gaat een opzegging in?",
+        "answer": "Als je een betaald abonnement opzegt, stopt de volgende verlenging. Je houdt toegang tot het einde van de huidige betaalde factuurperiode en kunt de opzegging tot die tijd ongedaan maken. Een proefperiode zonder betaalkaart eindigt direct wanneer je die opzegt. Na het einde van de toegang worden nieuwe boekingen, online aankopen en werkruimtefuncties beperkt. Beperkte toegang is geen volledige alleen-lezenwerkruimte: algemene rapporten en exports kunnen onbeschikbaar zijn. Exporteer benodigde gegevens voordat de toegang eindigt, of neem contact op via hello@shario.io voor teruggave of verwijdering. Gegevens worden bij afloop niet automatisch gewist, maar onbeperkte bewaring wordt niet toegezegd."
+      },
+      "refunds": {
+        "question": "Krijg ik bij opzegging automatisch ongebruikte tijd terugbetaald?",
+        "answer": "Als je een jaar- of maandabonnement opzegt, stopt de volgende verlenging; de betaalde toegang blijft tot het einde van de huidige periode. Vrijwillige opzegging, ongebruikte tijd en ongebruikte tegoeden worden niet terugbetaald, behalve wanneer dwingend recht, een uitdrukkelijke schriftelijke overeenkomst of de remedies in onze voorwaarden anders bepalen. Als Shario de betaalde dienst voortijdig beëindigt om eigen bedrijfsredenen, niet wegens jouw contractbreuk, of je de overeenkomst beëindigt wegens onze wezenlijke tekortkoming die wij niet binnen 30 dagen na schriftelijke kennisgeving herstellen, betalen we het ongebruikte vooruitbetaalde deel vanaf de ingangsdatum van beëindiging terug. Dit geldt ook als je beëindigt omdat een nadelige wijziging van de voorwaarden tijdens een al vooruitbetaalde periode moet ingaan. Als we een gerechtvaardigd bezwaar inzake gegevensbescherming tegen een nieuwe of vervangende subverwerker niet met een redelijk alternatief kunnen oplossen, kun je de betrokken dienst beëindigen en het ongebruikte vooruitbetaalde deel daarvan terugkrijgen. Opzegging leidt op zichzelf niet automatisch tot terugbetaling. Neem contact met ons op om de toepasselijke vergoeding aan te vragen."
+      },
+      "planChanges": {
+        "question": "Wanneer gaan upgrades en downgrades in?",
+        "answer": "Bij een betaald abonnement gaat een hoger pakket direct in zodra een eventuele betaling is afgerond, met een naar rato berekende factuur. Een lager pakket gaat in aan het einde van de huidige factureringsperiode. Binnen hetzelfde pakket gaat maandelijks naar jaarlijks direct in zodra een eventuele betaling is afgerond; jaarlijks naar maandelijks vanaf de volgende periode. Controleer de ingangsdatum en het factuurvoorbeeld voordat je bevestigt."
+      },
+      "payments": {
+        "question": "Zijn de kosten voor klantbetalingen inbegrepen?",
+        "answer": "Online klantbetalingen worden verwerkt via je gekoppelde Stripe-account. Shario rekent geen transactiecommissie. De verwerkingskosten van Stripe staan los van je Shario-abonnement en hangen af van je land, de betaalmethode en je overeenkomst met Stripe. Het studioabonnement wordt apart gefactureerd van de betalingen van je klanten."
+      }
+    },
+    "definitions": {
+      "title": "Wat de abonnementsfuncties betekenen",
+      "automations": {
+        "question": "Wat telt als een actieve automatisering?",
+        "answer": "Een actieve automatisering is een ingeschakelde eigen regel: bijvoorbeeld instructies voor een studiobezoek inplannen voor één dag nadat een klant zich registreert. De limiet telt ingeschakelde regels, geen opgeslagen concepten of uitvoeringen. Starter bevat geen eigen regels; Professional staat er 3 toe. Space Plus gebruikt dezelfde op gebeurtenissen gebaseerde editor en staat meer dan 3 actieve regels toe, met 5.000 meegetelde e-mails per maand. Elke regel telt voor de automatiseringslimiet en de meegetelde e-mails ervan voor de e-maillimiet. Standaard systeemmails staan hier los van."
+      },
+      "studioAi": {
+        "question": "Welke Shario AI-tools krijg ik?",
+        "answer": "Professional biedt 2.000 AI-credits per maand en bevat Studio Assistant, dagelijkse overzichten en Knowledge Hub. Space Plus biedt 10.000 credits en voegt Business Advisor, een klantassistent en AI-rapportinzichten toe. Tools zijn afhankelijk van je studio-instellingen en teamrechten; ondersteunde acties vereisen bevestiging."
+      },
+      "aiCredits": {
+        "question": "Staat één AI-credit gelijk aan één vraag?",
+        "answer": "AI-credits meten verwerkte en gegenereerde tekst, niet een vast aantal vragen. Een korte bewerking van 750 tokens (stukjes tekst) gebruikt bijvoorbeeld 1 credit; een bewerking van 2.500 tokens met voldoende budget gebruikt er 3. Eén vraag kan meerdere bewerkingen omvatten, en kennis opzoeken of documenten indexeren kan extra verbruik opleveren. Dit zijn voorbeelden, geen gegarandeerde kosten per vraag. De maandelijkse credits worden gedeeld door alle ingeschakelde tools. Een verzoek heeft voldoende resterende credits nodig; er zijn geen automatische overschrijdingskosten."
+      },
+      "emails": {
+        "question": "Wat gebeurt er wanneer de e-maillimiet is bereikt?",
+        "answer": "De maandelijkse limiet geldt voor meegetelde automatiseringsmails. Wanneer die op is, wordt een betreffende automatiseringsmail overgeslagen; deze wordt niet automatisch voor de volgende maand in de wachtrij gezet. Essentiële accountmails en ondersteunde ingebouwde operationele berichten tellen niet mee. Je eigen automatisering als transactioneel aanmerken geeft geen vrijstelling. Controleer het verbruik in je werkruimte en wijzig je pakket of neem contact op als je meer capaciteit nodig hebt."
+      }
+    }
+  },
+  "RefundReviews": {
+    "title": "Terugbetalingscontroles",
+    "description": "Controleer terugbetalingen die vanuit Stripe zijn geregistreerd en leg de beslissing over de bijbehorende klantvoordelen vast.",
+    "benefitsNotice": "Een terugbetaling registreren of bevestigen annuleert geen boeking of lidmaatschap, verwijdert geen tegoed en voert geen nieuwe betaling uit. Controleer de betrokken voordelen afzonderlijk voordat u uw beslissing vastlegt.",
+    "allLocationsRequired": "Voor terugbetalingscontroles is toegang tot de betalingen van alle studiolocaties vereist.",
+    "refresh": "Vernieuwen",
+    "loading": "Terugbetalingscontroles laden…",
+    "empty": "Er zijn geen openstaande controles op deze pagina.",
+    "loadError": "De controles konden niet worden geladen. Vernieuw om het opnieuw te proberen.",
+    "needsReview": "Controle van de voordelen vereist",
+    "needsRepair": "Betalingsafstemming vereist aandacht",
+    "reference": "Controlereferentie",
+    "order": "Bestelling",
+    "membership": "Lidmaatschap",
+    "paid": "Oorspronkelijke betaling",
+    "refunded": "Terugbetaald",
+    "pending": "Terugbetaling in behandeling",
+    "failed": "Terugbetaling mislukt",
+    "repairNotice": "Deze betaling is nog niet volledig afgestemd. Vernieuw of neem contact op met de ondersteuning om de betalingskoppeling te herstellen voordat u een controle vastlegt.",
+    "readOnly": "Een teamlid met toestemming voor terugbetalingen kan de controle vastleggen.",
+    "review": "Controle vastleggen",
+    "note": "Beslissing of uitgevoerde aanpassingen (10–2000 tekens)",
+    "evidence": "Bewijs of verwijzing ter ondersteuning van de beslissing (10–2000 tekens)",
+    "confirm": "Ik heb de betrokken voordelen gecontroleerd en eventuele aanpassingen of mijn beslissing om ze te behouden vastgelegd.",
+    "save": "Controle bevestigen",
+    "cancel": "Annuleren",
+    "saved": "Controle vastgelegd. De klantvoordelen zijn door deze actie niet gewijzigd.",
+    "changed": "Deze terugbetaling is gewijzigd of wordt nog afgestemd. De lijst is vernieuwd; controleer de actuele gegevens voordat u opnieuw indient.",
+    "saveError": "De controle kon niet worden opgeslagen. Uw notities zijn bewaard; probeer het opnieuw.",
+    "permissionError": "U hebt geen toestemming meer om deze controle vast te leggen. Vraag een teamlid met toegang tot terugbetalingen voor alle locaties om hulp.",
+    "pagination": "Pagina’s met terugbetalingscontroles",
+    "firstPage": "Eerste pagina",
+    "nextPage": "Volgende pagina"
+  },
+  "PaymentRefundResult": {
+    "title": "De studio moet de betaling controleren",
+    "description": "Er is een terugbetaling geregistreerd of deze betaling moet worden gecontroleerd. Deze pagina bevestigt geen nieuwe boeking, creditsaldo of lidmaatschapsvoordeel.",
+    "next": "Neem contact op met de studio en vermeld de onderstaande referentie voordat je opnieuw betaalt.",
+    "reference": "Referentie",
+    "back": "Terug naar de studio",
+    "refresh": "Status controleren"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Fijne plekken brengen mensen samen",
@@ -12296,7 +13052,8 @@
       "about": "Zo werkt het",
       "login": "Inloggen",
       "register": "Start je gratis proefperiode",
-      "copyright": "© {year} Shario. Alle rechten voorbehouden."
+      "copyright": "© {year} Shario. Alle rechten voorbehouden.",
+      "contact": "Contact"
     }
   },
   "Legacy": {
@@ -13314,7 +14071,11 @@
     "ALL_PRODUCTS": "Alle producten",
     "AUTHOR_SEARCH": "Zoek een klant",
     "SEARCH_BY_NAME_OR_ID": "Zoeken op naam of ID",
-    "PASS_RULES": "Gebruik minstens 8 tekens, waaronder een cijfer."
+    "PASS_RULES": "Gebruik minstens 8 tekens, waaronder een cijfer.",
+    "USER_EMAIL_CHANGE_WARNING": "Als je het e-mailadres wijzigt, wordt deze klant uit alle sessies afgemeld en moet hij het nieuwe adres verifiëren.",
+    "USER_EMAIL_VERIFICATION_SENT": "E-mailadres bijgewerkt. Bestaande sessies zijn beëindigd en er is een verificatielink naar het nieuwe adres gestuurd.",
+    "USER_EMAIL_VERIFICATION_RETRY": "E-mailadres bijgewerkt en bestaande sessies beëindigd. De bezorging van de verificatie-e-mail kon niet worden bevestigd. De klant kan een nieuwe link aanvragen op de e-mailverificatiepagina van de studio.",
+    "USER_EMAIL_UPDATE_FAILED": "De klant kon niet worden bijgewerkt. Controleer het e-mailadres en probeer het opnieuw."
   },
   "AIProduct": {
     "briefing": {
@@ -13395,16 +14156,31 @@
       "message041": "Er zijn nog onvoldoende gegevens beschikbaar voor een betrouwbare aanbeveling.",
       "message042": "Begin met de kansen met de hoogste prioriteit",
       "message043": "Een paar kansen zijn het bekijken waard",
-      "message044": "De adviseur heeft {value1} aanbevelingen gevonden op basis van geverifieerde studiogegevens."
+      "message044": "De adviseur heeft {value1} aanbevelingen gevonden op basis van geverifieerde studiogegevens.",
+      "message045": "Controleer de daling van ontvangen betalingen",
+      "message046": "Ontvangen betalingen na terugbetalingen liggen {value1}% lager dan in de vergelijkingsperiode.",
+      "message047": "Ontvangen betalingen na terugbetalingen"
     }
   },
   "PaymentCancellation": {
-    "badge": "Betaling geannuleerd",
-    "nextSteps": "Wat je nu kunt doen",
-    "retry": "Probeer het opnieuw — soms lukt een tweede poging wel.",
-    "card": "Als je Apple Pay / Google Pay hebt gebruikt, probeer dan met een kaart te betalen.",
-    "contact": "Blijft het probleem bestaan? Stuur ons een bericht, dan helpen we je.",
     "home": "Terug naar de startpagina",
-    "chargeNotice": "Er wordt pas een bedrag afgeschreven als de betaling is voltooid."
+    "title": "Terug van de betaling",
+    "description": "Terugkeren van de betaalpagina annuleert een boeking niet. Je kunt de status bekijken bij je boekingen.",
+    "creditsHint": "Om met tegoed te betalen, open je eerst je onbetaalde boeking en annuleer je die. Selecteer daarna opnieuw het tijdstip. Is deze optie niet beschikbaar, neem dan contact op met de studio.",
+    "backToBookings": "Terug naar boekingen"
+  },
+  "PendingBookingPayment": {
+    "title": "Wil je de betaalwijze wijzigen?",
+    "explanation": "Je onbetaalde boeking houdt je plek mogelijk nog vast. Wil je met tegoed betalen in plaats van met een kaart, of opnieuw beginnen, annuleer de boeking dan eerst. Met deze knop annuleer je alle onbetaalde boekingen in deze betaling.",
+    "action": "Onbetaalde boekingen annuleren",
+    "busy": "Betaling controleren en boeking annuleren…",
+    "cancelled": "De onbetaalde boekingen in deze betaling zijn geannuleerd. Ga terug naar je winkelwagen of selecteer opnieuw het tijdstip en kies daarna studiotegoed. Beschikbaarheid en prijs worden opnieuw gecontroleerd.",
+    "paid": "De betaling is al voltooid. Je boeking is niet geannuleerd. Controleer de status.",
+    "pending": "De betaling wordt nog geverifieerd. Er is niets geannuleerd. Controleer de betaalstatus voordat je nog een boeking voor hetzelfde tijdstip maakt.",
+    "unsupported": "Deze betaling kan hier niet worden geannuleerd. Open je boekingen of neem contact op met de studio.",
+    "missing": "Deze bestelling is niet gevonden. Open je boekingen of neem contact op met de studio.",
+    "error": "De annulering kon niet worden bevestigd. Probeer het opnieuw. Neem contact op met de studio als het probleem aanhoudt.",
+    "status": "Betaalstatus controleren",
+    "bookAgain": "Opnieuw een tijdstip selecteren"
   }
 }

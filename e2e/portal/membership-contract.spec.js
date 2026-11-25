@@ -311,12 +311,43 @@ test("an existing member compares plans, schedules next-renewal change and cance
     .click();
   const cancelDialog = page.getByRole("dialog", {
     name: "Keep your current membership",
+    includeHidden: true,
   });
-  await cancelDialog
-    .getByRole("button", { name: "Cancel scheduled change", exact: true })
-    .click();
+  // Keep the request pending until the busy state is observed. An open
+  // fixed-position dialog can have a zero-height root and hide the background
+  // from role queries; neither "hidden" assertion proves cancellation finished.
+  let releaseCancellation;
+  const cancellationGate = new Promise((resolve) => {
+    releaseCancellation = resolve;
+  });
+  await page.route("**/memberships/mine/plan-change", async (route) => {
+    if (route.request().method() === "DELETE") await cancellationGate;
+    await route.continue();
+  });
+  const cancellationResponse = page.waitForResponse(
+    (response) =>
+      response.request().method() === "DELETE" &&
+      new URL(response.url()).pathname === "/memberships/mine/plan-change",
+  );
+  const cancelAction = cancelDialog.getByRole("button", {
+    name: "Cancel scheduled change",
+    exact: true,
+  });
+  try {
+    await cancelAction.click();
+    await expect(cancelAction).toBeDisabled();
+    await expect(cancelDialog).toHaveCount(1);
+    expect((await readState(request)).cancelledPlanChanges).toBe(0);
+  } finally {
+    releaseCancellation();
+  }
+  expect((await cancellationResponse).status()).toBe(200);
+  await expect(cancelDialog).toHaveCount(0);
   await expect(
-    page.getByRole("region", { name: "Plan change scheduled" }),
+    page.getByRole("region", {
+      name: "Plan change scheduled",
+      includeHidden: true,
+    }),
   ).toHaveCount(0);
   const cancelled = await readState(request);
   expect(cancelled.cancelledPlanChanges).toBe(1);

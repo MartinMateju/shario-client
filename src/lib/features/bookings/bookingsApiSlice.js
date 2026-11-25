@@ -183,13 +183,34 @@ export const bookingsApiSlice = apiSlice.injectEndpoints({
               "SetupCenter",
             ],
     }),
+    // Staff cancellation releases the place and applies the server's refund
+    // policy, which can also restore membership or voucher entitlements.
     deleteBooking: builder.mutation({
-      query: (initialData) => ({
-        url: `/bookings`,
-        method: "DELETE",
-        body: { ...initialData },
+      query: ({ id }) => ({
+        url: `/bookings/cancel`,
+        method: "PATCH",
+        body: { id },
       }),
-      invalidatesTags: [{ type: "Booking", id: "LIST" }, "SetupCenter"],
+      invalidatesTags: (result, error, { id }) => {
+        if (error) return [];
+
+        const customer = result?.booking?.createdBy;
+        const customerId = customer?._id ?? customer?.id ?? customer;
+
+        return [
+          { type: "Booking", id: String(id) },
+          { type: "Booking", id: "LIST" },
+          { type: "Booking", id: "MINE" },
+          { type: "Booking", id: "MINE-AVAILABILITY" },
+          ...(customerId
+            ? [{ type: "Booking", id: `CUSTOMER-${customerId}` }]
+            : []),
+          "Membership",
+          "MembershipLedger",
+          "Credits",
+          "SetupCenter",
+        ];
+      },
     }),
     cancelBooking: builder.mutation({
       query: ({ id }) => ({

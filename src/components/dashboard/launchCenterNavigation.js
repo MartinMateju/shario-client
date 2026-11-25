@@ -40,6 +40,15 @@ const normalizeLaunchCenterStatus = (status) => {
   };
 };
 
+export const isLaunchChecklistIncomplete = (status) => {
+  const normalized = normalizeLaunchCenterStatus(status);
+
+  return Boolean(
+    normalized?.status === "progress" &&
+    normalized.completed < normalized.total,
+  );
+};
+
 export const getLaunchCenterStatusPresentation = (status, t) => {
   const normalized = normalizeLaunchCenterStatus(status);
   if (!normalized || typeof t !== "function") return null;

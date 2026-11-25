@@ -26,7 +26,10 @@ import {
 } from "./dashboard.navigation";
 import StudioSwitcher from "./StudioSwitcher";
 import { resetWorkspaceScroll } from "./WorkspaceRouteScrollReset";
-import { getLaunchCenterStatusPresentation } from "./launchCenterNavigation";
+import {
+  getLaunchCenterStatusPresentation,
+  isLaunchChecklistIncomplete,
+} from "./launchCenterNavigation";
 
 import styles from "./dashboardShell.module.css";
 
@@ -88,14 +91,14 @@ function NavigationLink({
         item.key === "settings" ? "settings" : undefined
       }
       className={classNames(
-        "group relative flex min-h-11 items-center rounded-[var(--studio-control-radius)] text-[13px] transition-colors duration-200 motion-reduce:transition-none",
+        "group relative flex min-h-11 items-center rounded-[var(--studio-control-radius)] text-[14px] transition-colors duration-200 motion-reduce:transition-none",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--studio-blue)]",
         collapsed ? "mx-auto h-11 w-11 justify-center p-0" : "gap-2.5 px-3",
         nested && !collapsed
-          ? "ml-3 min-h-11 rounded-[var(--studio-control-radius)] pl-3.5 text-[12.5px]"
+          ? "ml-3 min-h-11 rounded-[var(--studio-control-radius)] pl-3.5 text-[13px]"
           : "",
         active
-          ? "bg-[var(--color-primary-soft)] font-semibold text-[var(--studio-blue)]"
+          ? "bg-[var(--color-primary-soft)] font-semibold text-[var(--studio-blue)] ring-1 ring-inset ring-[var(--studio-blue-line)]"
           : "font-medium text-[var(--studio-muted)] hover:bg-[var(--studio-paper)] hover:text-[var(--studio-ink)]",
       )}
     >
@@ -156,20 +159,20 @@ function LaunchCenterLink({
       data-launch-center-shortcut
       data-product-tour-target="launch-center"
       className={classNames(
-        "group relative flex min-h-11 items-center rounded-[var(--studio-control-radius)] text-[12.5px] transition-colors duration-200 motion-reduce:transition-none",
+        "group relative flex min-h-11 items-center rounded-[var(--studio-control-radius)] text-[13px] transition-colors duration-200 motion-reduce:transition-none",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--studio-blue)]",
         collapsed ? "mx-auto h-11 w-11 justify-center p-0" : "gap-2.5 px-3",
         active
-          ? "bg-[var(--studio-paper)] font-semibold text-[var(--studio-clay)]"
-          : "font-medium text-[var(--studio-clay)] hover:bg-[var(--studio-paper)] hover:text-[var(--studio-clay)]",
+          ? "bg-[var(--studio-blue-soft)] font-semibold text-[var(--studio-blue)] ring-1 ring-inset ring-[var(--studio-blue-line)]"
+          : "font-medium text-[var(--studio-muted)] hover:bg-[var(--studio-paper)] hover:text-[var(--studio-blue)]",
       )}
     >
       <RocketLaunchIcon
         className={classNames(
           "h-[18px] w-[18px] shrink-0 transition-colors",
           active
-            ? "text-[var(--studio-clay)]"
-            : "text-[var(--studio-clay)] group-hover:text-[var(--studio-clay)]",
+            ? "text-[var(--studio-blue)]"
+            : "text-[var(--studio-muted)] group-hover:text-[var(--studio-blue)]",
         )}
         strokeWidth={1.75}
         aria-hidden="true"
@@ -194,7 +197,7 @@ function LaunchCenterLink({
               data-launch-center-status={visibleStatus.status}
               data-complete="false"
               className={classNames(
-                "mt-0.5 block text-[10px] font-semibold leading-none tabular-nums",
+                "mt-0.5 block text-[12px] font-semibold leading-none tabular-nums",
                 attentionStatus
                   ? "text-amber-800"
                   : "text-[var(--studio-clay)]",
@@ -264,7 +267,7 @@ function NavigationGroup({
                   "transition-colors duration-200 motion-reduce:transition-none",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--studio-blue)]",
                   isActive
-                    ? "bg-[var(--color-primary-soft)] text-[var(--studio-blue)]"
+                    ? "bg-[var(--color-primary-soft)] text-[var(--studio-blue)] ring-1 ring-inset ring-[var(--studio-blue-line)]"
                     : "text-[var(--studio-muted)] hover:bg-[var(--studio-paper)] hover:text-[var(--studio-ink)]",
                 )}
               >
@@ -296,7 +299,7 @@ function NavigationGroup({
                 )}
               >
                 <div className="px-3 pb-2 pt-1.5" role="presentation">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--studio-muted)]">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[var(--studio-muted)]">
                     {label}
                   </p>
                 </div>
@@ -313,10 +316,10 @@ function NavigationGroup({
                         onClick={onNavigate}
                         aria-current={itemActive ? "page" : undefined}
                         className={classNames(
-                          "group/item flex min-h-11 w-full items-center gap-2.5 rounded-[var(--studio-control-radius)] px-3 text-[12.5px] font-medium",
+                          "group/item flex min-h-11 w-full items-center gap-2.5 rounded-[var(--studio-control-radius)] px-3 text-[13px] font-medium",
                           "transition-colors focus:outline-none data-focus:ring-2 data-focus:ring-inset data-focus:ring-[var(--studio-blue)]",
                           itemActive
-                            ? "bg-[var(--color-primary-soft)] font-semibold text-[var(--studio-blue)]"
+                            ? "bg-[var(--color-primary-soft)] font-semibold text-[var(--studio-blue)] ring-1 ring-inset ring-[var(--studio-blue-line)]"
                             : "text-[var(--studio-muted)] hover:bg-surface-muted hover:text-[var(--studio-ink)] data-focus:bg-surface-muted",
                         )}
                       >
@@ -349,7 +352,7 @@ function NavigationGroup({
         className={classNames(
           "flex min-h-11 items-center rounded-[var(--studio-control-radius)] transition-colors duration-200 motion-reduce:transition-none",
           isActive
-            ? "bg-[var(--color-primary-soft)] text-[var(--studio-blue)]"
+            ? "bg-[var(--color-primary-soft)] text-[var(--studio-blue)] ring-1 ring-inset ring-[var(--studio-blue-line)]"
             : "text-[var(--studio-muted)] hover:bg-[var(--studio-paper)] hover:text-[var(--studio-ink)]",
         )}
       >
@@ -357,7 +360,7 @@ function NavigationGroup({
           href={entry.resolvedHref}
           onClick={onNavigate}
           className={classNames(
-            "group relative flex min-h-11 min-w-0 flex-1 items-center gap-2.5 rounded-[var(--studio-control-radius)] px-3 text-[13px] font-medium",
+            "group relative flex min-h-11 min-w-0 flex-1 items-center gap-2.5 rounded-[var(--studio-control-radius)] px-3 text-[14px] font-medium",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--studio-blue)]",
             isActive ? "font-semibold" : "",
           )}
@@ -489,6 +492,8 @@ export default function DashboardSidebar({
     : t("collapseSidebar");
   const launchCenterActive =
     pathname === "/app/setup" || pathname?.startsWith("/app/setup/");
+  const showSetupChecklist =
+    canUseSetupCenter && isLaunchChecklistIncomplete(launchCenterStatus);
   const showSidebarToggle = !mobile && Boolean(onToggleCollapsed);
 
   return (
@@ -601,10 +606,12 @@ export default function DashboardSidebar({
         </ul>
       </nav>
 
-      {canUseSetupCenter || utility.length ? (
+      {showSetupChecklist || utility.length ? (
         <nav
           data-workspace-sidebar-footer
-          data-launch-center-navigation={canUseSetupCenter ? "true" : undefined}
+          data-launch-center-navigation={
+            showSetupChecklist ? "true" : undefined
+          }
           className={classNames(
             "relative z-10 shrink-0 border-t border-line/80 bg-surface-panel py-2.5",
             effectiveCollapsed ? "px-2" : mobile ? "px-4" : "px-2.5",
@@ -612,7 +619,7 @@ export default function DashboardSidebar({
           aria-label={t("utilityNavigationLabel")}
         >
           <ul className="space-y-px" role="list">
-            {canUseSetupCenter ? (
+            {showSetupChecklist ? (
               <li>
                 <LaunchCenterLink
                   active={launchCenterActive}

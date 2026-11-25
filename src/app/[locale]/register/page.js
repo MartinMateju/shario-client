@@ -511,40 +511,54 @@ export default function PlatformRegisterPage() {
             </div>
 
             <div className="mt-5 rounded-[var(--studio-radius)] border border-[var(--studio-rule)] bg-[var(--studio-white)] p-4 [@media(max-height:800px)]:mt-3 [@media(max-height:800px)]:py-3">
-              <label
-                className="flex min-h-11 cursor-pointer items-start gap-3 text-sm leading-6 text-[var(--studio-ink)]"
-                htmlFor="platform-legal-agreement"
-                id="platform-legal-label"
-              >
-                <input
-                  aria-describedby={
-                    showFieldError("accepted")
-                      ? "platform-legal-error"
-                      : undefined
-                  }
-                  aria-invalid={Boolean(showFieldError("accepted"))}
-                  checked={accepted}
-                  className="mt-1 size-[18px] shrink-0 rounded border-[var(--studio-rule)] accent-[var(--studio-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--studio-blue)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--studio-white)]"
-                  id="platform-legal-agreement"
-                  onChange={(event) => {
-                    setAccepted(event.target.checked);
-                    setErrorMessage("");
-                  }}
-                  required
-                  type="checkbox"
-                />
-                <span>
+              <div className="flex min-h-11 items-start gap-3 text-sm leading-6 text-[var(--studio-ink)]">
+                <label
+                  className="flex size-11 shrink-0 cursor-pointer items-center justify-center"
+                  htmlFor="platform-legal-agreement"
+                >
+                  <input
+                    aria-labelledby="platform-legal-label"
+                    aria-describedby={
+                      showFieldError("accepted")
+                        ? "platform-legal-error"
+                        : undefined
+                    }
+                    aria-invalid={Boolean(showFieldError("accepted"))}
+                    checked={accepted}
+                    className="size-[18px] shrink-0 rounded border-[var(--studio-rule)] accent-[var(--studio-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--studio-blue)]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--studio-white)]"
+                    id="platform-legal-agreement"
+                    onChange={(event) => {
+                      setAccepted(event.target.checked);
+                      setErrorMessage("");
+                    }}
+                    required
+                    type="checkbox"
+                  />
+                </label>
+                <span className="self-center" id="platform-legal-label">
                   {t("form.legalPrefix")}{" "}
-                  <span className="font-semibold text-[var(--studio-ink)]">
+                  <Link
+                    className="font-semibold text-[var(--studio-ink)] underline underline-offset-4"
+                    href="/terms"
+                    locale={locale}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {t("form.terms")}
-                  </span>{" "}
+                  </Link>{" "}
                   {t("form.legalAnd")}{" "}
-                  <span className="font-semibold text-[var(--studio-ink)]">
+                  <Link
+                    className="font-semibold text-[var(--studio-ink)] underline underline-offset-4"
+                    href="/privacy"
+                    locale={locale}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {t("form.privacy")}
-                  </span>
+                  </Link>
                   {t("form.legalSuffix")}
                 </span>
-              </label>
+              </div>
               <FieldError
                 id="platform-legal-error"
                 message={showFieldError("accepted")}

@@ -275,6 +275,7 @@ export default function CustomerWaitlistsPage() {
   return (
     <CustomerPortalPage data-customer-waitlists-page>
       <CustomerPortalPageHeader
+        pageKey="waitingList"
         eyebrow={t("eyebrow")}
         title={t("title")}
         description={t("description")}

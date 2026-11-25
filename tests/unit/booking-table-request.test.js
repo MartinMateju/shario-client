@@ -1,7 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { INITIAL_BOOKING_FILTERS } from "@/components/tables/bookings/booking-table.constants";
-import { buildBookingRequest } from "@/components/tables/bookings/booking-table.utils";
+import {
+  buildBookingRequest,
+  getBookingViewAfterApplyingFilters,
+} from "@/components/tables/bookings/booking-table.utils";
 
 const NOW = "2026-10-31T08:05:00.000Z"; // 09:05 in Prague.
 const request = (filters = {}, view = "all") =>
@@ -28,10 +31,9 @@ describe("upcoming and ongoing booking requests", () => {
     expect(result).not.toHaveProperty("futureOnly");
   });
 
-  it("keeps Today's complete start-date range while excluding bookings that have ended", () => {
+  it("asks the server for Today in the studio timezone while excluding bookings that have ended", () => {
     expect(request({}, "today")).toMatchObject({
-      dateFrom: "2026-10-31",
-      dateTo: "2026-10-31",
+      dateScope: "today",
       endAfter: NOW,
     });
   });
@@ -84,8 +86,7 @@ describe("upcoming and ongoing booking requests", () => {
       }),
     ).toMatchObject({ dateFrom: "2024-01-01", dateTo: "2024-12-31" });
     expect(request({ futureOnly: false }, "today")).toMatchObject({
-      dateFrom: "2026-10-31",
-      dateTo: "2026-10-31",
+      dateScope: "today",
     });
     expect(request({ futureOnly: false }, "today").endAfter).toBeUndefined();
   });
@@ -94,5 +95,51 @@ describe("upcoming and ongoing booking requests", () => {
     expect(request().endAfter).toBe(NOW);
     vi.setSystemTime(new Date("2026-10-31T11:00:00.000Z"));
     expect(request().endAfter).toBe("2026-10-31T11:00:00.000Z");
+  });
+  it.each([
+    ["cancelled", { status: "completed" }, ["status"], "all"],
+    ["cancelled", { status: "" }, ["status"], "all"],
+    ["cancelled", { status: "cancelled" }, ["status"], "cancelled"],
+    [
+      "awaitingPayment",
+      { paymentStatus: "CONFIRMED" },
+      ["paymentStatus"],
+      "all",
+    ],
+    ["awaitingPayment", { paymentStatus: "" }, ["paymentStatus"], "all"],
+    [
+      "awaitingPayment",
+      { paymentStatus: "PENDING_PAYMENT" },
+      ["paymentStatus"],
+      "awaitingPayment",
+    ],
+    ["today", { dateFrom: "2026-09-01" }, ["dateFrom"], "all"],
+    ["today", { dateTo: "" }, ["dateTo"], "all"],
+    ["today", { search: "Ada" }, ["search"], "today"],
+    ["today", { dateFrom: "2026-09-01", search: "Ada" }, ["search"], "all"],
+    ["cancelled", { lecturerName: "Anna" }, ["lecturerName"], "cancelled"],
+  ])(
+    "honors explicit constraints without silently overriding them in %s",
+    (view, filters, edited, expected) => {
+      expect(
+        getBookingViewAfterApplyingFilters(
+          view,
+          { ...INITIAL_BOOKING_FILTERS, ...filters },
+          new Set(edited),
+        ),
+      ).toBe(expected);
+    },
+  );
+
+  it("does not derive Today from the browser's date or override the server's studio timezone", () => {
+    vi.setSystemTime(new Date("2026-10-31T23:30:00.000Z"));
+    expect(
+      request({ dateFrom: "2024-01-01", dateTo: "2024-02-01" }, "today"),
+    ).toMatchObject({
+      dateScope: "today",
+      endAfter: "2026-10-31T23:30:00.000Z",
+    });
+    expect(request({}, "today").dateFrom).toBeUndefined();
+    expect(request({}, "today").dateTo).toBeUndefined();
   });
 });

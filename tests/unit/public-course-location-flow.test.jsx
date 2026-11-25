@@ -1,3 +1,4 @@
+import { renderToString } from "react-dom/server";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { webcrypto } from "node:crypto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -47,8 +48,8 @@ vi.mock("next/navigation", () => ({
   useParams: () => ({ tenantSlug: "klei", productId: mocks.productId }),
 }));
 vi.mock("@/i18n/navigation", () => ({
-  Link: ({ children, href, ...props }) => (
-    <a href={href} {...props}>
+  Link: ({ children, href, prefetch, ...props }) => (
+    <a href={href} data-prefetch={String(prefetch)} {...props}>
       {children}
     </a>
   ),
@@ -66,8 +67,8 @@ vi.mock("@/lib/features/auth/authSlice", () => ({
 vi.mock("@/utils/user-profile.utils", () => ({
   getUserAccess: () => ({ isEndCustomer: true }),
 }));
-vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
-  usePublicTenant: () => ({
+vi.mock("@/components/public-tenant/PublicTenantProvider", () => {
+  const usePublicTenant = () => ({
     previewMode: mocks.previewMode,
     tenant: {
       slug: "klei",
@@ -85,8 +86,9 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
         },
       },
     },
-  }),
-}));
+  });
+  return { usePublicTenant, useOptionalPublicTenant: usePublicTenant };
+});
 vi.mock("@/components/galleries/CourseImageGallery", () => ({
   default: () => null,
 }));
@@ -273,6 +275,9 @@ describe("legacy public course location preservation", () => {
     expect(
       screen.getByRole("link", { name: "catalog.viewDates" }),
     ).toHaveAttribute("href", "/courses/wheel?location=vaclavska");
+    expect(
+      screen.getByRole("link", { name: "catalog.viewDates" }),
+    ).toHaveAttribute("data-prefetch", "false");
   });
 
   it("sends same-tenant authenticated customers to portal courses without losing location", () => {
@@ -1008,7 +1013,7 @@ describe("public course detail guest checkout", () => {
         productId: "wheel",
         locationId: "location-b",
       },
-      { skip: false },
+      expect.objectContaining({ skip: false }),
     );
   });
 
@@ -1022,11 +1027,11 @@ describe("public course detail guest checkout", () => {
     render(<PublicBookingProductDetailPage kind="courses" />);
     expect(mocks.productRequest).toHaveBeenCalledWith(
       { tenantSlug: "klei", productId: "wheel" },
-      { skip: true },
+      expect.objectContaining({ skip: true }),
     );
     expect(mocks.sessions).toHaveBeenCalledWith(
       { tenantSlug: "klei", productId: "wheel" },
-      { skip: true },
+      expect.objectContaining({ skip: true }),
     );
     expect(screen.queryByRole("heading", { name: "Wheel course" })).toBeNull();
     expect(screen.queryByRole("radio")).toBeNull();
@@ -1051,7 +1056,7 @@ describe("public course detail guest checkout", () => {
     expect(screen.queryByRole("heading", { name: "Wheel course" })).toBeNull();
     expect(mocks.productRequest).toHaveBeenCalledWith(
       { tenantSlug: "klei", productId: "wheel" },
-      { skip: true },
+      expect.objectContaining({ skip: true }),
     );
     expect(screen.queryByRole("button", { name: "continue" })).toBeNull();
   });
@@ -1124,5 +1129,123 @@ describe("public course detail guest checkout", () => {
         "/portal/booking/confirm?intent=intent-token-123&location=vaclavska",
       ),
     );
+  });
+});
+
+describe("server-rendered public course detail", () => {
+  const initialData = () => ({
+    tenantSlug: "klei",
+    locationId: "location-a",
+    locations: [
+      { id: "location-a", slug: "vaclavska", name: "Václavská" },
+      { id: "location-b", slug: "grohova", name: "Grohova" },
+    ],
+    product: { ...product, description: "Learn to throw in Brno." },
+  });
+
+  it("renders course content before locations, product and live availability load", () => {
+    mocks.locationsQuery = { isLoading: true };
+    mocks.productQuery = { isLoading: true };
+    mocks.sessionsQuery = { isLoading: true, isFetching: true };
+    const html = renderToString(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={initialData()}
+      />,
+    );
+    expect(html).toContain("Wheel course");
+    expect(html).toContain("Learn to throw in Brno.");
+    expect(html).toContain("500");
+    expect(html).not.toContain('name="course-session"');
+  });
+
+  it("keeps a queryless canonical detail on its published secondary studio", () => {
+    mocks.search = "";
+    mocks.locationsQuery = { isLoading: true };
+    mocks.productQuery = { isLoading: true };
+    const html = renderToString(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={{
+          ...initialData(),
+          locationId: "location-b",
+          product: {
+            ...product,
+            courseContent: { locationIds: ["location-b"] },
+          },
+        }}
+      />,
+    );
+    expect(html).toContain("Wheel course");
+    expect(mocks.productRequest).toHaveBeenLastCalledWith(
+      { tenantSlug: "klei", productId: "wheel", locationId: "location-b" },
+      expect.objectContaining({ skip: false }),
+    );
+  });
+
+  it("keeps course copy visible while dates fail, without allowing a stale booking", () => {
+    mocks.productQuery = { isLoading: true };
+    mocks.sessionsQuery = { isError: true, refetch: vi.fn() };
+    render(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={initialData()}
+      />,
+    );
+    expect(screen.getByRole("heading", { name: "Wheel course" })).toBeVisible();
+    expect(screen.queryByRole("radio")).toBeNull();
+    expect(screen.queryByRole("button", { name: "continue" })).toBeNull();
+  });
+
+  it("withdraws initial product data after a studio, tenant, product or visibility change", () => {
+    mocks.productQuery = { isLoading: true };
+    const { rerender } = render(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={initialData()}
+      />,
+    );
+    expect(screen.getByRole("heading", { name: "Wheel course" })).toBeVisible();
+    mocks.search = "location=grohova";
+    rerender(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={initialData()}
+      />,
+    );
+    expect(screen.queryByRole("heading", { name: "Wheel course" })).toBeNull();
+    mocks.search = "location=vaclavska";
+    rerender(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={{ ...initialData(), tenantSlug: "other" }}
+      />,
+    );
+    expect(screen.queryByRole("heading", { name: "Wheel course" })).toBeNull();
+    mocks.productId = "different";
+    rerender(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={initialData()}
+      />,
+    );
+    expect(screen.queryByRole("heading", { name: "Wheel course" })).toBeNull();
+    mocks.productId = "wheel";
+    mocks.productQuery = { currentData: null };
+    rerender(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={initialData()}
+      />,
+    );
+    expect(screen.queryByRole("heading", { name: "Wheel course" })).toBeNull();
+    mocks.productQuery = { isError: true };
+    rerender(
+      <PublicBookingProductDetailPage
+        kind="courses"
+        initialData={initialData()}
+      />,
+    );
+    expect(screen.queryByRole("heading", { name: "Wheel course" })).toBeNull();
   });
 });

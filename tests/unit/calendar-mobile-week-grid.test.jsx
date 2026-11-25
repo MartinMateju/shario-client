@@ -37,6 +37,7 @@ const studio = {
 
 const t = (key, values = {}) => {
   if (key === "views.week") return "Week";
+  if (key === "week.schedule") return "Weekly schedule";
   if (key === "toolbar.newBooking") return "New booking";
   if (key === "events.availability") {
     return values.remaining === 0
@@ -53,6 +54,7 @@ const renderWeek = (
   audience,
   onSlotSelect = audience === "customer" ? vi.fn() : undefined,
   pageScroll = true,
+  props = {},
 ) => {
   const result = render(
     <WeekCalendar
@@ -66,6 +68,7 @@ const renderWeek = (
       onSlotSelect={onSlotSelect}
       t={t}
       pageScroll={pageScroll}
+      {...props}
     />,
   );
 
@@ -117,7 +120,7 @@ describe("WeekCalendar mobile weekly grid", () => {
     vi.useRealTimers();
   });
 
-  it.each(["customer", "public"])(
+  it.each(["customer", "public", "tenant"])(
     "renders the real seven-day time grid for %s mobile visitors",
     (audience) => {
       const { container } = renderWeek(audience);
@@ -173,36 +176,39 @@ describe("WeekCalendar mobile weekly grid", () => {
     },
   );
 
-  it("keeps the touch-scrollable weekday header and body aligned at mid and maximum scroll", () => {
-    const { container } = renderWeek("customer");
-    const headerScroller = container.querySelector(
-      '[data-calendar-header-scroll="true"]',
-    );
-    const bodyScroller = container.querySelector(
-      '[data-calendar-week-scroll="true"]',
-    );
+  it.each(["customer", "tenant"])(
+    "keeps the %s touch-scrollable weekday header and body aligned at mid and maximum scroll",
+    (audience) => {
+      const { container } = renderWeek(audience);
+      const headerScroller = container.querySelector(
+        '[data-calendar-header-scroll="true"]',
+      );
+      const bodyScroller = container.querySelector(
+        '[data-calendar-week-scroll="true"]',
+      );
 
-    setGeometry(headerScroller, { scrollWidth: 1200, clientWidth: 320 });
-    setGeometry(bodyScroller, { scrollWidth: 1200, clientWidth: 320 });
+      setGeometry(headerScroller, { scrollWidth: 1200, clientWidth: 320 });
+      setGeometry(bodyScroller, { scrollWidth: 1200, clientWidth: 320 });
 
-    beginScrollInput(bodyScroller);
-    bodyScroller.scrollLeft = 312;
-    fireEvent.scroll(bodyScroller);
-    expect(headerScroller.scrollLeft).toBe(312);
+      beginScrollInput(bodyScroller);
+      bodyScroller.scrollLeft = 312;
+      fireEvent.scroll(bodyScroller);
+      expect(headerScroller.scrollLeft).toBe(312);
 
-    beginScrollInput(headerScroller);
-    headerScroller.scrollLeft = 640;
-    fireEvent.scroll(headerScroller);
-    expect(bodyScroller.scrollLeft).toBe(640);
+      beginScrollInput(headerScroller);
+      headerScroller.scrollLeft = 640;
+      fireEvent.scroll(headerScroller);
+      expect(bodyScroller.scrollLeft).toBe(640);
 
-    beginScrollInput(bodyScroller);
-    bodyScroller.scrollLeft = 880;
-    fireEvent.scroll(bodyScroller);
-    expect(headerScroller.scrollLeft).toBe(880);
+      beginScrollInput(bodyScroller);
+      bodyScroller.scrollLeft = 880;
+      fireEvent.scroll(bodyScroller);
+      expect(headerScroller.scrollLeft).toBe(880);
 
-    fireEvent.scroll(headerScroller);
-    expect(bodyScroller.scrollLeft).toBe(880);
-  });
+      fireEvent.scroll(headerScroller);
+      expect(bodyScroller.scrollLeft).toBe(880);
+    },
+  );
 
   it.each(["body", "header"])(
     "scroll ownership ignores a delayed follower echo during a %s swipe",
@@ -330,7 +336,7 @@ describe("WeekCalendar mobile weekly grid", () => {
     ).not.toBeInTheDocument();
   });
 
-  it.each(["customer", "public"])(
+  it.each(["customer", "public", "tenant"])(
     "makes the %s weekday header keyboard reachable and preserves native synchronized scrolling",
     (audience) => {
       const { container } = renderWeek(audience);
@@ -339,7 +345,11 @@ describe("WeekCalendar mobile weekly grid", () => {
       body.scrollLeft = 100;
       fireEvent.scroll(body);
       expect(screen.getByRole("region", { name: "Week" })).toBe(header);
+      expect(screen.getByRole("region", { name: "Weekly schedule" })).toBe(
+        body,
+      );
       expect(header.tabIndex).toBe(0);
+      expect(body.tabIndex).toBe(0);
       act(() => header.focus());
       expect(header).toHaveFocus();
       expect(fireEvent.keyDown(header, { key: "ArrowRight" })).toBe(true);
@@ -350,6 +360,9 @@ describe("WeekCalendar mobile weekly grid", () => {
       fireEvent.scroll(body);
       expect(header.scrollLeft).toBe(220);
 
+      act(() => body.focus());
+      expect(body).toHaveFocus();
+      expect(fireEvent.keyDown(body, { key: "ArrowLeft" })).toBe(true);
       const column = body.querySelector(
         '[data-calendar-week-day-column="true"]',
       );
@@ -538,28 +551,112 @@ describe("WeekCalendar mobile weekly grid", () => {
     },
   );
 
-  it("keeps the public weekday header at the calendar edge for internal scrolling", () => {
-    const { container } = renderWeek("public", undefined, false);
+  it.each(["public", "tenant"])(
+    "keeps the %s weekday header at the calendar edge for internal scrolling",
+    (audience) => {
+      const { container } = renderWeek(audience, undefined, false);
 
-    expect(
-      container.querySelector('[data-calendar-mobile-grid-header="true"]').style
-        .top,
-    ).toBe("0px");
-  });
+      expect(
+        container.querySelector('[data-calendar-mobile-grid-header="true"]')
+          .style.top,
+      ).toBe("0px");
+      expect(
+        container.querySelector('[data-calendar-week-scroll="true"]'),
+      ).toHaveClass("flex-1", "overflow-auto");
+    },
+  );
 
-  it("keeps the existing mobile agenda and desktop-only grid for tenant users", () => {
-    const { container } = renderWeek("tenant");
+  it.each([
+    {
+      state: "past",
+      dayLabel: "Monday 3 August",
+      start: "2026-08-03T12:00:00.000Z",
+      end: "2026-08-03T13:00:00.000Z",
+      bookings: [],
+    },
+    {
+      state: "full",
+      dayLabel: "Thursday 6 August",
+      start: "2026-08-06T12:00:00.000Z",
+      end: "2026-08-06T13:00:00.000Z",
+      bookings: [
+        {
+          id: "full-day-booking",
+          locationId: studio.id,
+          kind: "sharedOpenStudio",
+          bookingMode: "public",
+          activityId: "WORKSTATION",
+          guests: 2,
+          start: "2026-08-06T08:00:00.000Z",
+          end: "2026-08-06T20:00:00.000Z",
+        },
+      ],
+    },
+  ])(
+    "retains tenant creation of $state times without enabling customer booking",
+    ({ dayLabel, start, end, bookings }) => {
+      const customerSelect = vi.fn();
+      const customer = renderWeek("customer", customerSelect, true, {
+        availabilityBookings: bookings,
+      });
+      const columnSelector = `[data-calendar-week-day-column="true"][aria-label="${dayLabel}"]`;
+      const customerDay = customer.container.querySelector(columnSelector);
 
-    expect(
-      container.querySelector('[data-calendar-mobile-agenda="true"]'),
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector('[data-calendar-mobile-week-grid="true"]'),
-    ).not.toBeInTheDocument();
-    expect(
-      container.querySelector('[data-calendar-desktop-week="true"]'),
-    ).toHaveClass("hidden", "lg:block");
-  });
+      expect(customerDay).toHaveAttribute("aria-disabled", "true");
+      fireEvent.keyDown(customerDay, { key: "Enter" });
+      expect(
+        customer.container.querySelector('[data-calendar-slot-preview="true"]'),
+      ).not.toBeInTheDocument();
+      expect(customerSelect).not.toHaveBeenCalled();
+      customer.unmount();
+
+      const onSlotSelect = vi.fn();
+      const { container } = renderWeek("tenant", onSlotSelect, false, {
+        availabilityBookings: bookings,
+      });
+      const tenantDay = container.querySelector(columnSelector);
+      expect(tenantDay).toHaveAttribute("tabindex", "0");
+      expect(tenantDay).not.toHaveAttribute("aria-disabled");
+      vi.spyOn(tenantDay, "getBoundingClientRect").mockReturnValue({
+        top: 0,
+        bottom: 1008,
+        left: 0,
+        right: 140,
+        width: 140,
+        height: 1008,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      });
+      const touch = {
+        pointerId: 17,
+        pointerType: "touch",
+        clientX: 30,
+        clientY: 350,
+      };
+      fireEvent.pointerDown(tenantDay, touch);
+      fireEvent.pointerUp(tenantDay, touch);
+      fireEvent.click(tenantDay, touch);
+
+      const confirm = container.querySelector(
+        '[data-calendar-slot-confirm="true"]',
+      );
+      expect(confirm).toBeEnabled();
+      expect(confirm).toHaveAccessibleName(/New booking.*12:00.*13:00/);
+      expect(onSlotSelect).not.toHaveBeenCalled();
+      fireEvent.click(confirm);
+
+      expect(onSlotSelect).toHaveBeenCalledExactlyOnceWith({
+        studio,
+        activityId: "WORKSTATION",
+        start: new Date(start),
+        end: new Date(end),
+      });
+      expect(
+        container.querySelector('[data-calendar-slot-preview="true"]'),
+      ).not.toBeInTheDocument();
+    },
+  );
 
   it.each([
     ["customer", "touch"],

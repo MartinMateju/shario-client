@@ -14,6 +14,7 @@ export default function PortalAccountPage() {
   return (
     <CustomerPortalPage contentClassName="max-w-5xl">
       <CustomerPortalPageHeader
+        pageKey="account"
         eyebrow={t("eyebrow")}
         title={t("title")}
         description={t("description")}

@@ -59,6 +59,32 @@ describe("CalendarEventCard responsive containment", () => {
     ).toBeTruthy();
   });
 
+  it("prioritizes the person's name over a reference ID in a one-hour staff event", () => {
+    renderCard({
+      event: event({ customerIds: ["1042"] }),
+      style: { height: 80, width: 82 },
+    });
+
+    const card = screen.getByRole("article");
+    expect(within(card).getByText(/Anna Nováková/)).toBeInTheDocument();
+    expect(within(card).queryByText("#1042")).not.toBeInTheDocument();
+    expect(card).toHaveAccessibleName(/Customer #1042/);
+  });
+
+  it("shows the person before their reference when a staff event has room for both", () => {
+    renderCard({
+      event: event({ customerIds: ["1042"] }),
+      style: { height: 120, width: 180 },
+    });
+
+    const person = screen.getByText(/Anna Nováková/);
+    const reference = screen.getByText("#1042");
+    expect(
+      person.compareDocumentPosition(reference) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
   it("uses the localized full-capacity label supplied by the caller", () => {
     renderCard({
       event: event({ used: 16 }),

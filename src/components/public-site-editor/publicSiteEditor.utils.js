@@ -1,6 +1,10 @@
 import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 
 import {
+  isValidPublicSiteCustomLinks,
+  isValidPublicSiteHeaderLinks,
+} from "@/components/public-tenant/publicTenantCustomLinks";
+import {
   PUBLIC_TENANT_LOCALE_CODES,
   PUBLIC_TENANT_HOME_SECTION_KEYS,
   PUBLIC_TENANT_NAV_KEYS,
@@ -12,6 +16,7 @@ import {
 import { normalizeLocaleCode } from "@/i18n/locales";
 import { normalizeCustomerPortalVisibility } from "@/components/customer-shell/customerPortalVisibility";
 import { PUBLIC_TENANT_PORTAL_APPEARANCE_KEYS } from "@/components/public-tenant/publicTenantPortalAppearance";
+import { normalizeCustomerPortalPageImages } from "@/components/public-tenant/publicTenantPageImages";
 import {
   getPublicTenantStylePresetRecipe,
   normalizePublicTenantFontPresetId,
@@ -55,6 +60,7 @@ export const PUBLIC_SITE_EDITOR_PAGE_KEYS = Object.freeze([
   "register",
   "portal",
   "portalCourses",
+  "portalPageHero",
 ]);
 
 const asObject = (value) =>
@@ -305,6 +311,34 @@ export const buildPublicSiteDraftPatch = (value) => {
     },
     pages: pickPages(draft.pages),
     header: {
+      layout: header.layout === "website" ? "website" : "default",
+      ...Object.fromEntries(
+        ["backgroundColor", "linkColor", "buttonColor"].map((key) => [
+          key,
+          String(header[key] ?? "")
+            .trim()
+            .toUpperCase(),
+        ]),
+      ),
+      customLinks: (header.customLinks || []).map((item) => ({
+        id: item.id,
+        label: pickLocalized(item.label),
+        ...(Array.isArray(item.children)
+          ? {
+              children: item.children.map((child) => ({
+                id: child.id,
+                label: pickLocalized(child.label),
+                href: pickLocalized(child.href),
+                ...(child.separatorBefore === true
+                  ? { separatorBefore: true }
+                  : {}),
+              })),
+            }
+          : {
+              href: pickLocalized(item.href),
+              ...(item.emphasis === "button" ? { emphasis: "button" } : {}),
+            }),
+      })),
       navOrder: completedNavOrder,
       hiddenItems: [
         ...new Set(
@@ -328,6 +362,11 @@ export const buildPublicSiteDraftPatch = (value) => {
       },
     },
     footer: {
+      customLinks: (footer.customLinks || []).map((item) => ({
+        id: item.id,
+        label: pickLocalized(item.label),
+        href: pickLocalized(item.href),
+      })),
       description: pickLocalized(footer.description),
       openingHours: pickLocalized(footer.openingHours),
       copyright: pickLocalized(footer.copyright),
@@ -371,6 +410,9 @@ export const buildPublicSiteDraftPatch = (value) => {
     },
     customerPortal: {
       ...normalizeCustomerPortalVisibility(draft.customerPortal),
+      pageImages: normalizeCustomerPortalPageImages(
+        draft.customerPortal?.pageImages,
+      ),
       courses: {
         guestCheckoutEnabled:
           draft.customerPortal?.courses?.guestCheckoutEnabled === true,
@@ -550,6 +592,9 @@ const PUBLIC_SITE_REQUIRED_COLOR_PATHS = Object.freeze([
 ]);
 
 const PUBLIC_SITE_OPTIONAL_COLOR_PATHS = Object.freeze([
+  "header.backgroundColor",
+  "header.linkColor",
+  "header.buttonColor",
   "branding.buttonTextColor",
   "pages.home.labelColor",
   "pages.home.headlineColor",
@@ -583,11 +628,16 @@ export const getInvalidPublicSiteLogoRedirectUrl = (draft) =>
 
 export const isValidPublicSiteEditorDraft = (draft) =>
   getInvalidPublicSiteColorPaths(draft).length === 0 &&
-  !getInvalidPublicSiteLogoRedirectUrl(draft);
+  !getInvalidPublicSiteLogoRedirectUrl(draft) &&
+  (draft?.header?.layout === undefined ||
+    ["default", "website"].includes(draft.header.layout)) &&
+  isValidPublicSiteHeaderLinks(draft?.header?.customLinks) &&
+  isValidPublicSiteCustomLinks(draft?.footer?.customLinks, 12);
 
 export const getAvailablePublicSitePreviewPages = (capabilities = {}) =>
   PUBLIC_SITE_EDITOR_PAGE_KEYS.filter((key) => {
-    if (["home", "login", "register", "portal"].includes(key)) return true;
+    if (["home", "login", "register", "portal", "portalPageHero"].includes(key))
+      return true;
     if (key === "book") return capabilities.bookStudio !== false;
     if (key === "portalCourses") return capabilities.courses !== false;
     return capabilities[key] !== false;

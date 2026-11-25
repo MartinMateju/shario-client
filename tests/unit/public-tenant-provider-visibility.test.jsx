@@ -10,6 +10,7 @@ const mocks = vi.hoisted(() => ({
   pathname: "/portal",
   appearance: vi.fn(({ tenant }) => tenant),
 }));
+vi.mock("next-intl", () => ({ useLocale: () => "en" }));
 vi.mock("react-redux", () => ({ useSelector: (selector) => selector() }));
 vi.mock("@/lib/features/auth/authSlice", () => ({
   selectCurrentTenant: () => mocks.sessionTenant,

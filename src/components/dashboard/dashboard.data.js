@@ -19,7 +19,7 @@ import {
   UserGroupIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
-import { DATA_IMPORT_PERMISSIONS, PERMISSIONS } from "@/config/permissions";
+import { PERMISSIONS } from "@/config/permissions";
 import { NATIVE_INVOICES_ENABLED } from "@/config/features";
 
 /*
@@ -213,18 +213,8 @@ export const dashboardNavigation = [
     labelKey: "settings",
     href: "/app/settings",
     icon: Cog6ToothIcon,
-    permissions: [
-      PERMISSIONS.WORKSPACE_UPDATE,
-      PERMISSIONS.WORKSPACE_CONFIGURATION_MANAGE,
-      PERMISSIONS.LOCATIONS_VIEW,
-      PERMISSIONS.TEAM_VIEW,
-      PERMISSIONS.ROLES_VIEW,
-      PERMISSIONS.PAYMENTS_VIEW,
-      PERMISSIONS.PAYMENTS_CONNECT_MANAGE,
-      PERMISSIONS.SUBSCRIPTION_VIEW,
-      PERMISSIONS.AI_SETTINGS_MANAGE,
-      ...DATA_IMPORT_PERMISSIONS,
-    ],
+    // The overview includes personal settings for every active studio member.
+    workspaceMemberOnly: true,
     activeHrefs: ["/app/settings"],
   },
 ].filter((item) => NATIVE_INVOICES_ENABLED || item.key !== "invoices");

@@ -56,6 +56,124 @@ const visit = (overrides = {}) => ({
   ...overrides,
 });
 
+describe("legacy public workshops where group bookings block the studio", () => {
+  it.each([
+    ["shared workshop", { tag: "workshop" }, "public", "available", 5],
+    [
+      "canonical shared booking",
+      { tag: "open-studio" },
+      "public",
+      "available",
+      5,
+    ],
+    [
+      "full shared workshop",
+      { tag: "workshop", numberOfGuests: 6 },
+      "public",
+      "full",
+      0,
+    ],
+    [
+      "exclusive workshop",
+      { tag: "workshop", bookingMode: "private" },
+      "public",
+      "blocked",
+      0,
+    ],
+    [
+      "legacy workshop without privacy",
+      { tag: "workshop", bookingMode: undefined, bookingType: undefined },
+      "public",
+      "blocked",
+      0,
+    ],
+    ["public class", { tag: "class", capacityUsed: 1 }, "public", "blocked", 0],
+    ["private studio block", { tag: "private-studio" }, "public", "blocked", 0],
+    ["new exclusive booking", { tag: "workshop" }, "private", "blocked", 0],
+    [
+      "shared workshop without an activity",
+      { tag: "workshop" },
+      "public",
+      "available",
+      2,
+      WHEEL,
+    ],
+    [
+      "shared wheel booking",
+      { tag: "workshop", plannedActivity: WHEEL },
+      "public",
+      "available",
+      1,
+      WHEEL,
+    ],
+  ])(
+    "checks the 19:00–20:00 draft against a %s",
+    (_label, overrides, mode, state, remaining, activity = MODELLING) => {
+      const sharedLocation = {
+        id: "studio",
+        openingHours: {
+          tuesday: { isOpen: true, openTime: "00:00", closeTime: "24:00" },
+        },
+        booking: {
+          enabled: true,
+          timezone: "Europe/Prague",
+          globalCapacity: 6,
+          allowPublicOverlap: true,
+          maxConcurrentOpenStudioBookings: 6,
+          groupBookingBlocksAll: true,
+          activityCapacities: [
+            { activity: WHEEL, capacity: 2 },
+            { activity: MODELLING, capacity: 6 },
+          ],
+        },
+      };
+      // Existing session 17:00–20:00 and requested slot 19:00–20:00 in Prague.
+      const booking = visit({
+        id: "legacy-public-visit",
+        locationId: "studio",
+        bookingType: "public",
+        status: "processed",
+        plannedActivity: "UNDEFINED",
+        publicCapacityLimit: null,
+        start: "2026-11-24T16:00:00Z",
+        end: "2026-11-24T19:00:00Z",
+        ...overrides,
+      });
+      const studio = normalizeLocationToCalendarStudio(sharedLocation);
+      const event = normalizeBookingToCalendarEvent(booking);
+      const fixedNow = new Date("2026-11-13T12:00:00Z");
+      const calendar = getCalendarSlotAvailability({
+        studio,
+        bookings: [event],
+        day: new Date(2026, 10, 24, 12),
+        startMinute: 19 * 60,
+        endMinute: 20 * 60,
+        activityId: activity,
+        bookingMode: mode,
+        now: fixedNow,
+      });
+      const drawer = checkLocationAvailability({
+        location: sharedLocation,
+        // A fixed shared product's party limit is not the location's capacity.
+        product: { ...product, maxNumberOfParticipants: 1 },
+        bookings: [booking],
+        start: "2026-11-24T18:00:00Z",
+        end: "2026-11-24T19:00:00Z",
+        activity,
+        guests: 1,
+        bookingMode: mode,
+        now: fixedNow,
+      });
+      expect(calendar).toMatchObject({
+        state,
+        remaining,
+        isBookable: state === "available",
+      });
+      expect(calendar.isBookable).toBe(drawer.available);
+    },
+  );
+});
+
 function compareAvailability({
   policy = {},
   bookings = [visit({ isMine: true })],

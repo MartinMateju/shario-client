@@ -2,7 +2,7 @@
 
 import { getLocalizedApiErrorMessage } from "@/i18n/api-errors";
 
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowPathIcon,
   BellIcon,
@@ -53,6 +53,7 @@ const LANDING_PAGES = [
 ];
 
 const EVENT_NOTIFICATION_KEYS = [
+  "bookingCreated",
   "bookingAssigned",
   "bookingCancelled",
   "taskAssigned",
@@ -62,13 +63,27 @@ const EVENT_NOTIFICATION_KEYS = [
 const CHANNEL_NOTIFICATION_KEYS = ["inApp", "email"];
 
 const controlClass =
-  "h-12 w-full min-w-0 rounded-[13px] border border-line bg-white px-4 text-[12px] text-[#292925] outline-none transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10";
+  "h-12 w-full min-w-0 rounded-[13px] border border-line bg-white px-4 text-base text-ink outline-none sm:text-[14px] transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10";
 
 const getErrorMessage = (error, fallback) =>
   getLocalizedApiErrorMessage(error, fallback);
 
 function PreferenceForm({ preferences, locations }) {
   const t = useTranslations("WorkspacePreferences");
+  const formRef = useRef(null);
+  useLayoutEffect(() => {
+    // The form mounts after its data queries complete, which can be later
+    // than Next's initial hash scroll. Restore only these known destinations.
+    const anchor = window.location.hash;
+    if (
+      anchor === "#workspace-preferences" ||
+      anchor === "#notification-preferences"
+    ) {
+      formRef.current
+        ?.querySelector(anchor)
+        ?.scrollIntoView({ block: "start" });
+    }
+  }, []);
   const [form, setForm] = useState({
     displayTimezone: preferences.displayTimezone || "",
     defaultLocation: preferences.defaultLocation || "",
@@ -76,6 +91,7 @@ function PreferenceForm({ preferences, locations }) {
     weekStartsOn: Number(preferences.weekStartsOn) === 0 ? 0 : 1,
     defaultLandingPage: preferences.defaultLandingPage || "/app",
     notifications: {
+      bookingCreated: preferences.notifications?.bookingCreated === true,
       bookingAssigned: preferences.notifications?.bookingAssigned !== false,
       bookingCancelled: preferences.notifications?.bookingCancelled !== false,
       taskAssigned: preferences.notifications?.taskAssigned !== false,
@@ -119,14 +135,14 @@ function PreferenceForm({ preferences, locations }) {
   };
 
   return (
-    <form onSubmit={submit} className="space-y-5">
+    <form ref={formRef} onSubmit={submit} className="space-y-5">
       {notice && (
         <p
           role={notice.type === "error" ? "alert" : "status"}
           className={
             notice.type === "error"
-              ? "rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
-              : "flex items-center gap-2 rounded-[14px] border border-[#CFE0CB] bg-[#F5FAF3] px-4 py-3 text-xs text-[#47613E]"
+              ? "rounded-[14px] border border-danger/40 bg-danger-soft px-4 py-3 text-[13px] text-danger"
+              : "flex items-center gap-2 rounded-[14px] border border-success/40 bg-success-soft px-4 py-3 text-[13px] text-success"
           }
         >
           {notice.type === "success" && (
@@ -136,23 +152,26 @@ function PreferenceForm({ preferences, locations }) {
         </p>
       )}
 
-      <section className="overflow-hidden rounded-[20px] border border-line bg-white shadow-[0_14px_38px_rgba(17,17,15,0.04)]">
+      <section
+        id="workspace-preferences"
+        className="scroll-mt-28 overflow-hidden rounded-[20px] border border-line bg-white shadow-[0_14px_38px_rgba(17,17,15,0.04)]"
+      >
         <div className="flex items-start gap-3 border-b border-line bg-surface-muted px-5 py-4">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cobalt-100 text-cobalt-700">
             <CalendarDaysIcon className="h-5 w-5" />
           </span>
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold text-[#292925]">
+            <h2 className="text-sm font-semibold text-ink">
               {t("workspace.title")}
             </h2>
-            <p className="mt-1 text-xs leading-5 text-[#777773]">
+            <p className="mt-1 text-[13px] leading-5 text-ink-muted">
               {t("workspace.description")}
             </p>
           </div>
         </div>
         <div className="grid gap-5 p-5 sm:grid-cols-2 sm:p-6">
           <label>
-            <span className="mb-1.5 block text-xs font-semibold text-[#292925]">
+            <span className="mb-1.5 block text-[13px] font-semibold text-ink">
               {t("fields.timezone")}
             </span>
             <select
@@ -171,7 +190,7 @@ function PreferenceForm({ preferences, locations }) {
             </select>
           </label>
           <label>
-            <span className="mb-1.5 block text-xs font-semibold text-[#292925]">
+            <span className="mb-1.5 block text-[13px] font-semibold text-ink">
               {t("fields.defaultLocation")}
             </span>
             <select
@@ -193,7 +212,7 @@ function PreferenceForm({ preferences, locations }) {
             </select>
           </label>
           <label>
-            <span className="mb-1.5 block text-xs font-semibold text-[#292925]">
+            <span className="mb-1.5 block text-[13px] font-semibold text-ink">
               {t("fields.calendarView")}
             </span>
             <select
@@ -211,7 +230,7 @@ function PreferenceForm({ preferences, locations }) {
             </select>
           </label>
           <label>
-            <span className="mb-1.5 block text-xs font-semibold text-[#292925]">
+            <span className="mb-1.5 block text-[13px] font-semibold text-ink">
               {t("fields.weekStartsOn")}
             </span>
             <select
@@ -226,7 +245,7 @@ function PreferenceForm({ preferences, locations }) {
             </select>
           </label>
           <label>
-            <span className="mb-1.5 block text-xs font-semibold text-[#292925]">
+            <span className="mb-1.5 block text-[13px] font-semibold text-ink">
               {t("fields.landingPage")}
             </span>
             <select
@@ -246,16 +265,19 @@ function PreferenceForm({ preferences, locations }) {
         </div>
       </section>
 
-      <section className="overflow-hidden rounded-[20px] border border-line bg-white shadow-[0_14px_38px_rgba(17,17,15,0.04)]">
+      <section
+        id="notification-preferences"
+        className="scroll-mt-28 overflow-hidden rounded-[20px] border border-line bg-white shadow-[0_14px_38px_rgba(17,17,15,0.04)]"
+      >
         <div className="flex items-start gap-3 border-b border-line bg-surface-muted px-5 py-4">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-coral-100 text-terracotta-700">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-text">
             <BellIcon className="h-5 w-5" />
           </span>
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold text-[#292925]">
+            <h2 className="text-sm font-semibold text-ink">
               {t("notifications.title")}
             </h2>
-            <p className="mt-1 text-xs leading-5 text-[#777773]">
+            <p className="mt-1 text-[13px] leading-5 text-ink-muted">
               {t("notifications.description")}
             </p>
           </div>
@@ -272,7 +294,7 @@ function PreferenceForm({ preferences, locations }) {
             },
           ].map((group) => (
             <fieldset key={group.title}>
-              <legend className="mb-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#777773]">
+              <legend className="mb-2 text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
                 {group.title}
               </legend>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -287,10 +309,10 @@ function PreferenceForm({ preferences, locations }) {
                     }`}
                   >
                     <span className="min-w-0">
-                      <strong className="block text-xs text-[#292925]">
+                      <strong className="block text-[13px] text-ink">
                         {t(`notifications.items.${key}.label`)}
                       </strong>
-                      <span className="mt-1 block text-[10px] leading-4 text-[#858580]">
+                      <span className="mt-1 block text-[13px] leading-5 text-ink-muted">
                         {t(`notifications.items.${key}.description`)}
                       </span>
                     </span>
@@ -315,7 +337,7 @@ function PreferenceForm({ preferences, locations }) {
         <button
           type="submit"
           disabled={isLoading}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cobalt-500 px-6 text-xs font-semibold text-white shadow-cobalt hover:bg-cobalt-600 disabled:opacity-50"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cobalt-500 px-6 text-[14px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2 disabled:opacity-50"
         >
           {isLoading ? (
             <ArrowPathIcon className="h-4 w-4 animate-spin" />
@@ -346,7 +368,7 @@ export default function WorkspacePreferencesPage({ showPageHeader = true }) {
     return (
       <div className="flex min-h-[320px] items-center justify-center">
         <ArrowPathIcon className="h-6 w-6 animate-spin text-cobalt-500" />
-        <span className="ml-3 text-[12px] text-[#777773]">{t("loading")}</span>
+        <span className="ml-3 text-[13px] text-ink-muted">{t("loading")}</span>
       </div>
     );
   }
@@ -355,13 +377,13 @@ export default function WorkspacePreferencesPage({ showPageHeader = true }) {
     <section className="space-y-5">
       {showPageHeader ? (
         <header>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-cobalt-600">
             {t("eyebrow")}
           </p>
-          <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[34px]">
+          <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-ink sm:text-[34px]">
             {t("title")}
           </h1>
-          <p className="mt-1 max-w-2xl text-[12px] leading-5 text-[#777773]">
+          <p className="mt-1 max-w-2xl text-[13px] leading-5 text-ink-muted">
             {t("description")}
           </p>
         </header>
@@ -369,7 +391,7 @@ export default function WorkspacePreferencesPage({ showPageHeader = true }) {
       {accessQuery.isError || !preferences ? (
         <p
           role="alert"
-          className="rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className="rounded-[14px] border border-danger/40 bg-danger-soft px-4 py-3 text-[13px] text-danger"
         >
           {getErrorMessage(accessQuery.error, t("messages.loadError"))}
         </p>

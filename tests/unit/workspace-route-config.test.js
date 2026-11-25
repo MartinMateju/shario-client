@@ -24,6 +24,9 @@ describe("workspace route configuration", () => {
     ["/app/notifications", "routeTitles.notifications"],
     ["/app/knowledge", "routeTitles.knowledge"],
     ["/app/settings", "routeTitles.settings"],
+    ["/app/settings/profile", "routeTitles.account"],
+    ["/app/settings/preferences", "routeTitles.preferences"],
+    ["/app/settings/communications", "routeTitles.communicationSettings"],
     ["/app/settings/general", "routeTitles.generalSettings"],
     ["/app/settings/modules", "routeTitles.settings"],
     ["/app/settings/public-site", "routeTitles.publicSite"],
@@ -80,6 +83,9 @@ describe("workspace route configuration", () => {
     "/app/settings/",
     "/app/settings/general",
     "/app/settings/payments",
+    "/app/settings/profile",
+    "/app/settings/preferences",
+    "/app/settings/communications",
   ])("uses the compact workspace sidebar for %s", (pathname) => {
     expect(isWorkspaceSettingsRoute(pathname)).toBe(true);
   });

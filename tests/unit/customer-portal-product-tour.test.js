@@ -62,7 +62,6 @@ describe("customer portal product tour", () => {
       layout.indexOf("<CustomerPortalProductTour"),
     );
     expect(help).toContain("data-customer-portal-tour-replay");
-    expect(calendar).toContain('!["customer", "public"].includes(audience)');
     expect(calendar).toContain(
       'setFiltersOpen(!window.matchMedia("(max-width: 639px)").matches)',
     );

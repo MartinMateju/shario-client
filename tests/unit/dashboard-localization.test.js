@@ -148,8 +148,8 @@ describe("dashboard localization", () => {
   });
 
   it("keeps the dashboard status and schedule actions friendly in both locales", () => {
-    expect(en.Header.account.customerLinks.waitlists).toBe("Waitlists");
-    expect(cs.Header.account.customerLinks.waitlists).toBe("Čekací listiny");
+    expect(en.Header.account.customerLinks.waitlists).toBe("Waiting list");
+    expect(cs.Header.account.customerLinks.waitlists).toBe("Waiting list");
     expect(en.Dashboard.utilityNavigationLabel).toBe(
       "Studio setup and settings",
     );

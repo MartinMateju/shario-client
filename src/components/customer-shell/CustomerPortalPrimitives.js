@@ -1,7 +1,9 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { Children, isValidElement } from "react";
 
 import { normalizeCurrency } from "@/config/currencies";
 import { formatMajorCurrencyAmount } from "@/utils/money";
+import CustomerPortalHero from "./CustomerPortalHero";
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
@@ -96,32 +98,35 @@ export function CustomerPortalPage({
   contentClassName = "",
   ...props
 }) {
+  const items = Children.toArray(children);
+  const first = items[0];
+  const hasPageHero =
+    isValidElement(first) &&
+    (first.type === CustomerPortalHero ||
+      (first.type === CustomerPortalPageHeader &&
+        (!first.props.headingAs || first.props.headingAs === "h1")));
+
   return (
     <main
       className={cx(
         "relative min-h-dvh overflow-hidden bg-[var(--tenant-background)] px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-8 text-[var(--tenant-text)] sm:px-6 sm:pt-10 lg:px-10 lg:pt-12",
         className,
+        hasPageHero && "!px-0 !pt-0",
       )}
       data-customer-portal-page
       data-tenant-layout="page"
       {...props}
     >
-      <div
-        className="pointer-events-none absolute -left-32 -top-36 h-96 w-96 rounded-full bg-[color-mix(in_srgb,var(--tenant-accent)_7%,transparent)] blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -right-32 top-12 h-80 w-80 rounded-full bg-[color-mix(in_srgb,var(--tenant-secondary)_8%,transparent)] blur-3xl"
-        aria-hidden="true"
-      />
+      {hasPageHero ? first : null}
       <div
         className={cx(
           "relative mx-auto w-full max-w-[1480px]",
+          hasPageHero && "px-4 sm:px-6 lg:px-10",
           contentClassName,
         )}
         data-customer-portal-page-content
       >
-        {children}
+        {hasPageHero ? items.slice(1) : children}
       </div>
     </main>
   );
@@ -133,16 +138,13 @@ export function CustomerPortalPageHeader({
   description,
   eyebrow,
   headingAs: Heading = "h1",
+  pageKey,
+  imageUrl,
+  mediaEditPath,
   title,
 }) {
-  return (
-    <header
-      className={cx(
-        "flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between",
-        className,
-      )}
-      data-customer-portal-page-header
-    >
+  const content = (
+    <>
       <div className="min-w-0 max-w-4xl">
         {eyebrow ? (
           <p
@@ -166,10 +168,38 @@ export function CustomerPortalPageHeader({
         ) : null}
       </div>
       {actions ? (
-        <div className="flex w-full flex-wrap items-center gap-2.5 lg:w-auto lg:justify-end">
+        <div
+          className="flex w-full flex-wrap items-center gap-2.5 lg:w-auto lg:justify-end"
+          data-customer-portal-header-actions
+        >
           {actions}
         </div>
       ) : null}
+    </>
+  );
+
+  if (Heading === "h1") {
+    return (
+      <CustomerPortalHero
+        pageKey={pageKey}
+        imageUrl={imageUrl}
+        mediaEditPath={mediaEditPath}
+        className={className}
+      >
+        {content}
+      </CustomerPortalHero>
+    );
+  }
+
+  return (
+    <header
+      className={cx(
+        "flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between",
+        className,
+      )}
+      data-customer-portal-page-header="compact"
+    >
+      {content}
     </header>
   );
 }

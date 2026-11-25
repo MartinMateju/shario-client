@@ -276,6 +276,9 @@ export default function CartModal({
       const requestSignature = JSON.stringify([
         selectedPaymentMethod,
         checkoutData,
+        selectedPaymentMethod === "card"
+          ? cartItemsState.bookingCheckoutAttempt || 0
+          : 0,
       ]);
       if (checkoutRequest.current?.signature !== requestSignature) {
         checkoutRequest.current = {

@@ -42,11 +42,6 @@ export const buildBookingRequest = ({
   const today = getLocalDateValue(now);
   const requestFilters = { ...filters };
 
-  if (view === "today") {
-    requestFilters.dateFrom = today;
-    requestFilters.dateTo = today;
-  }
-
   if (view === "upcoming" && !requestFilters.dateFrom) {
     requestFilters.dateFrom = today;
   }
@@ -61,11 +56,15 @@ export const buildBookingRequest = ({
 
   return {
     search: requestFilters.search?.trim() || "",
-    dateFrom: requestFilters.dateFrom || undefined,
-    dateTo: requestFilters.dateTo || undefined,
+    // The server resolves "today" in the selected studio/tenant timezone.
+    dateScope: view === "today" ? "today" : undefined,
+    dateFrom:
+      view === "today" ? undefined : requestFilters.dateFrom || undefined,
+    dateTo: view === "today" ? undefined : requestFilters.dateTo || undefined,
     // Filter by the end so an ongoing booking stays visible. The API applies
     // this before pagination and counts, alongside any explicit start dates.
     endAfter: requestFilters.futureOnly ? now.toISOString() : undefined,
+    lecturerName: requestFilters.lecturerName || undefined,
     lecturerId: requestFilters.lecturerId || undefined,
     productId: requestFilters.productId || undefined,
     authorId: requestFilters.authorId || undefined,
@@ -78,6 +77,36 @@ export const buildBookingRequest = ({
     sortBy: "start",
     sortOrder,
   };
+};
+
+// Explicit advanced choices take precedence over an incompatible quick view.
+// Other filters continue to intersect it, and unapplied drafts stay local.
+export const getBookingViewAfterApplyingFilters = (
+  view,
+  filters,
+  editedFields,
+) => {
+  if (
+    view === "cancelled" &&
+    filters.status !== "cancelled" &&
+    (filters.status || editedFields.has("status"))
+  )
+    return "all";
+  if (
+    view === "awaitingPayment" &&
+    filters.paymentStatus !== "PENDING_PAYMENT" &&
+    (filters.paymentStatus || editedFields.has("paymentStatus"))
+  )
+    return "all";
+  if (
+    view === "today" &&
+    (filters.dateFrom ||
+      filters.dateTo ||
+      editedFields.has("dateFrom") ||
+      editedFields.has("dateTo"))
+  )
+    return "all";
+  return view;
 };
 
 export const resolveBookingProduct = (booking, products = []) => {

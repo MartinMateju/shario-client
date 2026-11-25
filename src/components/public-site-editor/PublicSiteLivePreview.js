@@ -35,6 +35,7 @@ export default function PublicSiteLivePreview({
   previewData,
   previewModules,
   previewLocationId,
+  previewPageImageKey,
   onEditPath,
 }) {
   const t = useTranslations("PublicSiteEditor.preview.connection");
@@ -66,8 +67,16 @@ export default function PublicSiteLivePreview({
       data: previewData && typeof previewData === "object" ? previewData : {},
       previewModules,
       previewLocationId,
+      previewPageImageKey,
     }),
-    [frameTenant, page, previewData, previewModules, previewLocationId],
+    [
+      frameTenant,
+      page,
+      previewData,
+      previewModules,
+      previewLocationId,
+      previewPageImageKey,
+    ],
   );
   const [delivery, setDelivery] = useState(() => ({
     nonce,

@@ -205,7 +205,7 @@ export default function DashboardTopbar({
           </div>
 
           {isOverviewRoute ? (
-            <p className="mt-1 hidden truncate text-[12px] text-[var(--studio-muted)] md:block">
+            <p className="mt-1 hidden truncate text-[13px] text-[var(--studio-muted)] md:block">
               {t("subheading")}
             </p>
           ) : null}

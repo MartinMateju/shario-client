@@ -318,7 +318,7 @@ test.describe("adaptive tenant launch journeys", () => {
     await expect(communicationsSettings).toBeVisible();
     await expect(communicationsSettings).toHaveAttribute(
       "href",
-      "/en/app/communications?section=setup&setupStep=communications",
+      "/en/app/settings/communications?setupStep=communications",
     );
 
     launch.setSnapshot(communicationsReady);

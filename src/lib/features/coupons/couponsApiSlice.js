@@ -1,4 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
+import { clearUnavailableCatalog } from "@/lib/publicTenant/catalogRefresh";
 import { encodeTenantSlugPathSegment } from "@/utils/tenantRouting";
 
 const getPublicCouponPath = (tenantSlug, suffix) =>
@@ -75,6 +76,7 @@ export const couponsApiSlice = apiSlice.injectEndpoints({
     }),
     /** PUBLIC: list published voucher products without customer credentials. */
     getCoupons: builder.query({
+      onQueryStarted: clearUnavailableCatalog,
       async queryFn({ tenantSlug }, { signal }) {
         return publicJsonRequest({
           path: getPublicCouponPath(tenantSlug, "products"),

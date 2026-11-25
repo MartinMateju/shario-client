@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Potwierdzona",
-      "pending": "Oczekuje",
+      "pending": "Oczekuje na potwierdzenie",
       "awaitingPayment": "Oczekuje na płatność",
-      "processed": "Oczekuje na dostawę",
-      "delivered": "Dostarczona",
+      "processed": "Potwierdzona",
+      "delivered": "Rozpoczęta",
       "completed": "Zakończona",
       "cancelled": "Anulowana"
     },
     "payment": {
       "paid": "Opłacono",
-      "pending": "Oczekuje",
+      "pending": "Oczekuje na płatność",
       "failed": "Nieudana",
       "expired": "Wygasła",
       "refunded": "Zwrócono",
       "credits": "Środki"
+    },
+    "refreshing": "Odświeżanie rezerwacji…",
+    "retry": "Spróbuj ponownie",
+    "errors": {
+      "load": "Nie udało się załadować rezerwacji. Spróbuj ponownie.",
+      "filters": "Nie udało się załadować niektórych opcji filtrów."
     },
     "edit": {
       "details": "Szczegóły rezerwacji",
@@ -121,7 +127,9 @@
       "deletedTitle": "Rezerwacja usunięta",
       "deletedText": "Rezerwacja została usunięta.",
       "errorTitle": "Nie udało się utworzyć rezerwacji",
-      "errorText": "Sprawdź dane rezerwacji i spróbuj ponownie."
+      "errorText": "Sprawdź dane rezerwacji i spróbuj ponownie.",
+      "cancelError": "Nie udało się anulować rezerwacji. Spróbuj ponownie.",
+      "extensionRefund": "Dodatkowe {amount} za przedłużony czas rezerwacji zwrócono na kredyty pracowni klienta."
     },
     "exportColumns": {
       "customer": "Klient",
@@ -193,6 +201,7 @@
       "spotsAvailable": "Dostępne miejsca: {remaining} z {capacity}"
     },
     "week": {
+      "schedule": "Plan tygodnia",
       "privacyNote": "Fioletowy oznacza rezerwacje prywatne, a turkusowy publiczne. Twoje rezerwacje mają niebieską etykietę."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Rezerwacje, członkostwa i własna piękna strona internetowa. Wszystko, czego potrzebujesz, by udostępniać swoją przestrzeń i rozwijać społeczność – razem w Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Nie udało się zapisać ustawienia banera. Spróbuj ponownie.",
     "skipToContent": "Przejdź do treści",
     "learnMore": "Dowiedz się więcej",
     "viewAll": "Zobacz wszystko",
@@ -627,7 +637,8 @@
     },
     "product": {
       "metaTitle": "Wszystko, czego potrzebuje Twoja przestrzeń. Razem.",
-      "metaDescription": "Połącz rezerwacje, członków, płatności, zespół i publiczną stronę internetową. Skup się na ludziach, a Shario pomoże Ci zorganizować dzień."
+      "metaDescription": "Połącz rezerwacje, członków, płatności, zespół i publiczną stronę internetową. Skup się na ludziach, a Shario pomoże Ci zorganizować dzień.",
+      "viewScreenshot": "Zobacz pełny zrzut ekranu"
     },
     "studioAi": {
       "metaTitle": "Pomocna dłoń w codziennej pracy.",
@@ -669,13 +680,14 @@
       "from": "od",
       "customAnnual": "Indywidualny plan roczny",
       "mostPopular": "Najpopularniejszy",
+      "includesPrevious": "Wszystko z planu {plan}, a dodatkowo:",
       "starter": {
         "name": "Starter",
         "description": "Zacznij od rezerwacji, płatności, zajęć i wydarzeń w swojej przestrzeni.",
         "feature1": "1 lokalizacja studia · 1 konto zespołu",
         "feature2": "Kursy, prywatne wydarzenia i vouchery",
         "feature3": "500 e-maili w cenie miesięcznie",
-        "feature4": "Podstawowy zakres Shario AI · 200 kredytów miesięcznie",
+        "feature4": "Strona studia i portal klienta",
         "cta": "Wypróbuj bezpłatnie"
       },
       "professional": {
@@ -683,8 +695,9 @@
         "description": "Połącz członkostwa, wspólne przestrzenie i codzienną działalność.",
         "feature1": "1 lokalizacja studia · 3 konta zespołu",
         "feature2": "Członkostwa, rezerwacje i wspólne zasoby",
-        "feature3": "3 aktywne automatyzacje · 2 500 e-maili miesięcznie",
-        "feature4": "Pełny zakres Shario AI · 2000 kredytów miesięcznie",
+        "feature3": "Magazyn i zadania zespołu",
+        "feature4": "3 aktywne automatyzacje · 2 500 e-maili miesięcznie",
+        "feature5": "Shario AI · 2 000 kredytów miesięcznie",
         "cta": "Wypróbuj bezpłatnie"
       },
       "studioPlus": {
@@ -693,16 +706,16 @@
         "feature1": "Do 2 lokalizacji studia · 6 kont zespołu",
         "feature2": "Kody dostępu i własna domena",
         "feature3": "Zaawansowane automatyzacje · 5 000 e-maili miesięcznie",
-        "feature4": "Pełny pakiet AI · 10 000 kredytów miesięcznie",
+        "feature4": "Zaawansowane Shario AI · 10 000 kredytów miesięcznie",
         "cta": "Wypróbuj bezpłatnie"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Zarządzaj organizacją z indywidualną pojemnością, kontrolą i wsparciem.",
-        "feature1": "Nieograniczone lokalizacje i konta zespołu",
+        "feature1": "Liczba lokalizacji i wielkość zespołu do uzgodnienia",
         "feature2": "Indywidualne limity automatyzacji, e-maili i AI",
-        "feature3": "SSO/SCIM, API, webhooki i dzienniki audytu",
-        "feature4": "Dedykowane wdrożenie, migracja i SLA",
+        "feature3": "Omów wymagania dotyczące integracji i zarządzania",
+        "feature4": "Wdrożenie, migracja i wsparcie do uzgodnienia",
         "cta": "Rozpocznij bezpłatny okres próbny"
       },
       "note": "Ceny nie obejmują należnych podatków. Roczne plany samoobsługowe obejmują dwa miesiące gratis. Niezbędne e-maile systemowe nie wliczają się do limitu, a użycie AI zatrzymuje się po wyczerpaniu pakietu — bez automatycznych dopłat.",
@@ -1448,7 +1461,10 @@
     },
     "unavailable": {
       "title": "Ta opcja jest niedostępna",
-      "description": "Studio nie oferuje obecnie tej opcji publicznie."
+      "description": "Studio nie oferuje obecnie tej opcji publicznie.",
+      "retry": "Spróbuj ponownie",
+      "retrying": "Wczytywanie…",
+      "loginDegraded": "Nie udało się teraz wczytać danych pracowni."
     },
     "book": {
       "metadataTitle": "Zarezerwuj otwartą pracownię",
@@ -1506,6 +1522,7 @@
         "email": "Adres e-mail",
         "quantity": "Liczba",
         "missing": "Wybierz kartę podarunkową i wpisz prawidłowy adres e-mail.",
+        "reselect": "Lista dostępnych bonów uległa zmianie. Wybierz bon ponownie, aby kontynuować.",
         "error": "Nie udało się rozpocząć płatności. Spróbuj ponownie.",
         "starting": "Przygotowywanie płatności…",
         "continue": "Przejdź do płatności",
@@ -1541,6 +1558,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Nie udało się odświeżyć oferty. Wyświetlamy ostatnio wczytaną ofertę.",
       "loading": "Wczytywanie aktualnych ofert…",
       "error": "Nie udało się wczytać aktualnych ofert.",
       "retry": "Spróbuj ponownie",
@@ -1790,7 +1808,8 @@
       "notifications": "Powiadomienia",
       "events": "Wydarzenia",
       "lostFound": "Rzeczy znalezione",
-      "customOrders": "Zamówienia indywidualne"
+      "customOrders": "Zamówienia indywidualne",
+      "communicationSettings": "Ustawienia wiadomości"
     },
     "stats": {
       "bookings": "Dzisiejsze rezerwacje",
@@ -2786,10 +2805,20 @@
         "headline": "Nagłówek strony kursów",
         "intro": "Wprowadzenie na stronie kursów",
         "image": "Zdjęcie strony kursów",
-        "inherit": "Puste pola korzystają ze wspólnego tekstu strony kursów i zdjęcia okładkowego marki.",
+        "inherit": "Puste pola używają wspólnych tekstów i obrazu strony kursów lub zdjęcia okładkowego marki, jeśli nie ustawiono obrazu kursów.",
         "noLocations": "Dodaj lokalizację pracowni, aby dostosować jej stronę kursów.",
         "guestCheckoutEnabled": "Zezwalaj na zakup kursów bez konta",
         "guestCheckoutDescription": "Dotyczy wszystkich pracowni. Goście mogą kupić kurs bez tworzenia konta; klienci nadal mogą się zalogować, aby zarezerwować. Wymaga widocznych stron kursów i gotowych płatności online. Opublikuj zmiany, aby zastosować to ustawienie."
+      },
+      "pageImages": {
+        "title": "Obrazy nagłówków stron",
+        "description": "Wybierz inny obraz dla każdej strony publicznej lub klienta. Kalendarze rezerwacji zachowają kompaktowy nagłówek tekstowy.",
+        "page": "Dostosowywana strona",
+        "image": "Obraz nagłówka strony",
+        "hint": "Użyj poziomego zdjęcia. Po usunięciu nagłówek będzie zawierał tylko tekst. Obraz kursów dla konkretnego studia ma pierwszeństwo.",
+        "preview": "Podgląd nagłówka",
+        "previewDescription": "Podgląd obrazu strony z wybranymi kolorami i typografią.",
+        "products": "Produkty"
       },
       "calendarColors": "Kalendarz",
       "hidden": "Ukryte",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Kursy w portalu klienta",
+        "portalPageHero": "Nagłówki stron",
         "book": "Otwarta pracownia",
         "courses": "Zajęcia",
         "memberships": "Członkostwa",
@@ -3275,6 +3305,31 @@
       "labelColor": "Kolor etykiety rejestracji · opcjonalnie",
       "imageTitle": "Obraz rejestracji",
       "imageDescription": "Użyj osobnego obrazu dla tworzenia konta; wspólne logo studia pozostanie na formularzu."
+    },
+    "customLinks": {
+      "title": "Własne linki",
+      "addGroup": "Dodaj grupę rozwijaną",
+      "group": "Grupa rozwijana",
+      "children": "Linki w tej grupie",
+      "button": "Pokaż jako główny przycisk",
+      "separator": "Pokaż separator przed tym linkiem",
+      "layout": "Układ nagłówka",
+      "defaultLayout": "Standardowy nagłówek rezerwacji",
+      "websiteLayout": "Nawigacja strony internetowej",
+      "background": "Tło nagłówka",
+      "linkColor": "Kolor linków w nagłówku",
+      "buttonColor": "Kolor przycisku w nagłówku",
+      "header": "Dodaj linki po standardowej nawigacji. Ukryj standardowe pozycje powyżej, jeśli chcesz mieć w pełni własne menu.",
+      "footer": "Dodaj więcej linków do sekcji Odkrywaj w stopce. Linki widoczne już w nagłówku są dodawane automatycznie.",
+      "label": "Tekst linku",
+      "href": "Docelowy adres URL",
+      "add": "Dodaj link",
+      "remove": "Usuń link",
+      "up": "Przesuń link w górę",
+      "down": "Przesuń link w dół",
+      "count": "linków",
+      "hint": "Użyj https://… lub ścieżki zaczynającej się od /. Uzupełnij tekst i URL razem; pozostaw oba pola puste, aby użyć innego języka.",
+      "invalid": "Wpisz tekst linku i prawidłowy adres HTTPS lub ścieżkę w co najmniej jednym języku. Każdy język wymaga obu pól albo żadnego."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "awaitingPayment": "Oczekuje na płatność",
       "processing": "Przetwarzanie",
       "failed": "Nieudana",
-      "completed": "Zakończone"
+      "completed": "Zakończone",
+      "cancelled": "Anulowane"
     },
     "productTypes": {
       "course": "Zajęcia",
@@ -3811,7 +3867,8 @@
       "creatingInvoice": "Tworzenie…",
       "confirmCreateInvoice": "Utworzyć wersję roboczą faktury z tego zamówienia?",
       "note": "Notatka do zamówienia",
-      "internalId": "Wewnętrzny identyfikator zamówienia"
+      "internalId": "Wewnętrzny identyfikator zamówienia",
+      "paymentDateUnknown": "Nie zarejestrowano daty płatności"
     },
     "fallbackStudioName": "Twoje studio",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Nie udało się utworzyć faktury z tego zamówienia."
     },
     "csv": {
-      "createdAt": "Utworzono dnia"
+      "createdAt": "Utworzono dnia",
+      "currency": "Waluta",
+      "amountStatus": "Dostępność kwoty"
+    },
+    "money": {
+      "unavailable": "Niedostępne",
+      "unavailableDetail": "Nie można zweryfikować końcowej kwoty zamówienia ani historii zwrotów.",
+      "verified": "Dostępne",
+      "refunded": "Zwrócono",
+      "net": "Wartość po zwrotach",
+      "incomplete": "Niektóre opłacone zamówienia mają niepełne kwoty lub dane o zwrotach. Suma jest niedostępna.",
+      "mixedCurrencies": "Ten okres zawiera kilka walut. Nie można ich zsumować w jedną kwotę.",
+      "truncated": "Ten okres przekracza limit podsumowania. Wybierz krótszy okres, aby obliczyć sumę.",
+      "scope": "Wartości zamówień obejmują podatek oraz wykorzystane kredyty lub vouchery. Osobne zakupy voucherów i faktury za członkostwa są wyłączone. Nie są to wpływy pieniężne ani przychody ze zrealizowanych usług. Karty podsumowania obejmują cały wybrany okres i pracownię.",
+      "multiStudio": "Zamówienia powiązane z kilkoma pracowniami są liczone według pełnej wartości."
     }
   },
   "VoucherShopping": {
@@ -4003,7 +4074,49 @@
         "complained": "Skarga na spam",
         "rejected": "Odrzucone",
         "ambiguous": "Status niejasny",
-        "suppressed": "Wstrzymane"
+        "suppressed": "Nie wysłano"
+      },
+      "resend": {
+        "actionMenu": "Działania dotyczące e-maila",
+        "action": "Wyślij ponownie",
+        "title": "Wysłać ten e-mail ponownie?",
+        "description": "Podejmiemy kolejną próbę wysłania tej wiadomości do tego samego odbiorcy.",
+        "recipient": "Odbiorca",
+        "subject": "Temat",
+        "cancel": "Anuluj",
+        "confirm": "Wyślij ponownie",
+        "submitting": "Przygotowywanie wysyłki…",
+        "queued": "E-mail jest gotowy do ponownego wysłania.",
+        "scheduled": "Zaplanowano kolejną próbę. E-mail zostanie wysłany, gdy wysyłka będzie możliwa.",
+        "error": "Nie udało się przygotować e-maila do wysłania. Spróbuj ponownie.",
+        "stale": "Status tego e-maila się zmienił. Wyświetlany jest teraz jego aktualny status.",
+        "blocked": "Tego e-maila nie można teraz wysłać ponownie.",
+        "reasonLabel": "Dlaczego nie został wysłany"
+      },
+      "reasons": {
+        "status_not_retryable": "Tego e-maila nie można wysłać ponownie w jego obecnym stanie.",
+        "delivery_in_progress": "Ten e-mail jest już wysyłany.",
+        "delivery_outcome_unknown": "Nie możemy potwierdzić, czy ten e-mail został wysłany. Sprawdź status dostarczenia przed kolejną próbą.",
+        "already_sent": "Ten e-mail został już wysłany.",
+        "recipient_suppressed": "Wysyłanie do tego odbiorcy było zablokowane.",
+        "consent_revoked": "Odbiorca wycofał zgodę na otrzymywanie tego e-maila.",
+        "consent_expired": "Zgoda odbiorcy wygasła.",
+        "marketing_opt_in_required": "Odbiorca nie wyraził zgody na otrzymywanie e-maili marketingowych.",
+        "consent_required": "Brakowało wymaganej zgody odbiorcy.",
+        "content_unavailable": "Oryginalna wiadomość nie była już dostępna.",
+        "invalid_delivery_contract": "Dane potrzebne do wysłania tego e-maila były niekompletne.",
+        "source_changed": "Dane, na których oparto ten e-mail, uległy zmianie.",
+        "source_missing": "Wpis powiązany z tym e-mailem już nie istniał.",
+        "recipient_ineligible": "Ta wiadomość nie dotyczyła już tego odbiorcy.",
+        "automation_inactive": "Ta automatyzacja e-maili była wyłączona.",
+        "sender_not_ready": "Wysyłanie e-maili nie było skonfigurowane lub było tymczasowo niedostępne.",
+        "workspace_disabled": "Wysyłanie e-maili było wyłączone w tym obszarze roboczym.",
+        "monthly_allowance_exhausted": "Obszar roboczy wykorzystał miesięczny limit e-maili.",
+        "unsupported_email_type": "Tego typu e-maila nie można stąd wysłać ponownie.",
+        "delivery_failed": "Nie udało się dostarczyć e-maila.",
+        "not_sent": "E-mail nie został wysłany.",
+        "hard_bounce": "Dostarczenie na ten adres zakończyło się trwałym niepowodzeniem.",
+        "spam_complaint": "Odbiorca zgłosił e-mail jako spam."
       },
       "columns": {
         "status": "Status",
@@ -4013,7 +4126,7 @@
         "recipient": "Odbiorca",
         "type": "Typ e-maila"
       },
-      "description": "Przeglądaj zaplanowane, zakolejkowane, dostarczone, wstrzymane, anulowane i nieudane wysyłki e-maili.",
+      "description": "Przeglądaj zaplanowane, dostarczone, anulowane i niewysłane e-maile.",
       "searchLabel": "Szukaj w historii dostarczania",
       "searchPlaceholder": "Szukaj według e-maila odbiorcy lub identyfikatora klienta…",
       "statusLabel": "Filtruj według statusu dostarczenia",
@@ -4398,7 +4511,8 @@
         "module": "Włącz moduł dostępu do drzwi w ustawieniach obszaru roboczego.",
         "sender": "Dokończ konfigurację zarządzanego nadawcy e-maili przed włączeniem dostarczania.",
         "inventory": "Dodaj zweryfikowany kod wielokrotnego użytku do aktywnej puli w tej lokalizacji."
-      }
+      },
+      "template": "Dostosuj szablon e-maila"
     },
     "errors": {
       "setupRequired": "Sprawdź konfigurację poczty przed włączeniem automatyzacji.",
@@ -4411,6 +4525,102 @@
       "message": "Usunąć {name}? Tej operacji nie można cofnąć.",
       "cancel": "Zachowaj automatyzację",
       "deleting": "Usuwanie…"
+    },
+    "doorTemplates": {
+      "title": "E-maile z kodem dostępu",
+      "description": "Dostosuj automatyczny e-mail z kodem do drzwi dla każdej lokalizacji pracowni. Te szablony są używane przy dotychczasowej wysyłce kodów dostępu.",
+      "locationHint": "Używany tylko dla rezerwacji w tej lokalizacji",
+      "default": "Wiadomość domyślna",
+      "customized": "Wiadomość dostosowana",
+      "loading": "Wczytywanie szablonów kodu do drzwi…",
+      "loadError": "Nie udało się wczytać szablonów kodu do drzwi.",
+      "retry": "Spróbuj ponownie",
+      "empty": "Dodaj aktywną lokalizację pracowni, aby dostosować jej e-mail z kodem do drzwi.",
+      "edit": "Edytuj szablon",
+      "preview": "Podgląd szablonu",
+      "editFor": "Edytuj szablon kodu do drzwi dla {location}",
+      "previewFor": "Podgląd szablonu kodu do drzwi dla {location}",
+      "eyebrow": "E-mail z kodem dostępu",
+      "editorDescription": "Edytuj temat i treść wiadomości dla tej lokalizacji. Zapisane zmiany dotyczą kolejnych automatycznych e-maili; ustawienia wysyłki i zwykły czas 15 minut wcześniej pozostają bez zmian.",
+      "placeholderHint": "Shario podczas wysyłki uzupełnia szczegóły rezerwacji i właściwy kod. Pozostaw ten symbol zastępczy w wiadomości:",
+      "previewHint": "Podgląd wykorzystuje przykładowy kod i rezerwację. Zapisany wygląd e-maili Twojej pracowni zostanie zastosowany podczas wysyłki.",
+      "variablesTitle": "Dostęp i szczegóły rezerwacji",
+      "variables": {
+        "entryCode": "Kod do drzwi (tylko w treści wiadomości)",
+        "studioName": "Nazwa lokalizacji pracowni",
+        "studioAddress": "Adres lokalizacji pracowni",
+        "bookingTime": "Lokalna data i przedział czasowy rezerwacji",
+        "bookingUrl": "Link do zarządzania rezerwacją"
+      },
+      "languages": {
+        "cs": "Czeski",
+        "en": "Angielski"
+      },
+      "errors": {
+        "incomplete": "Dodaj temat (do 200 znaków) i treść wiadomości dla tego języka.",
+        "missingCode": "Umieść symbol zastępczy kodu do drzwi w widocznej treści wiadomości.",
+        "codePlacement": "Umieść kod w treści wiadomości, poza tematem, linkami i atrybutami HTML.",
+        "unknownVariable": "Używaj tylko wymienionych symboli zastępczych z dwoma nawiasami klamrowymi otwierającymi i zamykającymi."
+      },
+      "close": "Zamknij szablon",
+      "cancel": "Anuluj",
+      "save": "Zapisz szablon",
+      "saving": "Zapisywanie…",
+      "resetting": "Przywracanie…",
+      "saveError": "Nie udało się zapisać szablonu kodu do drzwi.",
+      "resetError": "Nie udało się przywrócić wiadomości domyślnej.",
+      "saveSuccess": "Zapisano szablon kodu do drzwi dla {location}.",
+      "resetSuccess": "Przywrócono domyślną wiadomość z kodem do drzwi dla {location}.",
+      "reset": "Przywróć wiadomość domyślną",
+      "resetConfirm": "Przywrócić wiadomość domyślną dla tej lokalizacji? Zapisane dostosowanie i niezapisane zmiany zostaną zastąpione.",
+      "confirmReset": "Przywróć domyślne",
+      "keepEditing": "Kontynuuj edycję",
+      "discardConfirm": "Masz niezapisane zmiany. Zamknąć bez zapisywania?",
+      "discard": "Odrzuć zmiany",
+      "variablesHint": "Kliknij symbol zastępczy, aby wstawić go w miejscu pisania. Kod wejścia należy umieszczać tylko w treści wiadomości, poza linkami.",
+      "help": "Pomoc dotycząca szablonu",
+      "codeReminder": "Pozostaw {code} w wiadomości."
+    },
+    "visualEditor": {
+      "mode": "Tryb edycji",
+      "visual": "Edytor wizualny",
+      "htmlSource": "Kod HTML",
+      "loading": "Wczytywanie edytora wizualnego…",
+      "unsupported": "Ten szablon zawiera zaawansowane formatowanie HTML. Jego oryginalny wygląd zostaje zachowany w trybie HTML.",
+      "toolbar": "Ustawienia tekstu i wyglądu",
+      "body": "Tekst główny",
+      "heading1": "Nagłówek 1",
+      "heading2": "Nagłówek 2",
+      "heading3": "Nagłówek 3",
+      "bold": "Pogrubienie",
+      "italic": "Kursywa",
+      "underline": "Podkreślenie",
+      "fontSize": "Rozmiar tekstu",
+      "defaultSize": "Rozmiar domyślny",
+      "textColor": "Kolor tekstu",
+      "textBackground": "Tło tekstu",
+      "alignLeft": "Wyrównaj do lewej",
+      "alignCenter": "Wyśrodkuj",
+      "alignRight": "Wyrównaj do prawej",
+      "bulletList": "Lista punktowana",
+      "orderedList": "Lista numerowana",
+      "link": "Dodaj lub edytuj link",
+      "linkUrl": "Adres linku",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Zastosuj link",
+      "removeLink": "Usuń link",
+      "cancelLink": "Anuluj",
+      "invalidLink": "Użyj adresu http, https lub mailto albo symbolu zastępczego linku do rezerwacji. Kodów do drzwi nie można używać w linkach.",
+      "undo": "Cofnij",
+      "redo": "Ponów",
+      "blockStyle": "Wygląd bloku",
+      "blockBackground": "Tło bloku",
+      "blockPadding": "Odstęp bloku",
+      "paddingNone": "Brak",
+      "paddingSmall": "Mały",
+      "paddingMedium": "Średni",
+      "paddingLarge": "Duży",
+      "clearBlockStyle": "Wyczyść tło i odstęp bloku"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "Co jest potrzebne do osiągnięcia tego celu"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Znajdź odpowiedni plan",
+    "title": "Zobacz, czym różnią się plany.",
+    "description": "Porównaj aktualne plany dla nowych subskrypcji. Obecne subskrypcje mogą zachować wcześniejszą wersję planu.",
+    "caption": "Porównanie funkcji aktualnych planów dla pracowni",
+    "feature": "Funkcja lub limit",
+    "scrollLabel": "Porównanie planów — przewiń w poziomie, aby zobaczyć wszystkie plany",
+    "shared": "Każdy plan obejmuje zajęcia, listy oczekujących, vouchery, stronę rezerwacji w stylu pracowni, portal klienta i import CSV.",
+    "trialNote": "14-dniowy okres próbny obejmuje funkcje Professional. Kody dostępu, własne domeny i zaawansowane narzędzia AI pokazane powyżej wymagają Space Plus lub uzgodnionego planu Enterprise.",
+    "usageNote": "Niezbędne wiadomości systemowe nie wliczają się do limitu e-maili. Włączone narzędzia AI korzystają ze wspólnej puli kredytów; po jej wyczerpaniu działanie zostaje wstrzymane bez automatycznych dopłat. Dostępność narzędzi zależy też od ustawień pracowni i uprawnień zespołu.",
+    "accessNote": "Kody dostępu działają z własnym systemem dostępu i kodami wgranymi do Shario. Sprzęt ani integracje inteligentnych zamków nie są wliczone.",
+    "enterpriseTitle": "Potrzebujesz rozwiązania na miarę?",
+    "enterpriseDescription": "Porozmawiajmy o limitach Enterprise, integracjach, migracji i wsparciu. Zanim wybierzesz plan, potwierdzimy zakres i warunki dla Twojej pracowni.",
+    "enterpriseCta": "Porozmawiaj o Enterprise",
+    "rows": {
+      "locations": "Lokalizacje pracowni",
+      "teamAccounts": "Konta zespołu",
+      "openStudioMemberships": "Otwarta pracownia, członkostwa i pakiety kredytów",
+      "inventoryTasks": "Magazyn i zadania zespołu",
+      "automations": "Aktywne własne automatyzacje",
+      "emails": "E-maile w cenie na miesiąc",
+      "studioAssistant": "Asystent pracowni",
+      "aiCredits": "Kredyty AI na miesiąc",
+      "briefingKnowledge": "Codzienne podsumowania i baza wiedzy",
+      "advancedAi": "Business Advisor, asystent klienta i analizy raportów AI",
+      "accessCodes": "Zarządzanie kodami dostępu i ich wysyłka",
+      "customDomain": "Własna domena"
+    },
+    "values": {
+      "included": "W cenie",
+      "notIncluded": "Niewliczone",
+      "basic": "Podstawowe",
+      "full": "Pełne",
+      "limited": "Ograniczone",
+      "advanced": "Zaawansowane"
+    }
+  },
+  "RefundReviews": {
+    "title": "Weryfikacja zwrotów",
+    "description": "Sprawdź zwroty zarejestrowane w Stripe i udokumentuj decyzję dotyczącą powiązanych uprawnień klienta.",
+    "benefitsNotice": "Zarejestrowanie lub potwierdzenie zwrotu nie anuluje rezerwacji ani członkostwa, nie odbiera kredytów i nie wykonuje kolejnej płatności. Przed zapisaniem decyzji osobno sprawdź uprawnienia, których dotyczy zwrot.",
+    "allLocationsRequired": "Weryfikacja zwrotów wymaga dostępu do płatności we wszystkich lokalizacjach studia.",
+    "refresh": "Odśwież",
+    "loading": "Wczytywanie weryfikacji zwrotów…",
+    "empty": "Na tej stronie nie ma nierozstrzygniętych weryfikacji.",
+    "loadError": "Nie udało się wczytać weryfikacji. Odśwież, aby spróbować ponownie.",
+    "needsReview": "Wymagana weryfikacja uprawnień",
+    "needsRepair": "Uzgodnienie płatności wymaga uwagi",
+    "reference": "Numer referencyjny weryfikacji",
+    "order": "Zamówienie",
+    "membership": "Członkostwo",
+    "paid": "Pierwotna płatność",
+    "refunded": "Zwrócono",
+    "pending": "Zwrot oczekuje",
+    "failed": "Zwrot nie powiódł się",
+    "repairNotice": "Ta płatność nie jest w pełni uzgodniona. Odśwież lub skontaktuj się z pomocą techniczną, aby poprawić powiązanie płatności przed zapisaniem weryfikacji.",
+    "readOnly": "Weryfikację może zapisać członek zespołu z uprawnieniem do obsługi zwrotów.",
+    "review": "Zapisz weryfikację",
+    "note": "Decyzja lub wprowadzone zmiany (10–2000 znaków)",
+    "evidence": "Dokumentacja lub odnośnik uzasadniający decyzję (10–2000 znaków)",
+    "confirm": "Sprawdziłem(-am) uprawnienia objęte zwrotem i udokumentowałem(-am) zmiany lub decyzję o ich zachowaniu.",
+    "save": "Potwierdź weryfikację",
+    "cancel": "Anuluj",
+    "saved": "Weryfikacja została zapisana. Ta czynność nie zmieniła uprawnień klienta.",
+    "changed": "Ten zwrot uległ zmianie lub nadal jest uzgadniany. Lista została odświeżona; przed ponownym wysłaniem sprawdź aktualne dane.",
+    "saveError": "Nie udało się zapisać weryfikacji. Twoje notatki zostały zachowane; spróbuj ponownie.",
+    "permissionError": "Nie masz już uprawnień do zapisania tej weryfikacji. Poproś członka zespołu z dostępem do zwrotów we wszystkich lokalizacjach.",
+    "pagination": "Strony weryfikacji zwrotów",
+    "firstPage": "Pierwsza strona",
+    "nextPage": "Następna strona"
+  },
+  "PaymentRefundResult": {
+    "title": "Płatność wymaga sprawdzenia przez studio",
+    "description": "Zarejestrowano zwrot pieniędzy lub ta płatność wymaga sprawdzenia. Ta strona nie potwierdza nowej rezerwacji, salda kredytów ani korzyści z członkostwa.",
+    "next": "Przed dokonaniem kolejnej płatności skontaktuj się ze studiem, podając poniższy numer referencyjny.",
+    "reference": "Numer referencyjny",
+    "back": "Powrót do studia",
+    "refresh": "Sprawdź status"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Dobre miejsca łączą ludzi",
@@ -5849,7 +6138,8 @@
       "about": "Jak to działa",
       "login": "Zaloguj się",
       "register": "Rozpocznij bezpłatny okres próbny",
-      "copyright": "© {year} Shario. Wszelkie prawa zastrzeżone."
+      "copyright": "© {year} Shario. Wszelkie prawa zastrzeżone.",
+      "contact": "Kontakt"
     }
   },
   "Waitlists": {
@@ -6801,6 +7091,22 @@
       "label": "Widok osób"
     },
     "filters": {
+      "spending": "Wydatki ({currency})",
+      "spendMin": "Minimalne wydatki",
+      "spendMax": "Maksymalne wydatki",
+      "spendFrom": "Data płatności od",
+      "spendTo": "Data płatności do",
+      "spendingHint": "Płatności dokonane w tym okresie, po odliczeniu zarejestrowanych zwrotów.",
+      "spendingDatesHint": "Pozostaw daty puste, aby uwzględnić cały okres.",
+      "credits": "Aktualne kredyty ({currency})",
+      "creditMin": "Minimalna kwota kredytów",
+      "creditMax": "Maksymalna kwota kredytów",
+      "creditsHint": "Aktualne saldo kredytów, niezależne od dat płatności.",
+      "spendingUnavailable": "Filtrowanie wydatków wymaga dostępu do wszystkich danych finansowych.",
+      "applyFinancial": "Zastosuj filtry finansowe",
+      "financialDraftHint": "Zmiany zostaną wprowadzone po wybraniu Zastosuj.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Cały okres",
       "membership": "Członkostwo",
       "button": "Filtry",
       "allStatuses": "Wszystkie statusy",
@@ -6814,6 +7120,7 @@
       "clear": "Wyczyść"
     },
     "columns": {
+      "periodSpent": "Wydatki w okresie",
       "customer": "Klient",
       "contact": "Kontakt",
       "membership": "Członkostwo",
@@ -6830,6 +7137,7 @@
       "access": "Dostęp"
     },
     "actions": {
+      "exporting": "Eksportowanie…",
       "addCustomer": "Dodaj klienta",
       "openCustomerActions": "Otwórz działania dla {name}",
       "openStaffActions": "Otwórz działania dla {name}",
@@ -6875,6 +7183,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Wydatki w okresie",
       "email": "Adres e-mail",
       "membership": "Członkostwo",
       "credits": "Środki",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Aktywne członkostwa",
       "credits": "Środki klientów",
       "newThisMonth": "Nowi w tym miesiącu",
-      "monthlyChange": "+{count} w tym miesiącu"
+      "monthlyChange": "+{count} w tym miesiącu",
+      "unavailable": "Dane niedostępne"
     },
     "counts": {
       "customers": "{count, plural, one {# klient} few {# klientów} many {# klientów} other {# klienta}}",
@@ -6992,6 +7302,13 @@
       "view": "Zobacz analizę klientów"
     },
     "errors": {
+      "summary": "Nie udało się wczytać podsumowania klientów i filtrów członkostwa. Spróbuj ponownie.",
+      "export": "Nie udało się pobrać pełnego eksportu klientów. Nie zapisano żadnego pliku. Spróbuj ponownie.",
+      "invalidAmount": "Wprowadź prawidłową kwotę.",
+      "invalidDate": "Wprowadź prawidłową datę.",
+      "spendingRange": "Minimalne wydatki nie mogą przekraczać maksymalnych.",
+      "creditRange": "Minimalna kwota kredytów nie może przekraczać maksymalnej.",
+      "dateRange": "Data początkowa nie może być późniejsza niż końcowa.",
       "customers": "Nie udało się wczytać klientów. Spróbuj ponownie.",
       "staff": "Nie udało się wczytać członków zespołu. Spróbuj ponownie."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Powiadomienia w aplikacji",
           "description": "Pokazuj powiadomienia przestrzeni roboczej w Shario."
+        },
+        "bookingCreated": {
+          "label": "Utworzono rezerwację",
+          "description": "Gdy zostanie utworzona odpowiednia rezerwacja. Domyślnie wyłączone."
         }
       },
       "channelsTitle": "Kanały dostarczania"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "Nie udało się utworzyć nowej rozmowy.",
       "message": "Asystent studia nie mógł teraz odpowiedzieć."
+    },
+    "guided": {
+      "title": "Czego chcesz się dowiedzieć?",
+      "description": "Wybierz pytanie, aby otrzymać jasną odpowiedź opartą na danych Twojej pracowni.",
+      "back": "Wybierz inne pytanie",
+      "retry": "Spróbuj ponownie",
+      "loading": "Sprawdzanie danych Twojej pracowni…",
+      "noAnswer": "Nie udało się znaleźć wiarygodnej odpowiedzi. Spróbuj ponownie za chwilę.",
+      "contextQuestion": "Co powinienem o tym wiedzieć?",
+      "contextHint": "Odpowiedź dotycząca wybranej pozycji.",
+      "allStudios": "Wszystkie pracownie",
+      "periods": {
+        "today": "Dzisiaj",
+        "last30Days": "Ostatnie 30 dni",
+        "current": "Bieżący przegląd"
+      },
+      "report": {
+        "title": "Chcesz bardziej szczegółowy przegląd?",
+        "description": "Miesięczny raport wybranej pracowni od początku miesiąca do {date}.",
+        "generate": "Wygeneruj raport miesięczny",
+        "open": "Otwórz raport miesięczny",
+        "back": "Wróć do odpowiedzi",
+        "ready": "Twój raport miesięczny jest gotowy."
+      },
+      "questions": {
+        "today": {
+          "label": "Jak dziś radzi sobie pracownia?",
+          "hint": "Szybki przegląd dzisiejszej działalności.",
+          "prompt": "Co dzieje się dziś w pracowni?"
+        },
+        "bookings": {
+          "label": "Ile mamy dziś rezerwacji?",
+          "hint": "Dzisiejsze potwierdzone rezerwacje.",
+          "prompt": "Ile mamy dziś rezerwacji?"
+        },
+        "bookingTrend": {
+          "label": "Czy liczba rezerwacji rośnie?",
+          "hint": "Porównaj ostatnie 30 dni z poprzednimi 30.",
+          "prompt": "Jak zmieniają się nasze rezerwacje?"
+        },
+        "teamBlockers": {
+          "label": "Czy coś blokuje zespół?",
+          "hint": "Przejrzyj zgłoszone dziś przeszkody w zespole.",
+          "prompt": "Co dziś blokuje nasz zespół?"
+        },
+        "reorders": {
+          "label": "Co trzeba uzupełnić?",
+          "hint": "Sprawdź otwarte prośby o uzupełnienie zapasów.",
+          "prompt": "Czy są otwarte prośby o ponowne zamówienie?"
+        },
+        "generalHelp": {
+          "label": "Które dane pracowni mogę przeglądać?",
+          "hint": "Zobacz informacje dostępne dla Twojej roli.",
+          "prompt": "Do jakich danych pracowni masz dostęp?"
+        }
+      },
+      "selectedStudio": "Wybrana pracownia"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "Najlepszy zakończony miesiąc",
+      "completedMonths": "Porównujemy tylko całe zakończone miesiące z wiarygodnymi danymi.",
+      "noBestMonth": "Nie można wskazać najlepszego miesiąca. Uwzględnij całe zakończone miesiące.",
+      "showYear": "Pokaż bieżący rok",
+      "monthRanking": "Płatności według miesięcy",
+      "month": "Miesiąc",
+      "coverage": "Kompletność danych",
+      "completeMonth": "Pełny miesiąc",
+      "partialMonth": "Część miesiąca",
+      "moneyBasis": "Płatności rzeczywiście otrzymane w okresie pomniejszone o zwroty zapisane na dzień raportu. Opłacone członkostwa, bony i doładowania liczą się raz; wykorzystanie nie jest kolejną płatnością. To nie jest zysk.",
+      "asOf": "Stan na",
+      "customerTable": "Analiza klientów",
+      "customerHelp": "Połącz filtry, aby znaleźć klientów, z którymi warto się skontaktować.",
+      "inactiveCredit": "Nieaktywni od 90 dni ze środkami:",
+      "showCustomers": "Pokaż klientów",
+      "spending": "Otrzymane płatności",
+      "credits": "Aktualne środki",
+      "cancellations": "Anulowane rezerwacje",
+      "minimum": "Minimum",
+      "maximum": "Maksimum",
+      "actor": "Anulowane przez",
+      "actor_all": "Wszystkich",
+      "actor_customer": "Klienta",
+      "actor_staff": "Personel",
+      "inactiveDays": "Brak aktywności przez co najmniej (dni)",
+      "dateDefaults": "Puste daty oznaczają okres raportu powyżej.",
+      "cancellationCoverage": "Starsze anulowania mogą nie mieć wiarygodnej daty lub autora. Liczba z + to potwierdzone minimum; nieznane nie oznacza zera. Filtr maksimum wymaga pełnej historii.",
+      "invalidBounds": "Podaj poprawne liczby i daty. Minimum nie może przekraczać maksimum.",
+      "apply": "Zastosuj filtry",
+      "clear": "Wyczyść filtry",
+      "exportCustomers": "Eksportuj wszystkich pasujących klientów",
+      "noCustomers": "Brak klientów pasujących do filtrów.",
+      "customer": "Klient",
+      "lastActivity": "Ostatnia aktywność",
+      "locationScope": "Sumy lokalizacji nie obejmują płatności bez wiarygodnego przypisania do lokalizacji. Członkostwa, bony i doładowania mogą być ujęte tylko w widoku całej organizacji.",
+      "incompleteData": "Niektóre źródła są niepełne lub niedostępne. Uwzględniane są tylko sprawdzalne dane; brak wartości nie oznacza zera.",
+      "paymentSources": "Źródła płatności",
+      "source_external_payment": "Płatności za zamówienia",
+      "source_voucher": "Zakupy voucherów",
+      "source_membership": "Płatności za członkostwo",
+      "source": "Źródło",
+      "noPaymentSources": "Brak dostępnych danych o źródłach płatności."
+    },
     "actions": {
       "retry": "Spróbuj ponownie",
       "export": "Eksportuj CSV",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Rezerwacje",
-      "netSales": "Sprzedaż netto",
+      "netSales": "Otrzymane płatności",
       "utilizationPercent": "Wykorzystanie",
       "returningCustomerPercent": "Powracający klienci"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Rezerwacje",
-        "netSales": "Sprzedaż netto"
+        "netSales": "Otrzymane płatności"
       },
       "trendTitle": "Trend wyników",
       "trendDescription": "Zweryfikowane wartości w wybranym okresie raportowania.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Liczba",
         "currency": "Waluta",
-        "orders": "Zamówienia",
+        "orders": "Płatności",
         "amount": "Kwota",
-        "net": "Sprzedaż netto",
+        "net": "Otrzymane płatności",
         "gross": "Sprzedaż brutto",
         "method": "Metoda",
         "product": "Pozycja katalogu"
       },
       "metrics": {
-        "orders": "Zamówienia",
-        "net": "Sprzedaż netto",
+        "orders": "Płatności",
+        "net": "Otrzymane płatności",
         "gross": "Sprzedaż brutto",
         "tax": "Podatek / VAT",
         "discounts": "Zniżki",
         "refunds": "Zwroty",
         "paymentFees": "Opłaty dostawcy płatności",
-        "averageOrder": "Średnia wartość zamówienia"
+        "averageOrder": "Średnia płatność"
       },
       "unavailable": "Dane sprzedaży są niedostępne",
       "unavailableDescription": "Dla tego konta lub zakresu raportowania nie ma dostępnego źródła sprzedaży.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Rezerwacje",
-        "participants": "Uczestnicy",
+        "participants": "Zarezerwowane miejsca",
         "utilization": "Wykorzystanie",
         "cancellations": "Anulowania",
         "noShows": "Nieobecności",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Nowi klienci",
-        "returning": "Powracający klienci",
-        "unique": "Aktywni klienci",
+        "new": "Nowi płacący klienci",
+        "returning": "Powracający płacący klienci",
+        "unique": "Płacący klienci",
         "returningRate": "Wskaźnik powrotów",
-        "averageSpend": "Średnie wydatki"
+        "averageSpend": "Średnie opłacone wydatki"
       },
       "unavailable": "Dane klientów są niedostępne",
       "unavailableDescription": "Dla tego konta lub zakresu raportowania nie ma dostępnego źródła klientów.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "Dostęp do drzwi nie jest objęty tym planem",
       "description": "Sprawdź dostępne plany lub zapytaj właściciela obszaru roboczego o dostęp do drzwi."
+    },
+    "emailTemplate": {
+      "title": "E-mail z kodem do drzwi",
+      "description": "Utwórz lub edytuj automatyczny e-mail z kodem do drzwi dla tej lokalizacji. Każda lokalizacja ma jeden szablon, wspólny z sekcją Wiadomości → Szablony e-maili.",
+      "create": "Utwórz szablon",
+      "createFor": "Utwórz szablon kodu do drzwi dla {location}",
+      "locationUnavailable": "Dla tej lokalizacji nie ma dostępnego szablonu e-maila z kodem do drzwi."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "LAST_NAME": "Nazwisko",
     "PLEASE_WAIT": "Poczekaj, przetwarzamy Twój zakup…",
     "SELECT_TIME_FIRST": "Najpierw wybierz godzinę rozpoczęcia i zakończenia.",
-    "COURSE_BOOKING": "Rezerwacja zajęć"
+    "COURSE_BOOKING": "Rezerwacja zajęć",
+    "USER_EMAIL_CHANGE_WARNING": "Zmiana adresu e-mail wylogowuje tego klienta ze wszystkich sesji i wymaga potwierdzenia nowego adresu.",
+    "USER_EMAIL_VERIFICATION_SENT": "Adres e-mail zaktualizowano. Dotychczasowe sesje zostały zakończone, a na nowy adres wysłano link weryfikacyjny.",
+    "USER_EMAIL_VERIFICATION_RETRY": "Adres e-mail zaktualizowano, a dotychczasowe sesje zakończono. Nie udało się potwierdzić dostarczenia e-maila weryfikacyjnego. Klient może poprosić o nowy link na stronie weryfikacji e-maila pracowni.",
+    "USER_EMAIL_UPDATE_FAILED": "Nie udało się zaktualizować klienta. Sprawdź adres e-mail i spróbuj ponownie."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "Zakres dostępnych danych nie wystarcza jeszcze do sformułowania wiarygodnej rekomendacji.",
       "message042": "Zacznij od możliwości o najwyższym priorytecie",
       "message043": "Warto przyjrzeć się kilku możliwościom",
-      "message044": "Doradca znalazł {value1} rekomendacji opartych na zweryfikowanych danych studia."
+      "message044": "Doradca znalazł {value1} rekomendacji opartych na zweryfikowanych danych studia.",
+      "message045": "Sprawdź spadek otrzymanych płatności",
+      "message046": "Otrzymane płatności po zwrotach są o {value1}% niższe niż w okresie porównawczym.",
+      "message047": "Otrzymane płatności po zwrotach"
     },
     "briefing": {
       "message011": "Pilne zadania",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Płatność anulowana",
-    "nextSteps": "Co możesz zrobić dalej",
-    "retry": "Spróbuj ponownie — czasem druga próba się udaje.",
-    "card": "Jeśli użyto Apple Pay / Google Pay, spróbuj zapłacić kartą.",
-    "contact": "Jeśli problem się powtarza, napisz do nas, a pomożemy.",
     "home": "Wróć na stronę główną",
-    "chargeNotice": "Opłata nie jest pobierana do czasu zakończenia płatności."
+    "title": "Powrót z płatności",
+    "description": "Powrót ze strony płatności nie anuluje rezerwacji. Jej status sprawdzisz w swoich rezerwacjach.",
+    "creditsHint": "Aby zapłacić kredytami, otwórz nieopłaconą rezerwację i najpierw ją anuluj. Następnie ponownie wybierz termin. Jeśli ta opcja jest niedostępna, skontaktuj się z pracownią.",
+    "backToBookings": "Wróć do rezerwacji"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Przegląd pracowni",
+    "todayNumbers": "Dzienne liczby pracowni",
+    "todayBookings": "Rezerwacje",
+    "selectedDate": "W wybranym dniu",
+    "expectedVisitors": "Oczekiwani goście",
+    "bookedParticipants": "Uczestnicy zaplanowanych rezerwacji",
+    "expectedNow": "Teraz w pracowni (szacunkowo)",
+    "expectedNowBasis": "Osoby z trwającą rezerwacją; obecność nie jest potwierdzona",
+    "nextSession": "Następna rezerwacja",
+    "noUpcomingSession": "Brak nadchodzących rezerwacji",
+    "attentionTitle": "Wymaga Twojej uwagi",
+    "review": "Sprawdź",
+    "generateReport": "Wygeneruj raport AI",
+    "generating": "Przygotowywanie raportu…",
+    "reportPermission": "Raporty AI wymagają dostępu do asystenta pracowni.",
+    "reportError": "Nie udało się wygenerować raportu. Spróbuj ponownie.",
+    "operationsError": "Nie udało się wczytać dziennych danych pracowni.",
+    "managementError": "Nie udało się wczytać miesięcznych danych pracowni.",
+    "retry": "Spróbuj ponownie",
+    "loadingPerformance": "Wczytywanie wyników pracowni…",
+    "performanceEyebrow": "Wyniki pracowni",
+    "monthTitle": "Ten miesiąc do tej pory",
+    "comparison": "W porównaniu z {period}",
+    "comparedWithPrevious": "w porównaniu z poprzednim okresem",
+    "unavailable": "Dane niedostępne",
+    "revenue": "Przychód ze zrealizowanych usług",
+    "revenueBasis": "Usługi zrealizowane i produkty dostarczone w danym okresie",
+    "revenueUnavailable": "Łączny przychód ze zrealizowanych usług nie jest jeszcze dostępny: zapisy realizacji nie obejmują wszystkich usług i produktów. Wpływy pieniężne są wykazywane osobno.",
+    "confirmedRevenue": "Potwierdzone zakończone usługi: {amount}.",
+    "visits": "Uczestnicy minionych rezerwacji",
+    "visitsBasis": "Uczestnicy zakończonych rezerwacji; obecność nie jest weryfikowana",
+    "newClients": "Nowi klienci z rezerwacją",
+    "newClientsBasis": "Pierwsza zarejestrowana rezerwacja w wybranych pracowniach; niekoniecznie nowi dla całej firmy",
+    "last30Days": "Ostatnie 30 dni",
+    "arrivalTitle": "Kiedy przychodzą klienci",
+    "scheduledArrivalTitle": "Kiedy zaplanowano wizyty",
+    "hourlyAttendance": "Uczestnicy według godziny rozpoczęcia",
+    "hourCount": "{hour}:00 — {count} uczestników",
+    "busiestHour": "Najbardziej obłożona zaplanowana godzina: {from}:00–{to}:00",
+    "recordedBusiestHour": "Godzina z największą liczbą przyjść: {from}:00–{to}:00",
+    "recordedSample": "Na podstawie {count} zarejestrowanych przyjść",
+    "scheduledSample": "Na podstawie {count} zaplanowanych uczestników",
+    "scheduledCaveat": "Godziny rozpoczęcia rezerwacji pokazują bieżący harmonogram. Same spokojne godziny nie dowodzą zapotrzebowania na nowe terminy.",
+    "noAttendance": "Za mało aktywności, aby pokazać wzorzec.",
+    "other": "Inne",
+    "topClients": "Top 5 klientów",
+    "rankingBy": "Sortuj klientów według",
+    "clientVisitsBasis": "Uczestnicy zakończonych rezerwacji w tym okresie",
+    "clientRevenueBasis": "Przychód z potwierdzonych zakończonych usług w tym okresie",
+    "unnamedClient": "Klient bez nazwy",
+    "noClients": "Brak klientów zarejestrowanych w tym okresie.",
+    "confirmedOnly": "Tylko potwierdzone zakończone usługi; inne zapisy realizacji są niedostępne.",
+    "topProducts": "Top 3 produkty",
+    "byQuantity": "Według ilości",
+    "deliveredProductsBasis": "Potwierdzone zakończone usługi według ilości",
+    "noProducts": "Brak zakończonych produktów zarejestrowanych w tym okresie.",
+    "unnamedProduct": "Produkt bez nazwy",
+    "units": "szt.",
+    "coverageTitle": "Zakres i ograniczenia danych",
+    "coverageDescription": "Niedostępne dane pozostają niedostępne. Zaplanowana aktywność i potwierdzona realizacja są wykazywane osobno.",
+    "openReports": "Otwórz szczegółowe raporty",
+    "back": "Wróć do pulpitu",
+    "reportTitle": "Raport pracowni",
+    "exporting": "Przygotowywanie PDF…",
+    "exportPdf": "Eksportuj PDF",
+    "exportError": "Nie udało się pobrać pliku PDF. Spróbuj ponownie.",
+    "aiReport": "Raport AI pracowni",
+    "verifiedReport": "Raport danych pracowni",
+    "deterministicNote": "Komentarz AI jest niedostępny. Ten raport zawiera zapisane dane pracowni i rzeczowe podsumowanie.",
+    "reportHighlights": "Najważniejsze informacje",
+    "reportAttention": "Wymaga uwagi",
+    "reportRecommendations": "Sugerowane kolejne kroki",
+    "generatedAt": "Wygenerowano {date}",
+    "issues": {
+      "overdueTasks": "Zaległe zadania: {count}",
+      "lowStock": "Pozycje o niskim stanie: {count}",
+      "failedEmails": "Nieudane e-maile: {count}",
+      "overduePayments": "Zaległe płatności: {count}",
+      "overdueOrders": "Zaległe zamówienia indywidualne: {count}",
+      "other": "Pozycje do sprawdzenia: {count}",
+      "failed_emails": "Nieudane e-maile: {count}",
+      "overdue_custom_orders": "Zaległe zamówienia indywidualne: {count}",
+      "overdue_invoices": "Zaległe płatności: {count}"
+    },
+    "staleData": "Ostatnie odświeżenie nie powiodło się. Wyświetlane są wcześniej wczytane dane.",
+    "refreshingData": "Odświeżanie danych pracowni…",
+    "coverageReportDetails": "Wygeneruj raport pracowni, aby zobaczyć dostępne źródła i ograniczenia każdej metryki.",
+    "dismissAttention": "Ukryj kartę alertów",
+    "showAttention": "Pokaż alerty ({count})",
+    "customerId": "ID klienta {id}",
+    "spentMonth": "Wydatki w wybranym miesiącu",
+    "spentTotal": "Łączne wydatki",
+    "clientSpendingBasis": "Płatności klientów po zarejestrowanych zwrotach we wszystkich pracowniach. Miesiąc: {period}; suma do wybranej daty.",
+    "spendingUnavailable": "Dane o wydatkach są niedostępne w tym widoku.",
+    "previousValue": "Poprzedni okres: {value}",
+    "revenueUnavailableShort": "Niedostępne — zapisy realizacji są niepełne.",
+    "totalCustomers": "Łączna liczba klientów",
+    "workspaceCustomersScope": "Zarejestrowani we wszystkich pracowniach",
+    "newRegisteredThisMonth": "Nowi w tym miesiącu",
+    "activeCustomers": "Aktywni klienci",
+    "activeCustomersBasis": "Rezerwowali w ostatnich 30 dniach",
+    "selectedStudiosScope": "Wybrane pracownie",
+    "workspaceScope": "Wszystkie pracownie",
+    "activeSubscribers": "Aktywni subskrybenci",
+    "newSubscribersThisMonth": "Nowi subskrybenci w tym miesiącu",
+    "subscriberBasis": "Każda osoba liczona raz. Nowy oznacza pierwszą subskrypcję; odnowienia są wyłączone.",
+    "missingMetric": "— Dane niedostępne",
+    "asOfDate": "Stan na {date}",
+    "subscriberSelectedScope": "Członkostwa ważne w wybranych pracowniach",
+    "recordedPayments": "Zarejestrowane płatności",
+    "recordedPaymentsBasis": "Płatności otrzymane w wybranym miesiącu, pomniejszone o zarejestrowane zwroty",
+    "paymentsUnavailable": "Dane o płatnościach są niedostępne.",
+    "spending": "Wydana kwota",
+    "clientPaymentsBasis": "Według zarejestrowanych płatności klientów w wybranym miesiącu, pomniejszonych o zarejestrowane zwroty, we wszystkich pracowniach",
+    "noCustomerPayments": "Brak zweryfikowanych płatności klientów w tym okresie.",
+    "spendingIncomplete": "Niektóre sumy są niedostępne, ponieważ historia płatności jest niepełna.",
+    "paymentRankingIncomplete": "Ranking wykorzystuje zweryfikowane kwoty płatności; niepełne zapisy mogą wpływać na kolejność.",
+    "byPurchases": "Według zakupów",
+    "purchasedProductsBasis": "Opłacone zamówienia zawierające dany produkt · Ostatnie 30 dni: {period}",
+    "noPurchasedProducts": "Brak zweryfikowanych opłaconych zakupów produktów w ostatnich 30 dniach.",
+    "purchases": "zakupów",
+    "purchasesIncomplete": "Niektórych zakupów nie można zweryfikować; ten ranking może być niepełny.",
+    "knownAmount": "Znana kwota",
+    "knownPaymentsOnly": "Tylko znane płatności; niektóre zapisy płatności są niepełne."
+  },
+  "UnifiedSettings": {
+    "title": "Ustawienia",
+    "description": "Twoje preferencje i ustawienia pracowni w jednym miejscu.",
+    "navigation": "Sekcje ustawień",
+    "studioTitle": "Pracownia",
+    "personalTitle": "Moje ustawienia",
+    "studioScope": "Dla całej pracowni",
+    "personalScope": "Tylko dla Ciebie",
+    "studioDescription": "Wspólne ustawienia tej pracowni. Widzisz tylko obszary, do których masz dostęp.",
+    "personalDescription": "Zarządzaj swoim kontem i sposobem pracy w tej pracowni. Te preferencje nie zmieniają ustawień innych członków zespołu.",
+    "personalProfileScope": "Twój profil i hasło dotyczą Twojego konta we wszystkich pracowniach.",
+    "personalPreferencesScope": "Te preferencje dotyczą tylko Ciebie w tej pracowni.",
+    "locationScope": "Tylko lokalizacja {name}",
+    "newLocationScope": "Ustawienia nowej lokalizacji",
+    "backTo": "Wróć do sekcji {section}",
+    "searchLabel": "Szukaj w ustawieniach",
+    "searchStudio": "Szukaj w ustawieniach pracowni…",
+    "searchPersonal": "Szukaj w moich ustawieniach…",
+    "clearSearch": "Wyczyść wyszukiwanie",
+    "searchResults": "{count, plural, one {# ustawienie znalezione} few {# ustawienia znalezione} many {# ustawień znalezionych} other {# ustawienia znalezione}}",
+    "advancedTitle": "Ustawienia zaawansowane",
+    "advancedDescription": "Włączone funkcje, nawigacja i importy danych.",
+    "emptyTitle": "Brak pasujących ustawień",
+    "emptyDescription": "Spróbuj innego wyrażenia lub wyczyść wyszukiwanie, aby zobaczyć wszystkie dostępne ustawienia w tej sekcji.",
+    "setupTitle": "Dokończ konfigurację pracowni",
+    "setupProgress": "Ukończono {completed} z {total} wymaganych kroków.",
+    "setupAction": "Kontynuuj konfigurację",
+    "groups": {
+      "workspace": {
+        "title": "Pracownia i lokalizacje",
+        "description": "Dane pracowni, wspólny język, waluta i lokalizacje."
+      },
+      "access": {
+        "title": "Zespół i dostęp",
+        "description": "Członkowie zespołu, role i dostęp do drzwi."
+      },
+      "website": {
+        "title": "Strona internetowa i marka",
+        "description": "Publiczna strona, strony rezerwacji i identyfikacja wizualna."
+      },
+      "payments": {
+        "title": "Płatności od klientów",
+        "description": "Metody płatności i ustawienia płatności klientów."
+      },
+      "communications": {
+        "title": "Wiadomości i automatyzacja",
+        "description": "Dostarczanie e-maili, nadawcy i wsparcie AI."
+      },
+      "account": {
+        "title": "Subskrypcja Shario",
+        "description": "Plan, faktury i dane rozliczeniowe Twojej pracowni."
+      },
+      "advanced": {
+        "title": "Funkcje i dane",
+        "description": "Konfiguruj moduły i importuj dane do pracowni."
+      },
+      "profile": {
+        "title": "Profil i bezpieczeństwo",
+        "description": "Twoje imię i nazwisko, dane kontaktowe i hasło we wszystkich pracowniach."
+      },
+      "preferences": {
+        "title": "Moje środowisko pracy",
+        "description": "Twój kalendarz, strefa czasowa i domyślna lokalizacja w tej pracowni."
+      },
+      "notifications": {
+        "title": "Moje powiadomienia",
+        "description": "Wybierz, jakie aktualizacje otrzymujesz w tej pracowni."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Dane pracowni",
+        "description": "Nazwa, język, strefa czasowa i waluta."
+      },
+      "locations": {
+        "title": "Lokalizacje",
+        "description": "Adresy, sale i godziny otwarcia."
+      },
+      "team": {
+        "title": "Członkowie zespołu",
+        "description": "Zapraszaj osoby i zarządzaj członkami zespołu."
+      },
+      "roles": {
+        "title": "Role i uprawnienia",
+        "description": "Kto ma dostęp do poszczególnych części pracowni."
+      },
+      "accessCodes": {
+        "title": "Dostęp do drzwi",
+        "description": "Kody do drzwi i dostęp do wejścia."
+      },
+      "publicSite": {
+        "title": "Strona internetowa i strony rezerwacji",
+        "description": "Marka, strony publiczne i doświadczenia klientów."
+      },
+      "payments": {
+        "title": "Metody płatności",
+        "description": "Płatności online i połączenie ze Stripe."
+      },
+      "invoicing": {
+        "title": "Fakturowanie klientów",
+        "description": "Faktury i rozliczenia klientów."
+      },
+      "communications": {
+        "title": "E-mail i nadawcy",
+        "description": "Dostarczanie, domeny wysyłkowe i ustawienia wiadomości."
+      },
+      "ai": {
+        "title": "Asystent AI",
+        "description": "Funkcje AI i ustawienia automatyzacji."
+      },
+      "billing": {
+        "title": "Plan i rozliczenia",
+        "description": "Subskrypcja Shario, faktury i dane rozliczeniowe."
+      },
+      "modules": {
+        "title": "Funkcje i nawigacja",
+        "description": "Włączaj moduły i wybieraj pozycje nawigacji."
+      },
+      "migration": {
+        "title": "Import danych",
+        "description": "Importuj klientów, rezerwacje i inne dane pracowni."
+      },
+      "profile": {
+        "title": "Edytuj profil i hasło",
+        "description": "Twoje imię i nazwisko, dane kontaktowe i hasło we wszystkich pracowniach."
+      },
+      "preferences": {
+        "title": "Kalendarz i wyświetlanie",
+        "description": "Twój kalendarz, strefa czasowa i domyślna lokalizacja w tej pracowni."
+      },
+      "notifications": {
+        "title": "Preferencje powiadomień",
+        "description": "Alerty dotyczące rezerwacji, zadań i zapasów; aktualizacje e-mailem i w aplikacji."
+      }
+    },
+    "language": {
+      "label": "Język aplikacji",
+      "change": "Zmień język",
+      "sharedScope": "Wspólny dla całego zespołu pracowni.",
+      "managedByAdmin": "Tym językiem zarządza administrator Twojej pracowni."
+    },
+    "plan": {
+      "label": "Bieżący plan",
+      "details": "Szczegóły planu",
+      "loading": "Wczytywanie planu…",
+      "unavailable": "Plan niedostępny",
+      "detailsUnavailable": "Szczegóły planu są tymczasowo niedostępne."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "Shario nie pobiera prowizji od transakcji. Opłaty Stripe za przetwarzanie płatności klientów są niezależne od subskrypcji. Ceny nie zawierają obowiązujących podatków.",
+    "feeLink": "Opłaty za płatności, okres próbny i rezygnacja — szczegóły",
+    "links": {
+      "stripePricing": "Sprawdź cennik Stripe dla swojego kraju",
+      "refundContact": "Zapytaj o zwrot za subskrypcję",
+      "studioAi": "Poznaj Shario AI",
+      "refundTerms": "Przeczytaj pełny Regulamin i wyjątki dotyczące zwrotów"
+    },
+    "faq": {
+      "title": "Zanim wybierzesz plan",
+      "description": "Wiedz, za co płacisz, kiedy zmiany wchodzą w życie i co dzieje się po okresie próbnym.",
+      "trial": {
+        "question": "Co się stanie po zakończeniu okresu próbnego?",
+        "answer": "Twój 14-dniowy okres próbny planu Professional zaczyna się po zakończeniu wdrożenia. Karta nie jest wymagana. Bez aktywnej płatnej subskrypcji nowe rezerwacje, zakupy online i funkcje przestrzeni roboczej zostają wstrzymane po zakończeniu okresu próbnego. Historia rezerwacji klientów i odzyskiwanie rozliczeń pozostają dostępne; zakończenie okresu próbnego nie usuwa danych pracowni. Zakup planu jest niedostępny w ostatnich 48 godzinach okresu próbnego, aby zapobiec wcześniejszemu obciążeniu. Subskrypcję możesz wykupić po zakończeniu okresu próbnego."
+      },
+      "cancellation": {
+        "question": "Kiedy rezygnacja wchodzi w życie?",
+        "answer": "Rezygnacja z płatnej subskrypcji zatrzymuje jej kolejne odnowienie. Zachowujesz dostęp do końca bieżącego opłaconego okresu rozliczeniowego i do tego czasu możesz cofnąć rezygnację. Rezygnacja z okresu próbnego bez karty kończy go natychmiast. Po zakończeniu dostępu nowe rezerwacje, zakupy online i funkcje przestrzeni roboczej są ograniczone. Ograniczony dostęp nie oznacza pełnej przestrzeni roboczej tylko do odczytu: ogólne raporty i eksporty mogą być niedostępne. Wyeksportuj potrzebne dane przed zakończeniem dostępu lub skontaktuj się z hello@shario.io w sprawie zwrotu lub usunięcia danych. Dane nie są automatycznie usuwane po wygaśnięciu, ale nie gwarantujemy ich bezterminowego przechowywania."
+      },
+      "refunds": {
+        "question": "Czy rezygnacja automatycznie zwraca niewykorzystany czas?",
+        "answer": "Rezygnacja z rocznej lub miesięcznej subskrypcji zatrzymuje jej kolejne odnowienie; uprawniony płatny dostęp trwa do końca bieżącego okresu. Dobrowolna rezygnacja, niewykorzystany czas i niewykorzystane limity nie podlegają zwrotowi, z wyjątkiem przypadków wynikających z bezwzględnie obowiązujących przepisów, wyraźnej umowy pisemnej lub środków przewidzianych w naszym Regulaminie. Jeśli Shario zakończy płatną usługę wcześniej z własnej woli albo jeśli wypowiesz umowę z powodu istotnego naruszenia z naszej strony, które nie zostało usunięte w ciągu 30 dni od pisemnego powiadomienia, zwrócimy niewykorzystaną przedpłaconą część od dnia skutecznego zakończenia. Zwrócimy również niewykorzystaną przedpłaconą część, jeśli wypowiesz umowę, ponieważ niekorzystna zmiana warunków miałaby wejść w życie w trakcie już opłaconego okresu. Jeśli nie zdołamy rozwiązać uzasadnionego sprzeciwu w zakresie ochrony danych wobec nowego lub zastępczego podmiotu przetwarzającego (podprocesora) za pomocą rozsądnej alternatywy, możesz zakończyć daną usługę i otrzymać zwrot jej niewykorzystanej przedpłaconej części. Sama rezygnacja nie powoduje automatycznego zwrotu. Skontaktuj się z nami, aby poprosić o odpowiednie rozwiązanie."
+      },
+      "planChanges": {
+        "question": "Kiedy wchodzi w życie zmiana na wyższy lub niższy plan?",
+        "answer": "W płatnych subskrypcjach przejście na wyższy plan następuje natychmiast po zrealizowaniu wymaganej płatności, z proporcjonalną fakturą. Przejście na niższy plan następuje na koniec bieżącego okresu rozliczeniowego. W tym samym planie zmiana rozliczenia z miesięcznego na roczne następuje natychmiast po zrealizowaniu wymaganej płatności, a z rocznego na miesięczne — od następnego okresu. Przed potwierdzeniem sprawdź datę wejścia w życie i podgląd rozliczenia."
+      },
+      "payments": {
+        "question": "Czy opłaty za płatności klientów są wliczone?",
+        "answer": "Płatności online klientów są przetwarzane przez połączone konto Stripe. Shario nie pobiera prowizji od transakcji. Opłaty Stripe za przetwarzanie są niezależne od subskrypcji Shario i zależą od kraju, metody płatności oraz Twojej umowy ze Stripe. Subskrypcja pracowni jest rozliczana oddzielnie od płatności dokonywanych przez klientów."
+      }
+    },
+    "definitions": {
+      "title": "Co oznaczają funkcje planów",
+      "automations": {
+        "question": "Co liczy się jako aktywna automatyzacja?",
+        "answer": "Aktywna automatyzacja to własna reguła włączona do działania: na przykład zaplanowanie wskazówek dojazdu do pracowni dzień po rejestracji klienta. Limit liczy włączone reguły, a nie zapisane wersje robocze ani to, jak często reguła się uruchamia. Plan Starter nie obejmuje własnych reguł; Professional pozwala na 3. Space Plus korzysta z tego samego edytora opartego na zdarzeniach i pozwala na więcej niż 3 aktywne reguły, z 5000 rozliczanych e-maili miesięcznie. Każda reguła wlicza się do limitu automatyzacji, a jej rozliczane e-maile do limitu e-maili. Standardowe e-maile systemowe są liczone osobno."
+      },
+      "studioAi": {
+        "question": "Jakie narzędzia Shario AI otrzymuję?",
+        "answer": "Professional zapewnia 2000 kredytów AI miesięcznie i obejmuje asystenta pracowni, codzienne podsumowania oraz bazę wiedzy. Space Plus zapewnia 10 000 kredytów i dodaje Business Advisor, konsjerża dla klientów oraz analizy raportów AI. Dostępne narzędzia zależą od konfiguracji pracowni i uprawnień zespołu; obsługiwane działania wymagają potwierdzenia."
+      },
+      "aiCredits": {
+        "question": "Czy jeden kredyt AI oznacza jedno pytanie?",
+        "answer": "Kredyty AI mierzą przetworzony i wygenerowany tekst, a nie stałą liczbę pytań. Na przykład krótka operacja wykorzystująca 750 tokenów (fragmentów tekstu) zużywa 1 kredyt; operacja na 2500 tokenów przy wystarczającym budżecie zużywa 3. Jedno pytanie może obejmować kilka operacji, a wyszukiwanie w bazie wiedzy lub indeksowanie dokumentów może zwiększyć zużycie. To przykłady, a nie gwarantowane koszty pytania. Kredyty są co miesiąc współdzielone przez włączone narzędzia. Żądanie wymaga wystarczającej liczby pozostałych kredytów; nie ma automatycznych opłat za przekroczenie."
+      },
+      "emails": {
+        "question": "Co się dzieje, gdy wyczerpie się limit e-maili?",
+        "answer": "Miesięczny limit obejmuje rozliczane e-maile automatyzacji. Po jego wyczerpaniu dany e-mail automatyzacji zostaje pominięty; nie jest automatycznie przenoszony na następny miesiąc. Niezbędne e-maile dotyczące konta i obsługiwane wbudowane wiadomości operacyjne nie wliczają się do tego limitu. Oznaczenie własnej automatyzacji jako transakcyjnej nie zwalnia jej z limitu. Sprawdź wykorzystanie przestrzeni roboczej i zmień plan lub skontaktuj się z nami, jeśli potrzebujesz większej pojemności."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Chcesz zmienić sposób płatności?",
+    "explanation": "Nieopłacona rezerwacja może nadal blokować Twoje miejsce. Aby zapłacić kredytami zamiast kartą albo zacząć od nowa, najpierw ją anuluj. Ten przycisk anuluje wszystkie nieopłacone rezerwacje w tej płatności.",
+    "action": "Anuluj nieopłacone rezerwacje",
+    "busy": "Sprawdzanie płatności i anulowanie rezerwacji…",
+    "cancelled": "Nieopłacone rezerwacje w tej płatności zostały anulowane. Wróć do koszyka lub ponownie wybierz termin i wybierz kredyty pracowni. Dostępność i cena zostaną ponownie sprawdzone.",
+    "paid": "Płatność została już zrealizowana. Rezerwacja nie została anulowana. Sprawdź jej status.",
+    "pending": "Płatność jest nadal weryfikowana. Nic nie zostało anulowane. Sprawdź status płatności, zanim zarezerwujesz ten sam termin ponownie.",
+    "unsupported": "Tej płatności nie można tutaj anulować. Otwórz swoje rezerwacje lub skontaktuj się z pracownią.",
+    "missing": "Nie znaleziono tego zamówienia. Otwórz swoje rezerwacje lub skontaktuj się z pracownią.",
+    "error": "Nie udało się potwierdzić anulowania. Spróbuj ponownie. Jeśli problem się powtarza, skontaktuj się z pracownią.",
+    "status": "Sprawdź status płatności",
+    "bookAgain": "Wybierz termin ponownie"
   }
 }

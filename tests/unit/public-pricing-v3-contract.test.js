@@ -69,17 +69,20 @@ describe("public Plan V3 pricing contract", () => {
 
       expect(numericValues(pricing.starter.feature1), locale).toEqual([1, 1]);
       expect(numericValues(pricing.starter.feature3), locale).toEqual([500]);
-      expect(numericValues(pricing.starter.feature4), locale).toEqual([200]);
+      // Starter's AI allowance is not advertised on the pricing cards.
+      expect(numericValues(pricing.starter.feature4), locale).toEqual([]);
 
       expect(numericValues(pricing.professional.feature1), locale).toEqual([
         1, 3,
       ]);
-      expect(numericValues(pricing.professional.feature3), locale).toEqual([
+      expect(numericValues(pricing.professional.feature3), locale).toEqual([]);
+      expect(numericValues(pricing.professional.feature4), locale).toEqual([
         3, 2500,
       ]);
-      expect(numericValues(pricing.professional.feature4), locale).toEqual([
+      expect(numericValues(pricing.professional.feature5), locale).toEqual([
         2000,
       ]);
+      expect(pricing.includesPrevious, locale).toContain("{plan}");
 
       expect(numericValues(pricing.studioPlus.feature1), locale).toEqual([
         2, 6,

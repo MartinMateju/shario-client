@@ -1065,6 +1065,7 @@ describe("public-site editor frontend contract", () => {
       "register",
       "portal",
       "portalCourses",
+      "portalPageHero",
     ]);
     expect(
       getAvailablePublicSitePreviewPages({
@@ -1074,7 +1075,14 @@ describe("public-site editor frontend contract", () => {
         vouchers: true,
         help: false,
       }),
-    ).toEqual(["home", "vouchers", "login", "register", "portal"]);
+    ).toEqual([
+      "home",
+      "vouchers",
+      "login",
+      "register",
+      "portal",
+      "portalPageHero",
+    ]);
   });
 
   it("preserves separate localized course headings and photos across draft round trips", () => {

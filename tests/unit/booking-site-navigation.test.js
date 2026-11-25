@@ -25,14 +25,11 @@ describe("booking-site and customer-portal navigation", () => {
     );
   });
 
-  it("uses the public-site action in the owner account menu", () => {
+  it("keeps the public-site action out of the workspace account menu", () => {
     const menuSource = read("src/components/headers/UserActionsMenuContent.js");
 
-    expect(menuSource).toContain('label: t("tenantLinks.bookingSite")');
-    expect(menuSource).toContain("onClick: onOpenBookingSite");
-    expect(menuSource).not.toMatch(
-      /label: t\("tenantLinks\.bookingSite"\)[\s\S]{0,180}onClick: onSwitchToUserMode/,
-    );
+    expect(menuSource).not.toContain('label: t("tenantLinks.bookingSite")');
+    expect(menuSource).toContain('href: "/app/settings?section=personal"');
   });
 
   it("uses the public-site action for the mobile admin shortcut", () => {

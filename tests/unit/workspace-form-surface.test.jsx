@@ -39,19 +39,19 @@ describe("WorkspaceFormSurface", () => {
       "section-override",
     );
     expect(screen.getByRole("heading", { name: "Piece details" })).toHaveClass(
-      "text-[13px]",
+      "text-[15px]",
       "font-semibold",
       "text-ink",
     );
     expect(
       screen.getByText("Information used to calculate the price."),
-    ).toHaveClass("text-[11px]", "text-ink-muted");
+    ).toHaveClass("text-[13px]", "text-ink-muted");
     expect(input).toHaveClass(
       "min-h-12",
       "w-full",
       "rounded-[14px]",
       "text-base",
-      "sm:text-[13px]",
+      "sm:text-[14px]",
       "focus:border-cobalt-500",
       "aria-invalid:border-danger",
     );
@@ -85,7 +85,7 @@ describe("WorkspaceFormSurface", () => {
       "min-h-12",
       "w-full",
       "rounded-full",
-      "text-[13px]",
+      "text-[14px]",
       "sm:min-h-11",
       "sm:w-auto",
     );
@@ -94,15 +94,15 @@ describe("WorkspaceFormSurface", () => {
       "w-full",
       "rounded-full",
       "bg-cobalt-500",
-      "text-[13px]",
+      "text-[14px]",
       "sm:min-h-11",
       "sm:w-auto",
     );
   });
 
   it("exports matching label, input and textarea states for bespoke forms", () => {
-    expect(workspaceLabelClass).toContain("text-[12px]");
-    expect(workspaceLabelClass).toContain("text-ink-soft");
+    expect(workspaceLabelClass).toContain("text-[13px]");
+    expect(workspaceLabelClass).toContain("text-ink");
     expect(workspaceInputClass).toContain("disabled:cursor-not-allowed");
     expect(workspaceInputClass).toContain("aria-invalid:border-danger");
     expect(workspaceTextareaClass).toContain(workspaceInputClass);

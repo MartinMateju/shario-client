@@ -5,21 +5,22 @@ import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
 import { useSelector } from "react-redux";
 
-import Loader from "@/components/loaders/Loader";
+import TableLoadingState from "@/components/loaders/TableLoadingState";
 import AlertModal from "@/components/modals/AlertModal";
 import ConfirmationModal from "@/components/modals/ConformationModal";
 import { Link, useRouter } from "@/i18n/navigation";
 import { getBookingEditorHref } from "@/components/bookings/bookingEditor.utils";
-import { selectCurrentUser } from "@/lib/features/auth/authSlice";
-import { selectActiveStudioId } from "@/lib/features/studio/studioContextSlice";
 import {
-  useDeleteBookingMutation,
-  useGetBookingsWithFiltersMutation,
-} from "@/lib/features/bookings/bookingsApiSlice";
-import { useGetAllLecturersQuery } from "@/lib/features/lecturers/lecturersApiSlice";
+  getAuthCacheIdentity,
+  selectCurrentUser,
+} from "@/lib/features/auth/authSlice";
+import { selectActiveStudioId } from "@/lib/features/studio/studioContextSlice";
+import { useDeleteBookingMutation } from "@/lib/features/bookings/bookingsApiSlice";
 import { useGetLocationsQuery } from "@/lib/features/locations/locationApiSlice";
-import { useGetProductsQuery } from "@/lib/features/products/productsApiSlice";
-import { useGetUsersQuery } from "@/lib/features/users/usersApiSlice";
+import {
+  useGetBookingDirectoryQuery,
+  useGetBookingFilterOptionsQuery,
+} from "@/lib/features/bookings/bookingDirectoryApiSlice";
 
 import {
   DEFAULT_PAGE_SIZE,
@@ -30,11 +31,15 @@ import {
   buildBookingSummary,
   countActiveFilters,
   exportBookingsToCsv,
+  formatMoney,
+  getBookingViewAfterApplyingFilters,
 } from "./bookings/booking-table.utils";
 import BookingsDataTable from "./bookings/BookingsDataTable";
 import BookingsOverview from "./bookings/BookingsOverview";
 import BookingsPagination from "./bookings/BookingsPagination";
 import BookingsToolbar from "./bookings/BookingsToolbar";
+
+const EMPTY_OPTIONS = [];
 
 const getTenantAccess = (user) => {
   const roles = [
@@ -67,17 +72,6 @@ const getTenantAccess = (user) => {
   return { isTenantUser, canDelete };
 };
 
-function TableLoadingOverlay({ label }) {
-  return (
-    <div className="absolute inset-0 z-30 flex items-center justify-center bg-canvas/65 backdrop-blur-[2px]">
-      <div className="flex items-center gap-3 rounded-full border border-[#E7E4DE] bg-white px-4 py-3 shadow-[0_16px_45px_rgba(17,17,15,0.1)]">
-        <span className="h-4 w-4 animate-spin rounded-full border-2 border-brand-primary/20 border-t-brand-primary" />
-        <span className="text-[11px] font-medium text-[#4F4F4F]">{label}</span>
-      </div>
-    </div>
-  );
-}
-
 const getLocationsFromResponse = (response) => {
   if (Array.isArray(response)) return response;
   if (Array.isArray(response?.locations)) return response.locations;
@@ -96,32 +90,41 @@ const getLocationScopedFilters = (locationId = "") => ({
   locationId,
 });
 
-export default function BookingsTable({
+export default function BookingsTable(props) {
+  const currentUser = useSelector(selectCurrentUser) || {};
+  const cacheScope = useSelector(getAuthCacheIdentity);
+  const activeStudioId = useSelector(selectActiveStudioId);
+  return (
+    <BookingDirectory
+      key={`${cacheScope || "signed-out"}:${activeStudioId || ""}`}
+      {...props}
+      currentUser={currentUser}
+      cacheScope={cacheScope}
+      activeStudioId={activeStudioId}
+    />
+  );
+}
+
+function BookingDirectory({
   showPageHeader = true,
   showCreateButton = true,
+  currentUser,
+  cacheScope,
+  activeStudioId,
 }) {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("Bookings");
-  const currentUser = useSelector(selectCurrentUser) || {};
-  const activeStudioId = useSelector(selectActiveStudioId);
   const userId = currentUser.id || currentUser._id;
   const { isTenantUser, canDelete } = getTenantAccess(currentUser);
-
-  const { data: products = [], isLoading: isLoadingProducts } =
-    useGetProductsQuery();
-  const { data: users = [], isLoading: isLoadingUsers } = useGetUsersQuery(
-    { userId },
-    { skip: !userId },
+  const [showFilters, setShowFilters] = useState(false);
+  const locationsQuery = useGetLocationsQuery(
+    { isActive: true, bookingEnabled: true, limit: 100 },
+    { skip: !cacheScope || !userId },
   );
-  const { data: lecturers = [], isLoading: isLoadingLecturers } =
-    useGetAllLecturersQuery({ userId }, { skip: !userId });
-  const { data: locationsResponse, isLoading: isLoadingLocations } =
-    useGetLocationsQuery(
-      { isActive: true, bookingEnabled: true, limit: 100 },
-      { skip: !userId },
-    );
-
+  const locationsResponse = [401, 403].includes(locationsQuery.error?.status)
+    ? undefined
+    : locationsQuery.currentData;
   const locations = useMemo(
     () => getLocationsFromResponse(locationsResponse),
     [locationsResponse],
@@ -137,252 +140,163 @@ export default function BookingsTable({
   }, [activeStudioId, locations]);
 
   const [deleteBooking, { isLoading: isDeleting }] = useDeleteBookingMutation();
-  const [
-    getBookingsWithFilters,
-    { data: bookingsData, isLoading: isLoadingBookings },
-  ] = useGetBookingsWithFiltersMutation();
-
   const [filters, setFilters] = useState(() =>
     getLocationScopedFilters(activeStudioId || ""),
   );
   const [appliedFilters, setAppliedFilters] = useState(() =>
     getLocationScopedFilters(activeStudioId || ""),
   );
+  const [editedFilterFields, setEditedFilterFields] = useState(() => new Set());
+  // Options are lightweight, historical booking values authorized by bookings.view.
+  // Full customer, catalog and staff endpoints are not needed for this table.
+  const optionsQuery = useGetBookingFilterOptionsQuery(
+    { cacheScope, locationId: filters.locationId },
+    { skip: !cacheScope || !showFilters, refetchOnMountOrArgChange: 60 },
+  );
+  const optionsData = [401, 403].includes(optionsQuery.error?.status)
+    ? undefined
+    : optionsQuery.currentData;
+  const products = optionsData?.products || EMPTY_OPTIONS;
+  const lecturers = optionsData?.lecturers || EMPTY_OPTIONS;
+  const [initializedLocation, setInitializedLocation] = useState(null);
   const [activeView, setActiveView] = useState("all");
-  const [showFilters, setShowFilters] = useState(false);
   const [sortOrder, setSortOrder] = useState("desc");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [selectedIds, setSelectedIds] = useState(() => new Set());
-  const [hasLoadedInitially, setHasLoadedInitially] = useState(false);
-
+  const [requestRevision, setRequestRevision] = useState(0);
   const [bookingIdToDelete, setBookingIdToDelete] = useState(null);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
-
-  const bookings = useMemo(
-    () => bookingsData?.bookings || [],
-    [bookingsData?.bookings],
-  );
-  const totalCount =
-    bookingsData?.totalCount ?? bookingsData?.total ?? bookings.length;
-  const totalPages =
-    bookingsData?.totalPages ?? Math.ceil(totalCount / pageSize) ?? 0;
-
-  const fetchBookings = useCallback(
-    async ({ page, nextFilters, nextView, nextSortOrder, nextPageSize }) => {
-      try {
-        await getBookingsWithFilters(
-          buildBookingRequest({
-            filters: nextFilters,
-            view: nextView,
-            page,
-            limit: nextPageSize,
-            sortOrder: nextSortOrder,
-            // Kept for compatibility with the legacy endpoint. The backend
-            // should still enforce tenant and role authorization itself.
-            isAdmin: isTenantUser,
-          }),
-        ).unwrap();
-
-        setCurrentPage(page);
-      } catch (error) {
-        console.error("Failed to fetch bookings:", error);
-      } finally {
-        setHasLoadedInitially(true);
-      }
-    },
-    [getBookingsWithFilters, isTenantUser],
-  );
-
-  const refreshBookings = useCallback(() => {
-    return fetchBookings({
-      page: currentPage,
-      nextFilters: appliedFilters,
-      nextView: activeView,
-      nextSortOrder: sortOrder,
-      nextPageSize: pageSize,
-    });
-  }, [
-    activeView,
-    appliedFilters,
-    currentPage,
-    fetchBookings,
-    pageSize,
-    sortOrder,
-  ]);
+  const [deleteError, setDeleteError] = useState("");
+  const [cancellationMessage, setCancellationMessage] = useState("");
 
   useEffect(() => {
-    if (!userId || isLoadingLocations) return;
-
+    if (!locationsResponse || initializedLocation === activeLocationId) return;
     const nextFilters = getLocationScopedFilters(activeLocationId);
-    let cancelled = false;
+    setFilters(nextFilters);
+    setAppliedFilters(nextFilters);
+    setCurrentPage(1);
+    setSelectedIds(new Set());
+    setInitializedLocation(activeLocationId);
+  }, [locationsResponse, activeLocationId, initializedLocation]);
 
-    queueMicrotask(() => {
-      if (cancelled) return;
-
-      setFilters(nextFilters);
-      setAppliedFilters(nextFilters);
-      setActiveView("all");
-      setSelectedIds(new Set());
-
-      void fetchBookings({
-        page: 1,
-        nextFilters,
-        nextView: "all",
-        nextSortOrder: "desc",
-        nextPageSize: DEFAULT_PAGE_SIZE,
-      });
+  // Capture the date cutoff once for an applied view, not on each render or
+  // page change. Returning to a page can therefore reuse its exact query.
+  const baseRequest = useMemo(() => {
+    void requestRevision;
+    return buildBookingRequest({
+      filters: appliedFilters,
+      view: activeView,
+      sortOrder,
+      isAdmin: isTenantUser,
     });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [activeLocationId, fetchBookings, isLoadingLocations, userId]);
-
+  }, [appliedFilters, activeView, sortOrder, isTenantUser, requestRevision]);
+  const bookingsQuery = useGetBookingDirectoryQuery(
+    { cacheScope, ...baseRequest, page: currentPage, limit: pageSize },
+    {
+      skip:
+        !cacheScope ||
+        !locationsResponse ||
+        initializedLocation !== activeLocationId,
+      refetchOnMountOrArgChange: 60,
+    },
+  );
+  const currentDirectory = [401, 403].includes(bookingsQuery.error?.status)
+    ? undefined
+    : bookingsQuery.currentData;
+  const lastPage = Math.max(1, currentDirectory?.totalPages || 1);
+  const pageOutOfRange = Boolean(currentDirectory && currentPage > lastPage);
   useEffect(() => {
-    let cancelled = false;
-
-    queueMicrotask(() => {
-      if (!cancelled) setSelectedIds(new Set());
-    });
-
-    return () => {
-      cancelled = true;
-    };
+    if (pageOutOfRange) setCurrentPage(lastPage);
+  }, [pageOutOfRange, lastPage]);
+  const bookingsData =
+    !locationsResponse ||
+    pageOutOfRange ||
+    initializedLocation !== activeLocationId
+      ? undefined
+      : currentDirectory;
+  const bookings = useMemo(() => bookingsData?.bookings || [], [bookingsData]);
+  const totalCount = bookingsData?.totalCount ?? bookingsData?.total ?? 0;
+  const totalPages = bookingsData?.totalPages ?? 0;
+  useEffect(() => {
+    setSelectedIds(new Set());
   }, [bookingsData]);
-
   const summary = useMemo(
-    () =>
-      buildBookingSummary({
-        bookingsData,
-        bookings,
-        products,
-        totalCount,
-      }),
+    () => buildBookingSummary({ bookingsData, bookings, products, totalCount }),
     [bookings, bookingsData, products, totalCount],
   );
 
+  const resetPage = useCallback(() => {
+    setCurrentPage(1);
+    setSelectedIds(new Set());
+    setRequestRevision((revision) => revision + 1);
+  }, []);
   const activeFilterCount = countActiveFilters(filters);
 
   const updateFilter = useCallback((key, value) => {
-    setFilters((previous) => ({ ...previous, [key]: value }));
+    setFilters((previous) => ({
+      ...previous,
+      [key]: value,
+      ...(key === "locationId" && previous.locationId !== value
+        ? { productId: "", lecturerName: "" }
+        : {}),
+    }));
+    setEditedFilterFields((previous) => new Set(previous).add(key));
   }, []);
 
   const handleApplyFilters = useCallback(() => {
-    setAppliedFilters(filters);
-    setSelectedIds(new Set());
-
-    fetchBookings({
-      page: 1,
-      nextFilters: filters,
-      nextView: activeView,
-      nextSortOrder: sortOrder,
-      nextPageSize: pageSize,
-    });
-  }, [activeView, fetchBookings, filters, pageSize, sortOrder]);
-
+    setAppliedFilters({ ...filters });
+    setActiveView(
+      getBookingViewAfterApplyingFilters(
+        activeView,
+        filters,
+        editedFilterFields,
+      ),
+    );
+    setEditedFilterFields(new Set());
+    resetPage();
+  }, [activeView, filters, editedFilterFields, resetPage]);
   const handleFutureOnlyChange = useCallback(
     (futureOnly) => {
-      const nextFilters = { ...appliedFilters, futureOnly };
       setFilters((previous) => ({ ...previous, futureOnly }));
-      setAppliedFilters(nextFilters);
-      setSelectedIds(new Set());
-
-      fetchBookings({
-        page: 1,
-        nextFilters,
-        nextView: activeView,
-        nextSortOrder: sortOrder,
-        nextPageSize: pageSize,
-      });
+      setAppliedFilters((previous) => ({ ...previous, futureOnly }));
+      resetPage();
     },
-    [activeView, appliedFilters, fetchBookings, pageSize, sortOrder],
+    [resetPage],
   );
-
   const handleClearFilters = useCallback(() => {
     const nextFilters = getLocationScopedFilters(activeLocationId);
-
     setFilters(nextFilters);
     setAppliedFilters(nextFilters);
     setActiveView("all");
-    setSelectedIds(new Set());
-
-    fetchBookings({
-      page: 1,
-      nextFilters,
-      nextView: "all",
-      nextSortOrder: sortOrder,
-      nextPageSize: pageSize,
-    });
-  }, [activeLocationId, fetchBookings, pageSize, sortOrder]);
-
+    setEditedFilterFields(new Set());
+    resetPage();
+  }, [activeLocationId, resetPage]);
   const handleViewChange = useCallback(
     (view) => {
       setActiveView(view);
-      setSelectedIds(new Set());
-
-      fetchBookings({
-        page: 1,
-        nextFilters: appliedFilters,
-        nextView: view,
-        nextSortOrder: sortOrder,
-        nextPageSize: pageSize,
-      });
+      resetPage();
     },
-    [appliedFilters, fetchBookings, pageSize, sortOrder],
+    [resetPage],
   );
-
   const handleToggleSort = useCallback(() => {
-    const nextSortOrder = sortOrder === "asc" ? "desc" : "asc";
-    setSortOrder(nextSortOrder);
-
-    fetchBookings({
-      page: 1,
-      nextFilters: appliedFilters,
-      nextView: activeView,
-      nextSortOrder,
-      nextPageSize: pageSize,
-    });
-  }, [activeView, appliedFilters, fetchBookings, pageSize, sortOrder]);
-
+    setSortOrder((previous) => (previous === "asc" ? "desc" : "asc"));
+    resetPage();
+  }, [resetPage]);
   const handlePageChange = useCallback(
     (page) => {
       if (page < 1 || page > Math.max(totalPages, 1)) return;
-
-      fetchBookings({
-        page,
-        nextFilters: appliedFilters,
-        nextView: activeView,
-        nextSortOrder: sortOrder,
-        nextPageSize: pageSize,
-      });
-    },
-    [
-      activeView,
-      appliedFilters,
-      fetchBookings,
-      pageSize,
-      sortOrder,
-      totalPages,
-    ],
-  );
-
-  const handlePageSizeChange = useCallback(
-    (nextPageSize) => {
-      setPageSize(nextPageSize);
       setSelectedIds(new Set());
-
-      fetchBookings({
-        page: 1,
-        nextFilters: appliedFilters,
-        nextView: activeView,
-        nextSortOrder: sortOrder,
-        nextPageSize,
-      });
+      setCurrentPage(page);
     },
-    [activeView, appliedFilters, fetchBookings, sortOrder],
+    [totalPages],
   );
+  const handlePageSizeChange = useCallback((nextPageSize) => {
+    setPageSize(nextPageSize);
+    setSelectedIds(new Set());
+    setCurrentPage(1);
+  }, []);
 
   const handleToggleRow = useCallback((bookingId) => {
     const normalizedId = String(bookingId);
@@ -416,11 +330,10 @@ export default function BookingsTable({
     exportBookingsToCsv({
       bookings: selectedBookings.length > 0 ? selectedBookings : bookings,
       products,
-      users,
       locale,
       t,
     });
-  }, [bookings, locale, products, selectedIds, t, users]);
+  }, [bookings, locale, products, selectedIds, t]);
 
   const handleEdit = useCallback(
     (booking) => {
@@ -430,39 +343,44 @@ export default function BookingsTable({
     [router],
   );
 
-  const handleDeleteRequest = useCallback((bookingId) => {
-    setBookingIdToDelete(bookingId);
-    setShowDeleteAlert(true);
-  }, []);
+  const handleDeleteRequest = useCallback(
+    (bookingId) => {
+      if (isDeleting) return;
+      setDeleteError("");
+      setCancellationMessage("");
+      setBookingIdToDelete(bookingId);
+      setShowDeleteAlert(true);
+    },
+    [isDeleting],
+  );
 
   const handleDeleteBooking = useCallback(async () => {
+    if (!bookingIdToDelete || isDeleting) return;
     setShowDeleteAlert(false);
 
-    if (!bookingIdToDelete) return;
-
     try {
-      await deleteBooking({
-        id: bookingIdToDelete,
-        userId,
-        isAdmin: isTenantUser,
-      }).unwrap();
+      const result = await deleteBooking({ id: bookingIdToDelete }).unwrap();
 
+      setDeleteError("");
+      const outcome = result?.message || t("modals.deletedText");
+      const extensionRefund = Number(result?.extensionRefundAmount || 0);
+      setCancellationMessage(
+        extensionRefund > 0
+          ? `${outcome} ${t("modals.extensionRefund", {
+              amount: formatMoney(extensionRefund, locale, result.currency),
+            })}`
+          : outcome,
+      );
       setShowDeleteConfirmation(true);
-      await refreshBookings();
+      // The mutation invalidates Booking LIST; the active query refreshes
+      // without hiding already loaded rows.
     } catch (error) {
-      console.error("Failed to delete booking:", error);
+      // Never fail silently: staff must know the booking is still active.
+      setDeleteError(error?.data?.message || t("modals.cancelError"));
     } finally {
       setBookingIdToDelete(null);
     }
-  }, [bookingIdToDelete, deleteBooking, isTenantUser, refreshBookings, userId]);
-
-  const isInitialLoading =
-    !hasLoadedInitially ||
-    isLoadingProducts ||
-    isLoadingUsers ||
-    isLoadingLecturers ||
-    isLoadingLocations;
-  if (isInitialLoading) return <Loader />;
+  }, [bookingIdToDelete, deleteBooking, isDeleting, locale, t]);
 
   return (
     <>
@@ -470,7 +388,7 @@ export default function BookingsTable({
         open={showDeleteConfirmation}
         setOpen={setShowDeleteConfirmation}
         title={t("modals.deletedTitle")}
-        text={t("modals.deletedText")}
+        text={cancellationMessage}
       />
 
       <AlertModal
@@ -479,9 +397,18 @@ export default function BookingsTable({
         onSubmitClicked={handleDeleteBooking}
         title={t("modals.deleteTitle")}
         text={t("modals.deleteText")}
+        buttonText={t("actions.delete")}
       />
 
       <div className="space-y-5">
+        {deleteError && (
+          <p
+            role="alert"
+            className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-[12px] font-medium text-red-700"
+          >
+            {deleteError}
+          </p>
+        )}
         {showPageHeader && (
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -503,17 +430,9 @@ export default function BookingsTable({
           </div>
         )}
 
-        <BookingsOverview
-          summary={summary}
-          t={t}
-          isLoading={isLoadingBookings && !hasLoadedInitially}
-        />
+        <BookingsOverview summary={summary} t={t} isLoading={!bookingsData} />
 
         <section className="relative overflow-hidden rounded-[20px] border border-[#E7E4DE] bg-white shadow-[0_12px_36px_rgba(31,31,31,0.045)]">
-          {(isLoadingBookings || isDeleting) && hasLoadedInitially && (
-            <TableLoadingOverlay label={t("loading")} />
-          )}
-
           <BookingsToolbar
             activeView={activeView}
             summary={summary}
@@ -531,58 +450,99 @@ export default function BookingsTable({
             onApplyFilters={handleApplyFilters}
             onClearFilters={handleClearFilters}
             onExport={handleExport}
+            exportDisabled={!bookingsData}
+            optionsLoading={optionsQuery.isFetching}
           />
 
-          {selectedIds.size > 0 && (
-            <div className="flex items-center gap-3 border-b border-skab-cobalt-100 bg-skab-cobalt-50 px-5 py-2.5 text-[10px] text-skab-cobalt-600">
-              <span className="font-semibold">
-                {t("selection.selected", { count: selectedIds.size })}
-              </span>
-              <span className="text-skab-cobalt-300">·</span>
+          {showFilters && optionsQuery.isError ? (
+            <p role="alert" className="px-5 py-2 text-sm text-danger">
+              {t("errors.filters")}{" "}
               <button
                 type="button"
-                onClick={handleExport}
-                className="font-medium transition hover:text-[#11110F]"
+                className="underline"
+                onClick={optionsQuery.refetch}
               >
-                {t("selection.exportSelected")}
+                {t("retry")}
               </button>
+            </p>
+          ) : null}
+          {bookingsQuery.isError || locationsQuery.isError ? (
+            <p role="alert" className="px-5 py-2 text-sm text-danger">
+              {t("errors.load")}{" "}
               <button
                 type="button"
-                onClick={() => setSelectedIds(new Set())}
-                className="ml-auto flex h-7 w-7 items-center justify-center rounded-full transition hover:bg-white"
-                aria-label={t("selection.clear")}
+                className="underline"
+                onClick={() =>
+                  locationsQuery.isError
+                    ? locationsQuery.refetch()
+                    : bookingsQuery.refetch()
+                }
               >
-                <XMarkIcon className="h-4 w-4" aria-hidden="true" />
+                {t("retry")}
               </button>
-            </div>
+            </p>
+          ) : null}
+          {bookingsData && (bookingsQuery.isFetching || isDeleting) ? (
+            <TableLoadingState refreshing label={t("refreshing")} />
+          ) : null}
+          {!bookingsData &&
+          !bookingsQuery.isError &&
+          !locationsQuery.isError ? (
+            <TableLoadingState label={t("loading")} />
+          ) : null}
+          {bookingsData && (
+            <>
+              {selectedIds.size > 0 && (
+                <div className="flex items-center gap-3 border-b border-skab-cobalt-100 bg-skab-cobalt-50 px-5 py-2.5 text-[10px] text-skab-cobalt-600">
+                  <span className="font-semibold">
+                    {t("selection.selected", { count: selectedIds.size })}
+                  </span>
+                  <span className="text-skab-cobalt-300">·</span>
+                  <button
+                    type="button"
+                    onClick={handleExport}
+                    className="font-medium transition hover:text-[#11110F]"
+                  >
+                    {t("selection.exportSelected")}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedIds(new Set())}
+                    className="ml-auto flex h-7 w-7 items-center justify-center rounded-full transition hover:bg-white"
+                    aria-label={t("selection.clear")}
+                  >
+                    <XMarkIcon className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                </div>
+              )}
+
+              <BookingsDataTable
+                bookings={bookings}
+                products={products}
+                selectedIds={selectedIds}
+                sortOrder={sortOrder}
+                locale={locale}
+                canDelete={canDelete}
+                t={t}
+                onToggleSort={handleToggleSort}
+                onToggleRow={handleToggleRow}
+                onToggleAll={handleToggleAll}
+                onEdit={handleEdit}
+                onDelete={handleDeleteRequest}
+              />
+
+              <BookingsPagination
+                currentPage={currentPage}
+                totalPages={Math.max(totalPages, 1)}
+                totalCount={totalCount}
+                pageSize={pageSize}
+                currentCount={bookings.length}
+                t={t}
+                onPageChange={handlePageChange}
+                onPageSizeChange={handlePageSizeChange}
+              />
+            </>
           )}
-
-          <BookingsDataTable
-            bookings={bookings}
-            products={products}
-            users={users}
-            selectedIds={selectedIds}
-            sortOrder={sortOrder}
-            locale={locale}
-            canDelete={canDelete}
-            t={t}
-            onToggleSort={handleToggleSort}
-            onToggleRow={handleToggleRow}
-            onToggleAll={handleToggleAll}
-            onEdit={handleEdit}
-            onDelete={handleDeleteRequest}
-          />
-
-          <BookingsPagination
-            currentPage={currentPage}
-            totalPages={Math.max(totalPages, 1)}
-            totalCount={totalCount}
-            pageSize={pageSize}
-            currentCount={bookings.length}
-            t={t}
-            onPageChange={handlePageChange}
-            onPageSizeChange={handlePageSizeChange}
-          />
         </section>
       </div>
     </>

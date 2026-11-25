@@ -112,6 +112,12 @@ export default function DoorAccessEmailAutomation({ canManage }) {
                     >
                       {t("setup")}
                     </Link>
+                    <Link
+                      className="ml-4 mt-2 inline-block text-sm text-primary underline"
+                      href={`/app/communications?section=templates&doorLocation=${encodeURIComponent(location.id)}`}
+                    >
+                      {t("template")}
+                    </Link>
                   </div>
                   <label className="flex min-h-11 items-center gap-3 text-sm font-medium">
                     <input

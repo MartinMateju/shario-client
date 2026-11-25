@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Confirmada",
-      "pending": "Pendente",
+      "pending": "A aguardar confirmação",
       "awaitingPayment": "A aguardar pagamento",
-      "processed": "A aguardar entrega",
-      "delivered": "Entregue",
+      "processed": "Confirmada",
+      "delivered": "Iniciada",
       "completed": "Concluída",
       "cancelled": "Cancelada"
     },
     "payment": {
       "paid": "Pago",
-      "pending": "Pendente",
+      "pending": "A aguardar pagamento",
       "failed": "Falhou",
       "expired": "Expirado",
       "refunded": "Reembolsado",
       "credits": "Créditos"
+    },
+    "refreshing": "A atualizar reservas…",
+    "retry": "Tentar novamente",
+    "errors": {
+      "load": "Não foi possível carregar as reservas. Tente novamente.",
+      "filters": "Não foi possível carregar algumas opções de filtro."
     },
     "edit": {
       "details": "Detalhes da reserva",
@@ -121,7 +127,9 @@
       "deletedTitle": "Reserva eliminada",
       "deletedText": "A reserva foi eliminada com sucesso.",
       "errorTitle": "Não foi possível criar a reserva",
-      "errorText": "Reveja os dados da reserva e tente novamente."
+      "errorText": "Reveja os dados da reserva e tente novamente.",
+      "cancelError": "Não foi possível cancelar a reserva. Tente novamente.",
+      "extensionRefund": "Foi devolvido um valor adicional de {amount} pelo tempo de reserva acrescentado aos créditos do estúdio do cliente."
     },
     "exportColumns": {
       "customer": "Cliente",
@@ -193,6 +201,7 @@
       "spotsAvailable": "{remaining} de {capacity} lugares disponíveis"
     },
     "week": {
+      "schedule": "Horário semanal",
       "privacyNote": "O roxo assinala as reservas privadas e o turquesa as públicas. As suas reservas têm uma etiqueta azul."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Reservas, subscrições e um site bonito à sua medida. Tudo o que precisa para partilhar o seu espaço e fazer crescer a sua comunidade, reunido no Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Não foi possível guardar a sua preferência do aviso. Tente novamente.",
     "skipToContent": "Saltar para o conteúdo",
     "learnMore": "Saber mais",
     "viewAll": "Ver tudo",
@@ -434,7 +444,8 @@
       "notifications": "Notificações",
       "events": "Eventos",
       "lostFound": "Perdidos e achados",
-      "customOrders": "Encomendas personalizadas"
+      "customOrders": "Encomendas personalizadas",
+      "communicationSettings": "Definições de mensagens"
     },
     "stats": {
       "bookings": "Reservas de hoje",
@@ -1439,7 +1450,8 @@
     },
     "product": {
       "metaTitle": "Tudo para o seu espaço, a funcionar em conjunto.",
-      "metaDescription": "Ligue reservas, membros, pagamentos, equipa e site público. Concentre-se nas pessoas enquanto o Shario ajuda a organizar o dia."
+      "metaDescription": "Ligue reservas, membros, pagamentos, equipa e site público. Concentre-se nas pessoas enquanto o Shario ajuda a organizar o dia.",
+      "viewScreenshot": "Ver captura de ecrã completa"
     },
     "studioAi": {
       "metaTitle": "Uma ajuda no trabalho de todos os dias.",
@@ -1481,13 +1493,14 @@
       "from": "desde",
       "customAnnual": "Plano anual personalizado",
       "mostPopular": "Mais popular",
+      "includesPrevious": "Tudo do {plan}, e ainda:",
       "starter": {
         "name": "Starter",
         "description": "Comece com reservas, pagamentos, aulas e eventos para o seu espaço.",
         "feature1": "1 espaço de estúdio · 1 conta de equipa",
         "feature2": "Cursos, eventos privados e vales",
         "feature3": "500 e-mails incluídos por mês",
-        "feature4": "Shario AI limitada · 200 créditos por mês",
+        "feature4": "Site do estúdio e portal do cliente",
         "cta": "Começar avaliação gratuita"
       },
       "professional": {
@@ -1495,8 +1508,9 @@
         "description": "Ligue subscrições, espaços partilhados e a gestão do dia a dia.",
         "feature1": "1 espaço de estúdio · 3 contas de equipa",
         "feature2": "Subscrições, reservas e recursos partilhados",
-        "feature3": "3 automações ativas · 2 500 e-mails por mês",
-        "feature4": "Shario AI completa · 2 000 créditos por mês",
+        "feature3": "Inventário e tarefas da equipa",
+        "feature4": "3 automações ativas · 2 500 e-mails por mês",
+        "feature5": "Shario AI · 2 000 créditos por mês",
         "cta": "Começar avaliação gratuita"
       },
       "studioPlus": {
@@ -1505,16 +1519,16 @@
         "feature1": "Até 2 espaços de estúdio · 6 contas de equipa",
         "feature2": "Códigos de acesso e domínio personalizado",
         "feature3": "Automações avançadas · 5 000 e-mails por mês",
-        "feature4": "Conjunto completo de IA · 10 000 créditos por mês",
+        "feature4": "Shario AI avançada · 10 000 créditos por mês",
         "cta": "Começar avaliação gratuita"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Gira a sua organização com capacidade, governação e apoio personalizados.",
-        "feature1": "Espaços e contas de equipa ilimitados",
+        "feature1": "Capacidade de localizações e equipa por acordo",
         "feature2": "Limites personalizados de automação, e-mail e IA",
-        "feature3": "SSO/SCIM, API, webhooks e registos de auditoria",
-        "feature4": "Onboarding, migração e SLA dedicados",
+        "feature3": "Converse connosco sobre integrações e requisitos de gestão",
+        "feature4": "Configuração inicial, migração e apoio por acordo",
         "cta": "Iniciar teste gratuito"
       },
       "note": "Os preços não incluem os impostos aplicáveis. Os planos anuais self-service incluem dois meses grátis. Os e-mails essenciais do sistema não contam para o limite, e a utilização de IA para ao atingir a franquia incluída, sem cobranças automáticas.",
@@ -2260,7 +2274,10 @@
     },
     "unavailable": {
       "title": "Esta opção não está disponível",
-      "description": "O estúdio não disponibiliza esta opção ao público neste momento."
+      "description": "O estúdio não disponibiliza esta opção ao público neste momento.",
+      "retry": "Tentar novamente",
+      "retrying": "A carregar…",
+      "loginDegraded": "Não foi possível carregar os dados do estúdio neste momento."
     },
     "book": {
       "metadataTitle": "Reservar Estúdio aberto",
@@ -2318,6 +2335,7 @@
         "email": "Endereço de email",
         "quantity": "Quantidade",
         "missing": "Escolha um vale e introduza um endereço de email válido.",
+        "reselect": "Os vales disponíveis mudaram. Selecione novamente um vale para continuar.",
         "error": "Não foi possível iniciar o pagamento. Tente novamente.",
         "starting": "A preparar o pagamento…",
         "continue": "Continuar para pagamento",
@@ -2353,6 +2371,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Não foi possível atualizar as ofertas. São apresentadas as últimas ofertas carregadas.",
       "loading": "A carregar as ofertas atuais…",
       "error": "Não foi possível carregar as ofertas atuais.",
       "retry": "Tentar novamente",
@@ -2786,10 +2805,20 @@
         "headline": "Título da página de cursos",
         "intro": "Introdução da página de cursos",
         "image": "Fotografia da página de cursos",
-        "inherit": "Os campos vazios usam o texto partilhado da página de cursos e a fotografia de capa da marca.",
+        "inherit": "Os campos vazios usam os textos partilhados e a imagem dos cursos, ou a fotografia de capa da marca se não estiver definida uma imagem dos cursos.",
         "noLocations": "Adicione uma localização de atelier para personalizar a respetiva página de cursos.",
         "guestCheckoutEnabled": "Permitir a compra de cursos sem conta",
         "guestCheckoutDescription": "Aplica-se a todos os estúdios. Os visitantes podem comprar um curso sem criar conta; os clientes podem continuar a iniciar sessão para reservar. Requer páginas de cursos visíveis e pagamentos online operacionais. Publique as alterações para aplicar esta opção."
+      },
+      "pageImages": {
+        "title": "Imagens dos cabeçalhos",
+        "description": "Escolha uma imagem diferente para cada página pública ou de clientes. Os calendários de reservas mantêm o cabeçalho de texto compacto.",
+        "page": "Página a personalizar",
+        "image": "Imagem do cabeçalho",
+        "hint": "Use uma fotografia horizontal. Ao removê-la, o cabeçalho mostra apenas texto. A imagem de cursos de um estúdio específico tem prioridade.",
+        "preview": "Pré-visualizar cabeçalho",
+        "previewDescription": "Pré-visualize a imagem com as cores e a tipografia escolhidas.",
+        "products": "Produtos"
       },
       "calendarColors": "Calendário",
       "hidden": "Oculto",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Cursos do portal do cliente",
+        "portalPageHero": "Cabeçalhos das páginas",
         "book": "Estúdio aberto",
         "courses": "Aulas",
         "memberships": "Subscrições",
@@ -3275,6 +3305,31 @@
       "labelColor": "Cor das etiquetas de registo · opcional",
       "imageTitle": "Imagem de registo",
       "imageDescription": "Use uma imagem dedicada à criação de conta; o logótipo partilhado do espaço mantém-se no formulário."
+    },
+    "customLinks": {
+      "title": "Ligações personalizadas",
+      "addGroup": "Adicionar grupo pendente",
+      "group": "Grupo pendente",
+      "children": "Ligações neste grupo",
+      "button": "Mostrar como botão principal",
+      "separator": "Mostrar um separador antes desta ligação",
+      "layout": "Esquema do cabeçalho",
+      "defaultLayout": "Cabeçalho de reserva padrão",
+      "websiteLayout": "Navegação do website",
+      "background": "Fundo do cabeçalho",
+      "linkColor": "Cor das ligações do cabeçalho",
+      "buttonColor": "Cor do botão do cabeçalho",
+      "header": "Adicione ligações após a navegação padrão. Oculte os itens padrão acima se pretender um menu totalmente personalizado.",
+      "footer": "Adicione mais ligações à secção Explorar no rodapé. As ligações já apresentadas no cabeçalho são incluídas automaticamente.",
+      "label": "Texto da ligação",
+      "href": "URL de destino",
+      "add": "Adicionar ligação",
+      "remove": "Remover ligação",
+      "up": "Mover ligação para cima",
+      "down": "Mover ligação para baixo",
+      "count": "ligações",
+      "hint": "Use https://… ou um caminho que comece por /. Preencha o texto e o URL em conjunto; deixe ambos vazios para usar outro idioma.",
+      "invalid": "Introduza um texto de ligação e um URL HTTPS ou caminho válido em pelo menos um idioma. Cada idioma precisa dos dois campos ou de nenhum."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "awaitingPayment": "A aguardar pagamento",
       "processing": "Em processamento",
       "failed": "Falhou",
-      "completed": "Concluído"
+      "completed": "Concluído",
+      "cancelled": "Canceladas"
     },
     "productTypes": {
       "course": "Aula",
@@ -3811,7 +3867,8 @@
       "creatingInvoice": "A criar…",
       "confirmCreateInvoice": "Criar um rascunho de fatura a partir desta encomenda?",
       "note": "Nota da encomenda",
-      "internalId": "Identificador interno da encomenda"
+      "internalId": "Identificador interno da encomenda",
+      "paymentDateUnknown": "Data de pagamento não registada"
     },
     "fallbackStudioName": "o seu espaço",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Não foi possível criar a fatura a partir desta encomenda."
     },
     "csv": {
-      "createdAt": "Criado em"
+      "createdAt": "Criado em",
+      "currency": "Moeda",
+      "amountStatus": "Disponibilidade do montante"
+    },
+    "money": {
+      "unavailable": "Indisponível",
+      "unavailableDetail": "Não é possível verificar o montante final da encomenda ou o histórico de reembolsos.",
+      "verified": "Disponível",
+      "refunded": "Reembolsado",
+      "net": "Valor após reembolsos",
+      "incomplete": "Algumas encomendas pagas têm montantes ou registos de reembolso incompletos. O total não está disponível.",
+      "mixedCurrencies": "Este período contém várias moedas. Não podem ser somadas num único total.",
+      "truncated": "Este período excede o limite do resumo. Escolha um período mais curto para calcular o total.",
+      "scope": "Os valores das encomendas incluem impostos e a utilização de créditos ou vales. As compras separadas de vales e as faturas de subscrições estão excluídas. Não se trata de recebimentos nem de receita de serviços prestados. Os cartões de resumo abrangem todo o período e o estúdio selecionados.",
+      "multiStudio": "As encomendas associadas a vários estúdios são contadas pelo valor total."
     }
   },
   "VoucherShopping": {
@@ -4011,9 +4082,51 @@
         "complained": "Denúncia de correio indesejado",
         "rejected": "Rejeitado",
         "ambiguous": "Estado incerto",
-        "suppressed": "Bloqueado"
+        "suppressed": "Não enviado"
       },
-      "description": "Reveja os envios de email agendados, em fila, entregues, bloqueados, cancelados e falhados.",
+      "resend": {
+        "actionMenu": "Ações do e-mail",
+        "action": "Enviar novamente",
+        "title": "Enviar este e-mail novamente?",
+        "description": "Será feita uma nova tentativa de enviar esta mensagem ao mesmo destinatário.",
+        "recipient": "Destinatário",
+        "subject": "Assunto",
+        "cancel": "Cancelar",
+        "confirm": "Enviar novamente",
+        "submitting": "A preparar o envio…",
+        "queued": "O e-mail está preparado para ser enviado novamente.",
+        "scheduled": "Foi agendada uma nova tentativa. O e-mail será enviado quando o envio estiver disponível.",
+        "error": "Não foi possível preparar o e-mail para envio. Tente novamente.",
+        "stale": "O estado deste e-mail mudou. O estado atual já está visível.",
+        "blocked": "Não é possível enviar este e-mail novamente neste momento.",
+        "reasonLabel": "Porque não foi enviado"
+      },
+      "reasons": {
+        "status_not_retryable": "Não é possível enviar este e-mail novamente no estado atual.",
+        "delivery_in_progress": "Este e-mail já está a ser enviado.",
+        "delivery_outcome_unknown": "Não podemos confirmar se este e-mail foi enviado. Verifique o estado da entrega antes de tentar novamente.",
+        "already_sent": "Este e-mail já foi enviado.",
+        "recipient_suppressed": "O envio para este destinatário estava bloqueado.",
+        "consent_revoked": "O destinatário tinha retirado o consentimento para receber este e-mail.",
+        "consent_expired": "O consentimento do destinatário tinha expirado.",
+        "marketing_opt_in_required": "O destinatário não tinha aceite receber e-mails de marketing.",
+        "consent_required": "Faltava o consentimento necessário do destinatário.",
+        "content_unavailable": "A mensagem original já não estava disponível.",
+        "invalid_delivery_contract": "As informações necessárias para enviar este e-mail estavam incompletas.",
+        "source_changed": "As informações em que este e-mail se baseava tinham mudado.",
+        "source_missing": "O registo associado a este e-mail já não existia.",
+        "recipient_ineligible": "Esta mensagem já não se aplicava a este destinatário.",
+        "automation_inactive": "Esta automatização de e-mails estava desativada.",
+        "sender_not_ready": "O envio de e-mails não estava configurado ou estava temporariamente indisponível.",
+        "workspace_disabled": "O envio de e-mails estava desativado para este espaço de trabalho.",
+        "monthly_allowance_exhausted": "O espaço de trabalho tinha esgotado o limite mensal de e-mails.",
+        "unsupported_email_type": "Este tipo de e-mail não pode ser enviado novamente a partir daqui.",
+        "delivery_failed": "Não foi possível entregar o e-mail.",
+        "not_sent": "O e-mail não foi enviado.",
+        "hard_bounce": "A entrega neste endereço falhou de forma permanente.",
+        "spam_complaint": "O destinatário denunciou um e-mail como spam."
+      },
+      "description": "Consulte os e-mails agendados, entregues, cancelados e não enviados.",
       "searchLabel": "Pesquisar no histórico de entregas",
       "searchPlaceholder": "Pesquisar por email do destinatário ou ID do cliente…",
       "statusLabel": "Filtrar por estado de entrega",
@@ -4398,7 +4511,8 @@
         "module": "Ative o módulo Acesso a portas nas definições do espaço de trabalho.",
         "sender": "Conclua a configuração do remetente de email gerido antes de ativar o envio.",
         "inventory": "Adicione um código reutilizável verificado a um grupo ativo neste local."
-      }
+      },
+      "template": "Personalizar modelo de email"
     },
     "errors": {
       "setupRequired": "Verifique a configuração de email antes de ativar uma automatização.",
@@ -4411,6 +4525,102 @@
       "message": "Eliminar {name}? Esta ação não pode ser anulada.",
       "cancel": "Manter automatização",
       "deleting": "A eliminar…"
+    },
+    "doorTemplates": {
+      "title": "Emails com código de acesso",
+      "description": "Personalize o email automático com o código da porta para cada local do estúdio. Estes modelos são usados no envio existente de códigos de acesso.",
+      "locationHint": "Usado apenas para reservas neste local",
+      "default": "Mensagem predefinida",
+      "customized": "Mensagem personalizada",
+      "loading": "A carregar modelos de código da porta…",
+      "loadError": "Não foi possível carregar os modelos de código da porta.",
+      "retry": "Tentar novamente",
+      "empty": "Adicione um local ativo do estúdio para personalizar o email com o código da porta.",
+      "edit": "Editar modelo",
+      "preview": "Pré-visualizar modelo",
+      "editFor": "Editar o modelo de código da porta para {location}",
+      "previewFor": "Pré-visualizar o modelo de código da porta para {location}",
+      "eyebrow": "Email com código de acesso",
+      "editorDescription": "Edite o assunto e a mensagem para este local. As alterações guardadas aplicam-se aos próximos emails automáticos; as definições de envio e a antecedência habitual de 15 minutos mantêm-se.",
+      "placeholderHint": "O Shario preenche os detalhes da reserva e o código correto no envio. Mantenha este marcador na mensagem:",
+      "previewHint": "A pré-visualização usa um código e uma reserva de exemplo. O design de email guardado do seu estúdio é aplicado quando a mensagem é enviada.",
+      "variablesTitle": "Acesso e detalhes da reserva",
+      "variables": {
+        "entryCode": "Código da porta (apenas no corpo da mensagem)",
+        "studioName": "Nome do local do estúdio",
+        "studioAddress": "Morada do local do estúdio",
+        "bookingTime": "Data e intervalo horário locais da reserva",
+        "bookingUrl": "Ligação para gerir a reserva"
+      },
+      "languages": {
+        "cs": "Checo",
+        "en": "Inglês"
+      },
+      "errors": {
+        "incomplete": "Adicione um assunto (até 200 caracteres) e uma mensagem para este idioma.",
+        "missingCode": "Inclua o marcador do código da porta no texto visível da mensagem.",
+        "codePlacement": "Mantenha o código no texto da mensagem, fora do assunto, das ligações e dos atributos HTML.",
+        "unknownVariable": "Use apenas os marcadores indicados, com duas chavetas de abertura e duas de fecho."
+      },
+      "close": "Fechar modelo",
+      "cancel": "Cancelar",
+      "save": "Guardar modelo",
+      "saving": "A guardar…",
+      "resetting": "A restaurar…",
+      "saveError": "Não foi possível guardar o modelo de código da porta.",
+      "resetError": "Não foi possível restaurar a mensagem predefinida.",
+      "saveSuccess": "Modelo de código da porta guardado para {location}.",
+      "resetSuccess": "Mensagem predefinida do código da porta restaurada para {location}.",
+      "reset": "Restaurar mensagem predefinida",
+      "resetConfirm": "Restaurar a mensagem predefinida para este local? A personalização guardada e as alterações não guardadas serão substituídas.",
+      "confirmReset": "Restaurar predefinição",
+      "keepEditing": "Continuar a editar",
+      "discardConfirm": "Tem alterações não guardadas. Fechar sem guardar?",
+      "discard": "Descartar alterações",
+      "variablesHint": "Clique num marcador para o inserir onde está a escrever. O código de acesso pertence apenas ao corpo da mensagem, fora das ligações.",
+      "help": "Ajuda do modelo",
+      "codeReminder": "Mantenha {code} na mensagem."
+    },
+    "visualEditor": {
+      "mode": "Modo de edição",
+      "visual": "Editor visual",
+      "htmlSource": "Código HTML",
+      "loading": "A carregar o editor visual…",
+      "unsupported": "Este modelo inclui formatação HTML avançada. O design original é mantido no modo HTML.",
+      "toolbar": "Controlos de texto e design",
+      "body": "Texto principal",
+      "heading1": "Título 1",
+      "heading2": "Título 2",
+      "heading3": "Título 3",
+      "bold": "Negrito",
+      "italic": "Itálico",
+      "underline": "Sublinhado",
+      "fontSize": "Tamanho do texto",
+      "defaultSize": "Tamanho predefinido",
+      "textColor": "Cor do texto",
+      "textBackground": "Fundo do texto",
+      "alignLeft": "Alinhar à esquerda",
+      "alignCenter": "Centrar",
+      "alignRight": "Alinhar à direita",
+      "bulletList": "Lista com marcas",
+      "orderedList": "Lista numerada",
+      "link": "Adicionar ou editar ligação",
+      "linkUrl": "Endereço da ligação",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Aplicar ligação",
+      "removeLink": "Remover ligação",
+      "cancelLink": "Cancelar",
+      "invalidLink": "Use um endereço http, https ou mailto, ou o marcador da ligação da reserva. Os códigos da porta não podem ser usados em ligações.",
+      "undo": "Anular",
+      "redo": "Refazer",
+      "blockStyle": "Design do bloco",
+      "blockBackground": "Fundo do bloco",
+      "blockPadding": "Espaçamento do bloco",
+      "paddingNone": "Nenhum",
+      "paddingSmall": "Pequeno",
+      "paddingMedium": "Médio",
+      "paddingLarge": "Grande",
+      "clearBlockStyle": "Limpar fundo e espaçamento do bloco"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "O que permite concluir este objetivo"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Encontre o plano certo",
+    "title": "Veja as diferenças entre os planos.",
+    "description": "Compare os planos atuais para novas subscrições. As subscrições existentes podem manter uma versão anterior do plano.",
+    "caption": "Comparação de funcionalidades dos planos atuais",
+    "feature": "Funcionalidade ou limite",
+    "scrollLabel": "Comparação de planos — deslize na horizontal para ver todos os planos",
+    "shared": "Todos os planos incluem aulas, listas de espera, vales-presente, um site de reservas com a sua marca, um portal de clientes e importações CSV.",
+    "trialNote": "O período experimental de 14 dias inclui as funcionalidades Professional. Os códigos de acesso, os domínios próprios e as ferramentas avançadas de IA indicadas exigem Space Plus ou um plano Enterprise acordado.",
+    "usageNote": "Os e-mails essenciais do sistema não contam para o limite de e-mails. As ferramentas de IA ativas partilham os créditos; ao atingir o limite, a utilização é suspensa sem cobranças adicionais automáticas. As ferramentas disponíveis também dependem das definições do estúdio e das permissões da equipa.",
+    "accessNote": "Os códigos de acesso funcionam com o seu próprio sistema de acesso e os códigos carregados no Shario. O equipamento e as integrações de fechaduras inteligentes não estão incluídos.",
+    "enterpriseTitle": "Precisa de uma solução à medida?",
+    "enterpriseDescription": "Fale connosco sobre capacidade Enterprise, integrações, migração e apoio. Confirmaremos o âmbito e as condições para o seu estúdio antes de escolher.",
+    "enterpriseCta": "Falar sobre Enterprise",
+    "rows": {
+      "locations": "Localizações do estúdio",
+      "teamAccounts": "Contas da equipa",
+      "openStudioMemberships": "Ateliê livre, adesões e pacotes de créditos",
+      "inventoryTasks": "Inventário e tarefas da equipa",
+      "automations": "Automações personalizadas ativas",
+      "emails": "E-mails incluídos por mês",
+      "studioAssistant": "Assistente do estúdio",
+      "aiCredits": "Créditos de IA por mês",
+      "briefingKnowledge": "Resumos diários e base de conhecimento",
+      "advancedAi": "Business Advisor, assistente de clientes e análises de relatórios com IA",
+      "accessCodes": "Gestão e envio de códigos de acesso",
+      "customDomain": "Domínio próprio"
+    },
+    "values": {
+      "included": "Incluído",
+      "notIncluded": "Não incluído",
+      "basic": "Básico",
+      "full": "Completo",
+      "limited": "Limitado",
+      "advanced": "Avançado"
+    }
+  },
+  "RefundReviews": {
+    "title": "Revisões de reembolsos",
+    "description": "Reveja os reembolsos registados a partir do Stripe e documente a decisão sobre os benefícios associados do cliente.",
+    "benefitsNotice": "Registar ou confirmar um reembolso não cancela uma reserva ou subscrição, não retira créditos nem efetua outro pagamento. Reveja separadamente os benefícios afetados antes de registar a sua decisão.",
+    "allLocationsRequired": "As revisões de reembolsos exigem acesso aos pagamentos de todas as localizações do estúdio.",
+    "refresh": "Atualizar",
+    "loading": "A carregar revisões de reembolsos…",
+    "empty": "Não existem revisões por resolver nesta página.",
+    "loadError": "Não foi possível carregar as revisões. Atualize para tentar novamente.",
+    "needsReview": "É necessário rever os benefícios",
+    "needsRepair": "A reconciliação do pagamento requer atenção",
+    "reference": "Referência da revisão",
+    "order": "Encomenda",
+    "membership": "Subscrição",
+    "paid": "Pagamento original",
+    "refunded": "Reembolsado",
+    "pending": "Reembolso pendente",
+    "failed": "Falha no reembolso",
+    "repairNotice": "Este pagamento não está totalmente reconciliado. Atualize ou contacte o apoio para corrigir a associação do pagamento antes de registar uma revisão.",
+    "readOnly": "Um membro da equipa com permissão para gerir reembolsos pode registar a revisão.",
+    "review": "Registar revisão",
+    "note": "Decisão ou ajustes efetuados (10–2000 caracteres)",
+    "evidence": "Comprovativo ou referência que sustenta a decisão (10–2000 caracteres)",
+    "confirm": "Verifiquei os benefícios afetados e documentei os ajustes ou a minha decisão de os manter.",
+    "save": "Confirmar revisão",
+    "cancel": "Cancelar",
+    "saved": "Revisão registada. Esta ação não alterou os benefícios do cliente.",
+    "changed": "Este reembolso foi alterado ou ainda está a ser reconciliado. A lista foi atualizada; verifique os dados atuais antes de voltar a submeter.",
+    "saveError": "Não foi possível guardar a revisão. As suas notas foram preservadas; tente novamente.",
+    "permissionError": "Já não tem permissão para registar esta revisão. Peça ajuda a um membro da equipa com acesso aos reembolsos de todas as localizações.",
+    "pagination": "Páginas de revisões de reembolsos",
+    "firstPage": "Primeira página",
+    "nextPage": "Página seguinte"
+  },
+  "PaymentRefundResult": {
+    "title": "O estúdio precisa de verificar o pagamento",
+    "description": "Foi registado um reembolso ou este pagamento requer verificação. Esta página não confirma uma nova reserva, um saldo de créditos ou um benefício de adesão.",
+    "next": "Contacte o estúdio e indique a referência abaixo antes de efetuar outro pagamento.",
+    "reference": "Referência",
+    "back": "Voltar ao estúdio",
+    "refresh": "Verificar estado"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Os bons espaços aproximam as pessoas",
@@ -5849,7 +6138,8 @@
       "about": "Como funciona",
       "login": "Iniciar sessão",
       "register": "Iniciar teste gratuito",
-      "copyright": "© {year} Shario. Todos os direitos reservados."
+      "copyright": "© {year} Shario. Todos os direitos reservados.",
+      "contact": "Contacto"
     }
   },
   "Waitlists": {
@@ -6801,6 +7091,22 @@
       "label": "Vista de pessoas"
     },
     "filters": {
+      "spending": "Despesa ({currency})",
+      "spendMin": "Despesa mínima",
+      "spendMax": "Despesa máxima",
+      "spendFrom": "Data de pagamento desde",
+      "spendTo": "Data de pagamento até",
+      "spendingHint": "Pagamentos efetuados neste período, após dedução dos reembolsos registados.",
+      "spendingDatesHint": "Deixe as datas em branco para incluir todo o histórico.",
+      "credits": "Créditos atuais ({currency})",
+      "creditMin": "Créditos mínimos",
+      "creditMax": "Créditos máximos",
+      "creditsHint": "Saldo atual de créditos, independente das datas de pagamento.",
+      "spendingUnavailable": "Os filtros de despesa exigem acesso a todos os registos financeiros.",
+      "applyFinancial": "Aplicar filtros financeiros",
+      "financialDraftHint": "As alterações entram em vigor ao selecionar Aplicar.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Todo o histórico",
       "membership": "Subscrição",
       "status": "Estado",
       "button": "Filtros",
@@ -6814,6 +7120,7 @@
       "clear": "Limpar"
     },
     "columns": {
+      "periodSpent": "Despesa no período",
       "customer": "Cliente",
       "contact": "Contacto",
       "membership": "Subscrição",
@@ -6830,6 +7137,7 @@
       "access": "Acesso"
     },
     "actions": {
+      "exporting": "A exportar…",
       "addCustomer": "Adicionar cliente",
       "openCustomerActions": "Abrir ações para {name}",
       "openStaffActions": "Abrir ações para {name}",
@@ -6875,6 +7183,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Despesa no período",
       "email": "Email",
       "membership": "Subscrição",
       "credits": "Créditos",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Subscrições ativas",
       "credits": "Créditos dos clientes",
       "newThisMonth": "Novos este mês",
-      "monthlyChange": "+{count} este mês"
+      "monthlyChange": "+{count} este mês",
+      "unavailable": "Dados indisponíveis"
     },
     "counts": {
       "customers": "{count, plural, one {# cliente} other {# clientes}}",
@@ -6992,6 +7302,13 @@
       "view": "Ver análises de clientes"
     },
     "errors": {
+      "summary": "Não foi possível carregar os totais de clientes e os filtros de adesão. Tente novamente.",
+      "export": "Não foi possível descarregar a exportação completa de clientes. Nenhum ficheiro foi guardado. Tente novamente.",
+      "invalidAmount": "Introduza um montante válido.",
+      "invalidDate": "Introduza uma data válida.",
+      "spendingRange": "A despesa mínima não pode exceder a despesa máxima.",
+      "creditRange": "Os créditos mínimos não podem exceder os créditos máximos.",
+      "dateRange": "A data de início não pode ser posterior à data de fim.",
       "customers": "Não foi possível carregar os clientes. Tente novamente.",
       "staff": "Não foi possível carregar os membros da equipa. Tente novamente."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Notificações na aplicação",
           "description": "Mostrar notificações do espaço de trabalho na Shario."
+        },
+        "bookingCreated": {
+          "label": "Reserva criada",
+          "description": "Quando é criada uma reserva relevante. Desativado por predefinição."
         }
       },
       "channelsTitle": "Canais de envio"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "Não foi possível criar uma nova conversa.",
       "message": "O assistente do espaço não conseguiu responder neste momento."
+    },
+    "guided": {
+      "title": "O que gostaria de saber?",
+      "description": "Escolha uma pergunta para obter uma resposta clara com base nos dados do seu estúdio.",
+      "back": "Escolher outra pergunta",
+      "retry": "Tentar novamente",
+      "loading": "A verificar os dados do seu estúdio…",
+      "noAnswer": "Não encontrámos uma resposta fiável. Tente novamente dentro de momentos.",
+      "contextQuestion": "O que devo saber sobre isto?",
+      "contextHint": "Uma resposta sobre o item selecionado.",
+      "allStudios": "Todos os estúdios",
+      "periods": {
+        "today": "Hoje",
+        "last30Days": "Últimos 30 dias",
+        "current": "Visão geral atual"
+      },
+      "report": {
+        "title": "Pretende uma visão geral mais detalhada?",
+        "description": "Relatório mensal do estúdio selecionado, desde o início do mês até {date}.",
+        "generate": "Gerar relatório mensal",
+        "open": "Abrir relatório mensal",
+        "back": "Voltar à resposta",
+        "ready": "O seu relatório mensal está pronto."
+      },
+      "questions": {
+        "today": {
+          "label": "Como está a correr o dia no estúdio?",
+          "hint": "Uma visão rápida da atividade de hoje.",
+          "prompt": "O que está a acontecer hoje no estúdio?"
+        },
+        "bookings": {
+          "label": "Quantas reservas temos hoje?",
+          "hint": "As reservas confirmadas de hoje.",
+          "prompt": "Quantas reservas temos hoje?"
+        },
+        "bookingTrend": {
+          "label": "As nossas reservas estão a crescer?",
+          "hint": "Compare os últimos 30 dias com os 30 anteriores.",
+          "prompt": "Como estão a evoluir as nossas reservas?"
+        },
+        "teamBlockers": {
+          "label": "Há algo a bloquear a equipa?",
+          "hint": "Reveja os bloqueios comunicados hoje pela equipa.",
+          "prompt": "O que está a bloquear a nossa equipa hoje?"
+        },
+        "reorders": {
+          "label": "O que é preciso repor?",
+          "hint": "Verifique os pedidos abertos de reposição do inventário.",
+          "prompt": "Existem pedidos de reposição em aberto?"
+        },
+        "generalHelp": {
+          "label": "Que dados do estúdio posso consultar?",
+          "hint": "Veja as informações disponíveis para a sua função.",
+          "prompt": "A que dados do estúdio tens acesso?"
+        }
+      },
+      "selectedStudio": "Estúdio selecionado"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "Melhor mês concluído",
+      "completedMonths": "Só são comparados meses completos já terminados com dados fiáveis.",
+      "noBestMonth": "Não há um melhor mês fiável neste período. Inclua meses completos terminados.",
+      "showYear": "Mostrar este ano",
+      "monthRanking": "Pagamentos por mês",
+      "month": "Mês",
+      "coverage": "Cobertura dos dados",
+      "completeMonth": "Mês completo",
+      "partialMonth": "Mês parcial",
+      "moneyBasis": "Pagamentos efetivamente recebidos no período, menos reembolsos registados à data do relatório. Adesões, vales e carregamentos pagos contam uma vez; a utilização não é outro pagamento. Não é lucro.",
+      "asOf": "À data de",
+      "customerTable": "Análise de clientes",
+      "customerHelp": "Combine filtros para encontrar clientes a contactar.",
+      "inactiveCredit": "Sem atividade há 90 dias e com saldo:",
+      "showCustomers": "Mostrar clientes",
+      "spending": "Pagamentos recebidos",
+      "credits": "Saldo atual",
+      "cancellations": "Reservas canceladas",
+      "minimum": "Mínimo",
+      "maximum": "Máximo",
+      "actor": "Cancelada por",
+      "actor_all": "Qualquer pessoa",
+      "actor_customer": "Cliente",
+      "actor_staff": "Equipa",
+      "inactiveDays": "Sem atividade há pelo menos (dias)",
+      "dateDefaults": "As datas vazias usam o período do relatório acima.",
+      "cancellationCoverage": "Cancelamentos antigos podem não ter data ou autor fiáveis. Um número com + é um mínimo conhecido; desconhecido não é zero. O filtro máximo exige um histórico completo.",
+      "invalidBounds": "Introduza números e datas válidos; o mínimo não pode ultrapassar o máximo.",
+      "apply": "Aplicar filtros",
+      "clear": "Limpar filtros",
+      "exportCustomers": "Exportar todos os clientes correspondentes",
+      "noCustomers": "Nenhum cliente corresponde aos filtros.",
+      "customer": "Cliente",
+      "lastActivity": "Última atividade",
+      "locationScope": "Os totais do local excluem pagamentos sem atribuição fiável. Adesões, vales e carregamentos podem constar apenas da vista global.",
+      "incompleteData": "Algumas fontes estão incompletas ou indisponíveis. Só são incluídos registos verificáveis; valores em falta não são zero.",
+      "paymentSources": "Origens dos pagamentos",
+      "source_external_payment": "Pagamentos de encomendas",
+      "source_voucher": "Compras de vales",
+      "source_membership": "Pagamentos de adesões",
+      "source": "Origem",
+      "noPaymentSources": "Não existem dados disponíveis sobre as origens dos pagamentos."
+    },
     "actions": {
       "retry": "Tentar novamente",
       "export": "Exportar CSV",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Reservas",
-      "netSales": "Vendas líquidas",
+      "netSales": "Pagamentos recebidos",
       "utilizationPercent": "Utilização",
       "returningCustomerPercent": "Clientes recorrentes"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Reservas",
-        "netSales": "Vendas líquidas"
+        "netSales": "Pagamentos recebidos"
       },
       "trendTitle": "Tendência de desempenho",
       "trendDescription": "Valores verificados durante o período de relatório selecionado.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Quantidade",
         "currency": "Moeda",
-        "orders": "Encomendas",
+        "orders": "Pagamentos",
         "amount": "Valor",
-        "net": "Vendas líquidas",
+        "net": "Pagamentos recebidos",
         "gross": "Vendas brutas",
         "method": "Método",
         "product": "Artigo do catálogo"
       },
       "metrics": {
-        "orders": "Encomendas",
-        "net": "Vendas líquidas",
+        "orders": "Pagamentos",
+        "net": "Pagamentos recebidos",
         "gross": "Vendas brutas",
         "tax": "Impostos / IVA",
         "discounts": "Descontos",
         "refunds": "Reembolsos",
         "paymentFees": "Comissões do prestador de pagamentos",
-        "averageOrder": "Valor médio da encomenda"
+        "averageOrder": "Pagamento médio"
       },
       "unavailable": "Os dados de vendas estão indisponíveis",
       "unavailableDescription": "Esta conta ou âmbito de relatório não tem uma fonte de vendas disponível.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Reservas",
-        "participants": "Participantes",
+        "participants": "Lugares reservados",
         "utilization": "Utilização",
         "cancellations": "Cancelamentos",
         "noShows": "Faltas sem aviso",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Novos clientes",
-        "returning": "Clientes recorrentes",
-        "unique": "Clientes ativos",
+        "new": "Novos clientes pagantes",
+        "returning": "Clientes pagantes recorrentes",
+        "unique": "Clientes pagantes",
         "returningRate": "Taxa de regresso de clientes",
-        "averageSpend": "Despesa média"
+        "averageSpend": "Despesa média paga"
       },
       "unavailable": "Os dados de clientes estão indisponíveis",
       "unavailableDescription": "Esta conta ou âmbito de relatório não tem uma fonte de clientes disponível.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "O acesso às portas não está incluído neste plano",
       "description": "Reveja as opções de planos ou pergunte a um proprietário da área de trabalho sobre o acesso às portas."
+    },
+    "emailTemplate": {
+      "title": "Email com código da porta",
+      "description": "Crie ou edite o email automático com o código da porta para este local. Cada local tem um modelo, partilhado com Mensagens → Modelos de email.",
+      "create": "Criar modelo",
+      "createFor": "Criar modelo de código da porta para {location}",
+      "locationUnavailable": "Não existe nenhum modelo de email com código da porta disponível para este local."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "ALL_PRODUCTS": "Todos os produtos",
     "AUTHOR_SEARCH": "Pesquisar um cliente",
     "SEARCH_BY_NAME_OR_ID": "Pesquisar por nome ou ID",
-    "PASS_RULES": "Utilize pelo menos 8 caracteres, incluindo um número."
+    "PASS_RULES": "Utilize pelo menos 8 caracteres, incluindo um número.",
+    "USER_EMAIL_CHANGE_WARNING": "Alterar o email termina todas as sessões deste cliente e obriga-o a verificar o novo endereço.",
+    "USER_EMAIL_VERIFICATION_SENT": "Email atualizado. As sessões existentes foram terminadas e foi enviada uma ligação de verificação para o novo endereço.",
+    "USER_EMAIL_VERIFICATION_RETRY": "Email atualizado e sessões existentes terminadas. Não foi possível confirmar a entrega do email de verificação. O cliente pode pedir outra ligação na página de verificação de email do estúdio.",
+    "USER_EMAIL_UPDATE_FAILED": "Não foi possível atualizar o cliente. Verifique o email e tente novamente."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "Ainda não há cobertura de dados suficiente para uma recomendação fiável.",
       "message042": "Comece pelas oportunidades de maior prioridade",
       "message043": "Algumas oportunidades merecem ser analisadas",
-      "message044": "O consultor encontrou {value1} recomendações baseadas em dados verificados do espaço."
+      "message044": "O consultor encontrou {value1} recomendações baseadas em dados verificados do espaço.",
+      "message045": "Rever a descida dos pagamentos recebidos",
+      "message046": "Os pagamentos recebidos após reembolsos são {value1}% inferiores aos do período de comparação.",
+      "message047": "Pagamentos recebidos após reembolsos"
     },
     "briefing": {
       "message011": "Tarefas urgentes",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Pagamento cancelado",
-    "nextSteps": "O que pode fazer a seguir",
-    "retry": "Tente novamente — por vezes resulta à segunda tentativa.",
-    "card": "Se utilizou Apple Pay ou Google Pay, experimente pagar com cartão.",
-    "contact": "Se continuar a acontecer, envie-nos uma mensagem e ajudaremos.",
     "home": "Voltar ao início",
-    "chargeNotice": "Não é efetuada qualquer cobrança até o pagamento ser concluído."
+    "title": "Regresso do pagamento",
+    "description": "Regressar da página de pagamento não cancela uma reserva. Pode verificar o estado nas suas reservas.",
+    "creditsHint": "Para pagar com créditos, abra a reserva não paga e cancele-a primeiro. Depois volte a selecionar o horário. Se esta opção não estiver disponível, contacte o estúdio.",
+    "backToBookings": "Voltar às reservas"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Visão geral do estúdio",
+    "todayNumbers": "Números diários do estúdio",
+    "todayBookings": "Reservas",
+    "selectedDate": "No dia selecionado",
+    "expectedVisitors": "Visitantes previstos",
+    "bookedParticipants": "Participantes em reservas agendadas",
+    "expectedNow": "No estúdio agora (estimativa)",
+    "expectedNowBasis": "Pessoas com uma reserva em curso; a presença não está confirmada",
+    "nextSession": "Próxima reserva",
+    "noUpcomingSession": "Sem reservas futuras",
+    "attentionTitle": "Requer a sua atenção",
+    "review": "Rever",
+    "generateReport": "Gerar relatório com IA",
+    "generating": "A preparar o relatório…",
+    "reportPermission": "Os relatórios com IA requerem acesso ao assistente do estúdio.",
+    "reportError": "Não foi possível gerar o relatório. Tente novamente.",
+    "operationsError": "Não foi possível carregar os dados diários do estúdio.",
+    "managementError": "Não foi possível carregar os dados mensais do estúdio.",
+    "retry": "Tentar novamente",
+    "loadingPerformance": "A carregar o desempenho do estúdio…",
+    "performanceEyebrow": "Desempenho do estúdio",
+    "monthTitle": "Este mês até agora",
+    "comparison": "Em comparação com {period}",
+    "comparedWithPrevious": "em comparação com o período anterior",
+    "unavailable": "Dados indisponíveis",
+    "revenue": "Receita de serviços prestados",
+    "revenueBasis": "Serviços prestados e produtos entregues durante o período",
+    "revenueUnavailable": "A receita total de serviços prestados ainda não está disponível: os registos de prestação não abrangem todos os serviços e produtos. Os recebimentos são apresentados separadamente.",
+    "confirmedRevenue": "Serviços concluídos confirmados: {amount}.",
+    "visits": "Participantes em reservas passadas",
+    "visitsBasis": "Participantes em reservas já decorridas; a presença não é verificada",
+    "newClients": "Novos clientes com reserva",
+    "newClientsBasis": "Primeira reserva registada nos estúdios selecionados; não necessariamente novos para todo o negócio",
+    "last30Days": "Últimos 30 dias",
+    "arrivalTitle": "Quando chegam os clientes",
+    "scheduledArrivalTitle": "Quando estão agendadas as visitas",
+    "hourlyAttendance": "Participantes por hora de início",
+    "hourCount": "{hour}:00 — {count} participantes",
+    "busiestHour": "Hora agendada mais movimentada: {from}:00–{to}:00",
+    "recordedBusiestHour": "Hora de chegada mais movimentada: {from}:00–{to}:00",
+    "recordedSample": "Com base em {count} chegadas registadas",
+    "scheduledSample": "Com base em {count} participantes agendados",
+    "scheduledCaveat": "As horas de início das reservas refletem o horário atual. Horas calmas, por si só, não provam procura por novas sessões.",
+    "noAttendance": "Ainda não há atividade suficiente para mostrar um padrão.",
+    "other": "Outros",
+    "topClients": "Top 5 clientes",
+    "rankingBy": "Ordenar clientes por",
+    "clientVisitsBasis": "Participantes em reservas já decorridas neste período",
+    "clientRevenueBasis": "Receita de serviços concluídos confirmados neste período",
+    "unnamedClient": "Cliente sem nome",
+    "noClients": "Não há clientes registados neste período.",
+    "confirmedOnly": "Apenas serviços concluídos confirmados; outros registos de prestação não estão disponíveis.",
+    "topProducts": "Top 3 produtos",
+    "byQuantity": "Por quantidade",
+    "deliveredProductsBasis": "Serviços concluídos confirmados, ordenados por quantidade",
+    "noProducts": "Não há produtos concluídos registados neste período.",
+    "unnamedProduct": "Produto sem nome",
+    "units": "unidades",
+    "coverageTitle": "Cobertura e limitações dos dados",
+    "coverageDescription": "Os dados indisponíveis continuam indisponíveis. A atividade agendada e a prestação confirmada são identificadas separadamente.",
+    "openReports": "Abrir relatórios detalhados",
+    "back": "Voltar ao painel",
+    "reportTitle": "Relatório do estúdio",
+    "exporting": "A preparar o PDF…",
+    "exportPdf": "Exportar PDF",
+    "exportError": "Não foi possível transferir o PDF. Tente novamente.",
+    "aiReport": "Relatório do estúdio com IA",
+    "verifiedReport": "Relatório de dados do estúdio",
+    "deterministicNote": "O comentário da IA não está disponível. Este relatório contém os valores guardados do estúdio e um resumo factual.",
+    "reportHighlights": "Destaques",
+    "reportAttention": "Requer atenção",
+    "reportRecommendations": "Próximos passos sugeridos",
+    "generatedAt": "Gerado em {date}",
+    "issues": {
+      "overdueTasks": "{count} tarefas em atraso",
+      "lowStock": "{count} artigos com stock baixo",
+      "failedEmails": "{count} emails falhados",
+      "overduePayments": "{count} pagamentos em atraso",
+      "overdueOrders": "{count} encomendas personalizadas em atraso",
+      "other": "{count} itens precisam de revisão",
+      "failed_emails": "{count} emails falhados",
+      "overdue_custom_orders": "{count} encomendas personalizadas em atraso",
+      "overdue_invoices": "{count} pagamentos em atraso"
+    },
+    "staleData": "A última atualização falhou. São apresentados os dados carregados anteriormente.",
+    "refreshingData": "A atualizar os dados do estúdio…",
+    "coverageReportDetails": "Gere um relatório do estúdio para ver as fontes disponíveis e as limitações de cada métrica.",
+    "dismissAttention": "Ocultar cartão de alertas",
+    "showAttention": "Mostrar alertas ({count})",
+    "customerId": "ID de cliente {id}",
+    "spentMonth": "Gasto no mês selecionado",
+    "spentTotal": "Total gasto",
+    "clientSpendingBasis": "Pagamentos de clientes após os reembolsos registados em todos os estúdios. Mês: {period}; total até à data selecionada.",
+    "spendingUnavailable": "Os dados de gastos não estão disponíveis nesta vista.",
+    "previousValue": "Período anterior: {value}",
+    "revenueUnavailableShort": "Indisponível — os registos de prestação estão incompletos.",
+    "totalCustomers": "Total de clientes",
+    "workspaceCustomersScope": "Registados em todos os estúdios",
+    "newRegisteredThisMonth": "Novos este mês",
+    "activeCustomers": "Clientes ativos",
+    "activeCustomersBasis": "Reservaram nos últimos 30 dias",
+    "selectedStudiosScope": "Estúdios selecionados",
+    "workspaceScope": "Todos os estúdios",
+    "activeSubscribers": "Subscritores ativos",
+    "newSubscribersThisMonth": "Novos subscritores este mês",
+    "subscriberBasis": "Cada pessoa uma vez. Novo significa a primeira subscrição; as renovações são excluídas.",
+    "missingMetric": "— Dados indisponíveis",
+    "asOfDate": "Em {date}",
+    "subscriberSelectedScope": "Subscrições válidas nos estúdios selecionados",
+    "recordedPayments": "Pagamentos registados",
+    "recordedPaymentsBasis": "Pagamentos recebidos no mês selecionado, deduzidos os reembolsos registados",
+    "paymentsUnavailable": "Dados de pagamento indisponíveis.",
+    "spending": "Montante gasto",
+    "clientPaymentsBasis": "Ordenados pelos pagamentos de clientes registados no mês selecionado, deduzidos os reembolsos registados, em todos os estúdios",
+    "noCustomerPayments": "Não há pagamentos de clientes verificados neste período.",
+    "spendingIncomplete": "Alguns totais não estão disponíveis porque o histórico de pagamentos está incompleto.",
+    "paymentRankingIncomplete": "A classificação usa montantes de pagamento verificados; registos incompletos podem afetar a ordem.",
+    "byPurchases": "Por compras",
+    "purchasedProductsBasis": "Encomendas pagas que contêm cada produto · Últimos 30 dias: {period}",
+    "noPurchasedProducts": "Não há compras de produtos pagas e verificadas nos últimos 30 dias.",
+    "purchases": "compras",
+    "purchasesIncomplete": "Algumas compras não podem ser verificadas; esta classificação pode estar incompleta.",
+    "knownAmount": "Montante conhecido",
+    "knownPaymentsOnly": "Apenas pagamentos conhecidos; alguns registos de pagamento estão incompletos."
+  },
+  "UnifiedSettings": {
+    "title": "Definições",
+    "description": "As suas preferências e as definições do estúdio num só lugar.",
+    "navigation": "Secções das definições",
+    "studioTitle": "Estúdio",
+    "personalTitle": "As minhas definições",
+    "studioScope": "Para todo o estúdio",
+    "personalScope": "Apenas para si",
+    "studioDescription": "Definições partilhadas deste estúdio. Só vê as áreas a que tem acesso.",
+    "personalDescription": "Faça a gestão da sua conta e da sua forma de trabalhar neste estúdio. Estas preferências não alteram as definições dos outros membros da equipa.",
+    "personalProfileScope": "O seu perfil e a sua palavra-passe aplicam-se à sua conta em todos os estúdios.",
+    "personalPreferencesScope": "Estas preferências aplicam-se apenas a si neste estúdio.",
+    "locationScope": "Apenas o local {name}",
+    "newLocationScope": "Definições do novo local",
+    "backTo": "Voltar a {section}",
+    "searchLabel": "Pesquisar definições",
+    "searchStudio": "Pesquisar definições do estúdio…",
+    "searchPersonal": "Pesquisar as minhas definições…",
+    "clearSearch": "Limpar pesquisa",
+    "searchResults": "{count, plural, one {# definição encontrada} other {# definições encontradas}}",
+    "advancedTitle": "Definições avançadas",
+    "advancedDescription": "Funcionalidades ativadas, navegação e importação de dados.",
+    "emptyTitle": "Sem definições correspondentes",
+    "emptyDescription": "Experimente outro termo ou limpe a pesquisa para ver todas as definições disponíveis nesta secção.",
+    "setupTitle": "Conclua a configuração do seu estúdio",
+    "setupProgress": "{completed} de {total} passos obrigatórios concluídos.",
+    "setupAction": "Continuar configuração",
+    "groups": {
+      "workspace": {
+        "title": "Estúdio e locais",
+        "description": "Dados do estúdio, idioma comum, moeda e locais."
+      },
+      "access": {
+        "title": "Equipa e acesso",
+        "description": "Membros da equipa, funções e acesso às portas."
+      },
+      "website": {
+        "title": "Website e marca",
+        "description": "Website público, páginas de reserva e identidade visual."
+      },
+      "payments": {
+        "title": "Pagamentos de clientes",
+        "description": "Métodos de pagamento e definições de pagamentos de clientes."
+      },
+      "communications": {
+        "title": "Mensagens e automatização",
+        "description": "Envio de emails, remetentes e assistência de IA."
+      },
+      "account": {
+        "title": "Subscrição Shario",
+        "description": "Plano, faturas e dados de faturação do seu estúdio."
+      },
+      "advanced": {
+        "title": "Funcionalidades e dados",
+        "description": "Configure módulos e importe dados para o seu estúdio."
+      },
+      "profile": {
+        "title": "Perfil e segurança",
+        "description": "O seu nome, contactos e palavra-passe em todos os estúdios."
+      },
+      "preferences": {
+        "title": "O meu ambiente de trabalho",
+        "description": "O seu calendário, fuso horário e local predefinido neste estúdio."
+      },
+      "notifications": {
+        "title": "As minhas notificações",
+        "description": "Escolha as atualizações que recebe neste estúdio."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Dados do estúdio",
+        "description": "Nome, idioma, fuso horário e moeda."
+      },
+      "locations": {
+        "title": "Locais",
+        "description": "Moradas, salas e horários de funcionamento."
+      },
+      "team": {
+        "title": "Membros da equipa",
+        "description": "Convide pessoas e faça a gestão dos membros da equipa."
+      },
+      "roles": {
+        "title": "Funções e permissões",
+        "description": "Quem pode aceder a cada parte do estúdio."
+      },
+      "accessCodes": {
+        "title": "Acesso às portas",
+        "description": "Códigos da porta e acesso de entrada."
+      },
+      "publicSite": {
+        "title": "Website e páginas de reserva",
+        "description": "Marca, páginas públicas e experiência do cliente."
+      },
+      "payments": {
+        "title": "Métodos de pagamento",
+        "description": "Pagamentos online e ligação ao Stripe."
+      },
+      "invoicing": {
+        "title": "Faturação a clientes",
+        "description": "Faturas e faturação a clientes."
+      },
+      "communications": {
+        "title": "Email e remetentes",
+        "description": "Entrega, domínios de envio e definições de mensagens."
+      },
+      "ai": {
+        "title": "Assistente de IA",
+        "description": "Funcionalidades de IA e definições de automatização."
+      },
+      "billing": {
+        "title": "Plano e faturação",
+        "description": "Subscrição Shario, faturas e dados de faturação."
+      },
+      "modules": {
+        "title": "Funcionalidades e navegação",
+        "description": "Ative módulos e escolha os itens de navegação."
+      },
+      "migration": {
+        "title": "Importar dados",
+        "description": "Importe clientes, reservas e outros dados do estúdio."
+      },
+      "profile": {
+        "title": "Editar perfil e palavra-passe",
+        "description": "O seu nome, contactos e palavra-passe em todos os estúdios."
+      },
+      "preferences": {
+        "title": "Calendário e apresentação",
+        "description": "O seu calendário, fuso horário e local predefinido neste estúdio."
+      },
+      "notifications": {
+        "title": "Preferências de notificação",
+        "description": "Alertas de reservas, tarefas e inventário; atualizações por email e na aplicação."
+      }
+    },
+    "language": {
+      "label": "Idioma da aplicação",
+      "change": "Alterar idioma",
+      "sharedScope": "Partilhado por toda a equipa do estúdio.",
+      "managedByAdmin": "O administrador do seu estúdio gere este idioma."
+    },
+    "plan": {
+      "label": "Plano atual",
+      "details": "Detalhes do plano",
+      "loading": "A carregar plano…",
+      "unavailable": "Plano indisponível",
+      "detailsUnavailable": "Os detalhes do plano estão temporariamente indisponíveis."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "O Shario não cobra comissão por transação. As taxas de processamento do Stripe para pagamentos de clientes são separadas da sua subscrição. Os preços não incluem os impostos aplicáveis.",
+    "feeLink": "Taxas de pagamento, período experimental e cancelamento em detalhe",
+    "links": {
+      "stripePricing": "Consultar os preços do Stripe para o seu país",
+      "refundContact": "Pedir informações sobre o reembolso de uma subscrição",
+      "studioAi": "Explorar o Shario AI",
+      "refundTerms": "Ler os Termos completos e as exceções de reembolso"
+    },
+    "faq": {
+      "title": "Antes de escolher um plano",
+      "description": "Saiba o que paga, quando as alterações produzem efeito e o que acontece depois do período experimental.",
+      "trial": {
+        "question": "O que acontece quando o meu período experimental termina?",
+        "answer": "O seu período experimental Professional de 14 dias começa quando conclui a integração. Não é necessário cartão. Sem uma subscrição paga ativa, as novas reservas, as compras online e as funcionalidades do espaço de trabalho ficam suspensas no final do período experimental. O histórico de reservas dos clientes e a regularização da faturação continuam disponíveis; o fim do período experimental não elimina os dados do estúdio. A subscrição de um plano não está disponível nas últimas 48 horas do período experimental para evitar uma cobrança antecipada. Pode subscrever depois de o período experimental terminar."
+      },
+      "cancellation": {
+        "question": "Quando produz efeito o cancelamento?",
+        "answer": "Cancelar uma subscrição paga interrompe a próxima renovação. Mantém o acesso até ao fim do período de faturação pago atual e pode anular o cancelamento antes disso. Cancelar um período experimental sem cartão termina-o imediatamente. Após o fim do acesso, as novas reservas, as compras online e as funcionalidades do espaço de trabalho ficam restringidas. O acesso restringido não é um espaço de trabalho completo só de leitura: os relatórios gerais e as exportações podem não estar disponíveis. Exporte os registos necessários antes do fim do acesso ou contacte hello@shario.io sobre a devolução ou eliminação de dados. Os registos não são eliminados automaticamente na expiração, mas não é garantida uma conservação indefinida."
+      },
+      "refunds": {
+        "question": "O cancelamento reembolsa automaticamente o tempo não utilizado?",
+        "answer": "Cancelar uma subscrição anual ou mensal interrompe a próxima renovação; o acesso pago elegível continua até ao fim do período atual. O cancelamento voluntário, o tempo não utilizado e as quotas não utilizadas não são reembolsáveis, exceto ao abrigo de lei imperativa, de um acordo escrito expresso ou das soluções previstas nos nossos Termos. Se o Shario terminar o serviço pago antecipadamente por conveniência, ou se rescindir devido a um incumprimento grave da nossa parte que não seja corrigido 30 dias após notificação escrita, reembolsamos a parte pré-paga não utilizada a partir da data efetiva de rescisão. Também reembolsamos a parte pré-paga não utilizada se rescindir porque uma alteração desfavorável dos termos teria de produzir efeito durante um período já pré-pago. Se não conseguirmos resolver, com uma alternativa razoável, uma objeção justificada em matéria de proteção de dados a um subcontratante novo ou de substituição, pode terminar o serviço afetado e receber a respetiva parte pré-paga não utilizada. O cancelamento, por si só, não gera um reembolso automático. Contacte-nos para pedir a solução aplicável."
+      },
+      "planChanges": {
+        "question": "Quando produzem efeito as mudanças para um plano superior ou inferior?",
+        "answer": "Nas subscrições pagas, a mudança para um plano superior produz efeito imediatamente assim que qualquer pagamento necessário for concluído, com uma fatura proporcional. A mudança para um plano inferior produz efeito no final do período de faturação atual. No mesmo plano, a passagem de faturação mensal para anual é imediata assim que o pagamento necessário for concluído, e a passagem de anual para mensal começa no período seguinte. Reveja a data de produção de efeitos e a pré-visualização da faturação antes de confirmar."
+      },
+      "payments": {
+        "question": "As taxas de pagamento dos clientes estão incluídas?",
+        "answer": "Os pagamentos online dos clientes são processados através da sua conta Stripe ligada. O Shario não cobra comissão por transação. As taxas de processamento do Stripe são separadas da sua subscrição Shario e dependem do seu país, do método de pagamento e do seu acordo com o Stripe. A subscrição do seu estúdio é faturada separadamente dos pagamentos efetuados pelos seus clientes."
+      }
+    },
+    "definitions": {
+      "title": "O que significam as funcionalidades dos planos",
+      "automations": {
+        "question": "O que conta como automatização ativa?",
+        "answer": "Uma automatização ativa é uma regra personalizada ativada para ser executada: por exemplo, agendar instruções de chegada ao estúdio um dia depois de um cliente se registar. O limite conta as regras ativadas, não os rascunhos guardados nem a frequência com que uma regra é executada. O Starter não inclui regras personalizadas; o Professional permite 3. O Space Plus usa o mesmo editor baseado em eventos e permite mais de 3 regras ativas, com 5000 emails contabilizados por mês. Cada regra conta para o limite de automatizações e os respetivos emails contabilizados contam para a quota de emails. Os emails padrão do sistema são separados."
+      },
+      "studioAi": {
+        "question": "Que ferramentas Shario AI recebo?",
+        "answer": "O Professional oferece 2000 créditos de IA por mês e inclui o assistente do estúdio, os resumos diários e o centro de conhecimento. O Space Plus oferece 10 000 créditos e acrescenta o Business Advisor, o concierge para clientes e as análises de relatórios com IA. As ferramentas dependem da configuração do seu estúdio e das permissões da equipa; as ações suportadas requerem confirmação."
+      },
+      "aiCredits": {
+        "question": "Um crédito de IA corresponde a uma pergunta?",
+        "answer": "Os créditos de IA medem o texto processado e gerado, não um número fixo de perguntas. Por exemplo, uma operação curta que usa 750 tokens (fragmentos de texto) consome 1 crédito; uma operação de 2500 tokens com orçamento suficiente consome 3. Uma pergunta pode envolver várias operações, e as pesquisas de conhecimento ou a indexação de documentos podem aumentar a utilização. São exemplos, não custos garantidos por pergunta. Os créditos são partilhados todos os meses entre as ferramentas ativadas. Um pedido precisa de créditos restantes suficientes para ser executado; não há cobranças automáticas por excesso."
+      },
+      "emails": {
+        "question": "O que acontece quando a quota de emails se esgota?",
+        "answer": "A quota mensal abrange os emails de automatização contabilizados. Quando se esgota, o email de automatização afetado é ignorado; não é colocado automaticamente na fila para o mês seguinte. Os emails essenciais da conta e as mensagens operacionais integradas suportadas não contam para esta quota. Classificar a sua própria automatização como transacional não a isenta. Verifique a utilização do espaço de trabalho e mude de plano ou contacte-nos se precisar de mais capacidade."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Pretende alterar a forma de pagamento?",
+    "explanation": "A sua reserva não paga pode ainda estar a guardar o seu lugar. Para pagar com créditos em vez de cartão, ou para recomeçar, cancele-a primeiro. Este botão cancela todas as reservas não pagas deste pagamento.",
+    "action": "Cancelar reservas não pagas",
+    "busy": "A verificar o pagamento e a cancelar a reserva…",
+    "cancelled": "As reservas não pagas deste pagamento foram canceladas. Volte ao carrinho ou selecione novamente o horário e escolha os créditos do estúdio. A disponibilidade e o preço serão verificados novamente.",
+    "paid": "O pagamento já foi concluído. A sua reserva não foi cancelada. Verifique o estado.",
+    "pending": "O pagamento ainda está a ser verificado. Nada foi cancelado. Verifique o estado do pagamento antes de fazer outra reserva para o mesmo horário.",
+    "unsupported": "Este pagamento não pode ser cancelado aqui. Abra as suas reservas ou contacte o estúdio.",
+    "missing": "Não foi possível encontrar esta encomenda. Abra as suas reservas ou contacte o estúdio.",
+    "error": "Não foi possível confirmar o cancelamento. Tente novamente. Contacte o estúdio se o problema persistir.",
+    "status": "Verificar o estado do pagamento",
+    "bookAgain": "Selecionar novamente um horário"
   }
 }

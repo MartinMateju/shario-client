@@ -39,10 +39,10 @@ export default function CalendarLegend({ audience, studio, t }) {
     <div
       data-customer-calendar-legend={customerThemed || undefined}
       role="list"
-      className={`flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-[11px] ${
+      className={`flex w-full flex-wrap items-center gap-x-4 gap-y-2 ${
         customerThemed
-          ? "text-[var(--tenant-muted-on-surface)]"
-          : "text-[#666663]"
+          ? "text-[11px] text-[var(--tenant-muted-on-surface)]"
+          : "text-[13px] text-ink-soft"
       }`}
     >
       {customerThemed && (

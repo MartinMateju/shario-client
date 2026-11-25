@@ -145,7 +145,7 @@ const getRequestError = (error, fallback) =>
 function SectionHeader({ help, hint, icon: Icon, tone = "cobalt", title }) {
   const toneClasses = {
     cobalt: "bg-cobalt-50 text-cobalt-600",
-    coral: "bg-coral-100 text-terracotta-700",
+    coral: "bg-accent-soft text-accent-text",
     green: "bg-success-soft text-success",
     neutral: "bg-surface text-ink-muted",
   };
@@ -316,6 +316,7 @@ export default function StudioLocationCreatePage({
 }) {
   const locale = useLocale();
   const t = useTranslations("Locations");
+  const settingsT = useTranslations("UnifiedSettings");
   const commonT = useTranslations("Common");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -767,6 +768,14 @@ export default function StudioLocationCreatePage({
           <h1 className="mt-2 text-[30px] font-semibold tracking-[-0.055em] text-ink sm:text-[36px]">
             {isEditing ? t("form.editTitle") : t("createPage.title")}
           </h1>
+          <p
+            data-settings-scope="location"
+            className="mt-2 text-[12px] font-medium text-[var(--studio-blue)]"
+          >
+            {isEditing
+              ? settingsT("locationScope", { name: location.name })
+              : settingsT("newLocationScope")}
+          </p>
           <p className="mt-2 max-w-2xl text-[12px] leading-6 text-ink-muted">
             {isEditing
               ? t("form.editDescription")
