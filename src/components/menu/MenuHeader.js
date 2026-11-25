@@ -125,7 +125,7 @@ function UpcomingVisit({
         <div className="min-w-0 flex-1">
           <p
             id="customer-portal-upcoming-title"
-            className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.22em]"
+            className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.22em]"
             data-tenant-type="label"
             style={mutedSurfaceTextStyle}
           >
@@ -222,7 +222,7 @@ function AccountStat({
         <div className="min-w-0 flex-1">
           <p
             data-tenant-type="label"
-            className="text-[8px] font-semibold uppercase tracking-[0.2em]"
+            className="text-[10px] font-semibold uppercase tracking-[0.2em]"
             style={mutedSurfaceTextStyle}
           >
             {label}
@@ -294,23 +294,15 @@ export default function MenuHeader({
   return (
     <section
       data-customer-portal-overview
+      data-customer-portal-page-header="compact"
       aria-labelledby="customer-portal-greeting"
       className="relative z-20 isolate border-b px-4 pb-5 pt-6 sm:px-6 sm:py-6 lg:px-8 lg:py-6 [@media(min-width:1180px)_and_(max-height:800px)]:py-4"
       style={{
-        backgroundColor: "var(--tenant-background)",
-        borderColor: "color-mix(in srgb, var(--tenant-text) 10%, transparent)",
-        color: "var(--tenant-text)",
+        backgroundColor: "var(--tenant-feature-background)",
+        borderColor: "var(--tenant-feature-decoration)",
+        color: "var(--tenant-feature-foreground)",
       }}
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-70"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(circle at 7% 12%, color-mix(in srgb, var(--tenant-accent) 9%, transparent), transparent 36%), radial-gradient(circle at 91% 10%, color-mix(in srgb, var(--tenant-secondary) 11%, transparent), transparent 40%)",
-        }}
-      />
-
       <div className="relative pt-6 sm:pt-0 mx-auto grid max-w-[1480px] gap-4 md:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)] md:items-center lg:grid-cols-[minmax(0,1fr)_minmax(520px,0.95fr)] lg:gap-7">
         <div className="min-w-0">
           {canSeeAdmin ? (

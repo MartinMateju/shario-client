@@ -129,8 +129,8 @@ vi.mock("@/components/public-tenant/PublicCapabilityGate", () => ({
   default: ({ children }) => children,
 }));
 
-vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
-  usePublicTenant: () => ({
+vi.mock("@/components/public-tenant/PublicTenantProvider", () => {
+  const usePublicTenant = () => ({
     tenant: {
       publicCapabilities: { courses: true },
       publicSite: {
@@ -138,8 +138,9 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
         pages: { courses: { title: {}, description: {} } },
       },
     },
-  }),
-}));
+  });
+  return { usePublicTenant, useOptionalPublicTenant: usePublicTenant };
+});
 
 vi.mock("@/components/public-tenant/publicTenant.config", () => ({
   getLocalizedPublicTenantText: (_value, _locale, fallback) => fallback,

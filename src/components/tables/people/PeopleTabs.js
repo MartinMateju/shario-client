@@ -21,7 +21,7 @@ export default function PeopleTabs({
         >
           {t(`tabs.${tab}`)}
         </h2>
-        <span className="rounded-full bg-sand-50 px-2.5 py-0.5 text-[12px] font-medium tabular-nums text-ink-muted">
+        <span className="rounded-full bg-sand-50 px-2.5 py-0.5 text-[13px] font-semibold tabular-nums text-ink-soft">
           {counts[tab] ?? 0}
         </span>
       </div>

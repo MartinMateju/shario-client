@@ -10,6 +10,10 @@ import { describe, expect, it, vi } from "vitest";
 
 import CourseProductGallery from "@/components/courses/CourseProductGallery";
 
+vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
+  useOptionalPublicTenant: () => null,
+}));
+
 vi.mock("next-intl", () => ({
   useLocale: () => "en",
   useTranslations:

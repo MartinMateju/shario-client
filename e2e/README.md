@@ -42,12 +42,30 @@ With Mailpit running, execute the release journeys using the configuration that
 also starts the local Postmark service:
 
 ```sh
-npx playwright test --config=playwright.smoke.config.js
+npm run test:e2e:smoke
 ```
 
 The Playwright configuration starts both application servers, maps `*.shario.localhost` to
 `127.0.0.1` inside Chromium, and resets the E2E database before every test.
 It deliberately uses one worker because database resets are suite-wide.
+
+The release command runs the ordinary HTTP smoke first, followed by the two
+custom-domain authentication journeys in a separate HTTPS production build.
+Those tests are tagged `@custom-domain-auth`; the HTTP configuration excludes
+them and `playwright.custom-domain-auth.config.mjs` selects them explicitly.
+Both stages must pass. The HTTPS stage checks real BFF login, a host-only
+HttpOnly refresh cookie, booking restoration and session refresh after reload.
+Chromium's third-party cookie restriction is explicitly enabled before navigation.
+
+Run just those journeys with `npm run test:e2e:custom-domain`. The fixture
+generates a disposable local CA/certificate under `test-results/custom-domain-tls`,
+trusts that CA in its Node processes and pins the certificate's public key in
+Chromium. A loopback-only TLS proxy listens on port 3443; Chromium maps the
+normal `https://studio-alpha.test` origin to that port without changing its
+browser-visible origin. No elevated privileges or production TLS exceptions
+are needed. The synthetic proxy secret is passed to both test servers; no
+production credentials are used. The backend's disposable Redis/database
+requirements still apply.
 
 Useful commands:
 

@@ -82,7 +82,7 @@ export default function StudioLocationEditPage({ locationId }) {
           <ArrowLeftIcon aria-hidden="true" className="size-4" />
           {t("createPage.back")}
         </Link>
-        <section className="mt-5 rounded-[22px] border border-dashed border-coral-200 bg-coral-50/50 px-6 py-12 text-center">
+        <section className="mt-5 rounded-[22px] border border-dashed border-line bg-white px-6 py-12 text-center">
           <h1 className="text-[20px] font-semibold tracking-[-0.04em] text-ink">
             {t("loadError")}
           </h1>

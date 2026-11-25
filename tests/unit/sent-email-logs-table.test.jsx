@@ -1,11 +1,13 @@
 import React from "react";
 import {
+  act,
   fireEvent,
   render,
   screen,
   waitFor,
   within,
 } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { NextIntlClientProvider } from "next-intl";
 import {
   afterAll,
@@ -21,8 +23,12 @@ import { useGetCommunicationEmailLogsQuery } from "../../src/lib/features/commun
 import cs from "../../src/messages/cs.json";
 import en from "../../src/messages/en.json";
 import nl from "../../src/messages/nl.json";
-const navigation = vi.hoisted(() => ({
-  params: new URLSearchParams(),
+
+const navigation = vi.hoisted(() => ({ params: new URLSearchParams() }));
+const resendState = vi.hoisted(() => ({ access: null, retry: vi.fn() }));
+vi.mock("react-redux", () => ({ useSelector: (selector) => selector() }));
+vi.mock("@/lib/features/auth/authSlice", () => ({
+  selectCurrentWorkspaceAccess: () => resendState.access,
 }));
 vi.mock("next/navigation", () => ({
   useSearchParams: () => navigation.params,
@@ -38,13 +44,17 @@ vi.mock(
   "../../src/lib/features/communicationEmailLogs/communicationEmailLogsApiSlice",
   () => ({
     useGetCommunicationEmailLogsQuery: vi.fn(),
+    useRetryCommunicationEmailLogMutation: () => [resendState.retry],
   }),
 );
-const catalogs = {
-  cs,
-  en,
-  nl,
-};
+
+beforeEach(() => {
+  resendState.access = null;
+  resendState.retry.mockReset();
+});
+
+const catalogs = { cs, en, nl };
+
 function renderHistory({ locale = "en", emailType, status = "delivered" }) {
   const data = {
     logs: [
@@ -447,5 +457,380 @@ describe("email delivery history pagination", () => {
       within(desktopRows()[0]).getByText("member-025@example.test"),
     ).toBeInTheDocument();
     nextButtons().forEach((button) => expect(button).toBeDisabled());
+  });
+});
+
+const retryableLog = {
+  _id: "retry-log",
+  recipientEmail: "member@example.test",
+  recipientName: "Alex Parker",
+  subject: "Your booking has been rescheduled",
+  emailType: "bookingRescheduled",
+  status: "suppressed",
+  sentAt: null,
+  scheduledFor: "2026-11-16T10:00:00Z",
+  canRetry: true,
+  manualRetryCount: 2,
+  reasonCode: "not_sent",
+  retryBlockedReason: null,
+};
+
+function renderResendHistory({
+  log = retryableLog,
+  locale = "en",
+  permissions = ["communications.send"],
+} = {}) {
+  resendState.access = { permissions };
+  const data = { logs: [log], totalCount: 1 };
+  vi.mocked(useGetCommunicationEmailLogsQuery).mockReturnValue({
+    data,
+    currentData: data,
+    isLoading: false,
+    isFetching: false,
+    isError: false,
+    refetch: vi.fn(),
+  });
+  return render(historyElement(locale));
+}
+
+async function openResendDialog(user, { mobile = false, locale = "en" } = {}) {
+  const copy = catalogs[locale].EmailAutomations.history.resend;
+  const view = within(screen.getByRole(mobile ? "article" : "table"));
+  await user.click(
+    view.getByRole("button", { name: new RegExp(copy.actionMenu) }),
+  );
+  await user.click(await screen.findByRole("menuitem", { name: copy.action }));
+  return within(await screen.findByRole("dialog", { name: copy.title }));
+}
+
+describe("manual retry from email history", () => {
+  beforeEach(() => {
+    navigation.params = new URLSearchParams();
+  });
+
+  it.each(["en", "cs", "nl"])(
+    "shows the localized unsent reason in both %s layouts",
+    (locale) => {
+      renderResendHistory({ locale });
+      const copy = catalogs[locale].EmailAutomations.history;
+      for (const role of ["table", "article"]) {
+        const view = within(screen.getByRole(role));
+        expect(view.getByText(copy.statuses.suppressed)).toBeInTheDocument();
+        expect(
+          view.getByText(copy.reasons.not_sent, { exact: false }),
+        ).toBeInTheDocument();
+        expect(
+          view.getByRole("button", {
+            name: new RegExp(copy.resend.actionMenu),
+          }),
+        ).toBeEnabled();
+      }
+    },
+  );
+
+  it.each([
+    ["failed", "delivery_failed", "consent_revoked", "consent_revoked"],
+    [
+      "canceled",
+      "source_changed",
+      "recipient_ineligible",
+      "recipient_ineligible",
+    ],
+    ["suppressed", "hard_bounce", "recipient_suppressed", "hard_bounce"],
+    ["suppressed", "spam_complaint", "recipient_suppressed", "spam_complaint"],
+    ["delivered", null, "already_sent", null],
+  ])(
+    "shows the current retry block for %s without obscuring specific suppression",
+    (status, reasonCode, retryBlockedReason, expectedReason) => {
+      renderResendHistory({
+        log: {
+          ...retryableLog,
+          canRetry: false,
+          status,
+          reasonCode,
+          retryBlockedReason,
+        },
+      });
+      const copy = en.EmailAutomations.history;
+      for (const role of ["table", "article"]) {
+        const view = within(screen.getByRole(role));
+        if (expectedReason) {
+          expect(
+            view.getByText(copy.reasons[expectedReason], { exact: false }),
+          ).toBeInTheDocument();
+        } else {
+          expect(
+            view.queryByText(copy.reasons.already_sent, { exact: false }),
+          ).not.toBeInTheDocument();
+        }
+        if (reasonCode && reasonCode !== expectedReason) {
+          expect(
+            view.queryByText(copy.reasons[reasonCode], { exact: false }),
+          ).not.toBeInTheDocument();
+        }
+      }
+    },
+  );
+
+  it.each([
+    ["missing eligibility", { canRetry: undefined }],
+    [
+      "already delivered",
+      { canRetry: false, status: "delivered", reasonCode: null },
+    ],
+    ["in flight", { canRetry: false, status: "queued", reasonCode: null }],
+    [
+      "unclear outcome",
+      {
+        canRetry: false,
+        status: "ambiguous",
+        reasonCode: "delivery_outcome_unknown",
+      },
+    ],
+    ["blocked recipient", { canRetry: false, reasonCode: "hard_bounce" }],
+    ["expired content", { canRetry: false, reasonCode: "content_unavailable" }],
+  ])("does not offer resend for %s", (_label, overrides) => {
+    renderResendHistory({ log: { ...retryableLog, ...overrides } });
+    expect(
+      screen.queryByRole("button", {
+        name: new RegExp(en.EmailAutomations.history.resend.actionMenu),
+      }),
+    ).not.toBeInTheDocument();
+    expect(resendState.retry).not.toHaveBeenCalled();
+  });
+
+  it("keeps view-only members from sending, even when the log is eligible", () => {
+    renderResendHistory({ permissions: ["communications.view"] });
+    expect(
+      screen.queryByRole("button", {
+        name: new RegExp(en.EmailAutomations.history.resend.actionMenu),
+      }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("allows communications managers to open the confirmation", async () => {
+    const user = userEvent.setup();
+    renderResendHistory({ permissions: ["communications.manage"] });
+    const dialog = await openResendDialog(user);
+    expect(dialog.getByText(retryableLog.recipientEmail)).toBeVisible();
+    expect(dialog.getByText(retryableLog.subject)).toBeVisible();
+    expect(resendState.retry).not.toHaveBeenCalled();
+  });
+
+  it.each([false, true])(
+    "cancels without sending from the mobile=%s action menu",
+    async (mobile) => {
+      const user = userEvent.setup();
+      renderResendHistory();
+      const dialog = await openResendDialog(user, { mobile });
+      const cancel = dialog
+        .getAllByRole("button", {
+          name: en.EmailAutomations.history.resend.cancel,
+        })
+        .at(-1);
+      await user.click(cancel);
+      await waitFor(() =>
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+      );
+      expect(resendState.retry).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each([true, false])(
+    "confirms the reviewed log and reports queued=%s accurately",
+    async (queued) => {
+      const user = userEvent.setup();
+      resendState.retry.mockReturnValue({
+        unwrap: () =>
+          Promise.resolve({
+            log: { ...retryableLog, canRetry: false },
+            queued,
+          }),
+      });
+      renderResendHistory();
+      const dialog = await openResendDialog(user);
+      await user.click(
+        dialog.getByRole("button", {
+          name: en.EmailAutomations.history.resend.confirm,
+        }),
+      );
+      expect(resendState.retry).toHaveBeenCalledExactlyOnceWith({
+        id: "retry-log",
+        expectedManualRetryCount: 2,
+      });
+      await waitFor(() =>
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+      );
+      expect(screen.getByRole("status")).toHaveTextContent(
+        en.EmailAutomations.history.resend[queued ? "queued" : "scheduled"],
+      );
+    },
+  );
+
+  it("uses one submission lock and retains the reviewed snapshot while polling", async () => {
+    const user = userEvent.setup();
+    let resolveRetry;
+    resendState.retry.mockReturnValue({
+      unwrap: () =>
+        new Promise((resolve) => {
+          resolveRetry = resolve;
+        }),
+    });
+    const rendered = renderResendHistory();
+    const dialog = await openResendDialog(user);
+    const updatedData = {
+      logs: [
+        { ...retryableLog, manualRetryCount: 3, subject: "Updated subject" },
+      ],
+      totalCount: 1,
+    };
+    vi.mocked(useGetCommunicationEmailLogsQuery).mockReturnValue({
+      data: updatedData,
+      currentData: updatedData,
+    });
+    rendered.rerender(historyElement());
+    expect(dialog.getByText(retryableLog.subject)).toBeInTheDocument();
+    const confirm = dialog.getByRole("button", {
+      name: en.EmailAutomations.history.resend.confirm,
+    });
+    fireEvent.click(confirm);
+    fireEvent.click(confirm);
+    expect(resendState.retry).toHaveBeenCalledExactlyOnceWith({
+      id: "retry-log",
+      expectedManualRetryCount: 2,
+    });
+    expect(
+      dialog.getByRole("button", {
+        name: en.EmailAutomations.history.resend.submitting,
+      }),
+    ).toBeDisabled();
+    expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    await act(async () =>
+      resolveRetry({ log: updatedData.logs[0], queued: true }),
+    );
+  });
+
+  it.each([
+    ["COMMUNICATION_EMAIL_RETRY_STALE", undefined, "stale"],
+    ["COMMUNICATION_EMAIL_RETRY_BLOCKED", "recipient_suppressed", "blocked"],
+    ["COMMUNICATION_EMAIL_RETRY_BLOCKED", "unknown_internal_reason", "blocked"],
+  ])(
+    "refreshes the review after %s without showing internal errors",
+    async (code, reason, key) => {
+      const user = userEvent.setup();
+      resendState.retry.mockReturnValue({
+        unwrap: () =>
+          Promise.reject({
+            data: {
+              code,
+              details: { reason },
+              message: "INTERNAL provider secret",
+            },
+          }),
+      });
+      renderResendHistory();
+      const dialog = await openResendDialog(user);
+      await user.click(
+        dialog.getByRole("button", {
+          name: en.EmailAutomations.history.resend.confirm,
+        }),
+      );
+      const alert = await dialog.findByRole("alert");
+      expect(alert).toHaveTextContent(en.EmailAutomations.history.resend[key]);
+      if (reason === "recipient_suppressed")
+        expect(alert).toHaveTextContent(
+          en.EmailAutomations.history.reasons.recipient_suppressed,
+        );
+      expect(
+        screen.queryByText(/INTERNAL provider secret|unknown_internal_reason/),
+      ).not.toBeInTheDocument();
+      expect(
+        dialog.getByRole("button", {
+          name: en.EmailAutomations.history.resend.confirm,
+        }),
+      ).toBeDisabled();
+    },
+  );
+
+  it("keeps generic request failures localized and allows another confirmed attempt", async () => {
+    const user = userEvent.setup();
+    resendState.retry.mockReturnValue({
+      unwrap: () =>
+        Promise.reject({
+          status: 500,
+          data: { message: "Internal mail service failure" },
+        }),
+    });
+    renderResendHistory();
+    const dialog = await openResendDialog(user);
+    await user.click(
+      dialog.getByRole("button", {
+        name: en.EmailAutomations.history.resend.confirm,
+      }),
+    );
+    expect(await dialog.findByRole("alert")).toHaveTextContent(
+      en.EmailAutomations.history.resend.error,
+    );
+    expect(
+      screen.queryByText("Internal mail service failure"),
+    ).not.toBeInTheDocument();
+    expect(
+      dialog.getByRole("button", {
+        name: en.EmailAutomations.history.resend.confirm,
+      }),
+    ).toBeEnabled();
+  });
+
+  it("preserves the current filter, search and page after requesting a resend", async () => {
+    const user = userEvent.setup();
+    resendState.access = { permissions: ["communications.send"] };
+    const logs = historyLogs.map((log) => ({
+      ...log,
+      canRetry: true,
+      status: "failed",
+      sentAt: null,
+      manualRetryCount: 0,
+    }));
+    vi.mocked(useGetCommunicationEmailLogsQuery).mockImplementation((query) => {
+      const data = pageResponse(query, logs);
+      return { data, currentData: data, refetch: vi.fn() };
+    });
+    resendState.retry.mockReturnValue({
+      unwrap: () => Promise.resolve({ queued: true }),
+    });
+    render(historyElement());
+    fireEvent.change(screen.getByRole("combobox"), {
+      target: { value: "failed" },
+    });
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "member-" },
+    });
+    fireEvent.click(nextButtons()[0]);
+    const firstRow = within(desktopRows()[0]);
+    await user.click(
+      firstRow.getByRole("button", {
+        name: new RegExp(en.EmailAutomations.history.resend.actionMenu),
+      }),
+    );
+    await user.click(
+      await screen.findByRole("menuitem", {
+        name: en.EmailAutomations.history.resend.action,
+      }),
+    );
+    const dialog = within(await screen.findByRole("dialog"));
+    await user.click(
+      dialog.getByRole("button", {
+        name: en.EmailAutomations.history.resend.confirm,
+      }),
+    );
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+    expect(useGetCommunicationEmailLogsQuery).toHaveBeenLastCalledWith(
+      { status: "failed", search: "member-", page: 2, limit: 20 },
+      expect.any(Object),
+    );
+    expect(screen.getByRole("combobox")).toHaveValue("failed");
+    expect(screen.getByRole("textbox")).toHaveValue("member-");
   });
 });

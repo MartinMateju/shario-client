@@ -107,7 +107,7 @@ export default function TeamInvitationsPanel({
         </p>
       )}
       {(query.isError || error) && (
-        <p role="alert" className="p-5 text-sm text-terracotta-700">
+        <p role="alert" className="p-5 text-sm text-danger">
           {error || t("errors.load")}
         </p>
       )}
@@ -166,7 +166,7 @@ export default function TeamInvitationsPanel({
                     type="button"
                     disabled={busy}
                     onClick={() => act(invitation, "resend")}
-                    className="min-h-11 rounded-full border border-line px-4 text-xs font-semibold disabled:opacity-50"
+                    className="min-h-11 rounded-full border border-cobalt-200 bg-cobalt-50 px-4 text-[13px] font-semibold text-cobalt-700 hover:bg-cobalt-100 disabled:opacity-50"
                   >
                     {t("invitations.resend")}
                   </button>
@@ -174,7 +174,7 @@ export default function TeamInvitationsPanel({
                     type="button"
                     disabled={busy}
                     onClick={() => act(invitation, "revoke")}
-                    className="min-h-11 rounded-full border border-line px-4 text-xs font-semibold text-terracotta-700 disabled:opacity-50"
+                    className="min-h-11 rounded-full border border-line px-4 text-xs font-semibold text-danger disabled:opacity-50"
                   >
                     {t("invitations.revoke")}
                   </button>

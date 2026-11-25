@@ -172,15 +172,12 @@ const mobileGuideCases = [
   },
   {
     id: "customer_communications",
-    path: "/en/app/communications?section=setup&guide=customer_communications",
+    path: "/en/app/settings/communications?guide=customer_communications",
     steps: [
-      ["templates", ["#email-workspace-sections-tab-templates"]],
-      ["reminders", ["#email-workspace-sections-tab-automations"]],
-      [
-        "test_email",
-        ["[data-email-setup-view]", "#email-workspace-sections-tab-setup"],
-      ],
-      ["delivery_history", ["#email-workspace-sections-tab-history"]],
+      ["templates", ['[data-email-related-section="templates"]']],
+      ["reminders", ['[data-email-related-section="automations"]']],
+      ["test_email", ["[data-email-setup-view]"]],
+      ["delivery_history", ['[data-email-related-section="history"]']],
     ],
   },
   {
@@ -565,6 +562,71 @@ test("outcome guides hand off to safe Launch Center flows", async ({
     ).toBeVisible();
   }
 
+  await expect.poll(() => [...fixture.unexpectedRequests]).toEqual([]);
+});
+
+test("website guide recovers its target after a late layout shift", async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile-320");
+  await page.clock.setFixedTime(new Date(VISUAL_FIXED_TIME));
+  const fixture = await installAdminApiMocks(page);
+  await page.goto(
+    `${VISUAL_TENANT_ORIGIN}/en/app/settings/public-site?guide=website_builder`,
+    { waitUntil: "domcontentloaded" },
+  );
+
+  const dialog = page.locator('[data-contextual-guide="website_builder"]');
+  const panel = dialog.locator("[data-contextual-guide-panel]");
+  await expect(dialog).toHaveAttribute(
+    "data-contextual-guide-step",
+    "editor_sections",
+  );
+  await expectSpotlightToMatchTarget(page, ["#public-site-editor-pane"]);
+  await page.evaluate(() => {
+    const target = document.querySelector("#public-site-editor-pane");
+    for (
+      let parent = target.parentElement;
+      parent;
+      parent = parent.parentElement
+    ) {
+      parent.style.overflowAnchor = "none";
+    }
+  });
+  // Reproduce late route/content hydration after the former 500ms reveal
+  // window. This deadline controls the injected shift, not app readiness.
+  const shiftAfter = await page.evaluate(() => performance.now() + 1000);
+  await page.waitForFunction(
+    (deadline) => performance.now() >= deadline,
+    shiftAfter,
+  );
+  const shift = await page.evaluate(() => {
+    const target = document.querySelector("#public-site-editor-pane");
+    const before = target.getBoundingClientRect().top;
+    // The editor is taller than the viewport and may start far above it after
+    // centered reveal. Shift by its actual position, not a fixed spacer height.
+    const margin = Number.parseFloat(getComputedStyle(target).marginTop) || 0;
+    target.style.marginTop = `${margin + window.innerHeight * 2 - before}px`;
+    return { before, top: target.getBoundingClientRect().top };
+  });
+  expect(shift.top, JSON.stringify(shift)).toBeGreaterThan(
+    page.viewportSize().height,
+  );
+
+  await expectSpotlightToMatchTarget(page, ["#public-site-editor-pane"]);
+  await expectMobilePanelToFit(page, panel);
+  await expect(dialog).toHaveAttribute(
+    "data-contextual-guide-step",
+    "editor_sections",
+  );
+  await panel.getByRole("button", { name: "Next" }).click();
+  await expect(dialog).toHaveAttribute(
+    "data-contextual-guide-step",
+    "live_preview",
+  );
+  await expectSpotlightToMatchTarget(page, [
+    '[data-contextual-guide-target="website-preview-toggle"]',
+  ]);
   await expect.poll(() => [...fixture.unexpectedRequests]).toEqual([]);
 });
 

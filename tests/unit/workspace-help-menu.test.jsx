@@ -136,7 +136,7 @@ describe("WorkspaceHelpMenu", () => {
     const trigger = screen.getByRole("button", { name: "Help" });
     expect(trigger).toHaveAttribute("aria-haspopup", "dialog");
     expect(trigger).toHaveAttribute("aria-expanded", "false");
-    expect(trigger).toHaveClass("bg-coral-100");
+    expect(trigger).toHaveClass("bg-white");
     expect(trigger).not.toHaveClass("bg-surface-warm");
 
     fireEvent.click(trigger);

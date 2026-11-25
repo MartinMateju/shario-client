@@ -193,12 +193,13 @@ function RoleEditor({ role, catalog, open, onClose }) {
       <div className="fixed inset-0 overflow-y-auto p-0 sm:p-6">
         <div className="flex min-h-full items-stretch justify-center sm:items-center">
           <DialogPanel
+            data-skab-workspace-surface="true"
             data-dialog-layout="form"
             className="h-dvh max-h-dvh w-full max-w-3xl overflow-hidden rounded-none border-0 bg-surface-raised pt-[env(safe-area-inset-top)] shadow-floating sm:h-auto sm:max-h-[calc(100dvh-3rem)] sm:rounded-[24px] sm:border"
           >
             <div className="flex items-start justify-between border-b border-line bg-white px-5 py-5 sm:px-7">
               <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
                   {t("editor.eyebrow")}
                 </p>
                 <DialogTitle className="mt-2 text-[24px] font-semibold tracking-[-0.04em] text-[#111111]">
@@ -208,7 +209,7 @@ function RoleEditor({ role, catalog, open, onClose }) {
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-full p-2 text-[#777773] hover:bg-[#F4F2ED]"
+                className="rounded-full p-2 text-ink-muted hover:bg-[#F4F2ED]"
                 aria-label={t("editor.close")}
               >
                 <XMarkIcon className="h-5 w-5" />
@@ -229,7 +230,7 @@ function RoleEditor({ role, catalog, open, onClose }) {
                     maxLength={80}
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                    className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[12px] outline-none focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                    className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[16px] outline-none sm:text-[14px] focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                   />
                 </label>
                 <label className="block">
@@ -240,7 +241,7 @@ function RoleEditor({ role, catalog, open, onClose }) {
                     maxLength={240}
                     value={description}
                     onChange={(event) => setDescription(event.target.value)}
-                    className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[12px] outline-none focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                    className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[16px] outline-none sm:text-[14px] focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                   />
                 </label>
               </div>
@@ -251,11 +252,11 @@ function RoleEditor({ role, catalog, open, onClose }) {
                     <h3 className="text-[13px] font-semibold text-[#292925]">
                       {t("editor.permissionsTitle")}
                     </h3>
-                    <p className="mt-1 text-[11px] leading-4 text-[#777773]">
+                    <p className="mt-1 text-[13px] leading-4 text-ink-muted">
                       {t("editor.permissionsDescription")}
                     </p>
                   </div>
-                  <span className="shrink-0 whitespace-nowrap rounded-full bg-cobalt-100 px-3 py-1 text-[10px] font-semibold text-cobalt-700">
+                  <span className="shrink-0 whitespace-nowrap rounded-full bg-cobalt-100 px-3 py-1 text-[12px] font-semibold text-cobalt-700">
                     {t("editor.selected", {
                       count: [...selected].filter(isPermissionVisible).length,
                     })}
@@ -268,7 +269,7 @@ function RoleEditor({ role, catalog, open, onClose }) {
                       className="overflow-hidden rounded-[16px] border border-line bg-white"
                     >
                       <div className="border-b border-line bg-surface-muted px-4 py-3">
-                        <h4 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5F5F5A]">
+                        <h4 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#5F5F5A]">
                           {t.has(`groups.${group}`)
                             ? t(`groups.${group}`)
                             : humanize(group)}
@@ -309,7 +310,7 @@ function RoleEditor({ role, catalog, open, onClose }) {
                                     : permission.label ||
                                       humanize(permission.key)}
                                 </strong>
-                                <span className="mt-0.5 block break-words text-[10px] leading-4 text-[#858580]">
+                                <span className="mt-0.5 block break-words text-[12px] leading-4 text-ink-muted">
                                   {permission.description || permission.key}
                                 </span>
                               </span>
@@ -324,14 +325,14 @@ function RoleEditor({ role, catalog, open, onClose }) {
 
               <div className="flex gap-3 rounded-[14px] border border-sand-200 bg-sand-50 px-4 py-3">
                 <LockClosedIcon className="mt-0.5 h-4 w-4 shrink-0 text-sand-700" />
-                <p className="text-[11px] leading-5 text-sand-800">
+                <p className="text-[13px] leading-5 text-sand-800">
                   {t("editor.nonDelegableNotice")}
                 </p>
               </div>
               {error && (
                 <p
                   role="alert"
-                  className="rounded-[13px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+                  className="rounded-[13px] border border-danger/40 bg-white px-4 py-3 text-xs text-danger"
                 >
                   {error}
                 </p>
@@ -404,7 +405,7 @@ export default function RolesSettingsPage({ showPageHeader = true }) {
     return (
       <div className="flex min-h-[320px] items-center justify-center">
         <ArrowPathIcon className="h-6 w-6 animate-spin text-cobalt-500" />
-        <span className="ml-3 text-[12px] text-[#777773]">{t("loading")}</span>
+        <span className="ml-3 text-[12px] text-ink-muted">{t("loading")}</span>
       </div>
     );
   }
@@ -445,7 +446,7 @@ export default function RolesSettingsPage({ showPageHeader = true }) {
       {notice && (
         <p
           role="alert"
-          className="rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className="rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-xs text-danger"
         >
           {notice}
         </p>
@@ -453,7 +454,7 @@ export default function RolesSettingsPage({ showPageHeader = true }) {
       {(rolesQuery.isError || catalogQuery.isError) && (
         <p
           role="alert"
-          className="rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className="rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-xs text-danger"
         >
           {t("errors.load")}
         </p>
@@ -491,11 +492,11 @@ export default function RolesSettingsPage({ showPageHeader = true }) {
                     <h2 className="text-[14px] font-semibold text-ink">
                       {role.name || role.roleName || t(`roles.${roleKey}`)}
                     </h2>
-                    <span className="rounded-full bg-surface-muted px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                    <span className="rounded-full bg-surface-muted px-2 py-1 text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-muted">
                       {builtIn ? t("builtIn") : t("custom")}
                     </span>
                   </div>
-                  <p className="mt-1 min-h-8 text-[11px] leading-4 text-ink-muted">
+                  <p className="mt-1 min-h-8 text-[13px] leading-4 text-ink-muted">
                     {role.description || t(`roleDescriptions.${roleKey}`)}
                   </p>
                 </div>
@@ -504,24 +505,24 @@ export default function RolesSettingsPage({ showPageHeader = true }) {
                 {permissions.slice(0, 6).map((permission) => (
                   <span
                     key={permission}
-                    className="rounded-full border border-line bg-surface-muted px-2 py-1 text-[10px] text-[#686762]"
+                    className="rounded-full border border-line bg-surface-muted px-2 py-1 text-[12px] text-[#686762]"
                   >
                     {humanize(permission)}
                   </span>
                 ))}
                 {permissions.length > 6 && (
-                  <span className="rounded-full bg-cobalt-100 px-2 py-1 text-[10px] font-semibold text-cobalt-700">
+                  <span className="rounded-full bg-cobalt-100 px-2 py-1 text-[12px] font-semibold text-cobalt-700">
                     +{permissions.length - 6}
                   </span>
                 )}
                 {permissions.length === 0 && (
-                  <span className="text-[10px] text-[#9A9993]">
+                  <span className="text-[12px] text-ink-muted">
                     {t("noPermissions")}
                   </span>
                 )}
               </div>
               <div className="mt-5 flex items-center justify-between border-t border-line pt-4">
-                <span className="text-[10px] text-[#858580]">
+                <span className="text-[12px] text-ink-muted">
                   {t("membersUsing", {
                     count: role.memberCount || role.membershipsCount || 0,
                   })}
@@ -540,7 +541,7 @@ export default function RolesSettingsPage({ showPageHeader = true }) {
                       type="button"
                       disabled={isDeleting}
                       onClick={() => remove(role)}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-[#A34E38] hover:bg-coral-50 disabled:opacity-40"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-danger hover:bg-danger-soft disabled:opacity-40"
                       aria-label={t("actions.delete")}
                     >
                       <TrashIcon className="h-4 w-4" />

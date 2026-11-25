@@ -173,6 +173,11 @@ const cartSlice = createSlice({
     closeCart: (state) => {
       state.isOpen = false;
     },
+    resetBookingCheckoutAttempt: (state) => {
+      // The server has cancelled the old card order. Its completed request key
+      // would otherwise replay the cancelled Stripe session for the same cart.
+      state.bookingCheckoutAttempt = (state.bookingCheckoutAttempt || 0) + 1;
+    },
   },
 });
 export const {
@@ -185,6 +190,7 @@ export const {
   removeBookingItems,
   openCart,
   closeCart,
+  resetBookingCheckoutAttempt,
 } = cartSlice.actions;
 export default cartSlice.reducer;
 export const selectCurrentCart = (state) => state.cart.cart;

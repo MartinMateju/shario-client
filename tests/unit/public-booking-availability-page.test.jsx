@@ -212,6 +212,7 @@ vi.mock("@/components/public-tenant/PublicCapabilityGate", () => ({
 }));
 
 vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
+  useOptionalPublicTenant: () => ({ tenant: mocks.tenant }),
   usePublicTenant: () => ({ tenant: mocks.tenant }),
 }));
 
@@ -246,6 +247,21 @@ describe("public booking availability page", () => {
   });
   afterEach(() => {
     vi.useRealTimers();
+  });
+
+  it("keeps the full-width booking header text-only even when the studio has page photos", () => {
+    mocks.tenant.publicSite.branding.coverImageUrl = "https://cdn.example.test/cover.webp";
+    mocks.tenant.publicSite.customerPortal = {
+      pageImages: { courses: "https://cdn.example.test/courses.webp", book: "https://cdn.example.test/book.webp" },
+    };
+    const { container } = render(<PublicBookingAvailabilityPage />);
+    const page = container.querySelector("[data-public-booking-availability]");
+    const hero = page.querySelector('[data-customer-portal-hero="book"]');
+    expect(hero.parentElement).toBe(page);
+    expect(hero).toHaveAttribute("data-customer-portal-hero-layout", "text");
+    expect(hero.querySelector("img")).toBeNull();
+    expect(page).toHaveClass("!overflow-visible");
+    expect(hero.querySelector('[data-public-site-edit-path="pages.book.title.en"]')).not.toBeNull();
   });
 
   it("fetches next-day occupancy for an overnight final-week-day booking without extending the displayed week", () => {

@@ -50,7 +50,7 @@ function StaffRowActions({
   return (
     <Menu as="div" className="relative flex justify-end">
       <MenuButton
-        className="flex h-8 w-8 items-center justify-center rounded-full text-[#777771] transition hover:bg-[#F0EFEC] hover:text-[#11110F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/25"
+        className="flex h-8 w-8 items-center justify-center rounded-full text-ink-soft transition hover:bg-[#F0EFEC] hover:text-[#11110F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
         aria-label={t("actions.openStaffActions", {
           name: getFullName(member),
         })}
@@ -62,14 +62,14 @@ function StaffRowActions({
         transition
         anchor="bottom end"
         portal
-        className="z-[140] mt-1.5 w-48 origin-top-right rounded-[14px] border border-[#E7E4DE] bg-white p-1.5 shadow-[0_18px_50px_rgba(17,17,15,0.15)] outline-none transition duration-150 data-[closed]:scale-95 data-[closed]:opacity-0"
+        className="z-[140] mt-1.5 w-48 origin-top-right rounded-[14px] border border-line bg-white p-1.5 shadow-[0_18px_50px_rgba(17,17,15,0.15)] outline-none transition duration-150 data-[closed]:scale-95 data-[closed]:opacity-0"
       >
         {(onOpenStaff || profileHref) && (
           <MenuItem>
             {profileHref && !onOpenStaff ? (
               <Link
                 href={profileHref}
-                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-ink-soft transition data-[focus]:bg-sand-50"
+                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[13px] font-semibold text-ink transition data-[focus]:bg-sand-50"
               >
                 <EyeIcon className="h-4 w-4" aria-hidden="true" />
                 {t("actions.viewProfile")}
@@ -78,7 +78,7 @@ function StaffRowActions({
               <button
                 type="button"
                 onClick={() => onOpenStaff?.(member)}
-                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-ink-soft transition data-[focus]:bg-sand-50"
+                className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[13px] font-semibold text-ink transition data-[focus]:bg-sand-50"
               >
                 <EyeIcon className="h-4 w-4" aria-hidden="true" />
                 {t("actions.viewProfile")}
@@ -93,7 +93,7 @@ function StaffRowActions({
               type="button"
               onClick={() => onDelete(member)}
               disabled={isDeleting}
-              className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[12px] font-medium text-terracotta-600 transition data-[focus]:bg-coral-50 disabled:cursor-not-allowed disabled:opacity-45"
+              className="flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[13px] font-medium text-terracotta-600 transition data-[focus]:bg-coral-50 disabled:cursor-not-allowed disabled:opacity-45"
             >
               <TrashIcon className="h-4 w-4" aria-hidden="true" />
               {t("actions.removeStaff")}
@@ -109,7 +109,7 @@ function StatusPill({ status, t }) {
   return (
     <span
       className={cx(
-        "inline-flex min-h-6 items-center rounded-[7px] px-2 py-1 text-[10px] font-medium leading-none",
+        "inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 text-[12px] font-semibold leading-4",
         getStatusTone(status),
       )}
     >
@@ -144,19 +144,19 @@ function MobileStaffCard({
   const status = getStaffStatus(member);
 
   return (
-    <article className="rounded-[18px] border border-[#E7E4DE] bg-white p-4">
+    <article className="rounded-[18px] border border-line bg-white p-4">
       <div className="flex items-start gap-3">
         <PersonAvatar person={member} />
         <div className="min-w-0 flex-1">
           <WorkspaceTruncatedText
             as="p"
-            className="text-[13px] font-semibold text-ink"
+            className="text-[14px] font-semibold text-ink"
           >
             {getFullName(member)}
           </WorkspaceTruncatedText>
           <WorkspaceTruncatedText
             as="p"
-            className="mt-0.5 text-[12px] text-ink-muted"
+            className="mt-0.5 text-[13px] text-ink-muted"
           >
             {member?.email || "—"}
           </WorkspaceTruncatedText>
@@ -172,45 +172,45 @@ function MobileStaffCard({
         />
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-3 rounded-[14px] bg-[#F8F6F2] p-3.5">
+      <dl className="mt-4 grid grid-cols-2 gap-3 rounded-[14px] bg-surface-muted p-3.5">
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.role")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
             {translateValue(t, `roles.${role}`, humanizeValue(role))}
           </dd>
         </div>
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.access")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
             {translateValue(t, `access.${access}`, humanizeValue(access))}
           </dd>
         </div>
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.location")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
             {getStaffLocation(member) === "all"
               ? t("locations.all")
               : getStaffLocation(member)}
           </dd>
         </div>
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.11em] text-ink-muted">
+          <dt className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
             {t("columns.lastActive")}
           </dt>
-          <dd className="mt-1 text-[12px] font-medium text-ink-soft">
+          <dd className="mt-1 text-[13px] font-semibold tabular-nums text-ink">
             {formatRelativeDate(getStaffLastActive(member), locale, t)}
           </dd>
         </div>
       </dl>
 
       <div className="mt-3 flex items-center justify-between gap-3">
-        <p className="truncate text-[12px] text-ink-muted">
+        <p className="truncate text-[13px] text-ink-muted">
           {member?.phone || member?.phoneNumber || "—"}
         </p>
         <StatusPill status={status} t={t} />
@@ -286,50 +286,50 @@ export default function StaffDataTable({
                   key={getId(member)}
                   className="bg-white transition-colors hover:bg-surface-muted"
                 >
-                  <td className="border-b border-[#EDEAE4] px-5 py-3">
+                  <td className="border-b border-line px-5 py-3">
                     <div className="flex items-center gap-3">
                       <PersonAvatar person={member} />
                       <div className="min-w-0">
                         <WorkspaceTruncatedText
                           as="p"
-                          className="max-w-[180px] text-[12px] font-semibold text-ink"
+                          className="max-w-[180px] text-[14px] font-semibold text-ink"
                         >
                           {getFullName(member)}
                         </WorkspaceTruncatedText>
                         <WorkspaceTruncatedText
                           as="p"
-                          className="mt-0.5 max-w-[180px] text-[12px] text-ink-muted"
+                          className="mt-0.5 max-w-[180px] text-[13px] text-ink-muted"
                         >
                           {member?.email || "—"}
                         </WorkspaceTruncatedText>
                       </div>
                     </div>
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-5 py-3 text-[12px] text-ink-soft">
+                  <td className="border-b border-line px-5 py-3 text-[13px] text-ink-soft">
                     <p>{member?.phone || member?.phoneNumber || "—"}</p>
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-5 py-3">
-                    <span className="inline-flex min-h-6 items-center rounded-[7px] bg-coral-50 px-2 py-1 text-[10px] font-medium text-terracotta-600">
+                  <td className="border-b border-line px-5 py-3">
+                    <span className="inline-flex min-h-6 items-center rounded-[7px] bg-coral-50 px-2 py-1 text-[12px] font-semibold text-terracotta-600">
                       {translateValue(t, `roles.${role}`, humanizeValue(role))}
                     </span>
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-5 py-3 text-[12px] text-ink-soft">
+                  <td className="border-b border-line px-5 py-3 text-[13px] text-ink-soft">
                     {translateValue(
                       t,
                       `access.${access}`,
                       humanizeValue(access),
                     )}
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-5 py-3 text-[12px] text-ink-soft">
+                  <td className="border-b border-line px-5 py-3 text-[13px] text-ink-soft">
                     {location === "all" ? t("locations.all") : location}
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-5 py-3 text-[12px] text-ink-soft">
+                  <td className="border-b border-line px-5 py-3 text-[13px] text-ink-soft">
                     {formatRelativeDate(getStaffLastActive(member), locale, t)}
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-5 py-3">
+                  <td className="border-b border-line px-5 py-3">
                     <StatusPill status={status} t={t} />
                   </td>
-                  <td className="border-b border-[#EDEAE4] px-4 py-3">
+                  <td className="border-b border-line px-4 py-3">
                     <StaffRowActions
                       member={member}
                       canDelete={canDelete}

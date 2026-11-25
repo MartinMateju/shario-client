@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import AccessCodesPage from "@/components/views/access-codes/AccessCodesPage";
 
 const LOCATION_ID = "64b000000000000000000001";
+const SECOND_LOCATION_ID = "64b000000000000000000002";
 const mocks = vi.hoisted(() => ({
   retireCode: vi.fn(),
   tenant: { modules: { bookings: true } },
@@ -11,6 +12,21 @@ const mocks = vi.hoisted(() => ({
   poolsCalls: [],
   codesCalls: [],
   refetchPools: vi.fn(),
+  locations: [],
+  locationsLoading: false,
+  locationsError: false,
+  params: "",
+}));
+
+vi.mock("@/components/views/access-codes/DoorAccessEmailSettings", () => ({
+  default: ({ locationId, canView, canManage }) => (
+    <div
+      data-testid="door-email-settings"
+      data-location={locationId}
+      data-can-view={String(canView)}
+      data-can-manage={String(canManage)}
+    />
+  ),
 }));
 
 vi.mock("react-redux", () => ({
@@ -18,7 +34,7 @@ vi.mock("react-redux", () => ({
 }));
 
 vi.mock("next/navigation", () => ({
-  useSearchParams: () => new URLSearchParams(),
+  useSearchParams: () => new URLSearchParams(mocks.params),
 }));
 
 vi.mock("@/i18n/navigation", () => ({
@@ -114,11 +130,9 @@ vi.mock("@/lib/features/auth/authSlice", () => ({
 
 vi.mock("@/lib/features/locations/locationApiSlice", () => ({
   useGetLocationsQuery: () => ({
-    data: {
-      locations: [{ id: LOCATION_ID, name: "Main studio", isActive: true }],
-    },
-    isLoading: false,
-    isError: false,
+    data: mocks.locations ? { locations: mocks.locations } : undefined,
+    isLoading: mocks.locationsLoading,
+    isError: mocks.locationsError,
     refetch: vi.fn(),
   }),
 }));
@@ -196,6 +210,12 @@ describe("AccessCodesPage", () => {
   beforeEach(() => {
     mocks.tenant = { modules: { bookings: true } };
     mocks.access = { roleKey: "owner" };
+    mocks.locations = [
+      { id: LOCATION_ID, name: "Main studio", isActive: true },
+    ];
+    mocks.locationsLoading = false;
+    mocks.locationsError = false;
+    mocks.params = "";
     mocks.poolsError = undefined;
     mocks.poolsCalls.length = 0;
     mocks.codesCalls.length = 0;
@@ -204,6 +224,123 @@ describe("AccessCodesPage", () => {
     mocks.retireCode.mockReturnValue({
       unwrap: vi.fn().mockResolvedValue({}),
     });
+  });
+
+  it("offers the selected location's email settings to the owner", async () => {
+    render(<AccessCodesPage />);
+    const settings = await screen.findByTestId("door-email-settings");
+    expect(settings).toHaveAttribute("data-location", LOCATION_ID);
+    expect(settings).toHaveAttribute("data-can-view", "true");
+    expect(settings).toHaveAttribute("data-can-manage", "true");
+  });
+
+  it.each([
+    ["access_codes.view", "access_codes.manage"],
+    ["communications.view", "communications.manage"],
+  ])(
+    "hides email settings without both viewing permissions: %j",
+    async (...effectivePermissions) => {
+      mocks.access = { roleKey: "staff", effectivePermissions };
+      render(<AccessCodesPage />);
+      await screen.findByText("This code pool is running low");
+      expect(
+        screen.queryByTestId("door-email-settings"),
+      ).not.toBeInTheDocument();
+    },
+  );
+
+  it.each([
+    ["access_codes.view", "communications.view", "access_codes.manage"],
+    ["access_codes.view", "communications.view", "communications.manage"],
+  ])(
+    "keeps email settings read-only without both management permissions: %j",
+    async (...effectivePermissions) => {
+      mocks.access = { roleKey: "staff", effectivePermissions };
+      render(<AccessCodesPage />);
+      expect(await screen.findByTestId("door-email-settings")).toHaveAttribute(
+        "data-can-manage",
+        "false",
+      );
+    },
+  );
+
+  it("follows the permitted location selector", async () => {
+    mocks.locations.push({
+      id: SECOND_LOCATION_ID,
+      name: "Second studio",
+      isActive: true,
+    });
+    render(<AccessCodesPage />);
+    expect(await screen.findByTestId("door-email-settings")).toHaveAttribute(
+      "data-location",
+      LOCATION_ID,
+    );
+    fireEvent.change(
+      screen.getByRole("combobox", { name: "Studio location" }),
+      {
+        target: { value: SECOND_LOCATION_ID },
+      },
+    );
+    expect(screen.getByTestId("door-email-settings")).toHaveAttribute(
+      "data-location",
+      SECOND_LOCATION_ID,
+    );
+  });
+
+  it("preserves a deep-linked location while the permitted locations load", async () => {
+    mocks.params = `location=${SECOND_LOCATION_ID}`;
+    mocks.locations = undefined;
+    mocks.locationsLoading = true;
+    const view = render(<AccessCodesPage />);
+    expect(screen.queryByTestId("door-email-settings")).not.toBeInTheDocument();
+    mocks.locations = [
+      { id: LOCATION_ID, name: "Main studio", isActive: true },
+      { id: SECOND_LOCATION_ID, name: "Second studio", isActive: true },
+    ];
+    mocks.locationsLoading = false;
+    view.rerender(<AccessCodesPage />);
+    expect(await screen.findByTestId("door-email-settings")).toHaveAttribute(
+      "data-location",
+      SECOND_LOCATION_ID,
+    );
+    expect(
+      screen.getByRole("combobox", { name: "Studio location" }),
+    ).toHaveValue(SECOND_LOCATION_ID);
+  });
+
+  it("falls back from an unavailable deep-linked location only after locations load", async () => {
+    mocks.params = `location=${SECOND_LOCATION_ID}`;
+    mocks.locations = undefined;
+    mocks.locationsLoading = true;
+    const view = render(<AccessCodesPage />);
+    expect(screen.queryByTestId("door-email-settings")).not.toBeInTheDocument();
+    mocks.locations = [
+      { id: LOCATION_ID, name: "Main studio", isActive: true },
+    ];
+    mocks.locationsLoading = false;
+    view.rerender(<AccessCodesPage />);
+    expect(await screen.findByTestId("door-email-settings")).toHaveAttribute(
+      "data-location",
+      LOCATION_ID,
+    );
+  });
+
+  it("does not replace a deep-linked location on a failed location request", async () => {
+    mocks.params = `location=${SECOND_LOCATION_ID}`;
+    mocks.locations = undefined;
+    mocks.locationsError = true;
+    const view = render(<AccessCodesPage />);
+    expect(screen.queryByTestId("door-email-settings")).not.toBeInTheDocument();
+    mocks.locations = [
+      { id: LOCATION_ID, name: "Main studio", isActive: true },
+      { id: SECOND_LOCATION_ID, name: "Second studio", isActive: true },
+    ];
+    mocks.locationsError = false;
+    view.rerender(<AccessCodesPage />);
+    expect(await screen.findByTestId("door-email-settings")).toHaveAttribute(
+      "data-location",
+      SECOND_LOCATION_ID,
+    );
   });
 
   it("renders a low-stock inventory without exposing plaintext codes", async () => {

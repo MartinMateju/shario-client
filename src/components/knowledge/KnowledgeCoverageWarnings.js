@@ -68,7 +68,7 @@ export default function KnowledgeCoverageWarnings({
   if (coverageQuery.isError || !coverage) {
     return (
       <section
-        className="mt-5 rounded-[20px] border border-amber-200 bg-amber-50/70 p-5"
+        className="mt-5 rounded-[20px] border border-line bg-white p-5"
         role="alert"
       >
         <div className="flex items-start gap-3">
@@ -77,16 +77,16 @@ export default function KnowledgeCoverageWarnings({
             aria-hidden="true"
           />
           <div className="min-w-0 flex-1">
-            <h2 className="text-sm font-semibold text-amber-950">
+            <h2 className="text-sm font-semibold text-ink">
               {t("management.coverage.errorTitle")}
             </h2>
-            <p className="mt-1 text-xs leading-5 text-amber-800">
+            <p className="mt-1 text-[13px] leading-5 text-ink-muted">
               {t("management.coverage.errorDescription")}
             </p>
             <button
               type="button"
               onClick={coverageQuery.refetch}
-              className="mt-3 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-amber-800 ring-1 ring-inset ring-amber-200"
+              className="mt-3 min-h-10 rounded-full px-3.5 py-2 text-[13px] font-semibold text-cobalt-700 transition hover:bg-cobalt-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30"
             >
               {t("actions.retry")}
             </button>
@@ -109,11 +109,7 @@ export default function KnowledgeCoverageWarnings({
 
   return (
     <section
-      className={
-        ready
-          ? "mt-5 rounded-[22px] border border-emerald-200 bg-emerald-50/55 p-5 shadow-sm sm:p-6"
-          : "mt-5 rounded-[22px] border border-amber-200 bg-amber-50/60 p-5 shadow-sm sm:p-6"
-      }
+      className="mt-5 rounded-[22px] border border-line bg-white p-5 sm:p-6"
       aria-labelledby="knowledge-coverage-title"
       role="status"
       aria-live="polite"
@@ -123,8 +119,8 @@ export default function KnowledgeCoverageWarnings({
           <span
             className={
               ready
-                ? "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-emerald-700"
-                : "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-amber-700"
+                ? "inline-flex h-6 w-6 shrink-0 items-center justify-center text-success"
+                : "inline-flex h-6 w-6 shrink-0 items-center justify-center text-warning"
             }
           >
             {ready ? (
@@ -142,13 +138,13 @@ export default function KnowledgeCoverageWarnings({
                 ? t("management.coverage.readyTitle")
                 : t("management.coverage.title")}
             </h2>
-            <p className="mt-1 max-w-3xl text-xs leading-5 text-ink-muted">
+            <p className="mt-1 max-w-3xl text-[13px] leading-5 text-ink-muted">
               {ready
                 ? t("management.coverage.readyDescription")
                 : t("management.coverage.description")}
             </p>
             {checkedAt ? (
-              <p className="mt-1 text-[10px] uppercase tracking-[0.08em] text-ink-subtle">
+              <p className="mt-1 text-[13px] text-ink-muted">
                 {t("management.coverage.updated", { date: checkedAt })}
               </p>
             ) : null}
@@ -159,7 +155,7 @@ export default function KnowledgeCoverageWarnings({
         </div>
       </div>
 
-      <p className="mt-4 text-xs font-medium text-ink-soft">
+      <p className="mt-4 text-[13px] font-medium text-ink-soft">
         {t("management.coverage.summary", {
           answered: coverage.answeredCount,
           total: coverage.totalCount,
@@ -167,29 +163,29 @@ export default function KnowledgeCoverageWarnings({
       </p>
 
       {partialScan ? (
-        <p className="mt-3 rounded-[13px] border border-amber-200 bg-white/80 px-3 py-2 text-xs leading-5 text-amber-900">
+        <p className="mt-3 text-[13px] leading-5 text-warning">
           {t("management.coverage.partialScan")}
         </p>
       ) : null}
 
       {warnings.length ? (
-        <ul className="mt-4 grid gap-2 lg:grid-cols-2" role="list">
+        <ul
+          className="mt-4 divide-y divide-line border-t border-line"
+          role="list"
+        >
           {warnings.map((warning) => {
             const category = mapKnowledgeCoverageCategory(warning.category);
             return (
-              <li
-                key={warning.id}
-                className="rounded-[15px] border border-amber-200/80 bg-white/85 p-3.5"
-              >
+              <li key={warning.id} className="py-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.09em] text-amber-800">
+                  <span className="rounded-full bg-warning-soft px-2 py-0.5 text-[12px] font-semibold text-warning">
                     {t("management.coverage.missing")}
                   </span>
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.09em] text-ink-subtle">
+                  <span className="text-[12px] font-medium text-ink-muted">
                     {t(`categories.${category}`)}
                   </span>
                 </div>
-                <p className="mt-2 text-xs font-medium leading-5 text-ink">
+                <p className="mt-1.5 text-[13px] font-medium leading-5 text-ink">
                   {t(
                     `management.coverage.questions.${Object.hasOwn(KNOWLEDGE_COVERAGE_QUESTION_IDS, warning.id) ? warning.id : "unknown"}`,
                   )}

@@ -20,6 +20,7 @@ export default function CreditsPage() {
     <>
       <CustomerPortalPage contentClassName="max-w-[1320px]">
         <CustomerPortalPageHeader
+          pageKey="credits"
           eyebrow={copy.eyebrow}
           title={copy.title}
           description={copy.description}

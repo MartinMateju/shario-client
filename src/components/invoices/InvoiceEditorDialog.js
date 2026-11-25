@@ -790,7 +790,7 @@ export default function InvoiceEditorDialog({
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="min-h-11 rounded-[13px] bg-[#111111] px-5 text-[11px] font-semibold text-white disabled:opacity-50"
+                  className="min-h-11 rounded-[13px] bg-primary px-5 text-[13px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50"
                 >
                   {isSaving ? t("editor.saving") : t("editor.saveDraft")}
                 </button>

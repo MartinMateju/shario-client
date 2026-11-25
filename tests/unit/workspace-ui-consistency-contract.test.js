@@ -74,7 +74,7 @@ describe("workspace UI consistency contract", () => {
     const normalizedCss = css.replace(/\s+/g, " ");
 
     expect(normalizedCss).toContain(
-      '[data-workspace-ui="true"] { --color-ink-muted: #66635e; --color-ink-subtle: #73736e; }',
+      '[data-workspace-ui="true"] { --color-ink-muted: var(--studio-muted, #66635e); --color-ink-subtle: var(--studio-muted, #73736e); }',
     );
   });
 

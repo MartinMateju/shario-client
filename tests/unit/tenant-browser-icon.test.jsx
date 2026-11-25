@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
@@ -40,6 +40,9 @@ import TenantLayout, {
 } from "@/app/[locale]/tenants/[tenantSlug]/layout";
 import * as publicLayout from "@/app/[locale]/tenants/[tenantSlug]/(public-foundation)/layout";
 import * as authLayout from "@/app/[locale]/tenants/[tenantSlug]/(tenant-auth)/layout";
+
+import WorkspaceBrowserIcon from "@/components/auth/WorkspaceBrowserIcon";
+import { notifyPublicSitePublished } from "@/lib/publicTenant/publicationEvents";
 
 const paramsFor = (tenantSlug = "clay-house", locale = "cs") =>
   Promise.resolve({ tenantSlug, locale });
@@ -99,6 +102,58 @@ describe("shared tenant browser-icon metadata", () => {
       template: "%s | Clay House",
     });
     expect(metadata.alternates.canonical).toBe("/cs");
+  });
+
+  it.each([
+    "/cs/app/settings/public-site",
+    "/cs/app",
+    "/en/app/bookings",
+    "/app",
+    "/cs/public-site-preview",
+    "/public-site-preview",
+  ])(
+    "does not spend anonymous configuration budget on %s metadata",
+    async (pathname) => {
+      mocks.headers.mockResolvedValue(
+        new Headers({
+          host: "clay-house.shario.io",
+          "x-shario-public-pathname": pathname,
+        }),
+      );
+      const metadata = await generateMetadata({
+        params: paramsFor(
+          "clay-house",
+          pathname.startsWith("/en/") ? "en" : "cs",
+        ),
+      });
+      expect(mocks.getPublicTenantConfig).not.toHaveBeenCalled();
+      expect(metadata.title.default).toBe("Clay House");
+    },
+  );
+
+  it("keeps the workspace icon in sync with this tenant's published session branding", () => {
+    const icon = (href) =>
+      document.head.querySelector(`link[rel="icon"][href="${href}"]`);
+    const view = render(
+      <WorkspaceBrowserIcon
+        tenantSlug="clay-house"
+        initialFavicon="/initial.png"
+      />,
+    );
+    expect(icon("/initial.png")).toBeInTheDocument();
+    act(() => notifyPublicSitePublished("other-studio", "/other.png"));
+    expect(icon("/initial.png")).toBeInTheDocument();
+    act(() => notifyPublicSitePublished("clay-house", "/published.png"));
+    expect(icon("/published.png")).toBeInTheDocument();
+    const event = new StorageEvent("storage", {
+      key: "shario:public-site-published:clay-house",
+      newValue: JSON.stringify({ tenantSlug: "clay-house", faviconUrl: "" }),
+    });
+    act(() => window.dispatchEvent(event));
+    expect(icon("/favicon.svg")).toBeInTheDocument();
+    expect(icon("/published.png")).toBeNull();
+    expect(mocks.getPublicTenantConfig).not.toHaveBeenCalled();
+    view.unmount();
   });
 
   it("uses the latest published icon when metadata is refreshed", async () => {

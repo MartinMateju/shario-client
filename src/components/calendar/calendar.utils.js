@@ -594,7 +594,9 @@ const bookingGloballyBlocks = (booking, studio) => {
 
   const groupBookingsBlock =
     getStudioBookingSetting(studio, "groupBookingBlocksAll") === true;
-  const groupKinds = ["class", "course", "group", "group-booking", "workshop"];
+  // `workshop` is a legacy Open Studio tag, not a course. Its explicit public
+  // mode must share capacity even when actual group bookings block the studio.
+  const groupKinds = ["class", "course", "group", "group-booking"];
   return (
     groupBookingsBlock &&
     (groupKinds.includes(kind) || groupKinds.includes(tag))

@@ -26,6 +26,12 @@ describe("customer-facing tenant theme rollout", () => {
       "public-tenant",
       "PublicBookingAvailabilityPage.js",
     );
+    const catalogStyles = readSource(
+      "src",
+      "components",
+      "public-tenant",
+      "portalCatalog.module.css",
+    );
     const sources = [
       readSource("src", "components", "public-tenant", "PublicTenantFooter.js"),
       readSource(
@@ -68,8 +74,20 @@ describe("customer-facing tenant theme rollout", () => {
     expect(sources.join("\n")).toContain("--tenant-accent-on-surface");
     expect(sources.join("\n")).toContain("--tenant-muted-on-surface");
     expect(productCatalogSource).toContain("accentForeground");
+    const voucherHero = voucherCatalogSource.match(
+      /<CustomerPortalHero\b[\s\S]*?<\/CustomerPortalHero>/,
+    )?.[0];
+    expect(voucherHero).toContain('data-tenant-type="eyebrow"');
+    expect(voucherHero).toContain("text-[var(--tenant-label-color)]");
+    const headerIconStyles = catalogStyles.match(
+      /\.headerIcon\s*\{([^}]+)\}/,
+    )?.[1];
+    expect(headerIconStyles).toContain(
+      "color: var(--tenant-feature-foreground)",
+    );
+    expect(headerIconStyles).toContain("background: transparent");
     expect(voucherCatalogSource).toContain(
-      'color: "var(--tenant-accent-on-surface)"',
+      "text-[var(--tenant-accent-on-surface)]",
     );
     expect(voucherCatalogSource).toContain("bg-[color:var(--tenant-surface)]");
     expect(voucherCatalogSource).toContain("var(--tenant-portal-button)");

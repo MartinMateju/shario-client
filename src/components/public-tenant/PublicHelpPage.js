@@ -81,10 +81,8 @@ export default function PublicHelpPage({ previewData }) {
 
   return (
     <PublicCapabilityGate capability="help">
-      <main
+      <div
         ref={contentRef}
-        className="min-h-[70vh] px-4 py-12 sm:px-6 lg:px-8"
-        data-tenant-layout="section"
         style={{
           backgroundColor: theme.backgroundColor,
           color: theme.textForeground,
@@ -101,7 +99,7 @@ export default function PublicHelpPage({ previewData }) {
           title={title}
           description={description}
         />
-      </main>
+      </div>
     </PublicCapabilityGate>
   );
 }

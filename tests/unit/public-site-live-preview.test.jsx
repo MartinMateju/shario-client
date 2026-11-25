@@ -58,6 +58,43 @@ const dispatchFrameMessage = (frame, data) => {
 };
 
 describe("PublicSiteLivePreview", () => {
+  it("resends the selected header page with a new revision while preserving draft images", () => {
+    const draft = {
+      customerPortal: {
+        pageImages: { courses: "/courses.webp", vouchers: "/vouchers.webp" },
+      },
+    };
+    const { rerender } = render(
+      <PublicSiteLivePreview
+        {...props}
+        page="portalPageHero"
+        publicSite={draft}
+        previewPageImageKey="courses"
+      />,
+    );
+    const frame = screen.getByTitle("Clay House production preview");
+    const nonce = new URL(frame.src).searchParams.get("nonce");
+    const postMessage = vi.spyOn(frame.contentWindow, "postMessage");
+    dispatchFrameMessage(frame, {
+      type: "shario:public-site-preview:ready",
+      nonce,
+    });
+    const first = postMessage.mock.calls.at(-1)[0];
+    expect(first.payload.previewPageImageKey).toBe("courses");
+    rerender(
+      <PublicSiteLivePreview
+        {...props}
+        page="portalPageHero"
+        publicSite={draft}
+        previewPageImageKey="vouchers"
+      />,
+    );
+    const next = postMessage.mock.calls.at(-1)[0];
+    expect(next.payload.previewPageImageKey).toBe("vouchers");
+    expect(next.payload.tenant.publicSite).toEqual(draft);
+    expect(next.revision).toBeGreaterThan(first.revision);
+  });
+
   it("handshakes with the production iframe and sends real draft data", () => {
     const onEditPath = vi.fn();
     render(<PublicSiteLivePreview {...props} onEditPath={onEditPath} />);

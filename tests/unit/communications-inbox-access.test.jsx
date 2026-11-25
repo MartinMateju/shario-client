@@ -18,6 +18,7 @@ vi.mock("@/lib/features/auth/authSlice", () => ({
 }));
 vi.mock("next/navigation", () => ({ useSearchParams: () => state.params }));
 vi.mock("@/i18n/navigation", () => ({
+  Link: ({ children, ...props }) => <a {...props}>{children}</a>,
   useRouter: () => ({ replace: state.replace }),
 }));
 vi.mock(
@@ -40,10 +41,10 @@ vi.mock(
   "@/components/views/automated_communications/AutomatedCommunicationsPage",
   () => ({ default: ({ view }) => <div>Outbound {view}</div> }),
 );
-const show = () =>
+const show = (props = {}) =>
   render(
     <NextIntlClientProvider locale="en" messages={messages}>
-      <CommunicationsWorkspace />
+      <CommunicationsWorkspace {...props} />
     </NextIntlClientProvider>,
   );
 
@@ -117,12 +118,12 @@ describe("communications navigation after Inbox retirement", () => {
     state.params = new URLSearchParams("section=inbox");
     show();
     expect(screen.queryByRole("tab", { name: /Inbox/ })).toBeNull();
-    expect(screen.getByText("Email setup form")).toBeVisible();
+    expect(screen.queryByText("Email setup form")).toBeNull();
     expect(screen.queryByText("Outbound history")).toBeNull();
-    expect(screen.getAllByRole("tab")).toHaveLength(1);
+    expect(screen.queryAllByRole("tab")).toHaveLength(0);
     expect(state.overview).not.toHaveBeenCalled();
     expect(state.replace).toHaveBeenLastCalledWith(
-      "/app/communications?section=setup",
+      "/app/settings/communications",
       { scroll: false },
     );
   });
@@ -136,8 +137,67 @@ describe("communications navigation after Inbox retirement", () => {
     show();
     fireEvent.click(screen.getByRole("tab", { name: new RegExp(label) }));
     expect(state.replace).toHaveBeenLastCalledWith(
-      `/app/communications?location=grohova&section=${section}`,
+      section === "setup"
+        ? "/app/settings/communications?location=grohova"
+        : `/app/communications?location=grohova&section=${section}`,
       { scroll: false },
     );
+  });
+
+  it("renders the existing email setup in the settings shell with contextual links", () => {
+    state.params = new URLSearchParams("source=settings");
+    show({ settingsOnly: true, showPageHeader: false });
+    expect(screen.getByText("Email setup form")).toBeVisible();
+    expect(screen.queryAllByRole("tab")).toHaveLength(0);
+    expect(screen.getByRole("link", { name: "History" })).toHaveAttribute(
+      "href",
+      "/app/communications?source=settings&section=history",
+    );
+    expect(state.replace).not.toHaveBeenCalled();
+  });
+
+  it("opens the Templates list from Automations without reopening a stale door editor", () => {
+    state.params = new URLSearchParams(
+      "section=automations&doorLocation=location-a&source=door-codes",
+    );
+    show();
+    fireEvent.click(screen.getByRole("tab", { name: /Templates/ }));
+    expect(state.replace).toHaveBeenLastCalledWith(
+      "/app/communications?section=templates&source=door-codes",
+      { scroll: false },
+    );
+  });
+
+  it("keeps guided setup focused without a second navigation or redirect", () => {
+    state.params = new URLSearchParams(
+      "setupStep=communications&source=launch",
+    );
+    show({ settingsOnly: true });
+    expect(screen.getByText("Email setup form")).toBeVisible();
+    expect(screen.queryAllByRole("tab")).toHaveLength(0);
+    expect(screen.queryAllByRole("link")).toHaveLength(0);
+    expect(state.replace).not.toHaveBeenCalled();
+  });
+
+  it("allows setup-only staff to use the canonical settings page without history access", () => {
+    state.access = {
+      role: "custom",
+      status: "active",
+      permissions: ["communications.settings.manage"],
+    };
+    show({ settingsOnly: true });
+    expect(screen.getByText("Email setup form")).toBeVisible();
+    expect(screen.queryAllByRole("link")).toHaveLength(0);
+    expect(state.replace).not.toHaveBeenCalled();
+  });
+
+  it("does not render editable email settings for history-only staff", () => {
+    state.access = {
+      role: "custom",
+      status: "active",
+      permissions: ["communications.view"],
+    };
+    show({ settingsOnly: true });
+    expect(screen.queryByText("Email setup form")).toBeNull();
   });
 });

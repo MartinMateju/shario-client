@@ -37,7 +37,7 @@ import {
 import { cx, getAiErrorMessage } from "./ai.utils";
 
 const PRIORITY_TONES = {
-  high: "border-terracotta-200 bg-coral-50 text-terracotta-700",
+  high: "border-warning/30 bg-warning-soft text-warning",
   medium: "border-cobalt-200 bg-cobalt-50 text-cobalt-700",
   low: "border-line bg-sand-50 text-ink-muted",
 };
@@ -167,20 +167,13 @@ function RecommendationCard({ recommendation, onReview }) {
   const t = useTranslations("AI.businessAdvisor");
 
   return (
-    <article
-      className={cx(
-        "rounded-[20px] border bg-white p-4 shadow-sm transition sm:p-5",
-        recommendation.priority === "high"
-          ? "border-terracotta-200"
-          : "border-line",
-      )}
-    >
+    <article className="rounded-[20px] border border-line bg-white p-4 shadow-sm transition sm:p-5">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
         <span
           className={cx(
             "inline-flex h-10 w-10 shrink-0 items-center justify-center self-start rounded-full",
             recommendation.kind === "risk"
-              ? "bg-coral-100 text-terracotta-700"
+              ? "bg-warning-soft text-warning"
               : "bg-cobalt-50 text-cobalt-600",
           )}
         >

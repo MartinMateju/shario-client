@@ -29,6 +29,7 @@ const ConciergeWidget = dynamic(() => import("./ConciergeWidget"), {
 
 const EXCLUDED_PREFIXES = [
   "/app",
+  "/public-site-preview",
   "/portal",
   "/login",
   "/register",

@@ -165,7 +165,7 @@ describe("customer authentication boundary contract", () => {
       'window.open(target, "_blank", "noopener,noreferrer")',
     );
     expect(profilePublicSiteAction).not.toContain("window.location.assign(");
-    expect(userActions).toContain("opensInNewTab: true");
+    expect(userActions).not.toContain('label: t("tenantLinks.bookingSite")');
     expect(userActions).toContain(
       'rel={item.opensInNewTab ? "noopener noreferrer" : undefined}',
     );

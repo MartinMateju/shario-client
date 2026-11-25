@@ -128,7 +128,7 @@ const renderCustomerCalendar = (props = {}) =>
     />,
   );
 
-describe("StudioCalendar customer mobile views", () => {
+describe("StudioCalendar mobile views", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-08-05T12:00:00.000Z"));
@@ -253,35 +253,68 @@ describe("StudioCalendar customer mobile views", () => {
     expect(panel()).not.toBeInTheDocument();
   });
 
-  it("keeps Week as the phone default and lets customers select every view", () => {
-    renderCustomerCalendar();
+  it.each(["customer", "public", "tenant"])(
+    "keeps Week as the %s phone default and allows every available view",
+    (audience) => {
+      const onViewChange = vi.fn();
+      renderCustomerCalendar({ audience, onViewChange });
 
-    expect(window.matchMedia).toHaveBeenCalledWith(MOBILE_QUERY);
-    expect(screen.getByTestId("week-calendar")).toHaveAttribute(
-      "data-date",
-      "2026-08-05",
-    );
-    expect(screen.getByLabelText("Show week view")).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
-    expect(screen.getByLabelText("Show month view")).toBeInTheDocument();
-    expect(screen.getByLabelText("Show day view")).toBeInTheDocument();
+      expect(window.matchMedia).toHaveBeenCalledWith(MOBILE_QUERY);
+      expect(screen.getByTestId("week-calendar")).toHaveAttribute(
+        "data-date",
+        "2026-08-05",
+      );
+      expect(screen.getByLabelText("Show week view")).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+      expect(screen.getByLabelText("Show month view")).toBeInTheDocument();
+      expect(screen.getByLabelText("Show day view")).toBeInTheDocument();
+      expect(onViewChange).not.toHaveBeenCalled();
 
-    fireEvent.click(screen.getByLabelText("Show day view"));
-    expect(screen.getByTestId("day-calendar")).toHaveAttribute(
-      "data-date",
-      "2026-08-05",
-    );
+      fireEvent.click(screen.getByLabelText("Show day view"));
+      expect(screen.getByTestId("day-calendar")).toHaveAttribute(
+        "data-date",
+        "2026-08-05",
+      );
 
-    fireEvent.click(screen.getByLabelText("Show month view"));
-    expect(screen.getByTestId("month-calendar")).toHaveAttribute(
-      "data-date",
-      "2026-08-05",
-    );
+      fireEvent.click(screen.getByLabelText("Show month view"));
+      expect(screen.getByTestId("month-calendar")).toHaveAttribute(
+        "data-date",
+        "2026-08-05",
+      );
 
-    fireEvent.click(screen.getByLabelText("Show week view"));
-    expect(screen.getByTestId("week-calendar")).toBeInTheDocument();
+      fireEvent.click(screen.getByLabelText("Show week view"));
+      expect(screen.getByTestId("week-calendar")).toBeInTheDocument();
+    },
+  );
+
+  it.each([{ defaultView: "day" }, { view: "day" }])(
+    "preserves an explicitly selected tenant Day view on phones: %j",
+    (props) => {
+      const onViewChange = vi.fn();
+      renderCustomerCalendar({ audience: "tenant", onViewChange, ...props });
+
+      expect(screen.getByTestId("day-calendar")).toBeInTheDocument();
+      expect(screen.queryByTestId("week-calendar")).not.toBeInTheDocument();
+      expect(screen.getByLabelText("Show day view")).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+      expect(onViewChange).not.toHaveBeenCalled();
+    },
+  );
+
+  it("uses the available-view fallback when Week is unavailable on phones", () => {
+    renderCustomerCalendar({
+      audience: "tenant",
+      defaultView: "week",
+      availableViews: ["day"],
+    });
+
+    expect(screen.getByTestId("day-calendar")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Show week view")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("week-calendar")).not.toBeInTheDocument();
   });
 
   it("opens a tapped Month date in Day without losing the selected date", () => {

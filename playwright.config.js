@@ -4,6 +4,9 @@ const isCi = Boolean(process.env.CI);
 
 export default defineConfig({
   testDir: "./e2e/specs",
+  // These same tests run against a production Next build through the dedicated
+  // local HTTPS fixture, which preserves the BFF's production origin checks.
+  grepInvert: /@custom-domain-auth/,
   outputDir: "test-results/playwright-artifacts",
   fullyParallel: false,
   workers: 1,

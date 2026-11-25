@@ -18,6 +18,7 @@ const mocks = vi.hoisted(() => ({
   overviewIsLoading: false,
   pathname: "/app",
   queryArgs: null,
+  queryOptions: null,
   routerReplace: vi.fn(),
   searchParams: new URLSearchParams(),
   setupIsError: false,
@@ -49,7 +50,7 @@ const mocks = vi.hoisted(() => ({
         effectivePermissions: ["*"],
         permissions: ["*"],
         preferences: {},
-        role: "owner",
+        role: "instructor",
         status: "active",
       },
       userInfo: {
@@ -294,8 +295,24 @@ vi.mock("@/lib/features/studio/studioContextSlice", () => ({
 }));
 
 vi.mock("@/config/permissions", () => ({
-  PERMISSIONS: { WORKSPACE_UPDATE: "workspace:update" },
+  PERMISSIONS: {
+    WORKSPACE_UPDATE: "workspace:update",
+    REPORTS_VIEW: "reports:view",
+  },
   hasPermission: () => mocks.canUpdateWorkspace,
+  getWorkspaceAccessRole: (access) => access?.roleKey || access?.role,
+}));
+
+vi.mock("@/components/dashboard/overview/ManagementDashboard", () => ({
+  default: ({ date, locationId, children }) => (
+    <div
+      data-testid="management-dashboard"
+      data-date={date}
+      data-location={locationId}
+    >
+      {children}
+    </div>
+  ),
 }));
 
 vi.mock("@/i18n/navigation", () => ({
@@ -410,8 +427,9 @@ vi.mock("@/lib/features/workspace-access/workspaceAccessApiSlice", () => ({
 }));
 
 vi.mock("@/lib/features/dashboard/dashboardApiSlice", () => ({
-  useGetDashboardOverviewQuery: (args) => {
+  useGetDashboardOverviewQuery: (args, options) => {
     mocks.queryArgs = args;
+    mocks.queryOptions = options;
     return {
       currentData: mocks.overviewHasCurrentData ? mocks.response : null,
       data: mocks.overviewHasData ? mocks.response : null,
@@ -468,7 +486,7 @@ describe("DashboardOverview", () => {
       effectivePermissions: ["*"],
       permissions: ["*"],
       preferences: {},
-      role: "owner",
+      role: "instructor",
       status: "active",
     };
     mocks.state.auth.tenant.modules = { staff_tasks: true };
@@ -481,6 +499,36 @@ describe("DashboardOverview", () => {
       actionKey: "createOffer",
       source: "deterministic",
     };
+  });
+
+  it.each(["owner", "manager"])(
+    "routes %s to the management dashboard with shared scope",
+    (role) => {
+      mocks.state.auth.workspaceAccess.role = role;
+      mocks.searchParams = new URLSearchParams("date=2026-07-30");
+      render(<DashboardOverview />);
+      expect(screen.getByTestId("management-dashboard")).toHaveAttribute(
+        "data-date",
+        "2026-07-30",
+      );
+      expect(screen.getByTestId("management-dashboard")).toHaveAttribute(
+        "data-location",
+        mocks.activeLocationId,
+      );
+      expect(
+        screen.queryByText("Living studio overview"),
+      ).not.toBeInTheDocument();
+    },
+  );
+
+  it("keeps the staff dashboard when reports permission is absent", () => {
+    mocks.state.auth.workspaceAccess.role = "manager";
+    mocks.canUpdateWorkspace = false;
+    render(<DashboardOverview />);
+    expect(
+      screen.queryByTestId("management-dashboard"),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText("Studio operations")).toBeInTheDocument();
   });
 
   it("renders operational values and scopes the request to the selected location", () => {
@@ -838,6 +886,22 @@ describe("DashboardOverview", () => {
       view?.unmount();
       vi.useRealTimers();
     }
+  });
+
+  it("keeps live presence fresh while browsing another day's scoped overview", () => {
+    const view = render(<DashboardOverview />);
+    expect(mocks.queryOptions).toMatchObject({
+      pollingInterval: 60_000,
+      skipPollingIfUnfocused: true,
+      refetchOnFocus: true,
+    });
+    mocks.searchParams = new URLSearchParams("date=2025-07-30");
+    view.rerender(<DashboardOverview />);
+    expect(mocks.queryArgs).toMatchObject({
+      date: "2025-07-30",
+      locationId: mocks.activeLocationId,
+    });
+    expect(mocks.queryOptions.pollingInterval).toBe(60_000);
   });
 
   it("preserves unrelated URL state when selecting another date", () => {

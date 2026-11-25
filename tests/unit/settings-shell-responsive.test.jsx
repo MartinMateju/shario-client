@@ -1,58 +1,40 @@
 import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import messagesEn from "@/messages/en.json";
+
 const mocks = vi.hoisted(() => ({
   pathname: "/app/settings/payments",
+  search: "",
   workspaceAccess: { role: "owner", status: "active" },
   tenant: { modules: {} },
 }));
 
-const labels = {
-  eyebrow: "Workspace",
-  title: "Settings",
-  label: "Workspace settings",
-  overview: "All settings",
-  overviewDescription: "Choose an area to configure.",
-  categoryDescription: "{category} settings",
-  currentCategory: "Current category",
-  openCategory: "Open {category} settings",
-  "groups.workspace": "Workspace",
-  "groups.features": "Features & navigation",
-  "groups.website": "Website & customer experience",
-  "groups.access": "Team & access",
-  "groups.payments": "Payments & invoicing",
-  "groups.account": "shario.io account",
-  "items.setup": "Launch Center",
-  "items.general": "General",
-  "items.modules": "Modules & navigation",
-  "items.publicSite": "Website & branding",
-  "items.locations": "Locations",
-  "items.team": "Team",
-  "items.roles": "Roles & permissions",
-  "items.payments": "Payments from customers",
-  "items.billing": "Subscription & billing",
-  "items.invoicing": "Customer invoicing",
-  "items.ai": "AI & automation",
-  "items.migration": "Migration Center",
-};
-
 vi.mock("next-intl", () => ({
+  useLocale: () => "en",
   useTranslations:
-    () =>
-    (key, values = {}) =>
-      (labels[key] || key).replace(
+    (namespace) =>
+    (key, values = {}) => {
+      const message = `${namespace}.${key}`
+        .split(".")
+        .reduce((value, part) => value?.[part], messagesEn);
+      if (typeof message !== "string")
+        throw new Error(`Missing message: ${namespace}.${key}`);
+      return message.replace(
         /\{(\w+)\}/g,
         (_, name) => values[name] ?? `{${name}}`,
-      ),
+      );
+    },
+}));
+
+vi.mock("next/navigation", () => ({
+  useSearchParams: () => new URLSearchParams(mocks.search),
 }));
 
 vi.mock("react-redux", () => ({
   useSelector: (selector) =>
     selector({
-      auth: {
-        workspaceAccess: mocks.workspaceAccess,
-        tenant: mocks.tenant,
-      },
+      auth: { workspaceAccess: mocks.workspaceAccess, tenant: mocks.tenant },
     }),
 }));
 
@@ -65,170 +47,216 @@ vi.mock("@/i18n/navigation", () => ({
   ),
 }));
 
+vi.mock("@/components/settings/SettingsPlanSummary", () => ({
+  default: () => <div data-settings-plan-summary />,
+}));
+
 import SettingsShell from "@/components/settings/SettingsShell";
 
-describe("SettingsShell categorized navigation", () => {
+const renderShell = () =>
+  render(
+    <SettingsShell>
+      <div>Settings content</div>
+    </SettingsShell>,
+  );
+const backLabel = (section) =>
+  messagesEn.UnifiedSettings.backTo.replace("{section}", section);
+
+describe("SettingsShell unified navigation", () => {
   beforeEach(() => {
     mocks.pathname = "/app/settings/payments";
+    mocks.search = "";
     mocks.workspaceAccess = { role: "owner", status: "active" };
     mocks.tenant = { modules: {} };
   });
 
-  it("keeps the responsive rail contained and focuses detail navigation on the active category", () => {
-    const { container } = render(
-      <SettingsShell>
-        <div>Settings content</div>
-      </SettingsShell>,
-    );
-
-    expect(
-      container.querySelector('[data-workspace-brush-field="settingsShell"]'),
-    ).toBeInTheDocument();
-    expect(container.firstElementChild).toHaveClass(
-      "xl:grid-cols-[224px_minmax(0,1fr)]",
-      "xl:gap-5",
-    );
-    expect(screen.queryByText("Current category")).not.toBeInTheDocument();
-    expect(
-      screen.queryByText("Payments & invoicing settings"),
-    ).not.toBeInTheDocument();
-
+  it("keeps the same Studio and My settings destinations on a studio detail page", () => {
+    const labels = messagesEn.UnifiedSettings;
+    const { container } = renderShell();
     const navigation = screen.getByRole("navigation", {
-      name: "Workspace settings",
+      name: labels.navigation,
     });
-    const list = within(navigation).getByRole("list");
-    const activeItem = within(navigation).getByRole("link", {
-      name: "Payments from customers",
+    const studio = within(navigation).getByRole("link", {
+      name: labels.studioTitle,
+    });
+    const personal = within(navigation).getByRole("link", {
+      name: labels.personalTitle,
     });
 
-    expect(navigation).toHaveClass(
-      "max-w-full",
-      "overflow-x-auto",
-      "overscroll-x-contain",
-      "xl:overflow-visible",
-    );
-    expect(list).toHaveClass("flex", "min-w-max", "xl:block", "xl:min-w-0");
-    expect(activeItem).toHaveAttribute("aria-current", "page");
-    expect(activeItem).toHaveClass("max-w-[min(76vw,260px)]", "xl:max-w-none");
-    expect(within(activeItem).getByText("Payments from customers")).toHaveClass(
-      "min-w-0",
-      "truncate",
-    );
     expect(
-      within(navigation).getByRole("link", { name: "Payments from customers" }),
+      screen.getByRole("heading", { name: labels.title }),
     ).toBeInTheDocument();
+    expect(within(navigation).getAllByRole("link")).toHaveLength(2);
+    expect(studio).toHaveAttribute("href", "/app/settings?section=studio");
+    expect(studio).toHaveAttribute("aria-current", "page");
+    expect(personal).toHaveAttribute("href", "/app/settings?section=personal");
+    expect(personal).not.toHaveAttribute("aria-current");
     expect(
-      within(navigation).queryByRole("link", { name: "General" }),
-    ).not.toBeInTheDocument();
-  });
-
-  it("keeps Launch Center and category destinations on a normalized overview path", () => {
-    mocks.pathname = "/app/settings/";
-
-    const { container } = render(
-      <SettingsShell>
-        <div>Settings content</div>
-      </SettingsShell>,
+      screen.getByRole("link", { name: backLabel(labels.studioTitle) }),
+    ).toHaveAttribute("href", "/app/settings");
+    expect(container.querySelector("[data-settings-scope]")).toHaveTextContent(
+      labels.studioScope,
     );
-
+    expect(screen.getByText("Settings content")).toBeInTheDocument();
     expect(
       container.querySelector('[data-workspace-brush-field="settingsShell"]'),
     ).not.toBeInTheDocument();
-
-    expect(screen.getByRole("link", { name: "All settings" })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
-    expect(screen.getByRole("link", { name: "Launch Center" })).toHaveAttribute(
-      "href",
-      "/app/setup",
-    );
     expect(
-      screen.getByRole("link", { name: "Open Workspace settings" }),
-    ).toHaveAttribute("href", "/app/settings/general");
-    expect(
-      screen.getByRole("link", {
-        name: "Open Website & customer experience settings",
-      }),
-    ).toHaveAttribute("href", "/app/settings/public-site");
-  });
-
-  it("keeps recovery settings visible while hiding disabled payment and AI categories", () => {
-    mocks.pathname = "/app/settings";
-    mocks.tenant = {
-      modules: {
-        bookings: false,
-        courses: false,
-        memberships: false,
-        payments: false,
-        ai: false,
-      },
-    };
-
-    render(
-      <SettingsShell>
-        <div>Settings content</div>
-      </SettingsShell>,
-    );
-
-    expect(
-      screen.getByRole("link", { name: "Open Features & navigation settings" }),
-    ).toHaveAttribute("href", "/app/settings/modules");
-    expect(
-      screen.getByRole("link", {
-        name: "Open Website & customer experience settings",
-      }),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole("link", {
-        name: "Open Payments from customers settings",
-      }),
+      screen.queryByRole("link", { name: /Launch Center/ }),
     ).not.toBeInTheDocument();
   });
 
-  it("shows only categories allowed by a custom role", () => {
+  it.each([
+    ["", "studio"],
+    ["section=studio", "studio"],
+    ["section=personal", "personal"],
+    ["section=unknown", "studio"],
+  ])(
+    "selects the overview section from %s on a normalized path",
+    (search, section) => {
+      mocks.pathname = "/app/settings/";
+      mocks.search = search;
+      const labels = messagesEn.UnifiedSettings;
+      const { container } = renderShell();
+      const title =
+        section === "personal" ? labels.personalTitle : labels.studioTitle;
+
+      expect(container.querySelector("[data-settings-hub]")).toHaveAttribute(
+        "data-settings-section",
+        section,
+      );
+      expect(screen.getByRole("link", { name: title })).toHaveAttribute(
+        "aria-current",
+        "page",
+      );
+      expect(
+        screen.getByText(
+          section === "personal"
+            ? labels.personalDescription
+            : labels.studioDescription,
+        ),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole("link", { name: backLabel(title) }),
+      ).not.toBeInTheDocument();
+    },
+  );
+
+  it.each(["", "section=studio", "section=personal"])(
+    "gives staff without studio permissions personal settings for %s",
+    (search) => {
+      mocks.pathname = "/app/settings";
+      mocks.search = search;
+      mocks.workspaceAccess = {
+        role: "staff",
+        status: "active",
+        effectivePermissions: [],
+      };
+      const labels = messagesEn.UnifiedSettings;
+      const { container } = renderShell();
+      const navigation = screen.getByRole("navigation", {
+        name: labels.navigation,
+      });
+
+      expect(container.querySelector("[data-settings-hub]")).toHaveAttribute(
+        "data-settings-section",
+        "personal",
+      );
+      expect(within(navigation).getAllByRole("link")).toHaveLength(1);
+      expect(
+        within(navigation).getByRole("link", { name: labels.personalTitle }),
+      ).toHaveAttribute("aria-current", "page");
+      expect(
+        screen.queryByRole("link", { name: labels.studioTitle }),
+      ).not.toBeInTheDocument();
+      expect(
+        container.querySelector("[data-settings-scope]"),
+      ).toHaveTextContent(labels.personalScope);
+      expect(screen.getByText("Settings content")).toBeInTheDocument();
+    },
+  );
+
+  it("keeps Studio available for a narrow administration role", () => {
     mocks.pathname = "/app/settings";
     mocks.workspaceAccess = {
-      role: "staff",
-      status: "active",
-      effectivePermissions: ["workspace.update"],
-    };
-
-    render(
-      <SettingsShell>
-        <div>Settings content</div>
-      </SettingsShell>,
-    );
-
-    expect(
-      screen.getByRole("link", { name: "Launch Center" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: "Open Workspace settings" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole("link", {
-        name: "Open Features & navigation settings",
-      }),
-    ).not.toBeInTheDocument();
-  });
-
-  it("shows Migration Center as a workspace setting with its dedicated permission", () => {
-    mocks.pathname = "/app/settings";
-    mocks.workspaceAccess = {
-      role: "staff",
+      role: "custom",
       status: "active",
       effectivePermissions: ["customers.import"],
     };
-
-    render(
-      <SettingsShell>
-        <div>Settings content</div>
-      </SettingsShell>,
-    );
+    renderShell();
 
     expect(
-      screen.getByRole("link", { name: "Open Workspace settings" }),
-    ).toHaveAttribute("href", "/app/settings/migration");
+      screen.getByRole("link", {
+        name: messagesEn.UnifiedSettings.studioTitle,
+      }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      screen.getByRole("link", {
+        name: messagesEn.UnifiedSettings.personalTitle,
+      }),
+    ).toHaveAttribute("href", "/app/settings?section=personal");
+  });
+
+  it("does not expose Studio when the member's only permitted module is disabled", () => {
+    mocks.pathname = "/app/settings";
+    mocks.workspaceAccess = {
+      role: "staff",
+      status: "active",
+      effectivePermissions: ["payments.view"],
+    };
+    mocks.tenant = { modules: { payments: false } };
+    renderShell();
+
+    expect(
+      screen.queryByRole("link", {
+        name: messagesEn.UnifiedSettings.studioTitle,
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: messagesEn.UnifiedSettings.personalTitle,
+      }),
+    ).toHaveAttribute("aria-current", "page");
+  });
+
+  it.each([
+    ["/app/settings/profile", "personalProfileScope"],
+    ["/app/settings/preferences", "personalPreferencesScope"],
+  ])(
+    "keeps personal detail %s in its section despite a stale section query",
+    (pathname, scopeKey) => {
+      mocks.pathname = pathname;
+      mocks.search = "section=studio";
+      const labels = messagesEn.UnifiedSettings;
+      const { container } = renderShell();
+
+      expect(container.querySelector("[data-settings-hub]")).toHaveAttribute(
+        "data-settings-section",
+        "personal",
+      );
+      expect(
+        screen.getByRole("link", { name: labels.personalTitle }),
+      ).toHaveAttribute("aria-current", "page");
+      expect(
+        screen.getByRole("link", { name: backLabel(labels.personalTitle) }),
+      ).toHaveAttribute("href", "/app/settings?section=personal");
+      expect(
+        container.querySelector("[data-settings-scope]"),
+      ).toHaveTextContent(labels.personalScope);
+      expect(screen.getByText(labels[scopeKey])).toBeInTheDocument();
+    },
+  );
+
+  it("keeps studio detail pages in Studio despite a stale personal query", () => {
+    mocks.search = "section=personal";
+    const labels = messagesEn.UnifiedSettings;
+    renderShell();
+
+    expect(
+      screen.getByRole("link", { name: labels.studioTitle }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      screen.getByRole("link", { name: backLabel(labels.studioTitle) }),
+    ).toHaveAttribute("href", "/app/settings");
   });
 });

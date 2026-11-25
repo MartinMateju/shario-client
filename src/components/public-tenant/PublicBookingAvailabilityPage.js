@@ -35,12 +35,15 @@ import { getValidatedTenantSlugParam } from "@/utils/tenantRouting";
 import { getConfiguredOpeningInterval } from "@/utils/openingHours";
 
 import PublicCapabilityGate from "./PublicCapabilityGate";
+import design from "./portalCatalog.module.css";
 import { usePublicTenant } from "./PublicTenantProvider";
 import {
   getLocalizedPublicTenantText,
   getPublicTenantTheme,
 } from "./publicTenant.config";
 import { getPublicWebsitePageCustomizationDefaults } from "@/components/customer-shell/customerFacingCustomizationDefaults";
+import CustomerPortalHero from "@/components/customer-shell/CustomerPortalHero";
+import { CustomerPortalPage } from "@/components/customer-shell/CustomerPortalPrimitives";
 import { isPublicCatalogProduct } from "./publicProductTaxonomy";
 
 const PUBLIC_CALENDAR_VIEWS = Object.freeze(["month", "week", "day"]);
@@ -459,17 +462,18 @@ export default function PublicBookingAvailabilityPage({ previewData }) {
 
   return (
     <PublicCapabilityGate capability="bookStudio">
-      <main
+      <CustomerPortalPage
         data-public-booking-availability
-        data-tenant-layout="section"
-        className="min-h-[70vh] px-5 py-10 sm:px-8 lg:px-12 lg:py-14"
+        className="!overflow-visible"
         style={{
           backgroundColor: tenantTheme.backgroundColor,
           color: tenantTheme.textForeground,
         }}
       >
-        <div className="mx-auto max-w-[1540px]">
-          <header className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.72fr)] lg:gap-12">
+        <CustomerPortalHero pageKey="book" imageUrl="">
+          <div
+            className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.72fr)] lg:gap-12"
+          >
             <div className="max-w-3xl">
               <p
                 className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--tenant-label-color)]"
@@ -554,10 +558,11 @@ export default function PublicBookingAvailabilityPage({ previewData }) {
                 </p>
               </div>
             </div>
-          </header>
+          </div>
+        </CustomerPortalHero>
 
           <section
-            className="mt-8 overflow-clip rounded-[28px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] text-[color:var(--tenant-text-on-surface)] shadow-[0_22px_65px_rgba(17,17,15,0.07)]"
+            className={`${design.bookingPanel} mt-8 overflow-clip rounded-[28px] border border-[color:var(--tenant-border)] bg-[color:var(--tenant-surface)] text-[color:var(--tenant-text-on-surface)] shadow-[0_22px_65px_rgba(17,17,15,0.07)]`}
             aria-labelledby="public-studio-calendar-title"
             data-tenant-surface="panel"
           >
@@ -571,7 +576,7 @@ export default function PublicBookingAvailabilityPage({ previewData }) {
                   >
                     {t("calendar.title")}
                   </h2>
-                  <span className="inline-flex min-h-7 items-center rounded-full bg-[color-mix(in_srgb,var(--tenant-accent)_10%,transparent)] px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[color:var(--tenant-accent-on-surface)]">
+                  <span className="inline-flex min-h-7 items-center rounded-full bg-[var(--tenant-accent)] px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--tenant-accent-foreground)]">
                     {t("calendar.readOnly")}
                   </span>
                 </div>
@@ -722,8 +727,7 @@ export default function PublicBookingAvailabilityPage({ previewData }) {
               )}
             </div>
           </section>
-        </div>
-      </main>
+      </CustomerPortalPage>
     </PublicCapabilityGate>
   );
 }

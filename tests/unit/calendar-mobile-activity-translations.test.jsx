@@ -3,7 +3,8 @@ import { NextIntlClientProvider, useTranslations } from "next-intl";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import DayCalendar from "@/components/calendar/DayCalendar";
-import WeekCalendar from "@/components/calendar/WeekCalendar";
+import StudioCalendar from "@/components/calendar/StudioCalendar";
+import { deepMergeMessages } from "@/i18n/catalogs";
 import { ALL_LOCALE_CODES } from "@/i18n/locales";
 
 const catalogModules = import.meta.glob("../../src/messages/*.json", {
@@ -49,15 +50,28 @@ const date = new Date("2026-08-04T12:00:00Z");
 const bookings = [];
 const noop = () => {};
 
-function AdminView({ view, ...props }) {
+function AdminView({ view, studio: location, selectedActivityId, ...props }) {
   const t = useTranslations("Calendar");
-  const Calendar = view === "day" ? DayCalendar : WeekCalendar;
+  if (view === "week") {
+    return (
+      <StudioCalendar
+        audience="tenant"
+        date={date}
+        studios={[location]}
+        bookings={bookings}
+        view="week"
+        onDateChange={noop}
+        {...props}
+      />
+    );
+  }
   return (
-    <Calendar
+    <DayCalendar
       audience="tenant"
       date={date}
       bookings={bookings}
-      onDateChange={noop}
+      studio={location}
+      selectedActivityId={selectedActivityId}
       t={t}
       {...props}
     />
@@ -76,7 +90,56 @@ function CalendarWithLocale({ locale, studio: location = studio, ...props }) {
   );
 }
 
-function expectMobileActivity(container, label, view) {
+function expectMobileActivity(
+  container,
+  label,
+  view,
+  { activityId, locale, selectActivity = true },
+) {
+  if (view === "week") {
+    // The weekly grid shares its activity selector with the customer layout.
+    // Check the real filter and creation action instead of the removed agenda.
+    if (!container.querySelector("[data-calendar-filter-panel]")) {
+      fireEvent.click(
+        container.querySelector("[data-calendar-filter-trigger]"),
+      );
+    }
+    const filter = within(container).getByRole("combobox", {
+      name: rawCatalogs[locale].Calendar.filters.activity,
+    });
+    const option = within(filter).getByRole("option", {
+      name: label,
+      exact: true,
+    });
+    expect(option).toHaveValue(activityId);
+    if (selectActivity) {
+      fireEvent.change(filter, { target: { value: activityId } });
+    }
+    expect(filter).toHaveValue(activityId);
+
+    const grid = container.querySelector("[data-calendar-mobile-week-grid]");
+    expect(grid).toBeInTheDocument();
+    expect(
+      container.querySelector("[data-calendar-mobile-agenda]"),
+    ).not.toBeInTheDocument();
+    const days = grid.querySelectorAll("[data-calendar-week-day-column]");
+    expect(days).toHaveLength(7);
+    const selectedDay = days[1];
+    expect(selectedDay).toHaveAccessibleName(
+      new Intl.DateTimeFormat(locale, {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      }).format(date),
+    );
+    fireEvent.keyDown(selectedDay, { key: "Enter" });
+    const confirm = grid.querySelector("[data-calendar-slot-confirm]");
+    expect(confirm).toBeEnabled();
+    expect(confirm).toHaveAccessibleName(
+      expect.stringContaining(rawCatalogs[locale].Calendar.toolbar.newBooking),
+    );
+    return confirm;
+  }
   // JSDOM does not apply responsive CSS. Scope assertions to the real admin
   // mobile agenda so a translated desktop resource column cannot hide a bug.
   const agenda = container.querySelector("[data-calendar-mobile-agenda]");
@@ -90,13 +153,6 @@ function expectMobileActivity(container, label, view) {
     expect(slot).toBeEnabled();
   }
   expect(picker.firstElementChild).toHaveTextContent(label);
-  if (view === "week") {
-    const days = agenda.querySelectorAll("[data-calendar-mobile-day]");
-    expect(days).toHaveLength(7);
-    for (const day of days) {
-      expect(day).toHaveAccessibleName(expect.stringContaining(label));
-    }
-  }
   return slots[0];
 }
 
@@ -111,7 +167,7 @@ describe.each(["day", "week"])("admin mobile %s activity labels", (view) => {
   });
 
   it.each(ALL_LOCALE_CODES)(
-    "uses the %s catalog for every generated activity in slots and accessible labels",
+    "uses the %s catalog for activity controls and accessible labels",
     (locale) => {
       const onSlotSelect = vi.fn();
       const { container, rerender } = render(
@@ -139,7 +195,12 @@ describe.each(["day", "week"])("admin mobile %s activity labels", (view) => {
             onSlotSelect={onSlotSelect}
           />,
         );
-        fireEvent.click(expectMobileActivity(container, label, view));
+        fireEvent.click(
+          expectMobileActivity(container, label, view, {
+            activityId: resource.id,
+            locale,
+          }),
+        );
         expect(onSlotSelect).toHaveBeenLastCalledWith(
           expect.objectContaining({
             activityId: resource.id,
@@ -151,7 +212,7 @@ describe.each(["day", "week"])("admin mobile %s activity labels", (view) => {
     },
   );
 
-  it("updates an existing agenda across every locale without changing the selected activity ID", () => {
+  it("updates the existing calendar across every locale without changing the selected activity ID", () => {
     const activityId = "SHARED_TABLE";
     const onSlotSelect = vi.fn();
     const props = { view, selectedActivityId: activityId, onSlotSelect };
@@ -159,10 +220,25 @@ describe.each(["day", "week"])("admin mobile %s activity labels", (view) => {
       <CalendarWithLocale locale="en" {...props} />,
     );
 
+    fireEvent.click(
+      expectMobileActivity(
+        container,
+        rawCatalogs.en.Calendar.activities[activityId],
+        view,
+        { activityId, locale: "en" },
+      ),
+    );
+
     for (const locale of ALL_LOCALE_CODES) {
       rerender(<CalendarWithLocale locale={locale} {...props} />);
       const label = rawCatalogs[locale].Calendar.activities[activityId];
-      fireEvent.click(expectMobileActivity(container, label, view));
+      fireEvent.click(
+        expectMobileActivity(container, label, view, {
+          activityId,
+          locale,
+          selectActivity: false,
+        }),
+      );
       expect(onSlotSelect).toHaveBeenLastCalledWith(
         expect.objectContaining({ activityId }),
       );
@@ -199,7 +275,12 @@ describe.each(["day", "week"])("admin mobile %s activity labels", (view) => {
             onSlotSelect={onSlotSelect}
           />,
         );
-        fireEvent.click(expectMobileActivity(container, resource.name, view));
+        fireEvent.click(
+          expectMobileActivity(container, resource.name, view, {
+            activityId: resource.id,
+            locale,
+          }),
+        );
         expect(onSlotSelect).toHaveBeenLastCalledWith(
           expect.objectContaining({ activityId: resource.id }),
         );

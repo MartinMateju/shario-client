@@ -16,6 +16,14 @@ const getUserId = (user) => String(user?.id ?? user?._id ?? "").trim();
 
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getUsersSummary: builder.query({
+      query: () => "/users/summary",
+      transformResponse: (response) => response?.data ?? response,
+      providesTags: [
+        { type: "User", id: "LIST" },
+        { type: "Membership", id: "LIST" },
+      ],
+    }),
     getUsers: builder.query({
       query: ({ tenantRole } = {}) => ({
         url: "/users",
@@ -135,6 +143,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetUsersQuery,
+  useGetUsersSummaryQuery,
   useGetCustomerQuery,
   useLazyGetUsersByCustomIdQuery,
   useGetUsersWithFiltersMutation,

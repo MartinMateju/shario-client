@@ -16,6 +16,7 @@ import {
   CustomerPortalPageHeader,
   CustomerPortalSurface,
   customerPortalPrimaryActionClass,
+  customerPortalSecondaryActionClass,
 } from "@/components/customer-shell/CustomerPortalPrimitives";
 import { Link } from "@/i18n/navigation";
 import {
@@ -74,17 +75,19 @@ export default function MembershipInvoiceHistoryPage() {
 
   return (
     <CustomerPortalPage contentClassName="max-w-5xl">
-      <Link
-        href="/portal/membership"
-        className="text-[10px] font-semibold text-[var(--tenant-accent-link)]"
-      >
-        ← {t("back")}
-      </Link>
       <CustomerPortalPageHeader
-        className="mt-5"
+        pageKey="invoices"
         eyebrow={t("eyebrow")}
         title={t("title")}
         description={t("description")}
+        actions={
+          <Link
+            href="/portal/membership"
+            className={customerPortalSecondaryActionClass}
+          >
+            ← {t("back")}
+          </Link>
+        }
       />
       {downloadError ? (
         <p

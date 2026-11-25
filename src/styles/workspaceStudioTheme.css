@@ -3,24 +3,43 @@
 /* Keep the workspace on the same foundation as Skab's public pages without
    changing a studio's customer-facing theme or custom booking design. */
 [data-skab-workspace-surface] {
+  --studio-secondary: #414b43;
+  --studio-muted: #566052;
+  --studio-rule: #c5c8b9;
+  --studio-rule-strong: #8b9383;
+  /* Orange adds quiet warmth to decorative details; active controls stay blue. */
+  --studio-orange: var(--color-brand-accent);
+  --studio-orange-ink: #9b4835;
+  --studio-orange-soft: #fbf2ed;
+  --studio-orange-line: #edcfc1;
   --studio-blue-soft: color-mix(
     in srgb,
-    var(--studio-blue) 5%,
+    var(--studio-blue) 10%,
     var(--studio-white)
   );
   --studio-blue-line: color-mix(
     in srgb,
-    var(--studio-blue) 24%,
+    var(--studio-blue) 35%,
     var(--studio-white)
   );
   --studio-clay-soft: color-mix(
     in srgb,
-    var(--studio-clay) 5%,
+    var(--studio-clay) 8%,
     var(--studio-white)
   );
-  --studio-label-size: 11px;
-  --studio-label-weight: 500;
-  --studio-label-tracking: 0.1em;
+  /* Status text stays dark on warm tints; labels and icons carry the meaning. */
+  --studio-success: #2e6148;
+  --studio-success-soft: #e5efe3;
+  --studio-success-line: #8bae92;
+  --studio-warning: #81500b;
+  --studio-warning-soft: #fff0ce;
+  --studio-warning-line: #c39138;
+  --studio-danger: #a3322c;
+  --studio-danger-soft: #fde9e5;
+  --studio-danger-line: #d28d82;
+  --studio-label-size: 12px;
+  --studio-label-weight: 650;
+  --studio-label-tracking: 0.06em;
   --studio-action-size: 14px;
   --studio-radius: 22px;
   --studio-control-radius: 14px;
@@ -31,14 +50,23 @@
   --color-surface-raised: var(--studio-white);
   --color-surface-muted: var(--studio-soft);
   --color-ink: var(--studio-ink);
-  --color-ink-soft: var(--studio-muted);
+  --color-ink-soft: var(--studio-secondary);
   --color-ink-muted: var(--studio-muted);
   --color-ink-subtle: var(--studio-muted);
   --color-line: var(--studio-rule);
-  --color-line-strong: var(--studio-rule);
+  --color-line-strong: var(--studio-rule-strong);
   --color-primary: var(--studio-blue);
   --color-primary-hover: var(--studio-blue-hover);
   --color-primary-soft: var(--studio-blue-soft);
+  --color-accent: var(--studio-orange);
+  --color-accent-text: var(--studio-orange-ink);
+  --color-accent-soft: var(--studio-orange-soft);
+  --color-success: var(--studio-success);
+  --color-success-soft: var(--studio-success-soft);
+  --color-warning: var(--studio-warning);
+  --color-warning-soft: var(--studio-warning-soft);
+  --color-danger: var(--studio-danger);
+  --color-danger-soft: var(--studio-danger-soft);
   --background: var(--studio-paper);
   --foreground: var(--studio-ink);
   --surface: var(--studio-paper);
@@ -46,11 +74,20 @@
   --surface-raised: var(--studio-white);
   --surface-muted: var(--studio-soft);
   --border: var(--studio-rule);
-  --border-strong: var(--studio-rule);
+  --border-strong: var(--studio-rule-strong);
   --primary: var(--studio-blue);
   --primary-hover: var(--studio-blue-hover);
   --primary-soft: var(--studio-blue-soft);
   --text-primary: var(--studio-ink);
-  --text-secondary: var(--studio-muted);
+  --text-secondary: var(--studio-secondary);
   --text-subtle: var(--studio-muted);
+
+  /* Consistent baselines for both legacy screens and shared workspace controls.
+     These variables are absent on public pages and customer-themed dialogs. */
+  --workspace-table-header-size: 0.75rem;
+  --workspace-table-header-tracking: 0.06em;
+  --workspace-table-header-background: var(--studio-soft);
+  --workspace-table-row-hover: var(--studio-paper);
+  --workspace-control-border: var(--studio-rule-strong);
+  --workspace-control-size: 0.875rem;
 }

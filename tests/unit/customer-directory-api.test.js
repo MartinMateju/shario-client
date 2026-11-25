@@ -14,6 +14,22 @@ vi.mock("@/lib/features/api/apiSlice", () => ({
 import { usersApiSlice } from "@/lib/features/users/usersApiSlice";
 
 describe("customer directory metric refresh", () => {
+  it("fetches an independent subscriber summary and refreshes after membership changes", () => {
+    const endpoint = usersApiSlice.endpoints.getUsersSummary;
+    expect(
+      endpoint.query({ locationId: "ignored", page: 2, search: "ignored" }),
+    ).toBe("/users/summary");
+    expect(
+      endpoint.transformResponse({ data: { activeMemberships: 42 } }),
+    ).toEqual({ activeMemberships: 42 });
+    expect(endpoint.transformResponse({ activeMemberships: null })).toEqual({
+      activeMemberships: null,
+    });
+    expect(endpoint.providesTags).toContainEqual({
+      type: "Membership",
+      id: "LIST",
+    });
+  });
   const metricTags = [
     { type: "Booking", id: "LIST" },
     { type: "Order", id: "LIST" },

@@ -6,6 +6,7 @@ export default function CalendarBookingModeBadge({
   isPrivate,
   label,
   compact = false,
+  collapseLabel = false,
 }) {
   const Icon = isPrivate ? LockClosedIcon : UserGroupIcon;
 
@@ -13,7 +14,10 @@ export default function CalendarBookingModeBadge({
     <span
       data-calendar-mode-badge="true"
       className={cx(
-        "inline-flex min-w-0 max-w-full items-center gap-1 rounded-full border font-semibold",
+        "min-w-0 max-w-full items-center gap-1 rounded-full border font-semibold",
+        collapseLabel
+          ? "hidden shrink-0 @[80px]/calendar-card:inline-flex"
+          : "inline-flex",
         compact
           ? "px-1 py-px text-[10px] leading-[12px]"
           : "px-2 py-0.5 text-xs leading-4",
@@ -27,7 +31,15 @@ export default function CalendarBookingModeBadge({
         className={compact ? "h-3 w-3 shrink-0" : "h-3.5 w-3.5 shrink-0"}
         aria-hidden="true"
       />
-      <span className="min-w-0 truncate">{label}</span>
+      <span
+        className={
+          collapseLabel
+            ? "sr-only @[128px]/calendar-card:not-sr-only @[128px]/calendar-card:min-w-0 @[128px]/calendar-card:truncate"
+            : "min-w-0 truncate"
+        }
+      >
+        {label}
+      </span>
     </span>
   );
 }

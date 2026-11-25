@@ -1132,7 +1132,7 @@ test("Customer portal visibility handles a disabled landing page and an entirely
     page.locator("[data-customer-portal-page-unavailable]"),
   ).toHaveCount(0);
   await expect(
-    page.getByText("Payment cancelled", { exact: true }),
+    page.getByRole("heading", { name: "Back from payment", exact: true }),
   ).toBeVisible();
 });
 
@@ -2873,9 +2873,7 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
       });
       const portalPage = page.locator("[data-customer-portal-page]");
       const pageHeader = portalPage.locator(
-        scenario.key === "vouchers"
-          ? ":scope > div > header"
-          : "[data-customer-portal-page-header]",
+        "[data-customer-portal-page-header]",
       );
       const pageContent = portalPage.locator(
         scenario.key === "vouchers"
@@ -2939,8 +2937,11 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
         const root = element.closest("[data-tenant-style]");
         const heading = element.querySelector("h1");
         const surface = element.querySelector("[data-customer-portal-surface]");
+        const content = element.querySelector(
+          "[data-customer-portal-page-content]",
+        );
 
-        if (!root || !heading || !surface) return null;
+        if (!root || !heading || !surface || !content) return null;
 
         const pageStyle = getComputedStyle(element);
         const headingStyle = getComputedStyle(heading);
@@ -2952,6 +2953,9 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
             .getPropertyValue("--tenant-space-page-inline")
             .trim(),
           pagePaddingLeft: Number.parseFloat(pageStyle.paddingLeft),
+          contentPaddingLeft: Number.parseFloat(
+            getComputedStyle(content).paddingLeft,
+          ),
           displayFont: headingStyle.fontFamily,
           displayTransform: headingStyle.textTransform,
           surfaceRadius: surfaceStyle.borderRadius,
@@ -2962,8 +2966,9 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
       expect(modernPageStyles).not.toBeNull();
       expect(modernPageStyles.preset).toBe("modern-minimal-v1");
       expect(modernPageStyles.pageInline).toBe("clamp(1rem, 3vw, 2rem)");
-      expect(modernPageStyles.pagePaddingLeft).toBeGreaterThanOrEqual(16);
-      expect(modernPageStyles.pagePaddingLeft).toBeLessThanOrEqual(32);
+      expect(modernPageStyles.pagePaddingLeft).toBe(0);
+      expect(modernPageStyles.contentPaddingLeft).toBeGreaterThanOrEqual(16);
+      expect(modernPageStyles.contentPaddingLeft).toBeLessThanOrEqual(40);
       expect(modernPageStyles.displayFont).toMatch(/Manrope/i);
       expect(modernPageStyles.displayTransform).toBe("none");
       expect(modernPageStyles.surfaceRadius).toBe("8px");
@@ -3383,5 +3388,397 @@ for (const { locale, oppositeLegacyLanguage } of localeScenarios) {
         { body: screenshot, contentType: "image/png" },
       );
     }
+  });
+}
+
+const STUDIO_DESIGN_PALETTES = [
+  { key: "blue", accent: "#2748D8", preset: "modern-minimal-v1" },
+  { key: "olive", accent: "#24483E", preset: "classic-editorial-v1" },
+  { key: "clay", accent: "#A14A35", preset: "warm-organic-v1" },
+];
+
+const STUDIO_PAGE_IMAGES = {
+  courses: "/images/DSC09001.webp",
+  memberships: "/images/OLD03142.webp",
+  vouchers: "/images/OLD02753.webp",
+  knowledge: "/images/DSC09328.webp",
+  bookings: "/images/OLD03050.webp",
+};
+
+async function expectFullWidthStudioHero(page, scenario) {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    window.scrollTo({ top: 0, behavior: "instant" });
+  });
+  const header = page
+    .locator("main [data-customer-portal-page-header]")
+    .filter({ visible: true })
+    .first();
+  const navigation = page.getByRole("banner").filter({ visible: true }).first();
+  await expect(header).toBeVisible();
+  const [heroBox, navigationBox, viewportWidth] = await Promise.all([
+    header.boundingBox(),
+    navigation.boundingBox(),
+    page.evaluate(() => document.documentElement.clientWidth),
+  ]);
+  expect(heroBox).not.toBeNull();
+  expect(navigationBox).not.toBeNull();
+  expect(
+    Math.abs(heroBox.x),
+    `${scenario.key} has no outer left gutter`,
+  ).toBeLessThanOrEqual(1);
+  expect(
+    Math.abs(heroBox.width - viewportWidth),
+    `${scenario.key} spans the viewport`,
+  ).toBeLessThanOrEqual(1);
+  expect(
+    Math.abs(heroBox.y - navigationBox.y - navigationBox.height),
+    `${scenario.key} meets the navigation without a gap`,
+  ).toBeLessThanOrEqual(2);
+  expect(
+    await header.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return [
+        style.borderTopLeftRadius,
+        style.borderTopRightRadius,
+        style.borderBottomLeftRadius,
+        style.borderBottomRightRadius,
+      ];
+    }),
+  ).toEqual(["0px", "0px", "0px", "0px"]);
+
+  const media = header.locator("[data-customer-portal-hero-media]");
+  const copy = header.locator("[data-customer-portal-hero-copy]");
+  const expectedImage = STUDIO_PAGE_IMAGES[scenario.imageKey];
+  if (!expectedImage) {
+    await expect(media).toHaveCount(0);
+    await expect(header.locator("img")).toHaveCount(0);
+    if (scenario.key === "credits") {
+      const copyBox = await copy.boundingBox();
+      expect(copyBox).not.toBeNull();
+      expect(Math.abs(copyBox.width - heroBox.width)).toBeLessThanOrEqual(1);
+    }
+    return;
+  }
+
+  await expect(media).toBeVisible();
+  const photo = media.locator("img");
+  await expect(photo).toHaveCount(1);
+  await expect
+    .poll(() =>
+      photo.evaluate((element) => element.complete && element.naturalWidth > 0),
+    )
+    .toBe(true);
+  expect(
+    await photo.evaluate((element) => {
+      const source = new URL(
+        element.currentSrc || element.src,
+        window.location.href,
+      );
+      return source.pathname === "/_next/image"
+        ? source.searchParams.get("url")
+        : source.pathname;
+    }),
+  ).toBe(expectedImage);
+  const [copyBox, mediaBox] = await Promise.all([
+    copy.boundingBox(),
+    media.boundingBox(),
+  ]);
+  expect(copyBox).not.toBeNull();
+  expect(mediaBox).not.toBeNull();
+  if (viewportWidth >= 900) {
+    expect(
+      Math.abs(copyBox.width - heroBox.width / 2),
+      `${scenario.key} copy occupies exactly half the hero`,
+    ).toBeLessThanOrEqual(1);
+    expect(
+      Math.abs(mediaBox.width - heroBox.width / 2),
+      `${scenario.key} image occupies exactly half the hero`,
+    ).toBeLessThanOrEqual(1);
+    expect(
+      Math.abs(mediaBox.x - copyBox.x - copyBox.width),
+    ).toBeLessThanOrEqual(1);
+    expect(Math.abs(mediaBox.y - copyBox.y)).toBeLessThanOrEqual(1);
+    expect(Math.abs(mediaBox.height - copyBox.height)).toBeLessThanOrEqual(1);
+  } else {
+    expect(Math.abs(copyBox.width - heroBox.width)).toBeLessThanOrEqual(1);
+    expect(Math.abs(mediaBox.width - heroBox.width)).toBeLessThanOrEqual(1);
+    expect(
+      Math.abs(mediaBox.y - copyBox.y - copyBox.height),
+      `${scenario.key} image stacks directly below its copy`,
+    ).toBeLessThanOrEqual(1);
+    expect(mediaBox.height).toBeGreaterThan(120);
+  }
+}
+
+for (const palette of STUDIO_DESIGN_PALETTES) {
+  test(`Studio pages keep branded contrast and customer details (${palette.key})`, async ({
+    context,
+    page,
+  }, testInfo) => {
+    test.skip(
+      !["desktop-1440", "mobile-390", "mobile-320"].includes(
+        testInfo.project.name,
+      ),
+      "The design matrix samples a desktop and two narrow phone widths for each palette.",
+    );
+    test.setTimeout(180_000);
+    await page.clock.setFixedTime(new Date(CUSTOMER_PORTAL_FIXED_TIME));
+    await installAssetRoutes(page);
+    const origin = `http://studio-portal-design-${palette.key}.shario.localhost:4310`;
+    await context.addCookies([
+      { name: "shario_language", url: origin, value: "CZ" },
+    ]);
+    const pageErrors = [];
+    page.on("pageerror", (error) => pageErrors.push(error.message));
+
+    const pages = [
+      { key: "book", path: "/book" },
+      {
+        key: "courses",
+        path: "/courses",
+        ready: "Kurz točení",
+        imageKey: "courses",
+      },
+      {
+        key: "portal-courses",
+        path: "/portal/courses",
+        ready: "Kurz točení",
+        imageKey: "courses",
+      },
+      {
+        key: "plans",
+        path: "/memberships",
+        ready: "Čas pro sebe",
+        imageKey: "memberships",
+      },
+      {
+        key: "portal-plans",
+        path: "/portal/membership/plans",
+        ready: "Čas pro sebe",
+        imageKey: "memberships",
+      },
+      {
+        key: "vouchers",
+        path: "/portal/vouchers",
+        ready: "Tvoření jako dárek",
+        imageKey: "vouchers",
+      },
+      {
+        key: "help",
+        path: "/help",
+        ready: "První návštěva ateliéru",
+        imageKey: "knowledge",
+      },
+      {
+        key: "knowledge",
+        path: "/portal/knowledge",
+        ready: "První návštěva ateliéru",
+        imageKey: "knowledge",
+      },
+      {
+        key: "membership",
+        path: "/portal/membership",
+        ready: "Čerpání potvrzeno",
+        imageKey: "memberships",
+      },
+      {
+        key: "bookings",
+        path: "/portal/bookings",
+        ready: "Otevřený ateliér",
+        imageKey: "bookings",
+      },
+      { key: "credits", path: "/portal/credits" },
+      { key: "calendar", path: "/portal?tab=studio-calendar" },
+    ];
+
+    for (const scenario of pages) {
+      const separator = scenario.path.includes("?") ? "&" : "?";
+      await page.goto(
+        `${origin}/cs${scenario.path}${separator}location=atelier-brno`,
+        {
+          waitUntil: "domcontentloaded",
+        },
+      );
+      const main = page.locator("main");
+      await expect(main.getByRole("heading", { level: 1 })).toBeVisible();
+      if (["book", "courses", "portal-courses"].includes(scenario.key)) {
+        const calendar =
+          scenario.key === "book"
+            ? main.locator("[data-public-calendar-frame]")
+            : null;
+        if (calendar) await expect(calendar).toBeVisible();
+        const switcher = main
+          .locator("[data-customer-studio-switcher-trigger]")
+          .first();
+        await switcher.click();
+        const otherStudio = page
+          .getByRole("option")
+          .filter({ hasText: "Atelier Prague" });
+        await expect(otherStudio).toBeVisible();
+        await otherStudio.scrollIntoViewIfNeeded();
+        expect(
+          await otherStudio.evaluate((element) => {
+            const rect = element.getBoundingClientRect();
+            return element.contains(
+              document.elementFromPoint(
+                rect.x + rect.width / 2,
+                rect.y + rect.height / 2,
+              ),
+            );
+          }),
+          "Location options must not be clipped behind the feature banner",
+        ).toBe(true);
+        await otherStudio.click();
+        await expect(page).toHaveURL(/location=atelier-prague/);
+        if (calendar) await expect(calendar).toBeVisible();
+        await switcher.click();
+        await page
+          .getByRole("option")
+          .filter({ hasText: "Atelier Brno" })
+          .click();
+        await expect(page).toHaveURL(/location=atelier-brno/);
+      } else if (scenario.key === "calendar") {
+        const welcome = page.locator("[data-customer-portal-tour-welcome]");
+        await expect(
+          main.locator("[data-customer-calendar-shell]"),
+        ).toBeVisible();
+        await expect(welcome).toHaveAttribute("aria-modal", "true");
+        await welcome.locator("[data-customer-portal-tour-dismiss]").click();
+        await expect(welcome).toHaveCount(0);
+      }
+      if (scenario.ready) {
+        await expect(
+          main
+            .getByText(scenario.ready, { exact: true })
+            .filter({ visible: true })
+            .first(),
+        ).toBeVisible();
+      }
+      await expect(page).toHaveURL(/location=atelier-brno/);
+      await expect(page.locator("main")).toHaveCount(1);
+      await expect(main.getByRole("heading", { level: 1 })).toHaveCount(1);
+      const theme = await main.evaluate((element) => {
+        const root =
+          element.closest("[data-tenant-style]") ||
+          element.querySelector("[data-tenant-style]");
+        return {
+          preset: root?.getAttribute("data-tenant-style"),
+          accent: getComputedStyle(element)
+            .getPropertyValue("--tenant-accent")
+            .trim(),
+        };
+      });
+      expect(theme.preset).toBe(palette.preset);
+      expect(theme.accent.toUpperCase()).toBe(palette.accent);
+      try {
+        await expectFullWidthStudioHero(page, scenario);
+      } catch (error) {
+        await testInfo.attach(`${scenario.key}-hero-layout-failure`, {
+          body: await page.screenshot({
+            animations: "disabled",
+            caret: "hide",
+          }),
+          contentType: "image/png",
+        });
+        throw error;
+      }
+      await expectNoHorizontalOverflow(page);
+      await expect(main).not.toContainText(
+        /benefit_redemption|booking_cancelled|period_grant|studio_hours/,
+      );
+
+      if (scenario.key === "membership") {
+        await expect(
+          main.getByText("Čerpání potvrzeno", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          main.getByText("Záznam stornován", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          main.getByText("Výhoda přidělena", { exact: true }),
+        ).toBeVisible();
+        await expect(main.getByText("−1 h", { exact: true })).toBeVisible();
+        await expect(main.getByText("+1 h", { exact: true })).toBeVisible();
+        await expect(main.getByText("+8 h", { exact: true })).toBeVisible();
+      }
+
+      await page.evaluate(async () => {
+        await document.fonts.ready;
+      });
+      const screenshotPath = testInfo.outputPath(
+        `studio-${palette.key}-${scenario.key}-${testInfo.project.name}.png`,
+      );
+      await page.screenshot({
+        path: screenshotPath,
+        animations: "disabled",
+        caret: "hide",
+        fullPage: true,
+      });
+      await testInfo.attach(`studio-${palette.key}-${scenario.key}`, {
+        path: screenshotPath,
+        contentType: "image/png",
+      });
+      if (
+        palette.key === "blue" &&
+        testInfo.project.name === "desktop-1440" &&
+        ["courses", "knowledge", "membership"].includes(scenario.key)
+      ) {
+        await page.evaluate(() =>
+          window.scrollTo({ top: 0, behavior: "instant" }),
+        );
+        const viewportPath = testInfo.outputPath(
+          `studio-${scenario.key}-desktop-preview.png`,
+        );
+        await page.screenshot({
+          path: viewportPath,
+          animations: "disabled",
+          caret: "hide",
+          fullPage: false,
+        });
+        await testInfo.attach(`studio-${scenario.key}-desktop-preview`, {
+          path: viewportPath,
+          contentType: "image/png",
+        });
+      }
+      const accessibility = await new AxeBuilder({ page })
+        .include("main")
+        .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+        .analyze();
+      expect
+        .soft(
+          accessibility.violations.map(({ id, nodes }) => ({
+            id,
+            nodes: nodes.map(({ target, failureSummary }) => ({
+              target,
+              failureSummary,
+            })),
+          })),
+          `${palette.key} ${scenario.key} must retain readable contrast and accessible semantics.`,
+        )
+        .toEqual([]);
+    }
+
+    if (page.viewportSize().width >= 1280) {
+      await page
+        .locator("[data-profile-menu-trigger]")
+        .filter({ visible: true })
+        .click();
+    } else {
+      await page
+        .locator('button[aria-controls="mobile-menu"]')
+        .filter({ visible: true })
+        .click();
+      await page.locator("[data-customer-portal-mobile-account]").click();
+    }
+    const profile = page.locator("[data-customer-portal-profile-sheet]");
+    await expect(profile).toBeVisible();
+    await expect(
+      profile.getByRole("link", { name: "Waiting list", exact: true }),
+    ).toBeVisible();
+    await expect(profile).not.toContainText(/Čekací listin/i);
+    await page.keyboard.press("Escape");
+    await expect(profile).toBeHidden();
+    expect(pageErrors).toEqual([]);
   });
 }

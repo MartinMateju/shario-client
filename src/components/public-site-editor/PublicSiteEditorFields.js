@@ -1,6 +1,11 @@
 "use client";
 
 import {
+  isValidPublicSiteCustomLinks,
+  isValidPublicSiteHeaderLinks,
+} from "@/components/public-tenant/publicTenantCustomLinks";
+
+import {
   ArrowDownIcon,
   ArrowPathIcon,
   ArrowUpIcon,
@@ -19,6 +24,7 @@ import {
   useContext,
   useEffect,
   useId,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -40,6 +46,11 @@ import {
 import { getLocaleDefinition } from "@/i18n/locales";
 import { PUBLIC_TENANT_PORTAL_APPEARANCE_KEYS } from "@/components/public-tenant/publicTenantPortalAppearance";
 import { getPublicTenantPortalTheme } from "@/components/public-tenant/publicTenantPortalTheme";
+import {
+  PUBLIC_TENANT_PAGE_IMAGE_KEYS,
+  PUBLIC_TENANT_PAGE_IMAGE_MEDIA_SLOTS,
+} from "@/components/public-tenant/publicTenantPageImages";
+import { PUBLIC_SITE_PAGE_IMAGE_LABEL_KEYS } from "./publicSitePageImages";
 import {
   CUSTOMER_PORTAL_PAGE_IDS,
   CUSTOMER_PORTAL_NAVIGATION_PAGE_IDS,
@@ -597,7 +608,9 @@ export function MediaField({
   const cropPreview =
     slot === "cover" ||
     slot === "loginBackground" ||
-    slot === "registerBackground";
+    slot === "registerBackground" ||
+    slot === "courseHero" ||
+    Object.values(PUBLIC_TENANT_PAGE_IMAGE_MEDIA_SLOTS).includes(slot);
   const logoPreview = slot === "logo";
   const fileName =
     (busy || error) && uploadState?.fileName ? uploadState.fileName : null;
@@ -717,7 +730,7 @@ export function MediaField({
             <p className="text-xs font-semibold text-[#292925]">
               {busy ? t("media.uploading") : t("media.dropTitle")}
             </p>
-            <p className="mt-1 text-[11px] leading-5 text-[#777773]">
+            <p className="mt-1 text-[11px] leading-5 text-[#686762]">
               {t("media.formats")}
             </p>
             {fileName ? (
@@ -814,14 +827,14 @@ export function MediaField({
               }}
               className={controlClass}
             />
-            <p className="mt-1.5 text-[10px] leading-4 text-[#858580]">
+            <p className="mt-1.5 text-[10px] leading-4 text-[#686762]">
               {t("media.externalUrlHint")}
             </p>
           </div>
         </details>
       </div>
       {hint ? (
-        <p className="mt-1.5 text-[10px] leading-4 text-[#858580]">{hint}</p>
+        <p className="mt-1.5 text-[10px] leading-4 text-[#686762]">{hint}</p>
       ) : null}
     </fieldset>
   );
@@ -1279,12 +1292,271 @@ export function PagesFields({
   );
 }
 
+const CUSTOM_LINK_COPY_KEYS = Object.freeze(["title", "addGroup", "group", "children", "button", "separator", "layout", "defaultLayout", "websiteLayout", "background", "linkColor", "buttonColor", "header", "footer", "label", "href", "add", "remove", "up", "down", "count", "hint", "invalid"]);
+
+// Custom-link labels are shared by nested editor rows; resolve them once.
+function useCustomLinkCopy() {
+  const t = useTranslations("PublicSiteEditor.customLinks");
+  return useMemo(
+    () => Object.fromEntries(CUSTOM_LINK_COPY_KEYS.map((key) => [key, t(key)])),
+    [t],
+  );
+}
+
+function CustomLinkList({
+  section,
+  links,
+  path,
+  onChange,
+  copy,
+  locale,
+  child = false,
+}) {
+  const limit = child || section === "header" ? 8 : 12;
+  const move = (index, direction) => {
+    const next = [...links];
+    [next[index], next[index + direction]] = [
+      next[index + direction],
+      next[index],
+    ];
+    onChange(path, next);
+  };
+  const add = (group = false) =>
+    onChange(path, [
+      ...links,
+      {
+        id: `link-${crypto.randomUUID()}`,
+        label: {},
+        ...(group ? { children: [] } : { href: {} }),
+      },
+    ]);
+  return (
+    <div className="space-y-4">
+      {links.map((link, index) => {
+        const group = Array.isArray(link.children);
+        const valid =
+          section === "header"
+            ? isValidPublicSiteHeaderLinks(
+                child
+                  ? [
+                      {
+                        id: "preview-group",
+                        label: { en: "Group" },
+                        children: [link],
+                      },
+                    ]
+                  : [link],
+              )
+            : isValidPublicSiteCustomLinks([link], 1);
+        const title =
+          link.label?.[locale] ||
+          link.label?.cs ||
+          link.label?.en ||
+          `${group ? copy.group : copy.label} ${index + 1}`;
+        return (
+          <fieldset
+            key={link.id}
+            className="min-w-0 space-y-4 rounded-xl border border-line p-4"
+            data-public-site-custom-link={link.id}
+          >
+            <legend className="px-2 text-sm font-semibold">{title}</legend>
+            <div className="flex items-center justify-end gap-2">
+              <button
+                type="button"
+                className="min-h-11 min-w-11 rounded-lg border border-line disabled:opacity-30"
+                aria-label={`${copy.up}: ${index + 1}`}
+                disabled={index === 0}
+                onClick={() => move(index, -1)}
+              >
+                <ArrowUpIcon className="mx-auto h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                className="min-h-11 min-w-11 rounded-lg border border-line disabled:opacity-30"
+                aria-label={`${copy.down}: ${index + 1}`}
+                disabled={index === links.length - 1}
+                onClick={() => move(index, 1)}
+              >
+                <ArrowDownIcon className="mx-auto h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                className="min-h-11 rounded-lg border border-line px-3 text-sm"
+                aria-label={`${copy.remove}: ${index + 1}`}
+                onClick={() =>
+                  onChange(
+                    path,
+                    links.filter((_, i) => i !== index),
+                  )
+                }
+              >
+                {copy.remove}
+              </button>
+            </div>
+            <LocalizedField
+              path={`${path}.${index}.label`}
+              label={group ? copy.group : copy.label}
+              value={link.label}
+              onChange={onChange}
+              multiline={false}
+              maxLength={80}
+            />
+            {group ? (
+              <div className="space-y-3" aria-label={copy.children}>
+                <p className="text-sm font-semibold">{copy.children}</p>
+                <CustomLinkList
+                  section={section}
+                  links={link.children}
+                  path={`${path}.${index}.children`}
+                  onChange={onChange}
+                  copy={copy}
+                  locale={locale}
+                  child
+                />
+              </div>
+            ) : (
+              <>
+                <LocalizedField
+                  path={`${path}.${index}.href`}
+                  label={copy.href}
+                  value={link.href}
+                  onChange={onChange}
+                  multiline={false}
+                  maxLength={2048}
+                />
+                {section === "header" && !child ? (
+                  <label className="flex min-h-11 items-center gap-3 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={link.emphasis === "button"}
+                      onChange={(event) =>
+                        onChange(
+                          path,
+                          links.map((item, i) => {
+                            const { emphasis, ...plain } = item;
+                            return i === index && event.target.checked
+                              ? { ...plain, emphasis: "button" }
+                              : plain;
+                          }),
+                        )
+                      }
+                    />
+                    {copy.button}
+                  </label>
+                ) : null}
+                {child ? (
+                  <label className="flex min-h-11 items-center gap-3 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={link.separatorBefore === true}
+                      onChange={(event) =>
+                        onChange(
+                          `${path}.${index}.separatorBefore`,
+                          event.target.checked,
+                        )
+                      }
+                    />
+                    {copy.separator}
+                  </label>
+                ) : null}
+              </>
+            )}
+            {!valid ? (
+              <p role="status" className="text-sm text-terracotta-700">
+                {copy.invalid}
+              </p>
+            ) : null}
+          </fieldset>
+        );
+      })}
+      <div className="flex flex-wrap gap-2">
+        <button
+          type="button"
+          disabled={links.length >= limit}
+          className="min-h-11 rounded-xl border border-line bg-white px-4 text-sm font-semibold disabled:opacity-40"
+          onClick={() => add()}
+        >
+          {copy.add}
+        </button>
+        {section === "header" && !child ? (
+          <button
+            type="button"
+            disabled={links.length >= limit}
+            className="min-h-11 rounded-xl border border-line bg-white px-4 text-sm font-semibold disabled:opacity-40"
+            onClick={() => add(true)}
+          >
+            {copy.addGroup}
+          </button>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+export function CustomLinksFields({ section, links = [], onChange }) {
+  const locale = useLocale();
+  const copy = useCustomLinkCopy();
+  const limit = section === "header" ? 8 : 12;
+  return (
+    <Section
+      title={copy.title}
+      description={copy[section]}
+      status={`${links.length} / ${limit} ${copy.count}`}
+    >
+      <CustomLinkList
+        section={section}
+        links={links}
+        path={`${section}.customLinks`}
+        onChange={onChange}
+        copy={copy}
+        locale={locale}
+      />
+      <p className="text-sm leading-6 text-[#686762]">{copy.hint}</p>
+    </Section>
+  );
+}
+
 export function HeaderFields({ draft, onChange }) {
+  const locale = useLocale();
+  const copy = useCustomLinkCopy();
   const t = useTranslations("PublicSiteEditor.header");
   const header = draft.header;
 
   return (
     <div className="space-y-4">
+      <Section title={copy.layout}>
+        <Field label={copy.layout} path="header.layout">
+          <select
+            className={controlClass}
+            value={header.layout || "default"}
+            onChange={(event) => onChange("header.layout", event.target.value)}
+          >
+            <option value="default">{copy.defaultLayout}</option>
+            <option value="website">{copy.websiteLayout}</option>
+          </select>
+        </Field>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {[
+            [
+              "backgroundColor",
+              copy.background,
+              draft.branding.backgroundColor,
+            ],
+            ["linkColor", copy.linkColor, draft.branding.accentColor],
+            ["buttonColor", copy.buttonColor, draft.branding.accentColor],
+          ].map(([key, label, fallback]) => (
+            <ColorField
+              key={key}
+              label={label}
+              path={`header.${key}`}
+              value={header[key] || ""}
+              onChange={onChange}
+              optional
+              fallbackValue={fallback}
+            />
+          ))}
+        </div>
+      </Section>
       <Section
         title={t("navigationTitle")}
         description={t("navigationDescription")}
@@ -1380,6 +1652,11 @@ export function HeaderFields({ draft, onChange }) {
         </Field>
       </Section>
 
+      <CustomLinksFields
+        section="header"
+        links={header.customLinks}
+        onChange={onChange}
+      />
       <Section
         title={t("announcementTitle")}
         description={t("announcementDescription")}
@@ -1414,6 +1691,11 @@ export function FooterFields({ draft, onChange }) {
 
   return (
     <div className="space-y-4">
+      <CustomLinksFields
+        section="footer"
+        links={footer.customLinks}
+        onChange={onChange}
+      />
       <Section title={t("contentTitle")} description={t("contentDescription")}>
         <LocalizedField
           path="footer.description"
@@ -1719,6 +2001,8 @@ export function CustomerPortalFields({
   locations = [],
   selectedCourseLocationId,
   onCourseLocationChange,
+  selectedPageImageKey,
+  onPageImageChange,
   onUpload,
   onClearUpload,
   disabled,
@@ -1763,6 +2047,16 @@ export function CustomerPortalFields({
 
   return (
     <div className="space-y-4">
+      <PageImageFields
+        draft={draft}
+        onChange={onChange}
+        selectedPageKey={selectedPageImageKey}
+        onPageChange={onPageImageChange}
+        onUpload={onUpload}
+        onClearUpload={onClearUpload}
+        disabled={disabled}
+        uploadState={uploadState}
+      />
       <Section
         title={t("appearanceTitle")}
         description={t("appearanceDescription")}
@@ -1915,6 +2209,77 @@ export function CustomerPortalFields({
         uploadState={uploadState}
       />
     </div>
+  );
+}
+
+export function PageImageFields({
+  draft,
+  onChange,
+  selectedPageKey,
+  onPageChange,
+  onUpload,
+  onClearUpload,
+  disabled,
+  uploadState,
+}) {
+  const t = useTranslations("PublicSiteEditor.customerPortal");
+  const [localPageKey, setLocalPageKey] = useState("courses");
+  const requestedPageKey = selectedPageKey ?? localPageKey;
+  const pageKey = PUBLIC_TENANT_PAGE_IMAGE_KEYS.includes(requestedPageKey)
+    ? requestedPageKey
+    : "courses";
+
+  return (
+    <Section
+      title={t("pageImages.title")}
+      description={t("pageImages.description")}
+    >
+      <div className="space-y-4" data-customer-portal-page-image-editor>
+        <Field label={t("pageImages.page")}>
+          <select
+            className={controlClass}
+            value={pageKey}
+            disabled={disabled}
+            onChange={(event) => {
+              setLocalPageKey(event.target.value);
+              onPageChange?.(event.target.value);
+            }}
+          >
+            {PUBLIC_TENANT_PAGE_IMAGE_KEYS.map((key) => (
+              <option key={key} value={key}>
+                {t(PUBLIC_SITE_PAGE_IMAGE_LABEL_KEYS[key])}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <MediaField
+          key={pageKey}
+          label={t("pageImages.image")}
+          hint={t(
+            pageKey === "courses" ? "courses.inherit" : "pageImages.hint",
+          )}
+          path={`customerPortal.pageImages.${pageKey}`}
+          slot={PUBLIC_TENANT_PAGE_IMAGE_MEDIA_SLOTS[pageKey]}
+          value={draft.customerPortal.pageImages?.[pageKey] || ""}
+          onChange={onChange}
+          onUpload={onUpload}
+          onClearUpload={onClearUpload}
+          disabled={disabled}
+          uploadState={uploadState}
+        />
+        {onPageChange ? (
+          <button
+            type="button"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-white px-4 text-xs font-semibold text-cobalt-700 disabled:opacity-50"
+            disabled={disabled}
+            onClick={() => onPageChange(pageKey)}
+          >
+            <EyeIcon className="h-4 w-4" aria-hidden="true" />
+            {t("pageImages.preview")}
+          </button>
+        ) : null}
+      </div>
+    </Section>
   );
 }
 

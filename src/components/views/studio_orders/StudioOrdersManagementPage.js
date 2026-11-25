@@ -222,7 +222,7 @@ export default function StudioOrdersManagementPage() {
         <button
           type="button"
           onClick={openCreateModal}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-medium text-white transition hover:bg-black/80"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-cobalt-500 px-5 py-3 text-sm font-medium text-white transition hover:bg-cobalt-600"
         >
           <PlusIcon className="h-4 w-4" />
           Nová zakázka
@@ -348,7 +348,7 @@ export default function StudioOrdersManagementPage() {
                         <button
                           type="button"
                           onClick={() => openEditModal(order)}
-                          className="rounded-full border border-black/10 p-2 hover:bg-black hover:text-white"
+                          className="rounded-full border border-black/10 p-2 hover:bg-cobalt-50 hover:text-cobalt-700"
                         >
                           <PencilSquareIcon className="h-4 w-4" />
                         </button>
@@ -514,7 +514,7 @@ export default function StudioOrdersManagementPage() {
                 <button
                   type="submit"
                   disabled={isCreating || isUpdating}
-                  className="rounded-full bg-black px-5 py-3 text-sm text-white disabled:opacity-50"
+                  className="rounded-full bg-cobalt-500 px-5 py-3 text-sm text-white disabled:opacity-50"
                 >
                   {editingOrder ? "Uložit změny" : "Vytvořit zakázku"}
                 </button>

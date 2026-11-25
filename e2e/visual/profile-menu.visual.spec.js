@@ -1,14 +1,12 @@
 import { expect, test } from "@playwright/test";
 
-import {
-  VISUAL_FIXED_TIME,
-  VISUAL_TENANT_ORIGIN,
-  installAdminApiMocks,
-} from "./admin-fixtures.js";
+import { VISUAL_FIXED_TIME, installAdminApiMocks } from "./admin-fixtures.js";
 
 test("profile menu stays complete and balanced in a short viewport", async ({
   page,
+  baseURL,
 }, testInfo) => {
+  const tenantOrigin = new URL(baseURL).origin;
   const viewport = page.viewportSize();
   await page.setViewportSize({
     width: viewport?.width || 1280,
@@ -20,12 +18,12 @@ test("profile menu stays complete and balanced in a short viewport", async ({
     {
       name: "shario_language",
       value: "EN",
-      url: VISUAL_TENANT_ORIGIN,
+      url: tenantOrigin,
       sameSite: "Lax",
     },
   ]);
 
-  await page.goto(`${VISUAL_TENANT_ORIGIN}/en/app`, {
+  await page.goto(`${tenantOrigin}/en/app`, {
     waitUntil: "domcontentloaded",
   });
   await expect(
@@ -38,14 +36,13 @@ test("profile menu stays complete and balanced in a short viewport", async ({
   const footer = panel.locator("[data-profile-menu-footer]");
   await expect(panel).toBeVisible();
   await expect(panel.getByRole("region", { name: "Personal" })).toBeVisible();
-  await expect(panel.getByRole("region", { name: "Workspace" })).toBeVisible();
+  await expect(panel.getByRole("region", { name: "Workspace" })).toHaveCount(0);
+  await expect(panel.getByRole("link")).toHaveCount(1);
+  await expect(
+    panel.getByRole("link", { name: "My settings", exact: true }),
+  ).toHaveAttribute("href", "/en/app/settings?section=personal");
   await expect(panel.getByRole("button", { name: "Log out" })).toBeVisible();
-  const languageSettings = panel.getByRole("link", { name: /Language/ });
-  await expect(languageSettings).toBeVisible();
-  await expect(languageSettings).toHaveAttribute(
-    "href",
-    "/en/app/settings/general",
-  );
+  await expect(panel.getByRole("link", { name: /Language/ })).toHaveCount(0);
   await expect(footer).toBeInViewport();
 
   const box = await panel.boundingBox();

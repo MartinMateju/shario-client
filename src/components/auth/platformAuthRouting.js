@@ -63,6 +63,7 @@ export const getPostLoginUrl = ({
 
   return buildTenantUrl({
     slug: tenant.slug,
+    tenant,
     locale: routeLocale,
     pathname,
   });

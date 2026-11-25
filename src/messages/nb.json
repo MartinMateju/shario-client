@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Bekreftet",
-      "pending": "Venter",
+      "pending": "Venter på bekreftelse",
       "awaitingPayment": "Avventer betaling",
-      "processed": "Avventer levering",
-      "delivered": "Levert",
+      "processed": "Bekreftet",
+      "delivered": "Påbegynt",
       "completed": "Fullført",
       "cancelled": "Avbestilt"
     },
     "payment": {
       "paid": "Betalt",
-      "pending": "Venter",
+      "pending": "Venter på betaling",
       "failed": "Mislykket",
       "expired": "Utløpt",
       "refunded": "Refundert",
       "credits": "Kreditter"
+    },
+    "refreshing": "Oppdaterer bestillinger…",
+    "retry": "Prøv igjen",
+    "errors": {
+      "load": "Kunne ikke laste bestillinger. Prøv igjen.",
+      "filters": "Noen filteralternativer kunne ikke lastes."
     },
     "edit": {
       "product": "Produkt",
@@ -120,7 +126,9 @@
       "deletedTitle": "Bestilling slettet",
       "deletedText": "Bestillingen er slettet.",
       "errorTitle": "Bestillingen kunne ikke opprettes",
-      "errorText": "Se over bestillingsopplysningene og prøv igjen."
+      "errorText": "Se over bestillingsopplysningene og prøv igjen.",
+      "cancelError": "Bestillingen kunne ikke kanselleres. Prøv igjen.",
+      "extensionRefund": "Ytterligere {amount} for lagt til bestillingstid ble tilbakeført til kundens studiokreditter."
     },
     "exportColumns": {
       "customer": "Kunde",
@@ -193,6 +201,7 @@
       "spotsAvailable": "{remaining} av {capacity} plasser tilgjengelig"
     },
     "week": {
+      "schedule": "Ukeplan",
       "privacyNote": "Lilla markerer private bestillinger, og turkis markerer offentlige bestillinger. Dine bestillinger har et blått merke."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Bookinger, medlemskap og din egen flotte nettside. Alt du trenger for å dele stedet ditt og få fellesskapet til å vokse, samlet i Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Innstillingen for banneret kunne ikke lagres. Prøv igjen.",
     "skipToContent": "Gå til innhold",
     "learnMore": "Les mer",
     "viewAll": "Vis alle",
@@ -434,7 +444,8 @@
       "notifications": "Varsler",
       "events": "Arrangementer",
       "lostFound": "Hittegods",
-      "customOrders": "Spesialbestillinger"
+      "customOrders": "Spesialbestillinger",
+      "communicationSettings": "Meldingsinnstillinger"
     },
     "stats": {
       "bookings": "Bookinger i dag",
@@ -1439,7 +1450,8 @@
     },
     "product": {
       "metaTitle": "Alt stedet ditt trenger, samlet og sammenkoblet.",
-      "metaDescription": "Koble sammen bookinger, medlemmer, betalinger, teamet og den offentlige nettsiden. Fokuser på menneskene mens Shario hjelper deg å organisere dagen."
+      "metaDescription": "Koble sammen bookinger, medlemmer, betalinger, teamet og den offentlige nettsiden. Fokuser på menneskene mens Shario hjelper deg å organisere dagen.",
+      "viewScreenshot": "Se hele skjermbildet"
     },
     "studioAi": {
       "metaTitle": "En hjelpende hånd i hverdagen.",
@@ -1481,13 +1493,14 @@
       "from": "fra",
       "customAnnual": "Tilpasset årsabonnement",
       "mostPopular": "Mest populær",
+      "includesPrevious": "Alt i {plan}, pluss:",
       "starter": {
         "name": "Starter",
         "description": "Start med bookinger, betalinger, kurs og arrangementer for stedet ditt.",
         "feature1": "1 studiolokasjon · 1 teamkonto",
         "feature2": "Kurs, private arrangementer og gavekort",
         "feature3": "500 inkluderte e-poster per måned",
-        "feature4": "Begrenset Shario AI · 200 kreditter per måned",
+        "feature4": "Studionettside og kundeportal",
         "cta": "Start gratis prøveperiode"
       },
       "professional": {
@@ -1495,8 +1508,9 @@
         "description": "Koble sammen medlemskap, felles møteplasser og den daglige driften.",
         "feature1": "1 studiolokasjon · 3 teamkontoer",
         "feature2": "Medlemskap, bookinger og felles ressurser",
-        "feature3": "3 aktive automatiseringer · 2 500 e-poster per måned",
-        "feature4": "Full Shario AI · 2 000 kreditter per måned",
+        "feature3": "Lager og teamoppgaver",
+        "feature4": "3 aktive automatiseringer · 2 500 e-poster per måned",
+        "feature5": "Shario AI · 2 000 kreditter per måned",
         "cta": "Start gratis prøveperiode"
       },
       "studioPlus": {
@@ -1505,16 +1519,16 @@
         "feature1": "Opptil 2 studiolokasjoner · 6 teamkontoer",
         "feature2": "Tilgangskoder og eget domene",
         "feature3": "Avanserte automatiseringer · 5 000 e-poster per måned",
-        "feature4": "Komplett AI-pakke · 10 000 kreditter per måned",
+        "feature4": "Avansert Shario AI · 10 000 kreditter per måned",
         "cta": "Start gratis prøveperiode"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Driv organisasjonen med tilpasset kapasitet, styring og støtte.",
-        "feature1": "Ubegrensede lokasjoner og teamkontoer",
+        "feature1": "Kapasitet for lokasjoner og team etter avtale",
         "feature2": "Tilpassede grenser for automatisering, e-post og AI",
-        "feature3": "SSO/SCIM, API, webhooks og revisjonslogger",
-        "feature4": "Dedikert onboarding, migrering og SLA",
+        "feature3": "Diskuter behov for integrasjoner og styring",
+        "feature4": "Oppstart, migrering og støtte etter avtale",
         "cta": "Start en gratis prøveperiode"
       },
       "note": "Prisene er eksklusive gjeldende avgifter. Årlige selvbetjeningsplaner inkluderer to gratis måneder. Nødvendige system-e-poster teller ikke mot e-postgrensen, og AI-bruken stopper ved den inkluderte grensen — uten automatiske ekstrakostnader.",
@@ -2260,7 +2274,10 @@
     },
     "unavailable": {
       "title": "Dette alternativet er ikke tilgjengelig",
-      "description": "Studioet tilbyr ikke dette alternativet offentlig for øyeblikket."
+      "description": "Studioet tilbyr ikke dette alternativet offentlig for øyeblikket.",
+      "retry": "Prøv igjen",
+      "retrying": "Laster inn…",
+      "loginDegraded": "Studioets opplysninger kunne ikke lastes inn akkurat nå."
     },
     "book": {
       "metadataTitle": "Book åpent studio",
@@ -2318,6 +2335,7 @@
         "email": "E-postadresse",
         "quantity": "Antall",
         "missing": "Velg et gavekort og skriv inn en gyldig e-postadresse.",
+        "reselect": "Utvalget av gavekort har endret seg. Velg et gavekort på nytt for å fortsette.",
         "error": "Betalingen kunne ikke startes. Prøv igjen.",
         "starting": "Klargjør betaling …",
         "continue": "Fortsett til betaling",
@@ -2353,6 +2371,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Tilbudene kunne ikke oppdateres. Du ser de sist innlastede tilbudene.",
       "loading": "Laster gjeldende tilbud …",
       "error": "De gjeldende tilbudene kunne ikke lastes inn.",
       "retry": "Prøv igjen",
@@ -2786,10 +2805,20 @@
         "headline": "Kurssidens overskrift",
         "intro": "Kurssidens introduksjon",
         "image": "Kurssidens bilde",
-        "inherit": "Tomme felt bruker den felles kursteksten og merkevarens forsidebilde.",
+        "inherit": "Tomme felt bruker felles kurstekst og kurssidens bilde, eller merkevarens forsidebilde hvis ingen kursbilder er angitt.",
         "noLocations": "Legg til et verkstedssted for å tilpasse kurssiden.",
         "guestCheckoutEnabled": "Tillat kjøp av kurs uten konto",
         "guestCheckoutDescription": "Gjelder alle studioer. Gjester kan kjøpe kurs uten å opprette konto; kunder kan fortsatt logge inn for å bestille. Krever synlige kurssider og nettbetaling som er klar til bruk. Publiser endringene for å ta i bruk innstillingen."
+      },
+      "pageImages": {
+        "title": "Bilder i sidehoder",
+        "description": "Velg et eget bilde for hver offentlig side eller kundeside. Bookingkalendere beholder sitt kompakte teksthode.",
+        "page": "Side som skal tilpasses",
+        "image": "Bilde i sidehode",
+        "hint": "Bruk et liggende bilde. Hvis du fjerner det, vises bare tekst. Et kursbilde for et bestemt studio har forrang.",
+        "preview": "Forhåndsvis sidehode",
+        "previewDescription": "Forhåndsvis sidebildet med valgte farger og skrifttyper.",
+        "products": "Produkter"
       },
       "calendarColors": "Kalender",
       "hidden": "Skjult",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Kurs i kundeportalen",
+        "portalPageHero": "Sidehoder",
         "book": "Åpent studio",
         "courses": "Kurs",
         "memberships": "Medlemskap",
@@ -3275,6 +3305,31 @@
       "labelColor": "Etikettfarge for registrering · valgfritt",
       "imageTitle": "Registreringsbilde",
       "imageDescription": "Bruk et eget bilde for kontoopprettelse; studioets felles logo blir stående på skjemaet."
+    },
+    "customLinks": {
+      "title": "Egne lenker",
+      "addGroup": "Legg til nedtrekksgruppe",
+      "group": "Nedtrekksgruppe",
+      "children": "Lenker i denne gruppen",
+      "button": "Vis som hovedknapp",
+      "separator": "Vis en skillelinje før denne lenken",
+      "layout": "Oppsett for toppteksten",
+      "defaultLayout": "Standard topptekst for bestilling",
+      "websiteLayout": "Nettstedsnavigasjon",
+      "background": "Bakgrunn i toppteksten",
+      "linkColor": "Lenkefarge i toppteksten",
+      "buttonColor": "Knappefarge i toppteksten",
+      "header": "Legg til lenker etter standardnavigasjonen. Skjul standardpunktene ovenfor hvis du vil ha en helt egen meny.",
+      "footer": "Legg til flere lenker under Utforsk i bunnteksten. Lenker som allerede vises i toppteksten, tas med automatisk.",
+      "label": "Lenketekst",
+      "href": "Mål-URL",
+      "add": "Legg til lenke",
+      "remove": "Fjern lenke",
+      "up": "Flytt lenke opp",
+      "down": "Flytt lenke ned",
+      "count": "lenker",
+      "hint": "Bruk https://… eller en bane som starter med /. Fyll inn tekst og URL sammen; la begge stå tomme for å bruke et annet språk.",
+      "invalid": "Skriv inn lenketekst og en gyldig HTTPS-URL eller bane på minst ett språk. Hvert språk trenger begge feltene eller ingen av dem."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "awaitingPayment": "Avventer betaling",
       "processing": "Behandles",
       "completed": "Fullført",
-      "failed": "Mislykket"
+      "failed": "Mislykket",
+      "cancelled": "Kansellert"
     },
     "productTypes": {
       "course": "Kurs",
@@ -3811,7 +3867,8 @@
       "creatingInvoice": "Oppretter…",
       "confirmCreateInvoice": "Opprette et fakturautkast fra denne ordren?",
       "note": "Ordrenotat",
-      "internalId": "Intern ordre-ID"
+      "internalId": "Intern ordre-ID",
+      "paymentDateUnknown": "Betalingsdato er ikke registrert"
     },
     "fallbackStudioName": "studioet ditt",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Fakturaen kunne ikke opprettes fra denne ordren."
     },
     "csv": {
-      "createdAt": "Opprettet den"
+      "createdAt": "Opprettet den",
+      "currency": "Valuta",
+      "amountStatus": "Beløpets tilgjengelighet"
+    },
+    "money": {
+      "unavailable": "Ikke tilgjengelig",
+      "unavailableDetail": "Ordrens endelige beløp eller refusjonshistorikk kan ikke bekreftes.",
+      "verified": "Tilgjengelig",
+      "refunded": "Refundert",
+      "net": "Verdi etter refusjoner",
+      "incomplete": "Noen betalte ordrer har ufullstendige beløp eller refusjonsposter. Totalen er ikke tilgjengelig.",
+      "mixedCurrencies": "Perioden inneholder flere valutaer. De kan ikke legges sammen til én total.",
+      "truncated": "Perioden overskrider grensen for oversikten. Velg en kortere periode for å beregne totalen.",
+      "scope": "Ordreverdier inkluderer mva. og innløste kreditter eller gavekort. Separate gavekortkjøp og medlemskapsfakturaer er utelatt. Dette er verken mottatte innbetalinger eller inntekter fra leverte tjenester. Oversiktskortene dekker hele den valgte perioden og studioet.",
+      "multiStudio": "Ordrer knyttet til flere studioer telles med full verdi."
     }
   },
   "VoucherShopping": {
@@ -4011,9 +4082,51 @@
         "complained": "Søppelpostklage",
         "rejected": "Avvist",
         "ambiguous": "Uavklart status",
-        "suppressed": "Undertrykt"
+        "suppressed": "Ikke sendt"
       },
-      "description": "Se gjennom planlagte, kølagte, leverte, undertrykte, avbrutte og mislykkede e-postleveringer.",
+      "resend": {
+        "actionMenu": "E-posthandlinger",
+        "action": "Send på nytt",
+        "title": "Sende denne e-posten på nytt?",
+        "description": "Det gjøres et nytt forsøk på å sende denne meldingen til samme mottaker.",
+        "recipient": "Mottaker",
+        "subject": "Emne",
+        "cancel": "Avbryt",
+        "confirm": "Send på nytt",
+        "submitting": "Forbereder sending…",
+        "queued": "E-posten er klar til å sendes på nytt.",
+        "scheduled": "Et nytt forsøk er planlagt. E-posten sendes når sending er tilgjengelig.",
+        "error": "E-posten kunne ikke klargjøres for sending. Prøv igjen.",
+        "stale": "Statusen til denne e-posten er endret. Den nyeste statusen vises nå.",
+        "blocked": "Denne e-posten kan ikke sendes på nytt akkurat nå.",
+        "reasonLabel": "Hvorfor den ikke ble sendt"
+      },
+      "reasons": {
+        "status_not_retryable": "Denne e-posten kan ikke sendes på nytt i sin nåværende tilstand.",
+        "delivery_in_progress": "Denne e-posten er allerede i ferd med å bli sendt.",
+        "delivery_outcome_unknown": "Vi kan ikke bekrefte om denne e-posten ble sendt. Sjekk leveringsstatusen før du prøver igjen.",
+        "already_sent": "Denne e-posten er allerede sendt.",
+        "recipient_suppressed": "Sending til denne mottakeren var blokkert.",
+        "consent_revoked": "Mottakeren hadde trukket tilbake samtykket til å motta denne e-posten.",
+        "consent_expired": "Mottakerens samtykke var utløpt.",
+        "marketing_opt_in_required": "Mottakeren hadde ikke samtykket til å motta markedsførings-e-poster.",
+        "consent_required": "Det nødvendige samtykket fra mottakeren manglet.",
+        "content_unavailable": "Den opprinnelige meldingen var ikke lenger tilgjengelig.",
+        "invalid_delivery_contract": "Opplysningene som trengtes for å sende denne e-posten, var ufullstendige.",
+        "source_changed": "Opplysningene denne e-posten var basert på, var endret.",
+        "source_missing": "Oppføringen knyttet til denne e-posten fantes ikke lenger.",
+        "recipient_ineligible": "Denne meldingen gjaldt ikke lenger denne mottakeren.",
+        "automation_inactive": "Denne e-postautomatiseringen var slått av.",
+        "sender_not_ready": "E-postsending var ikke konfigurert eller var midlertidig utilgjengelig.",
+        "workspace_disabled": "E-postsending var slått av for dette arbeidsområdet.",
+        "monthly_allowance_exhausted": "Arbeidsområdet hadde brukt opp den månedlige e-postkvoten.",
+        "unsupported_email_type": "Denne typen e-post kan ikke sendes på nytt herfra.",
+        "delivery_failed": "E-posten kunne ikke leveres.",
+        "not_sent": "E-posten ble ikke sendt.",
+        "hard_bounce": "Levering til denne adressen mislyktes permanent.",
+        "spam_complaint": "Mottakeren rapporterte en e-post som søppelpost."
+      },
+      "description": "Se planlagte, leverte, kansellerte og ikke-sendte e-poster.",
       "searchLabel": "Søk i leveringshistorikk",
       "searchPlaceholder": "Søk etter mottakerens e-postadresse eller kunde-ID…",
       "statusLabel": "Filtrer etter leveringsstatus",
@@ -4398,7 +4511,8 @@
         "module": "Aktiver Døradgang-modulen i arbeidsområdets innstillinger.",
         "sender": "Fullfør oppsettet av administrert e-postavsender før du aktiverer levering.",
         "inventory": "Legg til en bekreftet, gjenbrukbar kode i en aktiv kodegruppe på dette stedet."
-      }
+      },
+      "template": "Tilpass e-postmal"
     },
     "errors": {
       "setupRequired": "Kontroller e-postoppsettet før du aktiverer en automatisering.",
@@ -4411,6 +4525,102 @@
       "message": "Slette {name}? Dette kan ikke angres.",
       "cancel": "Behold automatisering",
       "deleting": "Sletter…"
+    },
+    "doorTemplates": {
+      "title": "E-poster med adgangskode",
+      "description": "Tilpass den automatiske e-posten med dørkode for hver studiolokasjon. Malene brukes av den eksisterende utsendelsen av adgangskoder.",
+      "locationHint": "Brukes bare for bestillinger på denne lokasjonen",
+      "default": "Standardmelding",
+      "customized": "Tilpasset melding",
+      "loading": "Laster inn dørkodemaler…",
+      "loadError": "Dørkodemalene kunne ikke lastes inn.",
+      "retry": "Prøv igjen",
+      "empty": "Legg til en aktiv studiolokasjon for å tilpasse e-posten med dørkode.",
+      "edit": "Rediger mal",
+      "preview": "Forhåndsvis mal",
+      "editFor": "Rediger dørkodemal for {location}",
+      "previewFor": "Forhåndsvis dørkodemal for {location}",
+      "eyebrow": "E-post med adgangskode",
+      "editorDescription": "Rediger emne og melding for denne lokasjonen. Lagrede endringer gjelder for kommende automatiske e-poster; utsendelsesinnstillingene og det vanlige tidspunktet 15 minutter før forblir uendret.",
+      "placeholderHint": "Shario fyller inn bestillingsdetaljene og riktig kode ved utsendelse. Behold denne plassholderen i meldingen:",
+      "previewHint": "Forhåndsvisningen bruker en eksempelkode og en eksempelbestilling. Studioets lagrede e-postdesign brukes når meldingen sendes.",
+      "variablesTitle": "Adgang og bestillingsdetaljer",
+      "variables": {
+        "entryCode": "Dørkode (bare i meldingsteksten)",
+        "studioName": "Studiolokasjonens navn",
+        "studioAddress": "Studiolokasjonens adresse",
+        "bookingTime": "Lokal bestillingsdato og tidsrom",
+        "bookingUrl": "Lenke for å administrere bestillingen"
+      },
+      "languages": {
+        "cs": "Tsjekkisk",
+        "en": "Engelsk"
+      },
+      "errors": {
+        "incomplete": "Legg til et emne (opptil 200 tegn) og en melding for dette språket.",
+        "missingCode": "Ta med plassholderen for dørkoden i den synlige meldingsteksten.",
+        "codePlacement": "Hold koden i meldingsteksten, utenfor emnet, lenker og HTML-attributter.",
+        "unknownVariable": "Bruk bare de oppførte plassholderne, med to åpnende og to lukkende krøllparenteser."
+      },
+      "close": "Lukk mal",
+      "cancel": "Avbryt",
+      "save": "Lagre mal",
+      "saving": "Lagrer…",
+      "resetting": "Gjenoppretter…",
+      "saveError": "Dørkodemalen kunne ikke lagres.",
+      "resetError": "Standardmeldingen kunne ikke gjenopprettes.",
+      "saveSuccess": "Dørkodemal lagret for {location}.",
+      "resetSuccess": "Standardmelding med dørkode gjenopprettet for {location}.",
+      "reset": "Gjenopprett standardmelding",
+      "resetConfirm": "Gjenopprette standardmeldingen for denne lokasjonen? Den lagrede tilpasningen og ulagrede endringer blir erstattet.",
+      "confirmReset": "Gjenopprett standard",
+      "keepEditing": "Fortsett redigeringen",
+      "discardConfirm": "Du har ulagrede endringer. Lukke uten å lagre?",
+      "discard": "Forkast endringer",
+      "variablesHint": "Klikk på en plassholder for å sette den inn der du skriver. Adgangskoden hører bare hjemme i meldingsteksten, utenfor lenker.",
+      "help": "Hjelp til malen",
+      "codeReminder": "Behold {code} i meldingen."
+    },
+    "visualEditor": {
+      "mode": "Redigeringsmodus",
+      "visual": "Visuell redigering",
+      "htmlSource": "HTML-kilde",
+      "loading": "Laster inn visuell redigering…",
+      "unsupported": "Malen inneholder avansert HTML-formatering. Det opprinnelige designet beholdes i HTML-modus.",
+      "toolbar": "Tekst- og designkontroller",
+      "body": "Brødtekst",
+      "heading1": "Overskrift 1",
+      "heading2": "Overskrift 2",
+      "heading3": "Overskrift 3",
+      "bold": "Fet",
+      "italic": "Kursiv",
+      "underline": "Understreket",
+      "fontSize": "Tekststørrelse",
+      "defaultSize": "Standardstørrelse",
+      "textColor": "Tekstfarge",
+      "textBackground": "Tekstbakgrunn",
+      "alignLeft": "Venstrejuster",
+      "alignCenter": "Midtstill",
+      "alignRight": "Høyrejuster",
+      "bulletList": "Punktliste",
+      "orderedList": "Nummerert liste",
+      "link": "Legg til eller rediger lenke",
+      "linkUrl": "Lenkeadresse",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Bruk lenke",
+      "removeLink": "Fjern lenke",
+      "cancelLink": "Avbryt",
+      "invalidLink": "Bruk en http-, https- eller mailto-adresse eller plassholderen for bestillingslenken. Dørkoder kan ikke brukes i lenker.",
+      "undo": "Angre",
+      "redo": "Gjør om",
+      "blockStyle": "Blokkdesign",
+      "blockBackground": "Blokkbakgrunn",
+      "blockPadding": "Blokkavstand",
+      "paddingNone": "Ingen",
+      "paddingSmall": "Liten",
+      "paddingMedium": "Middels",
+      "paddingLarge": "Stor",
+      "clearBlockStyle": "Fjern blokkbakgrunn og avstand"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "Hva som gjør dette målet ferdig"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Finn det som passer",
+    "title": "Se forskjellene mellom abonnementene.",
+    "description": "Sammenlign gjeldende abonnementer for nye kunder. Eksisterende abonnementer kan beholde en tidligere versjon.",
+    "caption": "Funksjonssammenligning for gjeldende verkstedsabonnementer",
+    "feature": "Funksjon eller kvote",
+    "scrollLabel": "Sammenlign abonnementer — rull sidelengs for å se alle abonnementene",
+    "shared": "Alle abonnementer inkluderer kurs, ventelister, gavekort, en bestillingsnettside med din profil, en kundeportal og CSV-import.",
+    "trialNote": "Prøveperioden på 14 dager inkluderer Professional-funksjoner. Adgangskoder, egne domener og de avanserte AI-verktøyene ovenfor krever Space Plus eller et avtalt Enterprise-abonnement.",
+    "usageNote": "Viktige systemmeldinger teller ikke mot e-postkvoten. AI-kreditter deles mellom aktiverte AI-verktøy; bruken pauses ved grensen uten automatiske ekstrakostnader. Tilgjengelige verktøy avhenger også av verkstedets innstillinger og teamets tillatelser.",
+    "accessNote": "Adgangskoder fungerer med ditt eget adgangssystem og koder lastet opp til Shario. Maskinvare og integrasjoner for smarte låser er ikke inkludert.",
+    "enterpriseTitle": "Trenger du et tilpasset oppsett?",
+    "enterpriseDescription": "Snakk med oss om Enterprise-kapasitet, integrasjoner, migrering og støtte. Vi bekrefter omfang og vilkår for verkstedet ditt før du velger.",
+    "enterpriseCta": "Snakk om Enterprise",
+    "rows": {
+      "locations": "Verkstedslokasjoner",
+      "teamAccounts": "Teamkontoer",
+      "openStudioMemberships": "Åpent verksted, medlemskap og kredittpakker",
+      "inventoryTasks": "Lager og teamoppgaver",
+      "automations": "Aktive egendefinerte automatiseringer",
+      "emails": "Inkluderte e-poster per måned",
+      "studioAssistant": "Studio-assistent",
+      "aiCredits": "AI-kreditter per måned",
+      "briefingKnowledge": "Daglige oversikter og kunnskapsbase",
+      "advancedAi": "Business Advisor, kundeassistent og AI-rapportinnsikt",
+      "accessCodes": "Administrasjon og utsending av adgangskoder",
+      "customDomain": "Eget domene"
+    },
+    "values": {
+      "included": "Inkludert",
+      "notIncluded": "Ikke inkludert",
+      "basic": "Grunnleggende",
+      "full": "Fullstendig",
+      "limited": "Begrenset",
+      "advanced": "Avansert"
+    }
+  },
+  "RefundReviews": {
+    "title": "Kontroll av refusjoner",
+    "description": "Gå gjennom refusjoner registrert fra Stripe, og dokumenter beslutningen om de tilknyttede kundefordelene.",
+    "benefitsNotice": "Registrering eller bekreftelse av en refusjon avbestiller ikke en booking eller et medlemskap, fjerner ikke kreditter og utfører ingen ny betaling. Gå gjennom de berørte fordelene separat før du registrerer beslutningen.",
+    "allLocationsRequired": "Kontroll av refusjoner krever tilgang til betalinger ved alle studioets lokasjoner.",
+    "refresh": "Oppdater",
+    "loading": "Laster kontroller av refusjoner…",
+    "empty": "Det er ingen uavklarte kontroller på denne siden.",
+    "loadError": "Kontrollene kunne ikke lastes. Oppdater for å prøve igjen.",
+    "needsReview": "Fordelene må gjennomgås",
+    "needsRepair": "Betalingsavstemming krever oppfølging",
+    "reference": "Kontrollreferanse",
+    "order": "Bestilling",
+    "membership": "Medlemskap",
+    "paid": "Opprinnelig betaling",
+    "refunded": "Refundert",
+    "pending": "Refusjon venter",
+    "failed": "Refusjon mislyktes",
+    "repairNotice": "Denne betalingen er ikke fullstendig avstemt. Oppdater eller kontakt brukerstøtte for å rette betalingstilknytningen før du registrerer en kontroll.",
+    "readOnly": "Et teammedlem med tillatelse til å håndtere refusjoner kan registrere kontrollen.",
+    "review": "Registrer kontroll",
+    "note": "Beslutning eller utførte justeringer (10–2000 tegn)",
+    "evidence": "Dokumentasjon eller referanse som støtter beslutningen (10–2000 tegn)",
+    "confirm": "Jeg har gjennomgått de berørte fordelene og dokumentert eventuelle justeringer eller beslutningen om å beholde dem.",
+    "save": "Bekreft kontroll",
+    "cancel": "Avbryt",
+    "saved": "Kontrollen er registrert. Denne handlingen har ikke endret kundens fordeler.",
+    "changed": "Denne refusjonen er endret eller blir fortsatt avstemt. Listen er oppdatert; gå gjennom de gjeldende opplysningene før du sender inn på nytt.",
+    "saveError": "Kontrollen kunne ikke lagres. Notatene dine er bevart; prøv igjen.",
+    "permissionError": "Du har ikke lenger tillatelse til å registrere denne kontrollen. Be et teammedlem med refusjonstilgang til alle lokasjoner om hjelp.",
+    "pagination": "Sider med refusjonskontroller",
+    "firstPage": "Første side",
+    "nextPage": "Neste side"
+  },
+  "PaymentRefundResult": {
+    "title": "Studioet må gjennomgå betalingen",
+    "description": "En refusjon er registrert, eller betalingen må gjennomgås. Denne siden bekrefter ikke en ny bestilling, kredittsaldo eller medlemsfordel.",
+    "next": "Kontakt studioet med referansen nedenfor før du betaler på nytt.",
+    "reference": "Referanse",
+    "back": "Tilbake til studioet",
+    "refresh": "Sjekk status"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Gode møteplasser bringer folk sammen",
@@ -5849,7 +6138,8 @@
       "about": "Slik fungerer det",
       "login": "Logg inn",
       "register": "Start en gratis prøveperiode",
-      "copyright": "© {year} Shario. Alle rettigheter forbeholdt."
+      "copyright": "© {year} Shario. Alle rettigheter forbeholdt.",
+      "contact": "Kontakt"
     }
   },
   "Waitlists": {
@@ -6801,6 +7091,22 @@
       "label": "Personvisning"
     },
     "filters": {
+      "spending": "Forbruk ({currency})",
+      "spendMin": "Minste forbruk",
+      "spendMax": "Største forbruk",
+      "spendFrom": "Betalingsdato fra",
+      "spendTo": "Betalingsdato til",
+      "spendingHint": "Betalinger gjort i denne perioden, fratrukket registrerte refusjoner.",
+      "spendingDatesHint": "La datofeltene være tomme for å inkludere hele perioden.",
+      "credits": "Nåværende kreditter ({currency})",
+      "creditMin": "Minste kredittbeløp",
+      "creditMax": "Største kredittbeløp",
+      "creditsHint": "Nåværende kredittsaldo, uavhengig av betalingsdatoene.",
+      "spendingUnavailable": "Forbruksfiltre krever tilgang til alle økonomiske oppføringer.",
+      "applyFinancial": "Bruk økonomiske filtre",
+      "financialDraftHint": "Endringene trer i kraft når du velger Bruk.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Hele perioden",
       "membership": "Medlemskap",
       "status": "Status",
       "button": "Filtre",
@@ -6814,6 +7120,7 @@
       "clear": "Tøm"
     },
     "columns": {
+      "periodSpent": "Forbruk i perioden",
       "customer": "Kunde",
       "contact": "Kontakt",
       "membership": "Medlemskap",
@@ -6830,6 +7137,7 @@
       "access": "Tilgang"
     },
     "actions": {
+      "exporting": "Eksporterer…",
       "addCustomer": "Legg til kunde",
       "openCustomerActions": "Åpne handlinger for {name}",
       "openStaffActions": "Åpne handlinger for {name}",
@@ -6875,6 +7183,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Forbruk i perioden",
       "email": "E-post",
       "membership": "Medlemskap",
       "credits": "Kreditter",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Aktive medlemskap",
       "credits": "Kundekreditter",
       "newThisMonth": "Nye denne måneden",
-      "monthlyChange": "+{count} denne måneden"
+      "monthlyChange": "+{count} denne måneden",
+      "unavailable": "Data ikke tilgjengelig"
     },
     "counts": {
       "customers": "{count, plural, one {# kunde} other {# kunder}}",
@@ -6992,6 +7302,13 @@
       "view": "Vis kundeinnsikt"
     },
     "errors": {
+      "summary": "Kundeoversikten og medlemsfiltrene kunne ikke lastes inn. Prøv igjen.",
+      "export": "Den komplette kundeeksporten kunne ikke lastes ned. Ingen fil ble lagret. Prøv igjen.",
+      "invalidAmount": "Skriv inn et gyldig beløp.",
+      "invalidDate": "Skriv inn en gyldig dato.",
+      "spendingRange": "Minste forbruk kan ikke overstige største forbruk.",
+      "creditRange": "Minste kredittbeløp kan ikke overstige største kredittbeløp.",
+      "dateRange": "Startdatoen kan ikke være etter sluttdatoen.",
       "customers": "Kundene kunne ikke lastes inn. Prøv igjen.",
       "staff": "Teammedlemmene kunne ikke lastes inn. Prøv igjen."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Varsler i appen",
           "description": "Vis arbeidsområdevarsler i Shario."
+        },
+        "bookingCreated": {
+          "label": "Bestilling opprettet",
+          "description": "Når en relevant bestilling opprettes. Av som standard."
         }
       },
       "channelsTitle": "Leveringskanaler"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "En ny samtale kunne ikke opprettes.",
       "message": "Studioassistenten kunne ikke svare akkurat nå."
+    },
+    "guided": {
+      "title": "Hva vil du vite?",
+      "description": "Velg et spørsmål for å få et tydelig svar basert på studioets data.",
+      "back": "Velg et annet spørsmål",
+      "retry": "Prøv igjen",
+      "loading": "Sjekker studioets data…",
+      "noAnswer": "Vi fant ikke et pålitelig svar. Prøv igjen om litt.",
+      "contextQuestion": "Hva bør jeg vite om dette?",
+      "contextHint": "Et svar om det valgte elementet.",
+      "allStudios": "Alle studioer",
+      "periods": {
+        "today": "I dag",
+        "last30Days": "Siste 30 dager",
+        "current": "Gjeldende oversikt"
+      },
+      "report": {
+        "title": "Vil du ha en mer detaljert oversikt?",
+        "description": "Månedsrapport for det valgte studioet fra starten av måneden til og med {date}.",
+        "generate": "Lag månedsrapport",
+        "open": "Åpne månedsrapport",
+        "back": "Tilbake til svaret",
+        "ready": "Månedsrapporten din er klar."
+      },
+      "questions": {
+        "today": {
+          "label": "Hvordan går det i studioet i dag?",
+          "hint": "En rask oversikt over dagens drift.",
+          "prompt": "Hva skjer i studioet i dag?"
+        },
+        "bookings": {
+          "label": "Hvor mange bestillinger har vi i dag?",
+          "hint": "Dagens bekreftede reservasjoner.",
+          "prompt": "Hvor mange bestillinger har vi i dag?"
+        },
+        "bookingTrend": {
+          "label": "Øker bestillingene våre?",
+          "hint": "Sammenlign de siste 30 dagene med de 30 foregående.",
+          "prompt": "Hvordan utvikler bestillingene våre seg?"
+        },
+        "teamBlockers": {
+          "label": "Er det noe som blokkerer teamet?",
+          "hint": "Gå gjennom dagens rapporterte hindringer i teamet.",
+          "prompt": "Hva blokkerer teamet vårt i dag?"
+        },
+        "reorders": {
+          "label": "Hva må bestilles på nytt?",
+          "hint": "Sjekk åpne forespørsler om å fylle på lageret.",
+          "prompt": "Finnes det åpne forespørsler om ny bestilling?"
+        },
+        "generalHelp": {
+          "label": "Hvilke studiodata kan jeg se?",
+          "hint": "Se informasjonen som er tilgjengelig for rollen din.",
+          "prompt": "Hvilke studiodata har du tilgang til?"
+        }
+      },
+      "selectedStudio": "Valgt studio"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "Beste avsluttede måned",
+      "completedMonths": "Bare hele avsluttede måneder med pålitelige data sammenlignes.",
+      "noBestMonth": "Ingen pålitelig beste måned i perioden. Ta med hele avsluttede måneder.",
+      "showYear": "Vis dette året",
+      "monthRanking": "Betalinger per måned",
+      "month": "Måned",
+      "coverage": "Datadekning",
+      "completeMonth": "Hel måned",
+      "partialMonth": "Delvis måned",
+      "moneyBasis": "Faktisk mottatte betalinger i perioden minus refusjoner registrert på rapportdatoen. Betalte medlemskap, gavekort og påfyllinger telles én gang; bruk er ikke en ny betaling. Dette er ikke overskudd.",
+      "asOf": "Per",
+      "customerTable": "Kundeanalyse",
+      "customerHelp": "Kombiner filtre for å finne kunder å kontakte.",
+      "inactiveCredit": "Inaktive i 90 dager med saldo:",
+      "showCustomers": "Vis kunder",
+      "spending": "Mottatte betalinger",
+      "credits": "Nåværende saldo",
+      "cancellations": "Avbestilte bookinger",
+      "minimum": "Minimum",
+      "maximum": "Maksimum",
+      "actor": "Avbestilt av",
+      "actor_all": "Alle",
+      "actor_customer": "Kunde",
+      "actor_staff": "Ansatte",
+      "inactiveDays": "Inaktiv i minst (dager)",
+      "dateDefaults": "Tomme datofelt bruker rapportperioden ovenfor.",
+      "cancellationCoverage": "Eldre avbestillinger kan mangle sikker dato eller avsender. Et tall med + er et kjent minimum; ukjent er ikke null. Maksimumsfiltre krever full historikk.",
+      "invalidBounds": "Angi gyldige tall og datoer; minimum kan ikke overstige maksimum.",
+      "apply": "Bruk filtre",
+      "clear": "Tøm filtre",
+      "exportCustomers": "Eksporter alle samsvarende kunder",
+      "noCustomers": "Ingen kunder samsvarer med filtrene.",
+      "customer": "Kunde",
+      "lastActivity": "Siste aktivitet",
+      "locationScope": "Studiotall utelater betalinger uten sikker tilknytning til studioet. Medlemskap, gavekort og påfyllinger kan bare inngå i den samlede oversikten.",
+      "incompleteData": "Noen kilder er ufullstendige eller utilgjengelige. Bare etterprøvbare poster tas med; manglende verdier er ikke null.",
+      "paymentSources": "Betalingskilder",
+      "source_external_payment": "Ordrebetalinger",
+      "source_voucher": "Kjøp av gavekort",
+      "source_membership": "Medlemsbetalinger",
+      "source": "Kilde",
+      "noPaymentSources": "Ingen data om betalingskilder er tilgjengelige."
+    },
     "actions": {
       "retry": "Prøv igjen",
       "export": "Eksporter CSV",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Bookinger",
-      "netSales": "Nettosalg",
+      "netSales": "Mottatte betalinger",
       "utilizationPercent": "Utnyttelsesgrad",
       "returningCustomerPercent": "Tilbakevendende kunder"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Bookinger",
-        "netSales": "Nettosalg"
+        "netSales": "Mottatte betalinger"
       },
       "trendTitle": "Resultatutvikling",
       "trendDescription": "Bekreftede verdier gjennom den valgte rapporteringsperioden.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Antall",
         "currency": "Valuta",
-        "orders": "Ordrer",
+        "orders": "Betalinger",
         "amount": "Beløp",
-        "net": "Nettosalg",
+        "net": "Mottatte betalinger",
         "gross": "Bruttosalg",
         "method": "Metode",
         "product": "Katalogvare"
       },
       "metrics": {
-        "orders": "Ordrer",
-        "net": "Nettosalg",
+        "orders": "Betalinger",
+        "net": "Mottatte betalinger",
         "gross": "Bruttosalg",
         "tax": "Skatt / mva.",
         "discounts": "Rabatter",
         "refunds": "Refusjoner",
         "paymentFees": "Gebyrer fra betalingsleverandør",
-        "averageOrder": "Gjennomsnittlig ordreverdi"
+        "averageOrder": "Gjennomsnittlig betaling"
       },
       "unavailable": "Salgsdata er utilgjengelige",
       "unavailableDescription": "Denne kontoen eller dette rapporteringsomfanget har ingen tilgjengelig salgskilde.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Bookinger",
-        "participants": "Deltakere",
+        "participants": "Bestilte plasser",
         "utilization": "Utnyttelsesgrad",
         "cancellations": "Kanselleringer",
         "noShows": "Uteblivelser",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Nye kunder",
-        "returning": "Tilbakevendende kunder",
-        "unique": "Aktive kunder",
+        "new": "Nye betalende kunder",
+        "returning": "Tilbakevendende betalende kunder",
+        "unique": "Betalende kunder",
         "returningRate": "Andel tilbakevendende kunder",
-        "averageSpend": "Gjennomsnittlig kjøpsbeløp"
+        "averageSpend": "Gjennomsnittlig betalt beløp"
       },
       "unavailable": "Kundedata er utilgjengelige",
       "unavailableDescription": "Denne kontoen eller dette rapporteringsomfanget har ingen tilgjengelig kundekilde.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "Døradgang er ikke inkludert i dette abonnementet",
       "description": "Se gjennom abonnementsalternativene, eller spør en arbeidsområdeeier om Døradgang."
+    },
+    "emailTemplate": {
+      "title": "E-post med dørkode",
+      "description": "Opprett eller rediger den automatiske e-posten med dørkode for denne lokasjonen. Hver lokasjon har én mal, som deles med Meldinger → E-postmaler.",
+      "create": "Opprett mal",
+      "createFor": "Opprett dørkodemal for {location}",
+      "locationUnavailable": "Ingen e-postmal med dørkode er tilgjengelig for denne lokasjonen."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "LAST_NAME": "Etternavn",
     "PLEASE_WAIT": "Vent mens vi behandler kjøpet ditt…",
     "SELECT_TIME_FIRST": "Velg start- og sluttid først.",
-    "COURSE_BOOKING": "Kursbestilling"
+    "COURSE_BOOKING": "Kursbestilling",
+    "USER_EMAIL_CHANGE_WARNING": "Endring av e-postadressen logger kunden ut av alle økter og krever at den nye adressen bekreftes.",
+    "USER_EMAIL_VERIFICATION_SENT": "E-postadressen er oppdatert. Eksisterende økter ble avsluttet, og en bekreftelseslenke ble sendt til den nye adressen.",
+    "USER_EMAIL_VERIFICATION_RETRY": "E-postadressen er oppdatert, og eksisterende økter er avsluttet. Leveringen av bekreftelses-e-posten kunne ikke bekreftes. Kunden kan be om en ny lenke på studioets side for e-postbekreftelse.",
+    "USER_EMAIL_UPDATE_FAILED": "Kunden kunne ikke oppdateres. Sjekk e-postadressen og prøv igjen."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "Datadekningen er ennå ikke tilstrekkelig for en pålitelig anbefaling.",
       "message042": "Start med mulighetene som har høyest prioritet",
       "message043": "Noen muligheter bør gjennomgås",
-      "message044": "Rådgiveren fant {value1} anbefalinger basert på verifiserte verksteddata."
+      "message044": "Rådgiveren fant {value1} anbefalinger basert på verifiserte verksteddata.",
+      "message045": "Gå gjennom nedgangen i mottatte betalinger",
+      "message046": "Mottatte betalinger etter refusjoner er {value1} % lavere enn i sammenligningsperioden.",
+      "message047": "Mottatte betalinger etter refusjoner"
     },
     "briefing": {
       "message011": "Hasteoppgaver",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Betalingen ble avbrutt",
-    "nextSteps": "Dette kan du gjøre nå",
-    "retry": "Prøv igjen – noen ganger fungerer det på andre forsøk.",
-    "card": "Hvis du brukte Apple Pay eller Google Pay, kan du prøve å betale med kort i stedet.",
-    "contact": "Hvis det fortsetter, send oss en melding, så hjelper vi deg.",
     "home": "Tilbake til forsiden",
-    "chargeNotice": "Ingen beløp belastes før betalingen er fullført."
+    "title": "Tilbake fra betalingen",
+    "description": "Å gå tilbake fra betalingssiden kansellerer ikke en bestilling. Du finner statusen i bestillingene dine.",
+    "creditsHint": "For å betale med kreditter åpner du den ubetalte bestillingen og kansellerer den først. Velg deretter tidspunktet på nytt. Hvis alternativet ikke er tilgjengelig, kontakt studioet.",
+    "backToBookings": "Tilbake til bestillinger"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Studiooversikt",
+    "todayNumbers": "Studioets tall for dagen",
+    "todayBookings": "Bestillinger",
+    "selectedDate": "På den valgte dagen",
+    "expectedVisitors": "Forventede besøkende",
+    "bookedParticipants": "Deltakere i planlagte bestillinger",
+    "expectedNow": "I studioet nå (anslått)",
+    "expectedNowBasis": "Personer med en pågående bestilling; tilstedeværelse er ikke bekreftet",
+    "nextSession": "Neste bestilling",
+    "noUpcomingSession": "Ingen kommende bestilling",
+    "attentionTitle": "Trenger oppmerksomheten din",
+    "review": "Gå gjennom",
+    "generateReport": "Lag AI-rapport",
+    "generating": "Forbereder rapport…",
+    "reportPermission": "AI-rapporter krever tilgang til studioassistenten.",
+    "reportError": "Rapporten kunne ikke lages. Prøv igjen.",
+    "operationsError": "Studioets daglige data kunne ikke lastes inn.",
+    "managementError": "Studioets månedlige data kunne ikke lastes inn.",
+    "retry": "Prøv igjen",
+    "loadingPerformance": "Laster inn studioets resultater…",
+    "performanceEyebrow": "Studioets resultater",
+    "monthTitle": "Denne måneden så langt",
+    "comparison": "Sammenlignet med {period}",
+    "comparedWithPrevious": "sammenlignet med forrige periode",
+    "unavailable": "Data ikke tilgjengelig",
+    "revenue": "Levert omsetning",
+    "revenueBasis": "Tjenester levert og produkter utlevert i perioden",
+    "revenueUnavailable": "Total levert omsetning er ennå ikke tilgjengelig: leveringsposter dekker ikke alle tjenester og produkter. Innbetalinger rapporteres separat.",
+    "confirmedRevenue": "Bekreftede fullførte tjenester: {amount}.",
+    "visits": "Deltakere i tidligere bestillinger",
+    "visitsBasis": "Deltakere i avsluttede bestillinger; oppmøte er ikke bekreftet",
+    "newClients": "Nye kunder med bestilling",
+    "newClientsBasis": "Første registrerte bestilling i de valgte studioene; ikke nødvendigvis nye for hele virksomheten",
+    "last30Days": "Siste 30 dager",
+    "arrivalTitle": "Når kundene kommer",
+    "scheduledArrivalTitle": "Når besøk er planlagt",
+    "hourlyAttendance": "Deltakere etter starttidspunkt",
+    "hourCount": "{hour}:00 — {count} deltakere",
+    "busiestHour": "Travleste planlagte time: {from}:00–{to}:00",
+    "recordedBusiestHour": "Travleste ankomsttime: {from}:00–{to}:00",
+    "recordedSample": "Basert på {count} registrerte ankomster",
+    "scheduledSample": "Basert på {count} planlagte deltakere",
+    "scheduledCaveat": "Bestillingenes starttider viser gjeldende plan. Rolige timer alene beviser ikke etterspørsel etter nye økter.",
+    "noAttendance": "Det er ennå ikke nok aktivitet til å vise et mønster.",
+    "other": "Annet",
+    "topClients": "Topp 5 kunder",
+    "rankingBy": "Ranger kunder etter",
+    "clientVisitsBasis": "Deltakere i avsluttede bestillinger i denne perioden",
+    "clientRevenueBasis": "Omsetning fra bekreftede fullførte tjenester i denne perioden",
+    "unnamedClient": "Kunde uten navn",
+    "noClients": "Ingen kunder registrert i denne perioden.",
+    "confirmedOnly": "Bare bekreftede fullførte tjenester; andre leveringsposter er ikke tilgjengelige.",
+    "topProducts": "Topp 3 produkter",
+    "byQuantity": "Etter antall",
+    "deliveredProductsBasis": "Bekreftede fullførte tjenester rangert etter antall",
+    "noProducts": "Ingen fullførte produkter registrert i denne perioden.",
+    "unnamedProduct": "Produkt uten navn",
+    "units": "stk.",
+    "coverageTitle": "Datadekning og begrensninger",
+    "coverageDescription": "Utilgjengelige data forblir utilgjengelige. Planlagt aktivitet og bekreftet levering vises hver for seg.",
+    "openReports": "Åpne detaljerte rapporter",
+    "back": "Tilbake til oversikten",
+    "reportTitle": "Studiorapport",
+    "exporting": "Forbereder PDF…",
+    "exportPdf": "Eksporter PDF",
+    "exportError": "PDF-en kunne ikke lastes ned. Prøv igjen.",
+    "aiReport": "AI-studiorapport",
+    "verifiedReport": "Rapport over studiodata",
+    "deterministicNote": "AI-kommentarer er ikke tilgjengelige. Rapporten inneholder studioets lagrede tall og et saklig sammendrag.",
+    "reportHighlights": "Høydepunkter",
+    "reportAttention": "Trenger oppmerksomhet",
+    "reportRecommendations": "Foreslåtte neste steg",
+    "generatedAt": "Laget {date}",
+    "issues": {
+      "overdueTasks": "{count} forfalte oppgaver",
+      "lowStock": "{count} varer med lav beholdning",
+      "failedEmails": "{count} mislykkede e-poster",
+      "overduePayments": "{count} forfalte betalinger",
+      "overdueOrders": "{count} forsinkede spesialbestillinger",
+      "other": "{count} elementer må gjennomgås",
+      "failed_emails": "{count} mislykkede e-poster",
+      "overdue_custom_orders": "{count} forsinkede spesialbestillinger",
+      "overdue_invoices": "{count} forfalte betalinger"
+    },
+    "staleData": "Siste oppdatering mislyktes. Tidligere innlastede data vises.",
+    "refreshingData": "Oppdaterer studiodata…",
+    "coverageReportDetails": "Lag en studiorapport for å se tilgjengelige kilder og begrensninger for hver måling.",
+    "dismissAttention": "Skjul varselkortet",
+    "showAttention": "Vis varsler ({count})",
+    "customerId": "Kunde-ID {id}",
+    "spentMonth": "Brukt i valgt måned",
+    "spentTotal": "Brukt totalt",
+    "clientSpendingBasis": "Kundebetalinger etter registrerte refusjoner på tvers av alle studioer. Måned: {period}; totalt til og med valgt dato.",
+    "spendingUnavailable": "Forbruksdata er ikke tilgjengelige i denne visningen.",
+    "previousValue": "Forrige periode: {value}",
+    "revenueUnavailableShort": "Ikke tilgjengelig – leveringspostene er ufullstendige.",
+    "totalCustomers": "Kunder totalt",
+    "workspaceCustomersScope": "Registrert på tvers av alle studioer",
+    "newRegisteredThisMonth": "Nye denne måneden",
+    "activeCustomers": "Aktive kunder",
+    "activeCustomersBasis": "Har bestilt de siste 30 dagene",
+    "selectedStudiosScope": "Valgte studioer",
+    "workspaceScope": "Alle studioer",
+    "activeSubscribers": "Aktive abonnenter",
+    "newSubscribersThisMonth": "Nye abonnenter denne måneden",
+    "subscriberBasis": "Hver person én gang. Ny betyr første abonnement; fornyelser er utelatt.",
+    "missingMetric": "— Data ikke tilgjengelig",
+    "asOfDate": "Per {date}",
+    "subscriberSelectedScope": "Medlemskap som gjelder i de valgte studioene",
+    "recordedPayments": "Registrerte betalinger",
+    "recordedPaymentsBasis": "Betalinger mottatt i valgt måned, fratrukket registrerte refusjoner",
+    "paymentsUnavailable": "Betalingsdata ikke tilgjengelig.",
+    "spending": "Brukt beløp",
+    "clientPaymentsBasis": "Rangert etter registrerte kundebetalinger i valgt måned, fratrukket registrerte refusjoner, på tvers av alle studioer",
+    "noCustomerPayments": "Ingen bekreftede kundebetalinger i denne perioden.",
+    "spendingIncomplete": "Noen totaler er ikke tilgjengelige fordi betalingshistorikken er ufullstendig.",
+    "paymentRankingIncomplete": "Rangeringen bruker bekreftede betalingsbeløp; ufullstendige poster kan påvirke rekkefølgen.",
+    "byPurchases": "Etter kjøp",
+    "purchasedProductsBasis": "Betalte ordrer som inneholder hvert produkt · Siste 30 dager: {period}",
+    "noPurchasedProducts": "Ingen bekreftede betalte produktkjøp de siste 30 dagene.",
+    "purchases": "kjøp",
+    "purchasesIncomplete": "Noen kjøp kan ikke bekreftes; rangeringen kan være ufullstendig.",
+    "knownAmount": "Kjent beløp",
+    "knownPaymentsOnly": "Bare kjente betalinger; noen betalingsposter er ufullstendige."
+  },
+  "UnifiedSettings": {
+    "title": "Innstillinger",
+    "description": "Dine preferanser og studioets innstillinger på ett sted.",
+    "navigation": "Innstillingsseksjoner",
+    "studioTitle": "Studio",
+    "personalTitle": "Mine innstillinger",
+    "studioScope": "For hele studioet",
+    "personalScope": "Bare for deg",
+    "studioDescription": "Felles innstillinger for dette studioet. Du ser bare områdene du har tilgang til.",
+    "personalDescription": "Administrer kontoen din og hvordan du jobber i dette studioet. Preferansene endrer ikke innstillingene til andre teammedlemmer.",
+    "personalProfileScope": "Profilen og passordet ditt gjelder for kontoen din på tvers av studioer.",
+    "personalPreferencesScope": "Disse preferansene gjelder bare for deg i dette studioet.",
+    "locationScope": "Bare lokasjonen {name}",
+    "newLocationScope": "Innstillinger for den nye lokasjonen",
+    "backTo": "Tilbake til {section}",
+    "searchLabel": "Søk i innstillinger",
+    "searchStudio": "Søk i studioinnstillinger…",
+    "searchPersonal": "Søk i mine innstillinger…",
+    "clearSearch": "Tøm søket",
+    "searchResults": "{count, plural, one {# innstilling funnet} other {# innstillinger funnet}}",
+    "advancedTitle": "Avanserte innstillinger",
+    "advancedDescription": "Aktiverte funksjoner, navigasjon og dataimport.",
+    "emptyTitle": "Ingen samsvarende innstillinger",
+    "emptyDescription": "Prøv et annet ord, eller tøm søket for å se alle tilgjengelige innstillinger i denne seksjonen.",
+    "setupTitle": "Fullfør oppsettet av studioet ditt",
+    "setupProgress": "{completed} av {total} obligatoriske steg er fullført.",
+    "setupAction": "Fortsett oppsettet",
+    "groups": {
+      "workspace": {
+        "title": "Studio og lokasjoner",
+        "description": "Studioets opplysninger, felles språk, valuta og lokasjoner."
+      },
+      "access": {
+        "title": "Team og tilgang",
+        "description": "Teammedlemmer, roller og dørtilgang."
+      },
+      "website": {
+        "title": "Nettsted og merkevare",
+        "description": "Offentlig nettsted, bestillingssider og visuell identitet."
+      },
+      "payments": {
+        "title": "Betalinger fra kunder",
+        "description": "Betalingsmåter og innstillinger for kundebetalinger."
+      },
+      "communications": {
+        "title": "Meldinger og automatisering",
+        "description": "E-postlevering, avsendere og AI-hjelp."
+      },
+      "account": {
+        "title": "Shario-abonnement",
+        "description": "Studioets plan, fakturaer og faktureringsopplysninger."
+      },
+      "advanced": {
+        "title": "Funksjoner og data",
+        "description": "Konfigurer moduler og hent data inn i studioet."
+      },
+      "profile": {
+        "title": "Profil og sikkerhet",
+        "description": "Navnet, kontaktopplysningene og passordet ditt på tvers av studioer."
+      },
+      "preferences": {
+        "title": "Mitt arbeidsmiljø",
+        "description": "Kalenderen, tidssonen og standardlokasjonen din i dette studioet."
+      },
+      "notifications": {
+        "title": "Mine varsler",
+        "description": "Velg hvilke oppdateringer du får i dette studioet."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Studioets opplysninger",
+        "description": "Navn, språk, tidssone og valuta."
+      },
+      "locations": {
+        "title": "Lokasjoner",
+        "description": "Adresser, rom og åpningstider."
+      },
+      "team": {
+        "title": "Teammedlemmer",
+        "description": "Inviter personer og administrer teammedlemskap."
+      },
+      "roles": {
+        "title": "Roller og tillatelser",
+        "description": "Hvem som har tilgang til hver del av studioet."
+      },
+      "accessCodes": {
+        "title": "Dørtilgang",
+        "description": "Dørkoder og adgang."
+      },
+      "publicSite": {
+        "title": "Nettsted og bestillingssider",
+        "description": "Merkevare, offentlige sider og kundeopplevelse."
+      },
+      "payments": {
+        "title": "Betalingsmåter",
+        "description": "Nettbetalinger og Stripe-tilkobling."
+      },
+      "invoicing": {
+        "title": "Kundefakturering",
+        "description": "Fakturaer og kundefakturering."
+      },
+      "communications": {
+        "title": "E-post og avsendere",
+        "description": "Levering, avsenderdomener og meldingsinnstillinger."
+      },
+      "ai": {
+        "title": "AI-assistent",
+        "description": "AI-funksjoner og automatiseringsinnstillinger."
+      },
+      "billing": {
+        "title": "Plan og fakturering",
+        "description": "Shario-abonnement, fakturaer og faktureringsopplysninger."
+      },
+      "modules": {
+        "title": "Funksjoner og navigasjon",
+        "description": "Aktiver moduler og velg navigasjonspunkter."
+      },
+      "migration": {
+        "title": "Importer data",
+        "description": "Importer kunder, bestillinger og andre studiodata."
+      },
+      "profile": {
+        "title": "Rediger profil og passord",
+        "description": "Navnet, kontaktopplysningene og passordet ditt på tvers av studioer."
+      },
+      "preferences": {
+        "title": "Kalender og visning",
+        "description": "Kalenderen, tidssonen og standardlokasjonen din i dette studioet."
+      },
+      "notifications": {
+        "title": "Varslingsinnstillinger",
+        "description": "Varsler om bestillinger, oppgaver og lager; oppdateringer på e-post og i appen."
+      }
+    },
+    "language": {
+      "label": "Appens språk",
+      "change": "Bytt språk",
+      "sharedScope": "Felles for hele studioets team.",
+      "managedByAdmin": "Studioets administrator styrer dette språket."
+    },
+    "plan": {
+      "label": "Nåværende plan",
+      "details": "Plandetaljer",
+      "loading": "Laster inn plan…",
+      "unavailable": "Planen er ikke tilgjengelig",
+      "detailsUnavailable": "Plandetaljene er midlertidig utilgjengelige."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "Shario tar ingen transaksjonsprovisjon. Stripes gebyrer for kundebetalinger kommer i tillegg til abonnementet ditt. Prisene er oppgitt eksklusive gjeldende avgifter.",
+    "feeLink": "Betalingsgebyrer, prøveperiode og oppsigelse i detalj",
+    "links": {
+      "stripePricing": "Se Stripes priser for landet ditt",
+      "refundContact": "Spør om refusjon av et abonnement",
+      "studioAi": "Utforsk Shario AI",
+      "refundTerms": "Les de fullstendige vilkårene og unntakene for refusjon"
+    },
+    "faq": {
+      "title": "Før du velger en plan",
+      "description": "Vit hva du betaler, når endringer trer i kraft og hva som skjer etter prøveperioden.",
+      "trial": {
+        "question": "Hva skjer når prøveperioden min slutter?",
+        "answer": "Den 14 dager lange Professional-prøveperioden starter når du fullfører oppstarten. Du trenger ikke kort. Uten et aktivt betalt abonnement settes nye bestillinger, nettkjøp og funksjoner i arbeidsområdet på pause når prøveperioden slutter. Kundenes bestillingshistorikk og gjenoppretting av fakturering forblir tilgjengelige; slutten på prøveperioden sletter ikke studioets data. Kjøp av en plan er ikke mulig de siste 48 timene av prøveperioden for å unngå en tidlig belastning. Du kan tegne abonnement etter at prøveperioden er over."
+      },
+      "cancellation": {
+        "question": "Når trer en oppsigelse i kraft?",
+        "answer": "Oppsigelse av et betalt abonnement stopper neste fornyelse. Du beholder tilgangen til slutten av den nåværende betalte faktureringsperioden og kan angre oppsigelsen før det. Oppsigelse av en prøveperiode uten kort avslutter den umiddelbart. Når tilgangen opphører, begrenses nye bestillinger, nettkjøp og funksjoner i arbeidsområdet. Begrenset tilgang er ikke et fullstendig skrivebeskyttet arbeidsområde: generelle rapporter og eksporter kan være utilgjengelige. Eksporter nødvendige data før tilgangen opphører, eller kontakt hello@shario.io om utlevering eller sletting av data. Data slettes ikke automatisk ved utløp, men ubegrenset lagring er ikke lovet."
+      },
+      "refunds": {
+        "question": "Refunderer en oppsigelse automatisk ubrukt tid?",
+        "answer": "Oppsigelse av et års- eller månedsabonnement stopper neste fornyelse; berettiget betalt tilgang fortsetter til slutten av gjeldende periode. Frivillig oppsigelse, ubrukt tid og ubrukte kvoter refunderes ikke, med mindre ufravikelig lov, en uttrykkelig skriftlig avtale eller misligholdsbeføyelsene i vilkårene våre krever det. Hvis Shario avslutter den betalte tjenesten før tiden av hensiktsmessighetshensyn, eller hvis du sier opp på grunn av et vesentlig mislighold fra vår side som ikke er rettet 30 dager etter skriftlig varsel, refunderer vi den ubrukte forhåndsbetalte delen fra oppsigelsens ikrafttredelse. Vi refunderer også den ubrukte forhåndsbetalte delen hvis du sier opp fordi en ugunstig vilkårsendring måtte tre i kraft i en allerede forhåndsbetalt periode. Hvis vi ikke kan løse en begrunnet personvernsinnsigelse mot en ny eller erstattende databehandler (underdatabehandler) med et rimelig alternativ, kan du avslutte den berørte tjenesten og få refundert den ubrukte forhåndsbetalte delen. Selve oppsigelsen gir ikke automatisk refusjon. Kontakt oss for å be om den aktuelle løsningen."
+      },
+      "planChanges": {
+        "question": "Når trer opp- og nedgraderinger i kraft?",
+        "answer": "For betalte abonnementer trer bytte til en høyere plan i kraft umiddelbart når en eventuell nødvendig betaling er fullført, med en forholdsmessig faktura. Bytte til en lavere plan trer i kraft ved slutten av gjeldende faktureringsperiode. På samme plan trer bytte fra månedlig til årlig fakturering i kraft umiddelbart når nødvendig betaling er fullført, og bytte fra årlig til månedlig fakturering starter neste periode. Gå gjennom ikrafttredelsesdatoen og faktureringsforhåndsvisningen før du bekrefter."
+      },
+      "payments": {
+        "question": "Er gebyrer for kundebetalinger inkludert?",
+        "answer": "Kunders nettbetalinger behandles via den tilkoblede Stripe-kontoen din. Shario tar ingen transaksjonsprovisjon. Stripes behandlingsgebyrer kommer i tillegg til Shario-abonnementet ditt og avhenger av landet ditt, betalingsmåten og avtalen din med Stripe. Studioets abonnement faktureres separat fra betalingene kundene dine gjør."
+      }
+    },
+    "definitions": {
+      "title": "Hva planfunksjonene betyr",
+      "automations": {
+        "question": "Hva regnes som en aktiv automatisering?",
+        "answer": "En aktiv automatisering er en egen regel som er slått på: for eksempel planlegging av ankomstinstruksjoner til studioet én dag etter at en kunde har registrert seg. Grensen teller aktiverte regler, ikke lagrede utkast eller hvor ofte en regel kjører. Starter inneholder ingen egne regler; Professional tillater 3. Space Plus bruker den samme hendelsesbaserte redigeringen og tillater flere enn 3 aktive regler, med 5 000 målte e-poster per måned. Hver regel teller mot automatiseringsgrensen, og de målte e-postene teller mot e-postkvoten. Vanlige systemmeldinger kommer i tillegg."
+      },
+      "studioAi": {
+        "question": "Hvilke Shario AI-verktøy får jeg?",
+        "answer": "Professional gir 2 000 AI-kreditter per måned og omfatter studioassistenten, daglige oppsummeringer og kunnskapsbasen. Space Plus gir 10 000 kreditter og legger til Business Advisor, kundeconcierge og AI-innsikt i rapporter. Verktøyene avhenger av studioets oppsett og teamets tillatelser; støttede handlinger krever bekreftelse."
+      },
+      "aiCredits": {
+        "question": "Tilsvarer én AI-kreditt ett spørsmål?",
+        "answer": "AI-kreditter måler behandlet og generert tekst, ikke et fast antall spørsmål. For eksempel bruker en kort operasjon på 750 tokens (tekstbiter) 1 kreditt; en operasjon på 2 500 tokens med tilstrekkelig budsjett bruker 3. Et spørsmål kan omfatte flere operasjoner, og kunnskapsoppslag eller dokumentindeksering kan øke forbruket. Dette er eksempler, ikke garanterte kostnader per spørsmål. Kredittene deles hver måned mellom aktiverte verktøy. En forespørsel trenger nok gjenværende kreditter for å kjøre; det finnes ingen automatiske gebyrer for overforbruk."
+      },
+      "emails": {
+        "question": "Hva skjer når e-postkvoten er brukt opp?",
+        "answer": "Den månedlige kvoten dekker målte automatiserings-e-poster. Når den er brukt opp, hoppes den berørte automatiserings-e-posten over; den settes ikke automatisk i kø til neste måned. Viktige konto-e-poster og støttede innebygde driftsmeldinger teller ikke mot kvoten. Å merke din egen automatisering som transaksjonell gjør den ikke unntatt. Sjekk forbruket i arbeidsområdet, og bytt plan eller kontakt oss hvis du trenger mer kapasitet."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Vil du endre betalingsmåte?",
+    "explanation": "Den ubetalte bestillingen kan fortsatt holde av plassen din. For å betale med kreditter i stedet for kort, eller for å starte på nytt, kansellerer du den først. Knappen kansellerer alle ubetalte bestillinger i denne betalingen.",
+    "action": "Kanseller ubetalte bestillinger",
+    "busy": "Sjekker betalingen og kansellerer bestillingen…",
+    "cancelled": "De ubetalte bestillingene i denne betalingen er kansellert. Gå tilbake til handlekurven eller velg tidspunktet på nytt, og velg deretter studiokreditter. Tilgjengelighet og pris sjekkes på nytt.",
+    "paid": "Betalingen er allerede fullført. Bestillingen din ble ikke kansellert. Sjekk statusen.",
+    "pending": "Betalingen blir fortsatt bekreftet. Ingenting er kansellert. Sjekk betalingsstatusen før du gjør en ny bestilling for samme tidspunkt.",
+    "unsupported": "Denne betalingen kan ikke kanselleres her. Åpne bestillingene dine eller kontakt studioet.",
+    "missing": "Ordren ble ikke funnet. Åpne bestillingene dine eller kontakt studioet.",
+    "error": "Kanselleringen kunne ikke bekreftes. Prøv igjen. Kontakt studioet hvis problemet vedvarer.",
+    "status": "Sjekk betalingsstatus",
+    "bookAgain": "Velg et tidspunkt på nytt"
   }
 }

@@ -119,7 +119,7 @@ export function Avatar({ name, initials, className = "" }) {
   return (
     <span
       className={cx(
-        "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-semibold text-terracotta-700 ring-1 ring-inset ring-coral-200",
+        "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent-text ring-1 ring-inset ring-line",
         className,
       )}
       aria-hidden="true"
@@ -131,9 +131,9 @@ export function Avatar({ name, initials, className = "" }) {
 
 export function StatusBanner({ tone = "success", children }) {
   const styles = {
-    success: "border-success/15 bg-success-soft text-success",
-    warning: "border-warning/15 bg-warning-soft text-warning",
-    error: "border-danger/15 bg-danger-soft text-danger",
+    success: "border-success/40 bg-success-soft text-success",
+    warning: "border-warning/40 bg-warning-soft text-warning",
+    error: "border-danger/40 bg-danger-soft text-danger",
     info: "border-cobalt-200 bg-cobalt-50 text-cobalt-700",
   };
   const Icon =
@@ -144,7 +144,7 @@ export function StatusBanner({ tone = "success", children }) {
   return (
     <div
       className={cx(
-        "flex items-start gap-2 rounded-[14px] border px-3 py-2.5 text-xs",
+        "flex items-start gap-2 rounded-[14px] border px-3 py-2.5 text-[13px] font-medium leading-5",
         styles[tone],
       )}
     >

@@ -2,12 +2,8 @@ name: Client CI
 
 on:
   pull_request:
-    paths-ignore:
-      - "**/*.md"
-      - "docs/**"
   push:
     branches: [main]
-    # Every production commit needs a result for Vercel's required check.
   workflow_dispatch:
     inputs:
       server_ref:
@@ -24,13 +20,131 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  quality:
-    name: Build and critical tests
+  validation:
+    name: Find matching PR validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+    outputs:
+      reused: ${{ steps.reuse.outputs.reused }}
+      source_url: ${{ steps.reuse.outputs.source_url }}
+      server_sha: ${{ steps.backend.outputs.sha }}
+      server_tree: ${{ steps.backend.outputs.tree }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Check validation provenance guards
+        run: node --test tests/ci/*.test.mjs
+      - name: Resolve the paired server once
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+        uses: actions/checkout@v7
+        with:
+          repository: MartinMateju/shario-server
+          ref: ${{ inputs.server_ref || 'main' }}
+          path: _ci_backend
+          persist-credentials: false
+      - name: Pin the server revision and source tree
+        id: backend
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+        run: |
+          echo "sha=$(git -C _ci_backend rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "tree=$(git -C _ci_backend rev-parse HEAD^{tree})" >> "$GITHUB_OUTPUT"
+      - name: Reuse only verified identical merged code
+        id: reuse
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CI_VALIDATION_WORKFLOW: .github/workflows/client-ci.yml
+          CI_VALIDATION_DEPENDENCY_TREE: ${{ steps.backend.outputs.tree }}
+          CI_VALIDATION_DEPENDENCY_SHA: ${{ steps.backend.outputs.sha }}
+        run: node scripts/ci/validation-evidence.mjs reuse
+
+  checks:
+    name: Lint, catalogs and contracts
+    needs: validation
+    if: ${{ needs.validation.outputs.reused != 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: "true"
+      TZ: Europe/Prague
+      NODE_OPTIONS: --max-old-space-size=4096
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Check lint and localization catalogs
+        run: |
+          npm run lint
+          npm run i18n:check
+      - name: Run product and rollout contracts
+        run: |
+          npm run test:products
+          bash scripts/test-public-site-style-rollout-contract.sh
+
+  unit:
+    name: Run full unit coverage
+    needs: validation
+    if: ${{ needs.validation.outputs.reused != 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      TZ: Europe/Prague
+      NODE_OPTIONS: --max-old-space-size=4096
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: http://shario.localhost:4310
+      NEXT_PUBLIC_ROOT_DOMAIN: shario.localhost
+      NEXT_PUBLIC_API_URL: http://api.shario.localhost:4311
+      TENANT_ROOT_DOMAIN: shario.localhost
+      PLATFORM_HOSTNAMES: ""
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Run every unit test once, including the critical selection
+        run: npm run test:coverage -- --maxWorkers=2
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: client-coverage-${{ github.run_id }}-${{ github.run_attempt }}
+          path: coverage
+          if-no-files-found: ignore
+          retention-days: 7
+
+  release-smoke:
+    name: Full-stack release smoke
+    needs: validation
+    if: ${{ needs.validation.outputs.reused != 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    uses: ./.github/workflows/e2e-smoke.yml
+    with:
+      server_ref: ${{ needs.validation.outputs.server_sha }}
+
+  fork-build:
+    name: Build without private-server access
+    needs: validation
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
     env:
       CI: "true"
-      TZ: Europe/Prague
       NODE_OPTIONS: --max-old-space-size=4096
       NEXT_TELEMETRY_DISABLED: "1"
       NEXT_PUBLIC_SITE_URL: http://shario.localhost:4310
@@ -41,59 +155,100 @@ jobs:
       NEXT_PUBLIC_DEFAULT_TIME_ZONE: Europe/Prague
       TENANT_ROOT_DOMAIN: shario.localhost
       PLATFORM_HOSTNAMES: ""
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
 
-      - name: Install locked dependencies
-        run: npm ci --no-audit --no-fund
-
-      - name: Check lint and localization catalogs
-        run: |
-          npm run lint
-          npm run i18n:check
-
-      - name: Run production-critical unit and contract tests
-        run: |
-          npm run test:critical
-          npm run test:products
-
-      - name: Build production application
-        run: npm run build
-
-  release-smoke:
-    name: Full-stack release smoke
-    needs: quality
-    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
-    uses: ./.github/workflows/e2e-smoke.yml
-    with:
-      server_ref: ${{ inputs.server_ref || 'main' }}
-
-  release-ready:
-    # Keep this name stable: Vercel can require it before promoting production.
-    name: Release ready
-    needs: [quality, release-smoke]
-    if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+  coverage:
+    # Preserve Vercel's required status, including when evidence is reused.
+    name: Complete unit and coverage suite
+    needs: [validation, unit]
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Require successful quality and full-stack smoke checks
+      - name: Require full coverage or matching successful evidence
         env:
-          QUALITY_RESULT: ${{ needs.quality.result }}
-          SMOKE_RESULT: ${{ needs.release-smoke.result }}
+          VALIDATION: ${{ needs.validation.result }}
+          REUSED: ${{ needs.validation.outputs.reused }}
+          UNIT: ${{ needs.unit.result }}
         run: |
-          if [ "$QUALITY_RESULT" != "success" ] || [ "$SMOKE_RESULT" != "success" ]; then
-            echo "::error::Release blocked: quality=$QUALITY_RESULT, release-smoke=$SMOKE_RESULT"
-            exit 1
+          test "$VALIDATION" = success
+          test "$REUSED" = true || test "$UNIT" = success
+
+  quality:
+    name: Build and critical tests
+    needs: [validation, checks, coverage, release-smoke, fork-build]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require quality and the tested production build
+        env:
+          VALIDATION: ${{ needs.validation.result }}
+          REUSED: ${{ needs.validation.outputs.reused }}
+          CHECKS: ${{ needs.checks.result }}
+          COVERAGE: ${{ needs.coverage.result }}
+          SMOKE: ${{ needs.release-smoke.result }}
+          FORK_BUILD: ${{ needs.fork-build.result }}
+        run: |
+          test "$VALIDATION" = success
+          test "$COVERAGE" = success
+          if [ "$REUSED" != true ]; then
+            test "$CHECKS" = success
+            test "$SMOKE" = success || test "$FORK_BUILD" = success
           fi
-          echo "Production build, critical tests and full-stack smoke passed." >> "$GITHUB_STEP_SUMMARY"
+
+  release-ready:
+    name: Release ready
+    needs: [validation, quality, release-smoke]
+    if: ${{ always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CI_VALIDATION_WORKFLOW: .github/workflows/client-ci.yml
+      CI_VALIDATION_DEPENDENCY_TREE: ${{ needs.validation.outputs.server_tree }}
+      CI_VALIDATION_DEPENDENCY_SHA: ${{ needs.validation.outputs.server_sha }}
+    steps:
+      - name: Require successful validation
+        env:
+          VALIDATION: ${{ needs.validation.result }}
+          QUALITY: ${{ needs.quality.result }}
+          SMOKE: ${{ needs.release-smoke.result }}
+          REUSED: ${{ needs.validation.outputs.reused }}
+          SOURCE_URL: ${{ needs.validation.outputs.source_url }}
+        run: |
+          test "$VALIDATION" = success
+          test "$QUALITY" = success
+          test "$REUSED" = true || test "$SMOKE" = success
+          if [ "$REUSED" = true ]; then
+            echo "Reused identical PR validation: $SOURCE_URL" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Fresh lint, contracts, full coverage and production-build browser smoke passed." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/checkout@v7
+        if: ${{ needs.validation.outputs.reused != 'true' && github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.repo.full_name == github.repository }}
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        if: ${{ needs.validation.outputs.reused != 'true' && github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.repo.full_name == github.repository }}
+        with:
+          node-version: 22
+      - name: Record successful validation provenance
+        if: ${{ needs.validation.outputs.reused != 'true' && github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.repo.full_name == github.repository }}
+        run: node scripts/ci/validation-evidence.mjs record
+      - name: Upload validation provenance
+        if: ${{ needs.validation.outputs.reused != 'true' && github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.repo.full_name == github.repository }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: validation-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: validation-evidence.json
+          if-no-files-found: error
+          retention-days: 7

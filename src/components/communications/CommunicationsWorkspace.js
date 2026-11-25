@@ -17,7 +17,7 @@ import WorkspaceTabs, {
   WorkspaceTabPanel,
 } from "@/components/dashboard/WorkspaceTabs";
 import { PERMISSIONS, hasAnyPermission } from "@/config/permissions";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import {
   selectCurrentTenant,
   selectCurrentWorkspaceAccess,
@@ -40,7 +40,10 @@ const sectionDefinitions = [
   { id: "setup", icon: Cog6ToothIcon, settings: true },
 ];
 
-export default function CommunicationsWorkspace({ showPageHeader = true }) {
+export default function CommunicationsWorkspace({
+  showPageHeader = true,
+  settingsOnly = false,
+}) {
   const t = useTranslations("CommunicationsEmail");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -66,12 +69,14 @@ export default function CommunicationsWorkspace({ showPageHeader = true }) {
     [automationsEnabled, canManage, canView],
   );
   const availableSectionIds = visibleSections.map((section) => section.id);
-  const activeSection = resolveEmailWorkspaceSection({
-    section: searchParams.get("section"),
-    tab: searchParams.get("tab"),
-    availableSections: availableSectionIds,
-    guided,
-  });
+  const activeSection = settingsOnly
+    ? "setup"
+    : resolveEmailWorkspaceSection({
+        section: searchParams.get("section"),
+        tab: searchParams.get("tab"),
+        availableSections: availableSectionIds,
+        guided,
+      });
   const skipSetupQuery = !canView && !canManage;
   const setupQuery = useGetCommunicationEmailSetupQuery(undefined, {
     skip: skipSetupQuery,
@@ -86,9 +91,11 @@ export default function CommunicationsWorkspace({ showPageHeader = true }) {
     skipPollingIfUnfocused: true,
   });
   useEffect(() => {
+    if (settingsOnly) return;
     const requestedSection = searchParams.get("section");
     const requestedTab = searchParams.get("tab");
     if (
+      activeSection === "setup" ||
       searchParams.has("compose") ||
       ((requestedSection || requestedTab) &&
         (requestedSection !== activeSection || requestedTab))
@@ -97,7 +104,7 @@ export default function CommunicationsWorkspace({ showPageHeader = true }) {
         scroll: false,
       });
     }
-  }, [activeSection, router, searchParams]);
+  }, [activeSection, router, searchParams, settingsOnly]);
 
   const navigate = (section) => {
     router.replace(getEmailWorkspaceHref(searchParams, section), {
@@ -112,6 +119,40 @@ export default function CommunicationsWorkspace({ showPageHeader = true }) {
   }));
 
   if (!visibleSections.length) return null;
+
+  if (settingsOnly) {
+    const relatedSections = visibleSections.filter(({ id }) => id !== "setup");
+    return canManage ? (
+      <section className="min-w-0" data-email-workspace>
+        {!guided && relatedSections.length ? (
+          <nav
+            aria-label={t("tabs.label")}
+            className="mb-4 flex flex-wrap gap-x-5 gap-y-1 text-sm"
+          >
+            {relatedSections.map(({ id }) => (
+              <Link
+                key={id}
+                href={getEmailWorkspaceHref(searchParams, id)}
+                data-email-related-section={id}
+                className="inline-flex min-h-11 items-center text-[var(--studio-blue)] underline-offset-4 hover:underline"
+              >
+                {t(`tabs.${id}`)}
+              </Link>
+            ))}
+          </nav>
+        ) : null}
+        <EmailSetupView
+          setup={setup}
+          canManage={canManage}
+          onChanged={() => setupQuery.refetch()}
+        />
+      </section>
+    ) : null;
+  }
+
+  // The legacy setup URL is redirected to the shared settings area. Avoid
+  // mounting a second editable form while that navigation is in flight.
+  if (activeSection === "setup") return null;
 
   return (
     <section className="mx-auto w-full max-w-[1800px]" data-email-workspace>
@@ -173,13 +214,6 @@ export default function CommunicationsWorkspace({ showPageHeader = true }) {
         ) : null}
         {activeSection === "templates" ? (
           <AutomatedCommunicationsPage view="templates" emailSetup={setup} />
-        ) : null}
-        {activeSection === "setup" && canManage ? (
-          <EmailSetupView
-            setup={setup}
-            canManage={canManage}
-            onChanged={() => setupQuery.refetch()}
-          />
         ) : null}
       </WorkspaceTabPanel>
     </section>

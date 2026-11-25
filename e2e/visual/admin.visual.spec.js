@@ -33,12 +33,12 @@ const scenarios = [
     heading: /Good morning, Martin/,
     requiredApiRequests: [
       "GET /dashboard/overview",
-      "GET /ai/briefings/latest",
+      "GET /dashboard/management",
     ],
     ready: (page) => [
       page.getByRole("heading", {
         level: 2,
-        name: "Studio operations",
+        name: "This month so far",
         exact: true,
       }),
     ],
@@ -47,7 +47,10 @@ const scenarios = [
     id: "customers",
     pathname: "/en/app/users",
     heading: "Customers",
-    requiredApiRequests: ["GET /users"],
+    requiredApiRequests: [
+      "GET /users/directory",
+      "GET /users/directory/summary",
+    ],
     ready: (page) => [
       page
         .getByText("Anna Nováková", { exact: true })
@@ -77,14 +80,14 @@ const scenarios = [
 
       return [
         workspaceMain.getByRole("navigation", {
-          name: "Workspace settings",
+          name: "Settings sections",
         }),
         workspaceMain.getByRole("heading", {
           level: 2,
-          name: "Everything your studio needs, clearly organized.",
+          name: "Settings",
         }),
         workspaceMain.getByRole("link", {
-          name: "Open Workspace settings",
+          name: "Studio details",
         }),
       ];
     },
@@ -102,7 +105,7 @@ const scenarios = [
 
       return [
         workspaceMain.getByRole("navigation", {
-          name: "Workspace settings",
+          name: "Settings sections",
         }),
         workspaceMain.locator("#public-site-editor-pane"),
         workspaceMain.getByRole("button", {
@@ -419,7 +422,13 @@ async function withAdaptiveOverviewState(
     await page.clock.setFixedTime(new Date(VISUAL_FIXED_TIME));
     const { handledRequests, unexpectedRequests } = await installAdminApiMocks(
       page,
-      { overviewScenario, workspaceLocale: locale },
+      {
+        overviewScenario,
+        workspaceLocale: locale,
+        // These layout contracts cover the retained staff overview. The owner
+        // overview and saved report have separate contracts below.
+        workspaceRole: "staff",
+      },
     );
 
     await context.addCookies([
@@ -469,7 +478,7 @@ async function withAdaptiveOverviewState(
   }
 }
 
-test("adaptive Overview states preserve hierarchy and payment alerts", async ({
+test("adaptive staff Overview states preserve hierarchy and payment alerts", async ({
   context,
 }, testInfo) => {
   test.skip(
@@ -567,7 +576,7 @@ test("adaptive Overview states preserve hierarchy and payment alerts", async ({
   );
 });
 
-test("all-clear Overview compacts status, neutralizes zero flow, and unifies workspace chrome", async ({
+test("all-clear staff Overview compacts status, neutralizes zero flow, and unifies workspace chrome", async ({
   context,
 }, testInfo) => {
   test.skip(
@@ -1079,16 +1088,44 @@ test("responsive command bar opens an accessible mobile workspace menu", async (
   await expect(panel).toBeHidden();
 });
 
+async function expectSetupShortcutHidden(page) {
+  const mobile = (page.viewportSize()?.width ?? 1280) < 1280;
+  if (mobile) {
+    await page.locator("[data-mobile-navigation-trigger]").click();
+  }
+  const sidebar = page.locator(
+    `[data-workspace-sidebar="${mobile ? "mobile" : "desktop"}"]`,
+  );
+  await expect(sidebar).toBeVisible();
+  await expect(sidebar.locator("[data-launch-center-progress]")).toHaveCount(0);
+  await expect(
+    sidebar.getByRole("link", { name: "Open Launch Center" }),
+  ).toHaveCount(0);
+  await expect(
+    sidebar.getByRole("link", { name: "Settings", exact: true }),
+  ).toBeVisible();
+  if (mobile) {
+    await page.keyboard.press("Escape");
+    await expect(sidebar).toBeHidden();
+  }
+}
+
 test("completed Launch Center keeps one clear action across breakpoints", async ({
   page,
+  baseURL,
 }, testInfo) => {
   test.skip(
-    !["desktop-1280", "tablet-768", "mobile-390", "mobile-320"].includes(
-      testInfo.project.name,
-    ),
+    ![
+      "desktop-1440",
+      "desktop-1280",
+      "tablet-768",
+      "mobile-390",
+      "mobile-320",
+    ].includes(testInfo.project.name),
     "The completed Launch Center contract runs at representative desktop, tablet, and mobile widths.",
   );
 
+  const tenantOrigin = new URL(baseURL).origin;
   const pageErrors = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
 
@@ -1102,13 +1139,13 @@ test("completed Launch Center keeps one clear action across breakpoints", async 
     {
       name: "shario_language",
       value: "EN",
-      url: VISUAL_TENANT_ORIGIN,
+      url: tenantOrigin,
       sameSite: "Lax",
     },
   ]);
 
   const pathname = "/en/app/setup";
-  await page.goto(`${VISUAL_TENANT_ORIGIN}${pathname}`, {
+  await page.goto(`${tenantOrigin}${pathname}`, {
     waitUntil: "domcontentloaded",
   });
   const finalReview = page.locator("[data-launch-final-review]");
@@ -1163,17 +1200,7 @@ test("completed Launch Center keeps one clear action across breakpoints", async 
   await expect(
     page.getByText("Grow your studio", { exact: true }),
   ).toBeVisible();
-  if (testInfo.project.name === "desktop-1280") {
-    const desktopLaunchCenter = page.locator(
-      '[data-workspace-sidebar="desktop"]',
-    );
-    await expect(
-      desktopLaunchCenter.locator("[data-launch-center-progress]"),
-    ).toHaveCount(0);
-    await expect(
-      desktopLaunchCenter.getByRole("link", { name: "Open Launch Center" }),
-    ).toContainText("Launch Center");
-  }
+  await expectSetupShortcutHidden(page);
 
   const visibleActions = finalReview.locator("a, button");
   for (let index = 0; index < (await visibleActions.count()); index += 1) {
@@ -1216,14 +1243,16 @@ test("completed Launch Center keeps one clear action across breakpoints", async 
 
 test("live Launch Center attention stays precise across breakpoints", async ({
   page,
+  baseURL,
 }, testInfo) => {
   test.skip(
-    !["desktop-1280", "tablet-768", "mobile-320"].includes(
+    !["desktop-1440", "desktop-1280", "tablet-768", "mobile-320"].includes(
       testInfo.project.name,
     ),
     "The live-attention contract runs at one representative desktop, tablet, and mobile width.",
   );
 
+  const tenantOrigin = new URL(baseURL).origin;
   const pageErrors = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
 
@@ -1237,13 +1266,13 @@ test("live Launch Center attention stays precise across breakpoints", async ({
     {
       name: "shario_language",
       value: "EN",
-      url: VISUAL_TENANT_ORIGIN,
+      url: tenantOrigin,
       sameSite: "Lax",
     },
   ]);
 
   const pathname = "/en/app/setup";
-  await page.goto(`${VISUAL_TENANT_ORIGIN}${pathname}`, {
+  await page.goto(`${tenantOrigin}${pathname}`, {
     waitUntil: "domcontentloaded",
   });
   const finalReview = page.locator("[data-launch-final-review]");
@@ -1302,39 +1331,12 @@ test("live Launch Center attention stays precise across breakpoints", async ({
     finalReview.getByRole("link", { name: "Open website", exact: true }),
   ).toBeVisible();
 
-  if (testInfo.project.name === "desktop-1280") {
-    const sidebar = page.locator('[data-workspace-sidebar="desktop"]');
-    const statusBadge = sidebar.locator("[data-launch-center-progress]");
-    await expect(statusBadge).toHaveAttribute(
-      "data-launch-center-status",
-      "attention",
-    );
-    await expect(statusBadge).toHaveText("1 issue");
-    await expect(
-      sidebar.getByRole("link", { name: "Open Launch Center" }),
-    ).toHaveAccessibleDescription(
-      "1 launch readiness issue requires attention",
-    );
-
+  await expectSetupShortcutHidden(page);
+  if ((page.viewportSize()?.width ?? 1280) >= 1280) {
     const publicAddress = finalReview.locator(
       '[data-launch-public-url="true"]',
     );
     await expect(publicAddress).toBeInViewport({ ratio: 0.25 });
-  } else {
-    const navigationTrigger = page.locator("[data-mobile-navigation-trigger]");
-    await navigationTrigger.click();
-    const mobileSidebar = page.locator('[data-workspace-sidebar="mobile"]');
-    await expect(mobileSidebar).toBeVisible();
-    await expect(
-      mobileSidebar.locator("[data-launch-center-progress]"),
-    ).toHaveAttribute("data-launch-center-status", "attention");
-    await expect(
-      mobileSidebar.getByRole("link", { name: "Open Launch Center" }),
-    ).toHaveAccessibleDescription(
-      "1 launch readiness issue requires attention",
-    );
-    await page.keyboard.press("Escape");
-    await expect(mobileSidebar).toBeHidden();
   }
 
   expect(
@@ -1376,11 +1378,191 @@ test("live Launch Center attention stays precise across breakpoints", async ({
   await attachPageScreenshot(page, testInfo, "setup-center-live-attention");
 });
 
+for (const role of ["owner", "manager"]) {
+  test(`${role} dashboard keeps delivery limits visible and exports its saved report`, async ({
+    page,
+    baseURL,
+  }, testInfo) => {
+    test.skip(
+      !["desktop-1280", "mobile-390"].includes(testInfo.project.name),
+      "Report interactions run at desktop and mobile widths.",
+    );
+    const pageErrors = [];
+    page.on("pageerror", (error) => pageErrors.push(error.message));
+    await page.clock.setFixedTime(new Date(VISUAL_FIXED_TIME));
+    const { handledRequests, unexpectedRequests } = await installAdminApiMocks(
+      page,
+      {
+        workspaceRole: role,
+        overviewScenario: ADMIN_OVERVIEW_SCENARIOS.COMPLETE_LEARNING,
+      },
+    );
+    // The initial location selection remounts the dashboard. Begin keyboard
+    // interactions after the selected studio's data has loaded.
+    const selectedLocationReady = Promise.all(
+      ["/dashboard/management", "/dashboard/overview"].map((pathname) =>
+        page.waitForResponse((response) => {
+          const url = new URL(response.url());
+          return (
+            url.pathname === pathname &&
+            url.searchParams.get("locationId") === VISUAL_IDS.location &&
+            response.ok()
+          );
+        }),
+      ),
+    );
+    await page.goto(new URL("/en/app", baseURL).toString(), {
+      waitUntil: "domcontentloaded",
+    });
+    await selectedLocationReady;
+    const dashboard = page.locator("[data-owner-manager-dashboard]");
+    await expect(
+      dashboard.getByRole("heading", {
+        name: "This month so far",
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      dashboard.getByText("Unavailable — delivery records are incomplete.", {
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      dashboard.getByText("Busiest scheduled hour: 15:00–16:00", {
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      dashboard.getByText("2 failed emails", { exact: true }),
+    ).toBeVisible();
+    await expect(dashboard.getByLabel("Current piece status")).toHaveCount(0);
+    await expect(
+      dashboard.getByText("Next booking", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      dashboard.getByText("In the studio now (estimated)", { exact: true }),
+    ).toBeVisible();
+    const dailyCards = dashboard
+      .getByRole("region", { name: "Daily studio numbers" })
+      .locator(":scope > a");
+    await expect(dailyCards).toHaveCount(4);
+    if (testInfo.project.name === "desktop-1280") {
+      for (const card of await dailyCards.all()) {
+        expect((await card.boundingBox()).height).toBeLessThan(180);
+      }
+    }
+    const hideAttention = dashboard.getByRole("button", {
+      name: "Hide attention card",
+      exact: true,
+    });
+    await hideAttention.focus();
+    await page.keyboard.press("Enter");
+    const showAttention = dashboard.getByRole("button", {
+      name: /^Show alerts/,
+    });
+    await expect(showAttention).toBeFocused();
+    await expect(
+      dashboard.getByText("2 failed emails", { exact: true }),
+    ).toBeHidden();
+    await expect(
+      dashboard.getByRole("link", { name: /2 failed emails/ }),
+    ).toHaveCount(0);
+    await page.keyboard.press("Enter");
+    await expect(hideAttention).toBeFocused();
+    await expect(
+      dashboard.getByText("2 failed emails", { exact: true }),
+    ).toBeVisible();
+    const clients = page.locator("section", {
+      has: page.locator("#management-top-clients"),
+    });
+    await expect(clients.locator("ol li").first()).toContainText(
+      "Anna Nováková",
+    );
+    await expect(clients.locator("ol li").first()).toContainText(
+      "Customer ID #127",
+    );
+    await expect(clients.locator("ol li").first()).toContainText("2,400");
+    await expect(clients.locator("ol li").first()).toContainText("18,450");
+    await expect(clients.getByText(/across all studios/)).toBeVisible();
+    expect(
+      await dashboard.evaluate(
+        (element) => element.scrollWidth <= element.clientWidth + 1,
+      ),
+    ).toBe(true);
+    await attachPageScreenshot(page, testInfo, `${role}-refined-dashboard`);
+    await clients
+      .getByRole("button", { name: "Delivered revenue", exact: true })
+      .click();
+    await expect(clients.locator("ol li").first()).toContainText(
+      "Petr Svoboda",
+    );
+    await expect(
+      clients.getByText(/Confirmed completed services only/),
+    ).toBeVisible();
+    await expectNoSeriousAccessibilityViolations(
+      page,
+      "[data-owner-manager-dashboard]",
+    );
+
+    const generationRequest = page.waitForRequest(
+      (request) =>
+        request.method() === "POST" &&
+        new URL(request.url()).pathname === "/dashboard/reports",
+    );
+    await dashboard
+      .getByRole("button", { name: "Generate AI report", exact: true })
+      .click();
+    expect((await generationRequest).postDataJSON()).toEqual({
+      date: "2026-07-30",
+      locationId: VISUAL_IDS.location,
+      locale: "en",
+    });
+    const report = page.locator("[data-studio-report]");
+    await expect(
+      report.getByRole("heading", { name: "Studio report", exact: true }),
+    ).toBeVisible();
+    await expect(
+      report.getByText("Studio data report", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      report.getByText("Documented service revenue (partial)", { exact: true }),
+    ).toBeVisible();
+    await expectNoSeriousAccessibilityViolations(page, "[data-studio-report]");
+    await attachPageScreenshot(page, testInfo, `${role}-saved-studio-report`);
+    const downloadPromise = page.waitForEvent("download");
+    await report
+      .getByRole("button", { name: "Export PDF", exact: true })
+      .click();
+    expect((await downloadPromise).suggestedFilename()).toBe(
+      "studio-report-2026-07-30.pdf",
+    );
+    await report
+      .getByRole("button", { name: "Back to dashboard", exact: true })
+      .click();
+    await expect(dashboard).toBeVisible();
+    await expectSoundPage({
+      handledRequests,
+      page,
+      pageErrors,
+      requiredApiRequests: [
+        "GET /dashboard/overview",
+        "GET /dashboard/management",
+        "POST /dashboard/reports",
+        "GET /dashboard/reports/64e000000000000000000099/pdf",
+      ],
+      unexpectedRequests,
+      expectedPathname: "/en/app",
+    });
+  });
+}
+
 test.describe("admin workspace visual QA", () => {
   for (const scenario of scenarios) {
     test(`${scenario.id} renders without regressions`, async ({
       page,
+      baseURL,
     }, testInfo) => {
+      const tenantOrigin = new URL(baseURL).origin;
       const pageErrors = [];
       page.on("pageerror", (error) => pageErrors.push(error.message));
 
@@ -1392,15 +1574,43 @@ test.describe("admin workspace visual QA", () => {
         {
           name: "shario_language",
           value: "EN",
-          url: VISUAL_TENANT_ORIGIN,
+          url: tenantOrigin,
           sameSite: "Lax",
         },
       ]);
 
-      await page.goto(`${VISUAL_TENANT_ORIGIN}${scenario.pathname}`, {
+      await page.goto(`${tenantOrigin}${scenario.pathname}`, {
         waitUntil: "domcontentloaded",
       });
       await waitForStablePage(page, scenario);
+      if (scenario.id === "overview") {
+        const dashboard = page.locator("[data-owner-manager-dashboard]");
+        await expect(dashboard).toBeVisible();
+        await expect(
+          dashboard.getByRole("button", {
+            name: "Generate AI report",
+            exact: true,
+          }),
+        ).toBeEnabled();
+        await expect(
+          dashboard.getByRole("heading", {
+            name: "Top 5 clients",
+            exact: true,
+          }),
+        ).toBeVisible();
+        await expect(
+          dashboard.getByRole("heading", {
+            name: "Top 3 products",
+            exact: true,
+          }),
+        ).toBeVisible();
+        await expect(
+          dashboard.getByRole("heading", {
+            name: "When visits are scheduled",
+            exact: true,
+          }),
+        ).toBeVisible();
+      }
       await expectMobileCommandBar(page);
       await expectSoundPage({
         handledRequests,

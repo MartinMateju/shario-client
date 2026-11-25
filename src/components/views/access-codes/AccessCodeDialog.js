@@ -51,6 +51,7 @@ function ModalFrame({ children, description, onClose, title }) {
       <div className="fixed inset-0 p-0 sm:p-6">
         <div className="flex h-full items-end justify-center sm:items-center">
           <DialogPanel
+            data-skab-workspace-surface="true"
             transition
             className="flex max-h-dvh w-full max-w-[680px] flex-col overflow-hidden bg-surface-raised pt-[env(safe-area-inset-top)] shadow-floating transition data-closed:translate-y-3 data-closed:opacity-0 sm:max-h-[calc(100dvh-3rem)] sm:rounded-[24px] sm:border sm:border-line sm:pt-0"
           >
@@ -187,13 +188,13 @@ export function AccessCodeDialog({
             </FormField>
           ) : (
             <div className="rounded-[16px] border border-line bg-surface-muted px-4 py-3">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-subtle">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-subtle">
                 {t("codeForm.code")}
               </p>
               <p className="mt-1 font-mono text-base font-semibold tracking-[0.16em] text-ink">
                 {code?.maskedCode || code?.maskedValue || "••••"}
               </p>
-              <p className="mt-1 text-[11px] leading-5 text-ink-muted">
+              <p className="mt-1 text-[13px] leading-5 text-ink-muted">
                 {t("codeForm.secretImmutable")}
               </p>
             </div>
@@ -292,7 +293,7 @@ export function AccessCodeDialog({
               <span className="block text-sm font-semibold text-ink">
                 {t("codeForm.neverExpires")}
               </span>
-              <span className="mt-0.5 block text-[11px] leading-5 text-ink-muted">
+              <span className="mt-0.5 block text-[13px] leading-5 text-ink-muted">
                 {t("codeForm.validityDisclaimer")}
               </span>
             </span>
@@ -302,7 +303,7 @@ export function AccessCodeDialog({
             className={cx(
               "flex items-start gap-3 rounded-[16px] border px-4 py-3.5",
               form.programmedAndTested
-                ? "border-success/25 bg-success-soft"
+                ? "border-cobalt-200 bg-cobalt-50"
                 : "border-line bg-white",
               alreadyVerified ? "cursor-default" : "cursor-pointer",
             )}
@@ -321,7 +322,7 @@ export function AccessCodeDialog({
                 <CheckCircleIcon aria-hidden="true" className="size-4" />
                 {t("codeForm.programmedAndTested")}
               </span>
-              <span className="mt-0.5 block text-[11px] leading-5 text-ink-muted">
+              <span className="mt-0.5 block text-[13px] leading-5 text-ink-muted">
                 {t("codeForm.programmedAndTestedHint")}
               </span>
             </span>

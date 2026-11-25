@@ -81,6 +81,24 @@ if (!Element.prototype.getAnimations) {
   });
 }
 
+// jsdom has no layout and omits Range geometry. Match its zero-layout Element
+// geometry so selection scrolling can run without replacing animation frames.
+if (!Range.prototype.getClientRects) {
+  Object.defineProperty(Range.prototype, "getClientRects", {
+    configurable: true,
+    writable: true,
+    value: () => [],
+  });
+}
+
+if (!Range.prototype.getBoundingClientRect) {
+  Object.defineProperty(Range.prototype, "getBoundingClientRect", {
+    configurable: true,
+    writable: true,
+    value: () => new DOMRect(),
+  });
+}
+
 if (!URL.createObjectURL) {
   URL.createObjectURL = vi.fn(() => "blob:test");
 }

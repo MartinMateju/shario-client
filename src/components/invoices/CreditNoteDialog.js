@@ -175,8 +175,8 @@ export default function CreditNoteDialog({
                       key={value}
                       className={
                         mode === value
-                          ? "flex min-h-10 cursor-pointer items-center justify-center rounded-[10px] bg-white text-[10px] font-semibold text-[#292925] shadow-sm"
-                          : "flex min-h-10 cursor-pointer items-center justify-center rounded-[10px] text-[10px] font-medium text-[#777773]"
+                          ? "flex min-h-11 cursor-pointer items-center justify-center rounded-[10px] bg-primary-soft text-[13px] font-semibold text-primary ring-1 ring-inset ring-primary/35 focus-within:ring-2 focus-within:ring-primary"
+                          : "flex min-h-11 cursor-pointer items-center justify-center rounded-[10px] text-[13px] font-medium text-ink-muted hover:bg-white focus-within:ring-2 focus-within:ring-primary"
                       }
                     >
                       <input
@@ -300,7 +300,7 @@ export default function CreditNoteDialog({
                 <button
                   type="submit"
                   disabled={isLoading || !reason.trim()}
-                  className="min-h-11 rounded-[13px] bg-terracotta-600 px-5 text-[11px] font-semibold text-white disabled:opacity-50"
+                  className="min-h-11 rounded-[13px] bg-primary px-5 text-[13px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50"
                 >
                   {isLoading ? t("creating") : t("confirm")}
                 </button>

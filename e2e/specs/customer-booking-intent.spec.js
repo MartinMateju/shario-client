@@ -42,7 +42,13 @@ const signInAndExpectRestoredConfirmation = async ({ page, hostname }) => {
   await page.getByLabel(/^Password\s*\*?$/).fill(PASSWORD);
 
   const loginResponsePromise = page.waitForResponse((response) =>
-    isApiResponse(response, "/auth/customer", "POST"),
+    isApiResponse(
+      response,
+      hostname === E2E.alphaCustomHostname
+        ? "/api/tenant-auth/auth/customer"
+        : "/auth/customer",
+      "POST",
+    ),
   );
   const restoreResponsePromise = page.waitForResponse((response) => {
     const url = new URL(response.url());
@@ -53,7 +59,11 @@ const signInAndExpectRestoredConfirmation = async ({ page, hostname }) => {
   });
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
 
-  expect((await loginResponsePromise).ok()).toBe(true);
+  const loginResponse = await loginResponsePromise;
+  expect(loginResponse.ok(), await loginResponse.text()).toBe(true);
+  if (hostname === E2E.alphaCustomHostname) {
+    expect(new URL(loginResponse.url()).hostname).toBe(hostname);
+  }
   expect((await restoreResponsePromise).ok()).toBe(true);
   await expect(page).toHaveURL((url) => {
     return (
@@ -85,20 +95,21 @@ test("restores an anonymous selection after customer login on a tenant subdomain
   });
 });
 
-test("keeps booking intent restoration on the tenant custom domain", async ({
-  page,
-  e2eState,
-}) => {
-  const productId = e2eState.products.alpha.id;
-  await selectCourseAndStartAccountBooking({
-    page,
-    detailUrl: customTenantUrl(
-      E2E.alphaCustomHostname,
-      `/courses/${productId}`,
-    ),
-  });
-  await signInAndExpectRestoredConfirmation({
-    page,
-    hostname: E2E.alphaCustomHostname,
-  });
-});
+test(
+  "keeps booking intent restoration on the tenant custom domain",
+  { tag: "@custom-domain-auth" },
+  async ({ page, e2eState }) => {
+    const productId = e2eState.products.alpha.id;
+    await selectCourseAndStartAccountBooking({
+      page,
+      detailUrl: customTenantUrl(
+        E2E.alphaCustomHostname,
+        `/courses/${productId}`,
+      ),
+    });
+    await signInAndExpectRestoredConfirmation({
+      page,
+      hostname: E2E.alphaCustomHostname,
+    });
+  },
+);

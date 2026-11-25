@@ -8,56 +8,30 @@ import TenantSiteRefresh from "@/components/public-tenant/TenantSiteRefresh";
 import { PLATFORM_BROWSER_ICONS } from "@/config/browserIcons";
 import { getPublicTenantConfig } from "@/lib/publicTenant/server";
 import {
+  getTenantPublicCanonicalOrigin,
+  resolvePublicSeoSite,
+} from "@/lib/publicTenant/seo";
+import {
   getConfiguredRootHostname,
   isValidTenantSlug,
   normalizeRootHostname,
 } from "@/utils/tenantRouting";
 
-const getCustomDomainTenant = (hostname) => {
-  try {
-    const mapping = JSON.parse(process.env.CUSTOM_DOMAIN_TENANTS || "{}");
-
-    const match = Object.entries(mapping).find(
-      ([domain]) =>
-        String(domain).trim().toLowerCase().replace(/\.$/, "") === hostname,
-    );
-
-    return match?.[1] || null;
-  } catch {
-    return null;
-  }
-};
-
-const getTenantOrigin = async (slug) => {
+const getTenantOrigin = (slug, tenant, requestHeaders) => {
   const rootDomain =
     normalizeRootHostname(process.env.TENANT_ROOT_DOMAIN) ||
     getConfiguredRootHostname() ||
     "shario.io";
-  const requestHeaders = await headers();
-  const requestHost = String(
-    requestHeaders.get("x-forwarded-host")?.split(",")[0]?.trim() ||
-      requestHeaders.get("host") ||
-      "",
-  ).toLowerCase();
-  const requestHostname = requestHost.replace(/:\d+$/, "");
-  const isExpectedHost =
-    requestHostname === `${slug}.${rootDomain}` ||
-    requestHostname === `${slug}.localhost` ||
-    getCustomDomainTenant(requestHostname) === slug;
-
-  if (isExpectedHost && /^[a-z0-9.-]+(?::\d+)?$/.test(requestHost)) {
-    const forwardedProtocol = requestHeaders
-      .get("x-forwarded-proto")
-      ?.split(",")[0]
-      ?.trim();
-    const protocol =
-      forwardedProtocol === "http" || forwardedProtocol === "https"
-        ? forwardedProtocol
-        : requestHostname.endsWith(".localhost")
-          ? "http"
-          : "https";
-
-    return `${protocol}://${requestHost}`;
+  const site = resolvePublicSeoSite({
+    host: requestHeaders.get("host"),
+    forwardedHost: requestHeaders.get("x-forwarded-host"),
+    forwardedProto:
+      requestHeaders.get("x-forwarded-proto") ||
+      (rootDomain.endsWith("localhost") ? "http" : "https"),
+    rootDomain,
+  });
+  if (site.kind === "tenant" && site.tenantSlug === slug) {
+    return getTenantPublicCanonicalOrigin(tenant, site);
   }
 
   const protocol = rootDomain.includes("localhost") ? "http" : "https";
@@ -73,15 +47,27 @@ export async function generateMetadata({ params }) {
   }
 
   const tenantName = formatTenantNameFromSlug(tenantSlug);
-  const tenantOrigin = await getTenantOrigin(tenantSlug);
-  const result = await getPublicTenantConfig(tenantSlug);
-  const faviconUrl = result.tenant?.publicSite?.branding?.faviconUrl;
+  const requestHeaders = await headers();
+  // The proxy sets this to the visitor-facing path before its internal rewrite.
+  const path = requestHeaders.get("x-shario-public-pathname") || "";
+  const segments = path.split("/").filter(Boolean);
+  const surface = segments[0] === locale ? segments[1] : segments[0];
+  const workspace = surface === "app";
+  const preview = surface === "public-site-preview";
+  const tenant =
+    workspace || preview
+      ? null
+      : (await getPublicTenantConfig(tenantSlug)).tenant;
+  const tenantOrigin = getTenantOrigin(tenantSlug, tenant, requestHeaders);
+  const faviconUrl = tenant?.publicSite?.branding?.faviconUrl;
 
   return {
     metadataBase: new URL(tenantOrigin),
     icons: faviconUrl
       ? { icon: faviconUrl, shortcut: faviconUrl, apple: faviconUrl }
-      : PLATFORM_BROWSER_ICONS,
+      : workspace
+        ? null
+        : PLATFORM_BROWSER_ICONS,
     title: {
       default: tenantName,
       template: `%s | ${tenantName}`,

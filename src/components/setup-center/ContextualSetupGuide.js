@@ -106,11 +106,7 @@ export default function ContextualSetupGuide() {
     <aside
       aria-live="polite"
       data-guided-setup-surface={stepId}
-      className={
-        complete
-          ? "mb-5 rounded-[18px] border border-success/25 bg-success-soft p-4 shadow-[0_10px_30px_rgba(34,139,94,0.08)] sm:p-5"
-          : "mb-5 rounded-[18px] border border-cobalt-200 bg-cobalt-50/60 p-4 shadow-[0_10px_30px_rgb(var(--skab-blue-rgb)/0.07)] sm:p-5"
-      }
+      className="mb-5 rounded-[18px] border border-line bg-white p-4 shadow-card sm:p-5"
     >
       <div className="flex items-start gap-3">
         <span
@@ -156,7 +152,7 @@ export default function ContextualSetupGuide() {
               href={`/app/setup?step=${step.id}${complete ? "&review=ready" : ""}`}
               className={
                 complete
-                  ? "inline-flex min-h-9 items-center gap-1.5 rounded-full bg-success px-4 text-[10px] font-semibold text-white transition hover:brightness-95"
+                  ? "inline-flex min-h-9 items-center gap-1.5 rounded-full bg-primary px-4 text-[13px] font-semibold text-white transition hover:bg-primary-hover"
                   : "inline-flex min-h-9 items-center gap-1.5 rounded-full border border-cobalt-200 bg-white px-4 text-[10px] font-semibold text-cobalt-700 transition hover:bg-cobalt-50"
               }
             >

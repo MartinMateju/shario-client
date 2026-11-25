@@ -1,5 +1,8 @@
 "use client";
 
+import { usePublicCourseHydration } from "@/components/courses/PublicCourseHydrationBoundary";
+import { PUBLIC_COURSE_FRESHNESS_SECONDS } from "@/lib/publicTenant/courseHydration";
+
 import {
   AcademicCapIcon,
   ArrowLeftIcon,
@@ -22,6 +25,8 @@ import {
 } from "@/components/customer-shell/CustomerPortalPrimitives";
 import { useCustomerPortalLocation } from "@/components/customer-shell/CustomerPortalLocationProvider";
 import { isCustomerPortalPageEnabled } from "@/components/customer-shell/customerPortalVisibility";
+import CustomerPortalHero from "@/components/customer-shell/CustomerPortalHero";
+import { getCustomerPortalCourseImageSource } from "@/components/public-tenant/publicTenantPageImages";
 import StudioSwitcher from "@/components/menu/StudioSwitcher";
 import {
   formatProductPrice,
@@ -68,6 +73,7 @@ import {
 } from "./customerCourses.utils";
 
 import CourseProductGallery from "./CourseProductGallery";
+import design from "@/components/public-tenant/portalCatalog.module.css";
 import usePublicCourseLocation, {
   retainPublicCourseLocation,
 } from "./usePublicCourseLocation";
@@ -103,7 +109,9 @@ function CourseFacts({ product, session }) {
   const duration = getCourseDurationMinutes(session);
   const durationLabel = getCourseDurationLabel(product, locale);
   return (
-    <dl className="grid gap-5 border-y border-[var(--tenant-border)] py-5 sm:grid-cols-3">
+    <dl
+      className={`${design.courseFacts} grid gap-5 border-y border-[var(--tenant-border)] py-5 sm:grid-cols-3`}
+    >
       <div>
         <dt className="text-xs text-[var(--tenant-muted-on-surface)]">
           {t("pricePerPerson")}
@@ -177,6 +185,7 @@ function GiftVoucherLink({
     return null;
   return (
     <Link
+      prefetch={publicPage ? false : undefined}
       href={
         publicPage
           ? retainPublicCourseLocation("/vouchers", activeLocationReference)
@@ -220,11 +229,11 @@ function CourseCatalogCard({
   });
   return (
     <CustomerPortalSurface
-      className={`grid !rounded-none ${getCourseImageUrls(product).length ? "min-[900px]:grid-cols-2" : ""}`}
+      className={`${design.courseCard} grid ${getCourseImageUrls(product).length ? "min-[900px]:col-span-2 min-[900px]:grid-cols-2" : ""}`}
       data-customer-course={getProductId(product)}
     >
       <CourseProductGallery product={product} />
-      <div className="min-w-0 p-5 sm:p-7 xl:p-10">
+      <div className={`${design.courseCopy} min-w-0 p-5 sm:p-7 xl:p-10`}>
         {product.classCategory ? (
           <p className="text-xs font-semibold uppercase tracking-wider text-[var(--tenant-accent-on-surface)]">
             {product.classCategory}
@@ -232,6 +241,7 @@ function CourseCatalogCard({
         ) : null}
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--tenant-heading-on-surface)] xl:text-3xl">
           <Link
+            prefetch={publicPage ? false : undefined}
             href={href}
             onClick={preview ? (event) => event.preventDefault() : undefined}
           >
@@ -246,6 +256,7 @@ function CourseCatalogCard({
           <div className="mt-5 text-sm">
             {nextSession ? (
               <Link
+                prefetch={publicPage ? false : undefined}
                 onClick={
                   preview ? (event) => event.preventDefault() : undefined
                 }
@@ -270,8 +281,9 @@ function CourseCatalogCard({
             )}
           </div>
         ) : null}
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className={`${design.courseActions} flex flex-wrap gap-3`}>
           <Link
+            prefetch={publicPage ? false : undefined}
             href={href}
             className={customerPortalPrimaryActionClass}
             onClick={preview ? (event) => event.preventDefault() : undefined}
@@ -318,6 +330,7 @@ const useCourseCatalog = (
   skip = false,
   publicPage = false,
 ) => {
+  const hydrating = usePublicCourseHydration();
   const ownerScope = useSelector(getAuthCacheIdentity);
   const tenant = useSelector(selectCurrentTenant);
   const { tenant: publicTenant } = usePublicTenant();
@@ -337,27 +350,45 @@ const useCourseCatalog = (
   const publicQuery = useGetPublicCourseProductsQuery(
     { tenantSlug: publicTenant.slug, locationId: activeLocationId },
     {
-      skip: skip || !publicPage || !activeLocationId || !publicTenant.slug,
-      refetchOnMountOrArgChange: true,
+      skip:
+        hydrating ||
+        skip ||
+        !publicPage ||
+        !activeLocationId ||
+        !publicTenant.slug,
+      refetchOnMountOrArgChange: PUBLIC_COURSE_FRESHNESS_SECONDS,
       refetchOnFocus: true,
     },
   );
   return publicPage ? publicQuery : customerQuery;
 };
 
-export function PublicCustomerCoursesPage() {
+export function PublicCustomerCoursesPage({
+  previewData,
+  previewLocationId,
+  initialData,
+} = {}) {
   return (
     <PublicCapabilityGate capability="courses">
-      <PublicCourseCatalog />
+      {previewData ? (
+        <CourseCatalogPreview
+          previewData={previewData}
+          previewLocationId={previewLocationId}
+          publicPage
+        />
+      ) : (
+        <PublicCourseCatalog initialData={initialData} />
+      )}
     </PublicCapabilityGate>
   );
 }
 
-function PublicCourseCatalog() {
+function PublicCourseCatalog({ initialData }) {
   const { tenant } = usePublicTenant();
   const location = usePublicCourseLocation({
     tenantSlug: tenant.slug,
     enabled: true,
+    initialData,
   });
   const t = useTranslations("CustomerCourses");
   if (!location.locationId) {
@@ -371,7 +402,9 @@ function PublicCourseCatalog() {
       </CustomerPortalPage>
     );
   }
-  return <CourseCatalog location={location} publicPage />;
+  return (
+    <CourseCatalog location={location} initialData={initialData} publicPage />
+  );
 }
 
 export default function CustomerCoursesPage({
@@ -379,23 +412,42 @@ export default function CustomerCoursesPage({
   previewLocationId,
 } = {}) {
   if (previewData) {
-    const locations = previewData.locations || [];
-    const activeLocation =
-      locations.find(
-        (entry) => String(entry.id || entry._id) === previewLocationId,
-      ) || locations[0];
-    const location = {
-      locations,
-      activeLocation,
-      activeLocationId: String(activeLocation?.id || activeLocation?._id || ""),
-      activeLocationReference:
-        activeLocation?.slug ||
-        String(activeLocation?.id || activeLocation?._id || ""),
-      isSwitching: false,
-    };
-    return <CourseCatalog location={location} previewData={previewData} />;
+    return (
+      <CourseCatalogPreview
+        previewData={previewData}
+        previewLocationId={previewLocationId}
+      />
+    );
   }
   return <LiveCourseCatalog />;
+}
+
+function CourseCatalogPreview({
+  previewData,
+  previewLocationId,
+  publicPage = false,
+}) {
+  const locations = previewData.locations || [];
+  const activeLocation =
+    locations.find(
+      (entry) => String(entry.id || entry._id) === previewLocationId,
+    ) || locations[0];
+  const location = {
+    locations,
+    activeLocation,
+    activeLocationId: String(activeLocation?.id || activeLocation?._id || ""),
+    activeLocationReference:
+      activeLocation?.slug ||
+      String(activeLocation?.id || activeLocation?._id || ""),
+    isSwitching: false,
+  };
+  return (
+    <CourseCatalog
+      location={location}
+      previewData={previewData}
+      publicPage={publicPage}
+    />
+  );
 }
 
 function LiveCourseCatalog() {
@@ -403,7 +455,12 @@ function LiveCourseCatalog() {
   return <CourseCatalog location={location} />;
 }
 
-function CourseCatalog({ location, previewData, publicPage = false }) {
+function CourseCatalog({
+  location,
+  previewData,
+  initialData,
+  publicPage = false,
+}) {
   const locale = useLocale();
   const t = useTranslations("CustomerCourses");
   const { tenant } = usePublicTenant();
@@ -415,6 +472,13 @@ function CourseCatalog({ location, previewData, publicPage = false }) {
     preview,
     publicPage,
   );
+  const initialProducts =
+    publicPage &&
+    initialData?.tenantSlug === tenant.slug &&
+    initialData?.locationId === location.activeLocationId &&
+    !liveQuery.isError
+      ? initialData.products
+      : undefined;
   const query = preview
     ? {
         currentData: (previewData.courses || EMPTY).filter((product) => {
@@ -426,7 +490,7 @@ function CourseCatalog({ location, previewData, publicPage = false }) {
           );
         }),
       }
-    : liveQuery;
+    : { ...liveQuery, currentData: liveQuery.currentData ?? initialProducts };
   const products = query.currentData ?? EMPTY;
   const categories = getClassCatalogCategories(products, locale);
   const activeCategory = categories.some((item) => item.key === category)
@@ -457,28 +521,25 @@ function CourseCatalog({ location, previewData, publicPage = false }) {
     locale,
     getLocalizedPublicTenantText(page?.description, locale, t("description")),
   );
-  const heroImageUrl =
-    localContent?.heroImageUrl ||
-    tenant?.publicSite?.branding?.coverImageUrl ||
-    "";
+  const heroImageSource = getCustomerPortalCourseImageSource(
+    tenant,
+    location.activeLocationId,
+  );
 
   return (
-    <CustomerPortalPage
-      data-customer-courses-page
-      className="!px-0 !pt-0"
-      contentClassName="!max-w-none"
-    >
-      <header
-        className={`grid ${heroImageUrl ? "min-[900px]:grid-cols-2" : ""}`}
-      >
-        <div
-          className="min-w-0 self-center px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-16"
-          data-tenant-layout="hero-copy"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--tenant-accent-link)]">
+    <CustomerPortalPage data-customer-courses-page>
+      <CustomerPortalHero pageKey="courses" {...heroImageSource}>
+        <div className={design.courseHeroCopy}>
+          <p
+            data-tenant-type="eyebrow"
+            className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--tenant-label-color)]"
+          >
             {t("eyebrow")}
           </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[var(--tenant-heading-color)] sm:text-5xl">
+          <h1
+            data-tenant-type="display"
+            className="mt-4 text-4xl font-semibold tracking-tight text-[var(--tenant-heading-color)] sm:text-5xl"
+          >
             {headline}
           </h1>
           <p className="mt-5 whitespace-pre-line text-base leading-8 text-[var(--tenant-muted-text)]">
@@ -488,23 +549,11 @@ function CourseCatalog({ location, previewData, publicPage = false }) {
             <CourseLocationSwitcher location={location} preview={preview} />
           </div>
         </div>
-        {heroImageUrl ? (
-          <div className="relative aspect-[4/3] min-w-0 min-[900px]:aspect-auto min-[900px]:min-h-[28rem] xl:min-h-[32rem]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={heroImageUrl}
-              alt=""
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ) : null}
-      </header>
-      <div
-        className="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10"
-        data-tenant-layout="page"
-      >
-        <section className="my-9 flex flex-col gap-4 border-y border-[var(--tenant-border)] py-5">
+      </CustomerPortalHero>
+      <div>
+        <section
+          className={`${design.filterBar} my-9 flex flex-col gap-4 border-y border-[var(--tenant-border)] py-5`}
+        >
           <label className="flex flex-col gap-2 text-xs font-semibold sm:max-w-md">
             {t("search")}
             <input
@@ -537,7 +586,7 @@ function CourseCatalog({ location, previewData, publicPage = false }) {
         {!query.currentData || query.isError ? (
           <CourseQueryState query={query} emptyLabel={t("noCourses")} />
         ) : filtered.length ? (
-          <div className="space-y-8">
+          <div className="grid items-stretch gap-6 min-[900px]:grid-cols-2">
             {filtered.map((product) => (
               <CourseCatalogCard
                 key={getProductId(product)}
@@ -652,7 +701,7 @@ function CourseDetail({ productId }) {
       ) : (
         <>
           <CustomerPortalSurface
-            className={`grid !rounded-none ${getCourseImageUrls(product).length ? "min-[900px]:grid-cols-2" : ""}`}
+            className={`${design.courseCard} grid ${getCourseImageUrls(product).length ? "min-[900px]:grid-cols-2" : ""}`}
           >
             <CourseProductGallery product={product} large />
             <div className="min-w-0 p-5 sm:p-7 xl:p-10">

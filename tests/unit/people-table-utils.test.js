@@ -4,12 +4,69 @@ import {
   buildPeopleSummary,
   filterCustomers,
   getCustomerCredits,
+  getCustomerMembership,
   getCustomerStatus,
   getCustomerTotalSpent,
   getCustomerLastBooking,
   formatMoney,
   formatRelativeDate,
 } from "@/components/tables/people/people-table.utils";
+
+describe("authoritative customer membership snapshots", () => {
+  it("does not revive legacy membership fields when the canonical snapshot is null", () => {
+    expect(
+      getCustomerMembership({
+        activeMembership: null,
+        currentMembership: { name: "Old current" },
+        membership: "Old membership",
+        membershipPlan: { name: "Old plan" },
+      }),
+    ).toEqual({ key: "none", label: "" });
+  });
+  it("keeps unavailable membership data distinct from no membership and ignores every legacy snapshot", () => {
+    expect(
+      getCustomerMembership({
+        membershipAvailable: false,
+        activeMembership: { name: "Hidden plan" },
+        membership: "Stale plan",
+      }),
+    ).toEqual({ key: "unknown", label: "—" });
+    expect(
+      getCustomerMembership({
+        membershipAvailable: true,
+        activeMembership: null,
+        membership: "Stale plan",
+      }),
+    ).toEqual({ key: "none", label: "" });
+    expect(
+      buildPeopleSummary({
+        usersData: { summary: { activeMemberships: null } },
+        customers: [{ activeMembership: { name: "Known" } }],
+      }).activeMemberships,
+    ).toBeNull();
+    expect(
+      buildPeopleSummary({
+        usersData: {},
+        customers: [
+          { membershipAvailable: false },
+          { activeMembership: { name: "Known" } },
+        ],
+      }).activeMemberships,
+    ).toBeNull();
+  });
+  it("uses the canonical plan and retains legacy compatibility only when it is absent", () => {
+    expect(
+      getCustomerMembership({
+        activeMembership: { name: "Current club" },
+        membership: "Stale club",
+      }),
+    ).toEqual({ key: "current_club", label: "Current club" });
+    expect(getCustomerMembership({ membership: "Legacy club" })).toEqual({
+      key: "legacy_club",
+      label: "Legacy club",
+    });
+  });
+});
 
 describe("customer credit balances", () => {
   it("uses the canonical moneyCredits balance returned by the users API", () => {
@@ -55,6 +112,28 @@ describe("customer credit balances", () => {
 });
 
 describe("canonical customer state and optional statistics", () => {
+  it("never derives the subscriber total from an incomplete customer list", () => {
+    const customers = [{ activeMembership: { name: "Club" } }];
+    expect(buildPeopleSummary({ customers }).activeMemberships).toBeNull();
+    expect(
+      buildPeopleSummary({
+        customers,
+        directorySummary: { activeMemberships: null },
+      }).activeMemberships,
+    ).toBeNull();
+    expect(
+      buildPeopleSummary({
+        customers,
+        directorySummary: { activeMemberships: 0 },
+      }).activeMemberships,
+    ).toBe(0);
+    expect(
+      buildPeopleSummary({
+        customers,
+        directorySummary: { activeMemberships: 42 },
+      }).activeMemberships,
+    ).toBe(42);
+  });
   it("recognizes disabled access in both the status label and filter", () => {
     const customer = { id: "disabled", isAccessGranted: false };
     expect(getCustomerStatus(customer)).toBe("inactive");

@@ -88,6 +88,13 @@ const dialog = (props = {}) =>
       roles={[
         { key: "owner", name: "Owner", isBuiltIn: true },
         { key: "viewer", name: "Viewer", isBuiltIn: true },
+        { roleKey: "manager", roleName: "Manager", isBuiltIn: true },
+        {
+          roleId: "64a000000000000000000003",
+          roleKey: "custom",
+          roleName: "Studio coordinator",
+          isBuiltIn: false,
+        },
       ]}
       canManageOwners
       canGrantAllLocations
@@ -226,10 +233,10 @@ describe("team invitation editor", () => {
     expect(mocks.create).not.toHaveBeenCalled();
   });
 
-  it("keeps existing membership editing on the update endpoint", async () => {
+  it("updates an existing member's role while preserving their location and workspace profile", async () => {
     dialog({
       membership: {
-        id: "member-1",
+        membershipId: "member-1",
         roleKey: "viewer",
         user: { email: "ada@example.test" },
         status: "active",
@@ -237,11 +244,21 @@ describe("team invitation editor", () => {
           mode: "selected",
           locationIds: ["64a000000000000000000001"],
         },
+        workspaceProfile: {
+          displayName: "Ada",
+          jobTitle: "Studio host",
+          calendarColor: "#b56cc7",
+        },
       },
     });
     expect(
       screen.queryByRole("textbox", { name: "Email address" }),
     ).not.toBeInTheDocument();
+    const role = screen.getByRole("combobox", {
+      name: messages.TeamSettings.editor.role,
+    });
+    expect(role).toHaveValue("viewer");
+    fireEvent.change(role, { target: { value: "manager" } });
     fireEvent.click(
       screen.getByRole("button", { name: messages.TeamSettings.actions.save }),
     );
@@ -249,16 +266,111 @@ describe("team invitation editor", () => {
       expect(mocks.update).toHaveBeenCalledWith(
         expect.objectContaining({
           membershipId: "member-1",
-          roleKey: "viewer",
+          roleKey: "manager",
+          customRoleId: null,
           status: "active",
           locationAccess: {
             mode: "selected",
             locationIds: ["64a000000000000000000001"],
           },
+          workspaceProfile: {
+            displayName: "Ada",
+            jobTitle: "Studio host",
+            calendarColor: "#b56cc7",
+          },
         }),
       ),
     );
     expect(mocks.create).not.toHaveBeenCalled();
+    expect(mocks.close).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([
+    {
+      roleKey: "viewer",
+      customRoleId: null,
+      selection: "custom:64a000000000000000000003",
+      nextRoleKey: "custom",
+      nextCustomRoleId: "64a000000000000000000003",
+    },
+    {
+      roleKey: "custom",
+      customRoleId: "64a000000000000000000003",
+      selection: "manager",
+      nextRoleKey: "manager",
+      nextCustomRoleId: null,
+    },
+  ])(
+    "changes an existing $roleKey member to $nextRoleKey with the correct custom role assignment",
+    async ({
+      roleKey,
+      customRoleId,
+      selection,
+      nextRoleKey,
+      nextCustomRoleId,
+    }) => {
+      dialog({
+        membership: {
+          membershipId: "member-1",
+          roleKey,
+          customRoleId,
+          user: { email: "ada@example.test" },
+          status: "active",
+          locationAccess: { mode: "all", locationIds: [] },
+        },
+      });
+      const role = screen.getByRole("combobox", {
+        name: messages.TeamSettings.editor.role,
+      });
+      expect(role).toHaveValue(
+        customRoleId ? `custom:${customRoleId}` : roleKey,
+      );
+      fireEvent.change(role, { target: { value: selection } });
+      fireEvent.click(
+        screen.getByRole("button", {
+          name: messages.TeamSettings.actions.save,
+        }),
+      );
+      await waitFor(() =>
+        expect(mocks.update).toHaveBeenCalledWith(
+          expect.objectContaining({
+            membershipId: "member-1",
+            roleKey: nextRoleKey,
+            customRoleId: nextCustomRoleId,
+          }),
+        ),
+      );
+      expect(mocks.create).not.toHaveBeenCalled();
+    },
+  );
+
+  it("keeps the selected role available for retry when an existing member update fails", async () => {
+    mocks.update.mockRejectedValueOnce({
+      data: { message: "Unable to update team member." },
+    });
+    dialog({
+      membership: {
+        membershipId: "member-1",
+        roleKey: "viewer",
+        user: { email: "ada@example.test" },
+        status: "active",
+        locationAccess: { mode: "all", locationIds: [] },
+      },
+    });
+    const role = screen.getByRole("combobox", {
+      name: messages.TeamSettings.editor.role,
+    });
+    fireEvent.change(role, { target: { value: "manager" } });
+    fireEvent.click(
+      screen.getByRole("button", { name: messages.TeamSettings.actions.save }),
+    );
+    // Unknown server messages are replaced with localized copy.
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      messages.TeamSettings.editor.errors.request,
+    );
+    expect(role).toHaveValue("manager");
+    expect(mocks.close).not.toHaveBeenCalled();
+    expect(mocks.saved).not.toHaveBeenCalled();
   });
 });
 

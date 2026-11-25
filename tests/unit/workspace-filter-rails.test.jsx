@@ -33,6 +33,7 @@ const labels = {
   "tabs.processing": "Processing",
   "tabs.completed": "Completed",
   "tabs.failed": "Failed",
+  "tabs.cancelled": "Cancelled",
 };
 
 const t = (key) => labels[key] || key;
@@ -106,7 +107,7 @@ describe("workspace filter rails", () => {
     render(
       <SalesToolbar
         activeStatus="processing"
-        counts={{ all: 8, processing: 3 }}
+        counts={{ all: 8, processing: 3, failed: 0, cancelled: 2 }}
         onStatusChange={onStatusChange}
         search=""
         onSearchChange={vi.fn()}
@@ -136,13 +137,18 @@ describe("workspace filter rails", () => {
       name: /Processing\s*3/,
     });
     const failed = screen.getByRole("button", { name: /Failed\s*0/ });
+    const cancelled = screen.getByRole("button", { name: /Cancelled\s*2/ });
 
     expect(group).toContainElement(processing);
     expect(processing).toHaveAttribute("aria-pressed", "true");
     expect(failed).toHaveAttribute("aria-pressed", "false");
+    expect(cancelled).toHaveAttribute("aria-pressed", "false");
+    expect(screen.getByRole("button", { name: /Completed\s*—/ })).toBeVisible();
     expect(screen.queryByRole("tablist")).not.toBeInTheDocument();
 
     fireEvent.click(failed);
     expect(onStatusChange).toHaveBeenCalledWith("failed");
+    fireEvent.click(cancelled);
+    expect(onStatusChange).toHaveBeenLastCalledWith("cancelled");
   });
 });

@@ -241,7 +241,7 @@ export default function EventsManagementPage() {
               setForm(createEmptyForm(defaultLocationId));
               setIsCreateOpen(true);
             }}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-stone-700"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-cobalt-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-cobalt-600"
           >
             <PlusIcon className="h-4 w-4" />
             {t("create")}
@@ -645,7 +645,7 @@ function EventFormModal({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-white disabled:opacity-60"
+                  className="rounded-full bg-cobalt-500 px-5 py-2 text-sm font-medium text-white disabled:opacity-60"
                 >
                   {isSubmitting ? t("creating") : t("create")}
                 </button>

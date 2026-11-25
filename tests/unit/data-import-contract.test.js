@@ -340,12 +340,7 @@ describe("data import API and navigation contract", () => {
     const settingsItem = dashboardNavigation.find(
       (item) => item.key === "settings",
     );
-    expect(settingsItem.permissions).toContain(PERMISSIONS.CUSTOMERS_IMPORT);
-    expect(settingsItem.permissions).toContain(PERMISSIONS.PRODUCTS_IMPORT);
-    expect(settingsItem.permissions).toContain(PERMISSIONS.BOOKINGS_IMPORT);
-    expect(settingsItem.permissions).toContain(PERMISSIONS.MEMBERSHIPS_IMPORT);
-    expect(settingsItem.permissions).toContain(PERMISSIONS.CREDITS_IMPORT);
-    expect(settingsItem.permissions).toContain(PERMISSIONS.VOUCHERS_IMPORT);
+    expect(settingsItem.workspaceMemberOnly).toBe(true);
     expect(settingsItem.activeHrefs).toContain("/app/settings");
     expect(
       getWorkspaceRouteTitleKey(

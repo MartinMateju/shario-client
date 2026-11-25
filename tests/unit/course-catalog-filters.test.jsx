@@ -5,6 +5,7 @@ const mocks = vi.hoisted(() => ({
   courseProducts: [],
   publicProducts: [],
   courseQuery: vi.fn(),
+  pageImages: {},
 }));
 
 const t = (key, values = {}) => {
@@ -103,20 +104,22 @@ vi.mock("@/components/public-tenant/PublicCapabilityGate", () => ({
   default: ({ children }) => children,
 }));
 
-vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
-  usePublicTenant: () => ({
+vi.mock("@/components/public-tenant/PublicTenantProvider", () => {
+  const usePublicTenant = () => ({
     tenant: {
       publicCapabilities: { bookStudio: true, courses: true },
       publicSite: {
         branding: { displayName: "Studio One" },
+        customerPortal: { pageImages: mocks.pageImages },
         pages: {
           book: { title: {}, description: {} },
           courses: { title: {}, description: {} },
         },
       },
     },
-  }),
-}));
+  });
+  return { usePublicTenant, useOptionalPublicTenant: usePublicTenant };
+});
 
 vi.mock("@/components/public-tenant/publicTenant.config", () => ({
   getLocalizedPublicTenantText: (_value, _locale, fallback) => fallback,
@@ -174,6 +177,18 @@ describe("public class catalog filters", () => {
   beforeEach(() => {
     mocks.courseProducts = classes;
     mocks.publicProducts = classes;
+    mocks.pageImages = {};
+  });
+
+  it.each([["courses", "courses"], ["book", "products"]])("uses the configured %s catalog photo outside the padded results", (kind, pageKey) => {
+    mocks.pageImages = { [pageKey]: `https://cdn.example.test/${pageKey}.webp` };
+    const { container } = render(<PublicProductCatalogPage kind={kind} />);
+    const page = container.querySelector("[data-customer-portal-page]");
+    const hero = page.querySelector(`[data-customer-portal-hero="${pageKey}"]`);
+    expect(hero.parentElement).toBe(page);
+    expect(hero).toHaveAttribute("data-customer-portal-hero-layout", "split");
+    expect(hero.querySelector("img")).toHaveAttribute("src", mocks.pageImages[pageKey]);
+    expect(hero.querySelector(`[data-public-site-edit-path="pages.${kind}.title.en"]`)).not.toBeNull();
   });
 
   it("derives customer-facing category chips and filters by category", () => {

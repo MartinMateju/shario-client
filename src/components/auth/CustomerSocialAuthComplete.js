@@ -13,6 +13,7 @@ import { resolveCustomerAuthLocale } from "@/components/auth/customerAuthLocale"
 import { Link, useRouter } from "@/i18n/navigation";
 import {
   useCustomerRefreshMutation,
+  useExchangeCustomerSessionHandoffMutation,
   useSendCustomerLogoutMutation,
 } from "@/lib/features/auth/authApiSlice";
 import {
@@ -29,6 +30,7 @@ import {
 } from "@/lib/features/auth/authSession";
 import { getSafeTenantNextPath } from "@/utils/tenantAuthRouting";
 import { getValidatedTenantSlugParam } from "@/utils/tenantRouting";
+import { consumeCustomerSessionHandoff } from "@/lib/features/auth/customerSessionHandoff";
 
 const SOCIAL_ERROR_KEYS = Object.freeze({
   access_denied: "accessDenied",
@@ -56,30 +58,51 @@ export default function CustomerSocialAuthComplete() {
     ? SOCIAL_ERROR_KEYS[providerErrorCode] || "providerError"
     : "";
   const [refresh] = useCustomerRefreshMutation();
+  const [exchangeHandoff] = useExchangeCustomerSessionHandoffMutation();
   const [sendLogout] = useSendCustomerLogoutMutation();
   const [attempt, setAttempt] = useState(0);
   const [errorKey, setErrorKey] = useState(providerError);
-  const startedAttempt = useRef(-1);
+  const currentAttempt = useRef(null);
+  const handoff = useRef(null);
 
   useEffect(() => {
-    if (!tenantSlug || providerError || startedAttempt.current === attempt) {
+    if (handoff.current === null) {
+      handoff.current = consumeCustomerSessionHandoff();
+    }
+    if (!tenantSlug || providerError) {
       return;
     }
 
-    startedAttempt.current = attempt;
     let active = true;
-
-    dispatch(beginAuthContextTransition(AUTH_CONTEXTS.CUSTOMER));
-    const snapshot = createAuthRequestSnapshot(
-      store.getState(),
-      AUTH_CONTEXTS.CUSTOMER,
-    );
+    // Strict Mode and rerenders can re-subscribe while the one-time exchange
+    // is pending. Share the request for this attempt rather than redeeming
+    // the bearer twice or leaving the replacement effect without a result.
+    if (currentAttempt.current?.attempt !== attempt) {
+      dispatch(beginAuthContextTransition(AUTH_CONTEXTS.CUSTOMER));
+      const snapshot = createAuthRequestSnapshot(
+        store.getState(),
+        AUTH_CONTEXTS.CUSTOMER,
+      );
+      const pendingHandoff = handoff.current;
+      handoff.current = { present: false, value: "" };
+      const result =
+        pendingHandoff.present && !pendingHandoff.value
+          ? Promise.reject(new Error("Invalid authentication handoff"))
+          : unwrapWithoutCaching(
+              pendingHandoff.present
+                ? exchangeHandoff(pendingHandoff.value)
+                : refresh(),
+            );
+      currentAttempt.current = { attempt, snapshot, result };
+    }
+    const requestAttempt = currentAttempt.current;
+    const snapshot = requestAttempt.snapshot;
 
     const complete = async () => {
       setErrorKey("");
 
       try {
-        const result = await unwrapWithoutCaching(refresh());
+        const result = await requestAttempt.result;
         if (!active) return;
 
         const responseTenantSlug = String(result?.tenant?.slug || "")
@@ -141,6 +164,7 @@ export default function CustomerSocialAuthComplete() {
   }, [
     attempt,
     dispatch,
+    exchangeHandoff,
     locale,
     nextPath,
     providerError,
@@ -152,7 +176,6 @@ export default function CustomerSocialAuthComplete() {
   ]);
 
   const retry = () => {
-    startedAttempt.current = -1;
     setAttempt((value) => value + 1);
   };
 

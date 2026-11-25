@@ -16,7 +16,11 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
         params: normalizeDashboardScope(params),
       }),
       transformResponse: unwrapDashboardEnvelope,
-      providesTags: ["DashboardOverview"],
+      providesTags: [
+        "DashboardOverview",
+        { type: "Booking", id: "LIST" },
+        "Events",
+      ],
     }),
   }),
 });

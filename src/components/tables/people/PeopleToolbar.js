@@ -13,6 +13,7 @@ import {
 
 import { WorkspaceToolbar } from "@/components/dashboard/WorkspaceDataSurface";
 
+import CustomerFinancialFilters from "./CustomerFinancialFilters";
 import { cx } from "./people-table.utils";
 
 export default function PeopleToolbar({
@@ -32,17 +33,28 @@ export default function PeopleToolbar({
   onRoleChange,
   onClearFilters,
   onExport,
+  exportDisabled = false,
+  exporting = false,
+  membershipLoading = false,
+  financialFilters,
+  onFinancialFilterChange,
+  onApplyFinancialFilters,
+  financialFiltersDirty = false,
+  financialFilterErrors,
+  spendingAvailable = true,
+  currency = "CZK",
+  financialFiltersLoading = false,
 }) {
   return (
     <WorkspaceToolbar contained>
-      <Disclosure defaultOpen={activeFilterCount > 0}>
+      <Disclosure defaultOpen={activeFilterCount > 0 || financialFiltersDirty}>
         {({ open }) => (
           <div>
             <div className="flex flex-col gap-3 xl:flex-row xl:items-center">
               <label className="relative min-w-0 flex-1 xl:max-w-[420px]">
                 <span className="sr-only">{t("filters.searchLabel")}</span>
                 <MagnifyingGlassIcon
-                  className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#7D7D7D]"
+                  className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted"
                   aria-hidden="true"
                 />
                 <input
@@ -54,14 +66,14 @@ export default function PeopleToolbar({
                       ? "filters.customerSearchPlaceholder"
                       : "filters.staffSearchPlaceholder",
                   )}
-                  className="h-11 w-full rounded-[12px] border border-line bg-white py-2 pl-10 pr-4 text-[12px] text-ink outline-none transition placeholder:text-ink-subtle hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                  className="h-11 w-full rounded-[12px] border border-line bg-white py-2 pl-10 pr-4 text-[13px] text-ink outline-none transition placeholder:text-ink-subtle hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                 />
               </label>
 
               <div className="flex flex-wrap items-center gap-2 xl:ml-auto">
                 <DisclosureButton
                   className={cx(
-                    "inline-flex h-11 items-center gap-2 rounded-[12px] border px-3.5 text-[12px] font-medium outline-none transition focus-visible:ring-4 focus-visible:ring-cobalt-500/10",
+                    "inline-flex h-11 items-center gap-2 rounded-[12px] border px-3.5 text-[13px] font-semibold outline-none transition focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2",
                     open || activeFilterCount > 0
                       ? "border-cobalt-200 bg-cobalt-50 text-cobalt-700"
                       : "border-line bg-white text-ink-soft hover:border-line-strong hover:bg-canvas",
@@ -73,7 +85,7 @@ export default function PeopleToolbar({
                   />
                   {t("filters.button")}
                   {activeFilterCount > 0 ? (
-                    <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-primary px-1.5 text-[10px] font-semibold text-white">
+                    <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-primary px-1.5 text-[12px] font-semibold text-white">
                       {activeFilterCount}
                     </span>
                   ) : null}
@@ -86,11 +98,11 @@ export default function PeopleToolbar({
                   />
                 </DisclosureButton>
 
-                {activeFilterCount > 0 ? (
+                {activeFilterCount > 0 || financialFiltersDirty ? (
                   <button
                     type="button"
                     onClick={onClearFilters}
-                    className="inline-flex h-11 items-center gap-1.5 rounded-[12px] px-3 text-[12px] font-medium text-ink-muted transition hover:bg-surface-muted hover:text-ink"
+                    className="inline-flex h-11 items-center gap-1.5 rounded-[12px] px-3 text-[13px] font-semibold text-ink-muted transition hover:bg-surface-muted hover:text-ink"
                   >
                     <XMarkIcon className="h-4 w-4" aria-hidden="true" />
                     {t("filters.clear")}
@@ -100,11 +112,11 @@ export default function PeopleToolbar({
                 <button
                   type="button"
                   onClick={onExport}
-                  disabled={total === 0}
-                  className="inline-flex h-11 items-center gap-2 rounded-[12px] border border-line bg-white px-4 text-[12px] font-medium text-ink-soft transition hover:border-line-strong hover:bg-canvas disabled:cursor-not-allowed disabled:opacity-45"
+                  disabled={total === 0 || exportDisabled}
+                  className="inline-flex h-11 items-center gap-2 rounded-[12px] border border-line bg-white px-4 text-[13px] font-semibold text-ink-soft transition hover:border-line-strong hover:bg-canvas disabled:cursor-not-allowed disabled:opacity-45"
                 >
                   <ArrowDownTrayIcon className="h-4 w-4" aria-hidden="true" />
-                  {t("actions.export")}
+                  {t(exporting ? "actions.exporting" : "actions.export")}
                 </button>
               </div>
             </div>
@@ -116,13 +128,16 @@ export default function PeopleToolbar({
               <div className="mt-3 grid gap-2 border-t border-line pt-3 sm:grid-cols-2 xl:max-w-[560px]">
                 {activeTab === "customers" ? (
                   <label>
-                    <span className="sr-only">{t("filters.membership")}</span>
+                    <span className="mb-1.5 block text-[13px] font-medium text-ink-soft">
+                      {t("filters.membership")}
+                    </span>
                     <select
                       value={membership}
+                      disabled={membershipLoading}
                       onChange={(event) =>
                         onMembershipChange(event.target.value)
                       }
-                      className="h-11 w-full rounded-[12px] border border-line bg-white px-3.5 text-[12px] text-ink-soft outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                      className="h-11 w-full rounded-[12px] border border-line bg-white px-3.5 text-[13px] text-ink-soft outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                     >
                       <option value="">{t("filters.allMemberships")}</option>
                       <option value="none">{t("membership.none")}</option>
@@ -135,11 +150,13 @@ export default function PeopleToolbar({
                   </label>
                 ) : (
                   <label>
-                    <span className="sr-only">{t("filters.role")}</span>
+                    <span className="mb-1.5 block text-[13px] font-medium text-ink-soft">
+                      {t("filters.role")}
+                    </span>
                     <select
                       value={role}
                       onChange={(event) => onRoleChange(event.target.value)}
-                      className="h-11 w-full rounded-[12px] border border-line bg-white px-3.5 text-[12px] text-ink-soft outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                      className="h-11 w-full rounded-[12px] border border-line bg-white px-3.5 text-[13px] text-ink-soft outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                     >
                       <option value="">{t("filters.allRoles")}</option>
                       {roleOptions.map((option) => (
@@ -152,11 +169,13 @@ export default function PeopleToolbar({
                 )}
 
                 <label>
-                  <span className="sr-only">{t("filters.status")}</span>
+                  <span className="mb-1.5 block text-[13px] font-medium text-ink-soft">
+                    {t("filters.status")}
+                  </span>
                   <select
                     value={status}
                     onChange={(event) => onStatusChange(event.target.value)}
-                    className="h-11 w-full rounded-[12px] border border-line bg-white px-3.5 text-[12px] text-ink-soft outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                    className="h-11 w-full rounded-[12px] border border-line bg-white px-3.5 text-[13px] text-ink-soft outline-none transition hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                   >
                     <option value="">{t("filters.allStatuses")}</option>
                     {["active", "invited", "inactive"].map((option) => (
@@ -167,6 +186,19 @@ export default function PeopleToolbar({
                   </select>
                 </label>
               </div>
+              {activeTab === "customers" ? (
+                <CustomerFinancialFilters
+                  financialFilters={financialFilters}
+                  onFinancialFilterChange={onFinancialFilterChange}
+                  onApplyFinancialFilters={onApplyFinancialFilters}
+                  financialFiltersDirty={financialFiltersDirty}
+                  financialFilterErrors={financialFilterErrors}
+                  spendingAvailable={spendingAvailable}
+                  currency={currency}
+                  financialFiltersLoading={financialFiltersLoading}
+                  t={t}
+                />
+              ) : null}
             </DisclosurePanel>
           </div>
         )}

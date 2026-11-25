@@ -2,6 +2,31 @@ import { apiSlice } from "../api/apiSlice";
 
 export const emailTemplatesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getDoorAccessEmailTemplates: builder.query({
+      query: () => "/email-templates/door-access",
+      providesTags: [{ type: "EmailTemplates", id: "DOOR_ACCESS" }],
+    }),
+    updateDoorAccessEmailTemplate: builder.mutation({
+      query: ({ locationId, ...body }) => ({
+        url: `/email-templates/door-access/${locationId}`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: [
+        { type: "EmailTemplates", id: "DOOR_ACCESS" },
+        "CommunicationAutomations",
+      ],
+    }),
+    resetDoorAccessEmailTemplate: builder.mutation({
+      query: (locationId) => ({
+        url: `/email-templates/door-access/${locationId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [
+        { type: "EmailTemplates", id: "DOOR_ACCESS" },
+        "CommunicationAutomations",
+      ],
+    }),
     getEmailTemplates: builder.query({
       query: ({
         search = "",
@@ -87,6 +112,9 @@ export const emailTemplatesApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetDoorAccessEmailTemplatesQuery,
+  useUpdateDoorAccessEmailTemplateMutation,
+  useResetDoorAccessEmailTemplateMutation,
   useGetEmailTemplatesQuery,
   useGetEmailTemplateByIdQuery,
   useCreateEmailTemplateMutation,

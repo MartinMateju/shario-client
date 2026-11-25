@@ -30,8 +30,16 @@ const mocks = vi.hoisted(() => ({
   close: vi.fn(),
   refetch: vi.fn(),
   cancelPending: vi.fn(),
+  cancelCheckout: vi.fn(),
+  dispatch: vi.fn(),
 }));
-vi.mock("react-redux", () => ({ useSelector: (selector) => selector() }));
+vi.mock("react-redux", () => ({
+  useSelector: (selector) => selector(),
+  useDispatch: () => mocks.dispatch,
+}));
+vi.mock("@/lib/features/checkout/checkoutSlice", () => ({
+  useCancelPendingBookingCheckoutMutation: () => [mocks.cancelCheckout, {}],
+}));
 vi.mock("@/lib/features/language/languageSlice", () => ({
   selectCurrentLanguage: () => "EN",
 }));
@@ -155,6 +163,53 @@ describe("customer booking action selector and extensions", () => {
     });
     mocks.cancel.mockReturnValue({ unwrap: () => Promise.resolve({}) });
   });
+
+  it("releases an eligible unpaid checkout from booking details and keeps fresh-booking guidance visible", async () => {
+    const orderId = "64b000000000000000000001";
+    mocks.cancelCheckout.mockReturnValue({
+      unwrap: () =>
+        Promise.resolve({
+          orderId,
+          status: "cancelled_order",
+          reservationReleased: true,
+        }),
+    });
+    mount({
+      ...booking,
+      canExtend: false,
+      reservationState: "awaiting_payment",
+      pendingCheckoutOrderId: orderId,
+    });
+    expect(mocks.cancelCheckout).not.toHaveBeenCalled();
+    fireEvent.click(
+      screen.getByRole("button", { name: "Cancel unpaid bookings" }),
+    );
+    await screen.findByText(
+      /The unpaid bookings in this payment are cancelled/,
+    );
+    expect(mocks.cancelCheckout).toHaveBeenCalledExactlyOnceWith({ orderId });
+    expect(mocks.close).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("link", { name: "Select a time again" }),
+    ).toHaveAttribute("href", "/portal?location=location-1");
+  });
+
+  it.each([
+    { reservationState: "awaiting_payment" },
+    { reservationState: "awaiting_payment", pendingCheckoutOrderId: "invalid" },
+    {
+      reservationState: "confirmed",
+      pendingCheckoutOrderId: "64b000000000000000000001",
+    },
+  ])(
+    "only offers pending payment recovery with a valid eligible unpaid order: %j",
+    (value) => {
+      mount({ ...booking, ...value, canExtend: false });
+      expect(
+        screen.queryByRole("button", { name: "Cancel unpaid bookings" }),
+      ).not.toBeInTheDocument();
+    },
+  );
 
   it("offers extension independently after door-code delivery and shows only the selected action", async () => {
     mount();

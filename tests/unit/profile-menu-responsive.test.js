@@ -16,7 +16,7 @@ describe("profile overlay short-height containment", () => {
     expect(content).toContain("overflow-y-auto");
     expect(content).toContain("overscroll-contain");
     expect(content).toContain("data-profile-menu-footer");
-    expect(content).toContain("isAdminRoute && hasPublicWorkspace");
+    expect(content).toContain("isAdminRoute && !isEndCustomer");
   });
 
   it("uses a full-height right drawer for the compact workspace header", () => {

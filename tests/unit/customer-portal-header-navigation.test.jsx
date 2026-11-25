@@ -242,8 +242,8 @@ describe("customer portal header navigation", () => {
     );
     expect(header).toContain("customerPortalHeaderThemeStyle");
     expect(header).toContain("var(--tenant-portal-header-background)");
-    expect(header).toContain(
-      'const desktopNavigationBreakpointClass = "xl:flex"',
+    expect(header).toMatch(
+      /const desktopNavigationBreakpointClass = useCompactNavigation\s*\? "hidden"\s*:\s*hasCustomNavigation\s*\? "2xl:flex"\s*:\s*"xl:flex"/,
     );
   });
 });

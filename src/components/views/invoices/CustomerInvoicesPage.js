@@ -50,6 +50,7 @@ export default function CustomerInvoicesPage() {
   return (
     <CustomerPortalPage contentClassName="max-w-6xl animate-fade-up">
       <CustomerPortalPageHeader
+        pageKey="invoices"
         eyebrow={t("eyebrow")}
         title={t("title")}
         description={t("description")}

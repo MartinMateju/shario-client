@@ -2,23 +2,9 @@ name: Client full regression
 run-name: Client full regression (${{ inputs.scope || 'all' }})
 
 on:
-  pull_request:
-    paths:
-      - ".github/workflows/**"
-      - "e2e/**"
-      - "playwright*.config.js"
-      - "scripts/**"
-      - "public/**"
-      - "src/**"
-      - "tests/**"
-      - "package.json"
-      - "package-lock.json"
-      - "next.config.*"
-      - "vitest*.config.*"
-      - "postcss.config.*"
-      - "tailwind.config.*"
-  push:
-    branches: [main]
+  schedule:
+    # Full unit/coverage and all browser suites, once daily at 02:17 UTC.
+    - cron: "17 2 * * *"
   workflow_dispatch:
     inputs:
       scope:
@@ -31,12 +17,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: client-full-regression-${{ github.workflow }}-${{ github.ref }}-${{ inputs.scope || 'all' }}
+  # Keep daily checks independent of manually requested diagnostic runs.
+  group: client-full-regression-${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}-${{ inputs.scope || 'all' }}
   cancel-in-progress: true
 
 jobs:
   unit:
-    name: Complete unit and coverage suite
+    name: Scheduled unit and coverage suite
     if: ${{ inputs.scope != 'browser' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -84,9 +71,77 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
+  browser-build:
+    name: Build shared browser regression application
+    if: ${{ inputs.scope != 'unit' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    outputs:
+      artifact_name: ${{ steps.bundle.outputs.artifact_name }}
+    env:
+      CI: "true"
+      TZ: Europe/Prague
+      NODE_OPTIONS: --max-old-space-size=4096
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: http://shario.localhost:4310
+      NEXT_PUBLIC_ROOT_DOMAIN: shario.localhost
+      NEXT_PUBLIC_API_URL: http://api.shario.localhost:4311
+      NEXT_PUBLIC_ENABLED_LOCALES: de,pl,sk,da,fr,es,it,pt-PT,sv,nb,fi,hu,el,tr,nl,ro
+      NEXT_PUBLIC_ENABLE_PREVIEW_LOCALES: "true"
+      TENANT_ROOT_DOMAIN: shario.localhost
+      PLATFORM_HOSTNAMES: ""
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Restore Next.js build cache
+        uses: actions/cache@v6
+        with:
+          path: .next/cache
+          key: >-
+            ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-${{
+            hashFiles('src/**/*', 'public/**/*', 'next.config.*') }}
+          restore-keys: |
+            ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build production application once for the browser matrix
+        run: npm run build
+
+      - name: Bundle the build and its source revision
+        id: bundle
+        shell: bash
+        run: |
+          test -s .next/BUILD_ID
+          mkdir -p browser-build
+          git rev-parse HEAD > browser-build/commit.txt
+          tar --exclude='.next/cache' -czf browser-build/next-build.tar.gz .next
+          echo "artifact_name=browser-build-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload the shared browser build
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ steps.bundle.outputs.artifact_name }}
+          path: browser-build
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+
   browser:
     name: Browser regression (${{ matrix.suite }})
-    if: ${{ github.event_name != 'push' && inputs.scope != 'unit' }}
+    needs: browser-build
+    if: ${{ inputs.scope != 'unit' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     strategy:
@@ -151,21 +206,21 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
-      - name: Restore Next.js build cache
-        uses: actions/cache@v6
-        with:
-          path: .next/cache
-          key: >-
-            ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-${{
-            hashFiles('src/**/*', 'public/**/*', 'next.config.*') }}
-          restore-keys: |
-            ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}-
-
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Build production application
-        run: npm run build
+      - name: Download this run's shared browser build
+        uses: actions/download-artifact@v8
+        with:
+          name: ${{ needs.browser-build.outputs.artifact_name }}
+          path: browser-build
+
+      - name: Verify and restore the shared build
+        shell: bash
+        run: |
+          test "$(cat browser-build/commit.txt)" = "$(git rev-parse HEAD)"
+          tar -xzf browser-build/next-build.tar.gz
+          test -s .next/BUILD_ID
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

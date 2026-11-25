@@ -49,7 +49,7 @@ const COMPACT_COMPOSER_MAX_HEIGHT = 56;
 
 const INBOX_SEVERITY_STYLES = {
   critical: "border-danger/25 bg-danger-soft text-danger",
-  warning: "border-coral-200 bg-coral-50 text-terracotta-700",
+  warning: "border-warning/30 bg-warning-soft text-warning",
   info: "border-cobalt-200 bg-cobalt-50 text-cobalt-700",
 };
 

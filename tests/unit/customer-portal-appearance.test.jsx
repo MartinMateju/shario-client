@@ -216,7 +216,9 @@ describe("customer portal appearance contract", () => {
     expect(membership).toContain(
       "data-tenant-style={tenantTheme.stylePresetId}",
     );
-    expect(membership).toContain("style={tenantTheme.style}");
+    expect(membership).toContain(
+      "style={{ ...tenantTheme.style, ...membershipFeedbackStyle }}",
+    );
     expect(myBookings).toContain("bg-[var(--tenant-secondary-surface)]");
     expect(myBookings).toContain(
       "text-[var(--tenant-text-on-secondary-surface)]",

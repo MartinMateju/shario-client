@@ -11,9 +11,9 @@ const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export function EmailStatusBanner({ tone = "success", children }) {
   const styles = {
-    success: "border-success/15 bg-success-soft text-success",
-    warning: "border-warning/15 bg-warning-soft text-warning",
-    error: "border-danger/15 bg-danger-soft text-danger",
+    success: "border-success/40 bg-success-soft text-success",
+    warning: "border-warning/40 bg-warning-soft text-warning",
+    error: "border-danger/40 bg-danger-soft text-danger",
     info: "border-cobalt-200 bg-cobalt-50 text-cobalt-700",
   };
   const Icon =
@@ -24,7 +24,7 @@ export function EmailStatusBanner({ tone = "success", children }) {
   return (
     <div
       className={cx(
-        "flex items-start gap-2 rounded-[14px] border px-3 py-2.5 text-xs",
+        "flex items-start gap-2 rounded-[14px] border px-3 py-2.5 text-[13px] font-medium leading-5",
         styles[tone],
       )}
     >

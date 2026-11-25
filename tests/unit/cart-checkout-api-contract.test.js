@@ -20,6 +20,23 @@ import "@/lib/features/checkout/checkoutSlice";
 import "@/lib/features/credits/creditsApiSlice";
 
 describe("cart checkout idempotency API contract", () => {
+  it("explicitly cancels a pending order and refreshes booking availability and the quote", () => {
+    const endpoint = captured.endpoints.cancelPendingBookingCheckout;
+    const orderId = "64b000000000000000000001";
+    expect(endpoint.query({ orderId })).toEqual({
+      url: `/checkout/orders/${orderId}/cancel`,
+      method: "POST",
+      body: {},
+    });
+    expect(endpoint.invalidatesTags({}, undefined, { orderId })).toEqual(
+      expect.arrayContaining([
+        { type: "Order", id: orderId },
+        { type: "Booking", id: "MINE" },
+        { type: "Booking", id: "MINE-AVAILABILITY" },
+        "Credits",
+      ]),
+    );
+  });
   it("requests an uncached server quote for the current cart", () => {
     const body = {
       cart: [{ product: { id: "studio" }, quantity: 2 }],

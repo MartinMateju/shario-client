@@ -350,9 +350,9 @@ export default function OrdersTable() {
                     className={classNames(
                       "inline-flex h-12 items-center justify-center gap-2 rounded-[16px] border px-4",
                       "font-medium text-sm transition-all duration-200",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f1113]/15",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/25",
                       showFilters
-                        ? "border-[#0f1113] bg-[#0f1113] text-white"
+                        ? "border-cobalt-500 bg-cobalt-500 text-white"
                         : "border-[#d8d1ca] bg-white text-[#0f1113] hover:border-[#0f1113] hover:bg-[#f8f6f3]",
                     )}
                     aria-label="Zobrazit filtry"
@@ -365,9 +365,9 @@ export default function OrdersTable() {
                     disabled={isLoadingOrders}
                     className="
                       inline-flex h-12 min-w-[132px] items-center justify-center rounded-[16px]
-                      bg-[#0f1113] px-6 font-medium text-sm text-white transition-all duration-200
-                      hover:bg-[#24282c] disabled:cursor-not-allowed disabled:opacity-60
-                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f1113]/15
+                      bg-cobalt-500 px-6 font-medium text-sm text-white transition-all duration-200
+                      hover:bg-cobalt-600 disabled:cursor-not-allowed disabled:opacity-60
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/25
                     "
                   >
                     {isLoadingOrders ? "Hledám…" : "Hledat"}
@@ -465,7 +465,7 @@ export default function OrdersTable() {
                           inline-flex h-11 items-center justify-center gap-2 rounded-[15px]
                           border border-[#d8d1ca] bg-white px-4 font-medium text-sm text-[#0f1113]
                           transition-all duration-200 hover:border-[#0f1113] hover:bg-[#f8f6f3]
-                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f1113]/15
+                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/25
                         "
                       >
                         <XMarkIcon className="h-4 w-4" />
@@ -745,7 +745,7 @@ export default function OrdersTable() {
                         className={classNames(
                           "inline-flex h-11 min-w-[44px] items-center justify-center rounded-[14px] border px-3 text-sm font-medium transition-all duration-200",
                           currentPage === pageNum
-                            ? "border-[#0f1113] bg-[#0f1113] text-white"
+                            ? "border-cobalt-500 bg-cobalt-500 text-white"
                             : "border-[#d8d1ca] bg-white text-[#0f1113] hover:border-[#0f1113] hover:bg-[#f8f6f3]",
                         )}
                       >

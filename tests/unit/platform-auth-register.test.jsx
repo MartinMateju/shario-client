@@ -391,21 +391,37 @@ describe("global workspace registration presentation", () => {
     ).toHaveAttribute("aria-pressed", "true");
   });
 
-  it("keeps legal agreement names in the required consent without dead links", () => {
-    renderRegister();
+  it.each(["en", "cs"])(
+    "opens %s legal documents separately without changing form fields or consent",
+    async (locale) => {
+      const user = userEvent.setup();
+      const copy = COPY[locale];
+      renderRegister(locale);
+      const email = screen.getByLabelText(copy.email);
+      await user.type(email, "owner@example.com");
+      const consent = screen.getByRole("checkbox", { name: copy.checkbox });
+      expect(consent).toBeRequired();
+      expect(consent).not.toBeChecked();
 
-    expect(screen.getByText(COPY.en.terms)).toBeVisible();
-    expect(screen.getByText(COPY.en.privacy)).toBeVisible();
-    expect(
-      screen.queryByRole("link", { name: COPY.en.terms }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("link", { name: COPY.en.privacy }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("checkbox", { name: COPY.en.checkbox }),
-    ).toBeRequired();
-  });
+      for (const documentKey of ["terms", "privacy"]) {
+        const link = screen.getByRole("link", { name: copy[documentKey] });
+        expect(link).toHaveAttribute("href", `/${documentKey}`);
+        expect(link).toHaveAttribute("data-locale", locale);
+        expect(link).toHaveAttribute("target", "_blank");
+        expect(link).toHaveAttribute("rel", "noopener noreferrer");
+        await user.click(link);
+        expect(consent).not.toBeChecked();
+        expect(email).toHaveValue("owner@example.com");
+      }
+
+      // The dedicated checkbox label remains a clickable target; policy
+      // links are outside it so opening a document cannot toggle consent.
+      await user.click(consent.closest("label"));
+      await user.click(screen.getByRole("link", { name: copy.terms }));
+      expect(consent).toBeChecked();
+      expect(mocks.registerTenant).not.toHaveBeenCalled();
+    },
+  );
 });
 
 describe("global workspace registration behavior", () => {

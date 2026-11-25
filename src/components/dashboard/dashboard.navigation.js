@@ -1,4 +1,8 @@
-import { hasAnyPermission, hasPermission } from "@/config/permissions";
+import {
+  hasAnyPermission,
+  hasPermission,
+  isWorkspaceAccessActive,
+} from "@/config/permissions";
 
 import {
   dashboardNavigation,
@@ -93,7 +97,9 @@ export const isDashboardNavigationItemVisible = ({
     !item.sidebarHidden &&
     isDashboardModuleEnabled(item, tenant) &&
     hasEnabledModulePermissionPair(item, tenant, workspaceAccess) &&
-    hasAnyPermission(workspaceAccess, item.permissions),
+    (item.workspaceMemberOnly
+      ? workspaceAccess && isWorkspaceAccessActive(workspaceAccess)
+      : hasAnyPermission(workspaceAccess, item.permissions)),
   );
 
 export const resolveDashboardItemHref = (item, workspaceAccess) => {

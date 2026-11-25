@@ -55,10 +55,18 @@ test("customer metrics display API dates and separate currencies on desktop and 
     },
   ]);
   await page.route(
-    /^http:\/\/api\.shario\.localhost:4311\/users(?:\?|$)/,
+    /^http:\/\/api\.shario\.localhost:4311\/users\/directory(?:\?|$)/,
     async (route) => {
       if (route.request().method() !== "GET") return route.fallback();
-      requests.push(new URL(route.request().url()).searchParams.toString());
+      const params = new URL(route.request().url()).searchParams;
+      requests.push(Object.fromEntries(params));
+      const data = params.get("search")
+        ? customers.filter((customer) =>
+            `${customer.firstname} ${customer.lastname}`
+              .toLowerCase()
+              .includes(params.get("search").toLowerCase()),
+          )
+        : customers;
       await route.fulfill({
         status: 200,
         headers: {
@@ -67,7 +75,13 @@ test("customer metrics display API dates and separate currencies on desktop and 
           "cache-control": "no-store",
         },
         contentType: "application/json",
-        body: JSON.stringify(customers),
+        body: JSON.stringify({
+          data,
+          totalCount: data.length,
+          currentPage: 1,
+          pageSize: 10,
+          totalPages: 1,
+        }),
       });
     },
   );
@@ -93,7 +107,12 @@ test("customer metrics display API dates and separate currencies on desktop and 
   await page.getByRole("searchbox").fill("Test Maker");
   await expect(rows).toHaveCount(1);
   await expect(maker).toContainText(/1\s*250[,.]50?\s*Kč/);
-  expect(requests).toEqual(["tenantRole=customer"]);
+  expect(requests[0]).toMatchObject({ page: "1", limit: "10" });
+  expect(requests.at(-1)).toMatchObject({
+    page: "1",
+    limit: "10",
+    search: "Test Maker",
+  });
   expect([...unexpectedRequests]).toEqual([]);
   expect(pageErrors).toEqual([]);
 

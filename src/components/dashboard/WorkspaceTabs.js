@@ -190,7 +190,7 @@ export default function WorkspaceTabs({
               className={cx(
                 cards
                   ? "group min-w-0 rounded-[17px] border px-3 py-3.5 text-left transition duration-200 motion-reduce:transition-none sm:px-4 sm:py-4"
-                  : "relative inline-flex min-h-12 shrink-0 items-center gap-2 px-4 text-[12px] font-medium transition-colors duration-200 motion-reduce:transition-none",
+                  : "relative inline-flex min-h-12 shrink-0 items-center gap-2 px-4 text-[14px] font-medium transition-colors duration-200 motion-reduce:transition-none",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-300",
                 "disabled:cursor-not-allowed disabled:opacity-45",
                 stretch && !cards && "flex-1 justify-center",
@@ -199,8 +199,8 @@ export default function WorkspaceTabs({
                     ? "border-cobalt-200 bg-gradient-to-br from-cobalt-50 via-white to-white shadow-[0_10px_24px_rgba(38,56,206,0.09)]"
                     : "border-transparent bg-[#FAF9F6] hover:border-line-strong hover:bg-white"
                   : isActive
-                    ? "text-[#171717]"
-                    : "text-[#777773] hover:text-[#171717]",
+                    ? "bg-primary-soft font-semibold text-primary"
+                    : "text-ink-muted hover:bg-surface-muted hover:text-ink",
               )}
             >
               {cards ? (
@@ -223,7 +223,7 @@ export default function WorkspaceTabs({
                     {hasBadge ? (
                       <span
                         className={cx(
-                          "inline-flex min-w-7 items-center justify-center rounded-full px-2 py-1 text-[10px] font-semibold tabular-nums",
+                          "inline-flex min-w-7 items-center justify-center rounded-full px-2 py-1 text-[12px] font-semibold tabular-nums",
                           isActive
                             ? "bg-cobalt-100 text-cobalt-700"
                             : "bg-white text-ink-muted ring-1 ring-line",
@@ -233,11 +233,11 @@ export default function WorkspaceTabs({
                       </span>
                     ) : null}
                   </span>
-                  <span className="mt-3 block truncate text-[12px] font-semibold text-[#252524] sm:text-[13px]">
+                  <span className="mt-3 block truncate text-[14px] font-semibold text-ink">
                     {tab.label}
                   </span>
                   {tab.description ? (
-                    <span className="mt-1 hidden text-[10px] leading-4 text-ink-muted sm:line-clamp-2 sm:block">
+                    <span className="mt-1 hidden text-[12px] leading-4 text-ink-muted sm:line-clamp-2 sm:block">
                       {tab.description}
                     </span>
                   ) : null}
@@ -248,7 +248,7 @@ export default function WorkspaceTabs({
                     <Icon
                       className={cx(
                         "h-4 w-4 shrink-0",
-                        isActive ? "text-cobalt-600" : "text-[#858580]",
+                        isActive ? "text-cobalt-600" : "text-ink-muted",
                       )}
                       strokeWidth={1.7}
                       aria-hidden="true"
@@ -258,10 +258,10 @@ export default function WorkspaceTabs({
                   {hasBadge ? (
                     <span
                       className={cx(
-                        "rounded-full px-2 py-0.5 text-[10px] font-semibold",
+                        "rounded-full px-2 py-0.5 text-[12px] font-semibold",
                         isActive
                           ? "bg-cobalt-50 text-cobalt-700"
-                          : "bg-[#EEECE7] text-[#686762]",
+                          : "bg-surface-muted text-ink-soft",
                       )}
                     >
                       {tab.badge}
@@ -269,7 +269,7 @@ export default function WorkspaceTabs({
                   ) : null}
                   {isActive ? (
                     <span
-                      className="absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-cobalt-500"
+                      className="absolute inset-x-3 bottom-0 h-[3px] rounded-full bg-cobalt-500"
                       aria-hidden="true"
                     />
                   ) : null}

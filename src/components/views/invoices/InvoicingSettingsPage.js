@@ -54,15 +54,15 @@ const normalizeSettings = (value) => ({
 
 const Field = ({ label, hint, ...props }) => (
   <label className="block min-w-0">
-    <span className="mb-1.5 block text-[11px] font-semibold text-[#393936]">
+    <span className="mb-1.5 block text-[13px] font-semibold text-[#393936]">
       {label}
     </span>
     <input
       {...props}
-      className="h-11 w-full min-w-0 rounded-[12px] border border-line bg-white px-3.5 text-xs text-[#292925] outline-none transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+      className="h-11 w-full min-w-0 rounded-[12px] border border-line bg-white px-3.5 text-[16px] text-ink outline-none sm:text-[14px] transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
     />
     {hint && (
-      <span className="mt-1.5 block text-[10px] text-[#969691]">{hint}</span>
+      <span className="mt-1.5 block text-[12px] text-ink-muted">{hint}</span>
     )}
   </label>
 );
@@ -81,7 +81,7 @@ function Toggle({ checked, onChange, title, description, disabled = false }) {
         <span className="block text-xs font-semibold text-[#292925]">
           {title}
         </span>
-        <span className="mt-1 block text-[10px] leading-4 text-[#777773]">
+        <span className="mt-1 block text-[12px] leading-4 text-ink-muted">
           {description}
         </span>
       </span>
@@ -200,7 +200,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center text-xs text-[#777773]">
+      <div className="flex min-h-[50vh] items-center justify-center text-xs text-ink-muted">
         <ArrowPathIcon className="mr-2 h-4 w-4 animate-spin" />
         {t("loading")}
       </div>
@@ -217,7 +217,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
         <button
           type="button"
           onClick={refetch}
-          className="mt-4 rounded-full bg-[#111111] px-4 py-2 text-[11px] font-semibold text-white"
+          className="mt-4 rounded-full bg-cobalt-500 hover:bg-cobalt-600 px-4 py-2 text-[13px] font-semibold text-white"
         >
           {t("retry")}
         </button>
@@ -231,13 +231,13 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
     <section className="mx-auto max-w-[1100px] pb-8">
       {showPageHeader ? (
         <header>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-terracotta-600">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
             {t("eyebrow")}
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-[-0.045em] text-[#171717]">
             {t("title")}
           </h1>
-          <p className="mt-3 max-w-2xl text-[12px] leading-6 text-[#777773]">
+          <p className="mt-3 max-w-2xl text-[12px] leading-6 text-ink-muted">
             {t("description")}
           </p>
         </header>
@@ -246,8 +246,8 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
       <div
         className={
           configured
-            ? "mt-6 flex gap-3 rounded-[16px] border border-success/20 bg-success-soft p-4 text-success"
-            : "mt-6 flex gap-3 rounded-[16px] border border-warning/20 bg-warning-soft p-4 text-warning"
+            ? "mt-6 flex gap-3 rounded-[16px] border border-line bg-white p-4 text-success"
+            : "mt-6 flex gap-3 rounded-[16px] border border-line bg-white p-4 text-warning"
         }
       >
         {configured ? (
@@ -259,7 +259,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
           <p className="text-xs font-semibold">
             {configured ? t("configured.title") : t("incomplete.title")}
           </p>
-          <p className="mt-1 text-[10px] leading-4">
+          <p className="mt-1 text-[12px] leading-4">
             {configured
               ? t("configured.description")
               : t("incomplete.description")}
@@ -285,7 +285,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
           <h2 className="text-[15px] font-semibold tracking-[-0.025em] text-[#292925]">
             {t("legal.title")}
           </h2>
-          <p className="mt-1 text-[11px] text-[#858580]">
+          <p className="mt-1 text-[13px] text-ink-muted">
             {t("legal.description")}
           </p>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -389,7 +389,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
           </h2>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <label className="block min-w-0">
-              <span className="mb-1.5 block text-[11px] font-semibold text-[#393936]">
+              <span className="mb-1.5 block text-[13px] font-semibold text-[#393936]">
                 {t("fields.locale")}
               </span>
               <select
@@ -424,7 +424,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
                 setField("defaultTaxRate", event.target.value)
               }
             />
-            <label className="flex min-h-11 min-w-0 items-center gap-3 self-end rounded-[12px] border border-line px-3.5 text-[11px] font-medium text-[#555553]">
+            <label className="flex min-h-11 min-w-0 items-center gap-3 self-end rounded-[12px] border border-line px-3.5 text-[13px] font-medium text-[#555553]">
               <input
                 type="checkbox"
                 checked
@@ -459,7 +459,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
           <h2 className="text-[15px] font-semibold tracking-[-0.025em] text-[#292925]">
             {t("automation.title")}
           </h2>
-          <p className="mt-1 text-[11px] leading-5 text-[#858580]">
+          <p className="mt-1 text-[13px] leading-5 text-ink-muted">
             {t("automation.description")}
           </p>
           <div className="mt-5 grid gap-3 lg:grid-cols-3">
@@ -492,7 +492,7 @@ export default function InvoicingSettingsPage({ showPageHeader = true }) {
           <button
             type="submit"
             disabled={isSaving || isFetching}
-            className="inline-flex min-h-11 items-center gap-2 rounded-[13px] bg-[#111111] px-5 text-xs font-semibold text-white disabled:opacity-50"
+            className="inline-flex min-h-11 items-center gap-2 rounded-[13px] bg-cobalt-500 hover:bg-cobalt-600 px-5 text-xs font-semibold text-white disabled:opacity-50"
           >
             {(isSaving || isFetching) && (
               <ArrowPathIcon className="h-4 w-4 animate-spin" />

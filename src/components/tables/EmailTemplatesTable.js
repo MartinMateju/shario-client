@@ -344,7 +344,7 @@ function TemplateRow({
           onClick={onToggle}
           disabled={!canManage || busy}
           aria-pressed={Boolean(template.isActive)}
-          className={`inline-flex min-h-11 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold disabled:opacity-50 ${template.isActive ? "border-success/20 bg-success-soft text-success" : "border-line bg-sand-50 text-ink-muted"}`}
+          className={`inline-flex min-h-11 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold disabled:opacity-50 ${template.isActive ? "border-cobalt-200 bg-cobalt-50 text-cobalt-700" : "border-line bg-sand-50 text-ink-muted"}`}
         >
           {template.isActive ? (
             <CheckCircleIcon className="h-4 w-4" />

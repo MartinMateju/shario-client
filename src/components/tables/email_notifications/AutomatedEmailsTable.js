@@ -360,7 +360,7 @@ function StatusButton({ automation, disabled, onToggle, t }) {
       className={cx(
         "inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/30 disabled:cursor-not-allowed disabled:opacity-50",
         active
-          ? "border-success/20 bg-success-soft text-success"
+          ? "border-cobalt-200 bg-cobalt-50 text-cobalt-700"
           : "border-line bg-sand-50 text-ink-muted",
       )}
     >

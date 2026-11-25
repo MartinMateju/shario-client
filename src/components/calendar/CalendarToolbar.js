@@ -53,7 +53,10 @@ function IconButton({
       aria-label={label}
       data-tenant-hover={customerThemed ? "preserve" : undefined}
       className={cx(
-        "flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--calendar-accent)]/30",
+        "flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border transition focus-visible:outline-none focus-visible:ring-2",
+        customerThemed
+          ? "focus-visible:ring-[var(--calendar-accent)]/30"
+          : "focus-visible:ring-[var(--calendar-accent)]/70",
         grouped
           ? customerThemed
             ? "border-transparent bg-transparent text-[var(--tenant-text-on-surface)] hover:bg-[var(--tenant-surface)]"
@@ -201,7 +204,7 @@ export default function CalendarToolbar({
               "hidden h-4 w-4 shrink-0 sm:block",
               customerThemed
                 ? "text-[var(--tenant-muted-on-surface)]"
-                : "text-[#777773]",
+                : "text-ink-soft",
             )}
             aria-hidden="true"
           />
@@ -227,7 +230,7 @@ export default function CalendarToolbar({
             "order-2 flex shrink-0 items-center gap-0.5 rounded-[12px] border p-0.5 lg:order-1",
             customerThemed
               ? "border-[var(--tenant-border)] bg-transparent"
-              : "border-[#DEDBD5] bg-surface-muted",
+              : "border-line-strong bg-surface-muted",
           )}
         >
           <button
@@ -235,10 +238,13 @@ export default function CalendarToolbar({
             onClick={onToday}
             data-tenant-hover={customerThemed ? "preserve" : undefined}
             className={cx(
-              "min-h-11 min-w-11 shrink-0 rounded-[10px] border border-transparent bg-transparent px-3 text-[12px] font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--calendar-accent)]/30",
+              "min-h-11 min-w-11 shrink-0 rounded-[10px] border border-transparent bg-transparent px-3 transition focus-visible:outline-none focus-visible:ring-2",
               customerThemed
-                ? "text-[var(--tenant-text-on-surface)] hover:bg-[var(--tenant-surface)]"
-                : "text-[#272726] hover:bg-white",
+                ? "focus-visible:ring-[var(--calendar-accent)]/30"
+                : "focus-visible:ring-[var(--calendar-accent)]/70",
+              customerThemed
+                ? "text-[12px] font-medium text-[var(--tenant-text-on-surface)] hover:bg-[var(--tenant-surface)]"
+                : "text-[13px] font-semibold text-ink hover:bg-white",
             )}
           >
             {t("toolbar.today")}
@@ -273,7 +279,7 @@ export default function CalendarToolbar({
               viewGridClass,
               customerThemed
                 ? "border-transparent bg-[color-mix(in_srgb,var(--tenant-text-on-surface)_7%,transparent)]"
-                : "border-[#DEDBD5] bg-surface-muted",
+                : "border-line-strong bg-surface-muted",
             )}
           >
             {views.map((item) => (
@@ -284,15 +290,21 @@ export default function CalendarToolbar({
                 aria-pressed={view === item}
                 data-tenant-hover={customerThemed ? "preserve" : undefined}
                 className={cx(
-                  "min-h-11 min-w-11 rounded-[10px] px-2 text-[11px] font-medium transition sm:min-w-[66px] sm:px-2.5 sm:text-[12px]",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--calendar-accent)]/30",
+                  "min-h-11 min-w-11 rounded-[10px] px-2 transition sm:min-w-[66px] sm:px-2.5",
+                  customerThemed
+                    ? "text-[11px] font-medium sm:text-[12px]"
+                    : "text-[13px] font-semibold",
+                  "focus-visible:outline-none focus-visible:ring-2",
+                  customerThemed
+                    ? "focus-visible:ring-[var(--calendar-accent)]/30"
+                    : "focus-visible:ring-[var(--calendar-accent)]/70",
                   view === item
                     ? customerThemed
                       ? "bg-[var(--tenant-surface)] shadow-[0_3px_10px_rgba(31,31,31,0.07)]"
-                      : "bg-white shadow-[0_3px_10px_rgba(31,31,31,0.08)]"
+                      : "bg-primary-soft text-primary ring-1 ring-inset ring-primary/35 shadow-[0_3px_10px_rgba(31,31,31,0.08)]"
                     : customerThemed
                       ? "text-[var(--tenant-text-on-surface)] hover:bg-[color-mix(in_srgb,var(--tenant-surface)_72%,transparent)]"
-                      : "text-[#666663] hover:bg-white/65 hover:text-[#252524]",
+                      : "text-ink-soft hover:bg-white/80 hover:text-ink",
                 )}
                 style={
                   view === item && customerThemed
@@ -317,19 +329,25 @@ export default function CalendarToolbar({
               title={filterDisclosureLabel}
               data-tenant-hover={customerThemed ? "preserve" : undefined}
               className={cx(
-                "relative flex h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-[12px] border px-3 text-[12px] font-medium transition",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--calendar-accent)]/30",
+                "relative flex h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-[12px] border px-3 transition",
+                customerThemed
+                  ? "text-[12px] font-medium"
+                  : "text-[13px] font-semibold",
+                "focus-visible:outline-none focus-visible:ring-2",
+                customerThemed
+                  ? "focus-visible:ring-[var(--calendar-accent)]/30"
+                  : "focus-visible:ring-[var(--calendar-accent)]/70",
                 filtersOpen || activeFilterCount > 0
                   ? customerThemed
-                    ? "border-transparent bg-[color-mix(in_srgb,var(--tenant-accent)_11%,var(--tenant-surface))]"
-                    : "border-skab-cobalt-200 bg-skab-cobalt-50"
+                    ? "border-transparent bg-[var(--tenant-secondary)]"
+                    : "border-primary/45 bg-primary-soft text-primary"
                   : customerThemed
                     ? "border-transparent bg-[color-mix(in_srgb,var(--tenant-surface)_78%,transparent)] text-[var(--tenant-muted-on-surface)] hover:bg-[var(--tenant-surface)]"
-                    : "border-[#E2DFD9] bg-white text-[#555553] hover:bg-[#F7F6F2]",
+                    : "border-line-strong bg-white text-ink hover:bg-surface-muted",
               )}
               style={
                 customerThemed && (filtersOpen || activeFilterCount > 0)
-                  ? { color: "var(--tenant-accent-on-surface)" }
+                  ? { color: "var(--tenant-secondary-foreground)" }
                   : undefined
               }
             >
@@ -366,7 +384,7 @@ export default function CalendarToolbar({
               title={t("toolbar.newBooking")}
               data-contextual-guide-target="first-booking-create"
               onClick={onCreateBooking}
-              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-[12px] bg-brand-primary px-3 text-[12px] font-semibold text-white shadow-[0_8px_18px_rgb(var(--skab-blue-rgb)/0.18)] transition hover:-translate-y-px hover:bg-skab-cobalt-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/25 sm:px-4"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-[12px] bg-brand-primary px-3 text-[14px] font-semibold text-white shadow-[0_8px_18px_rgb(var(--skab-blue-rgb)/0.18)] transition hover:-translate-y-px hover:bg-skab-cobalt-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/70 focus-visible:ring-offset-2 sm:px-4"
             >
               <PlusIcon className="h-4 w-4" aria-hidden="true" />
               <span className="hidden md:inline">

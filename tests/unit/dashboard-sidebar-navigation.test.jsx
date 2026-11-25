@@ -289,8 +289,11 @@ describe("simplified dashboard sidebar navigation", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("groups Launch Center and Settings in one intentional footer", () => {
-    const { container } = renderSidebar({ canUseSetupCenter: true });
+  it("offers the unfinished setup checklist beside Settings", () => {
+    const { container } = renderSidebar({
+      canUseSetupCenter: true,
+      launchCenterStatus: { status: "progress", completed: 2, total: 5 },
+    });
     const footer = container.querySelector("[data-workspace-sidebar-footer]");
     const footerNavigation = screen.getByRole("navigation", {
       name: "Studio setup and settings",
@@ -312,9 +315,9 @@ describe("simplified dashboard sidebar navigation", () => {
     expect(launchCenter).toHaveAttribute("href", "/app/setup");
     expect(launchCenter).toHaveAttribute("data-launch-center-shortcut");
     expect(launchCenter).toHaveClass(
-      "text-[var(--studio-clay)]",
+      "text-[var(--studio-muted)]",
       "hover:bg-[var(--studio-paper)]",
-      "hover:text-[var(--studio-clay)]",
+      "hover:text-[var(--studio-blue)]",
     );
     expect(
       launchCenter.compareDocumentPosition(settings) &
@@ -322,7 +325,7 @@ describe("simplified dashboard sidebar navigation", () => {
     ).toBeTruthy();
     expect(
       launchCenter.querySelector("[data-launch-center-progress]"),
-    ).toBeNull();
+    ).toHaveTextContent("2/5");
   });
 
   it("shows truthful required progress with localized accessible context", () => {
@@ -364,47 +367,43 @@ describe("simplified dashboard sidebar navigation", () => {
     ["missing", null],
     ["zero-total", { status: "progress", completed: 0, total: 0 }],
     ["invalid", { status: "progress", completed: Number.NaN, total: 5 }],
-  ])("does not show %s required progress", (_case, launchCenterStatus) => {
-    renderSidebar({ canUseSetupCenter: true, launchCenterStatus });
+    ["complete", { status: "progress", completed: 5, total: 5 }],
+    ["published", { status: "live", completed: 5, total: 5 }],
+    ["operational", { status: "operational", completed: 4, total: 4 }],
+    [
+      "maintenance",
+      { status: "attention", completed: 5, total: 5, issueCount: 1 },
+    ],
+  ])(
+    "hides the setup shortcut for %s status on every sidebar",
+    (_case, launchCenterStatus) => {
+      const { rerender, container } = renderSidebar({
+        canUseSetupCenter: true,
+        launchCenterStatus,
+      });
 
-    const launchCenter = screen.getByRole("link", {
-      name: "Open Launch Center",
-    });
-
-    expect(
-      launchCenter.querySelector("[data-launch-center-progress]"),
-    ).toBeNull();
-    expect(launchCenter).not.toHaveAttribute("aria-describedby");
-  });
-
-  it("shows Live only for a healthy published setup", () => {
-    renderSidebar({
-      canUseSetupCenter: true,
-      launchCenterStatus: {
-        status: "live",
-        completed: 5,
-        total: 5,
-        issueCount: 0,
-      },
-    });
-
-    const launchCenter = screen.getByRole("link", {
-      name: "Open Launch Center",
-    });
-    expect(
-      launchCenter.querySelector("[data-launch-center-progress]"),
-    ).toBeNull();
-    expect(launchCenter).toHaveAccessibleDescription(
-      "Public studio is live and launch checks are clear",
-    );
-    expect(within(launchCenter).getByText("Launch Center")).toHaveClass(
-      "block",
-      "whitespace-nowrap",
-    );
-    expect(within(launchCenter).getByText("Launch Center")).not.toHaveClass(
-      "truncate",
-    );
-  });
+      for (const props of [{}, { collapsed: true }, { mobile: true }]) {
+        rerender(
+          <DashboardSidebar
+            tenantId="tenant-1"
+            canUseSetupCenter
+            launchCenterStatus={launchCenterStatus}
+            {...props}
+          />,
+        );
+        expect(
+          screen.queryByRole("link", { name: "Open Launch Center" }),
+        ).not.toBeInTheDocument();
+        expect(screen.getByRole("link", { name: "Settings" })).toHaveAttribute(
+          "href",
+          "/app/settings",
+        );
+        expect(
+          container.querySelector("[data-launch-center-navigation]"),
+        ).not.toBeInTheDocument();
+      }
+    },
+  );
 
   it("keeps unfinished progress below the full Czech Launch Center label", () => {
     labels.setupCenter = "Centrum spuštění";
@@ -446,57 +445,6 @@ describe("simplified dashboard sidebar navigation", () => {
     );
   });
 
-  it("replaces a contradictory completed badge with the issue count", () => {
-    renderSidebar({
-      canUseSetupCenter: true,
-      launchCenterStatus: {
-        status: "attention",
-        completed: 5,
-        total: 5,
-        issueCount: 1,
-      },
-    });
-
-    const launchCenter = screen.getByRole("link", {
-      name: "Open Launch Center",
-    });
-    const status = launchCenter.querySelector("[data-launch-center-progress]");
-
-    expect(status).toHaveTextContent("1 issue");
-    expect(status).toHaveAttribute("data-launch-center-status", "attention");
-    expect(status).toHaveAttribute("data-complete", "false");
-    expect(status).toHaveClass("block", "text-amber-800", "tabular-nums");
-    expect(status).not.toHaveClass("rounded-full");
-    expect(
-      launchCenter.querySelector("[data-launch-center-copy]"),
-    ).toContainElement(status);
-    expect(launchCenter).toHaveAccessibleDescription(
-      "1 launch issue requires attention",
-    );
-  });
-
-  it("uses Ready for a complete operational setup without a public site", () => {
-    renderSidebar({
-      canUseSetupCenter: true,
-      launchCenterStatus: {
-        status: "operational",
-        completed: 4,
-        total: 4,
-        issueCount: 0,
-      },
-    });
-
-    const launchCenter = screen.getByRole("link", {
-      name: "Open Launch Center",
-    });
-    expect(
-      launchCenter.querySelector("[data-launch-center-progress]"),
-    ).toBeNull();
-    expect(launchCenter).toHaveAccessibleDescription(
-      "Operational launch setup is ready",
-    );
-  });
-
   it("keeps compact progress and context when the rail is collapsed", () => {
     renderSidebar({
       canUseSetupCenter: true,
@@ -534,38 +482,12 @@ describe("simplified dashboard sidebar navigation", () => {
     );
   });
 
-  it("keeps a healthy collapsed status out of the permanent rail", () => {
-    renderSidebar({
-      canUseSetupCenter: true,
-      launchCenterStatus: {
-        status: "live",
-        completed: 5,
-        total: 5,
-        issueCount: 0,
-      },
-      collapsed: true,
-      onToggleCollapsed: vi.fn(),
-    });
-
-    const launchCenter = screen.getByRole("link", {
-      name: "Open Launch Center",
-    });
-
-    expect(
-      launchCenter.querySelector("[data-launch-center-progress]"),
-    ).toBeNull();
-    expect(within(launchCenter).getByRole("tooltip")).toHaveTextContent(
-      "Launch Center",
-    );
-    expect(within(launchCenter).getByRole("tooltip")).toHaveTextContent("Live");
-    expect(launchCenter).toHaveAccessibleDescription(
-      "Public studio is live and launch checks are clear",
-    );
-  });
-
   it("marks only Launch Center active on its route", () => {
     mocks.pathname = "/app/setup";
-    renderSidebar({ canUseSetupCenter: true });
+    renderSidebar({
+      canUseSetupCenter: true,
+      launchCenterStatus: { status: "progress", completed: 2, total: 5 },
+    });
 
     const launchCenter = screen.getByRole("link", {
       name: "Open Launch Center",
@@ -574,14 +496,16 @@ describe("simplified dashboard sidebar navigation", () => {
 
     expect(launchCenter).toHaveAttribute("aria-current", "page");
     expect(launchCenter).toHaveClass(
-      "bg-[var(--studio-paper)]",
-      "text-[var(--studio-clay)]",
+      "bg-[var(--studio-blue-soft)]",
+      "text-[var(--studio-blue)]",
     );
     expect(settings).not.toHaveAttribute("aria-current");
   });
 
   it("does not expose Launch Center without workspace-update access", () => {
-    renderSidebar();
+    renderSidebar({
+      launchCenterStatus: { status: "progress", completed: 2, total: 5 },
+    });
 
     expect(
       screen.queryByRole("link", { name: "Open Launch Center" }),
@@ -604,6 +528,41 @@ describe("simplified dashboard sidebar navigation", () => {
       resolvedHref: "/app/settings",
     });
   });
+
+  it.each([[[]], [["bookings.view"]]])(
+    "offers personal settings to staff with permissions %j",
+    (effectivePermissions) => {
+      mocks.workspaceAccess = {
+        role: "staff",
+        status: "active",
+        effectivePermissions,
+      };
+      renderSidebar();
+
+      expect(screen.getByRole("link", { name: "Settings" })).toHaveAttribute(
+        "href",
+        "/app/settings",
+      );
+    },
+  );
+
+  it.each([
+    null,
+    { role: "staff", status: "suspended" },
+    { role: "staff", status: "invited" },
+  ])(
+    "does not expose workspace settings without active membership %j",
+    (workspaceAccess) => {
+      const navigation = buildDashboardNavigation({
+        tenant: mocks.tenant,
+        workspaceAccess,
+      });
+
+      expect(
+        navigation.utility.find((item) => item.key === "settings"),
+      ).toBeUndefined();
+    },
+  );
 
   it("keeps only one submenu expanded at a time", () => {
     renderSidebar();
@@ -876,9 +835,10 @@ describe("simplified dashboard sidebar navigation", () => {
     expect(
       screen.queryByRole("link", { name: "Reports" }),
     ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("link", { name: "Settings" }),
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Settings" })).toHaveAttribute(
+      "href",
+      "/app/settings",
+    );
 
     mocks.tenant = {
       ...mocks.tenant,
@@ -1135,7 +1095,10 @@ describe("simplified dashboard sidebar navigation", () => {
   });
 
   it("exposes stable product tour targets without changing destinations", () => {
-    const { container } = renderSidebar({ canUseSetupCenter: true });
+    const { container } = renderSidebar({
+      canUseSetupCenter: true,
+      launchCenterStatus: { status: "progress", completed: 2, total: 5 },
+    });
 
     expect(
       container.querySelector('[data-product-tour-target="navigation"]'),
@@ -1150,7 +1113,11 @@ describe("simplified dashboard sidebar navigation", () => {
   });
 
   it("keeps the Launch Center utility shortcut in mobile navigation", () => {
-    renderSidebar({ mobile: true, canUseSetupCenter: true });
+    renderSidebar({
+      mobile: true,
+      canUseSetupCenter: true,
+      launchCenterStatus: { status: "progress", completed: 2, total: 5 },
+    });
 
     expect(
       screen.getByRole("link", { name: "Open Launch Center" }),

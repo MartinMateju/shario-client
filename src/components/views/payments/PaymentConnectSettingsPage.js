@@ -31,8 +31,8 @@ import {
   CONNECT_DISPLAY_STATUSES,
   normalizeTenantPaymentConnect,
 } from "@/lib/features/tenant-payments/tenantPayments.utils";
-import BrushStrokeEdge from "@/components/decorations/BrushStrokeEdge";
 import useGuidedSetupStep from "@/components/setup-center/useGuidedSetupStep";
+import RefundReviewPanel from "./RefundReviewPanel";
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
@@ -42,23 +42,23 @@ const getErrorMessage = (error, fallback) =>
 const statusStyles = {
   [CONNECT_DISPLAY_STATUSES.NOT_STARTED]: {
     icon: CreditCardIcon,
-    badge: "border-[#DDD9D1] bg-[#F7F5F1] text-[#66635E]",
-    iconWrap: "bg-[#F0EDE7] text-[#66635E]",
+    badge: "border-[#DDD9D1] bg-[#F7F5F1] text-ink-muted",
+    iconWrap: "bg-[#F0EDE7] text-ink-muted",
   },
   [CONNECT_DISPLAY_STATUSES.PENDING]: {
     icon: ClockIcon,
-    badge: "border-sand-200 bg-sand-50 text-sand-800",
-    iconWrap: "bg-sand-100 text-sand-800",
+    badge: "border-warning/40 bg-warning-soft text-warning",
+    iconWrap: "bg-warning-soft text-warning",
   },
   [CONNECT_DISPLAY_STATUSES.RESTRICTED]: {
     icon: ExclamationTriangleIcon,
-    badge: "border-coral-200 bg-coral-50 text-terracotta-700",
-    iconWrap: "bg-coral-100 text-terracotta-700",
+    badge: "border-danger/40 bg-danger-soft text-danger",
+    iconWrap: "bg-danger-soft text-danger",
   },
   [CONNECT_DISPLAY_STATUSES.ACTIVE]: {
     icon: CheckCircleIcon,
-    badge: "border-[#CFE0CB] bg-[#F5FAF3] text-[#47613E]",
-    iconWrap: "bg-[#E8F3E5] text-[#47613E]",
+    badge: "border-success/40 bg-success-soft text-success",
+    iconWrap: "bg-success-soft text-success",
   },
 };
 
@@ -106,16 +106,16 @@ function CapabilityCard({ enabled, icon: Icon, label, description, t }) {
         </span>
         <span
           className={cx(
-            "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold",
+            "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-semibold",
             enabled
-              ? "border-[#CFE0CB] bg-[#F5FAF3] text-[#47613E]"
-              : "border-[#DDD9D1] bg-white text-[#77736D]",
+              ? "border-success/40 bg-success-soft text-success"
+              : "border-[#DDD9D1] bg-white text-ink-muted",
           )}
         >
           <span
             className={cx(
               "h-1.5 w-1.5 rounded-full",
-              enabled ? "bg-[#5B8A4E]" : "bg-[#A6A19A]",
+              enabled ? "bg-success" : "bg-[#A6A19A]",
             )}
             aria-hidden="true"
           />
@@ -123,7 +123,7 @@ function CapabilityCard({ enabled, icon: Icon, label, description, t }) {
         </span>
       </div>
       <h3 className="mt-4 text-[13px] font-semibold text-[#292925]">{label}</h3>
-      <p className="mt-1.5 text-[11px] leading-[1.65] text-[#777773]">
+      <p className="mt-1.5 text-[13px] leading-[1.65] text-ink-muted">
         {description}
       </p>
     </article>
@@ -151,7 +151,7 @@ function SetupChecklist({ connection, t }) {
       data-contextual-guide-target="payments-checklist"
       className="rounded-[20px] border border-line bg-white p-5 shadow-[0_14px_38px_rgba(17,17,15,0.04)] sm:p-6"
     >
-      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cobalt-600">
+      <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-cobalt-600">
         {t("checklist.eyebrow")}
       </p>
       <h2 className="mt-2 text-[17px] font-semibold tracking-[-0.035em] text-[#292925]">
@@ -165,10 +165,10 @@ function SetupChecklist({ connection, t }) {
           >
             <span
               className={cx(
-                "flex h-[34px] w-[34px] items-center justify-center rounded-full text-[11px] font-semibold",
+                "flex h-[34px] w-[34px] items-center justify-center rounded-full text-[13px] font-semibold",
                 step.complete
-                  ? "bg-[#E8F3E5] text-[#47613E]"
-                  : "bg-[#EEEAE4] text-[#77736D]",
+                  ? "bg-success-soft text-success"
+                  : "bg-[#EEEAE4] text-ink-muted",
               )}
               aria-hidden="true"
             >
@@ -182,7 +182,7 @@ function SetupChecklist({ connection, t }) {
               <span className="block text-xs font-semibold text-[#292925]">
                 {t(`checklist.steps.${step.key}.title`)}
               </span>
-              <span className="mt-1 block text-[10px] leading-4 text-[#777773]">
+              <span className="mt-1 block text-[12px] leading-4 text-ink-muted">
                 {t(`checklist.steps.${step.key}.description`)}
               </span>
             </span>
@@ -318,7 +318,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
         role="status"
       >
         <ArrowPathIcon className="h-6 w-6 animate-spin text-cobalt-500" />
-        <span className="ml-3 text-[12px] text-[#777773]">{t("loading")}</span>
+        <span className="ml-3 text-[12px] text-ink-muted">{t("loading")}</span>
       </div>
     );
   }
@@ -328,7 +328,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
       <section className="space-y-5">
         {showPageHeader ? (
           <header>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
               {t("eyebrow")}
             </p>
             <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[34px]">
@@ -336,18 +336,19 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
             </h1>
           </header>
         ) : null}
-        <div className="rounded-[18px] border border-coral-200 bg-coral-50 p-5">
-          <p className="text-xs text-terracotta-700" role="alert">
+        <div className="rounded-[18px] border border-line bg-white p-5">
+          <p className="text-[13px] text-danger" role="alert">
             {getErrorMessage(error, t("messages.loadError"))}
           </p>
           <button
             type="button"
             onClick={refetch}
-            className="mt-3 text-[11px] font-semibold text-terracotta-700 underline underline-offset-2"
+            className="mt-3 text-[13px] font-semibold text-cobalt-600 underline underline-offset-2"
           >
             {t("actions.retry")}
           </button>
         </div>
+        <RefundReviewPanel />
       </section>
     );
   }
@@ -359,13 +360,13 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
     >
       {showPageHeader ? (
         <header>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
             {t("eyebrow")}
           </p>
           <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[34px]">
             {t("title")}
           </h1>
-          <p className="mt-1 max-w-2xl text-[12px] leading-5 text-[#777773]">
+          <p className="mt-1 max-w-2xl text-[12px] leading-5 text-ink-muted">
             {t("description")}
           </p>
         </header>
@@ -373,7 +374,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
 
       {actionError && (
         <div
-          className="flex gap-3 rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className="flex gap-3 rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-[13px] text-danger"
           role="alert"
         >
           <ExclamationTriangleIcon
@@ -406,9 +407,8 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
 
       <section
         data-contextual-guide-target="payments-status"
-        className="relative overflow-hidden rounded-[22px] border border-skab-blue-200 bg-[linear-gradient(135deg,#FFFFFF_0%,var(--color-skab-blue-50)_58%,var(--color-skab-offset-50)_100%)] p-5 shadow-[0_18px_45px_rgb(var(--skab-blue-rgb)/0.07)] sm:p-7"
+        className="relative overflow-hidden rounded-[22px] border border-line bg-white p-5 shadow-card sm:p-7"
       >
-        <BrushStrokeEdge className="-right-2 -top-12 hidden h-[calc(100%+96px)] w-[clamp(72px,9vw,108px)] opacity-[0.14] sm:block" />
         <div className="relative grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-3">
@@ -422,7 +422,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
               </span>
               <span
                 className={cx(
-                  "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-semibold",
+                  "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[13px] font-semibold",
                   styles.badge,
                 )}
               >
@@ -430,7 +430,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
                 {t(`statuses.${connection.status}.label`)}
               </span>
               {isFetching && (
-                <span className="inline-flex items-center gap-1.5 text-[10px] text-[#777773]">
+                <span className="inline-flex items-center gap-1.5 text-[12px] text-ink-muted">
                   <ArrowPathIcon
                     className="h-3 w-3 animate-spin"
                     aria-hidden="true"
@@ -442,12 +442,12 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
             <h2 className="mt-4 text-[22px] font-semibold tracking-[-0.045em] text-[#181817] sm:text-[26px]">
               {t(`statuses.${connection.status}.title`)}
             </h2>
-            <p className="mt-2 max-w-2xl text-xs leading-[1.75] text-[#66635E]">
+            <p className="mt-2 max-w-2xl text-xs leading-[1.75] text-ink-muted">
               {t(`statuses.${connection.status}.description`)}
             </p>
 
             {connection.connected && (
-              <dl className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[10px] text-[#777773]">
+              <dl className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-ink-muted">
                 {connection.country && (
                   <div className="flex items-center gap-1.5">
                     <dt>{t("details.country")}</dt>
@@ -572,9 +572,9 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
                 )}
             </div>
           ) : (
-            <div className="max-w-[260px] rounded-[15px] border border-[#DDD9D1] bg-white/80 p-4 text-[11px] leading-5 text-[#66635E]">
+            <div className="max-w-[260px] rounded-[15px] border border-[#DDD9D1] bg-white/80 p-4 text-[13px] leading-5 text-ink-muted">
               <LockClosedIcon
-                className="mb-2 h-4 w-4 text-[#77736D]"
+                className="mb-2 h-4 w-4 text-ink-muted"
                 aria-hidden="true"
               />
               {t("permissions.readOnly")}
@@ -592,7 +592,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
             <h2 className="text-[13px] font-semibold text-[#292925]">
               {t("capabilities.title")}
             </h2>
-            <p className="mt-1 text-[11px] leading-4 text-[#777773]">
+            <p className="mt-1 text-[13px] leading-4 text-ink-muted">
               {t("capabilities.description")}
             </p>
           </div>
@@ -631,7 +631,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
           <h2 className="mt-4 text-[17px] font-semibold tracking-[-0.035em] text-[#292925]">
             {t("security.title")}
           </h2>
-          <p className="mt-2 text-[11px] leading-[1.7] text-[#66635E]">
+          <p className="mt-2 text-[13px] leading-[1.7] text-ink-muted">
             {t("security.description")}
           </p>
           {!guidedSetup.guided ? (
@@ -643,7 +643,7 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
               ].map(([Icon, key]) => (
                 <li
                   key={key}
-                  className="flex gap-3 text-[11px] leading-[1.6] text-[#55524E]"
+                  className="flex gap-3 text-[13px] leading-[1.6] text-[#55524E]"
                 >
                   <Icon
                     className="mt-0.5 h-4 w-4 shrink-0 text-cobalt-600"
@@ -654,11 +654,12 @@ export default function PaymentConnectSettingsPage({ showPageHeader = true }) {
               ))}
             </ul>
           ) : null}
-          <div className="mt-5 rounded-[14px] border border-skab-blue-200 bg-white/75 p-4 text-[10px] leading-4 text-[#77736D]">
+          <div className="mt-5 rounded-[14px] border border-skab-blue-200 bg-white/75 p-4 text-[12px] leading-4 text-ink-muted">
             {t("security.note")}
           </div>
         </section>
       </div>
+      {!guidedSetup.guided ? <RefundReviewPanel /> : null}
     </section>
   );
 }

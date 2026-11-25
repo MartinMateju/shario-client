@@ -115,17 +115,19 @@ vi.mock("@/components/views/settings/AccountSettingsPage", () => ({
 vi.mock("@/components/views/settings/WorkspacePreferencesPage", () => ({
   default: (props) => <HeaderProbe id="preferences" {...props} />,
 }));
-import AccountPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/account/page";
+
+import ProfileSettingsPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/profile/page";
 import AiPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/ai/page";
 import CommunicationsPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/communications/page";
 import KnowledgePage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/knowledge/page";
 import InvoicesPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/finance/invoices/page";
 import OrdersPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/finance/orders/page";
 import MembershipsPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/memberships/page";
-import PreferencesPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/preferences/page";
+import PreferencesPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/preferences/page";
 import ProductsPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/products/page";
 import AiSettingsPageRoute from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/ai/page";
 import BillingPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/billing/page";
+import CommunicationsSettingsPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/communications/page";
 import InvoicingPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/invoicing/page";
 import LocationsPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/locations/page";
 import PaymentsPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/settings/payments/page";
@@ -138,7 +140,7 @@ import UsersPage from "@/app/[locale]/tenants/[tenantSlug]/app/(workspace)/users
 describe("workspace page presentation", () => {
   it.each([
     ["ai", AiPage],
-    ["communications", CommunicationsPage],
+    ["communications", CommunicationsSettingsPage],
     ["knowledge", KnowledgePage],
     ["products", ProductsPage],
     ["orders", OrdersPage],
@@ -154,7 +156,7 @@ describe("workspace page presentation", () => {
     ["billing", BillingPage],
     ["invoicing", InvoicingPage],
     ["ai-settings", AiSettingsPageRoute],
-    ["account", AccountPage],
+    ["account", ProfileSettingsPage],
     ["preferences", PreferencesPage],
   ])("hides the duplicate local header on %s", (id, Page) => {
     render(<Page />);
@@ -163,6 +165,20 @@ describe("workspace page presentation", () => {
       "false",
     );
   });
+
+  it("hides the duplicate local header on the communications workspace", async () => {
+    const page = await CommunicationsPage({
+      params: Promise.resolve({ locale: "en", tenantSlug: "studio" }),
+      searchParams: Promise.resolve({ section: "history" }),
+    });
+    render(page);
+
+    expect(screen.getByTestId("communications")).toHaveAttribute(
+      "data-show-page-header",
+      "false",
+    );
+  });
+
   it("renders the categorized overview at the Settings root", () => {
     render(<SettingsPage />);
     expect(screen.getByTestId("settings-overview")).toBeInTheDocument();

@@ -32,8 +32,15 @@ export const resolveEmailWorkspaceSection = ({
 
 export const getEmailWorkspaceHref = (searchParams, section) => {
   const query = new URLSearchParams(searchParams?.toString?.() || "");
-  query.set("section", section);
   query.delete("tab");
   query.delete("compose");
+  // Opening a location editor is an explicit action, not persistent tab context.
+  query.delete("doorLocation");
+  if (section === "setup") {
+    query.delete("section");
+    const suffix = query.toString();
+    return `/app/settings/communications${suffix ? `?${suffix}` : ""}`;
+  }
+  query.set("section", section);
   return `/app/communications?${query.toString()}`;
 };

@@ -121,16 +121,16 @@ export default function ProductCreatePage() {
           t={t}
         />
       ) : (
-        <section className="mt-6 rounded-[22px] border border-amber-200 bg-amber-50 px-5 py-6 shadow-card sm:px-6">
-          <h2 className="text-[17px] font-semibold tracking-[-0.035em] text-amber-950">
+        <section className="mt-6 rounded-[22px] border border-line bg-white px-5 py-6 shadow-card sm:px-6">
+          <h2 className="text-[17px] font-semibold tracking-[-0.035em] text-ink">
             {t("form.moduleUnavailableTitle")}
           </h2>
-          <p className="mt-2 text-[12px] leading-6 text-amber-900/75">
+          <p className="mt-2 text-[13px] leading-6 text-ink-muted">
             {t("form.moduleUnavailableDescription")}
           </p>
           <Link
             href={returnHref}
-            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-amber-300 bg-white px-5 text-[12px] font-semibold text-amber-950 transition hover:bg-amber-100"
+            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-primary/35 bg-white px-5 text-[13px] font-semibold text-primary transition hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             {t("form.backToCatalog")}
           </Link>

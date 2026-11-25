@@ -20,27 +20,37 @@ vi.mock("react-redux", () => ({
 }));
 vi.mock("@/lib/features/auth/authSlice", () => ({
   selectCurrentUser: (state) => state.currentUser,
+  getAuthCacheIdentity: () => "tenant:owner",
 }));
 vi.mock("@/lib/features/studio/studioContextSlice", () => ({
   selectActiveStudioId: (state) => state.activeStudioId,
 }));
-vi.mock("@/lib/features/bookings/bookingsApiSlice", async () => {
-  const { useState, useCallback } = await import("react");
+vi.mock("@/lib/features/bookings/bookingsApiSlice", () => ({
+  useDeleteBookingMutation: () => [mocks.deleteBooking, { isLoading: false }],
+}));
+vi.mock("@/lib/features/bookings/bookingDirectoryApiSlice", async () => {
+  const { useState, useEffect } = await import("react");
   return {
-    useDeleteBookingMutation: () => [mocks.deleteBooking, { isLoading: false }],
-    useGetBookingsWithFiltersMutation: () => {
-      const [data, setData] = useState();
-      const query = useCallback(
-        (request) => ({
-          unwrap: async () => {
-            const result = await mocks.getBookings(request);
-            setData(result);
-            return result;
-          },
-        }),
-        [],
-      );
-      return [query, { data, isLoading: false }];
+    useGetBookingFilterOptionsQuery: () => ({
+      currentData: { products: [], lecturers: [] },
+    }),
+    useGetBookingDirectoryQuery: (args, options) => {
+      const key = JSON.stringify(args);
+      const [response, setResponse] = useState();
+      useEffect(() => {
+        if (options.skip) return;
+        let active = true;
+        mocks.getBookings(JSON.parse(key)).then((data) => {
+          if (active) setResponse({ key, data });
+        });
+        return () => {
+          active = false;
+        };
+      }, [key, options.skip]);
+      return {
+        currentData: response?.key === key ? response.data : undefined,
+        isFetching: response?.key !== key,
+      };
     },
   };
 });
@@ -54,7 +64,10 @@ vi.mock("@/lib/features/lecturers/lecturersApiSlice", () => ({
   useGetAllLecturersQuery: () => ({ data: [], isLoading: false }),
 }));
 vi.mock("@/lib/features/locations/locationApiSlice", () => ({
-  useGetLocationsQuery: () => ({ data: mocks.locations, isLoading: false }),
+  useGetLocationsQuery: () => ({
+    currentData: mocks.locations,
+    isLoading: false,
+  }),
 }));
 vi.mock("@/components/loaders/Loader", () => ({
   default: () => <div>Loading</div>,
@@ -168,12 +181,17 @@ describe("BookingsTable future-only filter", () => {
       async ({
         dateFrom,
         dateTo,
+        dateScope,
         endAfter,
         locationId,
         page,
         limit,
         sortOrder,
       }) => {
+        if (dateScope === "today") {
+          dateFrom = "2026-10-31";
+          dateTo = "2026-10-31";
+        }
         // The server filters before counting and paginating. Exercise that contract
         // with mixed historical/future fixtures and more than one result page.
         const filtered = fixtures
@@ -210,13 +228,16 @@ describe("BookingsTable future-only filter", () => {
     expect(
       await screen.findByRole("checkbox", { name: "filters.futureOnly" }),
     ).toBeChecked();
+    await waitFor(() => expect(lastRequest()).toBeDefined());
     expect(lastRequest()).toMatchObject({
       endAfter: NOW,
       page: 1,
       locationId: "studio-1",
     });
     expect(lastRequest().dateFrom).toBeUndefined();
-    expect(screen.getByLabelText("Booking count")).toHaveTextContent(/^16$/);
+    await waitFor(() =>
+      expect(screen.getByLabelText("Booking count")).toHaveTextContent(/^16$/),
+    );
     fireEvent.click(screen.getByRole("button", { name: "pagination.next" }));
     expect(await screen.findByText("ongoing-nine-to-twelve")).toBeVisible();
     expect(screen.getByText("starting-exactly-now")).toBeVisible();
@@ -273,8 +294,7 @@ describe("BookingsTable future-only filter", () => {
     expect(screen.queryByText("other-studio-ongoing")).toBeNull();
     expect(screen.getByLabelText("Booking count")).toHaveTextContent(/^4$/);
     expect(lastRequest()).toMatchObject({
-      dateFrom: "2026-10-31",
-      dateTo: "2026-10-31",
+      dateScope: "today",
       endAfter: NOW,
       locationId: "studio-1",
       page: 1,
@@ -285,8 +305,7 @@ describe("BookingsTable future-only filter", () => {
     expect(screen.getByText("ending-exactly-now")).toBeVisible();
     expect(screen.getByLabelText("Booking count")).toHaveTextContent(/^6$/);
     expect(lastRequest()).toMatchObject({
-      dateFrom: "2026-10-31",
-      dateTo: "2026-10-31",
+      dateScope: "today",
       locationId: "studio-1",
     });
     expect(lastRequest().endAfter).toBeUndefined();
@@ -329,8 +348,7 @@ describe("BookingsTable future-only filter", () => {
     expect(screen.getByLabelText("Booking count")).toHaveTextContent(/^1$/);
     expect(lastRequest()).toMatchObject({
       endAfter: "2026-10-31T11:00:00.000Z",
-      dateFrom: "2026-10-31",
-      dateTo: "2026-10-31",
+      dateScope: "today",
     });
   });
 

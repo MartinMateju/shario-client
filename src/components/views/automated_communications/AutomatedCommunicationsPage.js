@@ -13,6 +13,7 @@ import AutomatedEmailModal from "@/components/modals/email_notifications/Automat
 import EmailTemplatesTable from "@/components/tables/EmailTemplatesTable";
 import AutomatedEmailsTable from "@/components/tables/email_notifications/AutomatedEmailsTable";
 import OutboundEmailHistoryView from "@/components/communications/email/OutboundEmailHistoryView";
+import DoorAccessEmailTemplates from "@/components/communications/email/DoorAccessEmailTemplates";
 import DoorAccessEmailAutomation from "@/components/communications/email/DoorAccessEmailAutomation";
 import {
   UNSUPPORTED_EMAIL_AUTOMATION_PURPOSES,
@@ -114,7 +115,19 @@ export default function AutomatedCommunicationsPage({
 
   if (view === "history") return <OutboundEmailHistoryView />;
   if (view === "templates")
-    return <EmailTemplatesTable canManage={canManage} />;
+    return (
+      <div className="space-y-6">
+        {hasPermission(workspaceAccess, PERMISSIONS.ACCESS_CODES_VIEW) ? (
+          <DoorAccessEmailTemplates
+            canManage={
+              canManage &&
+              hasPermission(workspaceAccess, PERMISSIONS.ACCESS_CODES_MANAGE)
+            }
+          />
+        ) : null}
+        <EmailTemplatesTable canManage={canManage} />
+      </div>
+    );
 
   return (
     <section className="w-full space-y-5">

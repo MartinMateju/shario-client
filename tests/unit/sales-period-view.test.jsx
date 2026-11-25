@@ -106,7 +106,20 @@ const pageResult = (orders = []) => ({
 const summaryResult = (query, amount = 1875) => {
   if (query.status) return pageResult([]);
   return pageResult([
-    { id: "paid-order", isPaid: true, currency: "CZK", total: amount },
+    {
+      id: "paid-order",
+      isPaid: true,
+      currency: "CZK",
+      total: amount,
+      salesAmounts: {
+        status: "available",
+        currency: "CZK",
+        grossAmountMinor: amount * 100,
+        refundedAmountMinor: 0,
+        netAmountMinor: amount * 100,
+        reason: null,
+      },
+    },
   ]);
 };
 const money = (amount) =>
@@ -172,6 +185,69 @@ describe("Sales reporting period integration", () => {
   });
 
   afterEach(() => vi.useRealTimers());
+
+  it("subtracts verified refunds, exposes cancelled orders, and never renders a static trend", async () => {
+    mocks.summaryResponse.mockImplementation((query) => {
+      if (query.status === "cancelled_order")
+        return { orders: [], totalCount: 11, totalPages: 1 };
+      const result = summaryResult(query, 800);
+      if (result.orders[0])
+        result.orders[0].salesAmounts = {
+          status: "available",
+          currency: "CZK",
+          grossAmountMinor: 80000,
+          refundedAmountMinor: 20000,
+          netAmountMinor: 60000,
+          reason: null,
+        };
+      return result;
+    });
+    mount();
+    await waitForRevenue(600);
+    expect(revenueCard()).toHaveTextContent(copy.overview.revenueDetail);
+    expect(revenueCard().querySelector('svg[viewBox="0 0 58 20"]')).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Cancelled11" }));
+    await waitFor(() =>
+      expect(mocks.loadOrders).toHaveBeenLastCalledWith(
+        expect.objectContaining({ status: "cancelled_order" }),
+      ),
+    );
+  });
+
+  it("does not display a partial total when a paid order has no verified monetary snapshot", async () => {
+    mocks.summaryResponse.mockImplementation((query) =>
+      query.status
+        ? pageResult([])
+        : pageResult([
+            ...summaryResult({}).orders,
+            { id: "historical", isPaid: true, cart: { totalPrice: 5000 } },
+          ]),
+    );
+    mount();
+    await waitFor(() =>
+      expect(revenueCard()).toHaveTextContent(copy.money.unavailable),
+    );
+    expect(revenueCard()).toHaveTextContent(copy.money.incomplete);
+    expect(revenueCard()).not.toHaveTextContent(money(1875));
+  });
+
+  it("explains whole-order totals when orders span multiple studios without excluding their value", async () => {
+    mocks.summaryResponse.mockImplementation((query) => {
+      const result = summaryResult(query);
+      if (result.orders[0])
+        result.orders[0].locationIds = [mocks.locationId, "another-studio"];
+      return result;
+    });
+    mount();
+    await waitForRevenue(1875);
+    expect(
+      screen.getByText(
+        new RegExp(
+          copy.money.multiStudio.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+        ),
+      ),
+    ).toBeInTheDocument();
+  });
 
   it("starts with thirty calendar dates and changes every summary and table request to the chosen seven-day period", async () => {
     mount();

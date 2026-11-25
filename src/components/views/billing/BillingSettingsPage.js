@@ -714,7 +714,7 @@ export default function BillingSettingsPage({ showPageHeader = true }) {
         <button
           type="button"
           onClick={refetch}
-          className="mt-5 rounded-[13px] bg-ink px-4 py-2.5 text-sm font-semibold text-white"
+          className="mt-5 rounded-[13px] bg-cobalt-500 hover:bg-cobalt-600 px-4 py-2.5 text-sm font-semibold text-white"
         >
           {t("tryAgain")}
         </button>
@@ -832,7 +832,7 @@ export default function BillingSettingsPage({ showPageHeader = true }) {
       <div className="mt-7 grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
         <div className="rounded-[24px] border border-line bg-white p-5 shadow-sm sm:p-6">
           <div className="flex items-start gap-4">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[15px] bg-coral-100 text-terracotta-600">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[15px] bg-accent-soft text-accent-text">
               <CreditCardIcon className="h-5 w-5" />
             </span>
             <div className="min-w-0 flex-1">
@@ -977,7 +977,7 @@ export default function BillingSettingsPage({ showPageHeader = true }) {
                 className={classNames(
                   "rounded-[10px] px-4 py-2 text-xs font-semibold transition",
                   interval === value
-                    ? "bg-ink text-white"
+                    ? "bg-cobalt-500 text-white"
                     : "text-ink-muted hover:text-ink",
                 )}
               >

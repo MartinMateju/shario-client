@@ -10,6 +10,9 @@ import {
 
 import { useGetPublicCourseLocationsQuery } from "@/lib/features/publicBooking/publicBookingApiSlice";
 
+import { usePublicCourseHydration } from "@/components/courses/PublicCourseHydrationBoundary";
+import { PUBLIC_COURSE_FRESHNESS_SECONDS } from "@/lib/publicTenant/courseHydration";
+
 const idOf = (value) => String(value?.id || value?._id || "").trim();
 
 // Public links predate the portal's slug-based location parameter. Accept both
@@ -18,6 +21,7 @@ export default function usePublicCourseLocation({
   tenantSlug,
   enabled,
   previewMode = false,
+  initialData,
 }) {
   const params = useSearchParams();
   const pathname = usePathname();
@@ -25,16 +29,32 @@ export default function usePublicCourseLocation({
   const requestedReference = getPortalLocationReferenceFromSearchParams(params);
   const hasRequestedReference =
     params?.has("location") || params?.has("locationId");
+  const hydrating = usePublicCourseHydration();
   const query = useGetPublicCourseLocationsQuery(
     { tenantSlug },
-    { skip: previewMode || !tenantSlug || !enabled },
+    {
+      skip: hydrating || previewMode || !tenantSlug || !enabled,
+      refetchOnMountOrArgChange: PUBLIC_COURSE_FRESHNESS_SECONDS,
+      refetchOnFocus: true,
+    },
   );
-  const locations = (query.currentData ?? []).filter(
+  const initialLocations =
+    initialData?.tenantSlug === tenantSlug && !query.isError
+      ? initialData.locations
+      : undefined;
+  const locations = (query.currentData ?? initialLocations ?? []).filter(
     (location) => location.isActive !== false,
   );
+  const initialDefaultLocation =
+    initialData?.tenantSlug === tenantSlug
+      ? locations.find((location) => idOf(location) === initialData.locationId)
+      : null;
   const activeLocation = hasRequestedReference
     ? findPortalLocationByReference(locations, requestedReference)
-    : locations.find((location) => location.isPrimary) || locations[0] || null;
+    : initialDefaultLocation ||
+      locations.find((location) => location.isPrimary) ||
+      locations[0] ||
+      null;
   const locationId = idOf(activeLocation);
   const reference =
     getPortalLocationReference(activeLocation) || requestedReference;

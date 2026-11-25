@@ -560,7 +560,7 @@ export default function InvoiceDetailsDialog({
                   <button
                     type="button"
                     onClick={() => setCreditOpen(true)}
-                    className="inline-flex min-h-10 items-center gap-2 rounded-[12px] border border-[var(--customer-invoice-border,var(--color-line))] px-3.5 text-[10px] font-semibold text-[var(--customer-invoice-accent,var(--color-terracotta-600))]"
+                    className="inline-flex min-h-10 items-center gap-2 rounded-[12px] border border-[var(--customer-invoice-border,var(--color-line))] px-3.5 text-[10px] font-semibold text-[var(--customer-invoice-accent,var(--color-primary))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--customer-invoice-accent,var(--color-primary))] focus-visible:ring-offset-2"
                   >
                     <ReceiptRefundIcon className="h-4 w-4" />
                     {t("actions.credit")}
@@ -571,7 +571,7 @@ export default function InvoiceDetailsDialog({
                     type="button"
                     onClick={handleDownload}
                     disabled={isDownloading}
-                    className="ml-auto inline-flex min-h-10 items-center gap-2 rounded-[12px] bg-[var(--customer-invoice-button,#111111)] px-3.5 text-[10px] font-semibold text-[var(--customer-invoice-button-text,#FFFFFF)] disabled:opacity-50"
+                    className="ml-auto inline-flex min-h-10 items-center gap-2 rounded-[12px] bg-[var(--customer-invoice-button,var(--color-primary))] px-3.5 text-[10px] font-semibold text-[var(--customer-invoice-button-text,#FFFFFF)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--customer-invoice-accent,var(--color-primary))] focus-visible:ring-offset-2 disabled:opacity-50"
                   >
                     <ArrowDownTrayIcon className="h-4 w-4" />
                     {isDownloading

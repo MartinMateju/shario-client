@@ -90,7 +90,11 @@ async function completeAuthenticationGate({
   await page.getByLabel(/^Password\s*\*?$/).fill(PASSWORD);
 
   const loginResponsePromise = page.waitForResponse((response) =>
-    isApiResponse(response, "/auth/customer", "POST"),
+    isApiResponse(
+      response,
+      custom ? "/api/tenant-auth/auth/customer" : "/auth/customer",
+      "POST",
+    ),
   );
   const restoreResponsePromise = page.waitForResponse((response) =>
     isIntentResponse(response, "GET"),
@@ -102,7 +106,23 @@ async function completeAuthenticationGate({
     })
     .click();
 
-  expect((await loginResponsePromise).status()).toBe(200);
+  const loginResponse = await loginResponsePromise;
+  expect(loginResponse.status(), await loginResponse.text()).toBe(200);
+  if (custom) {
+    expect(new URL(loginResponse.url()).origin).toBe(origin);
+    const cookies = await page.context().cookies(origin);
+    expect(cookies.filter((cookie) => cookie.name === "customer_jwt")).toEqual([
+      expect.objectContaining({
+        domain: expectedHost,
+        httpOnly: true,
+        sameSite: "Lax",
+        path: "/",
+      }),
+    ]);
+    expect(await page.evaluate(() => document.cookie)).not.toContain(
+      "customer_jwt",
+    );
+  }
   expect((await restoreResponsePromise).status()).toBe(200);
   await expect(page).toHaveURL((url) =>
     custom
@@ -163,20 +183,44 @@ test.describe("booking authentication gate", () => {
     ).toBeVisible();
   });
 
-  test("keeps the complete sign-in and restoration flow on an active custom host", async ({
-    page,
-    e2eState,
-  }) => {
-    await completeAuthenticationGate({
-      page,
-      e2eState,
-      origin: customTenantOrigin(E2E.alphaCustomHostname),
-      expectedHost: E2E.alphaCustomHostname,
-      custom: true,
-    });
+  test(
+    "keeps the complete sign-in and restoration flow on an active custom host",
+    { tag: "@custom-domain-auth" },
+    async ({ page, e2eState }) => {
+      await completeAuthenticationGate({
+        page,
+        e2eState,
+        origin: customTenantOrigin(E2E.alphaCustomHostname),
+        expectedHost: E2E.alphaCustomHostname,
+        custom: true,
+      });
 
-    expect(new URL(page.url()).hostname).toBe(E2E.alphaCustomHostname);
-  });
+      expect(new URL(page.url()).hostname).toBe(E2E.alphaCustomHostname);
+
+      // Reload discards the in-memory access token. Restoring the booking must
+      // use the actual host-only HttpOnly refresh cookie through the BFF again.
+      const refreshPromise = page.waitForResponse((response) =>
+        isApiResponse(
+          response,
+          "/api/tenant-auth/auth/customer/refresh",
+          "POST",
+        ),
+      );
+      const restorePromise = page.waitForResponse((response) =>
+        isIntentResponse(response, "GET"),
+      );
+      await page.reload({ waitUntil: "domcontentloaded" });
+      const refresh = await refreshPromise;
+      expect(refresh.status(), await refresh.text()).toBe(200);
+      expect(new URL(refresh.url()).origin).toBe(
+        customTenantOrigin(E2E.alphaCustomHostname),
+      );
+      expect((await restorePromise).status()).toBe(200);
+      await expect(
+        page.getByRole("heading", { level: 1, name: "Review and confirm" }),
+      ).toBeVisible();
+    },
+  );
 });
 
 test.describe("recovery continuation", () => {

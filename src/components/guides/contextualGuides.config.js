@@ -327,31 +327,28 @@ export const CONTEXTUAL_GUIDES = Object.freeze([
   {
     id: "customer_communications",
     version: 1,
-    href: "/app/communications?section=setup",
-    route: "/app/communications",
+    href: "/app/settings/communications",
+    route: "/app/settings/communications",
     requiredPermissions: [PERMISSIONS.COMMUNICATIONS_MANAGE],
     modules: ["communications", "automations"],
-    ctaHref: "/app/communications?section=setup&setupStep=communications",
+    ctaHref: "/app/settings/communications?setupStep=communications",
     ctaLabelKey: "items.customer_communications.cta",
     steps: [
       {
         key: "templates",
-        selectors: ["#email-workspace-sections-tab-templates"],
+        selectors: ['[data-email-related-section="templates"]'],
       },
       {
         key: "reminders",
-        selectors: ["#email-workspace-sections-tab-automations"],
+        selectors: ['[data-email-related-section="automations"]'],
       },
       {
         key: "test_email",
-        selectors: [
-          "[data-email-setup-view]",
-          "#email-workspace-sections-tab-setup",
-        ],
+        selectors: ["[data-email-setup-view]"],
       },
       {
         key: "delivery_history",
-        selectors: ["#email-workspace-sections-tab-history"],
+        selectors: ['[data-email-related-section="history"]'],
       },
     ],
   },

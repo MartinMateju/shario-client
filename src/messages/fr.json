@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Confirmée",
-      "pending": "En attente",
+      "pending": "En attente de confirmation",
       "awaitingPayment": "En attente de paiement",
-      "processed": "En attente de livraison",
-      "delivered": "Livrée",
+      "processed": "Confirmée",
+      "delivered": "Commencée",
       "completed": "Terminée",
       "cancelled": "Annulée"
     },
     "payment": {
       "paid": "Payé",
-      "pending": "En attente",
+      "pending": "En attente de paiement",
       "failed": "Échoué",
       "expired": "Expiré",
       "refunded": "Remboursé",
       "credits": "Crédits"
+    },
+    "refreshing": "Actualisation des réservations…",
+    "retry": "Réessayer",
+    "errors": {
+      "load": "Impossible de charger les réservations. Veuillez réessayer.",
+      "filters": "Certaines options de filtre n’ont pas pu être chargées."
     },
     "edit": {
       "details": "Détails de la réservation",
@@ -121,7 +127,9 @@
       "deletedTitle": "Réservation supprimée",
       "deletedText": "La réservation a été supprimée avec succès.",
       "errorTitle": "Impossible de créer la réservation",
-      "errorText": "Vérifiez les informations de réservation et réessayez."
+      "errorText": "Vérifiez les informations de réservation et réessayez.",
+      "cancelError": "La réservation n’a pas pu être annulée. Veuillez réessayer.",
+      "extensionRefund": "Un montant supplémentaire de {amount} pour le temps de réservation ajouté a été reversé sur les crédits du studio du client."
     },
     "exportColumns": {
       "customer": "Client",
@@ -193,6 +201,7 @@
       "spotsAvailable": "{remaining} places disponibles sur {capacity}"
     },
     "week": {
+      "schedule": "Planning de la semaine",
       "privacyNote": "Le violet indique les réservations privées et le turquoise les réservations publiques. Vos réservations portent un badge bleu."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Réservations, abonnements et un beau site web à votre image. Tout ce qu’il vous faut pour partager votre espace et faire grandir votre communauté, réuni dans Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Votre préférence d’affichage de la bannière n’a pas pu être enregistrée. Réessayez.",
     "skipToContent": "Accéder au contenu",
     "learnMore": "En savoir plus",
     "viewAll": "Tout afficher",
@@ -434,7 +444,8 @@
       "notifications": "Notifications",
       "events": "Événements",
       "lostFound": "Objets trouvés",
-      "customOrders": "Commandes sur mesure"
+      "customOrders": "Commandes sur mesure",
+      "communicationSettings": "Paramètres des messages"
     },
     "stats": {
       "bookings": "Réservations aujourd’hui",
@@ -1439,7 +1450,8 @@
     },
     "product": {
       "metaTitle": "Tout ce qu’il faut à votre espace, réuni.",
-      "metaDescription": "Reliez vos réservations, vos membres, vos paiements, votre équipe et votre site public. Concentrez-vous sur votre communauté pendant que Shario vous aide à organiser la journée."
+      "metaDescription": "Reliez vos réservations, vos membres, vos paiements, votre équipe et votre site public. Concentrez-vous sur votre communauté pendant que Shario vous aide à organiser la journée.",
+      "viewScreenshot": "Voir la capture d’écran complète"
     },
     "studioAi": {
       "metaTitle": "Un coup de main au quotidien.",
@@ -1481,13 +1493,14 @@
       "from": "à partir de",
       "customAnnual": "Tarif annuel personnalisé",
       "mostPopular": "Le plus populaire",
+      "includesPrevious": "Tout ce qu’inclut {plan}, plus :",
       "starter": {
         "name": "Starter",
         "description": "Commencez avec les réservations, les paiements, les cours et les événements de votre espace.",
         "feature1": "1 site de studio · 1 compte d’équipe",
         "feature2": "Cours, événements privés et bons cadeaux",
         "feature3": "500 e-mails inclus par mois",
-        "feature4": "Shario AI limitée · 200 crédits par mois",
+        "feature4": "Site du studio et espace client",
         "cta": "Essayer gratuitement"
       },
       "professional": {
@@ -1495,8 +1508,9 @@
         "description": "Reliez les abonnements, les espaces partagés et la gestion du quotidien.",
         "feature1": "1 site de studio · 3 comptes d’équipe",
         "feature2": "Abonnements, réservations et ressources partagées",
-        "feature3": "3 automatisations actives · 2 500 e-mails par mois",
-        "feature4": "Shario AI complète · 2 000 crédits par mois",
+        "feature3": "Stocks et tâches de l’équipe",
+        "feature4": "3 automatisations actives · 2 500 e-mails par mois",
+        "feature5": "Shario AI · 2 000 crédits par mois",
         "cta": "Essayer gratuitement"
       },
       "studioPlus": {
@@ -1505,16 +1519,16 @@
         "feature1": "Jusqu’à 2 sites de studio · 6 comptes d’équipe",
         "feature2": "Codes d’accès et domaine personnalisé",
         "feature3": "Automatisations avancées · 5 000 e-mails par mois",
-        "feature4": "Suite IA complète · 10 000 crédits par mois",
+        "feature4": "Shario AI avancée · 10 000 crédits par mois",
         "cta": "Essayer gratuitement"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Gérez votre organisation avec des capacités, une gouvernance et un support sur mesure.",
-        "feature1": "Sites et comptes d’équipe illimités",
+        "feature1": "Capacité des sites et de l’équipe selon accord",
         "feature2": "Quotas personnalisés d’automatisation, d’e-mails et d’IA",
-        "feature3": "SSO/SCIM, API, webhooks et journaux d’audit",
-        "feature4": "Onboarding, migration et SLA dédiés",
+        "feature3": "Échangeons sur vos besoins d’intégration et de gouvernance",
+        "feature4": "Mise en place, migration et assistance selon accord",
         "cta": "Commencer l’essai gratuit"
       },
       "note": "Les prix s’entendent hors taxes applicables. Les offres annuelles en libre-service incluent deux mois gratuits. Les e-mails système essentiels ne sont pas décomptés du quota, et l’utilisation de l’IA s’arrête à la limite incluse, sans frais automatiques.",
@@ -2260,7 +2274,10 @@
     },
     "unavailable": {
       "title": "Cette option n’est pas disponible",
-      "description": "Le studio ne propose pas cette option au public pour le moment."
+      "description": "Le studio ne propose pas cette option au public pour le moment.",
+      "retry": "Réessayer",
+      "retrying": "Chargement…",
+      "loginDegraded": "Les informations du studio n’ont pas pu être chargées pour le moment."
     },
     "book": {
       "metadataTitle": "Réserver l’atelier libre",
@@ -2318,6 +2335,7 @@
         "email": "Adresse e-mail",
         "quantity": "Quantité",
         "missing": "Choisissez une carte-cadeau et saisissez une adresse e-mail valide.",
+        "reselect": "Les bons cadeaux disponibles ont changé. Sélectionnez à nouveau un bon cadeau pour continuer.",
         "error": "Le paiement n’a pas pu être lancé. Veuillez réessayer.",
         "starting": "Préparation du paiement…",
         "continue": "Continuer vers le paiement",
@@ -2353,6 +2371,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Impossible d’actualiser les offres. Les dernières offres chargées restent affichées.",
       "loading": "Chargement des offres actuelles…",
       "error": "Les offres actuelles n’ont pas pu être chargées.",
       "retry": "Réessayer",
@@ -2786,10 +2805,20 @@
         "headline": "Titre de la page des cours",
         "intro": "Introduction de la page des cours",
         "image": "Photo de la page des cours",
-        "inherit": "Les champs vides utilisent le texte commun de la page des cours et la photo de couverture de votre marque.",
+        "inherit": "Les champs vides utilisent les textes communs et l’image de la page des cours, ou la photo de couverture de la marque si aucune image de cours n’est définie.",
         "noLocations": "Ajoutez un lieu d’atelier pour personnaliser sa page de cours.",
         "guestCheckoutEnabled": "Autoriser l’achat de cours sans compte",
         "guestCheckoutDescription": "S’applique à tous les ateliers. Les visiteurs peuvent acheter un cours sans créer de compte ; les clients peuvent toujours se connecter pour réserver. Les pages de cours doivent être visibles et les paiements en ligne opérationnels. Publiez les modifications pour appliquer ce réglage."
+      },
+      "pageImages": {
+        "title": "Images des en-têtes de page",
+        "description": "Choisissez une image différente pour chaque page publique ou client. Les calendriers de réservation conservent leur en-tête textuel compact.",
+        "page": "Page à personnaliser",
+        "image": "Image de l’en-tête",
+        "hint": "Utilisez une photo au format paysage. La supprimer rétablit un en-tête textuel. Une image de cours propre au studio reste prioritaire.",
+        "preview": "Voir cet en-tête",
+        "previewDescription": "Aperçu de votre image avec les couleurs et la typographie choisies.",
+        "products": "Produits"
       },
       "calendarColors": "Calendrier",
       "hidden": "Masqué",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Cours du portail client",
+        "portalPageHero": "En-têtes de page",
         "book": "Atelier libre",
         "courses": "Cours",
         "memberships": "Abonnements",
@@ -3275,6 +3305,31 @@
       "labelColor": "Couleur des libellés d’inscription · facultatif",
       "imageTitle": "Image d’inscription",
       "imageDescription": "Utilisez une image dédiée à la création de compte ; le logo partagé de l’espace reste sur le formulaire."
+    },
+    "customLinks": {
+      "title": "Liens personnalisés",
+      "addGroup": "Ajouter un groupe déroulant",
+      "group": "Groupe déroulant",
+      "children": "Liens de ce groupe",
+      "button": "Afficher comme bouton principal",
+      "separator": "Afficher un séparateur avant ce lien",
+      "layout": "Mise en page de l’en-tête",
+      "defaultLayout": "En-tête de réservation standard",
+      "websiteLayout": "Navigation du site web",
+      "background": "Fond de l’en-tête",
+      "linkColor": "Couleur des liens de l’en-tête",
+      "buttonColor": "Couleur du bouton de l’en-tête",
+      "header": "Ajoutez des liens après la navigation standard. Masquez les éléments standard ci-dessus si vous souhaitez un menu entièrement personnalisé.",
+      "footer": "Ajoutez d’autres liens à la section Explorer du pied de page. Les liens déjà affichés dans l’en-tête sont inclus automatiquement.",
+      "label": "Texte du lien",
+      "href": "URL de destination",
+      "add": "Ajouter un lien",
+      "remove": "Supprimer le lien",
+      "up": "Monter le lien",
+      "down": "Descendre le lien",
+      "count": "liens",
+      "hint": "Utilisez https://… ou un chemin commençant par /. Renseignez le texte et l’URL ensemble ; laissez les deux vides pour utiliser une autre langue.",
+      "invalid": "Saisissez un texte de lien et une URL HTTPS ou un chemin valide dans au moins une langue. Chaque langue nécessite les deux champs, ou aucun."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "processing": "En cours",
       "failed": "Échoué",
       "all": "Tout",
-      "completed": "Terminé"
+      "completed": "Terminé",
+      "cancelled": "Annulées"
     },
     "productTypes": {
       "course": "Cours",
@@ -3811,7 +3867,8 @@
       "creatingInvoice": "Création…",
       "confirmCreateInvoice": "Créer un brouillon de facture à partir de cette commande ?",
       "note": "Note de commande",
-      "internalId": "Identifiant interne de commande"
+      "internalId": "Identifiant interne de commande",
+      "paymentDateUnknown": "Date de paiement non enregistrée"
     },
     "fallbackStudioName": "votre espace",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Impossible de créer la facture à partir de cette commande."
     },
     "csv": {
-      "createdAt": "Créé le"
+      "createdAt": "Créé le",
+      "currency": "Devise",
+      "amountStatus": "Disponibilité du montant"
+    },
+    "money": {
+      "unavailable": "Indisponible",
+      "unavailableDetail": "Le montant final de la commande ou l’historique des remboursements ne peut pas être vérifié.",
+      "verified": "Disponible",
+      "refunded": "Remboursé",
+      "net": "Valeur après remboursements",
+      "incomplete": "Certaines commandes payées ont des montants ou des remboursements incomplets. Le total n’est pas disponible.",
+      "mixedCurrencies": "Cette période contient plusieurs devises. Elles ne peuvent pas être additionnées en un seul total.",
+      "truncated": "Cette période dépasse la limite du récapitulatif. Choisissez une période plus courte pour calculer le total.",
+      "scope": "Les montants des commandes incluent les taxes et les crédits ou bons utilisés. Les achats de bons séparés et les factures d’abonnement sont exclus. Il ne s’agit ni d’encaissements ni de chiffre d’affaires issu de prestations réalisées. Les cartes récapitulatives couvrent toute la période et le studio sélectionnés.",
+      "multiStudio": "Les commandes liées à plusieurs studios sont comptées pour leur valeur totale."
     }
   },
   "VoucherShopping": {
@@ -4003,7 +4074,49 @@
         "complained": "Signalement comme indésirable",
         "rejected": "Rejeté",
         "ambiguous": "Statut incertain",
-        "suppressed": "Bloqué"
+        "suppressed": "Non envoyé"
+      },
+      "resend": {
+        "actionMenu": "Actions de l’e-mail",
+        "action": "Renvoyer",
+        "title": "Renvoyer cet e-mail ?",
+        "description": "Une nouvelle tentative d’envoi de ce message au même destinataire sera effectuée.",
+        "recipient": "Destinataire",
+        "subject": "Objet",
+        "cancel": "Annuler",
+        "confirm": "Renvoyer",
+        "submitting": "Préparation de l’envoi…",
+        "queued": "L’e-mail est prêt à être renvoyé.",
+        "scheduled": "Une nouvelle tentative est programmée. L’e-mail sera envoyé dès que l’envoi sera possible.",
+        "error": "L’e-mail n’a pas pu être préparé pour l’envoi. Veuillez réessayer.",
+        "stale": "Le statut de cet e-mail a changé. Son statut actuel est maintenant affiché.",
+        "blocked": "Cet e-mail ne peut pas être renvoyé pour le moment.",
+        "reasonLabel": "Pourquoi il n’a pas été envoyé"
+      },
+      "reasons": {
+        "status_not_retryable": "Cet e-mail ne peut pas être renvoyé dans son état actuel.",
+        "delivery_in_progress": "L’envoi de cet e-mail est déjà en cours.",
+        "delivery_outcome_unknown": "Nous ne pouvons pas confirmer si cet e-mail a été envoyé. Vérifiez son statut avant de réessayer.",
+        "already_sent": "Cet e-mail a déjà été envoyé.",
+        "recipient_suppressed": "L’envoi à ce destinataire était bloqué.",
+        "consent_revoked": "Le destinataire avait retiré son consentement à recevoir cet e-mail.",
+        "consent_expired": "Le consentement du destinataire avait expiré.",
+        "marketing_opt_in_required": "Le destinataire n’avait pas accepté de recevoir des e-mails marketing.",
+        "consent_required": "Le consentement requis du destinataire manquait.",
+        "content_unavailable": "Le message d’origine n’était plus disponible.",
+        "invalid_delivery_contract": "Les informations nécessaires à l’envoi de cet e-mail étaient incomplètes.",
+        "source_changed": "Les informations sur lesquelles cet e-mail reposait avaient changé.",
+        "source_missing": "L’enregistrement lié à cet e-mail n’existait plus.",
+        "recipient_ineligible": "Ce message ne concernait plus ce destinataire.",
+        "automation_inactive": "Cette automatisation d’e-mails était désactivée.",
+        "sender_not_ready": "L’envoi d’e-mails n’était pas configuré ou était temporairement indisponible.",
+        "workspace_disabled": "L’envoi d’e-mails était désactivé pour cet espace de travail.",
+        "monthly_allowance_exhausted": "Cet espace de travail avait épuisé son quota mensuel d’e-mails.",
+        "unsupported_email_type": "Ce type d’e-mail ne peut pas être renvoyé ici.",
+        "delivery_failed": "L’e-mail n’a pas pu être remis.",
+        "not_sent": "L’e-mail n’a pas été envoyé.",
+        "hard_bounce": "La remise à cette adresse a échoué définitivement.",
+        "spam_complaint": "Le destinataire a signalé un e-mail comme spam."
       },
       "columns": {
         "status": "Statut",
@@ -4013,7 +4126,7 @@
         "recipient": "Destinataire",
         "type": "Type d’e-mail"
       },
-      "description": "Consultez les envois d’e-mails programmés, en file d’attente, livrés, bloqués, annulés et échoués.",
+      "description": "Consultez les e-mails programmés, remis, annulés et non envoyés.",
       "searchLabel": "Rechercher dans l’historique des envois",
       "searchPlaceholder": "Rechercher par e-mail du destinataire ou identifiant client…",
       "statusLabel": "Filtrer par statut d’envoi",
@@ -4398,7 +4511,8 @@
         "module": "Activez le module Accès aux portes dans les paramètres de l’espace de travail.",
         "sender": "Terminez la configuration de l’expéditeur d’e-mail géré avant d’activer l’envoi.",
         "inventory": "Ajoutez un code réutilisable vérifié à un groupe actif de ce lieu."
-      }
+      },
+      "template": "Personnaliser le modèle d’e-mail"
     },
     "errors": {
       "setupRequired": "Vérifiez la configuration des e-mails avant d’activer une automatisation.",
@@ -4411,6 +4525,102 @@
       "message": "Supprimer {name} ? Cette action est irréversible.",
       "cancel": "Conserver l’automatisation",
       "deleting": "Suppression…"
+    },
+    "doorTemplates": {
+      "title": "E-mails de code d’accès",
+      "description": "Personnalisez l’e-mail automatique contenant le code de porte pour chaque site du studio. Ces modèles sont utilisés par l’envoi existant des codes d’accès.",
+      "locationHint": "Utilisé uniquement pour les réservations sur ce site",
+      "default": "Message par défaut",
+      "customized": "Message personnalisé",
+      "loading": "Chargement des modèles de code de porte…",
+      "loadError": "Les modèles de code de porte n’ont pas pu être chargés.",
+      "retry": "Réessayer",
+      "empty": "Ajoutez un site actif du studio pour personnaliser son e-mail de code de porte.",
+      "edit": "Modifier le modèle",
+      "preview": "Aperçu du modèle",
+      "editFor": "Modifier le modèle de code de porte pour {location}",
+      "previewFor": "Aperçu du modèle de code de porte pour {location}",
+      "eyebrow": "E-mail de code d’accès",
+      "editorDescription": "Modifiez l’objet et le message pour ce site. Les modifications enregistrées s’appliquent aux prochains e-mails automatiques ; les paramètres d’envoi et le délai habituel de 15 minutes restent inchangés.",
+      "placeholderHint": "Shario insère les détails de la réservation et le bon code lors de l’envoi. Conservez cette variable dans le message :",
+      "previewHint": "L’aperçu utilise un code et une réservation d’exemple. Le design d’e-mail enregistré de votre studio est appliqué lors de l’envoi.",
+      "variablesTitle": "Accès et détails de la réservation",
+      "variables": {
+        "entryCode": "Code de porte (corps du message uniquement)",
+        "studioName": "Nom du site du studio",
+        "studioAddress": "Adresse du site du studio",
+        "bookingTime": "Date et plage horaire locales de la réservation",
+        "bookingUrl": "Lien de gestion de la réservation"
+      },
+      "languages": {
+        "cs": "Tchèque",
+        "en": "Anglais"
+      },
+      "errors": {
+        "incomplete": "Ajoutez un objet (200 caractères maximum) et un message pour cette langue.",
+        "missingCode": "Incluez la variable du code de porte dans le texte visible du message.",
+        "codePlacement": "Placez le code dans le texte du message, hors de l’objet, des liens et des attributs HTML.",
+        "unknownVariable": "Utilisez uniquement les variables listées, avec deux accolades ouvrantes et deux fermantes."
+      },
+      "close": "Fermer le modèle",
+      "cancel": "Annuler",
+      "save": "Enregistrer le modèle",
+      "saving": "Enregistrement…",
+      "resetting": "Restauration…",
+      "saveError": "Le modèle de code de porte n’a pas pu être enregistré.",
+      "resetError": "Le message par défaut n’a pas pu être restauré.",
+      "saveSuccess": "Modèle de code de porte enregistré pour {location}.",
+      "resetSuccess": "Message de code de porte par défaut restauré pour {location}.",
+      "reset": "Restaurer le message par défaut",
+      "resetConfirm": "Restaurer le message par défaut pour ce site ? Votre personnalisation enregistrée et les modifications non enregistrées seront remplacées.",
+      "confirmReset": "Restaurer par défaut",
+      "keepEditing": "Continuer la modification",
+      "discardConfirm": "Vous avez des modifications non enregistrées. Fermer sans enregistrer ?",
+      "discard": "Abandonner les modifications",
+      "variablesHint": "Cliquez sur une variable pour l’insérer à l’endroit où vous écrivez. Le code d’accès doit figurer uniquement dans le corps du message, hors des liens.",
+      "help": "Aide sur le modèle",
+      "codeReminder": "Conservez {code} dans le message."
+    },
+    "visualEditor": {
+      "mode": "Mode d’édition",
+      "visual": "Éditeur visuel",
+      "htmlSource": "Source HTML",
+      "loading": "Chargement de l’éditeur visuel…",
+      "unsupported": "Ce modèle contient une mise en forme HTML avancée. Son design d’origine est conservé en mode HTML.",
+      "toolbar": "Commandes de texte et de design",
+      "body": "Corps du texte",
+      "heading1": "Titre 1",
+      "heading2": "Titre 2",
+      "heading3": "Titre 3",
+      "bold": "Gras",
+      "italic": "Italique",
+      "underline": "Souligné",
+      "fontSize": "Taille du texte",
+      "defaultSize": "Taille par défaut",
+      "textColor": "Couleur du texte",
+      "textBackground": "Fond du texte",
+      "alignLeft": "Aligner à gauche",
+      "alignCenter": "Centrer",
+      "alignRight": "Aligner à droite",
+      "bulletList": "Liste à puces",
+      "orderedList": "Liste numérotée",
+      "link": "Ajouter ou modifier un lien",
+      "linkUrl": "Adresse du lien",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Appliquer le lien",
+      "removeLink": "Supprimer le lien",
+      "cancelLink": "Annuler",
+      "invalidLink": "Utilisez une adresse http, https ou mailto, ou la variable du lien de réservation. Les codes de porte ne peuvent pas être utilisés dans les liens.",
+      "undo": "Annuler l’action",
+      "redo": "Rétablir",
+      "blockStyle": "Design du bloc",
+      "blockBackground": "Fond du bloc",
+      "blockPadding": "Espacement du bloc",
+      "paddingNone": "Aucun",
+      "paddingSmall": "Petit",
+      "paddingMedium": "Moyen",
+      "paddingLarge": "Grand",
+      "clearBlockStyle": "Effacer le fond et l’espacement du bloc"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "Ce qui permet d’atteindre cet objectif"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Trouvez la formule qui vous convient",
+    "title": "Comparez les formules.",
+    "description": "Comparez les formules actuelles pour les nouveaux abonnements. Les abonnements existants peuvent conserver une version antérieure.",
+    "caption": "Comparatif des fonctionnalités des formules actuelles",
+    "feature": "Fonctionnalité ou quota",
+    "scrollLabel": "Comparatif des formules — faites défiler horizontalement pour toutes les voir",
+    "shared": "Chaque formule comprend les cours, les listes d’attente, les bons cadeaux, un site de réservation à vos couleurs, un espace client et les imports CSV.",
+    "trialNote": "L’essai de 14 jours inclut les fonctionnalités Professional. Les codes d’accès, les domaines personnalisés et les outils d’IA avancés ci-dessus nécessitent Space Plus ou une formule Enterprise convenue avec vous.",
+    "usageNote": "Les e-mails système essentiels ne sont pas décomptés du quota. Les outils d’IA activés partagent les crédits disponibles ; leur utilisation est suspendue une fois le quota atteint, sans frais supplémentaires automatiques. Les outils disponibles dépendent aussi des réglages de l’atelier et des droits de l’équipe.",
+    "accessNote": "Les codes d’accès fonctionnent avec votre propre système d’accès et les codes ajoutés à Shario. Le matériel et les intégrations de serrures connectées ne sont pas inclus.",
+    "enterpriseTitle": "Besoin d’une solution sur mesure ?",
+    "enterpriseDescription": "Discutons des capacités Enterprise, des intégrations, de la migration et de l’assistance. Nous confirmerons le périmètre et les conditions pour votre atelier avant votre choix.",
+    "enterpriseCta": "Discuter d’Enterprise",
+    "rows": {
+      "locations": "Sites de l’atelier",
+      "teamAccounts": "Comptes d’équipe",
+      "openStudioMemberships": "Atelier libre, abonnements et packs de crédits",
+      "inventoryTasks": "Stocks et tâches de l’équipe",
+      "automations": "Automatisations personnalisées actives",
+      "emails": "E-mails inclus par mois",
+      "studioAssistant": "Assistant de l’atelier",
+      "aiCredits": "Crédits IA par mois",
+      "briefingKnowledge": "Synthèses quotidiennes et base de connaissances",
+      "advancedAi": "Business Advisor, assistant client et analyses de rapports par l’IA",
+      "accessCodes": "Gestion et envoi des codes d’accès",
+      "customDomain": "Domaine personnalisé"
+    },
+    "values": {
+      "included": "Inclus",
+      "notIncluded": "Non inclus",
+      "basic": "Basique",
+      "full": "Complet",
+      "limited": "Limité",
+      "advanced": "Avancé"
+    }
+  },
+  "RefundReviews": {
+    "title": "Vérification des remboursements",
+    "description": "Vérifiez les remboursements enregistrés depuis Stripe et documentez la décision concernant les avantages associés du client.",
+    "benefitsNotice": "L’enregistrement ou la confirmation d’un remboursement n’annule pas une réservation ou un abonnement, ne retire pas de crédits et n’effectue aucun autre paiement. Vérifiez séparément les avantages concernés avant d’enregistrer votre décision.",
+    "allLocationsRequired": "La vérification des remboursements nécessite un accès aux paiements de tous les sites du studio.",
+    "refresh": "Actualiser",
+    "loading": "Chargement des vérifications de remboursements…",
+    "empty": "Aucune vérification en attente sur cette page.",
+    "loadError": "Impossible de charger les vérifications. Actualisez pour réessayer.",
+    "needsReview": "Vérification des avantages requise",
+    "needsRepair": "Le rapprochement du paiement nécessite une intervention",
+    "reference": "Référence de la vérification",
+    "order": "Commande",
+    "membership": "Abonnement",
+    "paid": "Paiement initial",
+    "refunded": "Remboursé",
+    "pending": "Remboursement en attente",
+    "failed": "Échec du remboursement",
+    "repairNotice": "Ce paiement n’est pas entièrement rapproché. Actualisez ou contactez l’assistance pour corriger l’association du paiement avant d’enregistrer une vérification.",
+    "readOnly": "Un membre de l’équipe autorisé à gérer les remboursements peut enregistrer la vérification.",
+    "review": "Enregistrer la vérification",
+    "note": "Décision ou ajustements effectués (10–2000 caractères)",
+    "evidence": "Justificatif ou référence à l’appui de la décision (10–2000 caractères)",
+    "confirm": "J’ai vérifié les avantages concernés et documenté les ajustements ou ma décision de les conserver.",
+    "save": "Confirmer la vérification",
+    "cancel": "Annuler",
+    "saved": "Vérification enregistrée. Cette action n’a pas modifié les avantages du client.",
+    "changed": "Ce remboursement a changé ou son rapprochement est toujours en cours. La liste a été actualisée ; vérifiez les informations actuelles avant de soumettre à nouveau.",
+    "saveError": "Impossible d’enregistrer la vérification. Vos notes sont conservées ; réessayez.",
+    "permissionError": "Vous n’avez plus l’autorisation d’enregistrer cette vérification. Demandez l’aide d’un membre de l’équipe ayant accès aux remboursements de tous les sites.",
+    "pagination": "Pages de vérification des remboursements",
+    "firstPage": "Première page",
+    "nextPage": "Page suivante"
+  },
+  "PaymentRefundResult": {
+    "title": "Le studio doit vérifier le paiement",
+    "description": "Un remboursement a été enregistré ou ce paiement nécessite une vérification. Cette page ne confirme aucune nouvelle réservation, aucun solde de crédits ni aucun avantage d’adhésion.",
+    "next": "Contactez le studio en indiquant la référence ci-dessous avant d’effectuer un nouveau paiement.",
+    "reference": "Référence",
+    "back": "Retour au studio",
+    "refresh": "Vérifier le statut"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Les beaux espaces nous rassemblent",
@@ -5849,7 +6138,8 @@
       "about": "Comment ça marche",
       "login": "Se connecter",
       "register": "Commencer l’essai gratuit",
-      "copyright": "© {year} Shario. Tous droits réservés."
+      "copyright": "© {year} Shario. Tous droits réservés.",
+      "contact": "Contact"
     }
   },
   "Waitlists": {
@@ -6801,6 +7091,22 @@
       "label": "Vue des personnes"
     },
     "filters": {
+      "spending": "Dépenses ({currency})",
+      "spendMin": "Dépenses minimales",
+      "spendMax": "Dépenses maximales",
+      "spendFrom": "Date de paiement du",
+      "spendTo": "Date de paiement au",
+      "spendingHint": "Paiements effectués pendant cette période, déduction faite des remboursements enregistrés.",
+      "spendingDatesHint": "Laissez les dates vides pour inclure tout l’historique.",
+      "credits": "Crédits actuels ({currency})",
+      "creditMin": "Crédits minimums",
+      "creditMax": "Crédits maximums",
+      "creditsHint": "Solde actuel des crédits, indépendant des dates de paiement.",
+      "spendingUnavailable": "Les filtres de dépenses nécessitent l’accès à tous les documents financiers.",
+      "applyFinancial": "Appliquer les filtres financiers",
+      "financialDraftHint": "Les modifications prennent effet après application des filtres.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Tout l’historique",
       "membership": "Abonnement",
       "button": "Filtres",
       "allStatuses": "Tous les statuts",
@@ -6814,6 +7120,7 @@
       "clear": "Effacer"
     },
     "columns": {
+      "periodSpent": "Dépenses sur la période",
       "customer": "Client",
       "contact": "Contact",
       "membership": "Abonnement",
@@ -6830,6 +7137,7 @@
       "access": "Accès"
     },
     "actions": {
+      "exporting": "Export en cours…",
       "addCustomer": "Ajouter un client",
       "openCustomerActions": "Ouvrir les actions pour {name}",
       "openStaffActions": "Ouvrir les actions pour {name}",
@@ -6875,6 +7183,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Dépenses sur la période",
       "email": "Adresse e-mail",
       "membership": "Abonnement",
       "credits": "Crédits",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Abonnements actifs",
       "credits": "Crédits clients",
       "newThisMonth": "Nouveaux ce mois-ci",
-      "monthlyChange": "+{count} ce mois-ci"
+      "monthlyChange": "+{count} ce mois-ci",
+      "unavailable": "Données indisponibles"
     },
     "counts": {
       "customers": "{count, plural, one {# client} other {# clients}}",
@@ -6992,6 +7302,13 @@
       "view": "Voir les analyses clients"
     },
     "errors": {
+      "summary": "Les totaux clients et les filtres d’abonnement n’ont pas pu être chargés. Réessayez.",
+      "export": "L’export complet des clients n’a pas pu être téléchargé. Aucun fichier n’a été enregistré. Réessayez.",
+      "invalidAmount": "Saisissez un montant valide.",
+      "invalidDate": "Saisissez une date valide.",
+      "spendingRange": "Les dépenses minimales ne peuvent pas dépasser les dépenses maximales.",
+      "creditRange": "Les crédits minimums ne peuvent pas dépasser les crédits maximums.",
+      "dateRange": "La date de début ne peut pas être postérieure à la date de fin.",
       "customers": "Impossible de charger les clients. Veuillez réessayer.",
       "staff": "Impossible de charger les membres de l’équipe. Veuillez réessayer."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Notifications dans l’application",
           "description": "Afficher les notifications de l’espace de travail dans Shario."
+        },
+        "bookingCreated": {
+          "label": "Réservation créée",
+          "description": "Lorsqu’une réservation pertinente est créée. Désactivé par défaut."
         }
       },
       "channelsTitle": "Canaux d’envoi"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "Impossible de créer une nouvelle conversation.",
       "message": "L’assistant de l’espace n’a pas pu répondre pour le moment."
+    },
+    "guided": {
+      "title": "Que souhaitez-vous savoir ?",
+      "description": "Choisissez une question pour obtenir une réponse claire basée sur les données de votre studio.",
+      "back": "Choisir une autre question",
+      "retry": "Réessayer",
+      "loading": "Vérification des données de votre studio…",
+      "noAnswer": "Nous n’avons pas trouvé de réponse fiable. Réessayez dans un instant.",
+      "contextQuestion": "Que dois-je savoir à ce sujet ?",
+      "contextHint": "Une réponse sur l’élément sélectionné.",
+      "allStudios": "Tous les studios",
+      "periods": {
+        "today": "Aujourd’hui",
+        "last30Days": "30 derniers jours",
+        "current": "Aperçu actuel"
+      },
+      "report": {
+        "title": "Vous souhaitez un aperçu plus détaillé ?",
+        "description": "Rapport mensuel du studio sélectionné, du début du mois jusqu’au {date}.",
+        "generate": "Générer le rapport mensuel",
+        "open": "Ouvrir le rapport mensuel",
+        "back": "Retour à la réponse",
+        "ready": "Votre rapport mensuel est prêt."
+      },
+      "questions": {
+        "today": {
+          "label": "Comment se passe la journée au studio ?",
+          "hint": "Un aperçu rapide des activités du jour.",
+          "prompt": "Que se passe-t-il au studio aujourd’hui ?"
+        },
+        "bookings": {
+          "label": "Combien de réservations avons-nous aujourd’hui ?",
+          "hint": "Les réservations confirmées du jour.",
+          "prompt": "Combien de réservations avons-nous aujourd’hui ?"
+        },
+        "bookingTrend": {
+          "label": "Nos réservations augmentent-elles ?",
+          "hint": "Comparez les 30 derniers jours aux 30 précédents.",
+          "prompt": "Comment évoluent nos réservations ?"
+        },
+        "teamBlockers": {
+          "label": "Quelque chose bloque-t-il l’équipe ?",
+          "hint": "Consultez les blocages signalés aujourd’hui par l’équipe.",
+          "prompt": "Qu’est-ce qui bloque notre équipe aujourd’hui ?"
+        },
+        "reorders": {
+          "label": "Que faut-il réapprovisionner ?",
+          "hint": "Vérifiez les demandes de réapprovisionnement en cours.",
+          "prompt": "Y a-t-il des demandes de réapprovisionnement en cours ?"
+        },
+        "generalHelp": {
+          "label": "Quelles données du studio puis-je consulter ?",
+          "hint": "Voyez les informations disponibles pour votre rôle.",
+          "prompt": "À quelles données du studio as-tu accès ?"
+        }
+      },
+      "selectedStudio": "Studio sélectionné"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "Meilleur mois terminé",
+      "completedMonths": "Seuls les mois entiers terminés avec des données fiables sont comparés.",
+      "noBestMonth": "Aucun meilleur mois fiable dans cette période. Incluez des mois entiers terminés.",
+      "showYear": "Afficher cette année",
+      "monthRanking": "Paiements par mois",
+      "month": "Mois",
+      "coverage": "Couverture des données",
+      "completeMonth": "Mois complet",
+      "partialMonth": "Mois partiel",
+      "moneyBasis": "Paiements réellement reçus pendant la période, déduction faite des remboursements enregistrés à la date du rapport. Adhésions, bons et recharges payés comptent une fois ; leur utilisation ne constitue pas un nouveau paiement. Il ne s’agit pas du bénéfice.",
+      "asOf": "Au",
+      "customerTable": "Analyse des clients",
+      "customerHelp": "Combinez les filtres pour trouver les clients à recontacter.",
+      "inactiveCredit": "Inactifs depuis 90 jours avec du crédit :",
+      "showCustomers": "Afficher les clients",
+      "spending": "Paiements reçus",
+      "credits": "Crédit actuel",
+      "cancellations": "Réservations annulées",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "actor": "Annulée par",
+      "actor_all": "Tous",
+      "actor_customer": "Client",
+      "actor_staff": "Personnel",
+      "inactiveDays": "Inactif depuis au moins (jours)",
+      "dateDefaults": "Les dates vides utilisent la période du rapport ci-dessus.",
+      "cancellationCoverage": "Les anciennes annulations peuvent manquer de date ou d’auteur fiable. Un nombre avec + est un minimum connu ; inconnu ne signifie pas zéro. Un filtre maximum exige un historique complet.",
+      "invalidBounds": "Saisissez des nombres et dates valides ; le minimum ne doit pas dépasser le maximum.",
+      "apply": "Appliquer les filtres",
+      "clear": "Effacer les filtres",
+      "exportCustomers": "Exporter tous les clients correspondants",
+      "noCustomers": "Aucun client ne correspond aux filtres.",
+      "customer": "Client",
+      "lastActivity": "Dernière activité",
+      "locationScope": "Les totaux du lieu excluent les paiements sans attribution fiable. Adhésions, bons et recharges peuvent être inclus uniquement dans la vue globale.",
+      "incompleteData": "Certaines sources sont incomplètes ou indisponibles. Seuls les enregistrements vérifiables sont inclus ; une valeur manquante n’est pas zéro.",
+      "paymentSources": "Sources des paiements",
+      "source_external_payment": "Paiements des commandes",
+      "source_voucher": "Achats de bons",
+      "source_membership": "Paiements des adhésions",
+      "source": "Source",
+      "noPaymentSources": "Aucune donnée sur les sources des paiements n’est disponible."
+    },
     "actions": {
       "retry": "Réessayer",
       "export": "Exporter en CSV",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Réservations",
-      "netSales": "Ventes nettes",
+      "netSales": "Paiements reçus",
       "utilizationPercent": "Taux d’utilisation",
       "returningCustomerPercent": "Clients récurrents"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Réservations",
-        "netSales": "Ventes nettes"
+        "netSales": "Paiements reçus"
       },
       "trendTitle": "Évolution des performances",
       "trendDescription": "Valeurs vérifiées sur la période de rapport sélectionnée.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Quantité",
         "currency": "Devise",
-        "orders": "Commandes",
+        "orders": "Paiements",
         "amount": "Montant",
-        "net": "Ventes nettes",
+        "net": "Paiements reçus",
         "gross": "Ventes brutes",
         "method": "Méthode",
         "product": "Article du catalogue"
       },
       "metrics": {
-        "orders": "Commandes",
-        "net": "Ventes nettes",
+        "orders": "Paiements",
+        "net": "Paiements reçus",
         "gross": "Ventes brutes",
         "tax": "Taxe / TVA",
         "discounts": "Réductions",
         "refunds": "Remboursements",
         "paymentFees": "Frais du prestataire de paiement",
-        "averageOrder": "Valeur moyenne des commandes"
+        "averageOrder": "Paiement moyen"
       },
       "unavailable": "Les données de ventes sont indisponibles",
       "unavailableDescription": "Ce compte ou ce périmètre de rapport ne dispose d’aucune source de ventes disponible.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Réservations",
-        "participants": "Participants",
+        "participants": "Places réservées",
         "utilization": "Taux d’utilisation",
         "cancellations": "Annulations",
         "noShows": "Absences non signalées",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Nouveaux clients",
-        "returning": "Clients récurrents",
-        "unique": "Clients actifs",
+        "new": "Nouveaux clients payants",
+        "returning": "Clients payants récurrents",
+        "unique": "Clients payants",
         "returningRate": "Taux de retour des clients",
-        "averageSpend": "Dépense moyenne"
+        "averageSpend": "Dépense payée moyenne"
       },
       "unavailable": "Les données clients sont indisponibles",
       "unavailableDescription": "Ce compte ou ce périmètre de rapport ne dispose d’aucune source de clients disponible.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "L’accès aux portes n’est pas inclus dans ce forfait",
       "description": "Consultez les forfaits ou renseignez-vous sur l’accès aux portes auprès d’un propriétaire de l’espace de travail."
+    },
+    "emailTemplate": {
+      "title": "E-mail de code de porte",
+      "description": "Créez ou modifiez l’e-mail automatique contenant le code de porte pour ce site. Chaque site possède un modèle, partagé avec Messages → Modèles d’e-mails.",
+      "create": "Créer un modèle",
+      "createFor": "Créer un modèle de code de porte pour {location}",
+      "locationUnavailable": "Aucun modèle d’e-mail de code de porte n’est disponible pour ce site."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "ALL_PRODUCTS": "Tous les produits",
     "AUTHOR_SEARCH": "Rechercher un client",
     "SEARCH_BY_NAME_OR_ID": "Rechercher par nom ou identifiant",
-    "PASS_RULES": "Utilisez au moins 8 caractères, dont un chiffre."
+    "PASS_RULES": "Utilisez au moins 8 caractères, dont un chiffre.",
+    "USER_EMAIL_CHANGE_WARNING": "Modifier l’e-mail déconnecte ce client de toutes ses sessions et l’oblige à vérifier la nouvelle adresse.",
+    "USER_EMAIL_VERIFICATION_SENT": "E-mail mis à jour. Les sessions existantes ont été fermées et un lien de vérification a été envoyé à la nouvelle adresse.",
+    "USER_EMAIL_VERIFICATION_RETRY": "E-mail mis à jour et sessions existantes fermées. L’envoi de l’e-mail de vérification n’a pas pu être confirmé. Le client peut demander un nouveau lien sur la page de vérification de l’e-mail du studio.",
+    "USER_EMAIL_UPDATE_FAILED": "Le client n’a pas pu être mis à jour. Vérifiez l’e-mail et réessayez."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "La couverture des données n’est pas encore suffisante pour une recommandation fiable.",
       "message042": "Commencez par les opportunités les plus prioritaires",
       "message043": "Quelques opportunités méritent d’être examinées",
-      "message044": "Le conseiller a trouvé {value1} recommandations fondées sur des données vérifiées de l’espace."
+      "message044": "Le conseiller a trouvé {value1} recommandations fondées sur des données vérifiées de l’espace.",
+      "message045": "Examiner la baisse des paiements reçus",
+      "message046": "Les paiements reçus après remboursements sont inférieurs de {value1} % à ceux de la période de comparaison.",
+      "message047": "Paiements reçus après remboursements"
     },
     "briefing": {
       "message011": "Tâches urgentes",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Paiement annulé",
-    "nextSteps": "Que faire ensuite",
-    "retry": "Réessayez : une deuxième tentative suffit parfois.",
-    "card": "Si vous avez utilisé Apple Pay ou Google Pay, essayez de payer par carte.",
-    "contact": "Si le problème persiste, écrivez-nous et nous vous aiderons.",
     "home": "Retour à l’accueil",
-    "chargeNotice": "Aucun montant n’est débité tant que le paiement n’est pas terminé."
+    "title": "Retour du paiement",
+    "description": "Revenir de la page de paiement n’annule pas une réservation. Vous pouvez vérifier son statut dans vos réservations.",
+    "creditsHint": "Pour payer avec des crédits, ouvrez votre réservation non payée et annulez-la d’abord. Sélectionnez ensuite à nouveau le créneau. Si cette option n’est pas disponible, contactez le studio.",
+    "backToBookings": "Retour aux réservations"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Aperçu du studio",
+    "todayNumbers": "Chiffres du jour du studio",
+    "todayBookings": "Réservations",
+    "selectedDate": "Le jour sélectionné",
+    "expectedVisitors": "Visiteurs attendus",
+    "bookedParticipants": "Participants aux réservations prévues",
+    "expectedNow": "Au studio en ce moment (estimation)",
+    "expectedNowBasis": "Personnes ayant une réservation en cours ; la présence n’est pas confirmée",
+    "nextSession": "Prochaine réservation",
+    "noUpcomingSession": "Aucune réservation à venir",
+    "attentionTitle": "Requiert votre attention",
+    "review": "Examiner",
+    "generateReport": "Générer un rapport IA",
+    "generating": "Préparation du rapport…",
+    "reportPermission": "Les rapports IA nécessitent l’accès à l’assistant du studio.",
+    "reportError": "Le rapport n’a pas pu être généré. Veuillez réessayer.",
+    "operationsError": "Les données quotidiennes du studio n’ont pas pu être chargées.",
+    "managementError": "Les données mensuelles du studio n’ont pas pu être chargées.",
+    "retry": "Réessayer",
+    "loadingPerformance": "Chargement des performances du studio…",
+    "performanceEyebrow": "Performances du studio",
+    "monthTitle": "Ce mois-ci jusqu’à présent",
+    "comparison": "Par rapport à {period}",
+    "comparedWithPrevious": "par rapport à la période précédente",
+    "unavailable": "Données indisponibles",
+    "revenue": "Chiffre d’affaires réalisé",
+    "revenueBasis": "Prestations fournies et produits livrés pendant la période",
+    "revenueUnavailable": "Le chiffre d’affaires réalisé total n’est pas encore disponible : les justificatifs de prestation ne couvrent pas tous les services et produits. Les encaissements sont présentés séparément.",
+    "confirmedRevenue": "Prestations terminées confirmées : {amount}.",
+    "visits": "Participants aux réservations passées",
+    "visitsBasis": "Participants aux réservations passées ; la présence n’est pas vérifiée",
+    "newClients": "Nouveaux clients ayant réservé",
+    "newClientsBasis": "Première réservation enregistrée dans les studios sélectionnés ; pas nécessairement nouveaux pour toute l’entreprise",
+    "last30Days": "30 derniers jours",
+    "arrivalTitle": "Quand les clients arrivent",
+    "scheduledArrivalTitle": "Quand les visites sont prévues",
+    "hourlyAttendance": "Participants par heure de début",
+    "hourCount": "{hour}:00 — {count} participants",
+    "busiestHour": "Heure prévue la plus chargée : {from}:00–{to}:00",
+    "recordedBusiestHour": "Heure d’arrivée la plus chargée : {from}:00–{to}:00",
+    "recordedSample": "Sur la base de {count} arrivées enregistrées",
+    "scheduledSample": "Sur la base de {count} participants prévus",
+    "scheduledCaveat": "Les heures de début des réservations reflètent le planning actuel. Des heures creuses ne prouvent pas à elles seules une demande pour de nouvelles séances.",
+    "noAttendance": "Pas encore assez d’activité pour dégager une tendance.",
+    "other": "Autre",
+    "topClients": "Top 5 des clients",
+    "rankingBy": "Classer les clients par",
+    "clientVisitsBasis": "Participants aux réservations passées de cette période",
+    "clientRevenueBasis": "Chiffre d’affaires des prestations terminées confirmées de cette période",
+    "unnamedClient": "Client sans nom",
+    "noClients": "Aucun client enregistré pour cette période.",
+    "confirmedOnly": "Prestations terminées confirmées uniquement ; les autres justificatifs ne sont pas disponibles.",
+    "topProducts": "Top 3 des produits",
+    "byQuantity": "Par quantité",
+    "deliveredProductsBasis": "Prestations terminées confirmées, classées par quantité",
+    "noProducts": "Aucun produit terminé enregistré pour cette période.",
+    "unnamedProduct": "Produit sans nom",
+    "units": "unités",
+    "coverageTitle": "Couverture et limites des données",
+    "coverageDescription": "Les données indisponibles restent indisponibles. L’activité prévue et les prestations confirmées sont identifiées séparément.",
+    "openReports": "Ouvrir les rapports détaillés",
+    "back": "Retour au tableau de bord",
+    "reportTitle": "Rapport du studio",
+    "exporting": "Préparation du PDF…",
+    "exportPdf": "Exporter en PDF",
+    "exportError": "Le PDF n’a pas pu être téléchargé. Veuillez réessayer.",
+    "aiReport": "Rapport IA du studio",
+    "verifiedReport": "Rapport des données du studio",
+    "deterministicNote": "Les commentaires de l’IA ne sont pas disponibles. Ce rapport contient les chiffres enregistrés du studio et un résumé factuel.",
+    "reportHighlights": "Points clés",
+    "reportAttention": "Requiert votre attention",
+    "reportRecommendations": "Prochaines étapes suggérées",
+    "generatedAt": "Généré le {date}",
+    "issues": {
+      "overdueTasks": "{count} tâches en retard",
+      "lowStock": "{count} articles en stock faible",
+      "failedEmails": "{count} e-mails en échec",
+      "overduePayments": "{count} paiements en retard",
+      "overdueOrders": "{count} commandes sur mesure en retard",
+      "other": "{count} éléments à examiner",
+      "failed_emails": "{count} e-mails en échec",
+      "overdue_custom_orders": "{count} commandes sur mesure en retard",
+      "overdue_invoices": "{count} paiements en retard"
+    },
+    "staleData": "La dernière actualisation a échoué. Les données chargées précédemment sont affichées.",
+    "refreshingData": "Actualisation des données du studio…",
+    "coverageReportDetails": "Générez un rapport du studio pour voir les sources disponibles et les limites de chaque indicateur.",
+    "dismissAttention": "Masquer la carte d’alerte",
+    "showAttention": "Afficher les alertes ({count})",
+    "customerId": "ID client {id}",
+    "spentMonth": "Dépensé au cours du mois sélectionné",
+    "spentTotal": "Total dépensé",
+    "clientSpendingBasis": "Paiements des clients après remboursements enregistrés dans tous les studios. Mois : {period} ; total jusqu’à la date sélectionnée.",
+    "spendingUnavailable": "Les données de dépenses ne sont pas disponibles pour cette vue.",
+    "previousValue": "Période précédente : {value}",
+    "revenueUnavailableShort": "Indisponible — les justificatifs de prestation sont incomplets.",
+    "totalCustomers": "Total des clients",
+    "workspaceCustomersScope": "Inscrits dans tous les studios",
+    "newRegisteredThisMonth": "Nouveaux ce mois-ci",
+    "activeCustomers": "Clients actifs",
+    "activeCustomersBasis": "Ont réservé au cours des 30 derniers jours",
+    "selectedStudiosScope": "Studios sélectionnés",
+    "workspaceScope": "Tous les studios",
+    "activeSubscribers": "Abonnés actifs",
+    "newSubscribersThisMonth": "Nouveaux abonnés ce mois-ci",
+    "subscriberBasis": "Chaque personne une seule fois. Nouveau signifie un premier abonnement ; les renouvellements sont exclus.",
+    "missingMetric": "— Données indisponibles",
+    "asOfDate": "Au {date}",
+    "subscriberSelectedScope": "Abonnements valables dans les studios sélectionnés",
+    "recordedPayments": "Paiements enregistrés",
+    "recordedPaymentsBasis": "Paiements reçus au cours du mois sélectionné, déduction faite des remboursements enregistrés",
+    "paymentsUnavailable": "Données de paiement indisponibles.",
+    "spending": "Montant dépensé",
+    "clientPaymentsBasis": "Classés selon les paiements clients enregistrés au cours du mois sélectionné, déduction faite des remboursements, dans tous les studios",
+    "noCustomerPayments": "Aucun paiement client vérifié pour cette période.",
+    "spendingIncomplete": "Certains totaux sont indisponibles car l’historique des paiements est incomplet.",
+    "paymentRankingIncomplete": "Le classement utilise les montants de paiement vérifiés ; des enregistrements incomplets peuvent influencer l’ordre.",
+    "byPurchases": "Par achats",
+    "purchasedProductsBasis": "Commandes payées contenant chaque produit · 30 derniers jours : {period}",
+    "noPurchasedProducts": "Aucun achat de produit payé vérifié au cours des 30 derniers jours.",
+    "purchases": "achats",
+    "purchasesIncomplete": "Certains achats ne peuvent pas être vérifiés ; ce classement peut être incomplet.",
+    "knownAmount": "Montant connu",
+    "knownPaymentsOnly": "Paiements connus uniquement ; certains enregistrements de paiement sont incomplets."
+  },
+  "UnifiedSettings": {
+    "title": "Paramètres",
+    "description": "Vos préférences et les paramètres du studio réunis au même endroit.",
+    "navigation": "Sections des paramètres",
+    "studioTitle": "Studio",
+    "personalTitle": "Mes paramètres",
+    "studioScope": "Pour tout le studio",
+    "personalScope": "Uniquement pour vous",
+    "studioDescription": "Paramètres partagés de ce studio. Vous ne voyez que les sections auxquelles vous avez accès.",
+    "personalDescription": "Gérez votre compte et votre façon de travailler dans ce studio. Ces préférences ne modifient pas les paramètres des autres membres de l’équipe.",
+    "personalProfileScope": "Votre profil et votre mot de passe s’appliquent à votre compte dans tous les studios.",
+    "personalPreferencesScope": "Ces préférences s’appliquent uniquement à vous dans ce studio.",
+    "locationScope": "Uniquement le site {name}",
+    "newLocationScope": "Paramètres du nouveau site",
+    "backTo": "Retour à {section}",
+    "searchLabel": "Rechercher dans les paramètres",
+    "searchStudio": "Rechercher dans les paramètres du studio…",
+    "searchPersonal": "Rechercher dans mes paramètres…",
+    "clearSearch": "Effacer la recherche",
+    "searchResults": "{count, plural, one {# paramètre trouvé} other {# paramètres trouvés}}",
+    "advancedTitle": "Paramètres avancés",
+    "advancedDescription": "Fonctionnalités activées, navigation et importations de données.",
+    "emptyTitle": "Aucun paramètre correspondant",
+    "emptyDescription": "Essayez un autre terme ou effacez la recherche pour voir tous les paramètres disponibles dans cette section.",
+    "setupTitle": "Terminez la configuration de votre studio",
+    "setupProgress": "{completed} étapes obligatoires sur {total} terminées.",
+    "setupAction": "Poursuivre la configuration",
+    "groups": {
+      "workspace": {
+        "title": "Studio et sites",
+        "description": "Informations du studio, langue commune, devise et sites."
+      },
+      "access": {
+        "title": "Équipe et accès",
+        "description": "Membres de l’équipe, rôles et accès aux portes."
+      },
+      "website": {
+        "title": "Site web et image de marque",
+        "description": "Site public, pages de réservation et identité visuelle."
+      },
+      "payments": {
+        "title": "Paiements des clients",
+        "description": "Moyens de paiement et paramètres des paiements clients."
+      },
+      "communications": {
+        "title": "Messages et automatisation",
+        "description": "Envoi des e-mails, expéditeurs et assistance IA."
+      },
+      "account": {
+        "title": "Abonnement Shario",
+        "description": "Formule, factures et informations de facturation de votre studio."
+      },
+      "advanced": {
+        "title": "Fonctionnalités et données",
+        "description": "Configurez les modules et importez des données dans votre studio."
+      },
+      "profile": {
+        "title": "Profil et sécurité",
+        "description": "Votre nom, vos coordonnées et votre mot de passe pour tous les studios."
+      },
+      "preferences": {
+        "title": "Mon environnement de travail",
+        "description": "Votre calendrier, votre fuseau horaire et votre site par défaut dans ce studio."
+      },
+      "notifications": {
+        "title": "Mes notifications",
+        "description": "Choisissez les mises à jour que vous recevez dans ce studio."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Informations du studio",
+        "description": "Nom, langue, fuseau horaire et devise."
+      },
+      "locations": {
+        "title": "Sites",
+        "description": "Adresses, salles et horaires d’ouverture."
+      },
+      "team": {
+        "title": "Membres de l’équipe",
+        "description": "Invitez des personnes et gérez les membres de l’équipe."
+      },
+      "roles": {
+        "title": "Rôles et autorisations",
+        "description": "Qui peut accéder à chaque partie du studio."
+      },
+      "accessCodes": {
+        "title": "Accès aux portes",
+        "description": "Codes de porte et droits d’entrée."
+      },
+      "publicSite": {
+        "title": "Site web et pages de réservation",
+        "description": "Image de marque, pages publiques et expérience client."
+      },
+      "payments": {
+        "title": "Moyens de paiement",
+        "description": "Paiements en ligne et connexion Stripe."
+      },
+      "invoicing": {
+        "title": "Facturation des clients",
+        "description": "Factures et facturation des clients."
+      },
+      "communications": {
+        "title": "E-mail et expéditeurs",
+        "description": "Envoi, domaines d’envoi et paramètres des messages."
+      },
+      "ai": {
+        "title": "Assistant IA",
+        "description": "Fonctionnalités IA et paramètres d’automatisation."
+      },
+      "billing": {
+        "title": "Formule et facturation",
+        "description": "Abonnement Shario, factures et informations de facturation."
+      },
+      "modules": {
+        "title": "Fonctionnalités et navigation",
+        "description": "Activez des modules et choisissez les éléments de navigation."
+      },
+      "migration": {
+        "title": "Importer des données",
+        "description": "Importez des clients, des réservations et d’autres données du studio."
+      },
+      "profile": {
+        "title": "Modifier le profil et le mot de passe",
+        "description": "Votre nom, vos coordonnées et votre mot de passe pour tous les studios."
+      },
+      "preferences": {
+        "title": "Calendrier et affichage",
+        "description": "Votre calendrier, votre fuseau horaire et votre site par défaut dans ce studio."
+      },
+      "notifications": {
+        "title": "Préférences de notification",
+        "description": "Alertes de réservations, de tâches et de stock ; mises à jour par e-mail et dans l’application."
+      }
+    },
+    "language": {
+      "label": "Langue de l’application",
+      "change": "Changer de langue",
+      "sharedScope": "Partagée par toute l’équipe du studio.",
+      "managedByAdmin": "L’administrateur de votre studio gère cette langue."
+    },
+    "plan": {
+      "label": "Formule actuelle",
+      "details": "Détails de la formule",
+      "loading": "Chargement de la formule…",
+      "unavailable": "Formule indisponible",
+      "detailsUnavailable": "Les détails de la formule sont temporairement indisponibles."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "Shario ne prélève aucune commission sur les transactions. Les frais de traitement Stripe pour les paiements des clients sont distincts de votre abonnement. Les prix s’entendent hors taxes applicables.",
+    "feeLink": "Frais de paiement, essai et résiliation en détail",
+    "links": {
+      "stripePricing": "Consulter les tarifs Stripe pour votre pays",
+      "refundContact": "Poser une question sur le remboursement d’un abonnement",
+      "studioAi": "Découvrir Shario AI",
+      "refundTerms": "Lire les Conditions complètes et les exceptions de remboursement"
+    },
+    "faq": {
+      "title": "Avant de choisir une formule",
+      "description": "Sachez ce que vous payez, quand les changements prennent effet et ce qui se passe après votre essai.",
+      "trial": {
+        "question": "Que se passe-t-il à la fin de mon essai ?",
+        "answer": "Votre essai Professional de 14 jours commence lorsque vous terminez l’intégration. Aucune carte n’est requise. Sans abonnement payant actif, les nouvelles réservations, les achats en ligne et les fonctionnalités de l’espace de travail sont suspendus à la fin de l’essai. L’historique des réservations des clients et la régularisation de la facturation restent disponibles ; la fin de l’essai ne supprime pas les données du studio. La souscription d’une formule est indisponible pendant les 48 dernières heures de l’essai afin d’éviter un prélèvement anticipé. Vous pouvez vous abonner après la fin de l’essai."
+      },
+      "cancellation": {
+        "question": "Quand la résiliation prend-elle effet ?",
+        "answer": "La résiliation d’un abonnement payant arrête son prochain renouvellement. Vous conservez l’accès jusqu’à la fin de votre période de facturation payée en cours et pouvez annuler la résiliation d’ici là. La résiliation d’un essai sans carte met fin à cet essai immédiatement. Une fois l’accès terminé, les nouvelles réservations, les achats en ligne et les fonctionnalités de l’espace de travail sont restreints. Un accès restreint n’est pas un espace de travail complet en lecture seule : les rapports généraux et les exports peuvent être indisponibles. Exportez les données nécessaires avant la fin de l’accès ou contactez hello@shario.io pour la restitution ou la suppression des données. Les données ne sont pas supprimées automatiquement à l’expiration, mais une conservation illimitée n’est pas garantie."
+      },
+      "refunds": {
+        "question": "La résiliation rembourse-t-elle automatiquement le temps non utilisé ?",
+        "answer": "La résiliation d’un abonnement annuel ou mensuel arrête son prochain renouvellement ; l’accès payant éligible se poursuit jusqu’à la fin de la période en cours. La résiliation volontaire, le temps non utilisé et les quotas non utilisés ne sont pas remboursables, sauf en vertu de dispositions légales impératives, d’un accord écrit exprès ou des recours prévus par nos Conditions. Si Shario met fin au service payant de manière anticipée par convenance, ou si vous résiliez en raison d’un manquement substantiel de notre part non corrigé 30 jours après notification écrite, nous remboursons la part prépayée non utilisée à compter de la date effective de résiliation. Nous remboursons également la part prépayée non utilisée si vous résiliez parce qu’une modification défavorable des conditions devrait prendre effet pendant une période déjà prépayée. Si nous ne pouvons pas répondre à une objection justifiée en matière de protection des données concernant un sous-traitant nouveau ou de remplacement par une alternative raisonnable, vous pouvez mettre fin au service concerné et recevoir sa part prépayée non utilisée. La résiliation en elle-même ne déclenche aucun remboursement automatique. Contactez-nous pour demander le recours applicable."
+      },
+      "planChanges": {
+        "question": "Quand les changements de formule vers le haut ou vers le bas prennent-ils effet ?",
+        "answer": "Pour les abonnements payants, le passage à une formule supérieure prend effet immédiatement dès que le paiement éventuellement requis est effectué, avec une facture au prorata. Le passage à une formule inférieure prend effet à la fin de la période de facturation en cours. Pour une même formule, le passage d’une facturation mensuelle à annuelle est immédiat dès que le paiement requis est effectué, et le passage d’annuelle à mensuelle commence à la période suivante. Vérifiez la date d’effet et l’aperçu de facturation avant de confirmer."
+      },
+      "payments": {
+        "question": "Les frais de paiement des clients sont-ils inclus ?",
+        "answer": "Les paiements en ligne des clients sont traités via votre compte Stripe connecté. Shario ne prélève aucune commission sur les transactions. Les frais de traitement Stripe sont distincts de votre abonnement Shario et dépendent de votre pays, du moyen de paiement et de votre contrat Stripe. L’abonnement de votre studio est facturé séparément des paiements effectués par vos clients."
+      }
+    },
+    "definitions": {
+      "title": "Signification des fonctionnalités des formules",
+      "automations": {
+        "question": "Qu’est-ce qu’une automatisation active ?",
+        "answer": "Une automatisation active est une règle personnalisée activée pour s’exécuter : par exemple, programmer l’envoi des instructions d’accès au studio un jour après l’inscription d’un client. La limite compte les règles activées, pas les brouillons enregistrés ni la fréquence d’exécution. Starter n’inclut aucune règle personnalisée ; Professional en autorise 3. Space Plus utilise le même éditeur basé sur les événements et autorise plus de 3 règles actives, avec 5 000 e-mails décomptés par mois. Chaque règle compte dans la limite d’automatisations et ses e-mails décomptés comptent dans le quota d’e-mails. Les e-mails système standard sont distincts."
+      },
+      "studioAi": {
+        "question": "Quels outils Shario AI ai-je ?",
+        "answer": "Professional offre 2 000 crédits IA par mois et inclut l’assistant du studio, les synthèses quotidiennes et le centre de connaissances. Space Plus offre 10 000 crédits et ajoute Business Advisor, le concierge client et les analyses IA des rapports. Les outils dépendent de la configuration de votre studio et des autorisations de l’équipe ; les actions prises en charge nécessitent une confirmation."
+      },
+      "aiCredits": {
+        "question": "Un crédit IA correspond-il à une question ?",
+        "answer": "Les crédits IA mesurent le texte traité et généré, et non un nombre fixe de questions. Par exemple, une opération courte utilisant 750 tokens (fragments de texte) consomme 1 crédit ; une opération de 2 500 tokens avec un budget suffisant en consomme 3. Une question peut impliquer plusieurs opérations, et les recherches dans la base de connaissances ou l’indexation de documents peuvent augmenter la consommation. Ce sont des exemples, et non des coûts garantis par question. Les crédits sont partagés chaque mois entre les outils activés. Une requête nécessite suffisamment de crédits restants pour s’exécuter ; il n’y a pas de frais de dépassement automatiques."
+      },
+      "emails": {
+        "question": "Que se passe-t-il lorsque le quota d’e-mails est épuisé ?",
+        "answer": "Le quota mensuel couvre les e-mails d’automatisation décomptés. Une fois épuisé, l’e-mail d’automatisation concerné est ignoré ; il n’est pas reporté automatiquement au mois suivant. Les e-mails essentiels du compte et les messages opérationnels intégrés pris en charge ne comptent pas dans ce quota. Qualifier votre propre automatisation de transactionnelle ne l’en exempte pas. Consultez l’utilisation de l’espace de travail et changez de formule ou contactez-nous si vous avez besoin de plus de capacité."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Vous souhaitez changer de mode de paiement ?",
+    "explanation": "Votre réservation non payée peut encore retenir votre place. Pour payer avec des crédits au lieu d’une carte, ou pour recommencer, annulez-la d’abord. Ce bouton annule toutes les réservations non payées de ce paiement.",
+    "action": "Annuler les réservations non payées",
+    "busy": "Vérification du paiement et annulation de la réservation…",
+    "cancelled": "Les réservations non payées de ce paiement sont annulées. Revenez à votre panier ou sélectionnez à nouveau le créneau, puis choisissez les crédits du studio. La disponibilité et le prix seront vérifiés à nouveau.",
+    "paid": "Le paiement a déjà été effectué. Votre réservation n’a pas été annulée. Vérifiez son statut.",
+    "pending": "Le paiement est encore en cours de vérification. Rien n’a été annulé. Vérifiez le statut du paiement avant d’effectuer une autre réservation pour le même créneau.",
+    "unsupported": "Ce paiement ne peut pas être annulé ici. Ouvrez vos réservations ou contactez le studio.",
+    "missing": "Cette commande est introuvable. Ouvrez vos réservations ou contactez le studio.",
+    "error": "L’annulation n’a pas pu être confirmée. Veuillez réessayer. Contactez le studio si le problème persiste.",
+    "status": "Vérifier le statut du paiement",
+    "bookAgain": "Sélectionner à nouveau un créneau"
   }
 }

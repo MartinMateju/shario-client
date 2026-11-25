@@ -1,0 +1,243 @@
+/* Customer pages share the studio's palette and selected typography. */
+[data-tenant-style] [data-customer-portal-page] {
+  background-image: none;
+}
+
+[data-tenant-style] [data-customer-portal-page-header] {
+  --tenant-heading-color: var(--tenant-feature-foreground);
+  --tenant-page-heading-color: var(--tenant-feature-foreground);
+  --tenant-label-color: var(--tenant-feature-foreground);
+  --tenant-muted-text: var(--tenant-feature-muted);
+  --tenant-text-muted: var(--tenant-feature-muted);
+  --tenant-text: var(--tenant-feature-foreground);
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  padding: clamp(1.5rem, 3.5vw, 3.25rem);
+  border: 0;
+  border-radius: 0;
+  background: var(--tenant-feature-background);
+  color: var(--tenant-feature-foreground);
+  box-shadow: none;
+}
+
+[data-tenant-style]
+  [data-customer-portal-page-header]:not(
+    [data-customer-portal-page-header="compact"]
+  ) {
+  min-height: 15rem;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+[data-tenant-style] [data-customer-portal-page-header]::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 auto;
+  width: min(35%, 24rem);
+  height: 100%;
+  border-radius: inherit;
+  background: repeating-radial-gradient(
+    circle at calc(100% + 6rem) 30%,
+    transparent 0 2.9rem,
+    color-mix(in srgb, var(--tenant-feature-foreground) 18%, transparent)
+      2.95rem 3rem,
+    transparent 3.05rem 6rem
+  );
+  pointer-events: none;
+  content: "";
+}
+
+[data-tenant-style] [data-customer-portal-page-header] > * {
+  position: relative;
+  min-width: 0;
+}
+
+[data-tenant-style]
+  [data-customer-portal-page-header]
+  :where(h1, h2)[data-tenant-type="display"] {
+  max-width: 22ch;
+  margin-top: 0.85rem;
+  font-size: clamp(2.25rem, 4.2vw, 4rem);
+  color: var(--tenant-heading-color);
+  line-height: 1.04;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+[data-tenant-style]
+  [data-customer-portal-page-header]
+  [data-tenant-type="eyebrow"] {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+[data-tenant-style]
+  [data-customer-portal-page-header]
+  [data-tenant-type="eyebrow"]::before {
+  width: 1.5rem;
+  height: 0.2rem;
+  flex: 0 0 auto;
+  background: currentColor;
+  content: "";
+}
+
+[data-tenant-style] [data-customer-portal-page-header] :where(h1, h2) + p {
+  max-width: 62ch;
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* Fields and information panels retain their own contrast-safe surfaces. */
+[data-tenant-style]
+  [data-customer-portal-page-header]
+  :is(
+    [data-tenant-surface="card"],
+    [data-tenant-surface="panel"],
+    [data-tenant-surface="field"]
+  ) {
+  --tenant-heading-color: var(--tenant-heading-on-surface);
+  --tenant-page-heading-color: var(--tenant-heading-on-surface);
+  --tenant-text: var(--tenant-text-on-surface);
+  --tenant-muted-text: var(--tenant-muted-on-surface);
+  --tenant-text-muted: var(--tenant-muted-on-surface);
+  --tenant-label-color: var(--tenant-accent-on-surface);
+  background-color: var(--tenant-surface);
+  color: var(--tenant-text-on-surface);
+}
+
+[data-tenant-style]
+  [data-customer-portal-header-actions]
+  :is(.tenant-button-primary, [data-tenant-button="primary"]) {
+  --tenant-portal-button: var(--tenant-feature-foreground);
+  --tenant-portal-button-foreground: var(--tenant-feature-background);
+  --tenant-accent: var(--tenant-feature-foreground);
+  --tenant-accent-foreground: var(--tenant-feature-background);
+  --tenant-action-focus: var(--tenant-feature-foreground);
+  --tenant-action-focus-offset: var(--tenant-feature-background);
+  box-shadow: none;
+}
+
+[data-tenant-style] [data-customer-portal-page-header="compact"] {
+  min-height: auto;
+  padding: clamp(1.25rem, 2.25vw, 2rem);
+}
+
+[data-tenant-style]
+  [data-customer-portal-page-header="compact"]
+  :where(h1, h2)[data-tenant-type="display"] {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+[data-tenant-style]
+  [data-customer-portal-page-header][data-customer-portal-hero] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+[data-tenant-style] [data-customer-portal-hero-copy] {
+  display: flex;
+  min-width: 0;
+  min-height: 15rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 3vw, 3rem);
+}
+
+[data-tenant-style]
+  [data-customer-portal-hero-layout="text"]
+  [data-customer-portal-hero-copy] {
+  width: 100%;
+  max-width: 1480px;
+  margin-inline: auto;
+}
+
+[data-tenant-style] [data-customer-portal-hero-media] {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+[data-tenant-style] [data-customer-portal-hero-media] img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+[data-tenant-style]
+  [data-customer-portal-hero-copy]
+  [data-customer-portal-header-actions] {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+@media (min-width: 900px) {
+  [data-tenant-style]
+    [data-customer-portal-page-header][data-customer-portal-hero-layout="split"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  [data-tenant-style] [data-customer-portal-hero-layout="split"]::after {
+    display: none;
+  }
+
+  [data-tenant-style] [data-customer-portal-hero-media] {
+    min-height: 24rem;
+    aspect-ratio: auto;
+  }
+}
+
+[data-tenant-style] [data-customer-portal-page] [data-customer-portal-surface] {
+  background-color: var(--tenant-surface);
+}
+
+[data-tenant-style]
+  [data-customer-portal-page]
+  [data-customer-portal-empty-state] {
+  border-style: dashed;
+  box-shadow: none;
+}
+
+@media (max-width: 639px) {
+  [data-tenant-style] [data-customer-portal-page-header] {
+    padding: 1.5rem 1.25rem;
+  }
+
+  [data-tenant-style]
+    [data-customer-portal-page-header]:not(
+      [data-customer-portal-page-header="compact"]
+    ) {
+    min-height: auto;
+  }
+
+  [data-tenant-style] [data-customer-portal-page-header]::after {
+    width: 30%;
+  }
+
+  [data-tenant-style]
+    [data-customer-portal-page-header][data-customer-portal-hero] {
+    padding: 0;
+  }
+
+  [data-tenant-style] [data-customer-portal-page-header] :where(h1, h2) + p {
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  [data-tenant-style] [data-customer-portal-header-actions] > * {
+    flex: 1 1 auto;
+  }
+}

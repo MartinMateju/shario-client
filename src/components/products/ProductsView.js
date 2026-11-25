@@ -97,17 +97,17 @@ function LegacyProductsPanel({
   if (!products.length) return null;
 
   return (
-    <section className="rounded-[20px] border border-amber-200 bg-amber-50/60 p-4 sm:p-5">
+    <section className="rounded-[20px] border border-line bg-white p-4 sm:p-5">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 className="text-[14px] font-semibold text-amber-950">
+          <h2 className="text-[14px] font-semibold text-ink">
             {t(`${messageKey}.title`)}
           </h2>
-          <p className="mt-1 max-w-2xl text-[11px] leading-5 text-amber-900/75">
+          <p className="mt-1 max-w-2xl text-[13px] leading-5 text-ink-muted">
             {t(`${messageKey}.description`)}
           </p>
         </div>
-        <span className="shrink-0 rounded-full border border-amber-200 bg-white px-3 py-1 text-[10px] font-semibold text-amber-900">
+        <span className="shrink-0 rounded-full border border-warning/35 bg-warning-soft px-3 py-1 text-[12px] font-semibold text-warning">
           {t(`${messageKey}.count`, { count: products.length })}
         </span>
       </div>
@@ -959,11 +959,11 @@ export default function ProductsView({
               />
 
               {unassignedStudioProducts.length > 0 && (
-                <section className="rounded-[20px] border border-amber-200 bg-amber-50 p-5">
-                  <h2 className="font-semibold">
+                <section className="rounded-[20px] border border-line bg-white p-5">
+                  <h2 className="font-semibold text-warning">
                     {t("locationAssignment.title")}
                   </h2>
-                  <p className="mb-4 mt-1 text-sm">
+                  <p className="mb-4 mt-1 text-sm text-ink-muted">
                     {t("locationAssignment.description")}
                   </p>
                   <ProductCatalog

@@ -47,8 +47,8 @@ vi.mock("react-redux", () => ({
 }));
 
 vi.mock("@/i18n/navigation", () => ({
-  Link: ({ children, href, ...props }) => (
-    <a href={href} {...props}>
+  Link: ({ children, href, prefetch, ...props }) => (
+    <a href={href} data-prefetch={String(prefetch)} {...props}>
       {children}
     </a>
   ),
@@ -71,6 +71,11 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
   usePublicTenant: () => mocks.context,
 }));
 
+vi.mock("@/lib/features/knowledge/knowledgeApiSlice", () => ({
+  useGetPublicKnowledgeQuery: () => ({ data: [] }),
+}));
+
+import PublicTenantHighlights from "@/components/public-tenant/PublicTenantHighlights";
 import PublicTenantHomePage from "@/components/public-tenant/PublicTenantHomePage";
 import PublicTenantHomeSections from "@/components/public-tenant/PublicTenantHomeSections";
 import PublicTenantHeroMedia from "@/components/public-tenant/PublicTenantHeroMedia";
@@ -173,6 +178,18 @@ describe("public tenant home page", () => {
     expect(screen.queryByText("Memberships")).not.toBeInTheDocument();
   });
 
+  it("does not prefetch the homepage course catalogue or individual course highlights", () => {
+    mocks.courses.mockReturnValue({
+      ...emptyQuery(),
+      data: [{ id: "class-1", kind: "class", name: "Wheel throwing class" }],
+    });
+    render(<PublicTenantHighlights />);
+    expect(screen.getAllByRole("link")).toHaveLength(2);
+    for (const link of screen.getAllByRole("link")) {
+      expect(link).toHaveAttribute("data-prefetch", "false");
+    }
+  });
+
   it("renders the production hero and curated destinations", () => {
     const { container } = render(<PublicTenantHomePage />);
 
@@ -197,6 +214,61 @@ describe("public tenant home page", () => {
     expect(
       container.querySelector('[data-public-tenant-service="memberships"]'),
     ).toHaveAttribute("href", "/memberships");
+  });
+
+  it("uses custom navigation labels and exact destinations in homepage cards", () => {
+    mocks.context.navigation = [
+      {
+        key: "custom-commissions",
+        custom: true,
+        label: "Commissions",
+        href: "https://www.commonground.example/en/commissions/",
+      },
+      {
+        key: "custom-courses",
+        custom: true,
+        label: "Courses",
+        href: "/en/courses?location=vaclavska",
+      },
+    ];
+
+    render(<PublicTenantHomeSections />);
+
+    const commissions = screen.getByRole("link", {
+      name: "Commissions Explore",
+    });
+    expect(commissions).toHaveAttribute(
+      "href",
+      "https://www.commonground.example/en/commissions/",
+    );
+    const courses = screen.getByRole("link", { name: "Courses Explore" });
+    expect(courses).toHaveAttribute("href", "/en/courses?location=vaclavska");
+    expect(commissions).not.toHaveAttribute("data-prefetch");
+    expect(courses).not.toHaveAttribute("data-prefetch");
+    expect(screen.queryByText("custom-commissions")).toBeNull();
+  });
+
+  it("flattens grouped navigation into child destination cards", () => {
+    mocks.context.navigation = [
+      {
+        key: "custom-studios",
+        custom: true,
+        label: "Studios",
+        children: [
+          {
+            key: "custom-group:studios:grohova",
+            custom: true,
+            label: "Grohova",
+            href: "https://www.example.com/en/grohova/",
+          },
+        ],
+      },
+    ];
+    render(<PublicTenantHomeSections />);
+    expect(
+      screen.getByRole("link", { name: "Grohova Explore" }),
+    ).toHaveAttribute("href", "https://www.example.com/en/grohova/");
+    expect(screen.queryByRole("link", { name: "Studios Explore" })).toBeNull();
   });
 
   it("opens the customer calendar directly for a signed-in customer of this studio", () => {
@@ -529,6 +601,9 @@ describe("public tenant home page", () => {
       "href",
       "/help",
     );
+    for (const link of screen.getAllByRole("link")) {
+      expect(link).toHaveAttribute("data-prefetch", "false");
+    }
   });
 
   it("hides empty sections and skips offer queries when all their pages are hidden", () => {

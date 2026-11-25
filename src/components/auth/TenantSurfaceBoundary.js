@@ -17,6 +17,7 @@ import {
   selectIsSessionReadyForContext,
   selectIsWorkspaceAuthenticated,
 } from "@/lib/features/auth/authSlice";
+import WorkspaceBrowserIcon from "./WorkspaceBrowserIcon";
 import { useGetCurrentTenantOnboardingQuery } from "@/lib/features/tenants/tenantApiSlice";
 import {
   buildInternalAdminUrl,
@@ -293,5 +294,16 @@ export default function TenantSurfaceBoundary({ children, surface }) {
     return <LoadingState label={t("redirecting")} surface={surface} />;
   }
 
-  return children;
+  if (!isWorkspaceSurface) return children;
+  const favicon = currentTenant?.publicSite?.branding?.faviconUrl || "";
+  return (
+    <>
+      <WorkspaceBrowserIcon
+        key={`${authenticatedTenantSlug}:${favicon}`}
+        tenantSlug={authenticatedTenantSlug}
+        initialFavicon={favicon}
+      />
+      {children}
+    </>
+  );
 }

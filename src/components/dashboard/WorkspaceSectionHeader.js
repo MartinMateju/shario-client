@@ -23,15 +23,15 @@ export default function WorkspaceSectionHeader({
       {showTitle ? (
         <div>
           {eyebrow ? (
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-terracotta-600">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-terracotta-600">
               {eyebrow}
             </p>
           ) : null}
-          <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[34px]">
+          <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-ink sm:text-[34px]">
             {title}
           </h1>
           {description ? (
-            <p className="mt-2 max-w-2xl text-[12px] leading-6 text-[#777773]">
+            <p className="mt-2 max-w-2xl text-[14px] leading-6 text-ink-muted">
               {description}
             </p>
           ) : null}

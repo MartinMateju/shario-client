@@ -14,12 +14,13 @@ const NotificationButton = memo(function NotificationButton({
   tenantThemed = false,
   href = "/portal/notifications",
 }) {
-  const t = useTranslations("Dashboard.routeTitles");
+  // Public headers only receive public client namespaces.
+  const t = useTranslations("CustomerNotifications.page");
 
   return (
     <Link
       href={href}
-      aria-label={t("notifications")}
+      aria-label={t("title")}
       data-header-action="notifications"
       className={classNames(
         "group relative inline-flex h-11 w-11 items-center justify-center rounded-full",

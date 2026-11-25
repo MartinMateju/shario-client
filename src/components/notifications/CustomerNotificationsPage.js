@@ -143,6 +143,7 @@ export default function CustomerNotificationsPage() {
       data-customer-notifications-page
     >
       <CustomerPortalPageHeader
+        pageKey="notifications"
         eyebrow={t("page.eyebrow")}
         title={t("page.title")}
         description={t("page.description")}

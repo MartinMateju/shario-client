@@ -635,7 +635,7 @@ function DailyUpdateForm({
                 needsOwnerAttention: event.target.checked,
               }))
             }
-            className="h-4 w-4 rounded border-line-strong text-coral-600 focus:ring-coral-500"
+            className="h-4 w-4 rounded border-line-strong text-cobalt-500 focus:ring-cobalt-500"
           />
           {t("today.form.needsAttention")}
         </label>
@@ -778,7 +778,7 @@ function StaffDailyOverview({ staff, canManage, t }) {
                 </div>
               ) : null}
               {update?.blockers ? (
-                <div className="mt-3 rounded-[14px] bg-warning-soft p-3">
+                <div className="mt-3 border-t border-line pt-3">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-warning">
                     {t("today.team.blockers")}
                   </p>
@@ -794,7 +794,7 @@ function StaffDailyOverview({ staff, canManage, t }) {
                       type="button"
                       disabled={attentionState.isLoading}
                       onClick={() => handleAttention(update.id, "acknowledged")}
-                      className="min-h-10 rounded-full border border-warning/30 px-3 text-[12px] font-semibold text-warning disabled:opacity-50"
+                      className="min-h-10 rounded-full border border-cobalt-200 px-3 text-[12px] font-semibold text-cobalt-700 transition hover:bg-cobalt-50 disabled:opacity-50"
                     >
                       {t("today.team.acknowledge")}
                     </button>
@@ -803,7 +803,7 @@ function StaffDailyOverview({ staff, canManage, t }) {
                     type="button"
                     disabled={attentionState.isLoading}
                     onClick={() => handleAttention(update.id, "resolved")}
-                    className="min-h-10 rounded-full bg-success px-3 text-[12px] font-semibold text-white disabled:opacity-50"
+                    className="min-h-10 rounded-full bg-cobalt-500 px-3 text-[12px] font-semibold text-white transition hover:bg-cobalt-600 disabled:opacity-50"
                   >
                     {t("today.team.resolve")}
                   </button>
@@ -2219,7 +2219,7 @@ function TaskBoard({
                     </div>
                     {["blocked", "waiting"].includes(task.status) &&
                     task.blockerReason ? (
-                      <p className="mt-3 rounded-[12px] bg-warning-soft p-2.5 text-[12px] leading-5 text-warning">
+                      <p className="mt-3 border-t border-line pt-2.5 text-[13px] leading-5 text-warning">
                         {task.blockerReason}
                       </p>
                     ) : null}

@@ -100,10 +100,18 @@ test("ongoing bookings stay visible through Today, history toggles and paginatio
       requests.push(body);
       // Match the API: intersect dates, end > now and studio before counting
       // and paginating, so an already-started booking can remain visible.
-      const from = body.dateFrom ? Date.parse(body.dateFrom) : -Infinity;
-      const to = body.dateTo
-        ? new Date(body.dateTo).setHours(23, 59, 59, 999)
-        : Infinity;
+      const from =
+        body.dateScope === "today"
+          ? Date.parse("2026-07-30T00:00:00+02:00")
+          : body.dateFrom
+            ? Date.parse(body.dateFrom)
+            : -Infinity;
+      const to =
+        body.dateScope === "today"
+          ? Date.parse("2026-07-30T23:59:59.999+02:00")
+          : body.dateTo
+            ? new Date(body.dateTo).setHours(23, 59, 59, 999)
+            : Infinity;
       const filtered = bookings
         .filter(
           (booking) =>
@@ -208,8 +216,7 @@ test("ongoing bookings stay visible through Today, history toggles and paginatio
     1,
   );
   expect(requests.at(-1)).toMatchObject({
-    dateFrom: "2026-07-30",
-    dateTo: "2026-07-30",
+    dateScope: "today",
     endAfter: cutoff,
     page: 1,
   });
@@ -230,6 +237,7 @@ test("ongoing bookings stay visible through Today, history toggles and paginatio
   expect(requests.at(-1)).toMatchObject({ page: 1 });
   expect(requests.at(-1)).not.toHaveProperty("dateFrom");
   expect(requests.at(-1)).not.toHaveProperty("dateTo");
+  expect(requests.at(-1)).not.toHaveProperty("dateScope");
   await next.click();
   await expect(rows).toHaveCount(10);
   await expect(footer).toContainText("Zobrazeno 11–20 z 20 rezervací");
@@ -250,7 +258,17 @@ test("ongoing bookings stay visible through Today, history toggles and paginatio
   await expect(
     table.getByText("Dnešní dokončená rezervace", { exact: true }),
   ).toHaveCount(0);
-  expect(requests.at(-1)).toMatchObject({ endAfter: cutoff, page: 1 });
+  // Returning to the original view can reuse its fresh page-one cache. The
+  // displayed rows/counts above prove the cached cutoff is still respected.
+  expect(
+    requests.filter(
+      (request) =>
+        request.page === 1 &&
+        request.endAfter === cutoff &&
+        !request.dateFrom &&
+        !request.dateScope,
+    ),
+  ).toHaveLength(1);
   expect([...unexpectedRequests]).toEqual([]);
   expect(pageErrors).toEqual([]);
 

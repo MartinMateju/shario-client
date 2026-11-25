@@ -97,11 +97,18 @@ export const getAvatarUrl = (item) =>
   item?.avatarUrl || item?.avatar || item?.image || item?.photo || null;
 
 export const getCustomerMembership = (customer) => {
-  const membership =
-    customer?.activeMembership ||
-    customer?.currentMembership ||
-    customer?.membership ||
-    customer?.membershipPlan;
+  if (customer?.membershipAvailable === false)
+    return { key: "unknown", label: "—" };
+  // A canonical null is an authoritative absence, not permission to revive
+  // an obsolete membership snapshot from legacy customer fields.
+  const membership = Object.prototype.hasOwnProperty.call(
+    customer || {},
+    "activeMembership",
+  )
+    ? customer.activeMembership
+    : customer?.currentMembership ||
+      customer?.membership ||
+      customer?.membershipPlan;
 
   if (!membership) return { key: "none", label: "" };
 
@@ -136,22 +143,28 @@ const toFiniteNumber = (value) => {
 export const getMembershipTone = (membershipKey) => {
   const key = String(membershipKey || "").toLowerCase();
 
-  if (key === "none") return "bg-[#F0EFEC] text-[#696863]";
+  if (key === "none" || key === "unknown")
+    return "border-line bg-surface-muted text-ink-soft";
   if (key.includes("studio") || key.includes("pass")) {
-    return "bg-[#FFF0EA] text-[#D65338]";
+    return "border-terracotta-600/30 bg-coral-50 text-terracotta-700";
   }
   if (key.includes("clay") || key.includes("club")) {
-    return "bg-[#FBF2DA] text-[#80621C]";
+    return "border-warning/40 bg-warning-soft text-warning";
   }
   if (key.includes("hour") || key.includes("pack") || key.includes("credit")) {
-    return "bg-skab-cobalt-100 text-primary-text";
+    return "border-cobalt-200 bg-cobalt-50 text-cobalt-700";
   }
 
-  return "bg-[#EAF1E5] text-[#536342]";
+  return "border-success/40 bg-success-soft text-success";
 };
 
-export const getCustomerCredits = (customer) =>
-  toFiniteNumber(
+export const getCustomerCredits = (customer) => {
+  if (
+    Object.hasOwn(customer || {}, "moneyCredits") &&
+    customer.moneyCredits === null
+  )
+    return null;
+  return toFiniteNumber(
     customer?.moneyCredits ??
       customer?.creditBalance ??
       customer?.creditsBalance ??
@@ -160,6 +173,7 @@ export const getCustomerCredits = (customer) =>
       customer?.balance ??
       0,
   );
+};
 
 export const getCustomerTotalSpent = (customer) => {
   const value =
@@ -279,9 +293,9 @@ export const getStaffStatus = (staff) => {
 
 export const getStatusTone = (status) => {
   const tones = {
-    active: "bg-[#E8F0E3] text-[#4C6040]",
-    invited: "bg-skab-cobalt-100 text-primary-text",
-    inactive: "bg-[#EFEEEB] text-[#686762]",
+    active: "border-success/40 bg-success-soft text-success",
+    invited: "border-cobalt-200 bg-cobalt-50 text-cobalt-700",
+    inactive: "border-line bg-surface-muted text-ink-soft",
   };
 
   return tones[status] || tones.inactive;
@@ -300,7 +314,20 @@ export const formatMoney = (
   return formatMajorCurrencyAmount(amount, normalizedCurrency, locale);
 };
 
-export const formatCustomerTotalSpent = (customer, locale = "en") => {
+export const formatCustomerTotalSpent = (
+  customer,
+  locale = "en",
+  period = false,
+) => {
+  if (period) {
+    return formatCustomerTotalSpent(
+      {
+        totalSpentByCurrency: customer?.periodSpentByCurrency ?? null,
+        totalSpentCurrency: customer?.periodSpentCurrency ?? null,
+      },
+      locale,
+    );
+  }
   if (Object.hasOwn(customer || {}, "totalSpentByCurrency")) {
     const totals = customer.totalSpentByCurrency;
     // Null means the API could not expose an authoritative total. Do not
@@ -375,28 +402,35 @@ const isThisMonth = (value) => {
   );
 };
 
-export const buildPeopleSummary = ({ usersData, customers }) => {
+export const buildPeopleSummary = ({
+  usersData,
+  customers,
+  directorySummary,
+}) => {
   const sourceSummary = usersData?.summary || usersData?.meta?.summary || {};
 
   const calculated = customers.reduce(
     (summary, customer) => {
-      const membership = getCustomerMembership(customer);
       summary.credits += getCustomerCredits(customer);
-      if (membership.key !== "none") summary.activeMemberships += 1;
       if (isThisMonth(customer?.createdAt || customer?.registeredAt)) {
         summary.newThisMonth += 1;
       }
       if (getCustomerStatus(customer) !== "active") summary.needsAttention += 1;
       return summary;
     },
-    { credits: 0, activeMemberships: 0, newThisMonth: 0, needsAttention: 0 },
+    { credits: 0, newThisMonth: 0, needsAttention: 0 },
   );
 
   return {
     totalCustomers:
       sourceSummary.totalCustomers ?? usersData?.totalCount ?? customers.length,
+    // The directory list can be filtered or paginated and does not prove the
+    // number of active subscribers. Only the authoritative summary can do so.
     activeMemberships:
-      sourceSummary.activeMemberships ?? calculated.activeMemberships,
+      Number.isSafeInteger(directorySummary?.activeMemberships) &&
+      directorySummary.activeMemberships >= 0
+        ? directorySummary.activeMemberships
+        : null,
     credits:
       sourceSummary.customerCredits ??
       sourceSummary.credits ??
@@ -456,7 +490,11 @@ export const buildMembershipOptions = (customers) => {
 
   customers.forEach((customer) => {
     const membership = getCustomerMembership(customer);
-    if (membership.key !== "none" && membership.label) {
+    if (
+      membership.key !== "none" &&
+      membership.key !== "unknown" &&
+      membership.label
+    ) {
       options.set(membership.key, membership.label);
     }
   });
@@ -492,7 +530,13 @@ const downloadCsv = (rows, fileName) => {
   URL.revokeObjectURL(url);
 };
 
-export const exportCustomersToCsv = ({ customers, locale, t }) => {
+export const exportCustomersToCsv = ({
+  customers,
+  locale,
+  t,
+  spendingPeriod = false,
+  currency = DEFAULT_STUDIO_COMMERCE_CURRENCY,
+}) => {
   const rows = [
     [
       t("exportColumns.name"),
@@ -502,7 +546,11 @@ export const exportCustomersToCsv = ({ customers, locale, t }) => {
       t("exportColumns.membership"),
       t("exportColumns.credits"),
       t("exportColumns.lastBooking"),
-      t("exportColumns.totalSpent"),
+      t(
+        spendingPeriod
+          ? "exportColumns.periodSpent"
+          : "exportColumns.totalSpent",
+      ),
       t("exportColumns.status"),
     ],
     ...customers.map((customer) => {
@@ -513,11 +561,11 @@ export const exportCustomersToCsv = ({ customers, locale, t }) => {
         customer?.email || "",
         customer?.phone || customer?.phoneNumber || "",
         membership.label || t("membership.none"),
-        formatMoney(getCustomerCredits(customer), locale),
+        formatMoney(getCustomerCredits(customer), locale, currency),
         formatRelativeDate(getCustomerLastBooking(customer), locale, t, {
           never: false,
         }),
-        formatCustomerTotalSpent(customer, locale),
+        formatCustomerTotalSpent(customer, locale, spendingPeriod),
         t(`status.${getCustomerStatus(customer)}`),
       ];
     }),

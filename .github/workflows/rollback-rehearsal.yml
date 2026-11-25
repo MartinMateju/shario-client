@@ -1,0 +1,133 @@
+name: Isolated rollback rehearsal
+
+on:
+  pull_request:
+    paths:
+      - scripts/rollback-rehearsal.mjs
+      - scripts/rollback-processes.mjs
+      - scripts/rollback-dependencies.mjs
+      - tests/rollback-processes.test.mjs
+      - tests/rollback-dependencies.test.mjs
+      - docs/rollback-rehearsal.md
+      - .github/workflows/rollback-rehearsal.yml
+      - package.json
+      - package-lock.json
+  workflow_dispatch:
+    inputs:
+      server_ref:
+        description: Candidate server commit to rehearse with this client
+        required: true
+        type: string
+      server_target:
+        description: Previous compatible server full commit SHA
+        required: true
+        default: 1b5e3a1f7c8277fd2f7e623b2fdffd91bda6528f
+        type: string
+      client_target:
+        description: Previous compatible client full commit SHA
+        required: true
+        default: d895b6dd3933db9b43ff787a8be5b8b7f2095422
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rollback-rehearsal-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  rehearsal:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      MONGOMS_DOWNLOAD_DIR: ${{ github.workspace }}/.cache/mongodb-binaries
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 127.0.0.1:6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      mailpit:
+        image: axllent/mailpit:v1.31.6
+        ports:
+          - 127.0.0.1:1025:1025
+          - 127.0.0.1:8025:8025
+        env:
+          MP_SMTP_AUTH: mail@shario-e2e.test:e2e-no-smtp
+          MP_SMTP_AUTH_ALLOW_INSECURE: "true"
+        options: >-
+          --health-cmd "/mailpit readyz"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: frontend
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: MartinMateju/shario-server
+          ref: ${{ inputs.server_ref || 'f90c33580a23f347f6f40e5de14a22ca949b65c5' }}
+          path: backend
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.client_target || 'd895b6dd3933db9b43ff787a8be5b8b7f2095422' }}
+          path: rollback-client-dependencies
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            backend/package-lock.json
+            rollback-client-dependencies/package-lock.json
+      - uses: actions/cache@v6
+        with:
+          path: .cache/mongodb-binaries
+          key: ${{ runner.os }}-rollback-mongodb-${{ hashFiles('backend/package-lock.json') }}
+      - name: Install dependencies
+        run: |
+          npm ci --prefix backend --no-audit --no-fund
+          npm ci --prefix frontend --no-audit --no-fund
+          npm ci --prefix rollback-client-dependencies --no-audit --no-fund
+      - name: Validate isolation boundary
+        run: node --test backend/tests/rollback/safety.test.mjs backend/tests/rollback/redis-isolation.test.mjs
+      - name: Validate rehearsal process supervision
+        run: node --test frontend/tests/rollback-processes.test.mjs frontend/tests/rollback-dependencies.test.mjs
+      - name: Switch all five real processes back to pinned versions
+        working-directory: frontend
+        env:
+          SERVER_TARGET: ${{ inputs.server_target || '1b5e3a1f7c8277fd2f7e623b2fdffd91bda6528f' }}
+          CLIENT_TARGET: ${{ inputs.client_target || 'd895b6dd3933db9b43ff787a8be5b8b7f2095422' }}
+        run: node scripts/rollback-rehearsal.mjs --server-target "$SERVER_TARGET" --client-target "$CLIENT_TARGET" --rollback-client-dependencies "$GITHUB_WORKSPACE/rollback-client-dependencies" --dedicated-redis isolated-rehearsal --output "$GITHUB_WORKSPACE/rollback-evidence"
+      - name: Upload local rehearsal evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: rollback-rehearsal-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            rollback-evidence/report.json
+            rollback-evidence/*.log
+            rollback-evidence/*-before.json
+            rollback-evidence/*-after.json
+            rollback-evidence/*history.json
+            rollback-evidence/verification.json
+            rollback-evidence/candidate-operations-health.json
+            rollback-evidence/stripe-actions.jsonl
+            rollback-evidence/stripe-checkout-requests.jsonl
+            rollback-evidence/refund-result.json
+            rollback-evidence/restored-customer-booking.json
+            rollback-evidence/blocked-network.jsonl
+          if-no-files-found: warn
+          retention-days: 14

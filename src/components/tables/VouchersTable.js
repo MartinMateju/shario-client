@@ -91,8 +91,8 @@ function FilterInput({
           ${icon ? "pl-11 pr-4" : "px-4"}
           py-3 text-sm text-black placeholder:text-black/35
           outline-none transition-all duration-200
-          focus:border-[var(--unnamed-color-b3a292)]
-          focus:ring-2 focus:ring-[var(--unnamed-color-b3a292)]/20
+          focus:border-cobalt-500
+          focus:ring-2 focus:ring-cobalt-500/20
         `}
       />
     </div>
@@ -107,8 +107,8 @@ function FilterSelect({ value, onChange, children }) {
       className="
         block w-full rounded-[18px] border border-black/10 bg-white px-4 py-3
         text-sm text-black outline-none transition-all duration-200
-        focus:border-[var(--unnamed-color-b3a292)]
-        focus:ring-2 focus:ring-[var(--unnamed-color-b3a292)]/20
+        focus:border-cobalt-500
+        focus:ring-2 focus:ring-cobalt-500/20
       "
     >
       {children}
@@ -299,8 +299,8 @@ export default function VouchersTable() {
                     border px-4 py-3 text-sm font-medium transition-all duration-200
                     ${
                       showFilters
-                        ? "border-[var(--unnamed-color-b3a292)] bg-[var(--unnamed-color-b3a292)]/10 text-[var(--unnamed-color-b3a292)]"
-                        : "border-black/10 bg-white text-black hover:border-[var(--unnamed-color-b3a292)] hover:text-[var(--unnamed-color-b3a292)]"
+                        ? "border-cobalt-500 bg-cobalt-50 text-cobalt-700"
+                        : "border-black/10 bg-white text-black hover:border-cobalt-500 hover:text-cobalt-700"
                     }
                   `}
                 >
@@ -312,9 +312,9 @@ export default function VouchersTable() {
                   disabled={isLoadingCouponOrders}
                   className="
                     inline-flex min-h-[48px] min-w-[130px] items-center justify-center rounded-[18px]
-                    bg-black px-6 py-3 text-sm font-medium text-white
+                    bg-cobalt-500 px-6 py-3 text-sm font-medium text-white
                     transition-all duration-200
-                    hover:bg-[var(--unnamed-color-b3a292)]
+                    hover:bg-cobalt-600
                     disabled:cursor-not-allowed disabled:opacity-60
                   "
                 >
@@ -423,7 +423,7 @@ export default function VouchersTable() {
                         inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[16px]
                         border border-black/10 bg-white px-4 py-2.5 text-sm font-medium text-black
                         transition-all duration-200
-                        hover:border-[var(--unnamed-color-b3a292)] hover:text-[var(--unnamed-color-b3a292)]
+                        hover:border-cobalt-500 hover:text-cobalt-700
                       "
                     >
                       <XMarkIcon className="h-4 w-4" />
@@ -479,7 +479,7 @@ export default function VouchersTable() {
                             {order.productNameSnapshot || "—"}
                           </p>
 
-                          <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-[var(--unnamed-color-b3a292)]">
+                          <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-cobalt-700">
                             #{getShortId(order._id)}
                           </p>
                         </div>
@@ -492,7 +492,7 @@ export default function VouchersTable() {
                               inline-flex shrink-0 items-center justify-center gap-1 rounded-[14px]
                               border border-black/10 bg-[#F7F5F2] px-3 py-2 text-xs font-medium text-black
                               transition-all duration-200
-                              hover:border-[var(--unnamed-color-b3a292)] hover:text-[var(--unnamed-color-b3a292)]
+                              hover:border-cobalt-500 hover:text-cobalt-700
                             "
                           >
                             <PencilIcon className="h-4 w-4" />
@@ -662,7 +662,7 @@ export default function VouchersTable() {
                               <button
                                 type="button"
                                 onClick={() => handleEditClick(order)}
-                                className="font-medium text-black transition-colors duration-200 hover:text-[var(--unnamed-color-b3a292)]"
+                                className="font-medium text-black transition-colors duration-200 hover:text-cobalt-700"
                               >
                                 {translation["EDIT"][language]}
                               </button>
@@ -709,7 +709,7 @@ export default function VouchersTable() {
                           inline-flex min-h-[42px] items-center justify-center rounded-[16px]
                           border border-black/10 bg-white px-3 text-sm font-medium text-black
                           transition-all duration-200
-                          hover:border-[var(--unnamed-color-b3a292)] hover:text-[var(--unnamed-color-b3a292)]
+                          hover:border-cobalt-500 hover:text-cobalt-700
                           disabled:cursor-not-allowed disabled:opacity-40
                         "
                       >
@@ -724,7 +724,7 @@ export default function VouchersTable() {
                           inline-flex min-h-[42px] items-center justify-center rounded-[16px]
                           border border-black/10 bg-white px-3 text-sm font-medium text-black
                           transition-all duration-200
-                          hover:border-[var(--unnamed-color-b3a292)] hover:text-[var(--unnamed-color-b3a292)]
+                          hover:border-cobalt-500 hover:text-cobalt-700
                           disabled:cursor-not-allowed disabled:opacity-40
                         "
                       >

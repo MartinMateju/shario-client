@@ -61,8 +61,10 @@ describe("customer portal overview", () => {
       "aria-labelledby",
       "customer-portal-greeting",
     );
-    expect(overview.style.backgroundColor).toBe("var(--tenant-background)");
-    expect(overview.style.color).toBe("var(--tenant-text)");
+    expect(overview.style.backgroundColor).toBe(
+      "var(--tenant-feature-background)",
+    );
+    expect(overview.style.color).toBe("var(--tenant-feature-foreground)");
     expect(overview).toHaveClass("pb-5", "pt-6", "sm:py-6");
     expect(
       overview.querySelector("[data-customer-portal-upcoming-layout]"),

@@ -1,5 +1,9 @@
 import { isPublicTenantPageVisible } from "@/components/public-tenant/publicTenant.config";
 import {
+  isMigratablePublicTenantPath,
+  normalizeTenantPublicOrigin,
+} from "@/utils/tenantPublicOrigin";
+import {
   isIndexableLocale,
   normalizeRolloutEligibleLocaleCode,
 } from "@/i18n/locales";
@@ -248,6 +252,51 @@ export const resolvePublicSeoSite = ({
   }
 
   return { kind: "unknown", origin: "", tenantSlug: "" };
+};
+
+/** Switch canonical URLs only once both the API and host routing agree. */
+export const getTenantPublicCanonicalOrigin = (tenant, site, options = {}) => {
+  if (site?.kind !== "tenant" || tenant?.slug !== site.tenantSlug) {
+    return site?.origin || "";
+  }
+  const origin = normalizeTenantPublicOrigin(tenant.publicOrigin);
+  if (!origin) return site.origin;
+  const canonicalSite = resolvePublicSeoSite({
+    ...options,
+    requestUrl: origin,
+    host: new URL(origin).host,
+    forwardedHost: "",
+  });
+  return canonicalSite.kind === "tenant" &&
+    canonicalSite.tenantSlug === site.tenantSlug
+    ? origin
+    : site.origin;
+};
+
+export const getPublicTenantOriginRedirect = ({
+  tenant,
+  site,
+  pathname,
+  search = "",
+  ...options
+}) => {
+  const origin = getTenantPublicCanonicalOrigin(tenant, site, options);
+  if (!origin || origin === site?.origin) return "";
+  const path = asString(pathname);
+  if (
+    !path.startsWith("/") ||
+    path.startsWith("//") ||
+    /[\\\u0000-\u001f\u007f]/.test(`${pathname || ""}${search}`)
+  )
+    return "";
+  const segments = path.split("/");
+  if (normalizeRolloutEligibleLocaleCode(segments[1])) segments.splice(1, 1);
+  const publicPath = segments.join("/") || "/";
+  // Never move private sessions, checkout callbacks, preview or token links.
+  if (!isMigratablePublicTenantPath(publicPath, search)) return "";
+  const target = new URL(path, origin);
+  target.search = search;
+  return target.origin === origin ? target.href : "";
 };
 
 export const getTenantPublicSeoPaths = (tenant) => {

@@ -69,6 +69,14 @@ export const normalizeOverview = (value) => {
     today: {
       available: today.available === true,
       schedule: Array.isArray(today.schedule) ? today.schedule : null,
+      ...(Object.hasOwn(today, "nextBooking")
+        ? {
+            nextBooking:
+              today.nextBooking && typeof today.nextBooking === "object"
+                ? today.nextBooking
+                : null,
+          }
+        : {}),
     },
     milestones: {
       firstCustomerBooking: {

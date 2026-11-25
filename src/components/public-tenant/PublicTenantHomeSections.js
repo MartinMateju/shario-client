@@ -42,6 +42,7 @@ import {
 import { getPublicProductRoute } from "./publicProductTaxonomy";
 import { usePublicTenant } from "./PublicTenantProvider";
 import { DEFAULT_STUDIO_COMMERCE_CURRENCY } from "@/config/currencies";
+import { flattenPublicSiteNavigation } from "./publicTenantCustomLinks";
 
 const NAV_ICONS = Object.freeze({
   book: CalendarDaysIcon,
@@ -96,7 +97,8 @@ function SectionHeading({ content, fallback, locale, sectionKey }) {
 }
 
 function WaysToVisitSection({ content, locale, navigation, copy, theme }) {
-  if (!navigation.length) return null;
+  const links = flattenPublicSiteNavigation(navigation);
+  if (!links.length) return null;
 
   return (
     <section
@@ -117,11 +119,13 @@ function WaysToVisitSection({ content, locale, navigation, copy, theme }) {
           sectionKey="waysToVisit"
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {navigation.map((item) => {
+          {links.map((item) => {
             const Icon = NAV_ICONS[item.key] || BookOpenIcon;
+            const ItemLink = item.custom ? "a" : Link;
 
             return (
-              <Link
+              <ItemLink
+                {...(item.custom ? {} : { prefetch: false })}
                 key={item.key}
                 href={item.href}
                 data-public-tenant-service={item.key}
@@ -139,7 +143,7 @@ function WaysToVisitSection({ content, locale, navigation, copy, theme }) {
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 text-lg font-semibold tracking-[-0.03em]">
-                  {copy.nav[item.key] || item.key}
+                  {item.custom ? item.label : copy.nav[item.key] || item.key}
                 </h3>
                 <span
                   className="mt-auto inline-flex items-center gap-2 pt-5 text-xs font-semibold"
@@ -148,7 +152,7 @@ function WaysToVisitSection({ content, locale, navigation, copy, theme }) {
                   {copy.explore}
                   <ArrowLongRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
-              </Link>
+              </ItemLink>
             );
           })}
         </div>
@@ -267,6 +271,7 @@ function FeaturedSection({
                   <p className="mt-5 text-lg font-semibold">{item.detail}</p>
                 ) : null}
                 <Link
+                  prefetch={false}
                   href={item.href}
                   className="mt-auto inline-flex min-h-11 items-center gap-2 pt-6 text-xs font-semibold text-[var(--tenant-accent-on-surface)]"
                 >
@@ -468,6 +473,7 @@ function FaqSection({ content, copy, locale, availablePages }) {
         <div className="mt-8 grid gap-3 md:grid-cols-3">
           {cards.map(({ label, key }) => (
             <Link
+              prefetch={false}
               key={label}
               href={PUBLIC_TENANT_NAV_DEFINITIONS[key].href}
               className="flex min-h-24 items-center justify-between gap-4 rounded-[20px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-5 text-sm font-semibold text-[var(--tenant-text-on-surface)]"

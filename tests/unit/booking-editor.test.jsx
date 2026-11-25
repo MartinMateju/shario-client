@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import en from "@/messages/en.json";
 import cs from "@/messages/cs.json";
 import BookingEditorPage, {
@@ -79,6 +79,10 @@ const save = () =>
   fireEvent.click(screen.getByRole("button", { name: "Save changes" }));
 
 describe("dedicated tenant booking editor", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.save.mockImplementation(() => ({
@@ -284,6 +288,88 @@ describe("dedicated tenant booking editor", () => {
       "orders",
     ])
       expect(payload).not.toHaveProperty(key);
+  });
+
+  it.each([
+    ["future", "2030-01-23"],
+    ["historical", "2030-01-20"],
+  ])(
+    "submits a historical interval for a %s booking when staff rescheduling is permitted",
+    async (_kind, originalDate) => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      vi.setSystemTime(new Date("2030-01-22T12:00:00.000Z"));
+      const value = editor();
+      value.booking.start = `${originalDate}T10:00:00.000Z`;
+      value.booking.end = `${originalDate}T11:00:00.000Z`;
+      value.capabilities.preserveDuration = true;
+      const saved = {
+        ...value,
+        revision: "2030-01-22T12:00:01.000Z",
+        booking: {
+          ...value.booking,
+          start: "2030-01-19T09:00:00.000Z",
+          end: "2030-01-19T10:00:00.000Z",
+        },
+      };
+      mocks.save.mockImplementationOnce(() => ({
+        unwrap: () => Promise.resolve(saved),
+      }));
+      mount(value);
+      const start = screen.getByLabelText("Start");
+      const end = screen.getByLabelText("End");
+      expect(start).toBeEnabled();
+      expect(end).toBeEnabled();
+      fireEvent.change(start, { target: { value: "2030-01-19T10:00" } });
+      fireEvent.change(end, { target: { value: "2030-01-19T11:00" } });
+      expect(start).toBeValid();
+      expect(end).toBeValid();
+      save();
+
+      expect(mocks.save).toHaveBeenCalledExactlyOnceWith({
+        id: value.booking.id,
+        revision: value.revision,
+        lecturer: "Pat",
+        note: "Existing note",
+        start: saved.booking.start,
+        end: saved.booking.end,
+      });
+      expect(Date.parse(saved.booking.end)).toBeLessThan(Date.now());
+      expect(await screen.findByRole("status")).toHaveTextContent(
+        "Booking saved.",
+      );
+      expect(start).toHaveValue("2030-01-19T10:00");
+      expect(end).toHaveValue("2030-01-19T11:00");
+      expect(screen.getByText("Paid")).toBeVisible();
+      expect(screen.getByLabelText("People attending")).toHaveValue("2");
+    },
+  );
+
+  it("retains a historical draft and shows a localized failure without claiming it was saved", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    vi.setSystemTime(new Date("2030-01-22T12:00:00.000Z"));
+    mocks.save.mockImplementationOnce(() => ({
+      unwrap: () =>
+        Promise.reject({
+          status: 403,
+          data: { message: "You do not have permission to update bookings." },
+        }),
+    }));
+    mount();
+    fireEvent.change(screen.getByLabelText("Start"), {
+      target: { value: "2030-01-19T10:00" },
+    });
+    fireEvent.change(screen.getByLabelText("End"), {
+      target: { value: "2030-01-19T11:00" },
+    });
+    save();
+    expect(mocks.save).toHaveBeenCalledOnce();
+    // Raw API text is diagnostic; the editor shows its localized fallback.
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "The booking could not be saved. Please try again.",
+    );
+    expect(screen.getByLabelText("Start")).toHaveValue("2030-01-19T10:00");
+    expect(screen.getByLabelText("End")).toHaveValue("2030-01-19T11:00");
+    expect(screen.queryByText("Booking saved.")).not.toBeInTheDocument();
   });
 
   it.each(["en", "cs"])(

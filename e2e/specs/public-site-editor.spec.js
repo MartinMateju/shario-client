@@ -95,6 +95,9 @@ test("keeps localized edits private until the owner publishes the exact draft", 
             en: "Private English concept",
           },
         },
+        pages: {
+          home: { headline: { cs: "Vlastní nadpis ateliéru" } },
+        },
         login: {
           headline: {
             cs: "Vítejte v návrhu",
@@ -123,25 +126,25 @@ test("keeps localized edits private until the owner publishes the exact draft", 
     backgroundColor: preservedDraftState.backgroundColor,
     textColor: preservedDraftState.textColor,
   });
-  // Default homepage copy follows the edited display name/description. Other
-  // page settings and explicitly stored layout choices must remain unchanged.
-  const { home: originalHome, ...originalPages } = preservedDraftState.pages;
-  const { home: updatedHome, ...updatedPages } = updated.draft.pages;
-  expect(updatedPages).toEqual(originalPages);
-  const {
-    headline: _oldHeadline,
-    description: _oldDescription,
-    ...homeLayout
-  } = originalHome;
-  expect(updatedHome).toMatchObject(homeLayout);
-  expect(updatedHome.headline).toMatchObject({
-    cs: "Alpha Draft Identity",
-    en: "Alpha Draft Identity",
-  });
-  expect(updatedHome.description).toMatchObject({
-    cs: "Soukromý český koncept",
-    en: "Private English concept",
-  });
+  // Custom home copy wins in its own locale. Unset copy inherits the branding.
+  const expectedPages = {
+    ...preservedDraftState.pages,
+    home: {
+      ...preservedDraftState.pages.home,
+      headline: Object.fromEntries(
+        Object.keys(preservedDraftState.pages.home.headline).map((locale) => [
+          locale,
+          locale === "cs" ? "Vlastní nadpis ateliéru" : "Alpha Draft Identity",
+        ]),
+      ),
+      description: {
+        ...preservedDraftState.pages.home.description,
+        cs: "Soukromý český koncept",
+        en: "Private English concept",
+      },
+    },
+  };
+  expect(updated.draft.pages).toEqual(expectedPages);
   expect(updated.draft.header).toEqual(preservedDraftState.header);
   expect(updated.editor.hasUnpublishedChanges).toBe(true);
 
@@ -187,7 +190,7 @@ test("keeps localized edits private until the owner publishes the exact draft", 
     backgroundColor: preservedDraftState.backgroundColor,
     textColor: preservedDraftState.textColor,
   });
-  expect(preview.tenant.publicSite.pages).toEqual(updated.draft.pages);
+  expect(preview.tenant.publicSite.pages).toEqual(expectedPages);
   expect(preview.tenant.publicSite.header).toEqual(preservedDraftState.header);
   expect(preview.tenant.publicSite.login.headline).toMatchObject({
     cs: "Vítejte v návrhu",
@@ -224,9 +227,7 @@ test("keeps localized edits private until the owner publishes the exact draft", 
     backgroundColor: preservedDraftState.backgroundColor,
     textColor: preservedDraftState.textColor,
   });
-  expect(publicAfterPublish.tenant.publicSite.pages).toEqual(
-    updated.draft.pages,
-  );
+  expect(publicAfterPublish.tenant.publicSite.pages).toEqual(expectedPages);
   expect(publicAfterPublish.tenant.publicSite.header).toEqual(
     preservedDraftState.header,
   );
@@ -265,7 +266,7 @@ test("keeps localized edits private until the owner publishes the exact draft", 
     backgroundColor: preservedDraftState.backgroundColor,
     textColor: preservedDraftState.textColor,
   });
-  expect(warmUpdate.draft.pages).toEqual(updated.draft.pages);
+  expect(warmUpdate.draft.pages).toEqual(expectedPages);
   expect(warmUpdate.draft.header).toEqual(preservedDraftState.header);
 
   const publicBeforeWarmPublish = await readPublishedConfig(
@@ -292,7 +293,7 @@ test("keeps localized edits private until the owner publishes the exact draft", 
     backgroundColor: preservedDraftState.backgroundColor,
     textColor: preservedDraftState.textColor,
   });
-  expect(warmPreview.tenant.publicSite.pages).toEqual(updated.draft.pages);
+  expect(warmPreview.tenant.publicSite.pages).toEqual(expectedPages);
   expect(warmPreview.tenant.publicSite.header).toEqual(
     preservedDraftState.header,
   );
@@ -325,9 +326,7 @@ test("keeps localized edits private until the owner publishes the exact draft", 
     backgroundColor: preservedDraftState.backgroundColor,
     textColor: preservedDraftState.textColor,
   });
-  expect(publicAfterWarmPublish.tenant.publicSite.pages).toEqual(
-    updated.draft.pages,
-  );
+  expect(publicAfterWarmPublish.tenant.publicSite.pages).toEqual(expectedPages);
   expect(publicAfterWarmPublish.tenant.publicSite.header).toEqual(
     preservedDraftState.header,
   );

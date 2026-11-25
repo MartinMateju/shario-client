@@ -69,7 +69,7 @@ vi.mock("@heroicons/react/24/outline", () => ({
   XMarkIcon: () => <svg />,
 }));
 
-vi.mock("@/components/ai/StudioAssistantConversation", () => ({
+vi.mock("@/components/ai/StudioAssistantQuestions", () => ({
   default: ({ assistantContext }) => (
     <div
       data-testid="assistant-context"

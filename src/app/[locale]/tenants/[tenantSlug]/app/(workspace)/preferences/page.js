@@ -1,5 +1,13 @@
-import WorkspacePreferencesPage from "@/components/views/settings/WorkspacePreferencesPage";
+import { getSettingsRedirectHref } from "@/components/settings/settingsRouteRedirects";
+import { redirect } from "@/i18n/navigation";
 
-export default function PreferencesPage() {
-  return <WorkspacePreferencesPage showPageHeader={false} />;
+export default async function PreferencesPage({ params, searchParams }) {
+  const { locale } = await params;
+  return redirect({
+    href: getSettingsRedirectHref(
+      "/app/settings/preferences",
+      await searchParams,
+    ),
+    locale,
+  });
 }

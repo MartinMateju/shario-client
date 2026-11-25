@@ -1,6 +1,8 @@
 "use client";
 
 import { resolveIntlLocale } from "@/i18n/formatting";
+import { usePublicCourseHydration } from "@/components/courses/PublicCourseHydrationBoundary";
+import { PUBLIC_COURSE_FRESHNESS_SECONDS } from "@/lib/publicTenant/courseHydration";
 
 import {
   ArrowLeftIcon,
@@ -825,8 +827,9 @@ function GuestCourseCheckout({
   );
 }
 
-export default function PublicBookingProductDetailPage({ kind }) {
+export default function PublicBookingProductDetailPage({ kind, initialData }) {
   const locale = useLocale();
+  const hydrating = usePublicCourseHydration();
   const t = useTranslations("PublicTenant.details");
   const params = useParams();
   const searchParams = useSearchParams();
@@ -839,6 +842,7 @@ export default function PublicBookingProductDetailPage({ kind }) {
   const courseLocation = usePublicCourseLocation({
     tenantSlug,
     enabled: course,
+    initialData,
   });
   const { tenant } = usePublicTenant();
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -881,14 +885,28 @@ export default function PublicBookingProductDetailPage({ kind }) {
     },
     {
       skip:
+        hydrating ||
         !tenantSlug ||
         !productId ||
         (course && (courseLocation.unresolved || !courseLocation.locationId)),
+      refetchOnMountOrArgChange: course
+        ? PUBLIC_COURSE_FRESHNESS_SECONDS
+        : false,
+      refetchOnFocus: course,
     },
   );
+  const initialProduct =
+    initialData?.tenantSlug === tenantSlug &&
+    initialData?.locationId === courseLocation.locationId &&
+    getProductId(initialData?.product) === productId &&
+    !productQuery.isError
+      ? initialData.product
+      : undefined;
   const product = course
     ? courseLocation.locationId && !courseLocation.unresolved
-      ? productQuery.currentData
+      ? productQuery.currentData !== undefined
+        ? productQuery.currentData
+        : initialProduct
       : undefined
     : productQuery.data;
   const customerChoice = isCustomerChoiceOpenStudio(product);
@@ -1152,15 +1170,14 @@ export default function PublicBookingProductDetailPage({ kind }) {
 
   const loading =
     (course &&
-      (courseLocation.query.isLoading ||
+      ((courseLocation.query.isLoading && !courseLocation.locationId) ||
         (courseLocation.query.isFetching && !courseLocation.locationId) ||
         (productQuery.isFetching && !product))) ||
-    productQuery.isLoading ||
+    (productQuery.isLoading && !product) ||
     (productMatchesKind
       ? course
-        ? sessionsQuery.isLoading ||
-          (courseLocation.unresolved &&
-            (courseLocation.query.isLoading || courseLocation.query.isFetching))
+        ? courseLocation.unresolved &&
+          (courseLocation.query.isLoading || courseLocation.query.isFetching)
         : locationsQuery.isLoading
       : false);
   const error =
@@ -1168,8 +1185,7 @@ export default function PublicBookingProductDetailPage({ kind }) {
     productQuery.isError ||
     (productMatchesKind
       ? course
-        ? sessionsQuery.isError ||
-          (courseLocation.unresolved && courseLocation.query.isError)
+        ? courseLocation.unresolved && courseLocation.query.isError
         : locationsQuery.isError
       : false);
   const name = course

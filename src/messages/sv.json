@@ -36,20 +36,26 @@
     },
     "status": {
       "confirmed": "Bekräftad",
-      "pending": "Väntande",
+      "pending": "Väntar på bekräftelse",
       "awaitingPayment": "Inväntar betalning",
-      "processed": "Inväntar leverans",
-      "delivered": "Levererad",
+      "processed": "Bekräftad",
+      "delivered": "Påbörjad",
       "completed": "Slutförd",
       "cancelled": "Avbokad"
     },
     "payment": {
       "paid": "Betald",
-      "pending": "Väntande",
+      "pending": "Väntar på betalning",
       "failed": "Misslyckad",
       "expired": "Utgången",
       "refunded": "Återbetald",
       "credits": "Krediter"
+    },
+    "refreshing": "Uppdaterar bokningar…",
+    "retry": "Försök igen",
+    "errors": {
+      "load": "Kunde inte läsa in bokningar. Försök igen.",
+      "filters": "Vissa filteralternativ kunde inte läsas in."
     },
     "edit": {
       "details": "Bokningsuppgifter",
@@ -121,7 +127,9 @@
       "deletedTitle": "Bokningen har raderats",
       "deletedText": "Bokningen har raderats.",
       "errorTitle": "Bokningen kunde inte skapas",
-      "errorText": "Kontrollera bokningsuppgifterna och försök igen."
+      "errorText": "Kontrollera bokningsuppgifterna och försök igen.",
+      "cancelError": "Bokningen kunde inte avbokas. Försök igen.",
+      "extensionRefund": "Ytterligare {amount} för förlängd bokningstid återfördes till kundens studiokrediter."
     },
     "exportColumns": {
       "customer": "Kund",
@@ -193,6 +201,7 @@
       "spotsAvailable": "{remaining} av {capacity} platser tillgängliga"
     },
     "week": {
+      "schedule": "Veckoschema",
       "privacyNote": "Lila markerar privata bokningar och turkos offentliga bokningar. Dina bokningar har en blå etikett."
     },
     "legend": {
@@ -265,6 +274,7 @@
     "homeDescription": "Bokningar, medlemskap och en egen snygg webbplats. Allt du behöver för att dela din plats och få din gemenskap att växa, samlat i Shario."
   },
   "Common": {
+    "bannerPreferenceSaveError": "Din inställning för bannern kunde inte sparas. Försök igen.",
     "skipToContent": "Hoppa till innehållet",
     "learnMore": "Läs mer",
     "viewAll": "Visa alla",
@@ -434,7 +444,8 @@
       "notifications": "Aviseringar",
       "events": "Evenemang",
       "lostFound": "Hittegods",
-      "customOrders": "Specialbeställningar"
+      "customOrders": "Specialbeställningar",
+      "communicationSettings": "Meddelandeinställningar"
     },
     "stats": {
       "bookings": "Bokningar i dag",
@@ -1439,7 +1450,8 @@
     },
     "product": {
       "metaTitle": "Allt din plats behöver, samlat och sammankopplat.",
-      "metaDescription": "Koppla ihop bokningar, medlemmar, betalningar, teamet och din publika webbplats. Fokusera på människorna medan Shario hjälper dig att planera dagen."
+      "metaDescription": "Koppla ihop bokningar, medlemmar, betalningar, teamet och din publika webbplats. Fokusera på människorna medan Shario hjälper dig att planera dagen.",
+      "viewScreenshot": "Visa hela skärmbilden"
     },
     "studioAi": {
       "metaTitle": "En hjälpande hand i vardagen.",
@@ -1481,13 +1493,14 @@
       "from": "från",
       "customAnnual": "Anpassat årsabonnemang",
       "mostPopular": "Mest populärt",
+      "includesPrevious": "Allt i {plan}, plus:",
       "starter": {
         "name": "Starter",
         "description": "Börja med bokningar, betalningar, kurser och evenemang för din plats.",
         "feature1": "1 studioplats · 1 teamkonto",
         "feature2": "Kurser, privata evenemang och presentkort",
         "feature3": "500 inkluderade e-postmeddelanden per månad",
-        "feature4": "Begränsad Shario AI · 200 krediter per månad",
+        "feature4": "Studiowebbplats och kundportal",
         "cta": "Starta gratis provperiod"
       },
       "professional": {
@@ -1495,8 +1508,9 @@
         "description": "Koppla ihop medlemskap, gemensamma platser och den dagliga verksamheten.",
         "feature1": "1 studioplats · 3 teamkonton",
         "feature2": "Medlemskap, bokningar och gemensamma resurser",
-        "feature3": "3 aktiva automatiseringar · 2 500 e-postmeddelanden per månad",
-        "feature4": "Full Shario AI · 2 000 krediter per månad",
+        "feature3": "Lager och teamuppgifter",
+        "feature4": "3 aktiva automatiseringar · 2 500 e-postmeddelanden per månad",
+        "feature5": "Shario AI · 2 000 krediter per månad",
         "cta": "Starta gratis provperiod"
       },
       "studioPlus": {
@@ -1505,16 +1519,16 @@
         "feature1": "Upp till 2 studioplatser · 6 teamkonton",
         "feature2": "Åtkomstkoder och egen domän",
         "feature3": "Avancerade automatiseringar · 5 000 e-postmeddelanden per månad",
-        "feature4": "Komplett AI-svit · 10 000 krediter per månad",
+        "feature4": "Avancerad Shario AI · 10 000 krediter per månad",
         "cta": "Starta gratis provperiod"
       },
       "enterprise": {
         "name": "Enterprise",
         "description": "Driv din organisation med anpassad kapacitet, styrning och support.",
-        "feature1": "Obegränsade platser och teamkonton",
+        "feature1": "Kapacitet för platser och team enligt överenskommelse",
         "feature2": "Anpassade gränser för automatisering, e-post och AI",
-        "feature3": "SSO/SCIM, API, webhooks och granskningsloggar",
-        "feature4": "Dedikerad onboarding, migrering och SLA",
+        "feature3": "Diskutera behov av integrationer och styrning",
+        "feature4": "Introduktion, migrering och support enligt överenskommelse",
         "cta": "Starta en gratis provperiod"
       },
       "note": "Priserna är exklusive tillämpliga skatter. Årliga självbetjäningsplaner inkluderar två kostnadsfria månader. Nödvändiga systemmeddelanden räknas inte mot e-postgränsen, och AI-användningen stannar vid den inkluderade nivån — utan automatiska tilläggsavgifter.",
@@ -2260,7 +2274,10 @@
     },
     "unavailable": {
       "title": "Det här alternativet är inte tillgängligt",
-      "description": "Studion erbjuder inte det här alternativet offentligt just nu."
+      "description": "Studion erbjuder inte det här alternativet offentligt just nu.",
+      "retry": "Försök igen",
+      "retrying": "Läser in…",
+      "loginDegraded": "Studions uppgifter kunde inte läsas in just nu."
     },
     "book": {
       "metadataTitle": "Boka Öppen studio",
@@ -2318,6 +2335,7 @@
         "email": "E-postadress",
         "quantity": "Antal",
         "missing": "Välj ett presentkort och ange en giltig e-postadress.",
+        "reselect": "Utbudet av presentkort har ändrats. Välj ett presentkort igen för att fortsätta.",
         "error": "Betalningen kunde inte startas. Försök igen.",
         "starting": "Betalningen förbereds…",
         "continue": "Fortsätt till betalning",
@@ -2353,6 +2371,7 @@
       }
     },
     "catalog": {
+      "refreshError": "Erbjudandena kunde inte uppdateras. Du ser de senast inlästa erbjudandena.",
       "loading": "Aktuella erbjudanden läses in…",
       "error": "De aktuella erbjudandena kunde inte läsas in.",
       "retry": "Försök igen",
@@ -2786,10 +2805,20 @@
         "headline": "Kurssidans rubrik",
         "intro": "Kurssidans introduktion",
         "image": "Kurssidans foto",
-        "inherit": "Tomma fält använder den gemensamma kurstexten och varumärkets omslagsfoto.",
+        "inherit": "Tomma fält använder gemensam kurstext och kurssidans bild, eller varumärkets omslagsfoto om ingen kursbild har valts.",
         "noLocations": "Lägg till en studioplats för att anpassa dess kurssida.",
         "guestCheckoutEnabled": "Tillåt kursköp utan konto",
         "guestCheckoutDescription": "Gäller alla studior. Gäster kan köpa en kurs utan att skapa konto; kunder kan fortfarande logga in för att boka. Kräver synliga kurssidor och fungerande onlinebetalningar. Publicera ändringarna för att tillämpa inställningen."
+      },
+      "pageImages": {
+        "title": "Bilder i sidhuvuden",
+        "description": "Välj en egen bild för varje offentlig sida eller kundsida. Bokningskalendrar behåller sitt kompakta texthuvud.",
+        "page": "Sida att anpassa",
+        "image": "Bild i sidhuvud",
+        "hint": "Använd ett liggande foto. Om bilden tas bort visas endast text. En kursbild för en viss studio har företräde.",
+        "preview": "Förhandsvisa sidhuvud",
+        "previewDescription": "Förhandsvisa sidans bild med valda färger och typsnitt.",
+        "products": "Produkter"
       },
       "calendarColors": "Kalender",
       "hidden": "Dold",
@@ -2833,6 +2862,7 @@
     "preview": {
       "pages": {
         "portalCourses": "Kurser i kundportalen",
+        "portalPageHero": "Sidhuvuden",
         "book": "Öppen studio",
         "courses": "Kurser",
         "memberships": "Medlemskap",
@@ -3275,6 +3305,31 @@
       "labelColor": "Etikettfärg för registrering · valfritt",
       "imageTitle": "Registreringsbild",
       "imageDescription": "Använd en särskild bild när konton skapas; studions gemensamma logotyp finns kvar på formuläret."
+    },
+    "customLinks": {
+      "title": "Egna länkar",
+      "addGroup": "Lägg till rullgardinsgrupp",
+      "group": "Rullgardinsgrupp",
+      "children": "Länkar i den här gruppen",
+      "button": "Visa som huvudknapp",
+      "separator": "Visa en avdelare före den här länken",
+      "layout": "Sidhuvudets layout",
+      "defaultLayout": "Standardsidhuvud för bokning",
+      "websiteLayout": "Webbplatsnavigering",
+      "background": "Sidhuvudets bakgrund",
+      "linkColor": "Länkfärg i sidhuvudet",
+      "buttonColor": "Knappfärg i sidhuvudet",
+      "header": "Lägg till länkar efter standardnavigeringen. Dölj standardposterna ovan om du vill ha en helt egen meny.",
+      "footer": "Lägg till fler länkar under Utforska i sidfoten. Länkar som redan visas i sidhuvudet tas med automatiskt.",
+      "label": "Länktext",
+      "href": "Mål-URL",
+      "add": "Lägg till länk",
+      "remove": "Ta bort länk",
+      "up": "Flytta länk uppåt",
+      "down": "Flytta länk nedåt",
+      "count": "länkar",
+      "hint": "Använd https://… eller en sökväg som börjar med /. Fyll i text och URL tillsammans; lämna båda tomma för att använda ett annat språk.",
+      "invalid": "Ange en länktext och en giltig HTTPS-URL eller sökväg på minst ett språk. Varje språk kräver båda fälten eller inget av dem."
     }
   },
   "Products": {
@@ -3748,7 +3803,8 @@
       "awaitingPayment": "Inväntar betalning",
       "processing": "Behandlas",
       "completed": "Slutförd",
-      "failed": "Misslyckad"
+      "failed": "Misslyckad",
+      "cancelled": "Avbokade"
     },
     "productTypes": {
       "course": "Kurs",
@@ -3811,7 +3867,8 @@
       "creatingInvoice": "Skapar…",
       "confirmCreateInvoice": "Skapa ett fakturautkast från den här beställningen?",
       "note": "Beställningsanteckning",
-      "internalId": "Internt beställnings-ID"
+      "internalId": "Internt beställnings-ID",
+      "paymentDateUnknown": "Betalningsdatum har inte registrerats"
     },
     "fallbackStudioName": "din studio",
     "toolbar": {
@@ -3884,7 +3941,21 @@
       "invoiceError": "Fakturan kunde inte skapas från den här beställningen."
     },
     "csv": {
-      "createdAt": "Skapad den"
+      "createdAt": "Skapad den",
+      "currency": "Valuta",
+      "amountStatus": "Beloppets tillgänglighet"
+    },
+    "money": {
+      "unavailable": "Inte tillgängligt",
+      "unavailableDetail": "Orderns slutbelopp eller återbetalningshistorik kan inte verifieras.",
+      "verified": "Tillgängligt",
+      "refunded": "Återbetalat",
+      "net": "Värde efter återbetalningar",
+      "incomplete": "Vissa betalda ordrar har ofullständiga belopp eller återbetalningsposter. Totalen är inte tillgänglig.",
+      "mixedCurrencies": "Perioden innehåller flera valutor. De kan inte summeras till en total.",
+      "truncated": "Perioden överskrider sammanfattningens gräns. Välj en kortare period för att beräkna totalen.",
+      "scope": "Ordervärden inkluderar moms och inlösta krediter eller presentkort. Separata köp av presentkort och medlemsfakturor ingår inte. Det är varken mottagna betalningar eller intäkter från utförda tjänster. Sammanfattningskorten omfattar hela den valda perioden och studion.",
+      "multiStudio": "Ordrar som är kopplade till flera studior räknas med sitt fulla värde."
     }
   },
   "VoucherShopping": {
@@ -4011,9 +4082,51 @@
         "complained": "Skräppostanmälan",
         "rejected": "Avvisad",
         "ambiguous": "Oklar status",
-        "suppressed": "Undertryckt"
+        "suppressed": "Inte skickat"
       },
-      "description": "Granska schemalagda, köade, levererade, undertryckta, avbrutna och misslyckade e-postleveranser.",
+      "resend": {
+        "actionMenu": "Mejlåtgärder",
+        "action": "Skicka igen",
+        "title": "Skicka det här mejlet igen?",
+        "description": "Ett nytt försök görs att skicka det här meddelandet till samma mottagare.",
+        "recipient": "Mottagare",
+        "subject": "Ämne",
+        "cancel": "Avbryt",
+        "confirm": "Skicka igen",
+        "submitting": "Förbereder utskick…",
+        "queued": "Mejlet är klart att skickas igen.",
+        "scheduled": "Ett nytt försök har schemalagts. Mejlet skickas när det går att skicka igen.",
+        "error": "Mejlet kunde inte förberedas för utskick. Försök igen.",
+        "stale": "Mejlets status har ändrats. Den senaste statusen visas nu.",
+        "blocked": "Det här mejlet kan inte skickas igen just nu.",
+        "reasonLabel": "Varför det inte skickades"
+      },
+      "reasons": {
+        "status_not_retryable": "Det här mejlet kan inte skickas igen med sin nuvarande status.",
+        "delivery_in_progress": "Det här mejlet håller redan på att skickas.",
+        "delivery_outcome_unknown": "Vi kan inte bekräfta om det här mejlet skickades. Kontrollera leveransstatusen innan du försöker igen.",
+        "already_sent": "Det här mejlet har redan skickats.",
+        "recipient_suppressed": "Utskick till den här mottagaren var blockerade.",
+        "consent_revoked": "Mottagaren hade återkallat sitt samtycke till att ta emot det här mejlet.",
+        "consent_expired": "Mottagarens samtycke hade löpt ut.",
+        "marketing_opt_in_required": "Mottagaren hade inte samtyckt till att ta emot marknadsföringsmejl.",
+        "consent_required": "Mottagarens nödvändiga samtycke saknades.",
+        "content_unavailable": "Det ursprungliga meddelandet var inte längre tillgängligt.",
+        "invalid_delivery_contract": "Uppgifterna som behövdes för att skicka mejlet var ofullständiga.",
+        "source_changed": "Uppgifterna som mejlet byggde på hade ändrats.",
+        "source_missing": "Posten som var kopplad till mejlet fanns inte längre.",
+        "recipient_ineligible": "Det här meddelandet gällde inte längre mottagaren.",
+        "automation_inactive": "Den här mejlautomatiseringen var avstängd.",
+        "sender_not_ready": "Mejlutskick var inte konfigurerade eller var tillfälligt otillgängliga.",
+        "workspace_disabled": "Mejlutskick var avstängda för den här arbetsytan.",
+        "monthly_allowance_exhausted": "Arbetsytans månatliga mejlkvot var förbrukad.",
+        "unsupported_email_type": "Den här typen av mejl kan inte skickas igen härifrån.",
+        "delivery_failed": "Mejlet kunde inte levereras.",
+        "not_sent": "Mejlet skickades inte.",
+        "hard_bounce": "Leverans till den här adressen misslyckades permanent.",
+        "spam_complaint": "Mottagaren anmälde ett mejl som skräppost."
+      },
+      "description": "Visa schemalagda, levererade, avbrutna och oskickade mejl.",
       "searchLabel": "Sök i leveranshistoriken",
       "searchPlaceholder": "Sök efter mottagarens e-postadress eller kund-ID…",
       "statusLabel": "Filtrera efter leveransstatus",
@@ -4398,7 +4511,8 @@
         "module": "Aktivera modulen Dörrtillträde i arbetsytans inställningar.",
         "sender": "Slutför inställningen av hanterad e-postavsändare innan du aktiverar leverans.",
         "inventory": "Lägg till en verifierad återanvändbar kod i en aktiv kodpool på denna plats."
-      }
+      },
+      "template": "Anpassa e-postmall"
     },
     "errors": {
       "setupRequired": "Kontrollera e-postinställningarna innan du aktiverar en automatisering.",
@@ -4411,6 +4525,102 @@
       "message": "Ta bort {name}? Detta kan inte ångras.",
       "cancel": "Behåll automatisering",
       "deleting": "Tar bort…"
+    },
+    "doorTemplates": {
+      "title": "Mejl med åtkomstkod",
+      "description": "Anpassa det automatiska mejlet med dörrkod för varje studioplats. Mallarna används av det befintliga utskicket av åtkomstkoder.",
+      "locationHint": "Används endast för bokningar på den här platsen",
+      "default": "Standardmeddelande",
+      "customized": "Anpassat meddelande",
+      "loading": "Läser in dörrkodsmallar…",
+      "loadError": "Dörrkodsmallarna kunde inte läsas in.",
+      "retry": "Försök igen",
+      "empty": "Lägg till en aktiv studioplats för att anpassa dess mejl med dörrkod.",
+      "edit": "Redigera mall",
+      "preview": "Förhandsgranska mall",
+      "editFor": "Redigera dörrkodsmall för {location}",
+      "previewFor": "Förhandsgranska dörrkodsmall för {location}",
+      "eyebrow": "Mejl med åtkomstkod",
+      "editorDescription": "Redigera ämne och meddelande för den här platsen. Sparade ändringar gäller kommande automatiska mejl; utskicksinställningarna och den vanliga tidpunkten 15 minuter före förblir oförändrade.",
+      "placeholderHint": "Shario fyller i bokningsuppgifterna och rätt kod vid utskicket. Behåll den här platshållaren i meddelandet:",
+      "previewHint": "Förhandsgranskningen använder en exempelkod och en exempelbokning. Din studios sparade e-postdesign används när meddelandet skickas.",
+      "variablesTitle": "Åtkomst och bokningsuppgifter",
+      "variables": {
+        "entryCode": "Dörrkod (endast i meddelandetexten)",
+        "studioName": "Studioplatsens namn",
+        "studioAddress": "Studioplatsens adress",
+        "bookingTime": "Lokalt bokningsdatum och tidsintervall",
+        "bookingUrl": "Länk för att hantera bokningen"
+      },
+      "languages": {
+        "cs": "Tjeckiska",
+        "en": "Engelska"
+      },
+      "errors": {
+        "incomplete": "Lägg till ett ämne (upp till 200 tecken) och ett meddelande för det här språket.",
+        "missingCode": "Ta med platshållaren för dörrkoden i den synliga meddelandetexten.",
+        "codePlacement": "Håll koden i meddelandetexten, utanför ämnet, länkar och HTML-attribut.",
+        "unknownVariable": "Använd endast de listade platshållarna, med två inledande och två avslutande klammerparenteser."
+      },
+      "close": "Stäng mall",
+      "cancel": "Avbryt",
+      "save": "Spara mall",
+      "saving": "Sparar…",
+      "resetting": "Återställer…",
+      "saveError": "Dörrkodsmallen kunde inte sparas.",
+      "resetError": "Standardmeddelandet kunde inte återställas.",
+      "saveSuccess": "Dörrkodsmall sparad för {location}.",
+      "resetSuccess": "Standardmeddelandet med dörrkod återställt för {location}.",
+      "reset": "Återställ standardmeddelande",
+      "resetConfirm": "Återställa standardmeddelandet för den här platsen? Din sparade anpassning och osparade ändringar ersätts.",
+      "confirmReset": "Återställ standard",
+      "keepEditing": "Fortsätt redigera",
+      "discardConfirm": "Du har osparade ändringar. Stänga utan att spara?",
+      "discard": "Ignorera ändringar",
+      "variablesHint": "Klicka på en platshållare för att infoga den där du skriver. Åtkomstkoden hör endast hemma i meddelandetexten, utanför länkar.",
+      "help": "Hjälp för mallen",
+      "codeReminder": "Behåll {code} i meddelandet."
+    },
+    "visualEditor": {
+      "mode": "Redigeringsläge",
+      "visual": "Visuell redigerare",
+      "htmlSource": "HTML-källa",
+      "loading": "Läser in visuell redigerare…",
+      "unsupported": "Mallen innehåller avancerad HTML-formatering. Den ursprungliga designen bevaras i HTML-läget.",
+      "toolbar": "Text- och designkontroller",
+      "body": "Brödtext",
+      "heading1": "Rubrik 1",
+      "heading2": "Rubrik 2",
+      "heading3": "Rubrik 3",
+      "bold": "Fet",
+      "italic": "Kursiv",
+      "underline": "Understruken",
+      "fontSize": "Textstorlek",
+      "defaultSize": "Standardstorlek",
+      "textColor": "Textfärg",
+      "textBackground": "Textbakgrund",
+      "alignLeft": "Vänsterjustera",
+      "alignCenter": "Centrera",
+      "alignRight": "Högerjustera",
+      "bulletList": "Punktlista",
+      "orderedList": "Numrerad lista",
+      "link": "Lägg till eller redigera länk",
+      "linkUrl": "Länkadress",
+      "linkPlaceholder": "https://example.com",
+      "applyLink": "Använd länk",
+      "removeLink": "Ta bort länk",
+      "cancelLink": "Avbryt",
+      "invalidLink": "Använd en http-, https- eller mailto-adress eller platshållaren för bokningslänken. Dörrkoder kan inte användas i länkar.",
+      "undo": "Ångra",
+      "redo": "Gör om",
+      "blockStyle": "Blockdesign",
+      "blockBackground": "Blockbakgrund",
+      "blockPadding": "Blockavstånd",
+      "paddingNone": "Inget",
+      "paddingSmall": "Litet",
+      "paddingMedium": "Medel",
+      "paddingLarge": "Stort",
+      "clearBlockStyle": "Rensa blockbakgrund och avstånd"
     }
   },
   "TeamSettings": {
@@ -5688,6 +5898,85 @@
     },
     "readyChecksTitle": "Vad som krävs för att målet ska vara uppnått"
   },
+  "MarketingPlanComparison": {
+    "eyebrow": "Hitta rätt för dig",
+    "title": "Se vad som skiljer abonnemangen åt.",
+    "description": "Jämför aktuella abonnemang för nya kunder. Befintliga abonnemang kan behålla en tidigare version.",
+    "caption": "Jämförelse av funktioner i aktuella verkstadsabonnemang",
+    "feature": "Funktion eller kvot",
+    "scrollLabel": "Jämför abonnemang — rulla i sidled för att se alla abonnemang",
+    "shared": "Alla abonnemang innehåller kurser, väntelistor, presentkort, en bokningswebbplats med din profil, en kundportal och CSV-import.",
+    "trialNote": "Provperioden på 14 dagar innehåller Professional-funktioner. Åtkomstkoder, egna domäner och de avancerade AI-verktygen ovan kräver Space Plus eller ett avtalat Enterprise-abonnemang.",
+    "usageNote": "Viktiga systemmeddelanden räknas inte mot e-postkvoten. AI-krediter delas mellan aktiverade AI-verktyg; användningen pausas vid gränsen utan automatiska extraavgifter. Tillgängliga verktyg beror också på verkstadens inställningar och teamets behörigheter.",
+    "accessNote": "Åtkomstkoder fungerar med ditt eget åtkomstsystem och koder som du laddar upp till Shario. Hårdvara och integrationer för smarta lås ingår inte.",
+    "enterpriseTitle": "Behöver du en anpassad lösning?",
+    "enterpriseDescription": "Prata med oss om Enterprise-kapacitet, integrationer, migrering och support. Vi bekräftar omfattning och villkor för din verkstad innan du väljer.",
+    "enterpriseCta": "Prata om Enterprise",
+    "rows": {
+      "locations": "Verkstadsplatser",
+      "teamAccounts": "Teamkonton",
+      "openStudioMemberships": "Öppen verkstad, medlemskap och kreditpaket",
+      "inventoryTasks": "Lager och teamuppgifter",
+      "automations": "Aktiva egna automatiseringar",
+      "emails": "Inkluderade e-postmeddelanden per månad",
+      "studioAssistant": "Studio-assistent",
+      "aiCredits": "AI-krediter per månad",
+      "briefingKnowledge": "Dagliga översikter och kunskapsbank",
+      "advancedAi": "Business Advisor, kundassistent och AI-rapportinsikter",
+      "accessCodes": "Hantering och utskick av åtkomstkoder",
+      "customDomain": "Egen domän"
+    },
+    "values": {
+      "included": "Ingår",
+      "notIncluded": "Ingår inte",
+      "basic": "Grundläggande",
+      "full": "Fullständig",
+      "limited": "Begränsad",
+      "advanced": "Avancerad"
+    }
+  },
+  "RefundReviews": {
+    "title": "Granskning av återbetalningar",
+    "description": "Granska återbetalningar som registrerats från Stripe och dokumentera beslutet om kundens tillhörande förmåner.",
+    "benefitsNotice": "Att registrera eller bekräfta en återbetalning avbokar inte en bokning eller ett medlemskap, tar inte bort krediter och genomför ingen ny betalning. Granska de berörda förmånerna separat innan du registrerar ditt beslut.",
+    "allLocationsRequired": "Granskning av återbetalningar kräver tillgång till betalningar på studions samtliga platser.",
+    "refresh": "Uppdatera",
+    "loading": "Läser in återbetalningsgranskningar…",
+    "empty": "Det finns inga olösta granskningar på den här sidan.",
+    "loadError": "Granskningarna kunde inte läsas in. Uppdatera för att försöka igen.",
+    "needsReview": "Förmånerna måste granskas",
+    "needsRepair": "Betalningsavstämningen kräver åtgärd",
+    "reference": "Granskningsreferens",
+    "order": "Beställning",
+    "membership": "Medlemskap",
+    "paid": "Ursprunglig betalning",
+    "refunded": "Återbetalat",
+    "pending": "Återbetalning väntar",
+    "failed": "Återbetalningen misslyckades",
+    "repairNotice": "Den här betalningen är inte helt avstämd. Uppdatera eller kontakta supporten för att rätta betalningskopplingen innan du registrerar en granskning.",
+    "readOnly": "En teammedlem med behörighet för återbetalningar kan registrera granskningen.",
+    "review": "Registrera granskning",
+    "note": "Beslut eller genomförda justeringar (10–2000 tecken)",
+    "evidence": "Underlag eller referens som stöder beslutet (10–2000 tecken)",
+    "confirm": "Jag har granskat de berörda förmånerna och dokumenterat eventuella justeringar eller mitt beslut att behålla dem.",
+    "save": "Bekräfta granskning",
+    "cancel": "Avbryt",
+    "saved": "Granskningen har registrerats. Den här åtgärden ändrade inte kundens förmåner.",
+    "changed": "Den här återbetalningen har ändrats eller håller fortfarande på att stämmas av. Listan har uppdaterats. Granska de aktuella uppgifterna innan du skickar in igen.",
+    "saveError": "Granskningen kunde inte sparas. Dina anteckningar finns kvar. Försök igen.",
+    "permissionError": "Du har inte längre behörighet att registrera den här granskningen. Be en teammedlem med tillgång till återbetalningar på samtliga platser om hjälp.",
+    "pagination": "Sidor med återbetalningsgranskningar",
+    "firstPage": "Första sidan",
+    "nextPage": "Nästa sida"
+  },
+  "PaymentRefundResult": {
+    "title": "Studion behöver granska betalningen",
+    "description": "En återbetalning har registrerats eller betalningen behöver granskas. Den här sidan bekräftar ingen ny bokning, inget kreditsaldo och ingen medlemsförmån.",
+    "next": "Kontakta studion och ange referensen nedan innan du betalar igen.",
+    "reference": "Referens",
+    "back": "Tillbaka till studion",
+    "refresh": "Kontrollera status"
+  },
   "SharioMarketing": {
     "hero": {
       "eyebrow": "Bra mötesplatser för människor samman",
@@ -5849,7 +6138,8 @@
       "about": "Så fungerar det",
       "login": "Logga in",
       "register": "Starta en gratis provperiod",
-      "copyright": "© {year} Shario. Alla rättigheter förbehållna."
+      "copyright": "© {year} Shario. Alla rättigheter förbehållna.",
+      "contact": "Kontakt"
     }
   },
   "Waitlists": {
@@ -6826,6 +7116,22 @@
       "label": "Personvy"
     },
     "filters": {
+      "spending": "Utgifter ({currency})",
+      "spendMin": "Lägsta utgifter",
+      "spendMax": "Högsta utgifter",
+      "spendFrom": "Betalningsdatum från",
+      "spendTo": "Betalningsdatum till",
+      "spendingHint": "Betalningar under denna period, efter avdrag för registrerade återbetalningar.",
+      "spendingDatesHint": "Lämna datumen tomma för att inkludera hela perioden.",
+      "credits": "Aktuella krediter ({currency})",
+      "creditMin": "Lägsta kreditbelopp",
+      "creditMax": "Högsta kreditbelopp",
+      "creditsHint": "Aktuellt kreditsaldo, oberoende av betalningsdatumen.",
+      "spendingUnavailable": "Utgiftsfilter kräver tillgång till alla ekonomiska uppgifter.",
+      "applyFinancial": "Tillämpa ekonomiska filter",
+      "financialDraftHint": "Ändringarna börjar gälla när du väljer Tillämpa.",
+      "spendingPeriodSummary": "{from} – {to}",
+      "allTime": "Hela perioden",
       "membership": "Medlemskap",
       "status": "Status",
       "button": "Filter",
@@ -6839,6 +7145,7 @@
       "clear": "Rensa"
     },
     "columns": {
+      "periodSpent": "Utgifter under perioden",
       "customer": "Kund",
       "contact": "Kontakt",
       "membership": "Medlemskap",
@@ -6855,6 +7162,7 @@
       "access": "Åtkomst"
     },
     "actions": {
+      "exporting": "Exporterar…",
       "addCustomer": "Lägg till kund",
       "openCustomerActions": "Öppna åtgärder för {name}",
       "openStaffActions": "Öppna åtgärder för {name}",
@@ -6900,6 +7208,7 @@
       }
     },
     "exportColumns": {
+      "periodSpent": "Utgifter under perioden",
       "email": "E-post",
       "membership": "Medlemskap",
       "credits": "Krediter",
@@ -6954,7 +7263,8 @@
       "activeMemberships": "Aktiva medlemskap",
       "credits": "Kundkrediter",
       "newThisMonth": "Nya den här månaden",
-      "monthlyChange": "+{count} den här månaden"
+      "monthlyChange": "+{count} den här månaden",
+      "unavailable": "Data inte tillgängliga"
     },
     "counts": {
       "customers": "{count, plural, one {# kund} other {# kunder}}",
@@ -6992,6 +7302,13 @@
       "view": "Visa kundinsikter"
     },
     "errors": {
+      "summary": "Kundöversikten och medlemsfiltren kunde inte laddas. Försök igen.",
+      "export": "Den fullständiga kundexporten kunde inte laddas ned. Ingen fil sparades. Försök igen.",
+      "invalidAmount": "Ange ett giltigt belopp.",
+      "invalidDate": "Ange ett giltigt datum.",
+      "spendingRange": "De lägsta utgifterna får inte överstiga de högsta utgifterna.",
+      "creditRange": "Det lägsta kreditbeloppet får inte överstiga det högsta kreditbeloppet.",
+      "dateRange": "Startdatumet får inte vara efter slutdatumet.",
       "customers": "Kunderna kunde inte läsas in. Försök igen.",
       "staff": "Teammedlemmarna kunde inte läsas in. Försök igen."
     }
@@ -7475,6 +7792,10 @@
         "inApp": {
           "label": "Aviseringar i appen",
           "description": "Visa arbetsyteaviseringar i Shario."
+        },
+        "bookingCreated": {
+          "label": "Bokning skapad",
+          "description": "När en relevant bokning skapas. Avstängt som standard."
         }
       },
       "channelsTitle": "Leveranskanaler"
@@ -8921,6 +9242,63 @@
     "errors": {
       "conversationCreate": "En ny konversation kunde inte skapas.",
       "message": "Studioassistenten kunde inte svara just nu."
+    },
+    "guided": {
+      "title": "Vad vill du veta?",
+      "description": "Välj en fråga för att få ett tydligt svar baserat på din studios data.",
+      "back": "Välj en annan fråga",
+      "retry": "Försök igen",
+      "loading": "Kontrollerar din studios data…",
+      "noAnswer": "Vi kunde inte hitta ett tillförlitligt svar. Försök igen om en stund.",
+      "contextQuestion": "Vad bör jag veta om det här?",
+      "contextHint": "Ett svar om det valda objektet.",
+      "allStudios": "Alla studior",
+      "periods": {
+        "today": "I dag",
+        "last30Days": "Senaste 30 dagarna",
+        "current": "Aktuell översikt"
+      },
+      "report": {
+        "title": "Vill du ha en mer detaljerad översikt?",
+        "description": "Månadsrapport för den valda studion från månadens början till och med {date}.",
+        "generate": "Skapa månadsrapport",
+        "open": "Öppna månadsrapport",
+        "back": "Tillbaka till svaret",
+        "ready": "Din månadsrapport är klar."
+      },
+      "questions": {
+        "today": {
+          "label": "Hur går det för studion i dag?",
+          "hint": "En snabb översikt över dagens verksamhet.",
+          "prompt": "Vad händer i studion i dag?"
+        },
+        "bookings": {
+          "label": "Hur många bokningar har vi i dag?",
+          "hint": "Dagens bekräftade bokningar.",
+          "prompt": "Hur många bokningar har vi i dag?"
+        },
+        "bookingTrend": {
+          "label": "Ökar våra bokningar?",
+          "hint": "Jämför de senaste 30 dagarna med de 30 föregående.",
+          "prompt": "Hur utvecklas våra bokningar?"
+        },
+        "teamBlockers": {
+          "label": "Är det något som blockerar teamet?",
+          "hint": "Granska dagens rapporterade hinder i teamet.",
+          "prompt": "Vad blockerar vårt team i dag?"
+        },
+        "reorders": {
+          "label": "Vad behöver beställas på nytt?",
+          "hint": "Kontrollera öppna förfrågningar om att fylla på lagret.",
+          "prompt": "Finns det öppna förfrågningar om nybeställning?"
+        },
+        "generalHelp": {
+          "label": "Vilka studiodata kan jag se?",
+          "hint": "Se vilken information som är tillgänglig för din roll.",
+          "prompt": "Vilka studiodata har du åtkomst till?"
+        }
+      },
+      "selectedStudio": "Vald studio"
     }
   },
   "DailyBriefing": {
@@ -9369,6 +9747,50 @@
     }
   },
   "Reports": {
+    "analytics": {
+      "bestMonth": "Bästa avslutade månad",
+      "completedMonths": "Bara hela avslutade månader med tillförlitliga data jämförs.",
+      "noBestMonth": "Ingen tillförlitlig bästa månad i perioden. Ta med hela avslutade månader.",
+      "showYear": "Visa detta år",
+      "monthRanking": "Betalningar per månad",
+      "month": "Månad",
+      "coverage": "Datatäckning",
+      "completeMonth": "Hel månad",
+      "partialMonth": "Del av månad",
+      "moneyBasis": "Faktiskt mottagna betalningar under perioden minus återbetalningar registrerade vid rapportdatumet. Betalda medlemskap, presentkort och påfyllningar räknas en gång; användning är ingen ny betalning. Detta är inte vinst.",
+      "asOf": "Per",
+      "customerTable": "Kundanalys",
+      "customerHelp": "Kombinera filter för att hitta kunder att kontakta.",
+      "inactiveCredit": "Inaktiva i 90 dagar med saldo:",
+      "showCustomers": "Visa kunder",
+      "spending": "Mottagna betalningar",
+      "credits": "Aktuellt saldo",
+      "cancellations": "Avbokade bokningar",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "actor": "Avbokad av",
+      "actor_all": "Alla",
+      "actor_customer": "Kund",
+      "actor_staff": "Personal",
+      "inactiveDays": "Inaktiv i minst (dagar)",
+      "dateDefaults": "Tomma datumfält använder rapportperioden ovan.",
+      "cancellationCoverage": "Äldre avbokningar kan sakna säkert datum eller avsändare. Ett tal med + är ett känt minimum; okänt är inte noll. Maxfilter kräver fullständig historik.",
+      "invalidBounds": "Ange giltiga tal och datum; minimum får inte överstiga maximum.",
+      "apply": "Tillämpa filter",
+      "clear": "Rensa filter",
+      "exportCustomers": "Exportera alla matchande kunder",
+      "noCustomers": "Inga kunder matchar filtren.",
+      "customer": "Kund",
+      "lastActivity": "Senaste aktivitet",
+      "locationScope": "Studiosummor utesluter betalningar utan säker koppling till studion. Medlemskap, presentkort och påfyllningar kan bara ingå i den samlade vyn.",
+      "incompleteData": "Vissa källor är ofullständiga eller otillgängliga. Endast verifierbara poster ingår; saknade värden är inte noll.",
+      "paymentSources": "Betalningskällor",
+      "source_external_payment": "Orderbetalningar",
+      "source_voucher": "Köp av presentkort",
+      "source_membership": "Medlemsbetalningar",
+      "source": "Källa",
+      "noPaymentSources": "Det finns inga tillgängliga uppgifter om betalningskällor."
+    },
     "actions": {
       "retry": "Försök igen",
       "export": "Exportera CSV",
@@ -9422,14 +9844,14 @@
     },
     "metrics": {
       "bookings": "Bokningar",
-      "netSales": "Nettoförsäljning",
+      "netSales": "Mottagna betalningar",
       "utilizationPercent": "Utnyttjandegrad",
       "returningCustomerPercent": "Återkommande kunder"
     },
     "overview": {
       "chartMetrics": {
         "bookings": "Bokningar",
-        "netSales": "Nettoförsäljning"
+        "netSales": "Mottagna betalningar"
       },
       "trendTitle": "Resultattrend",
       "trendDescription": "Verifierade värden under den valda rapportperioden.",
@@ -9462,22 +9884,22 @@
       "table": {
         "quantity": "Antal",
         "currency": "Valuta",
-        "orders": "Beställningar",
+        "orders": "Betalningar",
         "amount": "Belopp",
-        "net": "Nettoförsäljning",
+        "net": "Mottagna betalningar",
         "gross": "Bruttoförsäljning",
         "method": "Metod",
         "product": "Katalogartikel"
       },
       "metrics": {
-        "orders": "Beställningar",
-        "net": "Nettoförsäljning",
+        "orders": "Betalningar",
+        "net": "Mottagna betalningar",
         "gross": "Bruttoförsäljning",
         "tax": "Skatt / moms",
         "discounts": "Rabatter",
         "refunds": "Återbetalningar",
         "paymentFees": "Betalleverantörens avgifter",
-        "averageOrder": "Genomsnittligt ordervärde"
+        "averageOrder": "Genomsnittlig betalning"
       },
       "unavailable": "Försäljningsdata är inte tillgängliga",
       "unavailableDescription": "Det här kontot eller rapporturvalet saknar en tillgänglig försäljningskälla.",
@@ -9492,7 +9914,7 @@
     "bookings": {
       "metrics": {
         "total": "Bokningar",
-        "participants": "Deltagare",
+        "participants": "Bokade platser",
         "utilization": "Utnyttjandegrad",
         "cancellations": "Avbokningar",
         "noShows": "Uteblivanden",
@@ -9519,11 +9941,11 @@
     },
     "customers": {
       "metrics": {
-        "new": "Nya kunder",
-        "returning": "Återkommande kunder",
-        "unique": "Aktiva kunder",
+        "new": "Nya betalande kunder",
+        "returning": "Återkommande betalande kunder",
+        "unique": "Betalande kunder",
         "returningRate": "Andel återkommande kunder",
-        "averageSpend": "Genomsnittliga köp"
+        "averageSpend": "Genomsnittligt betalt belopp"
       },
       "unavailable": "Kunddata är inte tillgängliga",
       "unavailableDescription": "Det här kontot eller rapporturvalet saknar en tillgänglig kundkälla.",
@@ -11730,6 +12152,13 @@
     "notEntitled": {
       "title": "Dörråtkomst ingår inte i det här abonnemanget",
       "description": "Granska abonnemangsalternativen eller fråga en arbetsyteägare om Dörråtkomst."
+    },
+    "emailTemplate": {
+      "title": "Mejl med dörrkod",
+      "description": "Skapa eller redigera det automatiska mejlet med dörrkod för den här platsen. Varje plats har en mall som delas med Meddelanden → E-postmallar.",
+      "create": "Skapa mall",
+      "createFor": "Skapa dörrkodsmall för {location}",
+      "locationUnavailable": "Det finns ingen e-postmall med dörrkod för den här platsen."
     }
   },
   "VoucherFoundation": {
@@ -13314,7 +13743,11 @@
     "LAST_NAME": "Efternamn",
     "PLEASE_WAIT": "Vänta medan vi behandlar ditt köp…",
     "SELECT_TIME_FIRST": "Välj start- och sluttid först.",
-    "COURSE_BOOKING": "Kursbokning"
+    "COURSE_BOOKING": "Kursbokning",
+    "USER_EMAIL_CHANGE_WARNING": "Att ändra e-postadressen loggar ut kunden från alla sessioner och kräver att den nya adressen verifieras.",
+    "USER_EMAIL_VERIFICATION_SENT": "E-postadressen har uppdaterats. Befintliga sessioner avslutades och en verifieringslänk skickades till den nya adressen.",
+    "USER_EMAIL_VERIFICATION_RETRY": "E-postadressen har uppdaterats och befintliga sessioner har avslutats. Leveransen av verifieringsmejlet kunde inte bekräftas. Kunden kan begära en ny länk på studions sida för e-postverifiering.",
+    "USER_EMAIL_UPDATE_FAILED": "Kunden kunde inte uppdateras. Kontrollera e-postadressen och försök igen."
   },
   "AIProduct": {
     "advisor": {
@@ -13361,7 +13794,10 @@
       "message041": "Datatäckningen är ännu inte tillräcklig för en tillförlitlig rekommendation.",
       "message042": "Börja med möjligheterna som har högst prioritet",
       "message043": "Några möjligheter bör granskas",
-      "message044": "Rådgivaren hittade {value1} rekommendationer baserade på verifierade studiodata."
+      "message044": "Rådgivaren hittade {value1} rekommendationer baserade på verifierade studiodata.",
+      "message045": "Granska minskningen av mottagna betalningar",
+      "message046": "Mottagna betalningar efter återbetalningar är {value1} % lägre än under jämförelseperioden.",
+      "message047": "Mottagna betalningar efter återbetalningar"
     },
     "briefing": {
       "message011": "Brådskande uppgifter",
@@ -13399,12 +13835,352 @@
     }
   },
   "PaymentCancellation": {
-    "badge": "Betalningen avbröts",
-    "nextSteps": "Vad du kan göra nu",
-    "retry": "Försök igen – ibland fungerar det vid andra försöket.",
-    "card": "Om du använde Apple Pay eller Google Pay kan du försöka betala med kort i stället.",
-    "contact": "Om det fortsätter, kontakta oss så hjälper vi dig.",
     "home": "Tillbaka till startsidan",
-    "chargeNotice": "Inget belopp debiteras förrän betalningen är slutförd."
+    "title": "Tillbaka från betalningen",
+    "description": "Att återvända från betalningssidan avbokar inte en bokning. Du kan se dess status bland dina bokningar.",
+    "creditsHint": "För att betala med krediter öppnar du din obetalda bokning och avbokar den först. Välj sedan tiden igen. Om alternativet inte är tillgängligt, kontakta studion.",
+    "backToBookings": "Tillbaka till bokningar"
+  },
+  "StudioManagement": {
+    "todayEyebrow": "Studioöversikt",
+    "todayNumbers": "Studions siffror för dagen",
+    "todayBookings": "Bokningar",
+    "selectedDate": "Den valda dagen",
+    "expectedVisitors": "Förväntade besökare",
+    "bookedParticipants": "Deltagare i schemalagda bokningar",
+    "expectedNow": "I studion nu (uppskattat)",
+    "expectedNowBasis": "Personer med en pågående bokning; närvaro är inte bekräftad",
+    "nextSession": "Nästa bokning",
+    "noUpcomingSession": "Ingen kommande bokning",
+    "attentionTitle": "Kräver din uppmärksamhet",
+    "review": "Granska",
+    "generateReport": "Skapa AI-rapport",
+    "generating": "Förbereder rapport…",
+    "reportPermission": "AI-rapporter kräver åtkomst till studioassistenten.",
+    "reportError": "Rapporten kunde inte skapas. Försök igen.",
+    "operationsError": "Studions dagliga data kunde inte läsas in.",
+    "managementError": "Studions månadsdata kunde inte läsas in.",
+    "retry": "Försök igen",
+    "loadingPerformance": "Läser in studions resultat…",
+    "performanceEyebrow": "Studions resultat",
+    "monthTitle": "Den här månaden hittills",
+    "comparison": "Jämfört med {period}",
+    "comparedWithPrevious": "jämfört med föregående period",
+    "unavailable": "Data inte tillgängliga",
+    "revenue": "Levererade intäkter",
+    "revenueBasis": "Tjänster som utförts och produkter som levererats under perioden",
+    "revenueUnavailable": "De totala levererade intäkterna är ännu inte tillgängliga: leveransposterna täcker inte alla tjänster och produkter. Inbetalningar redovisas separat.",
+    "confirmedRevenue": "Bekräftade slutförda tjänster: {amount}.",
+    "visits": "Deltagare i tidigare bokningar",
+    "visitsBasis": "Deltagare i avslutade bokningar; närvaro är inte verifierad",
+    "newClients": "Nya bokande kunder",
+    "newClientsBasis": "Första registrerade bokningen i de valda studiorna; inte nödvändigtvis nya för hela verksamheten",
+    "last30Days": "Senaste 30 dagarna",
+    "arrivalTitle": "När kunderna kommer",
+    "scheduledArrivalTitle": "När besöken är schemalagda",
+    "hourlyAttendance": "Deltagare per starttimme",
+    "hourCount": "{hour}:00 — {count} deltagare",
+    "busiestHour": "Mest bokade timme: {from}:00–{to}:00",
+    "recordedBusiestHour": "Timme med flest ankomster: {from}:00–{to}:00",
+    "recordedSample": "Baserat på {count} registrerade ankomster",
+    "scheduledSample": "Baserat på {count} schemalagda deltagare",
+    "scheduledCaveat": "Bokningarnas starttider visar det aktuella schemat. Lugna timmar bevisar inte i sig efterfrågan på nya pass.",
+    "noAttendance": "Det finns ännu inte tillräckligt med aktivitet för att visa ett mönster.",
+    "other": "Övrigt",
+    "topClients": "Topp 5 kunder",
+    "rankingBy": "Rangordna kunder efter",
+    "clientVisitsBasis": "Deltagare i avslutade bokningar under perioden",
+    "clientRevenueBasis": "Intäkter från bekräftade slutförda tjänster under perioden",
+    "unnamedClient": "Namnlös kund",
+    "noClients": "Inga kunder har registrerats för perioden.",
+    "confirmedOnly": "Endast bekräftade slutförda tjänster; andra leveransposter är inte tillgängliga.",
+    "topProducts": "Topp 3 produkter",
+    "byQuantity": "Efter antal",
+    "deliveredProductsBasis": "Bekräftade slutförda tjänster rangordnade efter antal",
+    "noProducts": "Inga slutförda produkter har registrerats för perioden.",
+    "unnamedProduct": "Namnlös produkt",
+    "units": "st.",
+    "coverageTitle": "Datatäckning och begränsningar",
+    "coverageDescription": "Data som inte är tillgängliga förblir otillgängliga. Schemalagd aktivitet och bekräftad leverans redovisas separat.",
+    "openReports": "Öppna detaljerade rapporter",
+    "back": "Tillbaka till översikten",
+    "reportTitle": "Studiorapport",
+    "exporting": "Förbereder PDF…",
+    "exportPdf": "Exportera PDF",
+    "exportError": "PDF:en kunde inte laddas ned. Försök igen.",
+    "aiReport": "AI-studiorapport",
+    "verifiedReport": "Rapport över studiodata",
+    "deterministicNote": "AI-kommentarer är inte tillgängliga. Rapporten innehåller studions sparade siffror och en saklig sammanfattning.",
+    "reportHighlights": "Höjdpunkter",
+    "reportAttention": "Kräver uppmärksamhet",
+    "reportRecommendations": "Föreslagna nästa steg",
+    "generatedAt": "Skapad {date}",
+    "issues": {
+      "overdueTasks": "{count} försenade uppgifter",
+      "lowStock": "{count} artiklar med lågt lager",
+      "failedEmails": "{count} misslyckade mejl",
+      "overduePayments": "{count} förfallna betalningar",
+      "overdueOrders": "{count} försenade specialbeställningar",
+      "other": "{count} poster behöver granskas",
+      "failed_emails": "{count} misslyckade mejl",
+      "overdue_custom_orders": "{count} försenade specialbeställningar",
+      "overdue_invoices": "{count} förfallna betalningar"
+    },
+    "staleData": "Den senaste uppdateringen misslyckades. Tidigare inlästa data visas.",
+    "refreshingData": "Uppdaterar studiodata…",
+    "coverageReportDetails": "Skapa en studiorapport för att se tillgängliga källor och begränsningar för varje mått.",
+    "dismissAttention": "Dölj varningskortet",
+    "showAttention": "Visa varningar ({count})",
+    "customerId": "Kund-ID {id}",
+    "spentMonth": "Spenderat under vald månad",
+    "spentTotal": "Totalt spenderat",
+    "clientSpendingBasis": "Kundbetalningar efter registrerade återbetalningar i alla studior. Månad: {period}; totalt till och med valt datum.",
+    "spendingUnavailable": "Utgiftsdata är inte tillgängliga i den här vyn.",
+    "previousValue": "Föregående period: {value}",
+    "revenueUnavailableShort": "Inte tillgängligt – leveransposterna är ofullständiga.",
+    "totalCustomers": "Totalt antal kunder",
+    "workspaceCustomersScope": "Registrerade i alla studior",
+    "newRegisteredThisMonth": "Nya den här månaden",
+    "activeCustomers": "Aktiva kunder",
+    "activeCustomersBasis": "Har bokat de senaste 30 dagarna",
+    "selectedStudiosScope": "Valda studior",
+    "workspaceScope": "Alla studior",
+    "activeSubscribers": "Aktiva prenumeranter",
+    "newSubscribersThisMonth": "Nya prenumeranter den här månaden",
+    "subscriberBasis": "Varje person en gång. Ny betyder första prenumerationen; förnyelser ingår inte.",
+    "missingMetric": "— Data inte tillgängliga",
+    "asOfDate": "Per {date}",
+    "subscriberSelectedScope": "Medlemskap som gäller i de valda studiorna",
+    "recordedPayments": "Registrerade betalningar",
+    "recordedPaymentsBasis": "Betalningar som mottagits under vald månad, med avdrag för registrerade återbetalningar",
+    "paymentsUnavailable": "Betalningsdata inte tillgängliga.",
+    "spending": "Spenderat belopp",
+    "clientPaymentsBasis": "Rangordnade efter registrerade kundbetalningar under vald månad, med avdrag för registrerade återbetalningar, i alla studior",
+    "noCustomerPayments": "Inga verifierade kundbetalningar för perioden.",
+    "spendingIncomplete": "Vissa totaler är inte tillgängliga eftersom betalningshistoriken är ofullständig.",
+    "paymentRankingIncomplete": "Rankningen använder verifierade betalningsbelopp; ofullständiga poster kan påverka ordningen.",
+    "byPurchases": "Efter köp",
+    "purchasedProductsBasis": "Betalda ordrar som innehåller varje produkt · Senaste 30 dagarna: {period}",
+    "noPurchasedProducts": "Inga verifierade betalda produktköp de senaste 30 dagarna.",
+    "purchases": "köp",
+    "purchasesIncomplete": "Vissa köp kan inte verifieras; rankningen kan vara ofullständig.",
+    "knownAmount": "Känt belopp",
+    "knownPaymentsOnly": "Endast kända betalningar; vissa betalningsposter är ofullständiga."
+  },
+  "UnifiedSettings": {
+    "title": "Inställningar",
+    "description": "Dina preferenser och studions inställningar på ett ställe.",
+    "navigation": "Inställningsavsnitt",
+    "studioTitle": "Studio",
+    "personalTitle": "Mina inställningar",
+    "studioScope": "För hela studion",
+    "personalScope": "Endast för dig",
+    "studioDescription": "Gemensamma inställningar för den här studion. Du ser endast de områden du har åtkomst till.",
+    "personalDescription": "Hantera ditt konto och hur du arbetar i den här studion. Preferenserna ändrar inte andra teammedlemmars inställningar.",
+    "personalProfileScope": "Din profil och ditt lösenord gäller ditt konto i alla studior.",
+    "personalPreferencesScope": "Preferenserna gäller endast dig i den här studion.",
+    "locationScope": "Endast platsen {name}",
+    "newLocationScope": "Inställningar för den nya platsen",
+    "backTo": "Tillbaka till {section}",
+    "searchLabel": "Sök i inställningar",
+    "searchStudio": "Sök i studioinställningar…",
+    "searchPersonal": "Sök i mina inställningar…",
+    "clearSearch": "Rensa sökning",
+    "searchResults": "{count, plural, one {# inställning hittades} other {# inställningar hittades}}",
+    "advancedTitle": "Avancerade inställningar",
+    "advancedDescription": "Aktiverade funktioner, navigering och dataimport.",
+    "emptyTitle": "Inga matchande inställningar",
+    "emptyDescription": "Prova ett annat ord eller rensa sökningen för att se alla tillgängliga inställningar i avsnittet.",
+    "setupTitle": "Slutför konfigurationen av din studio",
+    "setupProgress": "{completed} av {total} obligatoriska steg klara.",
+    "setupAction": "Fortsätt konfigurationen",
+    "groups": {
+      "workspace": {
+        "title": "Studio och platser",
+        "description": "Studions uppgifter, gemensamt språk, valuta och platser."
+      },
+      "access": {
+        "title": "Team och åtkomst",
+        "description": "Teammedlemmar, roller och dörråtkomst."
+      },
+      "website": {
+        "title": "Webbplats och varumärke",
+        "description": "Offentlig webbplats, bokningssidor och visuell identitet."
+      },
+      "payments": {
+        "title": "Betalningar från kunder",
+        "description": "Betalningsmetoder och inställningar för kundbetalningar."
+      },
+      "communications": {
+        "title": "Meddelanden och automatisering",
+        "description": "E-postleverans, avsändare och AI-hjälp."
+      },
+      "account": {
+        "title": "Shario-prenumeration",
+        "description": "Din studios plan, fakturor och faktureringsuppgifter."
+      },
+      "advanced": {
+        "title": "Funktioner och data",
+        "description": "Konfigurera moduler och importera data till din studio."
+      },
+      "profile": {
+        "title": "Profil och säkerhet",
+        "description": "Ditt namn, dina kontaktuppgifter och ditt lösenord i alla studior."
+      },
+      "preferences": {
+        "title": "Min arbetsmiljö",
+        "description": "Din kalender, tidszon och standardplats i den här studion."
+      },
+      "notifications": {
+        "title": "Mina aviseringar",
+        "description": "Välj vilka uppdateringar du får i den här studion."
+      }
+    },
+    "items": {
+      "general": {
+        "title": "Studions uppgifter",
+        "description": "Namn, språk, tidszon och valuta."
+      },
+      "locations": {
+        "title": "Platser",
+        "description": "Adresser, lokaler och öppettider."
+      },
+      "team": {
+        "title": "Teammedlemmar",
+        "description": "Bjud in personer och hantera teammedlemskap."
+      },
+      "roles": {
+        "title": "Roller och behörigheter",
+        "description": "Vem som har åtkomst till varje del av studion."
+      },
+      "accessCodes": {
+        "title": "Dörråtkomst",
+        "description": "Dörrkoder och inpasseringsbehörighet."
+      },
+      "publicSite": {
+        "title": "Webbplats och bokningssidor",
+        "description": "Varumärke, offentliga sidor och kundupplevelse."
+      },
+      "payments": {
+        "title": "Betalningsmetoder",
+        "description": "Onlinebetalningar och Stripe-anslutning."
+      },
+      "invoicing": {
+        "title": "Kundfakturering",
+        "description": "Fakturor och kundfakturering."
+      },
+      "communications": {
+        "title": "E-post och avsändare",
+        "description": "Leverans, avsändardomäner och meddelandeinställningar."
+      },
+      "ai": {
+        "title": "AI-assistent",
+        "description": "AI-funktioner och automatiseringsinställningar."
+      },
+      "billing": {
+        "title": "Plan och fakturering",
+        "description": "Shario-prenumeration, fakturor och faktureringsuppgifter."
+      },
+      "modules": {
+        "title": "Funktioner och navigering",
+        "description": "Aktivera moduler och välj navigeringsposter."
+      },
+      "migration": {
+        "title": "Importera data",
+        "description": "Importera kunder, bokningar och andra studiodata."
+      },
+      "profile": {
+        "title": "Redigera profil och lösenord",
+        "description": "Ditt namn, dina kontaktuppgifter och ditt lösenord i alla studior."
+      },
+      "preferences": {
+        "title": "Kalender och visning",
+        "description": "Din kalender, tidszon och standardplats i den här studion."
+      },
+      "notifications": {
+        "title": "Aviseringsinställningar",
+        "description": "Varningar om bokningar, uppgifter och lager; uppdateringar via e-post och i appen."
+      }
+    },
+    "language": {
+      "label": "Appens språk",
+      "change": "Byt språk",
+      "sharedScope": "Gemensamt för hela studions team.",
+      "managedByAdmin": "Din studios administratör hanterar det här språket."
+    },
+    "plan": {
+      "label": "Nuvarande plan",
+      "details": "Planinformation",
+      "loading": "Läser in plan…",
+      "unavailable": "Planen är inte tillgänglig",
+      "detailsUnavailable": "Planinformationen är tillfälligt otillgänglig."
+    }
+  },
+  "PricingDetails": {
+    "feeNote": "Shario tar ingen transaktionsprovision. Stripes avgifter för kundbetalningar är separata från din prenumeration. Priserna anges exklusive tillämpliga skatter.",
+    "feeLink": "Betalningsavgifter, provperiod och uppsägning i detalj",
+    "links": {
+      "stripePricing": "Se Stripes priser för ditt land",
+      "refundContact": "Fråga om återbetalning av en prenumeration",
+      "studioAi": "Utforska Shario AI",
+      "refundTerms": "Läs de fullständiga villkoren och undantagen för återbetalning"
+    },
+    "faq": {
+      "title": "Innan du väljer en plan",
+      "description": "Vet vad du betalar, när ändringar börjar gälla och vad som händer efter provperioden.",
+      "trial": {
+        "question": "Vad händer när min provperiod slutar?",
+        "answer": "Din 14-dagars provperiod för Professional börjar när du slutför introduktionen. Inget kort krävs. Utan en aktiv betald prenumeration pausas nya bokningar, onlineköp och arbetsytans funktioner när provperioden slutar. Kundernas befintliga bokningshistorik och återställning av fakturering förblir tillgängliga; provperiodens slut raderar inte studions data. Det går inte att köpa en plan under provperiodens sista 48 timmar, för att undvika en tidig debitering. Du kan teckna prenumeration när provperioden har slutat."
+      },
+      "cancellation": {
+        "question": "När börjar en uppsägning gälla?",
+        "answer": "Att säga upp en betald prenumeration stoppar nästa förnyelse. Du behåller åtkomsten till slutet av din nuvarande betalda faktureringsperiod och kan ångra uppsägningen innan dess. Att säga upp en provperiod utan kort avslutar den direkt. När åtkomsten upphör begränsas nya bokningar, onlineköp och arbetsytans funktioner. Begränsad åtkomst är inte en fullständig skrivskyddad arbetsyta: allmänna rapporter och exporter kan vara otillgängliga. Exportera nödvändiga uppgifter innan åtkomsten upphör eller kontakta hello@shario.io om återlämning eller radering av data. Uppgifterna raderas inte automatiskt när perioden löper ut, men obegränsad lagring utlovas inte."
+      },
+      "refunds": {
+        "question": "Återbetalar en uppsägning automatiskt outnyttjad tid?",
+        "answer": "Att säga upp en års- eller månadsprenumeration stoppar nästa förnyelse; berättigad betald åtkomst fortsätter till slutet av den aktuella perioden. Frivillig uppsägning, outnyttjad tid och outnyttjade kvoter återbetalas inte, utom enligt tvingande lag, ett uttryckligt skriftligt avtal eller påföljderna i våra villkor. Om Shario avslutar den betalda tjänsten i förtid av bekvämlighetsskäl, eller om du säger upp avtalet på grund av ett väsentligt avtalsbrott från vår sida som inte har åtgärdats 30 dagar efter skriftligt meddelande, återbetalar vi den outnyttjade förbetalda delen från uppsägningens ikraftträdande. Vi återbetalar också den outnyttjade förbetalda delen om du säger upp avtalet eftersom en ofördelaktig villkorsändring skulle börja gälla under en redan förbetald period. Om vi inte kan lösa en befogad dataskyddsinvändning mot ett nytt eller ersättande personuppgiftsbiträde (underbiträde) med ett rimligt alternativ kan du avsluta den berörda tjänsten och få dess outnyttjade förbetalda del återbetald. Uppsägningen i sig ger ingen automatisk återbetalning. Kontakta oss för att begära den tillämpliga åtgärden."
+      },
+      "planChanges": {
+        "question": "När börjar upp- och nedgraderingar gälla?",
+        "answer": "För betalda prenumerationer börjar ett byte till en högre plan gälla direkt när en eventuell nödvändig betalning har slutförts, med en proportionerlig faktura. Ett byte till en lägre plan börjar gälla i slutet av den aktuella faktureringsperioden. Inom samma plan gäller byte från månads- till årsfakturering direkt när den nödvändiga betalningen har slutförts, och byte från års- till månadsfakturering börjar nästa period. Granska ikraftträdandedatumet och faktureringsförhandsvisningen innan du bekräftar."
+      },
+      "payments": {
+        "question": "Ingår avgifter för kundbetalningar?",
+        "answer": "Kunders onlinebetalningar hanteras via ditt anslutna Stripe-konto. Shario tar ingen transaktionsprovision. Stripes behandlingsavgifter är separata från din Shario-prenumeration och beror på ditt land, betalningsmetoden och ditt avtal med Stripe. Din studios prenumeration faktureras separat från de betalningar som dina kunder gör."
+      }
+    },
+    "definitions": {
+      "title": "Vad planernas funktioner innebär",
+      "automations": {
+        "question": "Vad räknas som en aktiv automatisering?",
+        "answer": "En aktiv automatisering är en egen regel som är aktiverad: till exempel att schemalägga ankomstinstruktioner till studion en dag efter att en kund registrerat sig. Gränsen räknar aktiverade regler, inte sparade utkast eller hur ofta en regel körs. Starter innehåller inga egna regler; Professional tillåter 3. Space Plus använder samma händelsebaserade redigerare och tillåter fler än 3 aktiva regler, med 5 000 räknade mejl per månad. Varje regel räknas mot automatiseringsgränsen och dess räknade mejl mot e-postkvoten. Vanliga systemmejl är separata."
+      },
+      "studioAi": {
+        "question": "Vilka Shario AI-verktyg får jag?",
+        "answer": "Professional ger 2 000 AI-krediter per månad och omfattar studioassistenten, dagliga sammanfattningar och kunskapscentret. Space Plus ger 10 000 krediter och lägger till Business Advisor, kundconcierge och AI-insikter i rapporter. Verktygen beror på din studios konfiguration och teamets behörigheter; stödda åtgärder kräver bekräftelse."
+      },
+      "aiCredits": {
+        "question": "Motsvarar en AI-kredit en fråga?",
+        "answer": "AI-krediter mäter bearbetad och genererad text, inte ett fast antal frågor. Till exempel använder en kort åtgärd med 750 tokens (textdelar) 1 kredit; en åtgärd med 2 500 tokens och tillräcklig budget använder 3. En fråga kan omfatta flera åtgärder, och kunskapssökningar eller dokumentindexering kan öka förbrukningen. Det är exempel, inte garanterade kostnader per fråga. Krediterna delas varje månad mellan aktiverade verktyg. En förfrågan behöver tillräckligt många återstående krediter för att köras; det finns inga automatiska avgifter för överförbrukning."
+      },
+      "emails": {
+        "question": "Vad händer när e-postkvoten är slut?",
+        "answer": "Månadskvoten omfattar räknade automatiseringsmejl. När den är förbrukad hoppas det berörda automatiseringsmejlet över; det köas inte automatiskt till nästa månad. Viktiga kontomejl och stödda inbyggda driftsmeddelanden räknas inte mot kvoten. Att märka din egen automatisering som transaktionell gör den inte undantagen. Kontrollera arbetsytans förbrukning och byt plan eller kontakta oss om du behöver mer kapacitet."
+      }
+    }
+  },
+  "PendingBookingPayment": {
+    "title": "Vill du ändra betalningssätt?",
+    "explanation": "Din obetalda bokning kan fortfarande hålla din plats. För att betala med krediter i stället för kort, eller för att börja om, avbokar du den först. Knappen avbokar alla obetalda bokningar i den här betalningen.",
+    "action": "Avboka obetalda bokningar",
+    "busy": "Kontrollerar betalningen och avbokar bokningen…",
+    "cancelled": "De obetalda bokningarna i den här betalningen har avbokats. Gå tillbaka till varukorgen eller välj tiden igen och välj sedan studiokrediter. Tillgänglighet och pris kontrolleras igen.",
+    "paid": "Betalningen är redan genomförd. Din bokning avbokades inte. Kontrollera dess status.",
+    "pending": "Betalningen verifieras fortfarande. Inget har avbokats. Kontrollera betalningsstatusen innan du gör en ny bokning för samma tid.",
+    "unsupported": "Den här betalningen kan inte avbrytas här. Öppna dina bokningar eller kontakta studion.",
+    "missing": "Ordern kunde inte hittas. Öppna dina bokningar eller kontakta studion.",
+    "error": "Avbokningen kunde inte bekräftas. Försök igen. Kontakta studion om problemet kvarstår.",
+    "status": "Kontrollera betalningsstatus",
+    "bookAgain": "Välj en tid igen"
   }
 }

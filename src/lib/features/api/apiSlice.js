@@ -19,6 +19,7 @@ import {
 import { PERMISSIONS, hasPermission } from "@/config/permissions";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Mutex } from "async-mutex";
+import { getFirstPartyAuthRequest } from "@/lib/features/auth/firstPartyAuthTransport";
 
 const mutex = new Mutex();
 
@@ -68,7 +69,7 @@ export const prepareApiHeaders = (headers, { getState, endpoint }) => {
 |--------------------------------------------------------------------------
 */
 
-const baseQuery = fetchBaseQuery({
+const directBaseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_API_URL,
 
   /*
@@ -79,6 +80,22 @@ const baseQuery = fetchBaseQuery({
 
   prepareHeaders: prepareApiHeaders,
 });
+
+const firstPartyBaseQuery = fetchBaseQuery({
+  baseUrl: "",
+  credentials: "same-origin",
+  prepareHeaders: prepareApiHeaders,
+});
+
+const baseQuery = (args, api, extraOptions) => {
+  const firstPartyRequest = getFirstPartyAuthRequest(
+    args,
+    api.extra?.authTransportConfig,
+  );
+  return firstPartyRequest
+    ? firstPartyBaseQuery(firstPartyRequest, api, extraOptions)
+    : directBaseQuery(args, api, extraOptions);
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +130,8 @@ const AUTH_SESSION_MUTATION_PATHS = new Set([
   "/auth/customer/logout",
   "/auth/refresh",
   "/auth/customer/refresh",
+  "/auth/session-handoff",
+  "/auth/customer/session-handoff",
   "/auth/register",
   "/auth/tenant/register",
   "/account/password",

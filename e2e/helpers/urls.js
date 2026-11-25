@@ -1,5 +1,9 @@
+const httpsMode = process.env.E2E_HTTPS_MODE === "1";
+const originFor = (hostname) =>
+  httpsMode ? `https://${hostname}` : `http://${hostname}:4310`;
+
 export const E2E = Object.freeze({
-  frontendPort: 4310,
+  frontendPort: httpsMode ? 443 : 4310,
   locale: "en",
   alphaSlug: "studio-alpha",
   betaSlug: "studio-beta",
@@ -7,11 +11,11 @@ export const E2E = Object.freeze({
 });
 
 export function tenantOrigin(slug) {
-  return `http://${slug}.shario.localhost:${E2E.frontendPort}`;
+  return originFor(`${slug}.shario.localhost`);
 }
 
 export function platformOrigin() {
-  return `http://shario.localhost:${E2E.frontendPort}`;
+  return originFor("shario.localhost");
 }
 
 export function platformUrl(pathname = "/") {
@@ -27,7 +31,7 @@ export function platformUrl(pathname = "/") {
 export function isPlatformRoute(url, pathname) {
   return (
     url.hostname === "shario.localhost" &&
-    url.port === String(E2E.frontendPort) &&
+    url.origin === platformOrigin() &&
     url.pathname === `/${E2E.locale}${pathname}`
   );
 }
@@ -43,7 +47,7 @@ export function tenantUrl(slug, pathname = "/") {
 }
 
 export function customTenantOrigin(hostname) {
-  return `http://${hostname}:${E2E.frontendPort}`;
+  return originFor(hostname);
 }
 
 export function customTenantUrl(hostname, pathname = "/") {
@@ -59,7 +63,7 @@ export function customTenantUrl(hostname, pathname = "/") {
 export function isCustomTenantRoute(url, hostname, pathname) {
   return (
     url.hostname === hostname &&
-    url.port === String(E2E.frontendPort) &&
+    url.origin === customTenantOrigin(hostname) &&
     url.pathname === `/${E2E.locale}${pathname}`
   );
 }
@@ -67,7 +71,7 @@ export function isCustomTenantRoute(url, hostname, pathname) {
 export function isTenantRoute(url, slug, pathname) {
   return (
     url.hostname === `${slug}.shario.localhost` &&
-    url.port === String(E2E.frontendPort) &&
+    url.origin === tenantOrigin(slug) &&
     url.pathname === `/${E2E.locale}${pathname}`
   );
 }

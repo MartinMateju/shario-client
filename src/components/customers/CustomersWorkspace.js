@@ -85,7 +85,7 @@ export default function CustomersWorkspace({ showPageHeader = false }) {
         {notice ? (
           <div
             role="status"
-            className="flex items-start gap-3 rounded-[16px] border border-success/20 bg-success-soft px-4 py-3 text-[12px] leading-5 text-success"
+            className="flex items-start gap-3 rounded-[16px] border border-success/40 bg-success-soft px-4 py-3 text-[13px] font-medium leading-5 text-success"
           >
             <CheckCircleIcon
               className="mt-0.5 h-4 w-4 shrink-0"

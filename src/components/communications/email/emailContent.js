@@ -762,13 +762,17 @@ export function buildEmailPreviewDocument({
   primaryColor = "#1f1a17",
   subjectLabel = "Subject",
   emptyText = "Start writing to preview the email.",
+  previewValues,
 } = {}) {
   const content = serializeEmailVariant(variant);
   const safeColor = /^#[0-9a-f]{6}$/i.test(primaryColor)
     ? primaryColor
     : "#1f1a17";
-  const subject = applyPreviewVariables(escapeHtml(content.subject));
-  const body = applyPreviewVariables(content.htmlContent);
+  const subject = applyPreviewVariables(
+    escapeHtml(content.subject),
+    previewValues,
+  );
+  const body = applyPreviewVariables(content.htmlContent, previewValues);
   const safeSubjectLabel = escapeHtml(subjectLabel);
   const safeEmptyText = escapeHtml(emptyText);
   return `<!doctype html>
@@ -792,9 +796,9 @@ export function buildEmailPreviewDocument({
     <article class="mail">
       <div class="subject"><strong>${safeSubjectLabel}:</strong> ${subject || "—"}</div>
       <div class="content">
-        ${applyPreviewVariables(headerHtml)}
+        ${applyPreviewVariables(headerHtml, previewValues)}
         ${body || `<p>${safeEmptyText}</p>`}
-        ${applyPreviewVariables(footerHtml)}
+        ${applyPreviewVariables(footerHtml, previewValues)}
       </div>
     </article>
   </body>

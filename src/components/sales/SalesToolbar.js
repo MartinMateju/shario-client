@@ -56,15 +56,20 @@ export default function SalesToolbar({
                 aria-pressed={isActive}
                 onClick={() => onStatusChange(status)}
                 className={cx(
-                  "relative min-h-12 px-4 text-[12px] font-medium transition",
+                  "relative min-h-12 px-4 text-[14px] font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary",
                   isActive
-                    ? "text-[#171717]"
-                    : "text-[#777773] hover:text-[#171717]",
+                    ? "bg-primary-soft font-semibold text-primary"
+                    : "text-ink-muted hover:bg-surface-muted hover:text-ink",
                 )}
               >
                 {t(`tabs.${status}`)}
-                <span className="ml-2 text-[10px] text-ink-muted">
-                  {counts ? counts[status] || 0 : "—"}
+                <span
+                  className={cx(
+                    "ml-2 text-[12px] tabular-nums",
+                    isActive ? "text-primary" : "text-ink-muted",
+                  )}
+                >
+                  {counts ? (counts[status] ?? "—") : "—"}
                 </span>
                 {isActive && (
                   <span className="absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-cobalt-500" />

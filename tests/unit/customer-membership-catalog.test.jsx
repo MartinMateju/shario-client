@@ -20,6 +20,7 @@ const mocks = vi.hoisted(() => ({
   membershipRefetch: vi.fn(),
   membershipQueryState: {},
   membership: null,
+  ledgerQuery: {},
   authenticated: true,
   push: vi.fn(),
 }));
@@ -67,7 +68,7 @@ vi.mock("@/lib/features/memberships/membershipsApiSlice", () => ({
     refetch: mocks.membershipRefetch,
     ...mocks.membershipQueryState,
   }),
-  useGetMyMembershipLedgerQuery: () => ({}),
+  useGetMyMembershipLedgerQuery: () => mocks.ledgerQuery,
   useCancelMyMembershipMutation: () => [mocks.cancelMembership, {}],
   useScheduleMyMembershipPlanChangeMutation: () => [mocks.scheduleChange, {}],
   useCancelMyMembershipPlanChangeMutation: () => [mocks.cancelChange, {}],
@@ -151,6 +152,7 @@ describe("customer membership catalog", () => {
     };
     mocks.search = "location=vaclavska";
     mocks.membership = null;
+    mocks.ledgerQuery = {};
     mocks.authenticated = true;
     mocks.membershipQueryState = {};
     mocks.query = {
@@ -693,7 +695,7 @@ describe("customer membership catalog", () => {
     );
     expect(mocks.publicQuery).toHaveBeenCalledWith(
       { tenantSlug: "klei-atelier" },
-      { skip: true },
+      expect.objectContaining({ skip: true }),
     );
     expect(
       screen.queryByRole("combobox", { name: "Location" }),
@@ -812,6 +814,67 @@ describe("customer membership catalog", () => {
       screen.getByText(/Other participants pay full price/),
     ).toBeInTheDocument();
     expect(screen.queryByText(/do not roll over/)).not.toBeInTheDocument();
+  });
+
+  it("keeps benefit activity readable without exposing internal reasons or benefit keys", () => {
+    const benefitKey = "internal_studio_minutes";
+    mocks.membership = activeMembership({
+      planSnapshot: {
+        name: "Monthly clay",
+        benefits: [
+          {
+            key: benefitKey,
+            label: "Studio time",
+            type: "allowance",
+            unit: "minute",
+            quantity: 240,
+          },
+        ],
+      },
+    });
+    mocks.ledgerQuery = {
+      data: {
+        entries: [
+          {
+            id: "use",
+            type: "redemption",
+            reason: "benefit_redemption",
+            amount: -60,
+          },
+          {
+            id: "cancel",
+            type: "reversal",
+            reason: "booking_cancelled",
+            amount: 60,
+          },
+          { id: "grant", type: "grant", reason: "period_grant", amount: 240 },
+          { id: "adjustment", type: "adjustment", reason: null, amount: 0 },
+        ].map((entry) => ({
+          ...entry,
+          benefitKey,
+          createdAt: "2026-11-06T09:08:00.000Z",
+        })),
+      },
+    };
+
+    renderPage(<CustomerMembershipPage />);
+
+    for (const label of [
+      "Use confirmed",
+      "Entry reversed",
+      "Benefit granted",
+      "Balance adjusted",
+    ])
+      expect(screen.getByText(label)).toBeInTheDocument();
+    expect(screen.getByText("−1 hr")).toBeInTheDocument();
+    expect(screen.getByText("+1 hr")).toBeInTheDocument();
+    expect(screen.getByText("+4 hr")).toBeInTheDocument();
+    expect(screen.getAllByText(/6 Nov 2026|Nov 6, 2026/)).toHaveLength(4);
+    expect(
+      screen.queryByText(
+        /benefit_redemption|booking_cancelled|period_grant|internal_studio_minutes/,
+      ),
+    ).not.toBeInTheDocument();
   });
 
   it("renders a genuine empty catalog and a retryable error distinctly", () => {

@@ -85,24 +85,24 @@ function LocationCard({
               {location.name}
             </h2>
             {location.isPrimary && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-cobalt-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.11em] text-cobalt-600">
+              <span className="inline-flex items-center gap-1 rounded-full bg-cobalt-50 px-2 py-1 text-[12px] font-semibold uppercase tracking-[0.11em] text-cobalt-600">
                 <StarIcon className="h-3 w-3" aria-hidden="true" />
                 {t("primary")}
               </span>
             )}
             <span
               className={cx(
-                "rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.11em]",
+                "rounded-full px-2 py-1 text-[12px] font-semibold uppercase tracking-[0.11em]",
                 location.isActive
                   ? "bg-[#E9F1E7] text-[#47613E]"
-                  : "bg-[#F1EFEB] text-[#777773]",
+                  : "bg-[#F1EFEB] text-ink-muted",
               )}
             >
               {location.isActive ? t("active") : t("inactive")}
             </span>
           </div>
 
-          <p className="mt-2 flex items-start gap-1.5 text-xs leading-5 text-[#777773]">
+          <p className="mt-2 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
             <MapPinIcon
               className="mt-0.5 h-4 w-4 shrink-0"
               aria-hidden="true"
@@ -135,7 +135,7 @@ function LocationCard({
 
       <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-line py-4">
         <div>
-          <dt className="text-[10px] uppercase tracking-[0.11em] text-[#969691]">
+          <dt className="text-[12px] uppercase tracking-[0.11em] text-ink-muted">
             {t("timezone")}
           </dt>
           <dd className="mt-1 truncate text-xs font-semibold text-[#353533]">
@@ -143,7 +143,7 @@ function LocationCard({
           </dd>
         </div>
         <div>
-          <dt className="text-[10px] uppercase tracking-[0.11em] text-[#969691]">
+          <dt className="text-[12px] uppercase tracking-[0.11em] text-ink-muted">
             {t("capacity")}
           </dt>
           <dd className="mt-1 text-xs font-semibold text-[#353533]">
@@ -157,7 +157,7 @@ function LocationCard({
           {canViewAccessCodes ? (
             <Link
               href={`/app/settings/access-codes?location=${locationId}`}
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-white px-3 text-[10px] font-semibold text-[#555553] transition hover:border-cobalt-300 hover:text-cobalt-600"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-white px-3 text-[12px] font-semibold text-[#555553] transition hover:border-cobalt-300 hover:text-cobalt-600"
             >
               <KeyIcon className="h-4 w-4" aria-hidden="true" />
               {t("accessCodes")}
@@ -168,7 +168,7 @@ function LocationCard({
               type="button"
               onClick={() => onAction("primary", locationId)}
               disabled={isBusy}
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-white px-3 text-[10px] font-semibold text-[#555553] transition hover:border-cobalt-300 hover:text-cobalt-600 disabled:opacity-50"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-white px-3 text-[12px] font-semibold text-[#555553] transition hover:border-cobalt-300 hover:text-cobalt-600 disabled:opacity-50"
             >
               <CheckBadgeIcon className="h-4 w-4" aria-hidden="true" />
               {t("makePrimary")}
@@ -186,10 +186,10 @@ function LocationCard({
               }
               disabled={isBusy}
               className={cx(
-                "inline-flex h-9 items-center gap-1.5 rounded-full border px-3 text-[10px] font-semibold transition disabled:opacity-50",
+                "inline-flex h-9 items-center gap-1.5 rounded-full border px-3 text-[12px] font-semibold transition disabled:opacity-50",
                 location.isActive
-                  ? "border-line bg-white text-[#777773] hover:border-coral-200 hover:text-terracotta-600"
-                  : "border-[#CFE0CB] bg-[#F5FAF3] text-[#47613E] hover:border-[#AFC9A8]",
+                  ? "border-line bg-white text-ink-muted hover:border-danger/40 hover:text-danger"
+                  : "border-cobalt-200 bg-cobalt-50 text-cobalt-700 hover:border-cobalt-300 hover:bg-cobalt-100",
               )}
             >
               {isBusy ? (
@@ -274,17 +274,17 @@ export default function StudioLocationsPage({
       >
         {showPageHeader ? (
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
               {t("eyebrow")}
             </p>
             <h1 className="mt-2 text-[28px] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[34px]">
               {t("title")}
             </h1>
-            <p className="mt-1 max-w-2xl text-[12px] leading-5 text-[#777773]">
+            <p className="mt-1 max-w-2xl text-[12px] leading-5 text-ink-muted">
               {t("description")}
             </p>
             {locationLimit !== null && (
-              <p className="mt-2 text-[11px] font-medium text-[#777773]">
+              <p className="mt-2 text-[13px] font-medium text-ink-muted">
                 {t("planUsage", {
                   used: activeCount,
                   limit: locationLimit,
@@ -293,7 +293,7 @@ export default function StudioLocationsPage({
             )}
           </div>
         ) : locationLimit !== null ? (
-          <p className="rounded-full border border-line bg-white px-4 py-2 text-[11px] font-medium text-[#777773]">
+          <p className="rounded-full border border-line bg-white px-4 py-2 text-[13px] font-medium text-ink-muted">
             {t("planUsage", {
               used: activeCount,
               limit: locationLimit,
@@ -321,7 +321,7 @@ export default function StudioLocationsPage({
       {actionError && (
         <p
           role="alert"
-          className="rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className="rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-[13px] text-danger"
         >
           {actionError}
         </p>
@@ -339,14 +339,14 @@ export default function StudioLocationsPage({
       )}
 
       {isError && !isLoading && (
-        <div className="rounded-[20px] border border-dashed border-coral-200 bg-coral-50/50 px-6 py-10 text-center">
+        <div className="rounded-[20px] border border-dashed border-line bg-white px-6 py-10 text-center">
           <p className="text-[14px] font-semibold text-[#353533]">
             {t("loadError")}
           </p>
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-[11px] font-semibold text-cobalt-600 shadow-xs"
+            className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-[13px] font-semibold text-cobalt-600 shadow-xs"
           >
             <ArrowPathIcon className="h-4 w-4" aria-hidden="true" />
             {t("retry")}
@@ -356,13 +356,13 @@ export default function StudioLocationsPage({
 
       {!isLoading && !isError && locations.length === 0 && (
         <div className="rounded-[20px] border border-dashed border-line bg-white/65 px-6 py-12 text-center">
-          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-[15px] bg-coral-50 text-terracotta-600">
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-[15px] bg-accent-soft text-accent-text">
             <BuildingOffice2Icon className="h-6 w-6" aria-hidden="true" />
           </span>
           <h2 className="mt-4 text-[16px] font-semibold text-[#252524]">
             {t("emptyTitle")}
           </h2>
-          <p className="mx-auto mt-1 max-w-md text-xs leading-5 text-[#777773]">
+          <p className="mx-auto mt-1 max-w-md text-xs leading-5 text-ink-muted">
             {t("emptyDescription")}
           </p>
         </div>

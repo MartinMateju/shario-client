@@ -12,7 +12,13 @@ import { useLocale, useTranslations } from "next-intl";
 
 import ConfirmationModal from "@/components/modals/ConformationModal";
 import CustomerBookingStatus from "@/components/bookings/CustomerBookingStatus";
-import { isCustomerBookingNextVisit } from "@/lib/features/bookings/customerBookingState";
+import PendingBookingPaymentRecovery, {
+  getPendingCheckoutOrderId,
+} from "@/components/bookings/PendingBookingPaymentRecovery";
+import {
+  getCustomerBookingState,
+  isCustomerBookingNextVisit,
+} from "@/lib/features/bookings/customerBookingState";
 import { useOptionalPublicTenant } from "@/components/public-tenant/PublicTenantProvider";
 import { getPublicTenantPortalTheme } from "@/components/public-tenant/publicTenantPortalTheme";
 import {
@@ -82,6 +88,10 @@ export default function Drawer({
   const timezone = getLocationTimeZone(location);
   const isOpenStudio = isOpenStudioBooking(booking);
   const isConfirmedReservation = isCustomerBookingNextVisit(booking);
+  const pendingCheckoutOrderId =
+    isOpenStudio && getCustomerBookingState(booking) === "awaiting_payment"
+      ? getPendingCheckoutOrderId(booking?.pendingCheckoutOrderId)
+      : "";
   const canCancel = booking?.canCancel === true;
   const canReschedule = isOpenStudio && booking?.canReschedule === true;
   const canExtend = isOpenStudio && booking?.canExtend === true;
@@ -441,7 +451,17 @@ export default function Drawer({
                     </div>
                   </fieldset>
                 )}
-                {!hasActions && (
+                {pendingCheckoutOrderId && (
+                  <PendingBookingPaymentRecovery
+                    key={pendingCheckoutOrderId}
+                    orderId={pendingCheckoutOrderId}
+                    locationReference={
+                      location?.slug || location?.id || location?._id
+                    }
+                    onBusyChange={setPendingPaymentBusy}
+                  />
+                )}
+                {!hasActions && !pendingCheckoutOrderId && (
                   <p
                     className={cx(
                       panelClass,

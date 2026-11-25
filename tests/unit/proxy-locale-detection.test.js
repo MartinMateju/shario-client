@@ -56,6 +56,27 @@ afterEach(() => {
 });
 
 describe("platform visitor locale detection", () => {
+  it.each(["terms", "privacy"])(
+    "serves platform %s routes without replacing tenant policy routes",
+    (documentKey) => {
+      const platform = proxy(createRequest(`/cs/${documentKey}`));
+      expect(platform.status).toBe(204);
+      expect(platform.headers.get("x-middleware-rewrite")).toBeNull();
+
+      const tenant = proxy(
+        createRequest(`/cs/${documentKey}`, { host: "clay-house.shario.io" }),
+      );
+      expect(new URL(tenant.headers.get("x-middleware-rewrite")).pathname).toBe(
+        `/cs/tenants/clay-house/${documentKey}`,
+      );
+
+      const unknownHost = proxy(
+        createRequest(`/cs/${documentKey}`, { host: "unconfigured.example" }),
+      );
+      expect(unknownHost.status).toBe(404);
+    },
+  );
+
   it.each([
     ["/?source=homepage", "/cs?source=homepage"],
     ["/pricing?billing=yearly", "/cs/pricing?billing=yearly"],

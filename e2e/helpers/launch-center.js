@@ -264,7 +264,7 @@ const ACTIONS = Object.freeze({
   ],
   communications: [
     "configure_communications",
-    "/app/communications?section=setup&setupStep=communications",
+    "/app/settings/communications?setupStep=communications",
   ],
   team: ["invite_team", "/app/settings/team?action=add&setupStep=team"],
   publish: ["publish_studio", "/app/setup?step=publish"],

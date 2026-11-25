@@ -19,7 +19,7 @@ function Metric({ value, label, available }) {
       <p className="break-words text-[24px] font-medium tracking-[-0.04em] text-[var(--studio-ink)]">
         {available ? value : "—"}
       </p>
-      <p className="mt-1 text-[12px] leading-4 text-[var(--studio-muted)]">
+      <p className="mt-1 text-[13px] leading-4 text-[var(--studio-muted)]">
         {label}
       </p>
     </div>
@@ -85,7 +85,7 @@ export function BusinessPulseCard({ pulse }) {
             />
           </svg>
         ) : (
-          <div className="flex h-full items-center justify-center rounded-[14px] border border-dashed border-[var(--studio-rule)] text-[12px] text-[var(--studio-muted)]">
+          <div className="flex h-full items-center justify-center rounded-[14px] border border-dashed border-[var(--studio-rule)] text-[13px] text-[var(--studio-muted)]">
             {t("pulse.noTrend")}
           </div>
         )}
@@ -119,7 +119,7 @@ export function AiOpportunityCard({ opportunity, canOpenAdvisor = false }) {
           <CheckCircleIcon className="h-5 w-5" />
         </span>
         <div>
-          <h2 className="text-[12px] font-medium uppercase tracking-[0.14em] text-[var(--overview-success)]">
+          <h2 className="text-[13px] font-medium uppercase tracking-[0.14em] text-[var(--overview-success)]">
             {t("opportunity.eyebrow")}
           </h2>
           <p className="mt-1 text-[14px] leading-5 text-[var(--studio-muted)]">
@@ -147,22 +147,19 @@ export function AiOpportunityCard({ opportunity, canOpenAdvisor = false }) {
       className={`${styles.module} ${styles.card} ${styles.opportunity}`}
     >
       <div className="flex items-start gap-3.5">
-        <span
-          aria-hidden="true"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--studio-white)] text-[var(--studio-blue)] shadow-none"
-        >
+        <span aria-hidden="true" className={styles.sectionIcon}>
           <SparklesIcon className="h-5 w-5" />
         </span>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-            <h2 className="text-[12px] font-medium uppercase tracking-[0.14em] text-[var(--studio-clay)]">
+            <h2 className="text-[13px] font-medium uppercase tracking-[0.14em] text-[var(--studio-orange-ink)]">
               {t("opportunity.eyebrow")}
             </h2>
             {actionHref ? (
               <Link
                 href={actionHref}
                 data-business-advisor-action="quiet"
-                className="inline-flex min-h-11 items-center gap-1 rounded-[14px] px-1.5 text-[12px] font-medium text-[var(--studio-blue)] transition hover:text-[var(--studio-blue)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-300/60"
+                className="inline-flex min-h-11 items-center gap-1 rounded-[14px] px-1.5 text-[13px] font-medium text-[var(--studio-blue)] transition hover:text-[var(--studio-blue)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-300/60"
               >
                 {actionLabel}
                 <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5" />
@@ -173,12 +170,12 @@ export function AiOpportunityCard({ opportunity, canOpenAdvisor = false }) {
             {t(`opportunity.items.${opportunity.key}`, opportunityValues)}
           </p>
           {opportunity.key === "noBookings" ? (
-            <p className="mt-1.5 max-w-[48rem] text-[12px] leading-4 text-[var(--studio-muted)]">
+            <p className="mt-1.5 max-w-[48rem] text-[13px] leading-4 text-[var(--studio-muted)]">
               {t("opportunity.guidance")}
             </p>
           ) : null}
           {opportunity.key === "repeatedCourseSaturation" ? (
-            <p className="mt-1.5 max-w-[48rem] text-[12px] leading-4 text-[var(--studio-muted)]">
+            <p className="mt-1.5 max-w-[48rem] text-[13px] leading-4 text-[var(--studio-muted)]">
               {t("opportunity.evidence", opportunityValues)}
             </p>
           ) : null}

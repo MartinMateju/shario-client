@@ -146,6 +146,42 @@ const NEW_RUNTIME_PATHS = Object.freeze([
     "restoreConfirm",
     "close",
   ].map((key) => `builderActions.${key}`),
+  ...[
+    "title",
+    "description",
+    "page",
+    "image",
+    "hint",
+    "preview",
+    "previewDescription",
+    "products",
+  ].map((key) => `customerPortal.pageImages.${key}`),
+  "preview.pages.portalPageHero",
+  ...[
+    "title",
+    "addGroup",
+    "group",
+    "children",
+    "button",
+    "separator",
+    "layout",
+    "defaultLayout",
+    "websiteLayout",
+    "background",
+    "linkColor",
+    "buttonColor",
+    "header",
+    "footer",
+    "label",
+    "href",
+    "add",
+    "remove",
+    "up",
+    "down",
+    "count",
+    "hint",
+    "invalid",
+  ].map((key) => `customLinks.${key}`),
   "customerPortal.pageLabels.courses",
   "customerPortal.navigationLabels.courses",
   "preview.pages.portalCourses",
@@ -240,6 +276,31 @@ describe("PublicSiteEditor translation contract", () => {
     ["English", messagesEn.PublicSiteEditor],
     ["Czech", messagesCs.PublicSiteEditor],
   ];
+
+  it("provides page image controls in every supported locale", () => {
+    for (const locale of ALL_LOCALE_CODES) {
+      const catalog =
+        logoRedirectCatalogs[`../../src/messages/${locale}.json`]
+          ?.PublicSiteEditor;
+      for (const key of [
+        "title",
+        "description",
+        "page",
+        "image",
+        "hint",
+        "preview",
+        "previewDescription",
+        "products",
+      ]) {
+        expectLocalizedString(
+          catalog,
+          `customerPortal.pageImages.${key}`,
+          locale,
+        );
+      }
+      expectLocalizedString(catalog, "preview.pages.portalPageHero", locale);
+    }
+  });
 
   it("localizes the logo destination controls and validation in every supported locale", () => {
     for (const locale of ALL_LOCALE_CODES) {

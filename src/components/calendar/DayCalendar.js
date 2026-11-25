@@ -246,7 +246,11 @@ const TimeGrid = memo(function TimeGrid({
           }
           className={cx(
             "absolute right-2 -translate-y-1/2 tabular-nums",
-            slot.isHour ? "text-[12px] font-medium" : "text-[11px]",
+            customerThemed
+              ? slot.isHour
+                ? "text-[12px] font-medium"
+                : "text-[11px]"
+              : "text-[12px] font-semibold",
             customerThemed
               ? slot.isHour
                 ? "text-[var(--tenant-text)]"
@@ -351,10 +355,10 @@ function ResourceGridHeader({
         <div key={resource.id} className="contents">
           <div
             className={cx(
-              "flex h-12 min-w-0 items-center justify-center gap-2 border-r px-2 text-[11px] font-medium",
+              "flex h-12 min-w-0 items-center justify-center gap-2 border-r px-2",
               customerThemed
-                ? "border-[var(--tenant-border)] text-[var(--tenant-text-on-surface)]"
-                : "border-[#CBD5E1] text-[#252524]",
+                ? "border-[var(--tenant-border)] text-[11px] font-medium text-[var(--tenant-text-on-surface)]"
+                : "border-line-strong text-[13px] font-semibold text-ink",
             )}
           >
             <span className="min-w-0 truncate" title={resource.name}>
@@ -362,10 +366,10 @@ function ResourceGridHeader({
             </span>
             <span
               className={cx(
-                "shrink-0 text-[10px] font-normal",
+                "shrink-0 font-normal",
                 customerThemed
-                  ? "text-[var(--tenant-muted-on-surface)]"
-                  : "text-[#475569]",
+                  ? "text-[10px] text-[var(--tenant-muted-on-surface)]"
+                  : "text-[12px] text-ink-soft",
               )}
             >
               {t("day.places", { count: resource.capacity })}
@@ -419,10 +423,10 @@ function FixedLaneGridHeader({
         <div
           key={lane}
           className={cx(
-            "flex h-12 items-center justify-center border-r text-[11px] font-medium last:border-r-0",
+            "flex h-12 items-center justify-center border-r last:border-r-0",
             customerThemed
-              ? "border-[var(--tenant-border)] text-[var(--tenant-text-on-surface)]"
-              : "border-[#CBD5E1] text-[#252524]",
+              ? "border-[var(--tenant-border)] text-[11px] font-medium text-[var(--tenant-text-on-surface)]"
+              : "border-line-strong text-[13px] font-semibold text-ink",
           )}
         >
           {t("day.publicLane", { number: lane + 1 })}
@@ -1948,7 +1952,11 @@ export default function DayCalendar(props) {
       );
       if (!preview) return;
       scrolledBookingPreviewRef.current = requestId;
-      preview.scrollIntoView?.({ block: "nearest", inline: "nearest" });
+      preview.scrollIntoView?.({
+        behavior: "instant",
+        block: "nearest",
+        inline: "nearest",
+      });
       syncScrollFromBody();
     });
     return () => cancelAnimationFrame(frame);

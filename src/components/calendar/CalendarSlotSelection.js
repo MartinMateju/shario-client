@@ -43,7 +43,13 @@ function revealSelection(element) {
   element.style.scrollMarginTop = `${getCalendarStickyChromeBottom(element) + topOverhang}px`;
   element.style.scrollMarginBottom = `${Math.max(0, view.innerHeight - summaryTop) + bottomOverhang}px`;
   element.style.scrollMarginLeft = `${timeRail?.getBoundingClientRect().width || 0}px`;
-  element.scrollIntoView({ block: "nearest", inline: "nearest" });
+  // This range is already interactive. Inheriting the page's smooth scroll
+  // leaves its resize handles moving under the finger (or the Continue bar).
+  element.scrollIntoView({
+    behavior: "instant",
+    block: "nearest",
+    inline: "nearest",
+  });
 }
 
 function ResizeHandle({

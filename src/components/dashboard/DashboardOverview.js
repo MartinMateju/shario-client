@@ -1,13 +1,17 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 import SetupCenterWidget from "@/components/setup-center/SetupCenterWidget";
 import StripeConnectSetupBanner from "@/components/dashboard/StripeConnectSetupBanner";
-import { PERMISSIONS, hasPermission } from "@/config/permissions";
+import {
+  PERMISSIONS,
+  getWorkspaceAccessRole,
+  hasPermission,
+} from "@/config/permissions";
 import {
   selectCurrentTenant,
   selectCurrentWorkspaceAccess,
@@ -30,6 +34,8 @@ import StudioBriefingHero from "./overview/StudioBriefingHero";
 import StudioFlowRail from "./overview/StudioFlowRail";
 import StudioSignals from "./overview/StudioSignals";
 import TodayRhythm from "./overview/TodayRhythm";
+import ManagementDashboard from "./overview/ManagementDashboard";
+import { MANAGEMENT_ROLES } from "./overview/management.utils";
 import {
   getLocalDateKey,
   normalizeOverview,
@@ -40,6 +46,7 @@ const moduleEnabled = (modules, key) => modules?.[key] !== false;
 
 export default function DashboardOverview() {
   const t = useTranslations("Dashboard.overview");
+  const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -47,6 +54,9 @@ export default function DashboardOverview() {
   const tenant = useSelector(selectCurrentTenant);
   const workspaceAccess = useSelector(selectCurrentWorkspaceAccess);
   const modules = tenant?.modules;
+  const showManagement =
+    MANAGEMENT_ROLES.has(getWorkspaceAccessRole(workspaceAccess)) &&
+    hasPermission(workspaceAccess, PERMISSIONS.REPORTS_VIEW);
   const bookingsEnabled = moduleEnabled(modules, "bookings");
   const paymentsEnabled = moduleEnabled(modules, "payments");
   const coursesEnabled = moduleEnabled(modules, "courses");
@@ -169,6 +179,9 @@ export default function DashboardOverview() {
       refetchOnFocus: true,
       refetchOnReconnect: true,
       refetchOnMountOrArgChange: true,
+      // Presence and tasks stay live even for another selected day.
+      pollingInterval: 60_000,
+      skipPollingIfUnfocused: true,
     },
   );
   const overviewData = query.currentData ?? null;
@@ -212,7 +225,41 @@ export default function DashboardOverview() {
 
   return (
     <div data-product-tour-target="overview" className={styles.overview}>
-      {isOverviewRefreshing || isOverviewRefreshError ? (
+      {showManagement ? (
+        <ManagementDashboard
+          key={`${tenant?._id || tenant?.id || ""}:${date}:${activeLocationId || "all"}:${locale}`}
+          overview={overview}
+          date={date}
+          todayDate={todayDate}
+          now={todayClock}
+          locationId={activeLocationId}
+          modules={modules}
+          workspaceAccess={workspaceAccess}
+          onDateChange={handleDateChange}
+          isLoading={!overviewData && (query.isLoading || query.isFetching)}
+          isError={query.isError && !overviewData}
+          isRefreshing={Boolean(overviewData) && query.isFetching}
+          isStale={Boolean(overviewData) && query.isError}
+          onRetry={query.refetch}
+        >
+          {showFirstBookingSuccess ? (
+            <FirstBookingSuccess onDismiss={dismissFirstBookingSuccess} />
+          ) : null}
+          {showGuidedSetup ? (
+            <SetupCenterWidget
+              presentation="guided"
+              onDismiss={dismissSetupCenter}
+            />
+          ) : null}
+          {showCompactSetup ? (
+            <SetupCenterWidget
+              presentation="compact"
+              onDismiss={dismissSetupCenter}
+            />
+          ) : null}
+          {paymentSetupBanner}
+        </ManagementDashboard>
+      ) : isOverviewRefreshing || isOverviewRefreshError ? (
         <div className="space-y-5">
           <div
             data-overview-briefing-loading

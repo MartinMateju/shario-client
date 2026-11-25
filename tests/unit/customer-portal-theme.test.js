@@ -55,6 +55,55 @@ const createTenant = (branding) => ({
 });
 
 describe("independent customer portal colors", () => {
+  it.each(["#FFFFFF", "#101820", "#F4E6DA"])(
+    "pairs the adjusted calendar selection with a readable foreground on %s",
+    (calendarBackgroundColor) => {
+      const theme = getPublicTenantTheme(
+        {
+          publicSite: {
+            branding: { secondaryColor: "#D9785D" },
+            customerPortal: { appearance: { calendarBackgroundColor } },
+          },
+        },
+        { surface: "portal" },
+      );
+      expect(
+        contrast(
+          theme.style["--tenant-portal-calendar-secondary"],
+          theme.style["--tenant-portal-calendar-secondary-foreground"],
+        ),
+      ).toBeGreaterThanOrEqual(4.5);
+    },
+  );
+
+  it.each(["#1F36D4", "#F9DD9E", "#FFFFFF", "#101820", "#BD644B"])(
+    "keeps custom heading %s readable on the branded feature surface",
+    (headingColor) => {
+      const theme = getPublicTenantTheme(
+        {
+          publicSite: {
+            branding: { accentColor: "#1F36D4" },
+            customerPortal: { appearance: { headingColor } },
+          },
+        },
+        { surface: "portal" },
+      );
+      const background = theme.style["--tenant-feature-background"];
+      expect(background).toBe("#1F36D4");
+      if (contrast(headingColor, background) >= 4.8) {
+        expect(theme.style["--tenant-feature-foreground"]).toBe(headingColor);
+      }
+      for (const token of [
+        "--tenant-feature-foreground",
+        "--tenant-feature-muted",
+      ]) {
+        expect(contrast(theme.style[token], background)).toBeGreaterThanOrEqual(
+          4.5,
+        );
+      }
+    },
+  );
+
   const branding = {
     accentColor: "#1F36D4",
     secondaryColor: "#E84000",

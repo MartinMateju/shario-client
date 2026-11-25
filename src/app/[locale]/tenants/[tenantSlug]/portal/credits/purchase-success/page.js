@@ -22,6 +22,8 @@ import { apiSlice } from "@/lib/features/api/apiSlice";
 import { getAuthCacheIdentity } from "@/lib/features/auth/authSlice";
 import { useLazyGetCheckoutOrderStatusQuery } from "@/lib/features/checkout/checkoutSlice";
 import { getPortalLocationReferenceFromSearchParams } from "@/utils/customerPortalLocation";
+import PaymentRefundResult from "@/components/customer-shell/PaymentRefundResult";
+import { hasPaymentRefundOutcome } from "@/utils/paymentRefundOutcome";
 
 const ORDER_ID_REGEX = /^[a-zA-Z0-9_-]{8,128}$/;
 
@@ -33,6 +35,8 @@ const STATUS = Object.freeze({
 });
 
 const getOrderState = (data) => {
+  if (hasPaymentRefundOutcome(data?.refund, data?.refundReviewRequired))
+    return "refund";
   const status = String(data?.status ?? "")
     .trim()
     .toLowerCase();
@@ -206,7 +210,7 @@ export default function CreditPurchaseSuccessPage() {
       ? query.currentData
       : undefined;
   const state = useMemo(() => getOrderState(data), [data]);
-  const isTerminal = data?.terminal === true;
+  const isTerminal = data?.terminal === true || state === "refund";
 
   useEffect(() => {
     if (!orderId || !ownerScope || isTerminal) {
@@ -299,6 +303,18 @@ export default function CreditPurchaseSuccessPage() {
       </main>
     );
   }
+
+  if (state === "refund")
+    return (
+      <PaymentRefundResult
+        refund={data.refund}
+        currency={data.currency}
+        reference={orderId}
+        returnHref={creditsHref}
+        onRefresh={handleRetry}
+        isRefreshing={query.isFetching}
+      />
+    );
 
   return (
     <main className="relative flex min-h-[72vh] items-center justify-center overflow-hidden bg-[var(--tenant-background)] text-[var(--tenant-text)] px-4 py-12">

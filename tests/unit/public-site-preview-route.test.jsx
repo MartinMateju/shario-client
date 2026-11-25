@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import PublicSitePreviewRoute from "@/components/public-site-editor/PublicSitePreviewRoute";
@@ -39,6 +39,9 @@ vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
   usePublicTenant: () => ({
     tenant: componentCalls.chrome.mock.calls.at(-1)[0].tenant,
   }),
+  useOptionalPublicTenant: () => ({
+    tenant: componentCalls.chrome.mock.calls.at(-1)[0].tenant,
+  }),
 }));
 
 vi.mock("@/app/[locale]/tenants/[tenantSlug]/(tenant-auth)/login/page", () => ({
@@ -77,6 +80,10 @@ vi.mock("@/components/menu/Menu", () => ({
 }));
 
 vi.mock("@/components/courses/CustomerCoursesPage", () => ({
+  PublicCustomerCoursesPage: (props) => {
+    componentCalls.courses(props);
+    return <div data-testid="production-courses">Courses</div>;
+  },
   default: (props) => {
     componentCalls.portalCourses(props);
     return <div data-testid="production-portal-courses">Customer courses</div>;
@@ -94,13 +101,6 @@ vi.mock("@/components/public-tenant/PublicHelpPage", () => ({
   default: (props) => {
     componentCalls.help(props);
     return <div data-testid="production-help">Help</div>;
-  },
-}));
-
-vi.mock("@/components/public-tenant/PublicProductCatalogPage", () => ({
-  default: (props) => {
-    componentCalls.courses(props);
-    return <div data-testid="production-courses">Courses</div>;
   },
 }));
 
@@ -211,6 +211,102 @@ function renderPage(page, data = previewData) {
 describe("PublicSitePreviewRoute", () => {
   beforeEach(() => {
     vi.spyOn(window, "postMessage").mockImplementation(() => {});
+  });
+
+  it("previews only the selected page image with the production header and no customer data queries", () => {
+    render(<PublicSitePreviewRoute tenantSlug="clay-house" />);
+    const previewTenant = {
+      ...tenant,
+      publicSite: {
+        customerPortal: {
+          pageImages: {
+            courses: "https://images.example.test/courses.webp",
+            vouchers: "https://images.example.test/vouchers.webp",
+          },
+        },
+      },
+    };
+    dispatchUpdate({
+      tenant: previewTenant,
+      page: "portalPageHero",
+      previewPageImageKey: "vouchers",
+    });
+    const preview = document.querySelector(
+      '[data-customer-portal-page-image-preview="vouchers"]',
+    );
+    expect(preview).toBeInTheDocument();
+    expect(
+      preview.querySelector('[data-customer-portal-hero="vouchers"] img'),
+    ).toHaveAttribute("src", "https://images.example.test/vouchers.webp");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "pageLabels.vouchers",
+    );
+    expect(componentCalls.vouchers).not.toHaveBeenCalled();
+    dispatchUpdate({
+      tenant: previewTenant,
+      page: "portalPageHero",
+      previewPageImageKey: "courses",
+    });
+    expect(
+      document.querySelector('[data-customer-portal-hero="courses"] img'),
+    ).toHaveAttribute("src", "https://images.example.test/courses.webp");
+  });
+
+  it("keeps the course header preview aligned with studio, page and legacy cover image precedence", () => {
+    render(<PublicSitePreviewRoute tenantSlug="clay-house" />);
+    const previewTenant = {
+      ...tenant,
+      publicSite: {
+        branding: { coverImageUrl: "/cover.webp" },
+        customerPortal: {
+          pageImages: { courses: "/courses.webp" },
+          courses: {
+            locations: [
+              { locationId: "location-2", heroImageUrl: "/studio.webp" },
+            ],
+          },
+        },
+      },
+    };
+    const update = () =>
+      dispatchUpdate({
+        tenant: previewTenant,
+        page: "portalPageHero",
+        previewPageImageKey: "courses",
+        previewLocationId: "location-2",
+        data: previewData,
+      });
+    const image = () =>
+      document.querySelector('[data-customer-portal-hero="courses"] img');
+    update();
+    expect(image()).toHaveAttribute("src", "/studio.webp");
+    fireEvent.click(image());
+    expect(window.postMessage).toHaveBeenLastCalledWith(
+      {
+        type: "shario:public-site-preview:edit",
+        nonce: "preview-route-nonce",
+        path: "customerPortal.courses.locations.0.heroImageUrl",
+      },
+      window.location.origin,
+    );
+    previewTenant.publicSite.customerPortal.courses.locations[0].heroImageUrl =
+      "";
+    update();
+    expect(image()).toHaveAttribute("src", "/courses.webp");
+    fireEvent.click(image());
+    expect(window.postMessage.mock.lastCall[0].path).toBe(
+      "customerPortal.pageImages.courses",
+    );
+    previewTenant.publicSite.customerPortal.pageImages.courses = "";
+    update();
+    expect(image()).toHaveAttribute("src", "/cover.webp");
+    fireEvent.click(image());
+    expect(window.postMessage.mock.lastCall[0].path).toBe(
+      "branding.coverImageUrl",
+    );
+    previewTenant.publicSite.branding.coverImageUrl = "";
+    update();
+    expect(image()).toBeNull();
   });
 
   it("acknowledges the accepted revision after committing its preview content", () => {
@@ -329,8 +425,7 @@ describe("PublicSitePreviewRoute", () => {
 
     dispatchUpdate({ tenant, page: "courses", data: previewData });
     expect(componentCalls.courses.mock.calls.at(-1)[0]).toMatchObject({
-      kind: "courses",
-      previewData: previewData.courses,
+      previewData,
     });
 
     dispatchUpdate({ tenant, page: "memberships", data: previewData });

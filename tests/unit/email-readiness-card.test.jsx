@@ -1,5 +1,21 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+const mocks = vi.hoisted(() => ({
+  access: {},
+  updatePreferences: vi.fn(),
+}));
+
+vi.mock("react-redux", () => ({ useSelector: () => mocks.access }));
+vi.mock("@/lib/features/workspace-access/workspaceAccessApiSlice", () => ({
+  useUpdateWorkspacePreferencesMutation: () => [mocks.updatePreferences],
+}));
 
 vi.mock("next-intl", () => ({
   useTranslations: () => {
@@ -17,6 +33,7 @@ vi.mock("next-intl", () => ({
       "actions.dismissSetupAlert": "Dismiss email setup alert",
       "diagnostics.reference": "Setup reference: {code}",
       "diagnostics.lastAttempt": "Last setup attempt",
+      bannerPreferenceSaveError: "Could not save this preference. Try again.",
     };
     return (key, values = {}) =>
       (messages[key] || key).replace(/\{(\w+)\}/g, (_, name) =>
@@ -48,6 +65,110 @@ const failedSetup = {
 };
 
 describe("managed email readiness card", () => {
+  beforeEach(() => {
+    mocks.access = {
+      tenantId: "tenant-one",
+      userId: "user-one",
+      membershipId: "membership-one",
+      preferences: {},
+    };
+    mocks.updatePreferences.mockReset();
+    mocks.updatePreferences.mockImplementation((preferences) => ({
+      unwrap: async () => {
+        mocks.access = {
+          ...mocks.access,
+          preferences: { ...mocks.access.preferences, ...preferences },
+        };
+        return { workspaceAccess: mocks.access };
+      },
+    }));
+  });
+
+  it("saves the ready dismissal and keeps it hidden after remounting", async () => {
+    const { unmount } = render(<EmailReadinessCard setup={readySetup} />);
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Dismiss email setup alert" }),
+    );
+    await waitFor(() =>
+      expect(screen.queryByText("Email is ready")).not.toBeInTheDocument(),
+    );
+    expect(mocks.updatePreferences).toHaveBeenCalledWith({
+      emailReadyBannerDismissed: true,
+    });
+
+    unmount();
+    render(
+      <EmailReadinessCard
+        setup={{ ...readySetup, id: "replacement-sender" }}
+      />,
+    );
+    expect(screen.queryByText("Email is ready")).not.toBeInTheDocument();
+  });
+
+  it("does not hide errors or another account's ready banner", () => {
+    mocks.access.preferences.emailReadyBannerDismissed = true;
+    const { rerender } = render(<EmailReadinessCard setup={readySetup} />);
+    expect(screen.queryByText("Email is ready")).not.toBeInTheDocument();
+
+    rerender(<EmailReadinessCard setup={failedSetup} />);
+    expect(screen.getByText("Email setup needs attention")).toBeVisible();
+
+    mocks.access = {
+      tenantId: "tenant-two",
+      userId: "user-two",
+      membershipId: "membership-two",
+      preferences: {},
+    };
+    rerender(<EmailReadinessCard setup={readySetup} />);
+    expect(screen.getByText("Email is ready")).toBeVisible();
+  });
+
+  it("keeps the banner visible when saving fails and allows retry", async () => {
+    mocks.updatePreferences.mockImplementationOnce(() => ({
+      unwrap: () => Promise.reject(new Error("Offline")),
+    }));
+    render(<EmailReadinessCard setup={readySetup} />);
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Dismiss email setup alert" }),
+    );
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "Could not save this preference. Try again.",
+    );
+    expect(screen.getByText("Email is ready")).toBeVisible();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Dismiss email setup alert" }),
+    );
+    await waitFor(() =>
+      expect(screen.queryByText("Email is ready")).not.toBeInTheDocument(),
+    );
+    expect(mocks.updatePreferences).toHaveBeenCalledTimes(2);
+  });
+
+  it("disables duplicate dismissal requests while the preference is saving", async () => {
+    let resolveSave;
+    mocks.updatePreferences.mockImplementationOnce(() => ({
+      unwrap: () =>
+        new Promise((resolve) => {
+          resolveSave = resolve;
+        }),
+    }));
+    render(<EmailReadinessCard setup={readySetup} />);
+    const close = screen.getByRole("button", {
+      name: "Dismiss email setup alert",
+    });
+
+    fireEvent.click(close);
+    expect(close).toBeDisabled();
+    fireEvent.click(close);
+    expect(mocks.updatePreferences).toHaveBeenCalledTimes(1);
+
+    await act(async () => resolveSave({}));
+    expect(screen.queryByText("Email is ready")).not.toBeInTheDocument();
+  });
+
   it("preserves cached ready state when a background refresh fails", () => {
     render(<EmailReadinessCard setup={readySetup} isError />);
 

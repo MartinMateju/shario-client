@@ -58,10 +58,10 @@ vi.mock("@/lib/features/ai/aiApiSlice", () => ({
   useGetAiActionsQuery: () => ({ data: { total: 0 } }),
 }));
 
-vi.mock("./StudioAssistantConversation", () => ({
+vi.mock("./StudioAssistantQuestions", () => ({
   default: (props) => {
     mocks.conversationProps = props;
-    return <div>Assistant conversation</div>;
+    return <div>Guided assistant questions</div>;
   },
 }));
 
@@ -89,14 +89,14 @@ describe("StudioAssistantPage briefing intent", () => {
     mocks.advisorProps = null;
   });
 
-  it("prefills an editable allowlisted prompt without submitting it", () => {
+  it("offers an allowlisted contextual question without submitting it", () => {
     render(<StudioAssistantPage showPageHeader={false} />);
 
     expect(mocks.conversationProps).toMatchObject({
       starterPrompt: "Review today’s verified briefing without making changes.",
       assistantContext: { surface: "dashboard", route: "/app" },
     });
-    expect(screen.getByText("Assistant conversation")).toBeVisible();
+    expect(screen.getByText("Guided assistant questions")).toBeVisible();
     expect(screen.getAllByRole("tab")[0]).toHaveAttribute(
       "aria-selected",
       "true",
@@ -132,7 +132,7 @@ describe("StudioAssistantPage briefing intent", () => {
     );
   });
 
-  it("prefills a pinned Knowledge Hub test without auto-submitting it", () => {
+  it("offers a pinned Knowledge Hub test without auto-submitting it", () => {
     mocks.intent = "test-knowledge";
     mocks.sourceId = "507f1f77bcf86cd799439011";
 
@@ -166,7 +166,7 @@ describe("StudioAssistantPage briefing intent", () => {
     );
   });
 
-  it("prefills a server-resolved Business Advisor discussion context", () => {
+  it("offers a server-resolved Business Advisor context question", () => {
     mocks.intent = "review-business-advice";
     mocks.recommendationId = "adv_507f1f77bcf86cd799439011";
 
@@ -187,6 +187,6 @@ describe("StudioAssistantPage briefing intent", () => {
     mocks.paramsNull = true;
     render(<StudioAssistantPage showPageHeader={false} />);
 
-    expect(screen.getByText("Assistant conversation")).toBeVisible();
+    expect(screen.getByText("Guided assistant questions")).toBeVisible();
   });
 });

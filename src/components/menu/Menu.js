@@ -516,7 +516,7 @@ export default function Menu({
           <div className="mb-3 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
             <div className="min-w-0">
               <p
-                className="text-[9px] font-semibold uppercase tracking-[0.24em]"
+                className="text-[11px] font-semibold uppercase tracking-[0.18em]"
                 data-tenant-type="eyebrow"
                 style={{
                   color:
@@ -541,10 +541,8 @@ export default function Menu({
             </div>
             <div className="flex min-w-0 flex-col gap-1.5 sm:items-end">
               <p
-                className="text-[10px] font-medium leading-4"
-                style={{
-                  color: "var(--tenant-muted-text)",
-                }}
+                className="text-xs font-medium leading-5"
+                style={{ color: "var(--tenant-muted-text)" }}
               >
                 {copy.calendarDescription}
               </p>

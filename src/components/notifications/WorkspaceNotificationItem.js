@@ -40,7 +40,7 @@ const CATEGORY_ICONS = Object.freeze({
 });
 
 const SEVERITY_STYLES = Object.freeze({
-  critical: "bg-coral-100 text-terracotta-700 ring-coral-200",
+  critical: "bg-danger-soft text-danger ring-danger/30",
   warning: "bg-[#FFF6DF] text-[#956411] ring-[#F0D8A6]",
   success: "bg-[#EAF5EF] text-[#2F7D64] ring-[#CFE8DA]",
   info: "bg-cobalt-50 text-cobalt-700 ring-cobalt-100",

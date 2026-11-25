@@ -1,3 +1,4 @@
+import { renderToString } from "react-dom/server";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -17,6 +18,7 @@ const mocks = vi.hoisted(() => ({
   locationHook: vi.fn(),
   selectLocation: vi.fn(),
   ownerScope: "tenant:customer",
+  locationsQuery: null,
   publicCatalogHook: vi.fn(),
   replace: vi.fn(),
 }));
@@ -51,6 +53,7 @@ vi.mock("@/components/customer-shell/CustomerPortalLocationProvider", () => ({
 }));
 vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
   usePublicTenant: () => ({ tenant: mocks.tenant }),
+  useOptionalPublicTenant: () => ({ tenant: mocks.tenant }),
 }));
 vi.mock("@/lib/features/products/productsApiSlice", () => ({
   useGetCustomerCourseProductsQuery: (...args) => {
@@ -64,7 +67,8 @@ vi.mock("@/lib/features/products/productsApiSlice", () => ({
   useGetPublicProductsQuery: vi.fn(),
 }));
 vi.mock("@/lib/features/publicBooking/publicBookingApiSlice", () => ({
-  useGetPublicCourseLocationsQuery: () => ({ currentData: locations }),
+  useGetPublicCourseLocationsQuery: () =>
+    mocks.locationsQuery || { currentData: locations },
   useGetCustomerCourseSessionsQuery: (...args) => {
     mocks.sessionsHook(...args);
     return mocks.sessions;
@@ -91,8 +95,8 @@ vi.mock("@/components/menu/StudioSwitcher", () => ({
 vi.mock("@/i18n/navigation", () => ({
   usePathname: () => "/courses",
   useRouter: () => ({ replace: mocks.replace }),
-  Link: ({ children, href, ...props }) => (
-    <a href={href} {...props}>
+  Link: ({ children, href, prefetch, ...props }) => (
+    <a href={href} data-prefetch={String(prefetch)} {...props}>
       {children}
     </a>
   ),
@@ -143,6 +147,7 @@ const selectStudio = (index) => {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  mocks.locationsQuery = null;
   mocks.modules = { courses: true, payments: true, vouchers: true };
   mocks.ownerScope = "tenant:customer";
   mocks.tenant = {
@@ -172,6 +177,59 @@ beforeEach(() => {
 });
 
 describe("customer course catalog", () => {
+  it("uses the actual public catalog for a studio preview and preserves hero image precedence", () => {
+    mocks.tenant.publicSite.branding = {
+      coverImageUrl: "https://example.test/cover.jpg",
+    };
+    mocks.tenant.publicSite.customerPortal.pageImages = {
+      courses: "https://example.test/courses.jpg",
+    };
+    const view = () => (
+      <PublicCustomerCoursesPage
+        previewData={{ courses: [course()], locations }}
+        previewLocationId="vaclavska"
+      />
+    );
+    const { container, rerender } = render(view());
+    const image = () =>
+      container.querySelector('[data-customer-portal-hero="courses"] img');
+    expect(image()).toHaveAttribute("src", "https://example.test/studio.jpg");
+    expect(image().parentElement).toHaveAttribute(
+      "data-public-site-edit-path",
+      "customerPortal.courses.locations.0.heroImageUrl",
+    );
+    expect(mocks.publicCatalogHook).toHaveBeenLastCalledWith(
+      expect.anything(),
+      expect.objectContaining({ skip: true }),
+    );
+    expect(mocks.catalogHook).toHaveBeenLastCalledWith(
+      expect.anything(),
+      expect.objectContaining({ skip: true }),
+    );
+    expect(screen.getByRole("link", { name: "Wheel course" })).toHaveAttribute(
+      "href",
+      "/courses/wheel?location=vaclavska",
+    );
+    mocks.tenant.publicSite.customerPortal.courses.locations[0].heroImageUrl =
+      "";
+    rerender(view());
+    expect(image()).toHaveAttribute("src", "https://example.test/courses.jpg");
+    expect(image().parentElement).toHaveAttribute(
+      "data-public-site-edit-path",
+      "customerPortal.pageImages.courses",
+    );
+    mocks.tenant.publicSite.customerPortal.pageImages.courses = "";
+    rerender(view());
+    expect(image()).toHaveAttribute("src", "https://example.test/cover.jpg");
+    expect(image().parentElement).toHaveAttribute(
+      "data-public-site-edit-path",
+      "branding.coverImageUrl",
+    );
+    mocks.tenant.publicSite.branding.coverImageUrl = "";
+    rerender(view());
+    expect(image()).toBeNull();
+  });
+
   it("uses shared studio context for catalog, hero and every booking/voucher link", async () => {
     render(<CustomerCoursesPage />);
     expect(mocks.catalogHook).toHaveBeenCalledWith(
@@ -487,5 +545,90 @@ describe("anonymous course catalog", () => {
     expect(screen.getByText("unavailable.title")).toBeVisible();
     expect(mocks.publicCatalogHook).not.toHaveBeenCalled();
     expect(screen.queryByText("Wheel course")).toBeNull();
+  });
+});
+
+describe("server-rendered public course catalogue", () => {
+  const initialData = () => ({
+    tenantSlug: "klei",
+    locationId: "vaclavska",
+    locations,
+    products: [course()],
+  });
+
+  it("renders the real heading, course copy, price and link before browser queries finish", () => {
+    mocks.ownerScope = null;
+    mocks.locationsQuery = { isLoading: true };
+    mocks.catalog = { isLoading: true };
+    const html = renderToString(
+      <PublicCustomerCoursesPage initialData={initialData()} />,
+    );
+    expect(html).toContain("Create in Václavská");
+    expect(html).toContain("Wheel course");
+    expect(html).toContain("/courses/wheel?location=vaclavska");
+    expect(html).toContain("500");
+    expect(html).not.toContain("data-customer-portal-loading-state");
+  });
+
+  it("never reuses server courses for another tenant or a newly selected studio", () => {
+    mocks.catalog = { isLoading: true };
+    const { rerender } = render(
+      <PublicCustomerCoursesPage initialData={initialData()} />,
+    );
+    expect(screen.getByText("Wheel course")).toBeVisible();
+    mocks.search = "location=grohova";
+    rerender(<PublicCustomerCoursesPage initialData={initialData()} />);
+    expect(screen.queryByText("Wheel course")).toBeNull();
+    mocks.search = "location=vaclavska";
+    rerender(
+      <PublicCustomerCoursesPage
+        initialData={{ ...initialData(), tenantSlug: "other-studio" }}
+      />,
+    );
+    expect(screen.queryByText("Wheel course")).toBeNull();
+  });
+
+  it("replaces the initial catalogue with a fresh empty result and withdraws it on failure", () => {
+    mocks.catalog = { isLoading: true };
+    const { rerender } = render(
+      <PublicCustomerCoursesPage initialData={initialData()} />,
+    );
+    expect(screen.getByText("Wheel course")).toBeVisible();
+    mocks.catalog = { currentData: [] };
+    rerender(<PublicCustomerCoursesPage initialData={initialData()} />);
+    expect(screen.queryByText("Wheel course")).toBeNull();
+    mocks.catalog = { isError: true };
+    rerender(<PublicCustomerCoursesPage initialData={initialData()} />);
+    expect(screen.queryByText("Wheel course")).toBeNull();
+    expect(screen.getByText("error")).toBeVisible();
+  });
+});
+
+describe("public course request budget", () => {
+  it("does not prefetch public title, session, action or voucher targets", () => {
+    render(<PublicCustomerCoursesPage />);
+    const links = screen
+      .getAllByRole("link")
+      .filter((link) =>
+        /^\/(courses|vouchers)/.test(link.getAttribute("href")),
+      );
+    expect(links.length).toBeGreaterThanOrEqual(3);
+    expect(links.some((link) => link.href.includes("courseSessionId"))).toBe(
+      true,
+    );
+    for (const link of links)
+      expect(link).toHaveAttribute("data-prefetch", "false");
+  });
+
+  it("preserves authenticated portal link prefetch behaviour", () => {
+    render(<CustomerCoursesPage />);
+    const links = screen
+      .getAllByRole("link")
+      .filter((link) =>
+        /^\/portal\/(courses|vouchers)/.test(link.getAttribute("href")),
+      );
+    expect(links.length).toBeGreaterThanOrEqual(3);
+    for (const link of links)
+      expect(link).toHaveAttribute("data-prefetch", "undefined");
   });
 });

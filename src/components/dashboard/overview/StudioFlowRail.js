@@ -144,7 +144,7 @@ function AttendanceMetric({ stage, position, t }) {
           <Icon className="h-3.5 w-3.5" aria-hidden="true" />
         </span>
         {isLive ? (
-          <span className="inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-[0.08em] text-[var(--overview-success)]">
+          <span className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-[0.08em] text-[var(--overview-success)]">
             <span
               className="h-1.5 w-1.5 rounded-full bg-[var(--overview-success)] ring-[3px] ring-success/10"
               aria-hidden="true"
@@ -156,7 +156,7 @@ function AttendanceMetric({ stage, position, t }) {
 
       <strong
         className={cx(
-          "mt-1 text-[30px] font-medium leading-none tracking-[-0.055em] tabular-nums sm:text-[34px]",
+          "mt-1 text-[30px] font-semibold leading-none tracking-[-0.055em] tabular-nums sm:text-[34px]",
           stageState === "unavailable"
             ? "text-[var(--studio-muted)]"
             : "text-[var(--studio-ink)]",
@@ -164,10 +164,10 @@ function AttendanceMetric({ stage, position, t }) {
       >
         {displayedValue}
       </strong>
-      <span className="mt-1 text-[12px] font-medium leading-4 text-[var(--studio-muted)] sm:text-[12px]">
+      <span className="mt-1 text-[13px] font-semibold leading-5 text-[var(--studio-ink)] sm:text-[13px]">
         {stageLabel}
       </span>
-      <span className="text-[10px] font-medium leading-3 text-[var(--studio-muted)] sm:text-[11px]">
+      <span className="text-[13px] leading-5 text-[var(--studio-muted)]">
         {scopeLabel}
       </span>
     </Link>
@@ -181,7 +181,7 @@ function FlowGroup({ group, t }) {
         <h3 className="text-[13px] font-medium text-[var(--studio-ink)]">
           {t(`flow.groups.${group.key}.title`)}
         </h3>
-        <p className="mt-0.5 text-[12px] leading-4 text-[var(--studio-muted)]">
+        <p className="mt-0.5 text-[13px] leading-4 text-[var(--studio-muted)]">
           {t(`flow.groups.${group.key}.description`)}
         </p>
       </div>
@@ -259,10 +259,10 @@ export default function StudioFlowRail({
       />
       <div data-studio-flow-header className={styles.sectionHeader}>
         <div className="min-w-0 max-w-[620px] flex-1">
-          <h2 className="text-[24px] font-medium tracking-[-0.045em] text-[var(--studio-ink)] sm:text-[22px]">
+          <h2 className="text-[24px] font-semibold tracking-[-0.045em] text-[var(--studio-ink)] sm:text-[22px]">
             {t("flow.title")}
           </h2>
-          <p className="mt-0.5 text-[12px] leading-5 text-[var(--studio-muted)] sm:text-[13px]">
+          <p className="mt-0.5 text-[13px] leading-5 text-[var(--studio-muted)] sm:text-[13px]">
             {t("flow.description")}
           </p>
         </div>
@@ -282,14 +282,14 @@ export default function StudioFlowRail({
           className="relative z-10 mt-3 flex flex-col gap-3 rounded-[16px] border border-[var(--studio-rule)] bg-[var(--overview-clay-soft)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
           aria-live="polite"
         >
-          <p className="text-[12px] leading-5 text-[var(--studio-muted)] sm:text-[13px]">
+          <p className="text-[13px] leading-5 text-[var(--studio-muted)] sm:text-[13px]">
             {t("error.description")}
           </p>
           {onRetry ? (
             <button
               type="button"
               onClick={onRetry}
-              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full px-4 text-[12px] font-medium text-[var(--studio-blue)] transition hover:bg-[var(--studio-white)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-cobalt-200/70"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full px-4 text-[13px] font-medium text-[var(--studio-blue)] transition hover:bg-[var(--studio-white)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-cobalt-200/70"
             >
               {t("error.retry")}
             </button>
@@ -306,7 +306,7 @@ export default function StudioFlowRail({
         </div>
       ) : compact ? (
         <div data-flow-empty-state className={styles.emptyFlow}>
-          <p className="text-[12px] font-medium text-[var(--studio-ink)] sm:text-[13px]">
+          <p className="text-[13px] font-medium text-[var(--studio-ink)] sm:text-[13px]">
             {t("flow.emptyTitle")}
           </p>
 
@@ -315,7 +315,7 @@ export default function StudioFlowRail({
               <span
                 key={group.key}
                 data-flow-empty-group={group.key}
-                className="inline-flex min-h-8 items-center gap-1.5 rounded-full border border-[var(--studio-rule)] bg-[var(--studio-white)] px-3 text-[12px] text-[var(--studio-muted)]"
+                className="inline-flex min-h-8 items-center gap-1.5 rounded-full border border-[var(--studio-rule)] bg-[var(--studio-white)] px-3 text-[13px] text-[var(--studio-muted)]"
               >
                 <span>{t(`flow.groups.${group.key}.title`)}</span>
                 <strong className="font-medium tabular-nums text-[var(--studio-ink)]">
@@ -327,7 +327,7 @@ export default function StudioFlowRail({
             {hasBookingStages ? (
               <Link
                 href="/app/calendar"
-                className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-3 text-[12px] font-medium text-[var(--studio-blue)] transition hover:bg-[var(--studio-white)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-200/60"
+                className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-3 text-[13px] font-medium text-[var(--studio-blue)] transition hover:bg-[var(--studio-white)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cobalt-200/60"
               >
                 {t("flow.openCalendar")}
                 <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden="true" />

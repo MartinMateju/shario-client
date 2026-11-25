@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
+import { getPublicCourseProduct } from "@/lib/publicTenant/courses.server";
 
 import CustomerTenantShell from "@/components/customer-shell/CustomerTenantShell";
 import PublicTenantUnavailable from "@/components/public-tenant/PublicTenantUnavailable";
@@ -63,6 +65,21 @@ export default async function PublicFoundationLayout({ children, params }) {
     tenant: result.tenant,
     locale,
   });
+
+  // Resolve confirmed missing courses before this segment's loading boundary
+  // can flush a 200 response. The page/metadata reuse the request-cached read.
+  const pathname = (await headers()).get("x-shario-public-pathname") || "";
+  const detailPath = pathname.match(/^\/[^/]+\/courses\/([^/]+)\/?$/);
+  if (detailPath) {
+    let productId;
+    try {
+      productId = decodeURIComponent(detailPath[1]);
+    } catch {
+      notFound();
+    }
+    const course = await getPublicCourseProduct(tenantSlug, productId);
+    if (course.notFound) notFound();
+  }
 
   return (
     <CustomerTenantShell tenant={result.tenant} surface="public">

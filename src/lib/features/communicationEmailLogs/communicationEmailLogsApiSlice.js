@@ -14,7 +14,25 @@ export const communicationEmailLogsApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["CommunicationEmailLogs"],
     }),
+    retryCommunicationEmailLog: builder.mutation({
+      query: ({ id, expectedManualRetryCount }) => ({
+        url: `/communication-email-logs/${id}/retry`,
+        method: "POST",
+        body: { expectedManualRetryCount },
+      }),
+      invalidatesTags: (result, error) =>
+        result ||
+        [
+          "COMMUNICATION_EMAIL_RETRY_BLOCKED",
+          "COMMUNICATION_EMAIL_RETRY_STALE",
+        ].includes(error?.data?.code)
+          ? ["CommunicationEmailLogs"]
+          : [],
+    }),
   }),
 });
-export const { useGetCommunicationEmailLogsQuery } =
-  communicationEmailLogsApiSlice;
+
+export const {
+  useGetCommunicationEmailLogsQuery,
+  useRetryCommunicationEmailLogMutation,
+} = communicationEmailLogsApiSlice;

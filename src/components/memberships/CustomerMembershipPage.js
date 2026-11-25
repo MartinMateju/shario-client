@@ -55,8 +55,10 @@ import {
 } from "./membership.utils";
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
+// Keep small error labels readable on the semantic soft-danger surface.
+const membershipFeedbackStyle = { "--color-danger": "#A83D35" };
 const inputClass =
-  "min-h-11 w-full rounded-[13px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-3.5 text-[11px] text-[var(--tenant-text-on-surface)] outline-none focus:border-[var(--tenant-accent-on-surface)] focus:ring-2 focus:ring-[var(--tenant-accent-on-surface)]/20";
+  "min-h-11 w-full rounded-[13px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] px-3.5 text-sm text-[var(--tenant-text-on-surface)] outline-none focus:border-[var(--tenant-accent-on-surface)] focus:ring-2 focus:ring-[var(--tenant-accent-on-surface)]/20";
 
 const normalizeEntries = (response) => {
   if (Array.isArray(response)) return response;
@@ -108,8 +110,12 @@ export default function CustomerMembershipPage() {
 
   if (query.isLoading) {
     return (
-      <CustomerPortalPage contentClassName="max-w-6xl">
+      <CustomerPortalPage
+        contentClassName="max-w-6xl"
+        style={membershipFeedbackStyle}
+      >
         <CustomerPortalPageHeader
+          pageKey="memberships"
           eyebrow={t("eyebrow")}
           title={t("title")}
           description={t("description")}
@@ -123,8 +129,12 @@ export default function CustomerMembershipPage() {
 
   if (query.isError) {
     return (
-      <CustomerPortalPage contentClassName="max-w-6xl">
+      <CustomerPortalPage
+        contentClassName="max-w-6xl"
+        style={membershipFeedbackStyle}
+      >
         <CustomerPortalPageHeader
+          pageKey="memberships"
           eyebrow={t("eyebrow")}
           title={t("title")}
           description={t("description")}
@@ -150,8 +160,12 @@ export default function CustomerMembershipPage() {
 
   if (!membership) {
     return (
-      <CustomerPortalPage contentClassName="max-w-6xl">
+      <CustomerPortalPage
+        contentClassName="max-w-6xl"
+        style={membershipFeedbackStyle}
+      >
         <CustomerPortalPageHeader
+          pageKey="memberships"
           eyebrow={t("eyebrow")}
           title={t("title")}
           description={t("description")}
@@ -188,8 +202,12 @@ export default function CustomerMembershipPage() {
     (membership.cancelAtPeriodEnd || status === "cancel_scheduled");
 
   return (
-    <CustomerPortalPage contentClassName="max-w-6xl">
+    <CustomerPortalPage
+      contentClassName="max-w-6xl"
+      style={membershipFeedbackStyle}
+    >
       <CustomerPortalPageHeader
+        pageKey="memberships"
         eyebrow={t("eyebrow")}
         title={t("title")}
         description={t("description")}
@@ -197,7 +215,7 @@ export default function CustomerMembershipPage() {
           <>
             <span
               className={cx(
-                "inline-flex min-h-11 items-center rounded-full px-4 text-[10px] font-semibold shadow-[0_7px_18px_rgba(17,17,15,0.035)]",
+                "inline-flex min-h-11 items-center rounded-full px-4 text-xs font-semibold shadow-[0_7px_18px_rgba(17,17,15,0.035)]",
                 statusTone(status),
               )}
             >
@@ -224,7 +242,7 @@ export default function CustomerMembershipPage() {
             <p className="text-[11px] font-semibold text-sand-800">
               {t("scheduled.title")}
             </p>
-            <p className="mt-1 text-[9px] leading-4 text-sand-700">
+            <p className="mt-1 text-[13px] leading-5 text-sand-700">
               {t("scheduled.description", {
                 date: formatDate(membership.currentPeriodEnd, locale),
               })}
@@ -251,7 +269,7 @@ export default function CustomerMembershipPage() {
         <CustomerPortalSurface as="article" className="p-5 sm:p-6 lg:p-7">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--tenant-muted-on-surface)]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--tenant-muted-on-surface)]">
                 {t("plan")}
               </p>
               <h2 className="mt-2 text-[var(--tenant-heading-on-surface)] text-2xl font-semibold tracking-[-0.04em]">
@@ -272,10 +290,10 @@ export default function CustomerMembershipPage() {
               value={formatDate(membership.currentPeriodEnd, locale)}
             />
           </div>
-          <h3 className="mt-6 text-[var(--tenant-heading-on-surface)] text-[12px] font-semibold">
+          <h3 className="mt-6 text-[var(--tenant-heading-on-surface)] text-base font-semibold">
             {t("benefits.title")}
           </h3>
-          <p className="mt-1 text-[9px] leading-4 text-[var(--tenant-muted-on-surface)]">
+          <p className="mt-1 text-[13px] leading-5 text-[var(--tenant-muted-on-surface)]">
             {benefits.some(
               (benefit) => benefit.unit === "minute" && benefit.memberOnly,
             )
@@ -293,7 +311,7 @@ export default function CustomerMembershipPage() {
                   <div className="flex items-start gap-2">
                     <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--tenant-accent-on-surface)]" />
                     <div>
-                      <p className="text-[10px] font-semibold">
+                      <p className="text-sm font-semibold">
                         {getLocalizedMembershipText(
                           benefit,
                           "label",
@@ -302,13 +320,13 @@ export default function CustomerMembershipPage() {
                             membership?.planVersion?.sourceLanguage,
                         )}
                       </p>
-                      <p className="mt-1 text-[9px] leading-4 text-[var(--tenant-muted-on-surface)]">
+                      <p className="mt-1 text-[13px] leading-5 text-[var(--tenant-muted-on-surface)]">
                         {formatBenefitValue(benefit, benefitT, locale)}
                       </p>
                     </div>
                   </div>
                   {balance ? (
-                    <p className="mt-3 rounded-full bg-cobalt-50 px-3 py-1.5 text-center text-[9px] font-semibold text-cobalt-700">
+                    <p className="mt-3 rounded-full bg-[var(--tenant-accent)] px-3 py-2 text-center text-sm font-semibold text-[var(--tenant-accent-foreground)]">
                       {t("benefits.available", {
                         value: formatBenefitBalance(
                           benefit,
@@ -327,12 +345,12 @@ export default function CustomerMembershipPage() {
 
         <aside className="space-y-4">
           <CustomerPortalSurface className="p-5 sm:p-6">
-            <h2 className="text-[13px] font-semibold text-[var(--tenant-heading-on-surface)]">
+            <h2 className="text-lg font-semibold text-[var(--tenant-heading-on-surface)]">
               {t("billing.title")}
             </h2>
             {showBillingPortal ? (
               <>
-                <p className="mt-2 text-[9px] leading-5 text-[var(--tenant-muted-on-surface)]">
+                <p className="mt-2 text-[13px] leading-5 text-[var(--tenant-muted-on-surface)]">
                   {t("billing.description")}
                 </p>
                 <button
@@ -353,7 +371,7 @@ export default function CustomerMembershipPage() {
             ) : null}
             {portalError ? (
               <p
-                className="mt-3 rounded-[13px] bg-danger-soft p-3 text-[9px] text-danger"
+                className="mt-3 rounded-[13px] bg-danger-soft p-3 text-[13px] text-danger"
                 role="alert"
               >
                 {t("billing.error")}
@@ -368,10 +386,10 @@ export default function CustomerMembershipPage() {
           </CustomerPortalSurface>
           {!cancellationScheduled && !isClosed ? (
             <CustomerPortalSurface className="p-5 sm:p-6">
-              <h2 className="text-[13px] font-semibold text-[var(--tenant-heading-on-surface)]">
+              <h2 className="text-lg font-semibold text-[var(--tenant-heading-on-surface)]">
                 {t("cancel.title")}
               </h2>
-              <p className="mt-2 text-[9px] leading-5 text-[var(--tenant-muted-on-surface)]">
+              <p className="mt-2 text-[13px] leading-5 text-[var(--tenant-muted-on-surface)]">
                 {t("cancel.description")}
               </p>
               <button
@@ -379,7 +397,7 @@ export default function CustomerMembershipPage() {
                 onClick={() => setCancelOpen(true)}
                 disabled={Boolean(membership.scheduledPlanChange)}
                 data-tenant-hover="preserve"
-                className="mt-4 min-h-11 w-full rounded-full border border-danger/30 bg-danger-soft px-4 text-[9px] font-semibold text-danger transition-colors hover:bg-danger-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/25"
+                className="mt-4 min-h-11 w-full rounded-full border border-danger/30 bg-danger-soft px-4 text-[13px] font-semibold text-danger transition-colors hover:bg-danger-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/25"
               >
                 {t("cancel.action")}
               </button>
@@ -396,15 +414,15 @@ export default function CustomerMembershipPage() {
       <CustomerPortalSurface className="mt-5 p-5 sm:p-6 lg:p-7">
         <div className="flex items-center gap-2">
           <ClockIcon className="h-5 w-5 text-[var(--tenant-accent-on-surface)]" />
-          <h2 className="text-[var(--tenant-heading-on-surface)] text-[14px] font-semibold">
+          <h2 className="text-[var(--tenant-heading-on-surface)] text-xl font-semibold">
             {t("ledger.title")}
           </h2>
         </div>
-        <p className="mt-1 text-[9px] leading-4 text-[var(--tenant-muted-on-surface)]">
+        <p className="mt-1 text-[13px] leading-5 text-[var(--tenant-muted-on-surface)]">
           {t("ledger.description")}
         </p>
         {ledgerQuery.isLoading ? (
-          <p className="py-12 text-center text-[9px] text-[var(--tenant-muted-on-surface)]">
+          <p className="py-12 text-center text-[13px] text-[var(--tenant-muted-on-surface)]">
             {t("ledger.loading")}
           </p>
         ) : entries.length ? (
@@ -412,19 +430,16 @@ export default function CustomerMembershipPage() {
             {entries.map((entry) => (
               <div
                 key={entry.id || entry._id}
-                className="grid gap-2 py-3 sm:grid-cols-[1fr_140px_120px] sm:items-center"
+                className="grid gap-2 py-4 sm:grid-cols-[minmax(0,1fr)_140px_140px] sm:items-center"
               >
                 <div>
-                  <p className="text-[10px] font-semibold text-[var(--tenant-text-on-surface)]">
+                  <p className="text-sm font-semibold text-[var(--tenant-text-on-surface)]">
                     {t(`ledger.types.${entry.type}`)}
-                  </p>
-                  <p className="mt-1 text-[9px] text-[var(--tenant-muted-on-surface)]">
-                    {entry.reason || entry.benefitKey}
                   </p>
                 </div>
                 <p
                   className={cx(
-                    "w-fit text-[10px] font-semibold",
+                    "w-fit text-sm font-semibold tabular-nums",
                     Number(entry.amount) >= 0
                       ? "rounded-full bg-success-soft px-2 py-1 text-success"
                       : "rounded-full bg-danger-soft px-2 py-1 text-danger",
@@ -443,7 +458,7 @@ export default function CustomerMembershipPage() {
                     locale,
                   )}
                 </p>
-                <p className="text-[9px] text-[var(--tenant-muted-on-surface)] sm:text-right">
+                <p className="text-xs leading-5 text-[var(--tenant-muted-on-surface)] sm:text-right">
                   {formatDate(entry.createdAt, locale, {
                     hour: "2-digit",
                     minute: "2-digit",
@@ -453,7 +468,7 @@ export default function CustomerMembershipPage() {
             ))}
           </div>
         ) : (
-          <p className="mt-4 rounded-[15px] border border-dashed border-[var(--tenant-border)] p-6 text-center text-[9px] text-[var(--tenant-muted-on-surface)]">
+          <p className="mt-4 rounded-[15px] border border-dashed border-[var(--tenant-border)] p-6 text-center text-[13px] text-[var(--tenant-muted-on-surface)]">
             {t("ledger.empty")}
           </p>
         )}
@@ -494,7 +509,7 @@ function CancellationDialog({ open, onClose }) {
       onClose={onClose}
       data-tenant-style={tenantTheme.stylePresetId}
       className="relative z-[95]"
-      style={tenantTheme.style}
+      style={{ ...tenantTheme.style, ...membershipFeedbackStyle }}
     >
       <DialogBackdrop
         data-dialog-backdrop
@@ -508,7 +523,7 @@ function CancellationDialog({ open, onClose }) {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[var(--tenant-accent-on-surface)]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--tenant-accent-on-surface)]">
                   {t("eyebrow")}
                 </p>
                 <DialogTitle className="mt-1.5 text-[var(--tenant-heading-on-surface)] text-xl font-semibold tracking-[-0.03em]">
@@ -519,12 +534,12 @@ function CancellationDialog({ open, onClose }) {
                 type="button"
                 onClick={onClose}
                 aria-label={t("close")}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--tenant-border)] bg-[var(--tenant-surface)]"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--tenant-border)] bg-[var(--tenant-surface)]"
               >
                 <XMarkIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="mt-3 text-[9px] leading-5 text-[var(--tenant-muted-on-surface)]">
+            <p className="mt-3 text-[13px] leading-5 text-[var(--tenant-muted-on-surface)]">
               {t("dialogDescription")}
             </p>
             <form
@@ -532,7 +547,7 @@ function CancellationDialog({ open, onClose }) {
               onSubmit={submit}
               className="mt-5 space-y-4"
             >
-              <label className="block text-[10px] font-semibold">
+              <label className="block text-sm font-semibold">
                 {t("reason")}
                 <select
                   className={`${inputClass} mt-1.5`}
@@ -551,7 +566,7 @@ function CancellationDialog({ open, onClose }) {
                   ))}
                 </select>
               </label>
-              <label className="block text-[10px] font-semibold">
+              <label className="block text-sm font-semibold">
                 {t("comment")}
                 <textarea
                   className={`${inputClass} mt-1.5 min-h-24 py-3`}
@@ -568,7 +583,7 @@ function CancellationDialog({ open, onClose }) {
               </label>
               {error ? (
                 <p
-                  className="rounded-[13px] bg-danger-soft p-3 text-[9px] text-danger"
+                  className="rounded-[13px] bg-danger-soft p-3 text-[13px] text-danger"
                   role="alert"
                 >
                   {t("error")}
@@ -578,7 +593,7 @@ function CancellationDialog({ open, onClose }) {
                 <button
                   type="button"
                   onClick={onClose}
-                  className="min-h-11 rounded-full border border-[var(--tenant-border)] px-5 text-[10px] font-semibold"
+                  className="min-h-11 rounded-full border border-[var(--tenant-border)] px-5 text-sm font-semibold"
                 >
                   {t("keep")}
                 </button>
@@ -586,7 +601,7 @@ function CancellationDialog({ open, onClose }) {
                   type="submit"
                   disabled={state.isLoading}
                   data-tenant-hover="preserve"
-                  className="min-h-11 rounded-full bg-danger px-5 text-[10px] font-semibold text-white disabled:opacity-50"
+                  className="min-h-11 rounded-full bg-danger px-5 text-sm font-semibold text-white disabled:opacity-50"
                 >
                   {state.isLoading ? t("scheduling") : t("confirm")}
                 </button>
@@ -602,10 +617,10 @@ function CancellationDialog({ open, onClose }) {
 function Info({ label, value }) {
   return (
     <div>
-      <p className="text-[8px] uppercase tracking-[0.12em] text-[var(--tenant-muted-on-surface)]">
+      <p className="text-[11px] uppercase tracking-[0.12em] text-[var(--tenant-muted-on-surface)]">
         {label}
       </p>
-      <p className="mt-1.5 text-[10px] font-semibold text-[var(--tenant-text-on-surface)]">
+      <p className="mt-1.5 text-sm font-semibold text-[var(--tenant-text-on-surface)]">
         {value}
       </p>
     </div>

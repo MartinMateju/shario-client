@@ -52,7 +52,7 @@ export default function PeoplePagination({
 
   return (
     <footer className="flex flex-col gap-3 border-t border-line bg-surface-muted/75 px-4 py-3.5 sm:px-5 lg:flex-row lg:items-center lg:justify-between">
-      <p className="text-[12px] text-ink-muted">
+      <p className="text-[13px] text-ink-muted">
         {t("pagination.showing", {
           from: firstVisible,
           to: lastVisible,
@@ -62,7 +62,7 @@ export default function PeoplePagination({
       </p>
 
       <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between lg:justify-end">
-        <label className="flex shrink-0 items-center gap-2.5 text-[12px] font-medium text-ink-muted">
+        <label className="flex shrink-0 items-center gap-2.5 text-[13px] font-medium text-ink-muted">
           <span className="whitespace-nowrap">
             {t("pagination.rowsPerPage")}
           </span>
@@ -72,7 +72,7 @@ export default function PeoplePagination({
               value={pageSize}
               onChange={(event) => onPageSizeChange(Number(event.target.value))}
               aria-label={t("pagination.rowsPerPage")}
-              className="h-9 w-16 cursor-pointer appearance-none rounded-[10px] border border-line bg-white bg-none pl-3 pr-7 text-left text-[12px] font-semibold leading-none tabular-nums text-ink shadow-[0_1px_2px_rgba(17,17,15,0.04)] outline-none transition-colors hover:border-line-strong focus-visible:border-cobalt-500 focus-visible:ring-2 focus-visible:ring-cobalt-500/15"
+              className="h-9 w-16 cursor-pointer appearance-none rounded-[10px] border border-line bg-white bg-none pl-3 pr-7 text-left text-[13px] font-semibold leading-none tabular-nums text-ink shadow-[0_1px_2px_rgba(17,17,15,0.04)] outline-none transition-colors hover:border-line-strong focus-visible:border-cobalt-500 focus-visible:ring-2 focus-visible:ring-cobalt-500/15"
             >
               {PAGE_SIZE_OPTIONS.map((option) => (
                 <option key={option} value={option}>
@@ -88,14 +88,14 @@ export default function PeoplePagination({
         </label>
 
         <nav
-          className="flex items-center gap-1"
+          className="flex max-w-full flex-wrap items-center gap-1"
           aria-label={t("pagination.label")}
         >
           <button
             type="button"
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage <= 1}
-            className="flex h-10 w-10 items-center justify-center rounded-[11px] border border-[#E3E0D9] bg-white text-[#6F6E68] transition hover:border-[#CBC7BE] hover:text-[#11110F] disabled:cursor-not-allowed disabled:opacity-35"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[11px] border border-line bg-white text-ink-soft transition hover:border-line-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 disabled:cursor-not-allowed disabled:opacity-35"
             aria-label={t("pagination.previous")}
           >
             <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
@@ -106,7 +106,7 @@ export default function PeoplePagination({
               return (
                 <span
                   key={item}
-                  className="flex h-10 min-w-7 items-center justify-center text-[12px] text-ink-muted"
+                  className="flex h-11 min-w-7 shrink-0 items-center justify-center text-[13px] text-ink-muted"
                 >
                   …
                 </span>
@@ -119,10 +119,10 @@ export default function PeoplePagination({
                 type="button"
                 onClick={() => onPageChange(item)}
                 className={cx(
-                  "flex h-10 min-w-10 items-center justify-center rounded-[11px] px-2 text-[12px] font-semibold transition",
+                  "flex h-11 min-w-11 shrink-0 items-center justify-center rounded-[11px] px-2 text-[13px] font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500",
                   currentPage === item
                     ? "bg-brand-primary text-white shadow-[0_6px_16px_rgb(var(--skab-blue-rgb)/0.18)]"
-                    : "text-[#454540] hover:bg-[#F0EFEC]",
+                    : "text-ink-soft hover:bg-surface-muted",
                 )}
                 aria-current={currentPage === item ? "page" : undefined}
               >
@@ -135,7 +135,7 @@ export default function PeoplePagination({
             type="button"
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage >= totalPages || totalPages === 0}
-            className="flex h-10 w-10 items-center justify-center rounded-[11px] border border-[#E3E0D9] bg-white text-[#6F6E68] transition hover:border-[#CBC7BE] hover:text-[#11110F] disabled:cursor-not-allowed disabled:opacity-35"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[11px] border border-line bg-white text-ink-soft transition hover:border-line-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 disabled:cursor-not-allowed disabled:opacity-35"
             aria-label={t("pagination.next")}
           >
             <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />

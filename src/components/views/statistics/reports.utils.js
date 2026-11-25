@@ -217,7 +217,10 @@ export const formatReportMoney = (
   currency,
   locale = "en",
   fallback = "—",
-) => formatMinorCurrencyAmount(value, currency, locale, fallback);
+) =>
+  isFiniteReportNumber(value)
+    ? formatMinorCurrencyAmount(value, currency, locale, fallback)
+    : fallback;
 
 export const formatReportDate = (
   value,

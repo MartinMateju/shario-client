@@ -25,6 +25,7 @@ vi.mock("next-intl", async (...args) => {
       useLocale: () => "en",
       useTranslations: () => (key) => key,
     }))(...args),
+    ["PaymentCancellation", "PendingBookingPayment"],
   );
 });
 vi.mock("react-redux", () => ({

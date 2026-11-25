@@ -55,7 +55,7 @@ import {
 import { formatMakerId } from "@/utils/memberIdentity";
 
 const controlClass =
-  "h-12 w-full min-w-0 rounded-[13px] border border-line bg-white px-4 text-[12px] text-[#292925] outline-none transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10 disabled:bg-[#F4F2ED] disabled:text-[#858580]";
+  "h-12 w-full min-w-0 rounded-[13px] border border-line bg-white px-4 text-[16px] sm:text-[14px] text-ink outline-none transition focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10 disabled:bg-[#F4F2ED] disabled:text-ink-muted";
 const portalControlClass =
   "h-12 w-full min-w-0 rounded-[15px] border border-[color-mix(in_srgb,var(--tenant-text-on-surface)_13%,transparent)] bg-[var(--tenant-surface)] px-4 text-[12px] text-[var(--tenant-text-on-surface)] outline-none transition-[border-color,box-shadow,background-color] focus:border-[var(--tenant-accent-on-surface)] focus:ring-4 focus:ring-[var(--tenant-accent-on-surface)]/10 disabled:bg-[var(--tenant-background)] disabled:text-[var(--tenant-muted-text)]";
 
@@ -64,14 +64,16 @@ const cx = (...classes) => classes.filter(Boolean).join(" ");
 const getErrorMessage = (error, fallback) =>
   getLocalizedApiErrorMessage(error, fallback);
 
-function Notice({ notice }) {
+function Notice({ notice, portalMode = false }) {
   if (!notice) return null;
   return (
     <p
       role={notice.type === "error" ? "alert" : "status"}
       className={
         notice.type === "error"
-          ? "rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          ? portalMode
+            ? "rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+            : "rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-[13px] text-danger"
           : "flex items-center gap-2 rounded-[14px] border border-[#CFE0CB] bg-[#F5FAF3] px-4 py-3 text-xs text-[#47613E]"
       }
     >
@@ -170,7 +172,7 @@ function ProfileForm({ account, portalMode }) {
         </div>
       </div>
       <div className="space-y-5 p-5 sm:p-6">
-        <Notice notice={notice} />
+        <Notice notice={notice} portalMode={portalMode} />
         <div className="grid gap-4 sm:grid-cols-2">
           <label>
             <span
@@ -409,7 +411,7 @@ function PasswordSettings({ portalMode }) {
             "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
             portalMode
               ? "bg-[var(--tenant-accent)] text-[var(--tenant-accent-foreground)]"
-              : "bg-coral-100 text-terracotta-700",
+              : "bg-accent-soft text-accent-text",
           )}
         >
           <LockClosedIcon className="h-5 w-5" />
@@ -434,7 +436,7 @@ function PasswordSettings({ portalMode }) {
         </div>
       </div>
       <div className="space-y-5 p-5 sm:p-6">
-        <Notice notice={notice} />
+        <Notice notice={notice} portalMode={portalMode} />
         <div className="grid gap-4">
           <PasswordField
             label={t("fields.currentPassword")}
@@ -622,7 +624,7 @@ function CustomerLanguageSettings({ account }) {
         </div>
       </div>
       <div className="space-y-5 p-5 sm:p-6">
-        <Notice notice={notice} />
+        <Notice notice={notice} portalMode />
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label
@@ -827,7 +829,11 @@ export default function AccountSettingsPage({
       {isError || !account ? (
         <p
           role="alert"
-          className="rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className={
+            portalMode
+              ? "rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+              : "rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-[13px] text-danger"
+          }
         >
           {getErrorMessage(error, t("messages.loadError"))}
         </p>

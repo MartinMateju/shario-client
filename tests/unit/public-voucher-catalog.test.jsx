@@ -10,6 +10,7 @@ const mocks = vi.hoisted(() => ({
   products: [],
   query: vi.fn(),
   tenant: null,
+  tenantSlug: "studio-olivie",
   unwrap: vi.fn(),
 }));
 
@@ -62,7 +63,7 @@ vi.mock("next-intl", async (...args) => {
 });
 
 vi.mock("next/navigation", () => ({
-  useParams: () => ({ tenantSlug: "studio-olivie" }),
+  useParams: () => ({ tenantSlug: mocks.tenantSlug }),
 }));
 
 vi.mock("@/components/products/products.utils", () => ({
@@ -98,7 +99,7 @@ vi.mock("@/utils/checkoutUrl", () => ({
 }));
 
 vi.mock("@/utils/tenantRouting", () => ({
-  getValidatedTenantSlugParam: () => "studio-olivie",
+  getValidatedTenantSlugParam: ({ tenantSlug }) => tenantSlug,
 }));
 
 vi.mock("@/components/public-tenant/PublicCapabilityGate", () => ({
@@ -111,6 +112,7 @@ vi.mock("@/components/public-tenant/PublicCapabilityGate", () => ({
 }));
 
 vi.mock("@/components/public-tenant/PublicTenantProvider", () => ({
+  useOptionalPublicTenant: () => ({ tenant: mocks.tenant }),
   usePublicTenant: () => ({ tenant: mocks.tenant }),
 }));
 
@@ -139,6 +141,7 @@ describe("public voucher catalog", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.locale = "en";
+    mocks.tenantSlug = "studio-olivie";
     mocks.tenant = tenant(true);
     mocks.products = [
       {
@@ -180,6 +183,68 @@ describe("public voucher catalog", () => {
       target: { value: "buyer@example.test" },
     });
   };
+
+  it.each([false, true])(
+    "shows stored voucher photos and keeps imageless cards text-only (portal: %s)",
+    (portal) => {
+      mocks.products[0].imageSrc = "https://cdn.example.test/masterclass.webp";
+      mocks.products.push({
+        ...mocks.products[0],
+        _id: "text-only",
+        name: "Studio credit",
+        imageSrc: "  ",
+      });
+      render(<PublicVoucherCatalogPage portal={portal} />);
+
+      const illustratedCard = screen.getByRole("button", { name: /Creative day/ });
+      expect(illustratedCard.querySelector("img")).toHaveAttribute(
+        "src",
+        "https://cdn.example.test/masterclass.webp",
+      );
+      expect(illustratedCard.querySelector("img")).toHaveAttribute("alt", "");
+      const textCard = screen.getByRole("button", { name: /Studio credit/ });
+      expect(textCard.querySelector("img")).toBeNull();
+      expect(textCard).toHaveTextContent("CZK 500");
+      fireEvent.click(textCard);
+      expect(textCard).toHaveAttribute("aria-pressed", "true");
+      expect(illustratedCard).toHaveAttribute("aria-pressed", "false");
+    },
+  );
+
+  it("falls back to text if a photo fails and displays a replacement image", () => {
+    mocks.products[0].imageSrc = "https://cdn.example.test/missing.webp";
+    const { rerender } = render(<PublicVoucherCatalogPage />);
+    const card = screen.getByRole("button", { name: /Creative day/ });
+    fireEvent.error(card.querySelector("img"));
+    expect(card.querySelector("img")).toBeNull();
+    expect(card).toHaveTextContent("A day at the studio.");
+
+    mocks.products = [{
+      ...mocks.products[0],
+      imageSrc: "https://cdn.example.test/replacement.webp",
+    }];
+    rerender(<PublicVoucherCatalogPage />);
+    expect(card.querySelector("img")).toHaveAttribute(
+      "src",
+      "https://cdn.example.test/replacement.webp",
+    );
+  });
+
+  it("lifts the voucher photo header above the padded shop and retains editor targets", () => {
+    mocks.tenant.publicSite.customerPortal = {
+      pageImages: { vouchers: "https://cdn.example.test/vouchers.webp" },
+    };
+    const { container } = render(<PublicVoucherCatalogPage />);
+    const page = container.querySelector("[data-public-voucher-catalog]");
+    const hero = page.querySelector('[data-customer-portal-hero="vouchers"]');
+    expect(hero.parentElement).toBe(page);
+    expect(hero).toHaveAttribute("data-customer-portal-hero-layout", "split");
+    expect(hero.querySelector("img")).toHaveAttribute("src", "https://cdn.example.test/vouchers.webp");
+    expect(hero.querySelector('[data-public-site-edit-path="pages.vouchers.title.en"]')).not.toBeNull();
+    expect(hero.querySelector('[data-public-site-edit-path="customerPortal.pageImages.vouchers"]')).not.toBeNull();
+    expect(page.querySelector("[data-customer-portal-page-content]").contains(page.querySelector("#voucher-shop"))).toBe(true);
+  });
+
   it("defaults an enabled offering to digital and requires a full address only for postal delivery", async () => {
     enablePostage();
     const { container } = render(
@@ -360,6 +425,22 @@ describe("public voucher catalog", () => {
     );
   });
 
+  it.each([
+    ["public catalogue", "studio-olivie", undefined, false],
+    ["editor preview", "studio-olivie", [], true],
+    ["missing studio", "", undefined, true],
+  ])(
+    "uses the expected voucher query policy for %s",
+    (_, slug, previewData, skip) => {
+      mocks.tenantSlug = slug;
+      render(<PublicVoucherCatalogPage previewData={previewData} />);
+      expect(mocks.query).toHaveBeenCalledWith(
+        { tenantSlug: slug },
+        expect.objectContaining({ skip }),
+      );
+    },
+  );
+
   it("skips the public request when the published capability is disabled", () => {
     mocks.tenant = tenant(false);
     const { container } = render(
@@ -368,7 +449,7 @@ describe("public voucher catalog", () => {
 
     expect(mocks.query).toHaveBeenCalledWith(
       { tenantSlug: "studio-olivie" },
-      { skip: true },
+      expect.objectContaining({ skip: true }),
     );
     expect(container.querySelector("[data-public-voucher-catalog]")).toBeNull();
     expect(

@@ -24,19 +24,19 @@ describe("waitlist localization contract", () => {
     expect(flattenKeys(czech.Waitlists).sort()).toEqual(
       flattenKeys(english.Waitlists).sort(),
     );
-    expect(english.Header.account.customerLinks.waitlists).toBe("Waitlists");
-    expect(czech.Header.account.customerLinks.waitlists).toBe("Čekací listiny");
+    expect(english.Header.account.customerLinks.waitlists).toBe("Waiting list");
+    expect(czech.Header.account.customerLinks.waitlists).toBe("Waiting list");
     expect(english.Waitlists.publicReasons.disabled).toBe(
-      "This class is full and does not have a waitlist.",
+      "This class is full and does not have a waiting list.",
     );
     expect(english.Waitlists.publicReasons.join_closed).toBe(
-      "This class is full and its waitlist has closed.",
+      "This class is full and its waiting list has closed.",
     );
     expect(czech.Waitlists.publicReasons.disabled).toBe(
-      "Kurz je plný a nemá čekací listinu.",
+      "Kurz je plný a nemá waiting list.",
     );
     expect(czech.Waitlists.publicReasons.join_closed).toBe(
-      "Kurz je plný a čekací listina je uzavřená.",
+      "Kurz je plný a waiting list je uzavřený.",
     );
 
     for (const localeMessages of [english, czech]) {

@@ -13,6 +13,8 @@ export default function SandboxedEmailPreview({
   subjectLabel = "Subject",
   emptyText = "Start writing to preview the email.",
   className = "",
+  previewValues,
+  fillAvailableSpace = false,
 }) {
   const source = useMemo(
     () =>
@@ -23,8 +25,17 @@ export default function SandboxedEmailPreview({
         primaryColor,
         subjectLabel,
         emptyText,
+        previewValues,
       }),
-    [emptyText, footerHtml, headerHtml, primaryColor, subjectLabel, variant],
+    [
+      emptyText,
+      footerHtml,
+      headerHtml,
+      primaryColor,
+      subjectLabel,
+      variant,
+      previewValues,
+    ],
   );
 
   return (
@@ -33,7 +44,7 @@ export default function SandboxedEmailPreview({
       sandbox=""
       referrerPolicy="no-referrer"
       srcDoc={source}
-      className={`min-h-[520px] w-full rounded-[22px] border border-black/10 bg-white ${className}`}
+      className={`${fillAvailableSpace ? "min-h-[360px] flex-1 rounded-[16px] lg:min-h-0" : "min-h-[520px] rounded-[22px]"} w-full border border-black/10 bg-white ${className}`}
     />
   );
 }

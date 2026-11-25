@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const tenantId = "64b000000000000000000001";
@@ -6,10 +6,14 @@ const grohovaId = "64b000000000000000000011";
 const vaclavskaId = "64b000000000000000000012";
 
 const mocks = vi.hoisted(() => ({
+  exportPromise: null,
+  reportState: {},
   search: "section=statistics&period=thisMonth&compare=true",
   replace: vi.fn(),
   queryArgs: [],
   queryCalls: [],
+  customerQueryArgs: [],
+  exportCustomers: vi.fn(() => ({ unwrap: () => new Promise(() => {}) })),
   activeStudioId: null,
   locationsLoading: false,
   denyConsolidated: false,
@@ -193,11 +197,44 @@ vi.mock("@/lib/features/reports/reportsApiSlice", () => ({
         ? { status: 403, data: { code: "CONSOLIDATED_REPORTING_NOT_ENTITLED" } }
         : undefined,
       refetch: vi.fn(),
+      ...mocks.reportState,
     };
   },
+  useGetReportCustomersQuery: (args) => {
+    mocks.customerQueryArgs.push(args);
+    return {
+      currentData: {
+        data: [
+          {
+            id: "credits-only",
+            name: "Credit customer",
+            paidSpendMinor: null,
+            currentCreditMinor: 50000,
+            cancelledBookings: 0,
+          },
+        ],
+        totalCount: 1,
+        currentPage: 1,
+        totalPages: 1,
+        pageSize: 10,
+        metadata: {
+          currency: "CZK",
+          spendingAvailable: false,
+          creditsAvailable: true,
+          cancellationsAvailable: true,
+        },
+      },
+      refetch: vi.fn(),
+    };
+  },
+  useExportReportCustomersCsvMutation: () => [
+    mocks.exportCustomers,
+    { isLoading: false },
+  ],
   useExportReportsCsvMutation: () => [
     vi.fn(() => ({
       unwrap: () =>
+        mocks.exportPromise ||
         Promise.resolve({
           csv: "date,bookings\n2026-07-01,2",
           contentType: "text/csv",
@@ -327,6 +364,8 @@ describe("Reports & insights workspace", () => {
     mocks.replace.mockReset();
     mocks.queryArgs.length = 0;
     mocks.queryCalls.length = 0;
+    mocks.customerQueryArgs.length = 0;
+    mocks.exportCustomers.mockClear();
     mocks.activeStudioId = grohovaId;
     mocks.locationsLoading = false;
     mocks.denyConsolidated = false;
@@ -347,6 +386,8 @@ describe("Reports & insights workspace", () => {
     };
     mocks.report = createReport();
     mocks.generate.mockClear();
+    mocks.exportPromise = null;
+    mocks.reportState = {};
   });
 
   it("renders only available report tabs and keeps unavailable metrics explicit", () => {
@@ -508,4 +549,342 @@ describe("Reports & insights workspace", () => {
       }),
     );
   });
+  it("reapplies changed URL filters and tab without requiring a remount", () => {
+    mocks.workspaceAccess.locationAccess.locationIds = [grohovaId, vaclavskaId];
+    mocks.search = `section=statistics&period=custom&from=2026-10-01&to=2026-10-31&locationId=${grohovaId}&reportTab=overview`;
+    const { rerender } = render(<StatisticsPage />);
+    mocks.search = `section=statistics&period=custom&from=2026-11-01&to=2026-11-17&locationId=${vaclavskaId}&reportTab=sales&compare=false&granularity=week`;
+    rerender(<StatisticsPage />);
+    expect(mocks.queryArgs.at(-1)).toMatchObject({
+      from: "2026-11-01",
+      to: "2026-11-17",
+      locationId: vaclavskaId,
+      compare: false,
+      granularity: "week",
+    });
+    expect(screen.getByRole("tab", { name: "Sales" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+  });
+  it("gives the comparison switch a descriptive accessible name", () => {
+    render(<StatisticsPage />);
+    expect(
+      screen.getByRole("switch", { name: "Previous period" }),
+    ).toBeVisible();
+  });
+  it("rejects an actual date-change event that reverses the range", () => {
+    mocks.workspaceAccess.effectivePermissions.push("reports.export");
+    mocks.search =
+      "section=statistics&period=last7Days&from=2026-11-11&to=2026-11-17";
+    render(<StatisticsPage />);
+    fireEvent.change(screen.getByLabelText("From"), {
+      target: { value: "2026-11-18" },
+    });
+    expect(screen.getByLabelText("Period")).toHaveValue("custom");
+    expect(
+      screen.getByRole("button", { name: "Refresh report" }),
+    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Export CSV" })).toBeDisabled();
+    expect(screen.getByRole("alert")).toHaveTextContent("filters.invalidDates");
+    expect(mocks.queryCalls.at(-1).options.skip).toBe(true);
+  });
+  it("does not download a delayed export after leaving the report", async () => {
+    mocks.workspaceAccess.effectivePermissions.push("reports.export");
+    let resolveExport;
+    mocks.exportPromise = new Promise((resolve) => {
+      resolveExport = resolve;
+    });
+    URL.createObjectURL = vi.fn(() => "blob:audit");
+    URL.revokeObjectURL = vi.fn();
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    const { unmount } = render(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("button", { name: "Export CSV" }));
+    unmount();
+    await act(async () => {
+      resolveExport({
+        csv: "date,bookings\n2026-11-17,2",
+        contentType: "text/csv",
+        filename: "old-report.csv",
+      });
+    });
+    expect(URL.createObjectURL).not.toHaveBeenCalled();
+  });
+
+  it("never relabels a previous report while new filters are loading", () => {
+    const { rerender } = render(<StatisticsPage />);
+    expect(screen.getAllByText("Net sales increased.")[0]).toBeVisible();
+    mocks.reportState = { currentData: undefined, isFetching: true };
+    fireEvent.change(screen.getByLabelText("Period"), {
+      target: { value: "last7Days" },
+    });
+    rerender(<StatisticsPage />);
+    expect(screen.queryByText("Net sales increased.")).not.toBeInTheDocument();
+    expect(screen.getByRole("status")).toBeVisible();
+  });
+  it("shows completed-month ranking and removes accounting placeholders", () => {
+    mocks.report.sales.bestMonth = {
+      month: "2026-06",
+      periodStart: "2026-06-01",
+      cashReceivedMinor: 123400,
+    };
+    mocks.report.sales.monthlyRanking = [
+      {
+        ...mocks.report.sales.bestMonth,
+        paymentCount: 2,
+        completeMonth: true,
+        dataComplete: true,
+      },
+    ];
+    render(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("tab", { name: "Sales" }));
+    expect(screen.getByText("analytics.bestMonth")).toBeVisible();
+    expect(screen.getByText("analytics.completeMonth")).toBeVisible();
+    for (const metric of [
+      "gross",
+      "tax",
+      "discounts",
+      "refunds",
+      "paymentFees",
+    ])
+      expect(
+        screen.queryByText(`sales.metrics.${metric}`),
+      ).not.toBeInTheDocument();
+    expect(screen.queryByText("sales.table.gross")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "analytics.showYear" }));
+    expect(screen.getByLabelText("Period")).toHaveValue("thisYear");
+  });
+
+  it("does not mount unavailable customer segmentation for limited reports", () => {
+    mocks.report.customers = {
+      active: 2,
+      new: 1,
+      returning: 1,
+      averageSpendMinor: 5000,
+    };
+    mocks.report.metadata.customerSegmentationAvailable = false;
+    render(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("tab", { name: "Customers" }));
+    expect(
+      screen.queryByTestId("reports-customer-filters"),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText("customers.metrics.unique")).toBeVisible();
+  });
+  it("hides incomplete product rankings and keeps unknown payment amounts unavailable", () => {
+    mocks.report.sales.topProductsComplete = false;
+    mocks.report.sales.topProducts = [
+      { productId: "1", name: "Misleading winner", netSalesMinor: null },
+    ];
+    mocks.report.sales.paymentMethodsComplete = false;
+    mocks.report.sales.paymentMethods = [{ method: "card", amountMinor: null }];
+    render(<StatisticsPage />);
+    expect(screen.queryByText("Misleading winner")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("tab", { name: "Sales" }));
+    expect(screen.queryByText("Misleading winner")).not.toBeInTheDocument();
+    expect(
+      within(screen.getByText("Card").closest("tr")).getByText("Unavailable"),
+    ).toBeVisible();
+  });
+  it("discards pending exports when allowed locations narrow for the same principal", async () => {
+    mocks.workspaceAccess.locationAccess.locationIds = [grohovaId, vaclavskaId];
+    mocks.workspaceAccess.effectivePermissions.push("reports.export");
+    let resolve;
+    mocks.exportPromise = new Promise((done) => {
+      resolve = done;
+    });
+    const { rerender } = render(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("button", { name: "Export CSV" }));
+    mocks.workspaceAccess = {
+      ...mocks.workspaceAccess,
+      locationAccess: { mode: "selected", locationIds: [grohovaId] },
+    };
+    rerender(<StatisticsPage />);
+    await act(async () =>
+      resolve({ csv: "date,bookings\n2026-07-01,2", contentType: "text/csv" }),
+    );
+    expect(URL.createObjectURL).not.toHaveBeenCalled();
+  });
+  it("allows credit and cancellation segments without financial aggregate permission", () => {
+    mocks.report.customers = null;
+    mocks.report.metadata.customerSegmentationAvailable = true;
+    render(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("tab", { name: "Customers" }));
+    expect(screen.getByTestId("reports-customer-filters")).toBeVisible();
+    expect(screen.getByText("Credit customer")).toBeVisible();
+    expect(screen.getByTestId("report-customer-spendMin")).toBeDisabled();
+    expect(screen.getByTestId("report-customer-creditMin")).toBeEnabled();
+  });
+
+  it("keeps cleared customer filters cleared when switching tabs before navigation commits", () => {
+    mocks.report.metadata.customerSegmentationAvailable = true;
+    mocks.workspaceAccess.effectivePermissions.push("reports.export");
+    mocks.search = `section=statistics&period=custom&from=2026-11-01&to=2026-11-17&locationId=${grohovaId}&compare=false&granularity=week&reportTab=customers&source=saved-report&customerSpendMin=500&customerSpendMax=2000&customerSpendFrom=2026-11-01&customerSpendTo=2026-11-10&customerCreditMin=1&customerCreditMax=1000&customerCancelledMin=1&customerCancelledMax=5&customerCancellationFrom=2026-10-01&customerCancellationTo=2026-10-31&customerCancellationActor=staff&customerInactiveDays=90`;
+    const { rerender } = render(<StatisticsPage />);
+
+    expect(screen.getByTestId("report-customer-creditMin")).toHaveValue(1);
+    fireEvent.click(screen.getByRole("button", { name: "analytics.clear" }));
+    const clearUrl = mocks.replace.mock.calls.at(-1)[0];
+    expect(clearUrl).not.toMatch(/customer[A-Z]/);
+
+    // Next navigation is deliberately still pending: useSearchParams returns
+    // the original customer filters during this second interaction.
+    fireEvent.click(screen.getByRole("tab", { name: "Sales" }));
+    const salesUrl = mocks.replace.mock.calls.at(-1)[0];
+    const salesParams = new URLSearchParams(salesUrl.slice(1));
+    expect(salesParams.get("reportTab")).toBe("sales");
+    expect(
+      [...salesParams.keys()].filter((key) => key.startsWith("customer")),
+    ).toEqual([]);
+    expect(Object.fromEntries(salesParams)).toMatchObject({
+      section: "statistics",
+      period: "custom",
+      from: "2026-11-01",
+      to: "2026-11-17",
+      locationId: grohovaId,
+      compare: "false",
+      granularity: "week",
+      source: "saved-report",
+    });
+
+    // The older clear navigation can complete before the newer tab navigation.
+    // Its customer-tab parameter must not rewind the optimistic tab selection.
+    mocks.search = clearUrl.slice(1);
+    rerender(<StatisticsPage />);
+    expect(screen.getByRole("tab", { name: "Sales" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+
+    mocks.search = salesUrl.slice(1);
+    rerender(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("tab", { name: "Customers" }));
+    expect(screen.getByTestId("report-customer-creditMin")).toHaveValue(null);
+    expect(screen.getByTestId("report-customer-creditMax")).toHaveValue(null);
+    expect(mocks.customerQueryArgs.at(-1)).toMatchObject({
+      spendMin: "",
+      spendMax: "",
+      creditMin: "",
+      creditMax: "",
+      cancelledMin: "",
+      cancelledMax: "",
+      cancellationActor: "all",
+      inactiveDays: "",
+      spendFrom: "2026-11-01",
+      spendTo: "2026-11-17",
+      cancellationFrom: "2026-11-01",
+      cancellationTo: "2026-11-17",
+      page: 1,
+    });
+    fireEvent.click(
+      screen.getByRole("button", { name: "analytics.exportCustomers" }),
+    );
+    expect(mocks.exportCustomers).toHaveBeenCalledWith(
+      expect.objectContaining(mocks.customerQueryArgs.at(-1)),
+    );
+  });
+
+  it("preserves newly applied customer filters through an immediate tab switch", () => {
+    mocks.report.metadata.customerSegmentationAvailable = true;
+    mocks.search = `section=statistics&period=custom&from=2026-11-01&to=2026-11-17&locationId=${grohovaId}&reportTab=customers&customerCreditMin=1&customerCreditMax=1000`;
+    const { rerender } = render(<StatisticsPage />);
+
+    fireEvent.change(screen.getByTestId("report-customer-creditMin"), {
+      target: { value: "250" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "analytics.apply" }));
+    expect(mocks.customerQueryArgs.at(-1).creditMin).toBe("250");
+    fireEvent.click(screen.getByRole("tab", { name: "Sales" }));
+    const salesUrl = mocks.replace.mock.calls.at(-1)[0];
+    const params = new URLSearchParams(salesUrl.slice(1));
+    expect(params.get("customerCreditMin")).toBe("250");
+    expect(params.get("customerCreditMax")).toBe("1000");
+    expect(params.get("reportTab")).toBe("sales");
+
+    mocks.search = salesUrl.slice(1);
+    rerender(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("tab", { name: "Customers" }));
+    expect(screen.getByTestId("report-customer-creditMin")).toHaveValue(250);
+    expect(mocks.customerQueryArgs.at(-1).creditMin).toBe("250");
+  });
+
+  it("honors browser history even when its target matches an older pending navigation", () => {
+    mocks.report.metadata.customerSegmentationAvailable = true;
+    mocks.search = `section=statistics&period=custom&from=2026-11-01&to=2026-11-17&locationId=${grohovaId}&reportTab=customers&customerCreditMin=1&customerCreditMax=1000`;
+    const { rerender } = render(<StatisticsPage />);
+    fireEvent.click(screen.getByRole("button", { name: "analytics.clear" }));
+    const clearUrl = mocks.replace.mock.calls.at(-1)[0];
+    fireEvent.click(screen.getByRole("tab", { name: "Sales" }));
+    const salesUrl = mocks.replace.mock.calls.at(-1)[0];
+    expect(screen.getByRole("tab", { name: "Sales" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+
+    // Unlike an intermediate router acknowledgement, a real Back event must
+    // adopt its history entry even if that URL is also in the pending queue.
+    act(() => {
+      window.history.replaceState(null, "", clearUrl);
+      mocks.search = clearUrl.slice(1);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    rerender(<StatisticsPage />);
+    expect(screen.getByRole("tab", { name: "Customers" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    expect(screen.getByTestId("report-customer-creditMin")).toHaveValue(null);
+    expect(mocks.customerQueryArgs.at(-1)).toMatchObject({
+      creditMin: "",
+      creditMax: "",
+      page: 1,
+    });
+
+    act(() => {
+      window.history.replaceState(null, "", salesUrl);
+      mocks.search = salesUrl.slice(1);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    rerender(<StatisticsPage />);
+    expect(screen.getByRole("tab", { name: "Sales" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+  });
+
+  it.each(["pending", "committed"])(
+    "adopts external URL filters after %s customer navigation",
+    (navigation) => {
+      mocks.report.metadata.customerSegmentationAvailable = true;
+      mocks.search = `section=statistics&period=custom&from=2026-11-01&to=2026-11-17&locationId=${grohovaId}&reportTab=customers&customerCreditMin=1&customerCreditMax=1000`;
+      const { rerender } = render(<StatisticsPage />);
+      fireEvent.click(screen.getByRole("button", { name: "analytics.clear" }));
+      fireEvent.click(screen.getByRole("tab", { name: "Sales" }));
+      if (navigation === "committed") {
+        mocks.search = mocks.replace.mock.calls.at(-1)[0].slice(1);
+        rerender(<StatisticsPage />);
+      }
+
+      // A browser history/saved-link navigation supersedes the pending replaces.
+      mocks.search = `section=statistics&period=custom&from=2026-10-01&to=2026-10-31&locationId=${grohovaId}&reportTab=customers&customerCreditMin=75&customerCreditMax=150&customerCancellationActor=customer&source=history`;
+      rerender(<StatisticsPage />);
+      expect(screen.getByRole("tab", { name: "Customers" })).toHaveAttribute(
+        "aria-selected",
+        "true",
+      );
+      expect(screen.getByTestId("report-customer-creditMin")).toHaveValue(75);
+      expect(mocks.customerQueryArgs.at(-1)).toMatchObject({
+        from: "2026-10-01",
+        to: "2026-10-31",
+        creditMin: "75",
+        creditMax: "150",
+        cancellationActor: "customer",
+      });
+      fireEvent.click(screen.getByRole("tab", { name: "Sales" }));
+      const params = new URLSearchParams(mocks.replace.mock.calls.at(-1)[0]);
+      expect(params.get("customerCreditMin")).toBe("75");
+      expect(params.get("customerCreditMax")).toBe("150");
+      expect(params.get("source")).toBe("history");
+      expect(params.get("from")).toBe("2026-10-01");
+    },
+  );
 });

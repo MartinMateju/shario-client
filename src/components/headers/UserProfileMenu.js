@@ -260,6 +260,7 @@ export default function UserProfileMenu({
           );
       const target = buildTenantUrl({
         slug: tenantSlug,
+        tenant: publicTenant || currentTenant,
         locale: targetLocale,
         pathname: surfacePath,
       });
@@ -277,7 +278,7 @@ export default function UserProfileMenu({
       window.location.assign(target);
     },
     [
-      currentTenant?.settings,
+      currentTenant,
       currentUser.customerDefaultLanguage,
       publicTenant,
       isAdminRoute,
@@ -300,6 +301,7 @@ export default function UserProfileMenu({
     const target = tenantSlug
       ? buildTenantUrl({
           slug: tenantSlug,
+          tenant: publicTenant || currentTenant,
           locale: targetLocale,
           pathname: "/?from=workspace",
         })
@@ -310,7 +312,7 @@ export default function UserProfileMenu({
 
     window.open(target, "_blank", "noopener,noreferrer");
   }, [
-    currentTenant?.settings,
+    currentTenant,
     currentUser.customerDefaultLanguage,
     publicTenant,
     locale,

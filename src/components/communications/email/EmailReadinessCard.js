@@ -7,6 +7,10 @@ import {
 } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import useWorkspaceBannerDismissal from "@/hooks/useWorkspaceBannerDismissal";
+import { selectCurrentWorkspaceAccess } from "@/lib/features/auth/authSlice";
 
 import {
   EMAIL_SETUP_READINESS,
@@ -40,6 +44,12 @@ export default function EmailReadinessCard({
   compact = false,
 }) {
   const t = useTranslations("CommunicationsEmail");
+  const tCommon = useTranslations("Common");
+  const workspaceAccess = useSelector(selectCurrentWorkspaceAccess);
+  const readyDismissal = useWorkspaceBannerDismissal(
+    workspaceAccess,
+    "emailReadyBannerDismissed",
+  );
   const normalized = normalizeEmailSetup(setup);
   const transportError = isError && !normalized.id;
   const readiness = transportError
@@ -81,8 +91,10 @@ export default function EmailReadinessCard({
 
   if (
     canDismiss &&
-    dismissal.observedKey === dismissalKey &&
-    dismissal.dismissedKey === dismissalKey
+    (readiness === EMAIL_SETUP_READINESS.READY
+      ? readyDismissal.dismissed
+      : dismissal.observedKey === dismissalKey &&
+        dismissal.dismissedKey === dismissalKey)
   ) {
     return null;
   }
@@ -173,6 +185,13 @@ export default function EmailReadinessCard({
               ) : null}
             </div>
           ) : null}
+
+          {readiness === EMAIL_SETUP_READINESS.READY &&
+          readyDismissal.saveError ? (
+            <p role="alert" className="mt-3 text-[12px] text-danger">
+              {tCommon("bannerPreferenceSaveError")}
+            </p>
+          ) : null}
         </div>
         {onOpenSetup && readiness !== EMAIL_SETUP_READINESS.READY ? (
           <button
@@ -186,15 +205,27 @@ export default function EmailReadinessCard({
         {canDismiss ? (
           <button
             type="button"
-            onClick={() =>
+            onClick={() => {
+              if (readiness === EMAIL_SETUP_READINESS.READY) {
+                void readyDismissal.setDismissed(true);
+                return;
+              }
               setDismissal({
                 observedKey: dismissalKey,
                 dismissedKey: dismissalKey,
-              })
+              });
+            }}
+            disabled={
+              readiness === EMAIL_SETUP_READINESS.READY &&
+              readyDismissal.isSaving
+            }
+            aria-busy={
+              readiness === EMAIL_SETUP_READINESS.READY &&
+              readyDismissal.isSaving
             }
             aria-label={t("actions.dismissSetupAlert")}
             title={t("actions.dismissSetupAlert")}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current/20 bg-white/75 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current/40"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current/20 bg-white/75 transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current/40 disabled:cursor-wait disabled:opacity-45"
           >
             <XMarkIcon className="h-5 w-5" aria-hidden="true" />
           </button>

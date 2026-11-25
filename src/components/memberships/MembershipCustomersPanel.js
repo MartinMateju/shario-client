@@ -139,7 +139,7 @@ export default function MembershipCustomersPanel({
           <button
             type="button"
             onClick={() => setAssignmentOpen(true)}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#171717] px-5 text-[12px] font-semibold text-white"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-[12px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             <PlusIcon className="h-4 w-4" /> {t("assign")}
           </button>
@@ -161,7 +161,7 @@ export default function MembershipCustomersPanel({
           <button
             type="button"
             onClick={query.refetch}
-            className="mt-3 min-h-10 rounded-full bg-[#171717] px-4 py-2 text-[12px] font-semibold text-white"
+            className="mt-3 min-h-10 rounded-full bg-primary px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             {commonT("retry")}
           </button>
@@ -625,7 +625,7 @@ function AssignmentDialog({ open, plans, locations, onClose }) {
         <button
           type="submit"
           disabled={assignState.isLoading}
-          className="min-h-11 w-full rounded-full bg-[#171717] px-5 text-[12px] font-semibold text-white disabled:opacity-50"
+          className="min-h-11 w-full rounded-full bg-primary px-5 text-[12px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50"
         >
           {assignState.isLoading ? t("assigning") : t("submit")}
         </button>
@@ -741,7 +741,7 @@ function AdjustDialog({ membership, benefit, onClose }) {
         <button
           type="submit"
           disabled={state.isLoading}
-          className="min-h-11 w-full rounded-full bg-[#171717] text-[12px] font-semibold text-white disabled:opacity-50"
+          className="min-h-11 w-full rounded-full bg-primary text-[12px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50"
         >
           {state.isLoading ? t("saving") : t("submit")}
         </button>

@@ -7,6 +7,7 @@ vi.mock("@/lib/features/api/apiSlice", () => ({
     injectEndpoints: ({ endpoints }) => {
       captured.endpoints = endpoints({
         query: (definition) => definition,
+        infiniteQuery: (definition) => definition,
         mutation: (definition) => definition,
       });
       return {};

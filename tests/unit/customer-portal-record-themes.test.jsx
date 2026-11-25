@@ -64,7 +64,7 @@ vi.mock("@/lib/features/memberships/membershipsApiSlice", () => ({
       entries: [
         {
           id: "entry-1",
-          type: "granted",
+          type: "grant",
           amount: 10,
           reason: "Monthly allowance",
           createdAt: "2026-10-01",
@@ -234,9 +234,10 @@ describe("populated customer portal records under personal colors", () => {
         <CustomerMembershipPage />
       </Appearance>,
     );
-    expect(screen.getByText("Monthly allowance")).toHaveClass(
-      "text-[var(--tenant-muted-on-surface)]",
+    expect(screen.getByText("ledger.types.grant")).toHaveClass(
+      "text-[var(--tenant-text-on-surface)]",
     );
+    expect(screen.queryByText("Monthly allowance")).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "cancel.action" }));
     const dialog = await screen.findByRole("dialog");
     expect(dialog.style.getPropertyValue("--tenant-surface")).toBe("#000000");

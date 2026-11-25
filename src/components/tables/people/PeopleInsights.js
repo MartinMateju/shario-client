@@ -9,17 +9,26 @@ import { Link } from "@/i18n/navigation";
 
 import { formatMoney } from "./people-table.utils";
 
-export default function PeopleInsights({ summary, locale, t, insightsHref }) {
+export default function PeopleInsights({
+  summary,
+  locale,
+  t,
+  insightsHref,
+  currency,
+}) {
   const items = [
     {
       key: "memberships",
-      value: summary.activeMemberships,
+      value: summary.activeMemberships ?? "—",
       icon: IdentificationIcon,
       tone: "bg-[#E8F0E3] text-[#506242]",
     },
     {
       key: "credits",
-      value: formatMoney(summary.credits, locale),
+      value:
+        currency === null
+          ? "—"
+          : formatMoney(summary.credits, locale, currency),
       icon: WalletIcon,
       tone: "bg-skab-cobalt-100 text-primary-text",
     },
@@ -27,12 +36,12 @@ export default function PeopleInsights({ summary, locale, t, insightsHref }) {
       key: "attention",
       value: summary.needsAttention,
       icon: ExclamationCircleIcon,
-      tone: "bg-[#FFE7DF] text-[#D65338]",
+      tone: "bg-warning-soft text-warning",
     },
   ];
 
   return (
-    <section className="grid gap-3 rounded-[18px] border border-[#E7E4DE] bg-white p-4 shadow-[0_10px_30px_rgba(17,17,15,0.035)] sm:grid-cols-3 xl:grid-cols-[repeat(3,minmax(0,1fr))_auto] xl:items-center">
+    <section className="grid gap-3 rounded-[18px] border border-line bg-white p-4 shadow-[0_10px_30px_rgba(17,17,15,0.035)] sm:grid-cols-3 xl:grid-cols-[repeat(3,minmax(0,1fr))_auto] xl:items-center">
       {items.map((item) => {
         const Icon = item.icon;
         return (
@@ -40,7 +49,7 @@ export default function PeopleInsights({ summary, locale, t, insightsHref }) {
             key={item.key}
             className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-2"
           >
-            <p className="text-[10px] leading-5 text-[#7D7D7D]">
+            <p className="text-[13px] leading-5 text-ink-muted">
               {t(`insights.${item.key}`)}
             </p>
             <span
@@ -58,7 +67,7 @@ export default function PeopleInsights({ summary, locale, t, insightsHref }) {
       {insightsHref && (
         <Link
           href={insightsHref}
-          className="inline-flex min-w-0 max-w-full items-center gap-2 text-[10px] font-medium text-[#D65338] transition hover:text-[#B94731] sm:col-span-3 xl:col-span-1"
+          className="inline-flex min-h-11 min-w-0 max-w-full items-center gap-2 rounded-lg px-2 text-[13px] font-semibold text-primary transition hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:col-span-3 xl:col-span-1"
         >
           <span className="min-w-0 truncate">{t("insights.view")}</span>
           <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />

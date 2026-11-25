@@ -1,3 +1,5 @@
+import { useEffect, useMemo } from "react";
+
 import { apiSlice } from "../api/apiSlice";
 import { encodeTenantSlugPathSegment } from "@/utils/tenantRouting";
 
@@ -6,6 +8,12 @@ import {
   normalizeProductsResponse,
 } from "./products.contract.mjs";
 import { collectPaginatedQuery } from "../api/paginatedQuery";
+import {
+  normalizePublicCoursePage,
+  nextPublicCoursePage,
+  flattenPublicCoursePages,
+  MAX_PUBLIC_COURSE_PAGE_COUNT,
+} from "./publicCoursePage";
 import { collectPublicCourseProducts } from "./publicCourseProductsQuery";
 
 const getPublicProductsUrl = (tenantSlug, suffix = "") => {
@@ -236,16 +244,38 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       ],
     }),
 
-    getPublicCourseProducts: builder.query({
-      queryFn: ({ tenantSlug, locationId }, _api, _extraOptions, baseQuery) =>
-        collectPublicCourseProducts({
-          baseQuery,
-          buildRequest: (page, limit) => ({
-            url: getPublicProductsUrl(tenantSlug, "courses"),
-            credentials: "omit",
-            params: { page, limit, ...(locationId ? { locationId } : {}) },
-          }),
-        }),
+    getPublicCourseProducts: builder.infiniteQuery({
+      infiniteQueryOptions: {
+        initialPageParam: 1,
+        getNextPageParam: nextPublicCoursePage,
+      },
+      queryFn: async (
+        { queryArg: { tenantSlug, locationId }, pageParam },
+        _api,
+        _extraOptions,
+        baseQuery,
+      ) => {
+        if (pageParam > MAX_PUBLIC_COURSE_PAGE_COUNT) {
+          return {
+            error: {
+              status: "CUSTOM_ERROR",
+              error: "Public course catalog exceeded the supported page limit.",
+            },
+          };
+        }
+        const result = await baseQuery({
+          url: getPublicProductsUrl(tenantSlug, "courses"),
+          credentials: "omit",
+          params: {
+            page: pageParam,
+            limit: 100,
+            ...(locationId ? { locationId } : {}),
+          },
+        });
+        return result.error
+          ? { error: result.error }
+          : { data: normalizePublicCoursePage(result.data) };
+      },
       providesTags: (_result, _error, { tenantSlug }) => [
         { type: "Product", id: `PUBLIC_COURSES:${tenantSlug}` },
       ],
@@ -322,7 +352,6 @@ export const {
   useGetProductClassCategoriesQuery,
   useGetCustomerCatalogQuery,
   useGetPublicProductsQuery,
-  useGetPublicCourseProductsQuery,
   useGetCustomerCourseProductsQuery,
   useGetPublicProductQuery,
   useAddNewProductMutation,
@@ -331,3 +360,34 @@ export const {
   useDeleteProductMutation,
   useDeleteProductClassCategoryMutation,
 } = productsApiSlice;
+
+// Keep the catalogue's existing flat-array contract while RTK owns each page.
+// An SSR-seeded first page can therefore continue at page two instead of
+// downloading page one again. Refetch/focus still refresh every loaded page.
+export function useGetPublicCourseProductsQuery(args, options) {
+  const query = productsApiSlice.useGetPublicCourseProductsInfiniteQuery(
+    args,
+    options,
+  );
+  const { hasNextPage, isFetching, isError, fetchNextPage } = query;
+  useEffect(() => {
+    if (!options?.skip && hasNextPage && !isFetching && !isError) {
+      void fetchNextPage();
+    }
+  }, [options?.skip, hasNextPage, isFetching, isError, fetchNextPage]);
+  const data = useMemo(
+    () => flattenPublicCoursePages(query.data),
+    [query.data],
+  );
+  const currentData = useMemo(
+    () => flattenPublicCoursePages(query.currentData),
+    [query.currentData],
+  );
+  // A later-page error must expose retry instead of presenting a silently
+  // truncated catalogue as complete.
+  return {
+    ...query,
+    data: isError ? undefined : data,
+    currentData: isError ? undefined : currentData,
+  };
+}

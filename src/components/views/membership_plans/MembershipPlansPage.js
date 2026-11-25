@@ -223,13 +223,13 @@ export default function MembershipPlansPage({
         >
           {showPageHeader ? (
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.17em] text-terracotta-600">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.17em] text-cobalt-600">
                 {t("eyebrow")}
               </p>
               <h1 className="mt-2 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
                 {t("title")}
               </h1>
-              <p className="mt-3 max-w-2xl text-[12px] leading-6 text-[#777773]">
+              <p className="mt-3 max-w-2xl text-[12px] leading-6 text-ink-muted">
                 {t("description")}
               </p>
             </div>
@@ -240,7 +240,7 @@ export default function MembershipPlansPage({
               onClick={openCreate}
               disabled={!canManage}
               title={!canManage ? t("managePermissionRequired") : undefined}
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cobalt-700 px-6 text-[12px] font-semibold text-white shadow-[0_12px_28px_rgb(var(--skab-blue-rgb)/0.22)] transition hover:-translate-y-0.5 hover:bg-cobalt-800 disabled:cursor-not-allowed disabled:bg-[#D9D7D1] disabled:text-[#777773] disabled:shadow-none disabled:hover:translate-y-0 sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cobalt-700 px-6 text-[12px] font-semibold text-white shadow-[0_12px_28px_rgb(var(--skab-blue-rgb)/0.22)] transition hover:-translate-y-0.5 hover:bg-cobalt-800 disabled:cursor-not-allowed disabled:bg-[#D9D7D1] disabled:text-ink-muted disabled:shadow-none disabled:hover:translate-y-0 sm:w-auto"
             >
               <PlusIcon className="h-4 w-4" /> {t("createPlan")}
             </button>
@@ -292,7 +292,7 @@ export default function MembershipPlansPage({
           />
         ) : plansQuery.isLoading ? (
           <div
-            className="mt-5 flex min-h-72 items-center justify-center rounded-[22px] border border-line bg-white text-[12px] text-[#777773]"
+            className="mt-5 flex min-h-72 items-center justify-center rounded-[22px] border border-line bg-white text-[12px] text-ink-muted"
             role="status"
           >
             <ArrowPathIcon className="mr-2 h-4 w-4 animate-spin" />{" "}
@@ -306,7 +306,7 @@ export default function MembershipPlansPage({
             <button
               type="button"
               onClick={plansQuery.refetch}
-              className="mt-4 min-h-10 rounded-full bg-[#171717] px-4 py-2 text-[12px] font-semibold text-white"
+              className="mt-4 min-h-10 rounded-full bg-cobalt-500 hover:bg-cobalt-600 px-4 py-2 text-[12px] font-semibold text-white"
             >
               {commonT("retry")}
             </button>
@@ -357,12 +357,12 @@ export default function MembershipPlansPage({
                   onClick={openCreate}
                   disabled={!canManage}
                   title={!canManage ? t("managePermissionRequired") : undefined}
-                  className="inline-flex min-h-12 items-center gap-2 rounded-full bg-cobalt-700 px-6 text-[12px] font-semibold text-white shadow-[0_14px_30px_rgb(var(--skab-blue-rgb)/0.24)] transition hover:-translate-y-0.5 hover:bg-cobalt-800 disabled:cursor-not-allowed disabled:bg-[#D9D7D1] disabled:text-[#777773] disabled:shadow-none disabled:hover:translate-y-0"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-full bg-cobalt-700 px-6 text-[12px] font-semibold text-white shadow-[0_14px_30px_rgb(var(--skab-blue-rgb)/0.24)] transition hover:-translate-y-0.5 hover:bg-cobalt-800 disabled:cursor-not-allowed disabled:bg-[#D9D7D1] disabled:text-ink-muted disabled:shadow-none disabled:hover:translate-y-0"
                 >
                   <PlusIcon className="h-4 w-4" /> {t("createPlan")}
                 </button>
                 {!canManage ? (
-                  <p className="mt-3 max-w-sm text-[12px] leading-5 text-[#777773]">
+                  <p className="mt-3 max-w-sm text-[12px] leading-5 text-ink-muted">
                     {t("managePermissionRequired")}
                   </p>
                 ) : null}
@@ -450,7 +450,7 @@ function PlanCard({
             {getLocalizedMembershipText(version, "name", locale) ||
               t("unnamedPlan")}
           </h2>
-          <p className="mt-1 text-[11px] text-[#777773]">
+          <p className="mt-1 text-[13px] text-ink-muted">
             {billing.type === "fixed"
               ? t("billing.fixed", { days: billing.durationDays || 0 })
               : t(
@@ -463,7 +463,7 @@ function PlanCard({
         </div>
         <span
           className={cx(
-            "shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold",
+            "shrink-0 rounded-full px-2.5 py-1 text-[12px] font-semibold",
             statusTone(status),
           )}
         >
@@ -502,7 +502,7 @@ function PlanCard({
             key={benefit.key}
             className="flex items-start gap-2 text-[12px] leading-5 text-[#555553]"
           >
-            <CheckCircleIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-terracotta-500" />
+            <CheckCircleIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-success" />
             <span>
               <strong className="font-semibold text-[#292925]">
                 {getLocalizedMembershipText(
@@ -517,12 +517,12 @@ function PlanCard({
           </div>
         ))}
         {benefits.length > 4 ? (
-          <p className="pl-5 text-[11px] text-[#777773]">
+          <p className="pl-5 text-[13px] text-ink-muted">
             {t("moreBenefits", { count: benefits.length - 4 })}
           </p>
         ) : null}
       </div>
-      <p className="mt-4 text-[11px] leading-5 text-[#777773]">
+      <p className="mt-4 text-[13px] leading-5 text-ink-muted">
         {benefits.some(
           (benefit) => benefit.unit === "minute" && benefit.memberOnly,
         )

@@ -18,7 +18,7 @@ export default function MembershipHourBalance({ benefit, balance }) {
   )
     return null;
   return (
-    <dl className="mt-3 space-y-2 text-[10px] leading-5">
+    <dl className="mt-3 space-y-2 text-xs leading-5">
       <div className="flex justify-between gap-3">
         <dt>{t("currentPeriod")}</dt>
         <dd className="font-semibold">

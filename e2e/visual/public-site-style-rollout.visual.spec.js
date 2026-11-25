@@ -147,6 +147,164 @@ const waitForVisualStability = async (page) => {
   });
 };
 
+test("page images change independently and stay private until published", async ({
+  page,
+  request,
+}, testInfo) => {
+  const resetResponse = await request.post(`${API_ORIGIN}/__rollout/reset`);
+  expect(resetResponse.ok()).toBe(true);
+  const initial = await resetResponse.json();
+  const originalImages = initial.published.customerPortal.pageImages;
+  const replacementImage =
+    "https://visual-assets.example.test/page-hero-replacement.webp";
+  await page.route(replacementImage, (route) =>
+    route.fulfill({
+      path: "public/images/DSC09040.webp",
+      contentType: "image/webp",
+      status: 200,
+    }),
+  );
+
+  await page.goto(`${TENANT_ORIGIN}/en/app/settings/public-site`, {
+    waitUntil: "domcontentloaded",
+  });
+  await page.getByRole("tab", { name: "Customer portal", exact: true }).click();
+  const imageEditor = page.locator("[data-customer-portal-page-image-editor]");
+  await expect(imageEditor).toBeVisible();
+  const pageSelector = imageEditor.getByRole("combobox", {
+    name: "Page to customize",
+    exact: true,
+  });
+  const expectPreviewImage = async (
+    pageKey,
+    source,
+    { editPhoto = false } = {},
+  ) => {
+    await imageEditor
+      .getByRole("button", { name: "Preview this header", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: "Preview draft", exact: true })
+      .click();
+    const preview = page
+      .frameLocator('iframe[title="Studio Olivie production preview"]')
+      .locator(`[data-customer-portal-page-image-preview="${pageKey}"]`);
+    await expect(preview).toBeVisible();
+    if (source) {
+      await expect(preview.locator("img")).toHaveAttribute("src", source);
+      await expect
+        .poll(() =>
+          preview
+            .locator("img")
+            .evaluate((image) => image.complete && image.naturalWidth > 0),
+        )
+        .toBe(true);
+    } else {
+      await expect(preview.locator("img")).toHaveCount(0);
+      await expect(
+        preview.locator("[data-customer-portal-hero-media]"),
+      ).toHaveCount(0);
+    }
+    if (editPhoto) {
+      await preview.locator("[data-customer-portal-hero-media]").click();
+    } else {
+      await page
+        .getByRole("button", { name: "Edit website", exact: true })
+        .click();
+    }
+    await expect(imageEditor).toBeVisible();
+    await expect(pageSelector).toHaveValue(pageKey);
+  };
+  await pageSelector.selectOption("vouchers");
+  await expectPreviewImage("vouchers", originalImages.vouchers);
+
+  const vouchersField = imageEditor.locator(
+    '[data-public-site-field-path="customerPortal.pageImages.vouchers"]',
+  );
+  await vouchersField.locator("summary").click();
+  await vouchersField
+    .getByRole("textbox", {
+      name: "Advanced: use an external image URL",
+      exact: true,
+    })
+    .fill(replacementImage);
+  await expectPreviewImage("vouchers", replacementImage, { editPhoto: true });
+  await pageSelector.selectOption("courses");
+  await expectPreviewImage("courses", originalImages.courses);
+  await pageSelector.selectOption("vouchers");
+  await expectPreviewImage("vouchers", replacementImage);
+
+  await page.getByRole("button", { name: "Save draft", exact: true }).click();
+  await expect(
+    page.getByText("Draft saved. Customers still see the published version."),
+  ).toBeVisible();
+  const saved = await readState(request);
+  expect(saved.draft.customerPortal.pageImages).toMatchObject({
+    ...originalImages,
+    vouchers: replacementImage,
+  });
+  expect(saved.published.customerPortal.pageImages).toEqual(originalImages);
+  const readPublishedImages = async () => {
+    const response = await request.get(
+      `${API_ORIGIN}/public/tenants/studio-alpha/config`,
+    );
+    expect(response.ok()).toBe(true);
+    return (await response.json()).tenant.publicSite.customerPortal.pageImages;
+  };
+  expect(await readPublishedImages()).toEqual(originalImages);
+
+  const publish = async () => {
+    await page
+      .getByRole("button", { name: "Publish changes", exact: true })
+      .click();
+    const confirmation = page.getByRole("dialog");
+    await expect(confirmation).toContainText("Publish this public website?");
+    await confirmation
+      .getByRole("button", { name: "Publish changes", exact: true })
+      .click();
+    await expect(
+      page.getByText("The latest draft is now live for customers."),
+    ).toBeVisible();
+  };
+  await publish();
+  expect(await readPublishedImages()).toMatchObject({
+    ...originalImages,
+    vouchers: replacementImage,
+  });
+
+  await imageEditor
+    .getByRole("button", { name: "Remove", exact: true })
+    .click();
+  await expectPreviewImage("vouchers", "");
+  await page.getByRole("button", { name: "Save draft", exact: true }).click();
+  await expect(
+    page.getByText("Draft saved. Customers still see the published version."),
+  ).toBeVisible();
+  const removedDraft = await readState(request);
+  expect(removedDraft.draft.customerPortal.pageImages).toMatchObject({
+    ...originalImages,
+    vouchers: "",
+  });
+  expect((await readPublishedImages()).vouchers).toBe(replacementImage);
+  await publish();
+  expect(await readPublishedImages()).toMatchObject({
+    ...originalImages,
+    vouchers: "",
+  });
+
+  await pageSelector.selectOption("courses");
+  await expectPreviewImage("courses", originalImages.courses);
+  await expectNoHorizontalOverflow(page);
+  await expectNoSeriousAccessibilityViolations(
+    page,
+    "[data-customer-portal-page-image-editor]",
+  );
+  await testInfo.attach(`page-image-editor-${testInfo.project.name}`, {
+    body: await page.screenshot({ fullPage: false }),
+    contentType: "image/png",
+  });
+});
+
 test("selector → preview → save → publish reaches public and login surfaces", async ({
   page,
   request,
@@ -164,6 +322,19 @@ test("selector → preview → save → publish reaches public and login surface
 
   const styleSelector = page.locator("[data-style-preset-selector]");
   await expect(styleSelector.getByRole("radio")).toHaveCount(3);
+
+  const otherEditor = await page.context().newPage();
+  await otherEditor.goto(page.url(), { waitUntil: "domcontentloaded" });
+  await expect(
+    otherEditor.locator("[data-style-preset-selector] input"),
+  ).toHaveCount(3);
+  await otherEditor.evaluate(() => {
+    window.addEventListener("storage", (event) => {
+      if (event.key === "shario:public-site-published:studio-alpha") {
+        document.documentElement.dataset.receivedPublication = "true";
+      }
+    });
+  });
 
   for (const presetId of PRESET_IDS) {
     const optionCard = styleSelector.locator(
@@ -225,7 +396,16 @@ test("selector → preview → save → publish reaches public and login surface
       page.getByText("The latest draft is now live for customers."),
     ).toBeVisible();
 
+    if (presetId === PRESET_IDS[0]) {
+      await expect(otherEditor.locator("html")).toHaveAttribute(
+        "data-received-publication",
+        "true",
+      );
+      await otherEditor.close();
+    }
     const published = await readState(request);
+    // Counts server and browser requests from both editors and the preview.
+    if (presetId === PRESET_IDS[0]) expect(published.configReads).toBe(0);
     expect(published.published.branding).toMatchObject(
       PRESET_RECIPES[presetId],
     );

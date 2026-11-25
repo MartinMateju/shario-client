@@ -11,7 +11,7 @@ vi.mock("@/lib/features/api/apiSlice", async () => {
   return {
     apiSlice: createApi({
       reducerPath: "creditGrantTestApi",
-      baseQuery: fetchBaseQuery({ baseUrl: "https://api.skab.test" }),
+      baseQuery: fetchBaseQuery({ baseUrl: "https://api.shario.test" }),
       tagTypes: ["Credits", "CreditTransactions", "User"],
       endpoints: () => ({}),
     }),
@@ -39,7 +39,7 @@ describe("admin credit grant HTTP contract", () => {
     const requests = [];
     server.use(
       http.post(
-        "https://api.skab.test/credits/admin/grant",
+        "https://api.shario.test/credits/admin/grant",
         async ({ request }) => {
           const key = request.headers.get("Idempotency-Key");
           requests.push({ key, body: await request.json() });
@@ -79,7 +79,7 @@ describe("admin credit grant HTTP contract", () => {
     let balance = 0;
     server.use(
       http.post(
-        "https://api.skab.test/credits/admin/grant",
+        "https://api.shario.test/credits/admin/grant",
         async ({ request }) => {
           const key = request.headers.get("Idempotency-Key");
           const body = await request.json();

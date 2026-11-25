@@ -273,7 +273,7 @@ export default function WorkspaceNotificationMenu() {
               <span
                 data-workspace-notification-badge
                 aria-hidden="true"
-                className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-coral-500 px-1 text-[8px] font-bold tabular-nums text-white ring-2 ring-surface-panel"
+                className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-semibold tabular-nums text-white ring-2 ring-surface-panel"
               >
                 {unreadCount > 99 ? "99+" : unreadCount}
               </span>

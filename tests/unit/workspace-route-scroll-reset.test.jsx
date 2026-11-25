@@ -32,6 +32,7 @@ describe("WorkspaceRouteScrollReset", () => {
   beforeEach(() => {
     navigation.pathname = "/app/products";
     navigation.search = "";
+    window.history.replaceState(null, "", "/");
     document.documentElement.style.scrollBehavior = "smooth";
     document.body.style.scrollBehavior = "";
     animationFrames = new Map();
@@ -88,6 +89,30 @@ describe("WorkspaceRouteScrollReset", () => {
 
     flushAnimationFrames();
     expect(window.scrollTo).toHaveBeenCalledTimes(3);
+  });
+
+  it("preserves a direct hash destination and resets the next ordinary route", () => {
+    navigation.pathname = "/app/settings/preferences";
+    window.history.replaceState(null, "", "/#notification-preferences");
+    const { rerender } = render(<WorkspaceRouteScrollReset />);
+
+    flushAnimationFrames();
+    expect(window.scrollTo).not.toHaveBeenCalled();
+
+    window.history.replaceState(null, "", "/");
+    navigation.pathname = "/app/settings";
+    rerender(<WorkspaceRouteScrollReset />);
+    flushAnimationFrames();
+    expect(window.scrollTo).toHaveBeenCalledTimes(3);
+  });
+
+  it("does not undo a hash scroll committed after the first render", () => {
+    render(<WorkspaceRouteScrollReset />);
+    expect(window.scrollTo).toHaveBeenCalledOnce();
+
+    window.history.replaceState(null, "", "/#workspace-preferences");
+    flushAnimationFrames();
+    expect(window.scrollTo).toHaveBeenCalledOnce();
   });
 
   it("does not reset again when only non-navigation page state changes", () => {

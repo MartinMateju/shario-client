@@ -156,7 +156,7 @@ function PracticePrerequisites({ steps, t, workspaceAccess, context }) {
       <p className="text-[11px] font-semibold text-ink">
         {t("practice.prerequisitesTitle")}
       </p>
-      <ul className="mt-2 space-y-3">
+      <ul className="mt-2 divide-y divide-line">
         {steps.map((step) => {
           const action = getPrimaryAction(step);
           const directHref = action?.enabled
@@ -179,7 +179,7 @@ function PracticePrerequisites({ steps, t, workspaceAccess, context }) {
             <li
               key={step.id}
               data-practice-prerequisite={step.id}
-              className="rounded-xl border border-amber-200 bg-white/70 p-3"
+              className="py-3"
             >
               <p className="text-[11px] font-semibold text-ink">
                 {missingCheck
@@ -197,7 +197,7 @@ function PracticePrerequisites({ steps, t, workspaceAccess, context }) {
                   data-readiness-action={
                     context === "readiness" ? "customerJourney" : undefined
                   }
-                  className="mt-2 inline-flex min-h-11 items-center gap-2 rounded-full bg-amber-900 px-4 text-[10px] font-semibold text-white transition hover:bg-amber-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/50"
+                  className="mt-2 inline-flex min-h-11 items-center gap-2 rounded-full bg-primary px-4 text-[13px] font-semibold text-white transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
                   {label}
                   <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -561,7 +561,7 @@ function SetupOutcomeSection({
                   ready
                     ? "bg-success-soft text-success"
                     : selected
-                      ? "bg-white text-terracotta-700 shadow-sm"
+                      ? "bg-white text-primary shadow-sm"
                       : "bg-surface text-ink-muted",
                 )}
               >
@@ -584,7 +584,7 @@ function SetupOutcomeSection({
                 <ChevronRightIcon
                   className={cx(
                     "h-4 w-4 shrink-0 transition",
-                    selected ? "text-terracotta-700" : "text-ink-subtle",
+                    selected ? "text-primary" : "text-ink-subtle",
                   )}
                 />
               ) : null}
@@ -593,7 +593,7 @@ function SetupOutcomeSection({
           const rowClassName = cx(
             "flex min-h-[62px] w-full items-center gap-3 rounded-[14px] px-3 text-left transition sm:px-4",
             selected
-              ? "bg-coral-100"
+              ? "bg-primary-soft ring-1 ring-inset ring-primary/25"
               : selectable || canOpenInactive
                 ? "hover:bg-surface-muted"
                 : "cursor-default",
@@ -689,7 +689,7 @@ function SetupOutcomeSection({
 }
 function WorkflowIntentAction({ t }) {
   return (
-    <section className="mt-5 overflow-hidden rounded-[22px] border border-coral-200 bg-white shadow-[0_18px_48px_rgb(var(--skab-coral-rgb)/0.12)]">
+    <section className="mt-5 overflow-hidden rounded-[22px] border border-line bg-white shadow-card">
       <div className="grid md:grid-cols-[minmax(0,1fr)_auto]">
         <div className="p-5 sm:p-6">
           <p className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.17em] text-terracotta-700">
@@ -703,11 +703,11 @@ function WorkflowIntentAction({ t }) {
             {t("workflowIntent.description")}
           </p>
         </div>
-        <div className="flex items-center border-t border-coral-100 bg-coral-50/55 p-5 md:min-w-[210px] md:border-l md:border-t-0">
+        <div className="flex items-center border-t border-line bg-surface-muted p-5 md:min-w-[210px] md:border-l md:border-t-0">
           <Link
             href="/app/settings/modules?from=launch-center"
             data-launch-primary-action="true"
-            className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-skab-coral-700 px-5 text-[11px] font-semibold text-white shadow-sm transition hover:bg-skab-coral-800"
+            className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 text-[13px] font-semibold text-white shadow-sm transition hover:bg-primary-hover"
           >
             {t("workflowIntent.action")}
             <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -878,7 +878,7 @@ const READINESS_FALLBACK_HREFS = Object.freeze({
   publicSite: "/app/settings/public-site",
   bookings: "/app/products?setupStep=bookable_offer",
   payments: "/app/setup?step=payments",
-  emails: "/app/communications?section=setup&setupStep=communications",
+  emails: "/app/settings/communications?setupStep=communications",
   customerJourney: "/app/setup?step=practice_booking",
 });
 const getReadinessAction = ({ canPublish, item, permissions, setup, t }) => {
@@ -1023,7 +1023,7 @@ function ReadinessCard({
           onClick={onAction}
           data-readiness-action={item.id}
           data-readiness-action-permitted="true"
-          className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 self-start rounded-full bg-amber-900 px-4 text-[10px] font-semibold text-white shadow-sm transition hover:bg-amber-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/50 sm:w-auto"
+          className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 self-start rounded-full bg-primary px-4 text-[13px] font-semibold text-white shadow-sm transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 sm:w-auto"
         >
           {action.label}
           <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -1588,12 +1588,7 @@ function CompletionCelebration({
       data-payment-readiness={paymentReady ? "ready" : undefined}
       data-launch-health={needsAttention ? "needs-attention" : "healthy"}
       data-readiness-density={readinessCompact ? "compact" : "standard"}
-      className={cx(
-        "overflow-hidden rounded-[24px] border shadow-card",
-        needsAttention
-          ? "border-line bg-white"
-          : "border-success/20 bg-success-soft",
-      )}
+      className="overflow-hidden rounded-[24px] border border-line bg-white shadow-card"
     >
       {needsAttention ? (
         <div
@@ -1745,9 +1740,7 @@ function CompletionCelebration({
               }
               className={cx(
                 "inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-5 text-[11px] font-semibold text-white shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:w-auto",
-                needsAttention
-                  ? "bg-amber-800 hover:bg-amber-900 focus-visible:ring-amber-600"
-                  : "bg-success hover:brightness-95 focus-visible:ring-success",
+                "bg-primary hover:bg-primary-hover focus-visible:ring-primary",
               )}
             >
               {primaryActionConfig.label}
@@ -2498,8 +2491,8 @@ export default function SetupCenterPage() {
           {selectedStep.id === "bookable_offer" &&
           !coreBookableOfferReady &&
           canManageProducts ? (
-            <div className="mt-5 rounded-[16px] border border-coral-200 bg-coral-50/55 p-4">
-              <p className="text-[11px] font-semibold text-terracotta-800">
+            <div className="mt-5 rounded-[16px] border border-line bg-white p-4">
+              <p className="text-[13px] font-semibold text-ink">
                 {t("offer.whatAreYouCreating")}
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -2508,14 +2501,14 @@ export default function SetupCenterPage() {
                     <Link
                       key={label}
                       href={`/app/products/new?category=${category}&productType=${productType}&setupTemplate=${template}&setupStep=bookable_offer`}
-                      className="inline-flex min-h-9 items-center rounded-full border border-coral-200 bg-white px-3.5 text-[10px] font-semibold text-terracotta-700 transition hover:border-coral-300 hover:bg-coral-100"
+                      className="inline-flex min-h-9 items-center rounded-full border border-primary/25 bg-white px-3.5 text-[13px] font-semibold text-primary transition hover:border-primary/50 hover:bg-primary-soft"
                     >
                       {t(`offer.types.${label}`)}
                     </Link>
                   ),
                 )}
               </div>
-              <p className="mt-3 text-[10px] leading-5 text-terracotta-700/75">
+              <p className="mt-3 text-[13px] leading-5 text-ink-muted">
                 {t("offer.help")}
               </p>
             </div>

@@ -4,6 +4,8 @@ export const PLATFORM_MARKETING_PATHS = Object.freeze([
   "/studio-ai",
   "/for-studios",
   "/pricing",
+  "/terms",
+  "/privacy",
 ]);
 export const MARKETING_ANCHORS = Object.freeze({
   top: "/#top",

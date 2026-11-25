@@ -1,6 +1,119 @@
 import { test, expect } from "../fixtures/test.js";
 import { E2E, tenantOrigin, tenantUrl } from "../helpers/urls.js";
 
+test("public courses reuse server data and keep workspace translations out of public pages", async ({
+  page,
+  e2eState,
+}) => {
+  const product = e2eState.products.alpha;
+  const session = e2eState.courseSessions.alpha;
+  const base = `/public/tenants/${E2E.alphaSlug}/products`;
+  const duplicateReads = [];
+  const liveSessionReads = [];
+  const pageErrors = [];
+  page.on("pageerror", (error) => pageErrors.push(error.message));
+  page.on("console", (message) => {
+    if (
+      message.type() === "error" &&
+      /MISSING_MESSAGE|hydration|hydrated|server rendered HTML/i.test(
+        message.text(),
+      )
+    ) {
+      pageErrors.push(message.text());
+    }
+  });
+  page.on("request", (outgoing) => {
+    if (outgoing.method() !== "GET") return;
+    const pathname = new URL(outgoing.url()).pathname;
+    if (
+      [
+        `${base}/courses/locations`,
+        `${base}/courses`,
+        `${base}/courses/overview`,
+        `${base}/${product.id}`,
+      ].includes(pathname)
+    ) {
+      duplicateReads.push(pathname);
+    }
+    if (pathname === `${base}/${product.id}/sessions`) {
+      liveSessionReads.push(pathname);
+    }
+  });
+
+  const catalogue = await page.goto(
+    tenantUrl(E2E.alphaSlug, `/courses?location=${session.locationId}`),
+  );
+  expect(catalogue.status()).toBe(200);
+  expect(await catalogue.text()).not.toContain("MigrationCenter");
+  await page.getByRole("searchbox").fill(product.name);
+  await expect(
+    page.getByRole("link", { name: product.name, exact: true }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: product.name, exact: true }).click();
+  await expect(page).toHaveURL(new RegExp(`/courses/${product.id}\\?`));
+  await expect(
+    page.getByRole("heading", { name: product.name, level: 1, exact: true }),
+  ).toBeVisible();
+  const availableSession = page.getByRole("radio").first();
+  await availableSession.check();
+  await expect(
+    page.getByRole("heading", { name: "Continue as a guest", exact: true }),
+  ).toBeVisible();
+  expect(duplicateReads).toEqual([]);
+  expect(liveSessionReads.length).toBeGreaterThan(0);
+
+  await page
+    .getByRole("button", { name: "Book with my account", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/login\?/);
+  await expect(
+    page.getByRole("textbox", { name: "E-mail", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Sign in", exact: true }),
+  ).toBeVisible();
+  const login = await page.reload();
+  expect(login.status()).toBe(200);
+  expect(await login.text()).not.toContain("MigrationCenter");
+  await expect(
+    page.getByRole("button", { name: "Sign in", exact: true }),
+  ).toBeVisible();
+  expect(pageErrors).toEqual([]);
+});
+
+test("visiting a public catalogue does not prefetch other booking pages", async ({
+  page,
+}) => {
+  const cataloguePaths = ["/courses", "/memberships", "/vouchers"];
+  const destinations = [...cataloguePaths, "/book", "/login"].map(
+    (path) => new URL(tenantUrl(E2E.alphaSlug, path)).pathname,
+  );
+  const prefetched = [];
+  page.on("request", (request) => {
+    const { pathname, origin } = new URL(request.url());
+    if (
+      origin === tenantOrigin(E2E.alphaSlug) &&
+      destinations.includes(pathname) &&
+      request.headers()["next-router-prefetch"] === "1"
+    ) {
+      prefetched.push(pathname);
+    }
+  });
+
+  for (const path of cataloguePaths) {
+    await test.step(path, async () => {
+      prefetched.length = 0;
+      const response = await page.goto(tenantUrl(E2E.alphaSlug, path));
+      expect(response.status()).toBe(200);
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      // Include background requests that Next schedules after hydration.
+      await page.waitForLoadState("networkidle");
+      const current = new URL(response.url()).pathname;
+      expect(prefetched.filter((other) => other !== current)).toEqual([]);
+    });
+  }
+});
+
 test("a guest redeems a voucher, confirms without Stripe and reserves one place only", async ({
   page,
   request,

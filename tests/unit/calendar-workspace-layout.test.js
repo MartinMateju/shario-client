@@ -174,7 +174,7 @@ describe("tenant calendar workspace layout", () => {
     }
   });
 
-  it("preserves real weekly and daily time grids for customer mobile calendars", () => {
+  it("shares the mobile week grid and preserves customer daily time grids", () => {
     const studioSource = readSource(
       "../../src/components/calendar/StudioCalendar.js",
     );
@@ -192,7 +192,8 @@ describe("tenant calendar workspace layout", () => {
     );
     const stylesSource = readSource("../../src/styles/globals.css");
 
-    expect(weekSource).toContain("data-calendar-mobile-week-grid={");
+    expect(weekSource).toContain('data-calendar-mobile-week-grid="true"');
+    expect(weekSource).not.toContain("MobileAgendaCalendar");
     expect(weekSource).toContain('data-calendar-week-scroll="true"');
     expect(weekSource).toContain('data-calendar-time-rail="true"');
     expect(weekSource).toContain('data-calendar-week-day-column="true"');
@@ -204,12 +205,10 @@ describe("tenant calendar workspace layout", () => {
       "repeat(7, minmax(var(--calendar-day-width), 1fr))",
     );
 
-    // Tenant week/day calendars retain the existing compact mobile agenda.
+    // Tenant day calendars retain the existing compact mobile agenda.
     expect(mobileSource).toContain('data-calendar-mobile-agenda="true"');
     expect(mobileSource).toContain("lg:hidden");
-    expect(studioSource).toMatch(
-      /!\["customer", "public"\]\.includes\(audience\)\s*&&[\s\S]{0,240}setView\("day"\)/,
-    );
+    expect(studioSource).not.toContain("responsiveDefaultApplied");
     expect(publicBookingSource).not.toContain('setView("day")');
     // The tenant style clips media surfaces with overflow: hidden. The
     // page-scrolling public frame must stay out of that, or the calendar's

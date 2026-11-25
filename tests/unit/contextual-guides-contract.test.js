@@ -348,7 +348,7 @@ describe("contextual guide contract", () => {
       context,
     );
     expect(buildContextualGuideHref(communicationsGuide)).toBe(
-      "/app/communications?section=setup&guide=customer_communications",
+      "/app/settings/communications?guide=customer_communications",
     );
     expect(buildContextualGuideHref(communicationsGuide)).not.toContain(
       "setupStep",

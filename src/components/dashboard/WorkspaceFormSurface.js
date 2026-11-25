@@ -1,10 +1,10 @@
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export const workspaceLabelClass =
-  "block min-w-0 text-[12px] font-semibold leading-5 text-ink-soft";
+  "block min-w-0 text-[13px] font-semibold leading-5 text-ink";
 
 export const workspaceInputClass =
-  "mt-2 min-h-12 w-full min-w-0 rounded-[14px] border border-line bg-white px-3.5 text-base text-ink shadow-xs outline-none transition placeholder:text-ink-subtle hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10 disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-ink-muted disabled:opacity-75 aria-invalid:border-danger aria-invalid:focus:ring-danger/10 sm:text-[13px]";
+  "mt-2 min-h-12 w-full min-w-0 rounded-[14px] border border-line bg-white px-3.5 text-base text-ink shadow-xs outline-none transition placeholder:text-ink-subtle hover:border-line-strong focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10 disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-ink-muted disabled:opacity-75 aria-invalid:border-danger aria-invalid:focus:ring-danger/10 sm:text-[14px]";
 
 export const workspaceTextareaClass = cx(
   workspaceInputClass,
@@ -12,10 +12,10 @@ export const workspaceTextareaClass = cx(
 );
 
 export const workspacePrimaryButtonClass =
-  "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cobalt-500 px-6 text-[13px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/35 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:min-h-11 sm:w-auto sm:text-[12px]";
+  "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cobalt-500 px-6 text-[14px] font-semibold text-white shadow-cobalt transition hover:bg-cobalt-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:min-h-11 sm:w-auto";
 
 export const workspaceSecondaryButtonClass =
-  "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-[13px] font-semibold text-ink-soft transition hover:border-line-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500/25 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-11 sm:w-auto sm:text-[12px]";
+  "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-[14px] font-semibold text-ink-soft transition hover:border-line-strong hover:bg-surface-muted hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-11 sm:w-auto";
 
 export function WorkspaceFormSection({
   as: Component = "section",
@@ -36,12 +36,12 @@ export function WorkspaceFormSection({
       {title || description ? (
         <header>
           {title ? (
-            <h3 className="text-[13px] font-semibold tracking-[-0.02em] text-ink">
+            <h3 className="text-[15px] font-semibold tracking-[-0.02em] text-ink">
               {title}
             </h3>
           ) : null}
           {description ? (
-            <p className="mt-1 text-[11px] leading-5 text-ink-muted">
+            <p className="mt-1 text-[13px] leading-5 text-ink-muted">
               {description}
             </p>
           ) : null}

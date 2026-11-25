@@ -1109,7 +1109,7 @@ export default function ImportHistoryPanel({
                 <button
                   type="button"
                   onClick={loadRollbackPreview}
-                  className="mt-3 min-h-9 rounded-full border border-coral-300 bg-white px-3.5 text-[10px] font-semibold text-terracotta-900"
+                  className="mt-3 min-h-9 rounded-full border border-primary/35 bg-white px-3.5 text-[13px] font-semibold text-primary hover:bg-primary-soft"
                 >
                   {t("rollback.checkAgain")}
                 </button>

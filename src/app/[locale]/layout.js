@@ -16,9 +16,11 @@ import LegacyLocaleSync from "@/components/i18n/LegacyLocaleSync";
 import { SKAB_PLATFORM_COLORS } from "@/config/brandPalette";
 import { PLATFORM_BROWSER_ICONS } from "@/config/browserIcons";
 import { getLegacyLanguageForLocale } from "@/i18n/locales";
+import { selectPublicClientMessages } from "@/i18n/clientMessages";
 import { buildLocaleMetadataContext } from "@/i18n/metadata";
 import { routing } from "@/i18n/routing";
 import StoreProvider from "@/providers/StoreProvider";
+import { getPublicAuthTransportConfig } from "@/lib/auth/authTransportConfig.server";
 
 import "@/styles/globals.css";
 
@@ -102,7 +104,7 @@ export default async function LocaleLayout({ children, params }) {
 
   setRequestLocale(locale);
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
   const legacyLanguage = getLegacyLanguageForLocale(locale);
   const localeMetadata = buildLocaleMetadataContext(locale, routing.locales);
   const t = await getTranslations({
@@ -131,8 +133,14 @@ export default async function LocaleLayout({ children, params }) {
           antialiased
         `}
       >
-        <NextIntlClientProvider messages={messages}>
-          <StoreProvider legacyLanguage={legacyLanguage}>
+        <NextIntlClientProvider
+          locale={locale}
+          messages={selectPublicClientMessages(messages)}
+        >
+          <StoreProvider
+            legacyLanguage={legacyLanguage}
+            authTransportConfig={getPublicAuthTransportConfig()}
+          >
             <LegacyLocaleSync key="legacy-locale-sync" />
 
             <a key="skip-link" className="skip-link" href="#page-content">

@@ -10,6 +10,7 @@ import CalendarOwnBookingBadge, {
 } from "./CalendarOwnBookingBadge";
 import CalendarTooltip, { useCalendarTooltip } from "./CalendarTooltip";
 import {
+  getBookingAttendanceCount,
   getCalendarBookingPresentation,
   getCalendarEventColor,
   getCalendarProductKey,
@@ -29,9 +30,11 @@ export default function CalendarEventCard({
   onClick,
 }) {
   const tooltip = useCalendarTooltip();
+  const tenantView = audience === "tenant";
   const customerThemed = ["customer", "public"].includes(audience);
   const isMine = event.isMine === true || event.tone === "mine";
   const presentation = getCalendarBookingPresentation(event, { t, fullLabel });
+  const attendanceCount = getBookingAttendanceCount(event);
   const activity = getCalendarBookingActivity(event, studio, t);
   const color =
     event.isSuggested && customerThemed
@@ -73,9 +76,21 @@ export default function CalendarEventCard({
         : Infinity;
   const tight = pixelHeight < 44;
   const inlineOwnership = pixelHeight < 60;
-  const showMode = pixelHeight >= (isMine ? 84 : 60);
-  const showCustomer = pixelHeight >= (isMine ? 100 : 72);
-  const showSupporting = !compact && pixelHeight >= (isMine ? 132 : 112);
+  const showMode = pixelHeight >= (isMine ? 84 : tenantView ? 64 : 60);
+  // Staff scan for the person before their reference number. Keep short
+  // events focused on time/title and disclose every detail in the tooltip.
+  const showSupporting =
+    !compact &&
+    pixelHeight >= (tenantView ? (isMine ? 112 : 80) : isMine ? 132 : 112);
+  const showCustomer =
+    pixelHeight >=
+    (tenantView && showSupporting && supportingText
+      ? isMine
+        ? 132
+        : 100
+      : isMine
+        ? 100
+        : 72);
   const interactive =
     typeof onClick === "function" &&
     (!customerThemed ||
@@ -165,10 +180,31 @@ export default function CalendarEventCard({
 
         <p
           data-calendar-event-time="true"
-          className="min-w-0 truncate text-[10px] font-semibold leading-[12px] tabular-nums"
+          className={cx(
+            "min-w-0 truncate tabular-nums",
+            tenantView && !tight
+              ? "text-[10px] font-bold leading-[14px] @[64px]/calendar-card:text-[12px]"
+              : "text-[10px] font-semibold leading-[12px]",
+          )}
         >
-          <span className="@[105px]/calendar-card:hidden">{startTime}</span>
-          <span className="hidden @[105px]/calendar-card:inline">{range}</span>
+          <span
+            className={
+              tenantView
+                ? "@[128px]/calendar-card:hidden"
+                : "@[105px]/calendar-card:hidden"
+            }
+          >
+            {startTime}
+          </span>
+          <span
+            className={
+              tenantView
+                ? "hidden @[128px]/calendar-card:inline"
+                : "hidden @[105px]/calendar-card:inline"
+            }
+          >
+            {range}
+          </span>
         </p>
 
         <div
@@ -183,9 +219,11 @@ export default function CalendarEventCard({
               "min-w-0 flex-1 truncate font-semibold tracking-[-0.015em]",
               tight
                 ? "text-[10px] leading-[12px]"
-                : compact
-                  ? "text-[11px] leading-[14px]"
-                  : "text-[12px] leading-[15px]",
+                : tenantView
+                  ? "text-[13px] leading-[16px]"
+                  : compact
+                    ? "text-[11px] leading-[14px]"
+                    : "text-[12px] leading-[15px]",
             )}
           >
             {presentation.title}
@@ -219,22 +257,64 @@ export default function CalendarEventCard({
               isPrivate={presentation.isPrivate}
               label={presentation.modeLabel}
               compact
+              collapseLabel={tenantView}
             />
             {presentation.full && (
               <span
                 data-calendar-full-badge="true"
                 className={cx(
-                  "shrink-0 rounded bg-[#9F1239] px-1 text-[9px] font-semibold leading-[13px] text-white",
+                  "shrink-0 bg-[#9F1239] text-[9px] font-semibold leading-[13px] text-white",
+                  tenantView
+                    ? "inline-flex h-2 w-2 rounded-full @[128px]/calendar-card:h-auto @[128px]/calendar-card:w-auto @[128px]/calendar-card:rounded @[128px]/calendar-card:px-1"
+                    : "rounded px-1",
                   customerThemed && "hidden @[120px]/calendar-card:inline",
                 )}
               >
-                {presentation.fullLabel}
+                <span
+                  className={
+                    tenantView
+                      ? "sr-only @[128px]/calendar-card:not-sr-only"
+                      : undefined
+                  }
+                >
+                  {presentation.fullLabel}
+                </span>
               </span>
             )}
             {presentation.attendanceLabel && (
-              <span className="inline-flex min-w-0 items-center gap-0.5 font-semibold">
-                <UserIcon className="h-3 w-3 shrink-0" aria-hidden="true" />
-                <span className="max-w-full truncate text-[10px] leading-[12px] tabular-nums">
+              <span
+                data-calendar-event-attendance="true"
+                aria-label={
+                  tenantView ? presentation.attendanceLabel : undefined
+                }
+                className={cx(
+                  "inline-flex min-w-0 items-center gap-0.5 font-semibold",
+                  tenantView && "order-first shrink-0",
+                )}
+              >
+                <UserIcon
+                  className={cx(
+                    "h-3 w-3 shrink-0",
+                    tenantView && "hidden @[64px]/calendar-card:block",
+                  )}
+                  aria-hidden="true"
+                />
+                {tenantView && (
+                  <span
+                    aria-hidden="true"
+                    className="text-[11px] leading-[12px] tabular-nums @[128px]/calendar-card:hidden"
+                  >
+                    {attendanceCount}
+                  </span>
+                )}
+                <span
+                  className={cx(
+                    "max-w-full truncate leading-[12px] tabular-nums",
+                    tenantView
+                      ? "hidden text-[11px] @[128px]/calendar-card:inline"
+                      : "text-[10px]",
+                  )}
+                >
                   {presentation.attendanceLabel}
                 </span>
               </span>
@@ -242,16 +322,28 @@ export default function CalendarEventCard({
           </div>
         )}
 
+        {tenantView && showSupporting && supportingText && (
+          <p
+            data-calendar-event-person="true"
+            className="mt-0.5 truncate text-[12px] font-semibold leading-[14px]"
+          >
+            {supportingText}
+          </p>
+        )}
+
         {showCustomer && presentation.customerReference && (
           <p
             data-calendar-customer-reference="true"
-            className="mt-0.5 truncate text-[10px] font-medium leading-[12px] tabular-nums"
+            className={cx(
+              "mt-0.5 truncate font-medium leading-[12px] tabular-nums",
+              tenantView ? "text-[11px]" : "text-[10px]",
+            )}
           >
             {presentation.customerReference}
           </p>
         )}
 
-        {showSupporting && supportingText && (
+        {!tenantView && showSupporting && supportingText && (
           <p className="mt-1 truncate text-[10px] leading-[13px]">
             {supportingText}
           </p>

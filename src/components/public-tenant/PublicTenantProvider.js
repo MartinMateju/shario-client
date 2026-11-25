@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useMemo } from "react";
+import { useLocale } from "next-intl";
 import { useSelector } from "react-redux";
 
 import {
@@ -32,6 +33,7 @@ export default function PublicTenantProvider({
   previewModules,
 }) {
   const pathname = usePathname();
+  const locale = useLocale();
   const currentTenant = useSelector(selectCurrentTenant);
   const isCustomerAuthenticated = useSelector(selectIsCustomerAuthenticated);
   const authenticatedTenant = isCustomerAuthenticated ? currentTenant : null;
@@ -57,7 +59,7 @@ export default function PublicTenantProvider({
         pathname,
       ),
       previewMode,
-      navigation: getPublicTenantNavigation(tenant),
+      navigation: getPublicTenantNavigation(tenant, locale),
       portalNavigation: getCustomerPortalNavigation(
         previewMode
           ? (previewModules ?? {})
@@ -70,6 +72,7 @@ export default function PublicTenantProvider({
     authenticatedTenant,
     degraded,
     initialTenant,
+    locale,
     pathname,
     surface,
     previewMode,

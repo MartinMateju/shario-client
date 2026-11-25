@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  resolvePublicSiteCustomLinks,
+  flattenPublicSiteNavigation,
+} from "./publicTenantCustomLinks";
 import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
@@ -87,6 +91,22 @@ export default function PublicTenantFooter({ pathnameOverride }) {
     ["privacy", footer.legal.privacy],
     ["cancellation", footer.legal.cancellation],
   ].filter(([, href]) => href);
+  const inheritedNavigation = flattenPublicSiteNavigation(navigation);
+  const inheritedHrefs = new Set();
+  const footerNavigation = [
+    ...inheritedNavigation.filter((item) => {
+      if (inheritedHrefs.has(item.href)) return false;
+      inheritedHrefs.add(item.href);
+      return true;
+    }),
+    ...resolvePublicSiteCustomLinks(footer.customLinks, locale, 12)
+      .filter((item) => {
+        if (inheritedHrefs.has(item.href)) return false;
+        inheritedHrefs.add(item.href);
+        return true;
+      })
+      .map((item) => ({ ...item, key: `footer-${item.key}` })),
+  ];
   const socialLinks = Object.entries(footer.social).filter(([, href]) => href);
   const emailIsSafe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(footer.email);
   const phoneHref = footer.phone.replace(/[^\d+]/g, "");
@@ -127,7 +147,7 @@ export default function PublicTenantFooter({ pathnameOverride }) {
           ) : null}
         </section>
 
-        {navigation.length ? (
+        {footerNavigation.length ? (
           <section>
             <h2
               className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--tenant-label-color)]"
@@ -139,20 +159,26 @@ export default function PublicTenantFooter({ pathnameOverride }) {
               className="mt-4 grid gap-3 text-sm"
               aria-label={t("footer.explore")}
             >
-              {navigation.map((item) => (
-                <Link
-                  key={item.key}
-                  href={
-                    item.key === "courses"
-                      ? retainPublicCourseLocation(item.href, locationReference)
-                      : item.href
-                  }
-                  className="transition hover:opacity-70"
-                  style={{ color: accentLinkColor }}
-                >
-                  {t(`nav.${item.key}`)}
-                </Link>
-              ))}
+              {footerNavigation.map((item) => {
+                const ItemLink = item.custom ? "a" : Link;
+                return (
+                  <ItemLink
+                    key={item.key}
+                    href={
+                      item.key === "courses"
+                        ? retainPublicCourseLocation(
+                            item.href,
+                            locationReference,
+                          )
+                        : item.href
+                    }
+                    className="transition hover:opacity-70"
+                    style={{ color: accentLinkColor }}
+                  >
+                    {item.custom ? item.label : t(`nav.${item.key}`)}
+                  </ItemLink>
+                );
+              })}
             </nav>
           </section>
         ) : null}

@@ -54,6 +54,7 @@ import {
 } from "@/components/customer-shell/CustomerPortalPrimitives";
 import { retainCustomerPortalLocation } from "@/utils/customerPortalLocation";
 import Drawer from "../sidebars/Drawer";
+import design from "@/components/public-tenant/portalCatalog.module.css";
 
 const classNames = (...classes) => classes.filter(Boolean).join(" ");
 const PAGE_SIZE = 20;
@@ -360,6 +361,7 @@ function LocationScopedMyBookingsTable({
     ) : null;
   const pageHeader = (
     <CustomerPortalPageHeader
+      pageKey="bookings"
       headingAs={Heading}
       eyebrow={legacyText(
         "LocationScopedMyBookingsTable_Booking_overview_a8c35",
@@ -414,10 +416,10 @@ function LocationScopedMyBookingsTable({
   }
 
   const sortButtonClasses =
-    "group inline-flex min-h-11 items-center gap-1.5 rounded-full font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--tenant-muted-on-surface)] transition-colors duration-200 hover:text-[var(--tenant-text-on-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-link)]/25";
+    "group inline-flex min-h-11 items-center gap-1.5 rounded-full font-semibold text-xs uppercase tracking-[0.1em] text-[var(--tenant-muted-on-surface)] transition-colors duration-200 hover:text-[var(--tenant-text-on-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tenant-accent-link)]/25";
 
   const headerLabelClasses =
-    "font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--tenant-muted-on-surface)]";
+    "font-semibold text-xs uppercase tracking-[0.1em] text-[var(--tenant-muted-on-surface)]";
 
   const editButtonClasses = customerPortalSecondaryActionClass;
 
@@ -428,11 +430,11 @@ function LocationScopedMyBookingsTable({
     >
       {pageHeader}
       <CustomerPortalSurface
-        className="mt-7"
+        className={`${design.bookingPanel} mt-7`}
         aria-busy={isFetchingUserBookings}
       >
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[color-mix(in_srgb,var(--tenant-text)_10%,transparent)] px-4 py-4 sm:px-6">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--tenant-muted-on-surface)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--tenant-muted-on-surface)]">
             {scope === "history"
               ? legacyText(
                   "LocationScopedMyBookingsTable_Booking_history_a8ef6",
@@ -506,7 +508,7 @@ function LocationScopedMyBookingsTable({
                     <div className="rounded-[24px] border border-[var(--tenant-border)] bg-[var(--tenant-surface)] p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0 flex-1">
-                          <h3 className="text-base font-medium leading-6 text-[var(--tenant-text-on-surface)]">
+                          <h3 className="text-lg font-semibold leading-6 text-[var(--tenant-text-on-surface)]">
                             {productName}
                           </h3>
                           <CustomerBookingStatus

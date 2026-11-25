@@ -46,8 +46,9 @@ const ATTENTION_ICONS = {
 };
 
 const ATTENTION_STYLES = {
-  unpaidBookings: "bg-[var(--overview-clay-soft)] text-[var(--studio-clay)]",
-  lowStock: "bg-[var(--overview-success-soft)] text-[var(--overview-success)]",
+  unpaidBookings:
+    "bg-[var(--overview-warning-soft)] text-[var(--overview-warning)]",
+  lowStock: "bg-[var(--overview-warning-soft)] text-[var(--overview-warning)]",
   overdueTasks:
     "bg-[var(--overview-warning-soft)] text-[var(--overview-warning)]",
 };
@@ -176,7 +177,7 @@ function DeterministicBriefing({
 
   return (
     <div className={styles.briefingCopy}>
-      <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-[var(--studio-blue)]">
+      <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-[var(--studio-blue)]">
         {t("briefing.operationalEyebrow")}
       </p>
       <h2 className="mt-2 break-words text-[30px] font-medium leading-[1.06] tracking-[-0.055em] text-[var(--studio-ink)] sm:text-[32px]">
@@ -188,8 +189,12 @@ function DeterministicBriefing({
         </p>
       )}
       <div className={styles.briefingFooter}>
-        <p className="inline-flex min-w-0 items-center gap-2 text-[12px] text-[var(--studio-muted)]">
-          <CheckCircleIcon className="h-4 w-4 text-[var(--overview-success)]" />
+        <p className="inline-flex min-w-0 items-center gap-2 text-[13px] text-[var(--studio-muted)]">
+          {overview.coverage.complete ? (
+            <CheckCircleIcon className="h-4 w-4 shrink-0 text-[var(--overview-success)]" />
+          ) : (
+            <ExclamationTriangleIcon className="h-4 w-4 shrink-0 text-[var(--overview-warning)]" />
+          )}
           {overview.coverage.complete
             ? t("briefing.coverageComplete", {
                 count: overview.coverage.available.length,
@@ -215,7 +220,7 @@ function DeterministicBriefing({
       </div>
       {briefingState?.query.isLoading || briefingState?.generation.isLoading ? (
         <p
-          className="mt-3 inline-flex items-center gap-2 text-[12px] text-[var(--studio-blue)]"
+          className="mt-3 inline-flex items-center gap-2 text-[13px] text-[var(--studio-blue)]"
           role="status"
         >
           <ArrowPathIcon className="h-3.5 w-3.5 motion-safe:animate-spin" />
@@ -224,7 +229,7 @@ function DeterministicBriefing({
       ) : null}
       {briefingState?.query.isError || briefingState?.generation.isError ? (
         <p
-          className="mt-3 text-[12px] text-[var(--overview-danger)]"
+          className="mt-3 text-[13px] text-[var(--overview-danger)]"
           role="status"
         >
           {t("briefing.refreshError")}
@@ -258,7 +263,7 @@ function AiBriefing({ overview, briefingState }) {
 
   return (
     <div className={styles.briefingCopy}>
-      <p className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.18em] text-[var(--studio-blue)]">
+      <p className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.18em] text-[var(--studio-blue)]">
         {aiNarrative ? (
           <SparklesIcon className="h-4 w-4" />
         ) : (
@@ -289,7 +294,7 @@ function AiBriefing({ overview, briefingState }) {
           {priorities.slice(0, 3).map((priority, index) => (
             <li
               key={priority.id}
-              className="rounded-[14px] border border-[var(--studio-rule)] bg-[var(--studio-white)] text-[12px] leading-4 text-[var(--studio-muted)] shadow-[0_2px_8px_rgb(40_48_78/0.03)]"
+              className="rounded-[14px] border border-[var(--studio-rule)] bg-[var(--studio-white)] text-[13px] leading-4 text-[var(--studio-muted)] shadow-[0_2px_8px_rgb(40_48_78/0.03)]"
             >
               {priority.href ? (
                 <Link
@@ -314,7 +319,7 @@ function AiBriefing({ overview, briefingState }) {
         </ol>
       ) : null}
       <div className={styles.briefingFooter}>
-        <p className="inline-flex min-w-0 flex-wrap items-center gap-2 text-[12px] text-[var(--studio-muted)]">
+        <p className="inline-flex min-w-0 flex-wrap items-center gap-2 text-[13px] text-[var(--studio-muted)]">
           {generatedAt ? (
             <span>
               {t("briefing.updated", {
@@ -357,7 +362,7 @@ function AiBriefing({ overview, briefingState }) {
       </div>
       {query.isFetching && !generation.isLoading ? (
         <p
-          className="mt-3 inline-flex items-center gap-2 text-[12px] text-[var(--studio-blue)]"
+          className="mt-3 inline-flex items-center gap-2 text-[13px] text-[var(--studio-blue)]"
           role="status"
         >
           <ArrowPathIcon className="h-3.5 w-3.5 motion-safe:animate-spin" />
@@ -366,7 +371,7 @@ function AiBriefing({ overview, briefingState }) {
       ) : null}
       {query.isError || generation.isError ? (
         <p
-          className="mt-3 text-[12px] text-[var(--overview-danger)]"
+          className="mt-3 text-[13px] text-[var(--overview-danger)]"
           role="status"
         >
           {t("briefing.refreshError")}
@@ -388,7 +393,11 @@ function AttentionPanel({ items, coverage }) {
       : "attention.partialHeading";
 
   return (
-    <aside data-attention-density="expanded" className={styles.attention}>
+    <aside
+      data-attention-density="expanded"
+      data-needs-attention={visibleItems.length > 0}
+      className={styles.attention}
+    >
       <h3 className="text-[15px] font-medium tracking-[-0.03em] text-[var(--studio-ink)]">
         {t(headingKey)}
       </h3>
@@ -402,18 +411,18 @@ function AttentionPanel({ items, coverage }) {
               <Link
                 key={item.key}
                 href={resolveBriefingHref(item.href)}
-                className="group grid min-h-12 grid-cols-[34px_38px_minmax(0,1fr)_18px] items-center gap-2 text-[12px] text-[var(--studio-muted)]"
+                className="group grid min-h-12 grid-cols-[34px_38px_minmax(0,1fr)_18px] items-center gap-2 rounded-lg px-1 py-2 text-[13px] font-medium text-[var(--studio-ink)] transition hover:bg-[var(--studio-white)]"
               >
                 <span
                   className={cx(
                     "flex h-8 w-8 items-center justify-center rounded-full",
                     ATTENTION_STYLES[item.key] ??
-                      "bg-[var(--overview-clay-soft)] text-[var(--studio-clay)]",
+                      "bg-[var(--overview-warning-soft)] text-[var(--overview-warning)]",
                   )}
                 >
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <strong className="text-[24px] font-medium tracking-[-0.04em] text-[var(--studio-clay)]">
+                <strong className="text-[24px] font-semibold tabular-nums tracking-[-0.04em] text-[var(--overview-warning)]">
                   {item.count}
                 </strong>
                 <span>{t(`attention.items.${item.key}`)}</span>
@@ -423,7 +432,7 @@ function AttentionPanel({ items, coverage }) {
           })}
           <Link
             href="/app/operations?section=tasks"
-            className="group flex min-h-11 items-center justify-between pt-2 text-[12px] font-medium text-[var(--studio-clay)]"
+            className="group mt-2 flex min-h-11 items-center justify-between rounded-xl border border-[var(--studio-warning-line)] bg-[var(--studio-white)] px-3 py-2 text-[13px] font-semibold text-[var(--overview-warning)] transition hover:border-[var(--overview-warning)]"
           >
             {t("attention.viewAll")}
             <ChevronRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -433,10 +442,10 @@ function AttentionPanel({ items, coverage }) {
         <div className="mt-4 flex items-start gap-3 rounded-[16px] border border-[var(--overview-success)] bg-[var(--overview-success-soft)] px-4 py-3">
           <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--overview-success)]" />
           <div>
-            <p className="text-[12px] font-medium text-[var(--overview-success)]">
+            <p className="text-[13px] font-medium text-[var(--overview-success)]">
               {t("attention.clearTitle")}
             </p>
-            <p className="mt-1 text-[12px] leading-4 text-[var(--overview-success)]">
+            <p className="mt-1 text-[13px] leading-4 text-[var(--overview-success)]">
               {t("attention.clearDescription")}
             </p>
           </div>
@@ -445,10 +454,10 @@ function AttentionPanel({ items, coverage }) {
         <div className="mt-4 flex items-start gap-3 rounded-[16px] border border-[var(--overview-warning)] bg-[var(--overview-warning-soft)] px-4 py-3">
           <ExclamationTriangleIcon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--overview-warning)]" />
           <div>
-            <p className="text-[12px] font-medium text-[var(--overview-warning)]">
+            <p className="text-[13px] font-medium text-[var(--overview-warning)]">
               {t("attention.partialTitle")}
             </p>
-            <p className="mt-1 text-[12px] leading-4 text-[var(--overview-warning)]">
+            <p className="mt-1 text-[13px] leading-4 text-[var(--overview-warning)]">
               {t("attention.partialDescription")}
             </p>
           </div>

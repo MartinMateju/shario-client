@@ -91,7 +91,11 @@ export default function ConfirmationModal({
     >
       <WorkspaceDialogBackdrop />
       <WorkspaceDialogViewport layout="compact">
-        <WorkspaceDialogPanel layout="compact" size="compact">
+        <WorkspaceDialogPanel
+          layout="compact"
+          size="compact"
+          tone={customerMode ? "tenant" : "workspace"}
+        >
           <WorkspaceDialogHeader
             title={resolvedTitle}
             onClose={handleClose}

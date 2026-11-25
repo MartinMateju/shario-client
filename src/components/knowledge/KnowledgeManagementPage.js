@@ -98,7 +98,7 @@ const formatDate = (value, locale) => {
 function Metric({ icon: Icon, label, value, tone = "cobalt" }) {
   const tones = {
     cobalt: "bg-cobalt-50 text-cobalt-700",
-    coral: "bg-coral-50 text-terracotta-700",
+    warning: "bg-warning-soft text-warning",
     sand: "bg-sand-100 text-sand-800",
     success: "bg-success-soft text-success",
   };
@@ -132,7 +132,7 @@ function AiReadinessBadge({ resource, t }) {
   const tones = {
     [KNOWLEDGE_AI_READINESS.READY]: "bg-success-soft text-success",
     [KNOWLEDGE_AI_READINESS.INDEXING]: "bg-cobalt-50 text-cobalt-700",
-    [KNOWLEDGE_AI_READINESS.NEEDS_ATTENTION]: "bg-coral-50 text-terracotta-700",
+    [KNOWLEDGE_AI_READINESS.NEEDS_ATTENTION]: "bg-warning-soft text-warning",
     [KNOWLEDGE_AI_READINESS.NOT_USED]: "bg-surface-muted text-ink-muted",
   };
 
@@ -363,7 +363,7 @@ export default function KnowledgeManagementPage({ showPageHeader = true }) {
           icon={ExclamationTriangleIcon}
           label={t("management.metrics.needsAttention")}
           value={stats.needs_attention}
-          tone="coral"
+          tone="warning"
         />
         <Metric
           icon={NoSymbolIcon}
@@ -506,7 +506,7 @@ export default function KnowledgeManagementPage({ showPageHeader = true }) {
                     <span className="rounded-full bg-cobalt-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.09em] text-cobalt-700">
                       {t(`types.${resource.type}`)}
                     </span>
-                    <span className="rounded-full bg-coral-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.09em] text-terracotta-700">
+                    <span className="rounded-full bg-surface-muted px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.09em] text-ink-muted">
                       {t(`audiences.${resource.audience || "customer"}`)}
                     </span>
                     {resource.featured ? (

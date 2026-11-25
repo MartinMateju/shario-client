@@ -150,7 +150,7 @@ const getMutationError = (error, fallback) =>
 function Pill({ children, tone = "neutral" }) {
   const tones = {
     active: "bg-[#E8F0E3] text-[#4C6040]",
-    suspended: "bg-[#FFF0EA] text-[#A34E38]",
+    suspended: "bg-[#FFF0EA] text-danger",
     neutral: "bg-[#EEECE7] text-[#686762]",
     role: "bg-skab-cobalt-100 text-primary-text",
   };
@@ -158,7 +158,7 @@ function Pill({ children, tone = "neutral" }) {
   return (
     <span
       className={cx(
-        "inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold",
+        "inline-flex rounded-full px-2.5 py-1 text-[12px] font-semibold",
         tones[tone] || tones.neutral,
       )}
     >
@@ -311,13 +311,14 @@ export function TeamMemberDialog({
       <div className="fixed inset-0 overflow-y-auto p-0 sm:p-6">
         <div className="flex min-h-full items-stretch justify-center sm:items-center">
           <DialogPanel
+            data-skab-workspace-surface="true"
             data-testid="team-member-dialog"
             data-dialog-layout="form"
             className="flex h-dvh max-h-dvh min-h-0 w-full max-w-2xl flex-col overflow-hidden rounded-none border-0 bg-surface-raised pt-[env(safe-area-inset-top)] shadow-floating sm:h-auto sm:max-h-[calc(100dvh-3rem)] sm:rounded-[24px] sm:border"
           >
             <div className="flex shrink-0 items-start justify-between border-b border-line bg-white px-5 py-5 sm:px-7">
               <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-cobalt-600">
                   {t("editor.eyebrow")}
                 </p>
                 <DialogTitle className="mt-2 text-[24px] font-semibold tracking-[-0.04em] text-[#111111]">
@@ -328,7 +329,7 @@ export function TeamMemberDialog({
                 type="button"
                 onClick={onClose}
                 disabled={isLoading}
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 text-[#777773] hover:bg-[#F4F2ED] disabled:opacity-50"
+                className="flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 text-ink-muted hover:bg-[#F4F2ED] disabled:opacity-50"
                 aria-label={t("editor.close")}
               >
                 <XMarkIcon className="h-5 w-5" />
@@ -360,11 +361,11 @@ export function TeamMemberDialog({
                       required
                       value={form.email}
                       onChange={(event) => update("email", event.target.value)}
-                      className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[12px] outline-none focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                      className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[16px] outline-none sm:text-[14px] focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                     />
                     <p
                       id="team-invitation-email-hint"
-                      className="mt-1.5 block text-[11px] leading-4 text-[#777773]"
+                      className="mt-1.5 block text-[13px] leading-4 text-ink-muted"
                     >
                       {t("editor.existingUserHint")}
                     </p>
@@ -381,7 +382,7 @@ export function TeamMemberDialog({
                       onChange={(event) =>
                         update("roleSelection", event.target.value)
                       }
-                      className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[12px] outline-none focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                      className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[16px] outline-none sm:text-[14px] focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                     >
                       {roleOptions.map((role) => (
                         <option key={role.value} value={role.value}>
@@ -400,7 +401,7 @@ export function TeamMemberDialog({
                         onChange={(event) =>
                           update("status", event.target.value)
                         }
-                        className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[12px] outline-none focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                        className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[16px] outline-none sm:text-[14px] focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                       >
                         <option value="active">{t("statuses.active")}</option>
                         <option value="suspended">
@@ -422,7 +423,7 @@ export function TeamMemberDialog({
                         onChange={(event) =>
                           update("displayName", event.target.value)
                         }
-                        className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[12px] outline-none focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                        className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[16px] outline-none sm:text-[14px] focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                       />
                     </label>
                     <label className="block">
@@ -434,7 +435,7 @@ export function TeamMemberDialog({
                         onChange={(event) =>
                           update("jobTitle", event.target.value)
                         }
-                        className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[12px] outline-none focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
+                        className="h-12 w-full rounded-[13px] border border-line bg-white px-4 text-[16px] outline-none sm:text-[14px] focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/10"
                       />
                     </label>
                   </div>
@@ -448,7 +449,7 @@ export function TeamMemberDialog({
                         <h3 className="text-[12px] font-semibold text-[#292925]">
                           {t("editor.locationTitle")}
                         </h3>
-                        <p className="mt-1 text-[11px] leading-4 text-[#777773]">
+                        <p className="mt-1 text-[13px] leading-4 text-ink-muted">
                           {t("editor.locationDescription")}
                         </p>
                       </div>
@@ -522,7 +523,7 @@ export function TeamMemberDialog({
                       <strong className="block text-xs text-[#292925]">
                         {t("editor.calendarColor")}
                       </strong>
-                      <span className="mt-0.5 block text-[10px] text-[#777773]">
+                      <span className="mt-0.5 block text-[12px] text-ink-muted">
                         {t("editor.calendarColorHint")}
                       </span>
                     </span>
@@ -532,7 +533,7 @@ export function TeamMemberDialog({
                 {error && (
                   <p
                     role="alert"
-                    className="rounded-[13px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+                    className="rounded-[13px] border border-danger/40 bg-white px-4 py-3 text-xs text-danger"
                   >
                     {error}
                   </p>
@@ -695,7 +696,7 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
     return (
       <div className="flex min-h-[320px] items-center justify-center">
         <ArrowPathIcon className="h-6 w-6 animate-spin text-cobalt-500" />
-        <span className="ml-3 text-[12px] text-[#777773]">{t("loading")}</span>
+        <span className="ml-3 text-[12px] text-ink-muted">{t("loading")}</span>
       </div>
     );
   }
@@ -725,7 +726,7 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
       {notice && (
         <p
           role="alert"
-          className="rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className="rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-xs text-danger"
         >
           {notice}
         </p>
@@ -747,7 +748,7 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
       {(teamQuery.isError || (canManage && rolesQuery.isError)) && (
         <p
           role="alert"
-          className="rounded-[14px] border border-coral-200 bg-coral-50 px-4 py-3 text-xs text-terracotta-700"
+          className="rounded-[14px] border border-danger/40 bg-white px-4 py-3 text-xs text-danger"
         >
           {t("errors.load")}
         </p>
@@ -763,7 +764,7 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
               <h2 className="text-[13px] font-semibold text-[#292925]">
                 {t("listTitle")}
               </h2>
-              <p className="mt-0.5 text-[10px] text-[#777773]">
+              <p className="mt-0.5 text-[12px] text-ink-muted">
                 {t("memberCount", { count: team.length })}
               </p>
             </div>
@@ -777,7 +778,7 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
             <h3 className="mt-4 text-[14px] font-semibold text-[#292925]">
               {t("empty.title")}
             </h3>
-            <p className="mt-1 max-w-sm text-xs leading-5 text-[#777773]">
+            <p className="mt-1 max-w-sm text-xs leading-5 text-ink-muted">
               {t("empty.description")}
             </p>
           </div>
@@ -807,7 +808,7 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
                   key={id}
                   className="flex flex-col gap-4 px-5 py-4 sm:flex-row sm:items-center"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-primary text-[11px] font-semibold text-white">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-primary text-[13px] font-semibold text-white">
                     {getName(membership, "?")
                       .split(/\s+/)
                       .slice(0, 2)
@@ -834,13 +835,13 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
                         {t(`statuses.${membership.status || "active"}`)}
                       </Pill>
                     </div>
-                    <p className="mt-1 truncate text-[11px] text-[#777773]">
+                    <p className="mt-1 truncate text-[13px] text-ink-muted">
                       {getEmail(membership) || "—"}
                       {membership.workspaceProfile?.jobTitle
                         ? ` · ${membership.workspaceProfile.jobTitle}`
                         : ""}
                     </p>
-                    <p className="mt-1 text-[10px] text-[#9A9993]">
+                    <p className="mt-1 text-[12px] text-ink-muted">
                       {locationAccess.mode === "selected"
                         ? t("selectedLocations", {
                             count: locationAccess.locationIds?.length || 0,
@@ -873,7 +874,7 @@ export default function TeamSettingsPage({ showPageHeader = true }) {
                         type="button"
                         disabled={isDeleting}
                         onClick={() => remove(membership)}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-[#A34E38] hover:border-coral-300 hover:bg-coral-50 disabled:opacity-40"
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-danger hover:border-danger/40 hover:bg-danger-soft disabled:opacity-40"
                         aria-label={t("actions.remove")}
                       >
                         <TrashIcon className="h-4 w-4" />
